@@ -6,16 +6,19 @@ import AuthenticatedComponent from './components/authenticated/AuthenticatedComp
 import AnonymousComponent from './components/anonymous/AnonymousComponent';
 import './App.css';
 const Router = () => {
-    console.log('AuthenticatedComponent :>> ', AuthenticatedComponent());
+
     return (
+
         <BrowserRouter>
+        
             <Header userIsAuth={isAuth()}/>
             <Routes>
-                {isAuth() ? <AuthenticatedComponent /> : <AnonymousComponent />}
+                {isAuth() ? AuthenticatedComponent() : AnonymousComponent()}
                 <Route path="*" element={<Page404 />} />
             </Routes>
 
         </BrowserRouter>
+
     );
 };
 

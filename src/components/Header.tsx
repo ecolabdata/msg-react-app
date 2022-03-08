@@ -14,7 +14,7 @@ const Header = ({userIsAuth}: HeaderProps) => {
         return  routesToDisplay.map((route) => {
             
             return (
-                <li>
+                <li key={route.key}>
                     <NavLink key={route.key} to={route.path} className={ ({ isActive }) => isActive ? "bg-amber-400" : "bg-amber-100"}>{route.name}</NavLink>
                 </li>
             )
