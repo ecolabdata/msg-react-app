@@ -1,10 +1,20 @@
-import {BrowserRouter} from 'react-router-dom';
-import App from './App';
-
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import isAuth from './helpers/isAuth';
+import Header from './components/Header'
+import Page404 from './components/anonymous/Page404';
+import AuthenticatedComponent from './components/authenticated/AuthenticatedComponent';
+import AnonymousComponent from './components/anonymous/AnonymousComponent';
+import './App.css';
 const Router = () => {
+    console.log('AuthenticatedComponent :>> ', AuthenticatedComponent());
     return (
-        <BrowserRouter> 
-            <App/>
+        <BrowserRouter>
+            <Header userIsAuth={isAuth()}/>
+            <Routes>
+                {isAuth() ? <AuthenticatedComponent /> : <AnonymousComponent />}
+                <Route path="*" element={<Page404 />} />
+            </Routes>
+
         </BrowserRouter>
     );
 };
