@@ -1,6 +1,6 @@
 const isAuth = () :boolean => {
   // const user = localStorage.getItem('user');
-  const user = true;
+  const user = false;
   if (user) {
     return true;
   }
