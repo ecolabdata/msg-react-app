@@ -1,22 +1,24 @@
 import MySelection from './../components/authenticated/MySelection';
 import WasteBin from './../components/authenticated/WasteBin';
+import Logout from './../components/authenticated/Logout';
 import Home from './../components/anonymous/Home';
 
-interface routes {
+export interface Route {
     key: string,
     path: string,
     name: string,
     element: React.ReactNode,
-    routes?: routes[]
+    routes?: Route[]
 }
 
-export const protectedRoutes: routes[] = [
+export const protectedRoutes: Route[] = [
 
-    {key: "MA SELECTION", path: "/ma-selection", name: "ma sélection", element: MySelection()},
-    {key: "CORBEILLE", path: "/corbeille", name: "corbeille", element: WasteBin() },
+    {key: "SELECTION", path: "/ma-selection", name: "Sélection", element: MySelection() },
+    {key: "CORBEILLE", path: "/corbeille", name: "Corbeille", element: WasteBin() },
+    {key: "DECONNEXION", path: "/deconnexion", name: "Déconnexion", element: Logout() },
 ]
 
-export const unProtectedRoutes: routes[] = [
+export const unProtectedRoutes: Route[] = [
     
-    {key: "ACCUEIL", path: "/", name: "accueil", element: Home()},
+    {key: "ACCUEIL", path: "/", name: "Accueil", element: Home()},
 ]

@@ -12,10 +12,12 @@ const Router = () => {
         <BrowserRouter>
         
             <Header userIsAuth={isAuth()}/>
-            <Routes>
-                {isAuth() ? AuthenticatedComponent() : AnonymousComponent()}
-                <Route path="*" element={<Page404 />} />
-            </Routes>
+            <main>
+                <Routes>
+                    {isAuth() ? AuthenticatedComponent() : AnonymousComponent()}
+                    <Route path="*" element={<Page404 />} />
+                </Routes>
+            </main>
 
         </BrowserRouter>
 
