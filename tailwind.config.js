@@ -3,9 +3,11 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
-    colors: {
-      "claire-bf__hover": "#e5e5e5",
+    extend: {
+      width: {
+        '55': '55%',
+        '93': '93%',
+      }
     },
   },
   plugins: [],

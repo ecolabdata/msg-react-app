@@ -9,6 +9,7 @@ interface HeaderProps {
 }
 
 const Header = ({userIsAuth}: HeaderProps) => {
+    
     const navBar = () => {
 
         let routesToDisplay;
@@ -30,12 +31,13 @@ const Header = ({userIsAuth}: HeaderProps) => {
                     "> {route.name } </button> 
                     :
                     <li key={route.key} className="fr-nav__item h-full w-full p-0">
-                        
+  
                         <NavLink 
                             key={route.key}
                             to={route.path} 
                             className="fr-nav__link"
                             > 
+
                                 <div className="flex">
                                     {route.key === 'SELECTION' ?
                                     
@@ -53,6 +55,7 @@ const Header = ({userIsAuth}: HeaderProps) => {
                                 </div>
 
                         </NavLink>
+
                     </li>
                 }
                 </>
@@ -82,7 +85,7 @@ const Header = ({userIsAuth}: HeaderProps) => {
                                 </div>
                             </div>
                             <div className="fr-header__service">
-                                <a className="flex bg-red-200" href="/" title="Accueil - Mes services GreenTech - Ministère de la transition écologique">
+                                <a className="flex bg-gray-300" href="/" title="Accueil - Mes services GreenTech - Ministère de la transition écologique">
                                     {/* <img className="h-12 mt-1 mr-2" src={LogoMSG} alt="Icône d'indication, version beta "/> */}
                                     {/* <p className="fr-header__service-title capitalize ">mes services<br/> greentech</p> */}
                                     <img className="h-12 mt-1 mr-2" src={LogoMSGBeta} alt="Icône d'indication, version beta "/>
@@ -107,7 +110,6 @@ const Header = ({userIsAuth}: HeaderProps) => {
                     <div className="fr-header__menu-links"></div>
                 </div>
             </div>
-
         </header>
     )
 }
