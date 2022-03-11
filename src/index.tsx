@@ -7,6 +7,7 @@ import { createStore, applyMiddleware } from 'redux';
 import Router from './Router';
 import rootReducer from './_reducers/rootReducer';
 import './index.css';
+import'./main.js';
 
 const store = createStore(
   rootReducer,
