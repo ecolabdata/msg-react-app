@@ -1,14 +1,21 @@
+import Arrow from './../../assets/icons/arrowDark.svg';
 
-import {Route} from './../../utils/routes';
 
-const Button = (route?:Route) => {
+export interface ButtonProps extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
+    arrow?: boolean;
+}
+
+const Button:React.FC<ButtonProps> = ({children, arrow}) => {
     
     return (
          
         <button className="
             fr-btn fr-btn--secondary
             h-full my-auto
-            hover:bg-claire-bf__hover"> {route ? route.name : null } </button> 
+            hover:bg-claire-bf__hover flex justify-between"> 
+                <span>{children}</span>  
+                <span className="mt-1 ml-1">{arrow ? <img src={Arrow} alt="Icône flèche"/> : ""}</span>
+        </button> 
     );
     
 }
