@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom';
-import Button from './dsfrComponents/Button';
 import FillButton from './dsfrComponents/FillButton';
-import { protectedRoutes, unProtectedRoutes } from './../utils/routes';
+import { protectedRoutes, publicRoutes } from './../utils/routes';
 import {LightTrash, LightStar} from './../assets/Icons';
 import LogoMSG from './../assets/msg-icon.png';
 import LogoMSGBeta from './../assets/icon-msg-txt-beta.png';
@@ -12,85 +11,76 @@ interface HeaderProps {
 }
 
 const Header = ({userIsAuth}: HeaderProps) => {
-    const generateNavLinksBasedOnIfRouteElementIsBoolean = (route:Route) => {
-        
-        const routeElementIsBoolean = typeof route.element === 'boolean';
 
-        if(routeElementIsBoolean) {
-
-            if(userIsAuth) {
-
-                return(
-                    <li className="fr-nav__item">
-                        <AvatarPopOver/>
-                    </li>
-                )
-
-            }else {
-
-                return (
-                    
-                    <li className="fr-nav__item ROUTE.ELEMENT = false" >
-                        <FillButton><a href="/connexion">Conexion</a></FillButton>     
-                    </li>
-
-                )
-            }
-
-        }else{
-
+    const generatePopOverOrLoginButton = () => {
             return (
-                <li key={route.key} className="fr-nav__item h-full w-full p-0">
-            
-                    <NavLink 
-                        key={route.key}
-                        to={route.path} 
-                        className="fr-nav__link"
-                    > 
-                        {userIsAuth && route.name !== 'Accueil' &&
-                            <div className="flex">
+                <>
+                    {userIsAuth ?
 
-                                {route.key === 'SELECTION' ?
+                        <li className="fr-nav__item">
+                            <AvatarPopOver/>
+                        </li>
+                        :
+
                                 
-                                    <span className="h-full my-auto mr-2">
-                                        <LightStar/>
-                                    </span>
-                                
-                                    :
-                                    <LightTrash/>                               
-                                }
-                                
-                                <div className="flex flex-col">
-                                    <p className="font-bold"> {route.name} </p>
-                                    <p className="text-xs"> X pistes </p>
-                                </div>
+                        <li className="fr-nav__item" >
+                            <FillButton>
+                                <NavLink to="/authentification">Conexion</NavLink>
+                            </FillButton>
+                        </li>
 
-                            </div>
-                        }
-
-                    </NavLink>
-
-                </li>
+                    }
+                </>
             )
-            
-        }
+           
+    }
+    const generateNavLinks = (route:Route) => {
+        return (
+            <>
+                {userIsAuth &&
+                    <li key={route.key} className="fr-nav__item h-full w-full p-0">
+                
+                        <NavLink 
+                            key={route.key}
+                            to={route.path} 
+                            className="fr-nav__link"
+                        > 
+                        
+                                <div className="flex">
+
+                                    {route.key === 'SELECTION' ?
+                                    
+                                        <span className="h-full my-auto mr-2">
+                                            <LightStar/>
+                                        </span>
+                                    
+                                        :
+                                        <LightTrash/>                               
+                                    }
+                                    
+                                    <div className="flex flex-col">
+                                        <p className="font-bold"> {route.name} </p>
+                                        <p className="text-xs"> X pistes </p>
+                                    </div>
+
+                                </div>
+                        </NavLink>
+
+                    </li>
+                }
+            </>
+        )
+        
     };
 
     const generateNavBar = () => {
 
         let routesToDisplay;
-        routesToDisplay = userIsAuth ? protectedRoutes : unProtectedRoutes;
+        routesToDisplay = userIsAuth ? protectedRoutes : publicRoutes;
 
         return  routesToDisplay.map((route:Route) => {
 
-            if(route.name !== "Accueil"){
-
-                return generateNavLinksBasedOnIfRouteElementIsBoolean(route);
-            }else{
-
-                return <></> 
-            }
-
+            return generateNavLinks(route);
         })
     };
 
@@ -125,9 +115,11 @@ const Header = ({userIsAuth}: HeaderProps) => {
                             </div>
                         </div>
                         <div className="fr-header__tools flex justify-end">
-                            <div className="fr-header__tools-links">
+                            <div className="">
                                 <ul className="fr-nav__list">
+                                    {/* {fr-header__tools-links} */}
                                     {generateNavBar()}
+                                    {generatePopOverOrLoginButton()}
                                 </ul>
                             </div>
                         </div>

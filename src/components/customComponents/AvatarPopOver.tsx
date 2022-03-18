@@ -2,9 +2,8 @@ import { Popover, Transition } from '@headlessui/react'
 import Chevron from './../../assets/icons/chevron.svg'
 import Logout from './../../assets/icons/logout.svg'
 import Panda from './../../assets/images/panda.jpg'
-import {useDispatch} from 'react-redux'
-
-
+import {useDispatch} from 'react-redux';
+import {Link} from 'react-router-dom';
 interface AvatarPopOverProps {
     rotation?:string,
     avatar?:string
@@ -39,7 +38,7 @@ const AvatarPopOver: React.FC<AvatarPopOverProps> = ({rotation, avatar}:AvatarPo
                 <Popover.Panel className="absolute z-10 w-40 h-15 p-4 rounded-md  bg-gray-100  ">
                     <div className=" flex justify-evenly hover:bg-indigo-200">
                         <img  className="w-6" src={Logout} alt="Icône de déconnexion"/>
-                        <a href="/deconnexion">Deconnexion</a>
+                        <Link to="/authentification">Deconnexion</Link>
                     </div>
                 </Popover.Panel>
             </Transition>

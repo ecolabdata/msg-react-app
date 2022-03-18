@@ -1,26 +1,19 @@
-import MySelection from './../components/authenticated/MySelection';
-import WasteBin from './../components/authenticated/WasteBin';
-import Logout from './../components/authenticated/Logout';
-import Home from './../components/anonymous/Home';
-import Authentication from './../components/Authentication';
-
 export interface Route {
     key: string,
     path: string,
     name: string,
-    element: React.ReactNode,
     routes?: Route[]
+    type: "protected" | "public",
 }
 
 export const protectedRoutes: Route[] = [
 
-    {key: "SELECTION", path: "/ma-selection", name: "Sélection", element: MySelection() },
-    {key: "CORBEILLE", path: "/corbeille", name: "Corbeille", element: WasteBin() },
-    {key: "DECONNEXION", path: "/deconnexion", name: "Déconnexion", element: Logout() },
+    {key: "SELECTION", path: `profile/ma-selection`, name: "Sélection",  type:"protected" },
+    {key: "CORBEILLE", path: `profile/corbeille`, name: "Corbeille",  type:"protected" },
 ];
 
-export const unProtectedRoutes: Route[] = [
+export const publicRoutes: Route[] = [
     
-    {key: "CONNEXION", path: "/connexion", name: "Connexion", element: Authentication()},
-    {key: "ACCUEIL", path: "/", name: "Accueil", element: Home()},
+    {key: "CONNEXION", path: "/authentificaiton", name: "Connexion", type:"public" },
+    {key: "ACCUEIL", path: "/", name: "Accueil",  type:'public'},
 ]
