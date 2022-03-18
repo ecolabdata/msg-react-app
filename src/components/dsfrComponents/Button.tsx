@@ -5,11 +5,11 @@ export interface ButtonProps extends React.DetailedHTMLProps<React.ButtonHTMLAtt
     arrow?: boolean;
 }
 
-const Button:React.FC<ButtonProps> = ({children, arrow}) => {
+const Button:React.FC<ButtonProps> = ({children, arrow, onClick}) => {
     
     return (
          
-        <button className="
+        <button onClick={onClick} className="
             fr-btn fr-btn--secondary
             h-full my-auto
             hover:bg-claire-bf__hover flex justify-between"> 

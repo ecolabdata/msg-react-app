@@ -1,9 +1,11 @@
-// import {useNavigate, useHistory} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Button from '../dsfrComponents/Button';
 import FillButton from '../dsfrComponents/FillButton';
 import {Signal, Calendar, Euro, Rocket, Eye} from './../../assets/Icons';
 import HomePageCard, {HomePageCardProps} from './../customComponents/HomePageCard';
 const Home = () => {
+
+    const navigate = useNavigate();
     const cardsData:HomePageCardProps[]= [
     
         {
@@ -91,6 +93,7 @@ const Home = () => {
             <div className="container-content
                 mx-auto w-55 h-min-full p-4
                 flex flex-wrap justify-center
+                .2
                 ">
                     {
                         cardsData.map((card) => {
@@ -105,9 +108,12 @@ const Home = () => {
                         })
                     }
             </div>
+
             <div className="mx-auto w-55 flex justify-evenly">
-                <Button onClick={ () => console.log('il faudra rediriger')} arrow={true}> Créer un compte</Button>
-                <FillButton onClick={ () => console.log('il faudra rediriger')} arrow={true}>Découvrir la solution</FillButton>
+                <Button onClick={ () => navigate('/inscription')} arrow={true}> Créer un compte</Button>
+                <FillButton onClick={ () => {
+                    navigate('/formulaire-recherche-de-solutions')
+                }} arrow={true}>Découvrir la solution</FillButton>
             </div> 
 
         </>
