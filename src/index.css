@@ -1,4 +1,4 @@
+@import '~@gouvfr/dsfr/dist/dsfr/dsfr.min.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import '~@gouvfr/dsfr/dist/dsfr/dsfr.min.css';

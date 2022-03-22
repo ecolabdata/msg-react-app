@@ -9,14 +9,42 @@ module.exports = {
         '93': '93%',
         '227': '227px',
         '195': '195px',
+        '282': '282px',
+        'formTitle':'535px',
+        'form': '588px'
+      },
+      minWidth: {
+        '282': '282px',
       },
       height: {
         '55': '55%',
         '93': '93%',
         '204': '204px',
         '172': '172px',
-      }
+        '181': '181px', 
+        'form': '301px'
+
+      },
+      colors: {
+        'blue-france': '#000091',
+        'private-investors': '#68A532',
+        "research-card-preview": "#161616",
+      },
+      borderWidth: {
+        "3": "3px",
+
+      },
+      scale:{
+        '115':"1.15",
+        '120':"1.20",
+      },
+      plugins: [],
     },
   },
-  plugins: [],
+  variants: {
+    extend: {
+      display: ["group-hover"],
+      opacity: ["group-hover"]
+    },
+  },
 }

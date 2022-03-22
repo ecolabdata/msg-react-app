@@ -47,3 +47,15 @@
   left: 130px;
   bottom: 110px;
 }
+
+.addBorder {
+  border: 1px solid black;
+}
+
+.addBorder-l {
+  border-left: 1px solid black;
+}
+
+.hiddenScrollBar::-webkit-scrollbar {
+  width: 0;
+}
