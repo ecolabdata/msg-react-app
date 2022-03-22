@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import FillButton from './dsfrComponents/FillButton';
-import { protectedRoutes, publicRoutes } from './../utils/routes';
+import { protectedRoutes, publicRoutes } from './../utils';
 import {LightTrash, LightStar} from './../assets/Icons';
 import LogoMSG from './../assets/msg-icon.png';
 import LogoMSGBeta from './../assets/icon-msg-txt-beta.png';
@@ -25,7 +25,7 @@ const Header = ({userIsAuth}: HeaderProps) => {
                                 
                         <li className="fr-nav__item" >
                             <FillButton>
-                                <NavLink to="/authentification">Conexion</NavLink>
+                                <NavLink to="/authentification">Connexion</NavLink>
                             </FillButton>
                         </li>
 

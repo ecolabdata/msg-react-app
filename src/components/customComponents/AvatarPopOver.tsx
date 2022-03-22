@@ -2,19 +2,23 @@ import { Popover, Transition } from '@headlessui/react'
 import Chevron from './../../assets/icons/chevron.svg'
 import Logout from './../../assets/icons/logout.svg'
 import Panda from './../../assets/images/panda.jpg'
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
+import {appActions} from './../../_actions/app.actions';
+import {RootState} from '../../_reducers/root.reducer';
 interface AvatarPopOverProps {
     rotation?:string,
     avatar?:string
 }
 
-const AvatarPopOver: React.FC<AvatarPopOverProps> = ({rotation, avatar}:AvatarPopOverProps) => { 
+const AvatarPopOver: React.FC<AvatarPopOverProps> = ({avatar}) => { 
     
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
+    const { popOverChevronRotate } = useSelector( (state:RootState ) => state.appState);
+    
 
     const rotateChevron = () => {
-        // dispatch(userActions.rotatePopOverChevron())
+        dispatch(appActions.rotatePopOverChevron())
     }
 
     return (
@@ -24,7 +28,7 @@ const AvatarPopOver: React.FC<AvatarPopOverProps> = ({rotation, avatar}:AvatarPo
             <Popover.Button className="w-44 p-4 flex " >
                 <img className="rounded-full  mt-2 mr-1.5 w-6 h-6 bg-blue-600" src={avatar ? avatar : Panda} alt="Avatar de l'utilisateur connecté"/>
                 <p className="mt-1.5 mr-1.5">Constantin</p>
-                <img onClick={() => rotateChevron()} className={`${rotation}  mt-2 w-6 h-6`} src={Chevron} alt='chevron'/>
+                <img onClick={() => rotateChevron()} className={`${popOverChevronRotate ? "rotate-90" : ""}  mt-2 w-6 h-6`} src={Chevron} alt='chevron'/>
             </Popover.Button>
 
             <Transition
@@ -41,6 +45,7 @@ const AvatarPopOver: React.FC<AvatarPopOverProps> = ({rotation, avatar}:AvatarPo
                         <Link to="/authentification">Deconnexion</Link>
                     </div>
                 </Popover.Panel>
+                
             </Transition>
         </Popover>
         

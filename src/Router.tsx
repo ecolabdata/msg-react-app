@@ -9,6 +9,7 @@ import './App.css';
 import MySelection from './components/authenticated/MySelection';
 import WasteBin from './components/authenticated/WasteBin';
 import Authentication from './components/Authentication';
+import ResearchForm from './components/anonymous/ResearchForm';
 const Router = () => {
 
     
@@ -19,6 +20,7 @@ const Router = () => {
                 <Routes>
 
                     <Route path="/" element={<Home/>} />
+                    <Route path="/formulaire-recherche-de-solutions" element={<ResearchForm/>} />
                     <Route path="/authentification" element={<Authentication/>} />
                     <Route path="/profile" element={<AuthenticatedComponent />}>
                         <Route path="ma-selection" element={<MySelection/>} />
