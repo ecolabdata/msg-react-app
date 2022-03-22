@@ -1,15 +1,46 @@
+import {Dispatch} from 'redux'; 
+import {
+    ROTATE_POPOVER_CHEVRON_SUCCESS,
+    UPDATE_APP_STATE_PROPERTY,
+} from './app.actions.name'
 
-import ActionType from './../_reducers/appState.reducer'
-import {NavigateFunction} from 'react-router';
-import {Dispatch} from 'redux';
-
-
-const storeNavigateHook =  (navigateHook:NavigateFunction) => {
-    return( dispatch:Dispatch) => {
-    };
-
+interface PropertyData {
+    propertyValue: string,
+    propertyName: string,
 }
 
-export const appActions = {
-    storeNavigateHook,   
+
+const rotatePopOverChevron = () => {
+    
+    const success = () => ({
+        type: ROTATE_POPOVER_CHEVRON_SUCCESS
+    });
+   
+    return (dispatch: Dispatch) => {
+    
+        dispatch(success());
+
+    };
 };
+
+const updateStateProperty = (propertyValue:string, propertyName:string) => {
+
+  
+  const propertyData = {
+    propertyValue,
+    propertyName,
+  };
+  
+  const success = (propertyData:PropertyData) => ({ type: UPDATE_APP_STATE_PROPERTY, payload: propertyData });
+    return (dispatch:Dispatch) => {
+  
+      dispatch(success(propertyData));
+    };
+  };
+
+export const appActions = {
+    rotatePopOverChevron,
+    updateStateProperty,
+}
+
+
