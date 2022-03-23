@@ -9,6 +9,13 @@ import Router from './Router';
 import rootReducer from './_reducers/root.reducer';
 import './index.css';
 import'./main.js';
+import gitInfo from './generatedGitInfo.json'; //If you have compilation problem here just run `npm run git-info`
+
+type GitInfo = typeof gitInfo
+declare global {
+    interface Window { gitInfo: GitInfo; }
+}
+Object.assign(window, { gitInfo })
 
 const store = createStore(rootReducer,applyMiddleware(thunkMiddleware));
 
