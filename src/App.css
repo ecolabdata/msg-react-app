@@ -36,3 +36,26 @@
     transform: rotate(360deg);
   }
 }
+
+.card-container:nth-child(-n+2)::after, .card-container:nth-child(4)::after  {
+  width: 147px;
+  height: 0px;
+  content: "";
+  border-bottom: 1px solid grey;
+  transform: rotate(90deg);
+  position: relative;
+  left: 130px;
+  bottom: 110px;
+}
+
+.addBorder {
+  border: 1px solid black;
+}
+
+.addBorder-l {
+  border-left: 1px solid black;
+}
+
+.hiddenScrollBar::-webkit-scrollbar {
+  width: 0;
+}
