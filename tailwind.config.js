@@ -23,12 +23,13 @@ module.exports = {
         '172': '172px',
         '181': '181px', 
         'form': '301px'
-
       },
       colors: {
         'blue-france': '#000091',
         'private-investors': '#68A532',
         "research-card-preview": "#161616",
+        "research-precision-container": "#353434",
+        "input-background": "#242424",
       },
       borderWidth: {
         "3": "3px",
