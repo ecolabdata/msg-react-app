@@ -1,21 +1,8 @@
-import { Route } from 'react-router-dom';
-import { protectedRoutes } from '../../utils/routes';
-
+import { Navigate, Outlet } from 'react-router-dom';
+import isAuth from '../../helpers/isAuth';
 
 const AuthenticatedComponent = () => {
-
-    const authenticatedRoutes = () => {
-        
-        return protectedRoutes.map((route) => {
-
-            return <Route path={route.path} element={route.element} />
-        })
-        
-    };
-
-    return (
-        authenticatedRoutes()
-    );
+    return isAuth() ? <Outlet /> : <Navigate to="/authentification"/>;
 }
 
 export default AuthenticatedComponent;
