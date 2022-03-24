@@ -27,9 +27,11 @@ module.exports = {
       colors: {
         'blue-france': '#000091',
         'private-investors': '#68A532',
+        'light-accent-green' : '#95E257',
         "research-card-preview": "#161616",
         "research-precision-container": "#353434",
         "input-background": "#242424",
+        "dark-text-action":"#8585F6"
       },
       borderWidth: {
         "3": "3px",
