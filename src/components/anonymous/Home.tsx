@@ -1,10 +1,11 @@
 import { useNavigate } from 'react-router-dom';
+import { useTitle } from '../../hooks/useTitle';
 import Button from '../dsfrComponents/Button';
 import FillButton from '../dsfrComponents/FillButton';
 import {Signal, Calendar, Euro, Rocket, Eye} from './../../assets/Icons';
 import HomePageCard, {HomePageCardProps} from './../customComponents/HomePageCard';
 const Home = () => {
-
+    useTitle("Accueil")
     const navigate = useNavigate();
     const cardsData:HomePageCardProps[]= [
     
