@@ -47,7 +47,7 @@ const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = ({in
                         <button className="w-36 h-9 text-xs font-bold 
                         addBorder border-2 border-private-investors p-1
                         flex justify-center
-                        text-private-investors"> <span className="my-auto">Voir tout</span> <img className="my-auto ml-1.5 w-4 h-4" src={ArrowInvestors} alt="Icône de chevron"/> </button>
+                        text-private-investors" onClick={() => navigate("/liste-resultats")}> <span className="my-auto">Voir tout</span> <img className="my-auto ml-1.5 w-4 h-4" src={ArrowInvestors} alt="Icône de chevron"/> </button>
                     </div>
                 </div>
 
