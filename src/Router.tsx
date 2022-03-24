@@ -11,6 +11,8 @@ import WasteBin from './components/authenticated/WasteBin';
 import Authentication from './components/Authentication';
 import ResearchForm from './components/anonymous/ResearchForm';
 import { TrackPage } from './hooks/useTrackPage';
+import ListResearchResult from './components/anonymous/ListResearchResult';
+
 const Router = () => {
 
 
@@ -22,6 +24,7 @@ const Router = () => {
                     <Route path="/" element={<TrackPage />}>
                         <Route path="/" element={<Home />} />
                         <Route path="/formulaire-recherche-de-solutions" element={<ResearchForm />} />
+                        <Route path="/liste-resultats" element={<ListResearchResult investor="Investisseurs privés" numberOfResultsFound={18} investorPrecisions="Investisseurs privés adaptés à votre maturité pour votre prochaine levée de fonds." />} />
                         <Route path="/authentification" element={<Authentication />} />
                         <Route path="/profile" element={<AuthenticatedComponent />}>
                             <Route path="ma-selection" element={<MySelection />} />

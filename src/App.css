@@ -1,3 +1,4 @@
+
 .App {
   text-align: center;
 }
@@ -56,6 +57,16 @@
   border-left: 1px solid black;
 }
 
+.addBorder-b {
+  border-bottom: 1px solid black;
+}
+
+.hiddenScrollBar {
+  scrollbar-width: none;
+
+}
+
 .hiddenScrollBar::-webkit-scrollbar {
   width: 0;
+
 }
