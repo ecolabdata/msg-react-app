@@ -4,13 +4,13 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import AuthenticatedComponent from './components/authenticated/AuthenticatedComponent';
 import Page404 from './components/anonymous/Page404';
-import Home from './components/anonymous/Home';
+import Home from './components/anonymous/HomePage';
 import './App.css';
-import MySelection from './components/authenticated/MySelection';
-import WasteBin from './components/authenticated/WasteBin';
+import MySelection from './components/authenticated/MySelectionPage';
+import WasteBin from './components/authenticated/WasteBinPage';
 import Authentication from './components/Authentication';
-import ResearchForm from './components/anonymous/ResearchForm';
-import ListResearchResult from './components/anonymous/ListResearchResult';
+import ResearchForm from './components/anonymous/ResearchFormPage';
+import ListResearchResult from './components/anonymous/ListResearchResultPage';
 const Router = () => {
 
     

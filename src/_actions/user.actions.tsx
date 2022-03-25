@@ -5,7 +5,12 @@ import {
     RECORD_USER_KEY_WORDS_RESEARCH_REQUEST,
     RECORD_USER_KEY_WORDS_RESEARCH_SUCCESS,
     RECORD_USER_KEY_WORDS_RESEARCH_FAILURE,
+    RECORD_CARDS_DISPLAYED_RANGE_REQUEST,
+    RECORD_CARDS_DISPLAYED_RANGE_SUCCESS,
+    RECORD_CARDS_DISPLAYED_RANGE_FAILURE,
 } from './user.actions.name';
+
+import JSONData from './../utils/mockCardsData.json';
 
 import {userServices, UserResearchKeyWordsType} from '../_services/user.service';
 
@@ -40,8 +45,67 @@ const recordUserKeyWordsResearch =  (userKeyWords:UserResearchKeyWordsType) => {
     };
 
   
-}
+};
+
+const cardsDisplayedDesiredRange = (jsonData: typeof JSONData) => {
+  
+    const request = () => {
+      
+      return {
+      
+        type: RECORD_CARDS_DISPLAYED_RANGE_REQUEST
+      
+      };
+    };
+    
+    const success = (response: typeof JSONData) => {
+      
+      return {
+      
+        type: RECORD_CARDS_DISPLAYED_RANGE_SUCCESS,
+      
+        payload: response
+      
+      };
+    };
+    
+    const failure = (error: AxiosError) => {
+      
+      return {
+      
+        type: RECORD_CARDS_DISPLAYED_RANGE_FAILURE,
+      
+        payload: error
+      
+      };
+    };
+
+    return (dispatch: Dispatch) => {
+      
+      const rangeCardsToDisplay = jsonData.slice(0,20);
+      console.log('rangeCardsToDisplay :>> ', rangeCardsToDisplay);
+  
+      dispatch(success(rangeCardsToDisplay));
+      dispatch(request());
+      
+      //service.action here
+    
+        // .then(
+  
+        //   (response) => {
+        //     dispatch(success(response));
+        //   },
+        //   (error) => {
+        //     dispatch(failure(error));
+        //   }
+  
+        // );
+  
+    };
+  };
 
 export const userActions = {
-    recordUserKeyWordsResearch,   
+    recordUserKeyWordsResearch,
+    cardsDisplayedDesiredRange,
+
 };
