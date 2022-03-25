@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import Button from '../dsfrComponents/Button';
 import FillButton from '../dsfrComponents/FillButton';
-import {Signal, Calendar, Euro, Rocket, Eye} from './../../assets/Icons';
-import HomePageCard, {HomePageCardProps} from './../customComponents/HomePageCard';
+import {Signal, Calendar, Euro, Rocket, Eye} from '../../assets/Icons';
+import HomePageCard, {HomePageCardProps} from '../customComponents/HomePageCard';
 const Home = () => {
 
     const navigate = useNavigate();
