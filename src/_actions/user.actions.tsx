@@ -49,42 +49,17 @@ const recordUserKeyWordsResearch =  (userKeyWords:UserResearchKeyWordsType) => {
 
 const handlePagination = (jsonData: typeof JSONData) => {
   
-    const request = () => {
-      
-      return {
-      
-        type: RECORD_CARDS_DISPLAYED_RANGE_REQUEST
-      
-      };
-    };
+    const request = () => ({ type: RECORD_CARDS_DISPLAYED_RANGE_REQUEST });
     
-    const success = (response: typeof JSONData) => {
-      
-      return {
-      
-        type: RECORD_CARDS_DISPLAYED_RANGE_SUCCESS,
-      
-        payload: response
-      
-      };
-    };
+    const success = (response: typeof JSONData) => ({ type: RECORD_CARDS_DISPLAYED_RANGE_SUCCESS, payload: response});
     
-    const failure = (error: AxiosError) => {
-      
-      return {
-      
-        type: RECORD_CARDS_DISPLAYED_RANGE_FAILURE,
-      
-        payload: error
-      
-      };
-    };
+    const failure = (error: AxiosError) => ({ type: RECORD_CARDS_DISPLAYED_RANGE_FAILURE, payload: error});
 
     return (dispatch: Dispatch) => {
       
-      const cardsToDisplay = jsonData.slice(0,20);
+      const cardsInRangeOfTwenty = jsonData.slice(0,20);
   
-      dispatch(success(cardsToDisplay));
+      dispatch(success(cardsInRangeOfTwenty));
       dispatch(request());
       
       //service.action here

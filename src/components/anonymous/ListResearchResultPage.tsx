@@ -19,33 +19,40 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({investor, number
     
     const dispatch = useDispatch();
     
-    const {pageNumber, cardsPerPage, cardsToDisplay} = useSelector((state:RootState) => state.userState);
+    const {pageNumber, cardsPerPage, cardsInRangeOfTwenty,} = useSelector((state:RootState) => state.userState);
     
     const pagesVisited = pageNumber * cardsPerPage;
 
-    const displayCards = (cardsToDisplay: typeof JsonData) => {
-        return (
-            <>
-                {cardsToDisplay.map((card) => {
-                    
-                    return (
-                        <>
-                            <ResultPreviewCard emetor={card.emetor} cardTitle={card.cardTitle} redirectionButton={card.redirectButton} />
-                        </>
-                    )
-                } )}
-            </>
-        )
-    }
+    
+    const displayCards =   () => {
+       const rangeOfTheCardsToDisplay = cardsInRangeOfTwenty.slice(pagesVisited, pagesVisited + cardsPerPage);
+    if(rangeOfTheCardsToDisplay.length > 0){
+
+    } 
+       return rangeOfTheCardsToDisplay.map( (card: typeof JsonData[0]) => {
+            console.log('card :>> ', card);
+            return (
+                <>
+                    <ResultPreviewCard emetor={card.emetor} cardTitle={card.cardTitle} redirectionButton={card.redirectButton} />
+                
+                </>
+
+            )
+        });
+        
+    };
     
     useEffect( () => {
 
-        if(!cardsToDisplay) {
+        console.log('cardsPerPage :>> ', cardsPerPage);
+        console.log('pageNumber :>> ', pageNumber);
+        console.log('pagesVisited :>> ', pagesVisited);
+        if(!cardsInRangeOfTwenty) {
 
             dispatch(userActions.handlePagination(JsonData));
         }
 
-    },[cardsToDisplay])
+    },[cardsInRangeOfTwenty])
 
     const handleOnSubmit = () => {
         console.log("Formulaire de recherche envoyé ");
@@ -55,7 +62,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({investor, number
 
         <>
         
-            <div className="headContainer mx-auto w-11/12 bg-red-400">
+            <div className="headContainer mx-auto w-3/5 ">
                 
                 <button className="ml-4 text-dark-text-action flex mt-4"> <img className="mr-2" src={ArrowDark} alt="Icone flèche"/> Retourner aux résultats </button>
 
@@ -93,9 +100,9 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({investor, number
 
             </div>
 
-            <div className="cardContainer flex flex-wrap mx-auto w-11/12 bg-green-200">
-                    { cardsToDisplay &&
-                        displayCards(cardsToDisplay)
+            <div className="cardContainer flex flex-wrap justify-center mx-auto w-3/5">
+                    { cardsInRangeOfTwenty &&
+                        displayCards()
                     }
                     {/* <ResultPreviewCard emetor={"Pexe"} cardTitle={"Arts et métiers business angels"} redirectionButton={"#"} /> */}
 

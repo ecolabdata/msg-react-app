@@ -20,6 +20,7 @@ export interface StateType extends DefaultRootState {
 const initialState = {
     popOverChevronRotate:false,
     cardsPerPage:20,
+    pageNumber: 0,
 };
 
 export default function userReducer(state:StateType=initialState, action:ActionType) {
@@ -55,10 +56,9 @@ export default function userReducer(state:StateType=initialState, action:ActionT
             };
         
         case RECORD_CARDS_DISPLAYED_RANGE_SUCCESS :
-            console.log('action :>> ', action);
             return {
                 ...state,
-                cardsToDisplay: action.payload,
+                cardsInRangeOfTwenty: action.payload,
             };
         
         

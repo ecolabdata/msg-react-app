@@ -37,7 +37,6 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({emetor, cardTitle,
 
                     <button onClick={() => navigate('/liste-resultats')} className="self-end">
                         <Link to={redirectionButton}>
-                        
                             <img src={ArrowInvestors} alt="Icône flèche d'accès" className="fixed right-2 bottom-4" />
                         </Link> 
                     </button>
