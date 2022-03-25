@@ -47,7 +47,7 @@ const recordUserKeyWordsResearch =  (userKeyWords:UserResearchKeyWordsType) => {
   
 };
 
-const cardsDisplayedDesiredRange = (jsonData: typeof JSONData) => {
+const handlePagination = (jsonData: typeof JSONData) => {
   
     const request = () => {
       
@@ -82,10 +82,9 @@ const cardsDisplayedDesiredRange = (jsonData: typeof JSONData) => {
 
     return (dispatch: Dispatch) => {
       
-      const rangeCardsToDisplay = jsonData.slice(0,20);
-      console.log('rangeCardsToDisplay :>> ', rangeCardsToDisplay);
+      const cardsToDisplay = jsonData.slice(0,20);
   
-      dispatch(success(rangeCardsToDisplay));
+      dispatch(success(cardsToDisplay));
       dispatch(request());
       
       //service.action here
@@ -106,6 +105,6 @@ const cardsDisplayedDesiredRange = (jsonData: typeof JSONData) => {
 
 export const userActions = {
     recordUserKeyWordsResearch,
-    cardsDisplayedDesiredRange,
+    handlePagination,
 
 };

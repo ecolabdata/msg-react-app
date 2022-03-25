@@ -37,7 +37,7 @@ export default function userReducer(state:StateType=initialState, action:ActionT
             
             return {
                 ...state,
-                keyWordsList: !state.popOverChevronRotate,
+                keyWordsList: action.payload,
             };
 
         case RECORD_USER_KEY_WORDS_RESEARCH_FAILURE :
@@ -51,13 +51,17 @@ export default function userReducer(state:StateType=initialState, action:ActionT
         case RECORD_CARDS_DISPLAYED_RANGE_REQUEST :
             return {
                 ...state,
-                cardsDisplayedRangeLoading: true,
+                cardsToDisplayLoading: true,
             };
+        
         case RECORD_CARDS_DISPLAYED_RANGE_SUCCESS :
+            console.log('action :>> ', action);
             return {
                 ...state,
-                rangeCardsToDisplay: action.payload,
-            }
+                cardsToDisplay: action.payload,
+            };
+        
+        
         default:
             return state;
     }

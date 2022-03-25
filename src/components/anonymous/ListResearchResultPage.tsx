@@ -19,13 +19,33 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({investor, number
     
     const dispatch = useDispatch();
     
-    const {pageNumber, cardsPerPage} = useSelector((state:RootState) => state.userState);
+    const {pageNumber, cardsPerPage, cardsToDisplay} = useSelector((state:RootState) => state.userState);
     
     const pagesVisited = pageNumber * cardsPerPage;
 
+    const displayCards = (cardsToDisplay: typeof JsonData) => {
+        return (
+            <>
+                {cardsToDisplay.map((card) => {
+                    
+                    return (
+                        <>
+                            <ResultPreviewCard emetor={card.emetor} cardTitle={card.cardTitle} redirectionButton={card.redirectButton} />
+                        </>
+                    )
+                } )}
+            </>
+        )
+    }
+    
     useEffect( () => {
-        dispatch(userActions.cardsDisplayedDesiredRange(JsonData));
-    })
+
+        if(!cardsToDisplay) {
+
+            dispatch(userActions.handlePagination(JsonData));
+        }
+
+    },[cardsToDisplay])
 
     const handleOnSubmit = () => {
         console.log("Formulaire de recherche envoyé ");
@@ -74,33 +94,14 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({investor, number
             </div>
 
             <div className="cardContainer flex flex-wrap mx-auto w-11/12 bg-green-200">
-                    <ResultPreviewCard emetor={"Pexe"} cardTitle={"Arts et métiers business angels"} redirectionButton={"#"} />
-                    <ResultPreviewCard emetor={"Pexe"} cardTitle={"Arts et métiers business angels"} redirectionButton={"#"} />
-                    <ResultPreviewCard emetor={"Pexe"} cardTitle={"Arts et métiers business angels"} redirectionButton={"#"} />
-                    <ResultPreviewCard emetor={"Pexe"} cardTitle={"Arts et métiers business angels"} redirectionButton={"#"} />
-                    <ResultPreviewCard emetor={"Pexe"} cardTitle={"Arts et métiers business angels"} redirectionButton={"#"} />
-                    <ResultPreviewCard emetor={"Pexe"} cardTitle={"Arts et métiers business angels"} redirectionButton={"#"} />
-                    <ResultPreviewCard emetor={"Pexe"} cardTitle={"Arts et métiers business angels"} redirectionButton={"#"} />
-                    <ResultPreviewCard emetor={"Pexe"} cardTitle={"Arts et métiers business angels"} redirectionButton={"#"} />
-                    <ResultPreviewCard emetor={"Pexe"} cardTitle={"Arts et métiers business angels"} redirectionButton={"#"} />
-                    <ResultPreviewCard emetor={"Pexe"} cardTitle={"Arts et métiers business angels"} redirectionButton={"#"} />
-                    <ResultPreviewCard emetor={"Pexe"} cardTitle={"Arts et métiers business angels"} redirectionButton={"#"} />
-                    <ResultPreviewCard emetor={"Pexe"} cardTitle={"Arts et métiers business angels"} redirectionButton={"#"} />
-                    <ResultPreviewCard emetor={"Pexe"} cardTitle={"Arts et métiers business angels"} redirectionButton={"#"} />
-                    <ResultPreviewCard emetor={"Pexe"} cardTitle={"Arts et métiers business angels"} redirectionButton={"#"} />
-                    <ResultPreviewCard emetor={"Pexe"} cardTitle={"Arts et métiers business angels"} redirectionButton={"#"} />
-                    <ResultPreviewCard emetor={"Pexe"} cardTitle={"Arts et métiers business angels"} redirectionButton={"#"} />
-                    <ResultPreviewCard emetor={"Pexe"} cardTitle={"Arts et métiers business angels"} redirectionButton={"#"} />
-                    <ResultPreviewCard emetor={"Pexe"} cardTitle={"Arts et métiers business angels"} redirectionButton={"#"} />
-                    <ResultPreviewCard emetor={"Pexe"} cardTitle={"Arts et métiers business angels"} redirectionButton={"#"} />
-                    <ResultPreviewCard emetor={"Pexe"} cardTitle={"Arts et métiers business angels"} redirectionButton={"#"} />
-                    <ResultPreviewCard emetor={"Pexe"} cardTitle={"Arts et métiers business angels"} redirectionButton={"#"} />
-                    <ResultPreviewCard emetor={"Pexe"} cardTitle={"Arts et métiers business angels"} redirectionButton={"#"} />
-                    <ResultPreviewCard emetor={"Pexe"} cardTitle={"Arts et métiers business angels"} redirectionButton={"#"} />
+                    { cardsToDisplay &&
+                        displayCards(cardsToDisplay)
+                    }
+                    {/* <ResultPreviewCard emetor={"Pexe"} cardTitle={"Arts et métiers business angels"} redirectionButton={"#"} /> */}
 
             </div>
 
-            <Pagination/>
+            {/* <Pagination/> */}
 
         </>
     ) 
