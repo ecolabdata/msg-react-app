@@ -1,11 +1,11 @@
 
 import { useSelector, useDispatch } from 'react-redux';
-import {appActions} from './../../_actions/app.actions';
+import {appActions} from '../../_actions/app.actions';
 import {RootState} from '../../_reducers/root.reducer';
 import { useEffect } from 'react';
 import { userActions } from '../../_actions/user.actions';
 import ResultResearchPreviewCard from '../customComponents/ResultResearchPreviewCard';
-import {Signal, Calendar, Euro, Rocket, Eye} from './../../assets/Icons';
+import {Signal, Calendar, Euro, Rocket, Eye} from '../../assets/Icons';
 
 const ResearchForm: React.FC = () => {
 
@@ -109,11 +109,11 @@ const ResearchForm: React.FC = () => {
                 
                 {textAreaInput !== undefined  && 
                     <>
-                        <ResultResearchPreviewCard investor="Investisseurs privés" numberOfResultsFound={18} investorPrecisions="Investisseurs privés adaptés à votre maturité pour votre prochaine levée de fonds." emetor="Pexe" cardTitle="Arts et métiers business angels"  />
-                        <ResultResearchPreviewCard investor="Investisseurs privés" numberOfResultsFound={18} investorPrecisions="Investisseurs privés adaptés à votre maturité pour votre prochaine levée de fonds." emetor="Pexe" cardTitle="Arts et métiers business angels"  />
-                        <ResultResearchPreviewCard investor="Investisseurs privés" numberOfResultsFound={18} investorPrecisions="Investisseurs privés adaptés à votre maturité pour votre prochaine levée de fonds." emetor="Pexe" cardTitle="Arts et métiers business angels"  />
-                        <ResultResearchPreviewCard investor="Investisseurs privés" numberOfResultsFound={18} investorPrecisions="Investisseurs privés adaptés à votre maturité pour votre prochaine levée de fonds." emetor="Pexe" cardTitle="Arts et métiers business angels"  />
-                        <ResultResearchPreviewCard investor="Investisseurs privés" numberOfResultsFound={18} investorPrecisions="Investisseurs privés adaptés à votre maturité pour votre prochaine levée de fonds." emetor="Pexe" cardTitle="Arts et métiers business angels"  />
+                        <ResultResearchPreviewCard investor="Investisseurs privés" numberOfResultsFound={18} investorPrecisions="Investisseurs privés adaptés à votre maturité pour votre prochaine levée de fonds." emetor="Pexe" cardTitle="Arts et métiers business angels" redirectionButton="/liste-resultats"   />
+                        <ResultResearchPreviewCard investor="Investisseurs privés" numberOfResultsFound={18} investorPrecisions="Investisseurs privés adaptés à votre maturité pour votre prochaine levée de fonds." emetor="Pexe" cardTitle="Arts et métiers business angels" redirectionButton="/liste-resultats"  />
+                        <ResultResearchPreviewCard investor="Investisseurs privés" numberOfResultsFound={18} investorPrecisions="Investisseurs privés adaptés à votre maturité pour votre prochaine levée de fonds." emetor="Pexe" cardTitle="Arts et métiers business angels" redirectionButton="/liste-resultats"  />
+                        <ResultResearchPreviewCard investor="Investisseurs privés" numberOfResultsFound={18} investorPrecisions="Investisseurs privés adaptés à votre maturité pour votre prochaine levée de fonds." emetor="Pexe" cardTitle="Arts et métiers business angels" redirectionButton="/liste-resultats"  />
+                        <ResultResearchPreviewCard investor="Investisseurs privés" numberOfResultsFound={18} investorPrecisions="Investisseurs privés adaptés à votre maturité pour votre prochaine levée de fonds." emetor="Pexe" cardTitle="Arts et métiers business angels" redirectionButton="/liste-resultats"  />
                     </>
                 }
 

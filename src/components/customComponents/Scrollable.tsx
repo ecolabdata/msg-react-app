@@ -37,7 +37,7 @@ const Scrollable: React.FC<ResultResearchPreviewCardProps> = ({emetor, cardTitle
 
                         <p className="uppercase opacity-0 mt-24 text-xs text-white transition-opacity duration-200 group-hover:opacity-100"> vc | ba | corporate</p>
 
-                        <button onClick={() => navigate('/list/investisseurs-privés')} className="self-end">
+                        <button onClick={() => navigate('/liste-resultats')} className="self-end">
                             <img src={ArrowInvestors} alt="Icône flèche d'accès" className="fixed right-2 bottom-4" />
                         </button>
 
@@ -62,7 +62,7 @@ const Scrollable: React.FC<ResultResearchPreviewCardProps> = ({emetor, cardTitle
 
                         <p className="uppercase opacity-0 mt-24 text-xs text-white transition-opacity duration-200 group-hover:opacity-100"> vc | ba | corporate</p>
 
-                        <button onClick={() => navigate('/list/investisseurs-privés')} className="self-end">
+                        <button onClick={() => navigate('/liste-resultats')} className="self-end">
                             <img src={ArrowInvestors} alt="Icône flèche d'accès" className="fixed right-2 bottom-4" />
                         </button>
 
@@ -87,7 +87,7 @@ const Scrollable: React.FC<ResultResearchPreviewCardProps> = ({emetor, cardTitle
 
                         <p className="uppercase opacity-0 mt-24 text-xs text-white transition-opacity duration-200 group-hover:opacity-100"> vc | ba | corporate</p>
 
-                        <button onClick={() => navigate('/list/investisseurs-privés')} className="self-end">
+                        <button onClick={() => navigate('/liste-resultats')} className="self-end">
                             <img src={ArrowInvestors} alt="Icône flèche d'accès" className="fixed right-2 bottom-4" />
                         </button>
 
@@ -112,7 +112,7 @@ const Scrollable: React.FC<ResultResearchPreviewCardProps> = ({emetor, cardTitle
 
                         <p className="uppercase opacity-0 mt-24 text-xs text-white transition-opacity duration-200 group-hover:opacity-100"> vc | ba | corporate</p>
 
-                        <button onClick={() => navigate('/list/investisseurs-privés')} className="self-end">
+                        <button onClick={() => navigate('/liste-resultats')} className="self-end">
                             <img src={ArrowInvestors} alt="Icône flèche d'accès" className="fixed right-2 bottom-4" />
                         </button>
 
@@ -137,7 +137,7 @@ const Scrollable: React.FC<ResultResearchPreviewCardProps> = ({emetor, cardTitle
 
                         <p className="uppercase opacity-0 mt-24 text-xs text-white transition-opacity duration-200 group-hover:opacity-100"> vc | ba | corporate</p>
 
-                        <button onClick={() => navigate('/list/investisseurs-privés')} className="self-end">
+                        <button onClick={() => navigate('/liste-resultats')} className="self-end">
                             <img src={ArrowInvestors} alt="Icône flèche d'accès" className="fixed right-2 bottom-4" />
                         </button>
 
@@ -162,7 +162,7 @@ const Scrollable: React.FC<ResultResearchPreviewCardProps> = ({emetor, cardTitle
 
                         <p className="uppercase opacity-0 mt-24 text-xs text-white transition-opacity duration-200 group-hover:opacity-100"> vc | ba | corporate</p>
 
-                        <button onClick={() => navigate('/list/investisseurs-privés')} className="self-end">
+                        <button onClick={() => navigate('/liste-resultats')} className="self-end">
                             <img src={ArrowInvestors} alt="Icône flèche d'accès" className="fixed right-2 bottom-4" />
                         </button>
 
@@ -187,7 +187,7 @@ const Scrollable: React.FC<ResultResearchPreviewCardProps> = ({emetor, cardTitle
 
                         <p className="uppercase opacity-0 mt-24 text-xs text-white transition-opacity duration-200 group-hover:opacity-100"> vc | ba | corporate</p>
 
-                        <button onClick={() => navigate('/list/investisseurs-privés')} className="self-end">
+                        <button onClick={() => navigate('/liste-resultats')} className="self-end">
                             <img src={ArrowInvestors} alt="Icône flèche d'accès" className="fixed right-2 bottom-4" />
                         </button>
 
@@ -212,7 +212,7 @@ const Scrollable: React.FC<ResultResearchPreviewCardProps> = ({emetor, cardTitle
 
                         <p className="uppercase opacity-0 mt-24 text-xs text-white transition-opacity duration-200 group-hover:opacity-100"> vc | ba | corporate</p>
 
-                        <button onClick={() => navigate('/list/investisseurs-privés')} className="self-end">
+                        <button onClick={() => navigate('/liste-resultats')} className="self-end">
                             <img src={ArrowInvestors} alt="Icône flèche d'accès" className="fixed right-2 bottom-4" />
                         </button>
 
@@ -237,7 +237,7 @@ const Scrollable: React.FC<ResultResearchPreviewCardProps> = ({emetor, cardTitle
 
                         <p className="uppercase opacity-0 mt-24 text-xs text-white transition-opacity duration-200 group-hover:opacity-100"> vc | ba | corporate</p>
 
-                        <button onClick={() => navigate('/list/investisseurs-privés')} className="self-end">
+                        <button onClick={() => navigate('/liste-resultats')} className="self-end">
                             <img src={ArrowInvestors} alt="Icône flèche d'accès" className="fixed right-2 bottom-4" />
                         </button>
 
@@ -262,7 +262,7 @@ const Scrollable: React.FC<ResultResearchPreviewCardProps> = ({emetor, cardTitle
 
                         <p className="uppercase opacity-0 mt-24 text-xs text-white transition-opacity duration-200 group-hover:opacity-100"> vc | ba | corporate</p>
 
-                        <button onClick={() => navigate('/list/investisseurs-privés')} className="self-end">
+                        <button onClick={() => navigate('/liste-resultats')} className="self-end">
                             <img src={ArrowInvestors} alt="Icône flèche d'accès" className="fixed right-2 bottom-4" />
                         </button>
 
@@ -287,7 +287,7 @@ const Scrollable: React.FC<ResultResearchPreviewCardProps> = ({emetor, cardTitle
 
                         <p className="uppercase opacity-0 mt-24 text-xs text-white transition-opacity duration-200 group-hover:opacity-100"> vc | ba | corporate</p>
 
-                        <button onClick={() => navigate('/list/investisseurs-privés')} className="self-end">
+                        <button onClick={() => navigate('/liste-resultats')} className="self-end">
                             <img src={ArrowInvestors} alt="Icône flèche d'accès" className="fixed right-2 bottom-4" />
                         </button>
 
@@ -312,7 +312,7 @@ const Scrollable: React.FC<ResultResearchPreviewCardProps> = ({emetor, cardTitle
 
                         <p className="uppercase opacity-0 mt-24 text-xs text-white transition-opacity duration-200 group-hover:opacity-100"> vc | ba | corporate</p>
 
-                        <button onClick={() => navigate('/list/investisseurs-privés')} className="self-end">
+                        <button onClick={() => navigate('/liste-resultats')} className="self-end">
                             <img src={ArrowInvestors} alt="Icône flèche d'accès" className="fixed right-2 bottom-4" />
                         </button>
 
@@ -337,7 +337,7 @@ const Scrollable: React.FC<ResultResearchPreviewCardProps> = ({emetor, cardTitle
 
                         <p className="uppercase opacity-0 mt-24 text-xs text-white transition-opacity duration-200 group-hover:opacity-100"> vc | ba | corporate</p>
 
-                        <button onClick={() => navigate('/list/investisseurs-privés')} className="self-end">
+                        <button onClick={() => navigate('/liste-resultats')} className="self-end">
                             <img src={ArrowInvestors} alt="Icône flèche d'accès" className="fixed right-2 bottom-4" />
                         </button>
 
@@ -362,7 +362,7 @@ const Scrollable: React.FC<ResultResearchPreviewCardProps> = ({emetor, cardTitle
 
                         <p className="uppercase opacity-0 mt-24 text-xs text-white transition-opacity duration-200 group-hover:opacity-100"> vc | ba | corporate</p>
 
-                        <button onClick={() => navigate('/list/investisseurs-privés')} className="self-end">
+                        <button onClick={() => navigate('/liste-resultats')} className="self-end">
                             <img src={ArrowInvestors} alt="Icône flèche d'accès" className="fixed right-2 bottom-4" />
                         </button>
 
@@ -387,7 +387,7 @@ const Scrollable: React.FC<ResultResearchPreviewCardProps> = ({emetor, cardTitle
 
                         <p className="uppercase opacity-0 mt-24 text-xs text-white transition-opacity duration-200 group-hover:opacity-100"> vc | ba | corporate</p>
 
-                        <button onClick={() => navigate('/list/investisseurs-privés')} className="self-end">
+                        <button onClick={() => navigate('/liste-resultats')} className="self-end">
                             <img src={ArrowInvestors} alt="Icône flèche d'accès" className="fixed right-2 bottom-4" />
                         </button>
 
@@ -412,7 +412,7 @@ const Scrollable: React.FC<ResultResearchPreviewCardProps> = ({emetor, cardTitle
 
                         <p className="uppercase opacity-0 mt-24 text-xs text-white transition-opacity duration-200 group-hover:opacity-100"> vc | ba | corporate</p>
 
-                        <button onClick={() => navigate('/list/investisseurs-privés')} className="self-end">
+                        <button onClick={() => navigate('/liste-resultats')} className="self-end">
                             <img src={ArrowInvestors} alt="Icône flèche d'accès" className="fixed right-2 bottom-4" />
                         </button>
 

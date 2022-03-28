@@ -1,6 +1,14 @@
 import DropDown from '../dsfrComponents/DropDown';
+import Pagination from '../dsfrComponents/Pagination';
 import ToggleButton from '../dsfrComponents/ToggleButton';
 import ArrowDark from './../../assets/icons/arrow-dark-action.svg';
+import ResultPreviewCard from '../customComponents/ResultPreviewCard';
+import JsonData from '../../utils/mockCardsData.json'
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../_reducers/root.reducer';
+import { userActions } from '../../_actions/user.actions';
+
 interface ListResearchResultProps {
     investor?: string;
     numberOfResultsFound?: number
@@ -8,17 +16,55 @@ interface ListResearchResultProps {
 }
 
 const ListResearchResult: React.FC<ListResearchResultProps> = ({investor, numberOfResultsFound, investorPrecisions,}) => { 
+    
+    const dispatch = useDispatch();
+    
+    const {pageNumber, cardsPerPage, cardsInRangeOfTwenty,} = useSelector((state:RootState) => state.userState);
+    
+    const pagesVisited = pageNumber * cardsPerPage;
+
+    
+    const displayCards =   () => {
+       const rangeOfTheCardsToDisplay = cardsInRangeOfTwenty.slice(pagesVisited, pagesVisited + cardsPerPage);
+    if(rangeOfTheCardsToDisplay.length > 0){
+
+    } 
+       return rangeOfTheCardsToDisplay.map( (card: typeof JsonData[0]) => {
+            console.log('card :>> ', card);
+            return (
+                <>
+                    <ResultPreviewCard emetor={card.emetor} cardTitle={card.cardTitle} redirectionButton={card.redirectButton} />
+                
+                </>
+
+            )
+        });
+        
+    };
+    
+    useEffect( () => {
+
+        console.log('cardsPerPage :>> ', cardsPerPage);
+        console.log('pageNumber :>> ', pageNumber);
+        console.log('pagesVisited :>> ', pagesVisited);
+        if(!cardsInRangeOfTwenty) {
+
+            dispatch(userActions.handlePagination(JsonData));
+        }
+
+    },[cardsInRangeOfTwenty])
 
     const handleOnSubmit = () => {
-        console.log("Formulaire envoyé");
+        console.log("Formulaire de recherche envoyé ");
     }
 
     return (
 
         <>
         
-            <div className="headContainer mx-auto w-11/12 bg-red-400">
-                <button className="ml-4 text-dark-text-action flex mt-4"> <img className="mr-2" src={ArrowDark} alt="Icone flèche" />Retourner aux résultats </button>
+            <div className="headContainer mx-auto w-3/5 ">
+                
+                <button className="ml-4 text-dark-text-action flex mt-4"> <img className="mr-2" src={ArrowDark} alt="Icone flèche"/> Retourner aux résultats </button>
 
                 <div className="cardTitle  mt-10 ml-4 p-2 text-base">
                     {/* <img src={Euro({color:"#68A532", viewBox:"0 0 14 14", height:"42", width:"42"})} alt="Logo Euro"/> */}
@@ -49,10 +95,20 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({investor, number
 
                         </div>
                     </form>
-                    
+
                 </div>
-                
+
             </div>
+
+            <div className="cardContainer flex flex-wrap justify-center mx-auto w-3/5">
+                    { cardsInRangeOfTwenty &&
+                        displayCards()
+                    }
+                    {/* <ResultPreviewCard emetor={"Pexe"} cardTitle={"Arts et métiers business angels"} redirectionButton={"#"} /> */}
+
+            </div>
+
+            {/* <Pagination/> */}
 
         </>
     ) 

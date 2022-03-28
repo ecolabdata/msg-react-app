@@ -36,7 +36,7 @@ const updateStateProperty = (propertyValue:string, propertyName:string) => {
   
       dispatch(success(propertyData));
     };
-  };
+};
 
 export const appActions = {
     rotatePopOverChevron,

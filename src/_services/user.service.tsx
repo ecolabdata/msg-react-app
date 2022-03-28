@@ -8,7 +8,7 @@ export interface UserResearchKeyWordsType extends AxiosResponse  {
 const recordUserKeyWordsResearch = async (userResearchKeyWords:UserResearchKeyWordsType) => {
     
     const strategy = process.env.REACT_APP_STRATEGYAUTH;
-    const apiURL = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : '';
+    const apiURL = process.env.REACT_APP_API_URL || '';
     const requestOptions = {
         strategy,
         userResearchKeyWords
