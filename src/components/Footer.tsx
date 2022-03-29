@@ -50,6 +50,10 @@ const Footer: React.FC = () => {
                             <li className="fr-footer__bottom-item">
                                 <a className="fr-footer__bottom-link" href="#">Gestion des cookies</a>
                             </li>
+                            <li className="fr-footer__bottom-item">
+                                <button className="fr-footer__bottom-link fr-fi-theme-fill fr-link--icon-left" aria-controls="fr-theme-modal" data-fr-opened="fals">Paramètres d'affichage</button>
+                            </li>
+
                         </ul>
                         <div className="fr-footer__bottom-copy">
                             <p>Sauf mention contraire, tous les contenus de ce site sont sous <a href="https://github.com/etalab/licence-ouverte/blob/master/LO.md" target="_blank" rel="noreferrer">licence etalab-2.0</a>

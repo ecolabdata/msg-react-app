@@ -22,13 +22,13 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({investor, number
     const {currentPage, cardsPerPage, cardsInRangeOfTwenty,} = useSelector((state:RootState) => state.userState);
     
     const pagesVisited = currentPage * cardsPerPage;
-
     
     const displayCards =   () => {
+
        const rangeOfTheCardsToDisplay = cardsInRangeOfTwenty.slice(pagesVisited, pagesVisited + cardsPerPage);
         
        return rangeOfTheCardsToDisplay.map( (card: typeof JsonData[0]) => {
-            console.log('card :>> ', card);
+            
             return (
                 <>
                     <ResultPreviewCard emetor={card.emetor} cardTitle={card.cardTitle} redirectionButton={card.redirectButton} />

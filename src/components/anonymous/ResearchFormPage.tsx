@@ -90,11 +90,14 @@ const ResearchForm: React.FC = () => {
                 
                 <h1 className="w-3/5 font-bold text-3xl text-center mx-auto"> Start-up greentech, trouvez automatiquement des pistes pour booster votre développement !  </h1>
                 
-                <form  onSubmit={(event) => handleOnSubmitForm(event)} id="keywordsForm" className="mt-8 w-form h-form flex flex-col items-center p-4 bg-slate-300">
-                    <h2 className=" mt-3 w-content text-base text-center">Décrivez en quelques lignes votre projet (thématique, technologie, cible, apports... ) pour obtenir des pistes pertinentes.</h2>
+                <form  onSubmit={(event) => handleOnSubmitForm(event)} id="keywordsForm" className="mt-8 rounded-md w-form h-form flex flex-col items-center bg-background-form">
+                    
+                    <h2 className="mt-3 w-11/12 text-base text-center">Décrivez en quelques lignes votre projet (thématique, technologie, cible, apports... ) pour obtenir des pistes pertinentes.</h2>
+                    
                     <textarea onChange = { (event) => handleOnChangeInput(event)} name={textAreaInput} value={textAreaInput} form="keywordsForm"
-                    className="mt-4 w-11/12 h-32 p-2 addBorder border-2 bg-slate-200" placeholder="Expl. : “start-up de méthanisation” ou “nous sommes une startup spécialisée dans le processus biologique de dégradation des matières organiques...”"></textarea>
-                    <button className=" border-b self-start ml-5 mt-2 text-sm text-blue-france "> Affiner par mots clés</button>
+                    className="rounded-t-sm mt-4 w-11/12 h-32 addBorder-b border-3 border-gray-300 p-4 bg-background-inputs" placeholder="Expl. : “start-up de méthanisation” ou “nous sommes une startup spécialisée dans le processus biologique de dégradation des matières organiques...”"></textarea>
+                    
+                    <button className="addBorder-b border-b self-start ml-5 mt-2 text-sm "> Affiner par mots clés</button>
                     
                     <div className="keyWordsContainer">
 
