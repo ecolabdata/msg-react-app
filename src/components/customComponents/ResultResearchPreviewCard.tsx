@@ -3,6 +3,7 @@ import {Signal, Calendar, Euro, Rocket, Eye} from './../../assets/Icons';
 import Scrollable from './Scrollable';
 
 import ResultPreviewCard from './ResultPreviewCard';
+import { useNavigate } from 'react-router-dom';
 
 export interface ResultResearchPreviewCardProps { 
     investor: string;
@@ -16,6 +17,7 @@ export interface ResultResearchPreviewCardProps {
 const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = ({investor, numberOfResultsFound, investorPrecisions, emetor, cardTitle, redirectionButton}) => { 
     
 
+    const navigate = useNavigate()
     // const SVGEuroLogo = () => {
     //     return (
     //         <>
