@@ -22,14 +22,15 @@ const Router = () => {
             <Header userIsAuth={isAuth()} />
             <main className="h-full p-6">
                 <Routes>
-
-                    <Route path="/" element={<HomePage/>} />
-                    <Route path="/formulaire-recherche-de-solutions" element={<ResearchForm/>} />
-                    <Route path="/liste-resultats" element={<ListResearchResult investor="Investisseurs privés" numberOfResultsFound={18} investorPrecisions="Investisseurs privés adaptés à votre maturité pour votre prochaine levée de fonds."/>} />
-                    <Route path="/authentification" element={<Authentication/>} />
-                    <Route path="/profile" element={<AuthenticatedComponent />}>
-                        <Route path="ma-selection" element={<MySelectionPage/>} />
-                        <Route path="corbeille" element={<WasteBinPage/>} />
+                    <Route path="/" element={<TrackPage />}>
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/formulaire-recherche-de-solutions" element={<ResearchForm />} />
+                        <Route path="/liste-resultats" element={<ListResearchResult investor="Investisseurs privés" numberOfResultsFound={18} investorPrecisions="Investisseurs privés adaptés à votre maturité pour votre prochaine levée de fonds." />} />
+                        <Route path="/authentification" element={<Authentication />} />
+                        <Route path="/profile" element={<AuthenticatedComponent />}>
+                            <Route path="ma-selection" element={<MySelectionPage />} />
+                            <Route path="corbeille" element={<WasteBinPage />} />
+                        </Route>
                     </Route>
                 </Routes>
             </main>
