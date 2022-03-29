@@ -31,9 +31,9 @@ const Home = () => {
                 {allCardType.map((card) => <HomePageCard cardTypeData={card} />)}
             </div>
 
-            <div className="mx-auto w-55 flex justify-evenly">
-                <Button onClick={() => navigate('/inscription')} arrow={true}> Créer un compte</Button>
-                <FillButton onClick={() => {
+            <div className="mx-auto w-55 flex justify-center">
+                <Button onClick={ () => navigate('/inscription')} arrow={true}> Créer un compte</Button>
+                <FillButton onClick={ () => {
                     navigate('/formulaire-recherche-de-solutions')
                 }} arrow={true}>Découvrir la solution</FillButton>
             </div>

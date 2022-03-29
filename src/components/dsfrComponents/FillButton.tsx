@@ -9,7 +9,7 @@ const FillButton:React.FC<ButtonProps> = ({children, arrow, onClick}) => {
             onClick={onClick} 
             className="
             fr-btn fr-btn--primary
-            h-full my-auto
+            m-3 h-full my-auto
             hover:bg-claire-bf__hover flex justify-between"> 
                 <span>{children}</span>
                 {/* <span className="mt-1 ml-1">{arrow ? <img src={Arrow} alt="Icône flèche"/> : ""}</span> */}
