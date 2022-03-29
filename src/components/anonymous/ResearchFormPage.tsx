@@ -21,64 +21,13 @@ const ResearchForm: React.FC = (props) => {
     const savedResults = localStorage.getItem(`search-${searchId}-results`) || ""
     const [description, setDescription] = useState(savedDescription)
 
-    const SVGSignalLogo = () => {
-        return (
-            <>
-
-                {Signal({ color: "#F95C5E", viewBox: "0 0 14 14", height: "32", width: "32" })}
-
-            </>
-        )
-    };
-
-    const SVGCalendarLogo = () => {
-        return (
-            <>
-
-                {Calendar({ color: "#D8C634", viewBox: "0 0 24 24", width: "24", height: "24" })}
-
-            </>
-        )
-    };
-
-    const SVGEuroLogo = () => {
-        return (
-            <>
-
-                {Euro({ color: "#68A532", viewBox: "0 0 14 14", height: "42", width: "42" })}
-
-            </>
-        )
-    };
-
-    const SVGRocketLogo = () => {
-        return (
-            <>
-
-                {Rocket({ color: "#8585F6", viewBox: "0 0 14 14", height: "20", width: "20" })}
-
-            </>
-        )
-    };
-
-    const SVGEyeLogo = () => {
-        return (
-            <>
-
-                {Eye({ color: "#A558A0", viewBox: "0 0 16 14", height: "24", width: "24" })}
-
-            </>
-        )
-    };
-
     const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (description.length > 0) {
             //Will work when the API will be connected
-            dispatch(userActions.recordUserKeyWordsResearch(userKeyWordsList));
+            //dispatch(userActions.recordUserKeyWordsResearch(userKeyWordsList));
             const searchId = sha1(description).slice(0, 8);
             localStorage.setItem(searchId, description);
-            window.history.state
             window.history.pushState(window.history.state, "", `/recherche/${searchId}`)
         }
     };
