@@ -19,18 +19,16 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({investor, number
     
     const dispatch = useDispatch();
     
-    const {pageNumber, cardsPerPage, cardsInRangeOfTwenty,} = useSelector((state:RootState) => state.userState);
+    const {currentPage, cardsPerPage, cardsInRangeOfTwenty,} = useSelector((state:RootState) => state.userState);
     
-    const pagesVisited = pageNumber * cardsPerPage;
-
+    const pagesVisited = currentPage * cardsPerPage;
     
     const displayCards =   () => {
-       const rangeOfTheCardsToDisplay = cardsInRangeOfTwenty.slice(pagesVisited, pagesVisited + cardsPerPage);
-    if(rangeOfTheCardsToDisplay.length > 0){
 
-    } 
+       const rangeOfTheCardsToDisplay = cardsInRangeOfTwenty.slice(pagesVisited, pagesVisited + cardsPerPage);
+        
        return rangeOfTheCardsToDisplay.map( (card: typeof JsonData[0]) => {
-            console.log('card :>> ', card);
+            
             return (
                 <>
                     <ResultPreviewCard emetor={card.emetor} cardTitle={card.cardTitle} redirectionButton={card.redirectButton} />
@@ -45,8 +43,9 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({investor, number
     useEffect( () => {
 
         console.log('cardsPerPage :>> ', cardsPerPage);
-        console.log('pageNumber :>> ', pageNumber);
+        console.log('currentPage :>> ', currentPage);
         console.log('pagesVisited :>> ', pagesVisited);
+
         if(!cardsInRangeOfTwenty) {
 
             dispatch(userActions.handlePagination(JsonData));
@@ -101,14 +100,16 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({investor, number
             </div>
 
             <div className="cardContainer flex flex-wrap justify-center mx-auto w-3/5">
+                    
                     { cardsInRangeOfTwenty &&
                         displayCards()
                     }
+
                     {/* <ResultPreviewCard emetor={"Pexe"} cardTitle={"Arts et métiers business angels"} redirectionButton={"#"} /> */}
 
             </div>
 
-            {/* <Pagination/> */}
+            <Pagination cursor1='1' cursor2='2' cursor3='3'cursor4='4' currentPage='1' nextPage='2' previousPage='0' />
 
         </>
     ) 

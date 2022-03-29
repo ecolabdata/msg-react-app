@@ -10,7 +10,9 @@ interface ResultPreviewCardProps {
 } 
 
 const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({emetor, cardTitle, redirectionButton}) => { 
+    
     const navigate = useNavigate();
+
     return (
 
         <>

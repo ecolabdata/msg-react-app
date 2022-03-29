@@ -20,7 +20,7 @@ export interface StateType extends DefaultRootState {
 const initialState = {
     popOverChevronRotate:false,
     cardsPerPage:20,
-    pageNumber: 0,
+    currentPage: 0,
 };
 
 export default function userReducer(state:StateType=initialState, action:ActionType) {
