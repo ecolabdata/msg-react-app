@@ -1,34 +1,23 @@
 
-import { useSelector, useDispatch } from 'react-redux';
-
-import { appActions } from '../../_actions/app.actions';
-import { RootState } from '../../_reducers/root.reducer';
-import { useEffect, useState } from 'react';
-import { userActions } from '../../_actions/user.actions';
+import { useState } from 'react';
+import { Search, useNavigate, useParams } from 'react-router-dom';
+import { ApiResponse, getSearch, searchByQuery } from '../../api/Api';
 import ResultResearchPreviewCard from '../customComponents/ResultResearchPreviewCard';
-import { Signal, Calendar, Euro, Rocket, Eye } from '../../assets/Icons';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
-import { useLocalStorage } from '../../hooks/useLocalStorage';
-import sha1 from 'sha1';
+
 
 const ResearchForm: React.FC = (props) => {
 
-    const dispatch = useDispatch();
-    // const { textAreaInput } = useSelector((state: RootState) => state.appState);
-    // const { keyWordsList } = useSelector((state: RootState) => state.userState);
+
     const { searchId } = useParams();
-    const savedDescription = localStorage.getItem(`search-${searchId}-description`) || ""
-    const savedResults = localStorage.getItem(`search-${searchId}-results`) || ""
-    const [description, setDescription] = useState(savedDescription)
+    const navigate = useNavigate();
+    const initialSearch = searchId ? getSearch(searchId) : null
+    console.log({initialSearch})
+    const [description, setDescription] = useState(initialSearch?.query.description || "")
 
     const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (description.length > 0) {
-            //Will work when the API will be connected
-            //dispatch(userActions.recordUserKeyWordsResearch(userKeyWordsList));
-            const searchId = sha1(description).slice(0, 8);
-            localStorage.setItem(searchId, description);
-            window.history.pushState(window.history.state, "", `/recherche/${searchId}`)
+            searchByQuery({description}).then((search) => navigate(`/recherche/${search.id}`))
         }
     };
 

@@ -1,0 +1,1213 @@
+{
+    "fichier_aides": "Aides_detailsandname.xlsx",
+    "fichier_achats_previs": "Programmation_2021-2024.xlsx",
+    "fichier_decp": "decp_score.csv",
+    "fichier_investisseurs": "GTIetmontant.csv",
+    "descriptionSU": "Je suis une entreprise de traitement des d\u00e9chets",
+    "fichier_vocab": "vocab.pkl",
+    "fichier_embeddings_achats": "vocab_achats_previs.pkl",
+    "nb_aides": 10,
+    "nb_achats_previs": 12,
+    "nb_acheteur": 10,
+    "montant_min": 0,
+    "montant_max": 200000000,
+    "secteurs": [
+        "Economie circulaire"
+    ],
+    "cards": {
+        "collectivites": [
+            {
+                "nom": "MSA SUD AQUITAINE",
+                "score_details": {
+                    "innovation": {
+                        "proportion_numerateur": "1",
+                        "proportion_denominateur": "5",
+                        "proportion": 20.0
+                    },
+                    "sous_les_seuils": {
+                        "proportion_numerateur": "4",
+                        "proportion_denominateur": "5",
+                        "proportion": 80.0
+                    },
+                    "petites_entreprises": null
+                },
+                "score": 50.0
+            },
+            {
+                "nom": "SEINE HABITAT",
+                "score_details": {
+                    "innovation": {
+                        "proportion_numerateur": "",
+                        "proportion_denominateur": "",
+                        "proportion": 0.0
+                    },
+                    "sous_les_seuils": {
+                        "proportion_numerateur": "1",
+                        "proportion_denominateur": "1",
+                        "proportion": 100.0
+                    },
+                    "petites_entreprises": null
+                },
+                "score": 50.0
+            },
+            {
+                "nom": "SDIS (06)",
+                "score_details": {
+                    "innovation": {
+                        "proportion_numerateur": "",
+                        "proportion_denominateur": "",
+                        "proportion": 0.0
+                    },
+                    "sous_les_seuils": {
+                        "proportion_numerateur": "1",
+                        "proportion_denominateur": "1",
+                        "proportion": 100.0
+                    },
+                    "petites_entreprises": null
+                },
+                "score": 50.0
+            },
+            {
+                "nom": "H\u00f4pitaux Civils de Colmar (68)",
+                "score_details": {
+                    "innovation": {
+                        "proportion_numerateur": "",
+                        "proportion_denominateur": "",
+                        "proportion": 0.0
+                    },
+                    "sous_les_seuils": {
+                        "proportion_numerateur": "1",
+                        "proportion_denominateur": "1",
+                        "proportion": 100.0
+                    },
+                    "petites_entreprises": null
+                },
+                "score": 50.0
+            },
+            {
+                "nom": "Centre Hospitalier Intercommunal Nord Ardennes (08)",
+                "score_details": {
+                    "innovation": {
+                        "proportion_numerateur": "",
+                        "proportion_denominateur": "",
+                        "proportion": 0.0
+                    },
+                    "sous_les_seuils": {
+                        "proportion_numerateur": "1",
+                        "proportion_denominateur": "1",
+                        "proportion": 100.0
+                    },
+                    "petites_entreprises": null
+                },
+                "score": 50.0
+            },
+            {
+                "nom": "COMMUNE TREMBLAY",
+                "score_details": {
+                    "innovation": {
+                        "proportion_numerateur": "",
+                        "proportion_denominateur": "",
+                        "proportion": 0.0
+                    },
+                    "sous_les_seuils": {
+                        "proportion_numerateur": "1",
+                        "proportion_denominateur": "1",
+                        "proportion": 100.0
+                    },
+                    "petites_entreprises": null
+                },
+                "score": 50.0
+            },
+            {
+                "nom": "MAIRIE  DE LAUNAC",
+                "score_details": {
+                    "innovation": {
+                        "proportion_numerateur": "",
+                        "proportion_denominateur": "",
+                        "proportion": 0.0
+                    },
+                    "sous_les_seuils": {
+                        "proportion_numerateur": "1",
+                        "proportion_denominateur": "1",
+                        "proportion": 100.0
+                    },
+                    "petites_entreprises": null
+                },
+                "score": 50.0
+            },
+            {
+                "nom": "Centre Hospitalier Universitaire de Clermont-Ferrand",
+                "score_details": {
+                    "innovation": {
+                        "proportion_numerateur": "",
+                        "proportion_denominateur": "",
+                        "proportion": 0.0
+                    },
+                    "sous_les_seuils": {
+                        "proportion_numerateur": "1",
+                        "proportion_denominateur": "1",
+                        "proportion": 100.0
+                    },
+                    "petites_entreprises": null
+                },
+                "score": 50.0
+            },
+            {
+                "nom": "DIED - Direction de l infrastructure et de l \ufffdconomie digitale",
+                "score_details": {
+                    "innovation": {
+                        "proportion_numerateur": "",
+                        "proportion_denominateur": "",
+                        "proportion": 0.0
+                    },
+                    "sous_les_seuils": {
+                        "proportion_numerateur": "1",
+                        "proportion_denominateur": "1",
+                        "proportion": 100.0
+                    },
+                    "petites_entreprises": null
+                },
+                "score": 50.0
+            },
+            {
+                "nom": "Communaut\u00e9 de Communes Vall\u00e9e des Baux-Alpilles (13)",
+                "score_details": {
+                    "innovation": {
+                        "proportion_numerateur": "",
+                        "proportion_denominateur": "",
+                        "proportion": 0.0
+                    },
+                    "sous_les_seuils": {
+                        "proportion_numerateur": "1",
+                        "proportion_denominateur": "1",
+                        "proportion": 100.0
+                    },
+                    "petites_entreprises": null
+                },
+                "score": 50.0
+            }
+        ],
+        "aides": [
+            {
+                "titre_aide": "Financer les \u00e9tudes li\u00e9es \u00e0 la r\u00e9duction des d\u00e9chets issus des chantiers de construction",
+                "score": 1.1985039115492522,
+                "aide_detail_clean": " \u00ab \u00c9tudes d'accompagnement de la ma\u00eetrise d'ouvrage pour r\u00e9duire et mieux g\u00e9rer les d\u00e9chets de chantiers \u00bb, mis en place par l'ADEME  Objectif :  Vous souhaitez mettre en place des pratiques de pr\u00e9vention et une bonne gestion des d\u00e9chets issus de vos chantiers de construction ? L'ADEME peut vous aider \u00e0 financer les \u00e9tudes en amont (hors \u00e9tudes r\u00e9glementaires) et les missions de coordination des d\u00e9chets. B\u00e9n\u00e9ficiaires :Ma\u00eetre d'ouvrage ou ma\u00eetre d'\u0153uvre sur des chantiers b\u00e2timent ou travaux publics g\u00e9n\u00e9rant d'importants volumes de mati\u00e8res et de d\u00e9chets. Actions \u00e9ligibles :    \u00c9tudes de diagnostic : comprennent les \u00e9tudes pr\u00e9alables \u00e0 la conduite de chantier : diagnostic d\u00e9chets ou \u00ab produits-mati\u00e8res-d\u00e9chets \u00bb (hors r\u00e9glementaire), \u00e9tude relative \u00e0 la pr\u00e9vention des d\u00e9chets,      \u00c9tudes d'accompagnement : correspondent aux Missions de coordination d\u00e9chets par un Ma\u00eetre d'\u0152uvre.    Accompagnement : taux d'aide maximum de 70 % de l'assiette des d\u00e9penses \u00e9ligibles plafonn\u00e9es \u00e0 50 k\u20ac ou 100 k\u20ac en fonction du type d'\u00e9tude ",
+                "aide_detail": "<p>\n \u00ab \u00c9tudes d'accompagnement de la ma\u00eetrise d'ouvrage pour r\u00e9duire et mieux g\u00e9rer les d\u00e9chets de chantiers \u00bb, mis en place par l'ADEME\n</p>\n<p>\n <strong>\n  Objectif :\n </strong>\n Vous souhaitez mettre en place des pratiques de pr\u00e9vention et une bonne gestion des d\u00e9chets issus de vos chantiers de construction ? L'ADEME peut vous aider \u00e0 financer les \u00e9tudes en amont (hors \u00e9tudes r\u00e9glementaires) et les missions de coordination des d\u00e9chets.\n</p>\n<p>\n B\u00e9n\u00e9ficiaires :\nMa\u00eetre d'ouvrage ou ma\u00eetre d'\u0153uvre sur des chantiers b\u00e2timent ou travaux publics g\u00e9n\u00e9rant d'importants volumes de mati\u00e8res et de d\u00e9chets.\n</p>\n<p>\n Actions \u00e9ligibles :\n <br/>\n <ul>\n  <li>\n   \u00c9tudes de diagnostic : comprennent les \u00e9tudes pr\u00e9alables \u00e0 la conduite de chantier : diagnostic d\u00e9chets ou \u00ab produits-mati\u00e8res-d\u00e9chets \u00bb (hors r\u00e9glementaire), \u00e9tude relative \u00e0 la pr\u00e9vention des d\u00e9chets,\n   <br/>\n  </li>\n  <li>\n   \u00c9tudes d'accompagnement : correspondent aux Missions de coordination d\u00e9chets par un Ma\u00eetre d'\u0152uvre.\n   <br/>\n  </li>\n </ul>\n Accompagnement : taux d'aide maximum de 70 % de l'assiette des d\u00e9penses \u00e9ligibles plafonn\u00e9es \u00e0 50 k\u20ac ou 100 k\u20ac en fonction du type d'\u00e9tude\n <br/>\n</p>",
+                "contact": "<p>\n Contactez l'ADEME via leur\n <a href=\"https://agirpourlatransition.ademe.fr/entreprises/form/contact?source_entity_type=node&amp;source_entity_bundle=dispositif_gre_a_gre&amp;source_entity_id=510\" rel=\"noopener\" target=\"_blank\">\n  formulaire en ligne\n </a>\n pour en savoir plus sur ce dispositif\n</p>",
+                "funding_source_url": "https://agirpourlatransition.ademe.fr/entreprises/dispositif-aide/etudes-daccompagnement-maitrise-douvrage-reduire-mieux-gerer-dechets-chantiers"
+            },
+            {
+                "titre_aide": "R\u00e9duire et valoriser les d\u00e9chets du b\u00e2timent et des travaux publics",
+                "score": 1.2347721220380778,
+                "aide_detail_clean": "  NA OPR\u00e9VAL - Objectif r\u00e9duire valoriser les d\u00e9chets  du b\u00e2timent et des travaux publics en Nouvelle Aquitaine -  A l'\u00e9chelle de la Nouvelle-Aquitaine, les d\u00e9chets des activit\u00e9s du b\u00e2timent et des travaux publics repr\u00e9sentent le gisement le plus important identifi\u00e9 dans le Plan R\u00e9gional de Pr\u00e9vention et de Gestion des D\u00e9chets (PRPGD). Il est constitu\u00e9 principalement de d\u00e9chets inertes dont la production a \u00e9t\u00e9 estim\u00e9e \u00e0 plus de 11,1 millions de tonnes. La loi relative \u00e0 la lutte contre le gaspillage et l'\u00e9conomie circulaire pr\u00e9voit, d'ici janvier 2022, la mise en place d'une fili\u00e8re \u00e0 responsabilit\u00e9 \u00e9largie des producteurs pour les produits ou mat\u00e9riaux de construction du secteur du b\u00e2timent. Cette nouvelle fili\u00e8re s'appuiera sur un maillage d'installations de collecte et de recyclage sur le territoire. Afin d'atteindre les objectifs du PRPGD et de contribuer \u00e0 la construction de cette fili\u00e8re, l'ADEME et la R\u00e9gion Nouvelle-Aquitaine souhaitent   aider les porteurs de projets en optimisant le maillage d'installations  de tri et de valorisation de d\u00e9chets inertes, de points de collectes d\u00e9chets de professionnels, \u00e0 proximit\u00e9 des lieux de production, et sur l'ensemble du territoire r\u00e9gional. Cet appel \u00e0 projets vise \u00e0 soutenir les \u00e9tudes et des investissements sur le territoire de la r\u00e9gion Nouvelle-Aquitaine.  Des \u00e9tudes  selon les guides de r\u00e9daction des cahiers des charges disponibles au lien suivant : diagademe  Des investissements :    Plateformes collectives    de recyclage des d\u00e9chets inertes     ,     D\u00e9ch\u00e8teries professionnelles    ou autres \u00e9quipements \u00e9quivalents d\u00e9di\u00e9s \u00e0 la collecte et au tri des d\u00e9chets inertes et non inertes.   Cibles :  les entreprises et dans certains cas les collectivit\u00e9s pour la gestion des d\u00e9chets des professionnels. La candidature sera constitu\u00e9e des volets administratif (1), technique (2.1 et 2.2) et financier (3).",
+                "aide_detail": "<p>\n <strong>\n  NA OPR\u00e9VAL - Objectif r\u00e9duire valoriser les d\u00e9chets  du b\u00e2timent et des travaux publics en Nouvelle Aquitaine -\n </strong>\n</p>\n<p>\n A l'\u00e9chelle de la Nouvelle-Aquitaine, les d\u00e9chets des activit\u00e9s du b\u00e2timent et des travaux publics repr\u00e9sentent le gisement le plus important identifi\u00e9 dans le Plan R\u00e9gional de Pr\u00e9vention et de Gestion des D\u00e9chets (PRPGD). Il est constitu\u00e9 principalement de d\u00e9chets inertes dont la production a \u00e9t\u00e9 estim\u00e9e \u00e0 plus de 11,1 millions de tonnes.\n</p>\n<p>\n La loi relative \u00e0 la lutte contre le gaspillage et l'\u00e9conomie circulaire pr\u00e9voit, d'ici janvier 2022, la mise en place d'une fili\u00e8re \u00e0 responsabilit\u00e9 \u00e9largie des producteurs pour les produits ou mat\u00e9riaux de construction du secteur du b\u00e2timent. Cette nouvelle fili\u00e8re s'appuiera sur un maillage d'installations de collecte et de recyclage sur le territoire.\n</p>\n<p>\n Afin d'atteindre les objectifs du PRPGD et de contribuer \u00e0 la construction de cette fili\u00e8re, l'ADEME et la R\u00e9gion Nouvelle-Aquitaine souhaitent\n <strong>\n  aider les porteurs de projets en optimisant le maillage d'installations\n </strong>\n de tri et de valorisation de d\u00e9chets inertes, de points de collectes d\u00e9chets de professionnels, \u00e0 proximit\u00e9 des lieux de production, et sur l'ensemble du territoire r\u00e9gional.\n</p>\n<p>\n Cet appel \u00e0 projets vise \u00e0 soutenir les \u00e9tudes et des investissements sur le territoire de la r\u00e9gion Nouvelle-Aquitaine.\n</p>\n<p>\n <strong>\n  Des \u00e9tudes\n </strong>\n selon les guides de r\u00e9daction des cahiers des charges disponibles au lien suivant :\n diagademe\n</p>\n<p>\n <strong>\n  Des investissements :\n </strong>\n</p>\n<ul>\n <li>\n  <strong>\n   Plateformes collectives\n  </strong>\n  de recyclage des d\u00e9chets inertes\n  <strong>\n   ,\n  </strong>\n </li>\n <li>\n  <strong>\n   D\u00e9ch\u00e8teries professionnelles\n  </strong>\n  ou autres \u00e9quipements \u00e9quivalents d\u00e9di\u00e9s \u00e0 la collecte et au tri des d\u00e9chets inertes et non inertes.\n </li>\n</ul>\n<p>\n <strong>\n  Cibles :\n </strong>\n les entreprises et dans certains cas les collectivit\u00e9s pour la gestion des d\u00e9chets des professionnels.\n</p>\n<p>\n La candidature sera constitu\u00e9e des volets administratif (1), technique (2.1 et 2.2) et financier (3).\n</p>",
+                "contact": "<p>\n R\u00e9gion Nouvelle Aquitaine\n</p>\n<p>\n Direction Environnement\n</p>\n<p>\n Patricia FORTIN - economie-circulaire@nouvelle-aquitaine.fr\n</p>\n<p>\n <br/>\n</p>\n<p>\n ADEME Nouvelle Aquitaine\n</p>\n<p>\n P\u00f4le Economie Circulaire\n</p>\n<p>\n Sandrine WENISCH - sandrine.wenisch@ademe.fr\n</p>\n<p>\n Antoine BONSCH - antoine.bonsch@ademe.fr\n</p>\n<p>\n R\u00e9f\u00e9rents territoriaux ADEME : https://nouvelle-aquitaine.ademe.fr/lademe-en-region/trouver-votre-contact\n</p>",
+                "funding_source_url": "https://appelsaprojets.ademe.fr/aap/NA%20OPR\u00e9VAL2020-139"
+            },
+            {
+                "titre_aide": "Subventionner la construction et moderniser des d\u00e9ch\u00e8teries professionnelles",
+                "score": 1.2358367502449124,
+                "aide_detail_clean": "  Vous souhaitez construire ou moderniser une d\u00e9ch\u00e8terie pour les professionnels afin d'am\u00e9liorer la valorisation de leurs d\u00e9chets ? L'ADEME peut vous apporter une aide \u00e0 l'investissement.   B\u00e9n\u00e9ficiez d'une aide pour vos investissements dans la construction ou la modernisation d'une d\u00e9ch\u00e8terie professionnelle  Suite \u00e0 une \u00e9tude pr\u00e9alable, vous avez d\u00e9fini les conditions techniques et \u00e9conomiques de votre projet d'investissement. L'ADEME peut vous apporter une subvention allant jusqu'\u00e0 55 % du co\u00fbt de votre op\u00e9ration. Les d\u00e9chets des activit\u00e9s \u00e9conomiques repr\u00e9sentent une tr\u00e8s grande partie des d\u00e9chets produits en France. Les taux de valorisation de ces d\u00e9chets sont aujourd'hui tr\u00e8s in\u00e9gaux, du fait notamment du manque de solution de collecte s\u00e9par\u00e9e. Les d\u00e9ch\u00e8teries professionnelles : apportent une solution \u00e0 l'obligation pour les entreprises, commerces ou administrations de trier \u00e0 la source et de valoriser cinq flux de d\u00e9chets : papier/carton, m\u00e9tal, plastique, verre et bois ;   peuvent proposer un service compl\u00e9mentaire \u00e0 l'obligation pour les grands distributeurs de mat\u00e9riaux de construction de reprendre les d\u00e9chets issus de ces produits.  ",
+                "aide_detail": "<p>\n <em>\n  Vous souhaitez construire ou moderniser une d\u00e9ch\u00e8terie pour les professionnels afin d'am\u00e9liorer la valorisation de leurs d\u00e9chets ? L'ADEME peut vous apporter une aide \u00e0 l'investissement.\n </em>\n</p>\n<p>\n <strong>\n  B\u00e9n\u00e9ficiez d'une aide pour vos investissements dans la construction ou la modernisation d'une d\u00e9ch\u00e8terie professionnelle\n </strong>\n</p>\n<p>\n Suite \u00e0 une \u00e9tude pr\u00e9alable, vous avez d\u00e9fini les conditions techniques et \u00e9conomiques de votre projet d'investissement. L'ADEME peut vous apporter une subvention allant jusqu'\u00e0 55 % du co\u00fbt de votre op\u00e9ration.\n</p>\n<p>\n Les d\u00e9chets des activit\u00e9s \u00e9conomiques repr\u00e9sentent une tr\u00e8s grande partie des d\u00e9chets produits en France. Les taux de valorisation de ces d\u00e9chets sont aujourd'hui tr\u00e8s in\u00e9gaux, du fait notamment du manque de solution de collecte s\u00e9par\u00e9e.\n</p>\n<p>\n Les d\u00e9ch\u00e8teries professionnelles :\n</p>\n<p>\n apportent une solution \u00e0 l'obligation pour les entreprises, commerces ou administrations de trier \u00e0 la source et de valoriser cinq flux de d\u00e9chets : papier/carton, m\u00e9tal, plastique, verre et bois ;\n</p>\n<p>\n <ul>\n  <li>\n   peuvent proposer un service compl\u00e9mentaire \u00e0 l'obligation pour les grands distributeurs de mat\u00e9riaux de construction de reprendre les d\u00e9chets issus de ces produits.\n  </li>\n </ul>\n</p>",
+                "contact": "<p>\n Pour plus d'informations, cliquer sur le lien vers\n <a href=\"https://agirpourlatransition.ademe.fr/entreprises/dispositif-aide/subvention-construction-modernisation-decheteries-professionnelles\">\n  la d\u00e9marche en ligne\n </a>\n .\n</p>",
+                "funding_source_url": "https://agirpourlatransition.ademe.fr/entreprises/dispositif-aide/subvention-construction-modernisation-decheteries-professionnelles"
+            },
+            {
+                "titre_aide": "Soutenir les investissements en faveur du recyclage et du r\u00e9emploi des d\u00e9chets",
+                "score": 1.2418367432024044,
+                "aide_detail_clean": " La r\u00e9gion Nouvelle-Aquitaine va permettre de disposer d'outils permettant de pr\u00e9parer et accompagner la transition vers l'\u00e9conomie circulaire (\u00e9coconception, \u00e9cologie industrielle, \u00e9conomie de fonctionnalit\u00e9, r\u00e9emploi, r\u00e9paration, r\u00e9utilisation, recyclage).  Objectifs  :  Accompagner les investissements permettant de r\u00e9duire l'impact environnemental des d\u00e9chets tout en cr\u00e9ant des emplois locaux.   Favoriser le d\u00e9veloppement de modes de traitement des d\u00e9chets plus respectueux de l'environnement permettant de mieux capter et mieux transformer des gisements valorisables.   Favoriser le d\u00e9veloppement de dispositifs de r\u00e9duction des pr\u00e9l\u00e8vements de mati\u00e8res premi\u00e8res vierges et la r\u00e9duction de production de d\u00e9chets. ",
+                "aide_detail": "<p>\n La r\u00e9gion Nouvelle-Aquitaine va permettre de disposer d'outils permettant de pr\u00e9parer et accompagner la transition vers l'\u00e9conomie circulaire (\u00e9coconception, \u00e9cologie industrielle, \u00e9conomie de fonctionnalit\u00e9, r\u00e9emploi, r\u00e9paration, r\u00e9utilisation, recyclage).\n</p>\n<p>\n <strong style=\"color: var(--body-fg); font-family: Roboto, \">\n  Objectifs\n </strong>\n :\n</p>\n<ul>\n <li>\n  Accompagner les investissements permettant de r\u00e9duire l'impact environnemental des d\u00e9chets tout en cr\u00e9ant des emplois locaux.\n </li>\n <li>\n  Favoriser le d\u00e9veloppement de modes de traitement des d\u00e9chets plus respectueux de l'environnement permettant de mieux capter et mieux transformer des gisements valorisables.\n </li>\n <li>\n  Favoriser le d\u00e9veloppement de dispositifs de r\u00e9duction des pr\u00e9l\u00e8vements de mati\u00e8res premi\u00e8res vierges et la r\u00e9duction de production de d\u00e9chets.\n </li>\n</ul>\n<br/>",
+                "contact": "<p>\n Service Relation aux Usagers\n</p>\n<p>\n Direction de l'environnement\n</p>\n<p>\n Tel : 05 49 38 49 38\n</p>\n<p>\n Du lundi au vendredi de 9h \u00e0 18h sans interruption\n</p>",
+                "funding_source_url": "https://les-aides.nouvelle-aquitaine.fr/transition-energetique-et-ecologique/investissement-en-faveur-du-recyclage-et-du-reemploi-des-dechets"
+            },
+            {
+                "titre_aide": "R\u00e9aliser des projets locaux en mati\u00e8re d'\u00e9conomie circulaire et de d\u00e9chets",
+                "score": 1.2435175752255998,
+                "aide_detail_clean": "  Contexte et objectifs :  La loi NOTRe a confi\u00e9 aux R\u00e9gions l'\u00e9laboration du Plan R\u00e9gional Pr\u00e9vention et de Gestion des D\u00e9chets (PRPGD) qui doit permettre d'atteindre les objectifs nationaux fix\u00e9s par la loi de Transition \u00e9nerg\u00e9tique pour la croissance verte.  Ce plan d\u00e9finit et coordonne sur 12 ans  l'ensemble des actions pour atteindre les objections de pr\u00e9vention et gestion des d\u00e9chets. Il comprend un Plan r\u00e9gional d'actions pour l'\u00e9conomie circulaire (PRAEC), qui a \u00e9t\u00e9 construit en concertation et mobilise les acteurs autour de 6 axes : gouvernance, syst\u00e8mes \u00e9conomiques, territoires, politiques publiques, recherche et innovation et d\u00e9chets. Afin de favoriser l'\u00e9mergence de nouvelles actions et accompagner les projets des acteurs des territoires, la R\u00e9gion a adopt\u00e9 le 20 juillet 2017 trois types d'aide pour contribuer \u00e0 d\u00e9velopper la pr\u00e9vention et la valorisation des d\u00e9chets, et d'engager concr\u00e8tement en Occitanie la mutation vers une \u00e9conomie plus circulaire :  Aide \u00e0 l'animation d'actions collectives r\u00e9gionales   Aide aux \u00e9tudes strat\u00e9giques   Aide \u00e0 la r\u00e9alisation de projets locaux de pr\u00e9vention, gestion, valorisation des d\u00e9chets et de d\u00e9veloppement de l'\u00e9conomie circulaire.  Le dispositif d'aide \u00e0 la r\u00e9alisation de projets locaux  a vocation \u00e0 accompagner les acteurs locaux dans leurs projets de pr\u00e9vention, gestion, valorisation des d\u00e9chets et de d\u00e9veloppement de l'\u00e9conomie circulaire. Ces projets devront notamment viser :  la pr\u00e9vention, la r\u00e9duction des d\u00e9chets, l'allongement de da dur\u00e9e d'usage des produits,   le d\u00e9ploiement de la tarification incitative,   l'organisation de la collecte en vue d'une valorisation,   le d\u00e9veloppement du recyclage et l'optimisation de la valorisation (organique, mati\u00e8re et \u00e9nerg\u00e9tique),   la mise en place d'un processus de transition vers l'\u00e9conomie circulaire (recherche de synergie de flux, mise en place de syst\u00e8me d'\u00e9changes de services...).   Montant :  L'aide r\u00e9gionale est une subvention d'investissement dont le taux maximum est diff\u00e9renci\u00e9 selon la nature et le type de d\u00e9pense. L'intervention de la R\u00e9gion est encadr\u00e9e par le cadre r\u00e9glementaire des r\u00e9gimes d'aide publique qui est \u00e9tudi\u00e9 au regard de chaque dossier.  Etudes pr\u00e9alables : plafond par b\u00e9n\u00e9ficiaire et par projet :     50 000 \u20ac    . Taux maximum en fonction de la taille de l'entreprise et du r\u00e9gime d'aides.   Investissements : taux maximum en fonction de la taille de l'entreprise et du r\u00e9gime d'aides.   Actions compl\u00e9mentaires : plafond par b\u00e9n\u00e9ficiaire et par projet :     50 000 \u20ac    . Taux maximum en fonction de la taille de l'entreprise et du r\u00e9gime d'aides. ",
+                "aide_detail": "<p>\n <strong>\n  Contexte et objectifs :\n </strong>\n</p>\n<p>\n La loi NOTRe a confi\u00e9 aux R\u00e9gions l'\u00e9laboration du Plan R\u00e9gional Pr\u00e9vention et de Gestion des D\u00e9chets (PRPGD) qui doit permettre d'atteindre les objectifs nationaux fix\u00e9s par la loi de Transition \u00e9nerg\u00e9tique pour la croissance verte.  Ce plan d\u00e9finit et coordonne sur 12 ans  l'ensemble des actions pour atteindre les objections de pr\u00e9vention et gestion des d\u00e9chets. Il comprend un Plan r\u00e9gional d'actions pour l'\u00e9conomie circulaire (PRAEC), qui a \u00e9t\u00e9 construit en concertation et mobilise les acteurs autour de 6 axes : gouvernance, syst\u00e8mes \u00e9conomiques, territoires, politiques publiques, recherche et innovation et d\u00e9chets.\n</p>\n<p>\n Afin de favoriser l'\u00e9mergence de nouvelles actions et accompagner les projets des acteurs des territoires, la R\u00e9gion a adopt\u00e9 le 20 juillet 2017 trois types d'aide pour contribuer \u00e0 d\u00e9velopper la pr\u00e9vention et la valorisation des d\u00e9chets, et d'engager concr\u00e8tement en Occitanie la mutation vers une \u00e9conomie plus circulaire :\n</p>\n<ul>\n <li>\n  Aide \u00e0 l'animation d'actions collectives r\u00e9gionales\n </li>\n <li>\n  Aide aux \u00e9tudes strat\u00e9giques\n </li>\n <li>\n  Aide \u00e0 la r\u00e9alisation de projets locaux de pr\u00e9vention, gestion, valorisation des d\u00e9chets et de d\u00e9veloppement de l'\u00e9conomie circulaire.\n </li>\n</ul>\n<p>\n Le dispositif d'aide \u00e0 la r\u00e9alisation de projets locaux  a vocation \u00e0 accompagner les acteurs locaux dans leurs projets de pr\u00e9vention, gestion, valorisation des d\u00e9chets et de d\u00e9veloppement de l'\u00e9conomie circulaire.\n</p>\n<p>\n Ces projets devront notamment viser :\n</p>\n<ul>\n <li>\n  la pr\u00e9vention, la r\u00e9duction des d\u00e9chets, l'allongement de da dur\u00e9e d'usage des produits,\n </li>\n <li>\n  le d\u00e9ploiement de la tarification incitative,\n </li>\n <li>\n  l'organisation de la collecte en vue d'une valorisation,\n </li>\n <li>\n  le d\u00e9veloppement du recyclage et l'optimisation de la valorisation (organique, mati\u00e8re et \u00e9nerg\u00e9tique),\n </li>\n <li>\n  la mise en place d'un processus de transition vers l'\u00e9conomie circulaire (recherche de synergie de flux, mise en place de syst\u00e8me d'\u00e9changes de services...).\n </li>\n</ul>\n<p>\n <strong>\n  Montant :\n </strong>\n</p>\n<p>\n L'aide r\u00e9gionale est une subvention d'investissement dont le taux maximum est diff\u00e9renci\u00e9 selon la nature et le type de d\u00e9pense. L'intervention de la R\u00e9gion est encadr\u00e9e par le cadre r\u00e9glementaire des r\u00e9gimes d'aide publique qui est \u00e9tudi\u00e9 au regard de chaque dossier.\n</p>\n<ul>\n <li>\n  Etudes pr\u00e9alables : plafond par b\u00e9n\u00e9ficiaire et par projet :\n  <strong>\n   50 000 \u20ac\n  </strong>\n  . Taux maximum en fonction de la taille de l'entreprise et du r\u00e9gime d'aides.\n </li>\n <li>\n  Investissements : taux maximum en fonction de la taille de l'entreprise et du r\u00e9gime d'aides.\n </li>\n <li>\n  Actions compl\u00e9mentaires : plafond par b\u00e9n\u00e9ficiaire et par projet :\n  <strong>\n   50 000 \u20ac\n  </strong>\n  . Taux maximum en fonction de la taille de l'entreprise et du r\u00e9gime d'aides.\n </li>\n</ul>\n<p>\n</p>",
+                "contact": "<p>\n Service D\u00e9chets &amp; Economie Circulaire\n</p>\n<p>\n <ul>\n  <li>\n   Mail : economie-circulaire@laregion.fr T\u00e9l\u00e9phone : 04 67 22 79 03\n  </li>\n </ul>\n</p>\n<p>\n</p>\n<p>\n Pour les territoires : Nord Haute-Garonne, Lot, Tarn et Garonne\n</p>\n<p>\n <ul>\n  <li>\n   Carole Bernard T\u00e9l\u00e9phone : 05 61 39 66 34 Mail : carole.bernard@laregion.fr\n  </li>\n </ul>\n</p>\n<p>\n</p>\n<p>\n Pour les territoires : Gard et Loz\u00e8re\n</p>\n<p>\n <ul>\n  <li>\n   Karine Freu T\u00e9l\u00e9phone : 04 67 22 81 85 Mail : karine.freu@laregion.fr\n  </li>\n </ul>\n</p>\n<p>\n</p>\n<p>\n Pour les territoires : Est Ari\u00e8ge et Est H\u00e9rault\n</p>\n<p>\n <ul>\n  <li>\n   Prisca Giraudo T\u00e9l\u00e9phone : 04 67 22 79 20 Mail : prisca.giraudo@laregion.fr\n  </li>\n </ul>\n</p>\n<p>\n</p>\n<p>\n Pour les territoires : Aude, Pyr\u00e9n\u00e9es-Orientales et Ouest H\u00e9rault\n</p>\n<p>\n <ul>\n  <li>\n   Benoit Thierry T\u00e9l\u00e9phone : 04 67 22 79 21 Mail : benoit.thierry@laregion.fr\n  </li>\n </ul>\n</p>\n<p>\n</p>\n<p>\n Pour les territoires : Aveyron et Tarn\n</p>\n<p>\n <ul>\n  <li>\n   Bruno Garde T\u00e9l\u00e9phone : 04 67 22 90 66 Mail : bruno.garde@laregion.fr\n  </li>\n </ul>\n</p>\n<p>\n</p>\n<p>\n Pour les territoires : Ouest Ari\u00e8ge, Gers, hautes Pyr\u00e9n\u00e9es et Sud Haute-Garonne\n</p>\n<p>\n <ul>\n  <li>\n   Simon Moulines T\u00e9l\u00e9phone : 05 61 39 52 74 Mail : simon.moulines@laregion.fr\n  </li>\n </ul>\n</p>",
+                "funding_source_url": "https://www.laregion.fr/Aides-regionales-a-la-realisation-de-projets-locaux-en-matiere-d"
+            },
+            {
+                "titre_aide": "Aider \u00e0 l'investissement dans les \u00e9quipements de recyclage des d\u00e9chets",
+                "score": 1.2450067016740043,
+                "aide_detail_clean": "  Aide - \u00ab Investissements dans les \u00e9quipements de recyclage des d\u00e9chets \u00bb, mis en place par l'ADEME  Objectif :Afin de garantir la bonne ex\u00e9cution des projets soutenus par l'ADEME et quand cela est n\u00e9cessaire de par la \u00ab complexit\u00e9 \u00bb du projet d'investissement, l'ADEME est susceptible de financer des prestations d'assistance \u00e0 ma\u00eetrise d'ouvrage ou des prestations de ma\u00eetrise d'\u0153uvre en lien avec les projets b\u00e9n\u00e9ficiant d'aides de l'ADEME.  B\u00e9n\u00e9ficiaires :  Entreprises de recyclage des d\u00e9chets, souhaitant structurer de nouvelles fili\u00e8res et am\u00e9liorer les performances de recyclage des d\u00e9chets. Crit\u00e8res d'\u00e9ligibilit\u00e9 :  \u2022 Pertinence du projet vis-\u00e0-vis de la fili\u00e8re de traitement des d\u00e9chets/mat\u00e9riaux  \u2022 Pertinence du projet sur le territoire,  \u2022 Choix du process : caract\u00e9ristiques et performances,  \u2022 S\u00e9curit\u00e9 d'approvisionnement \u00e0 partir de l'\u00e9tude des gisements de MPR mobilisables,  \u2022 P\u00e9rennit\u00e9 des d\u00e9bouch\u00e9s des flux produits,  \u2022 Co\u00fbts d'investissement et de fonctionnement,  \u2022 Impacts environnementaux et impacts en terme d'emplois.  Accompagnement :  \u2022 Taux d'aide maximum de 55 %, selon la taille de l'entreprise.  Lien pour acc\u00e9der au dispositif :  https://agirpourlatransition.ademe.fr/entreprises/dispositif-aide/financement-investissements-recyclage-dechets-dont-orplast-regeneration",
+                "aide_detail": "<p>\n <strong>\n  Aide - \u00ab Investissements dans les \u00e9quipements de recyclage des d\u00e9chets \u00bb, mis en place par l'ADEME\n </strong>\n</p>\n<p>\n Objectif :\nAfin de garantir la bonne ex\u00e9cution des projets soutenus par l'ADEME et quand cela est n\u00e9cessaire de par la \u00ab complexit\u00e9 \u00bb du projet d'investissement, l'ADEME est susceptible de financer des prestations d'assistance \u00e0 ma\u00eetrise d'ouvrage ou des prestations de ma\u00eetrise d'\u0153uvre en lien avec les projets b\u00e9n\u00e9ficiant d'aides de l'ADEME.\n</p>\n<p>\n <strong>\n  B\u00e9n\u00e9ficiaires :\n </strong>\n Entreprises de recyclage des d\u00e9chets, souhaitant structurer de nouvelles fili\u00e8res et am\u00e9liorer les performances de recyclage des d\u00e9chets.\n</p>\n<p>\n Crit\u00e8res d'\u00e9ligibilit\u00e9 :\n <br/>\n \u2022 Pertinence du projet vis-\u00e0-vis de la fili\u00e8re de traitement des d\u00e9chets/mat\u00e9riaux\n <br/>\n \u2022 Pertinence du projet sur le territoire,\n <br/>\n \u2022 Choix du process : caract\u00e9ristiques et performances,\n <br/>\n \u2022 S\u00e9curit\u00e9 d'approvisionnement \u00e0 partir de l'\u00e9tude des gisements de MPR mobilisables,\n <br/>\n \u2022 P\u00e9rennit\u00e9 des d\u00e9bouch\u00e9s des flux produits,\n <br/>\n \u2022 Co\u00fbts d'investissement et de fonctionnement,\n <br/>\n \u2022 Impacts environnementaux et impacts en terme d'emplois.\n <br/>\n Accompagnement :\n <br/>\n \u2022 Taux d'aide maximum de 55 %, selon la taille de l'entreprise.\n <br/>\n Lien pour acc\u00e9der au dispositif :\n <br/>\n</p>\n<p>\n https://agirpourlatransition.ademe.fr/entreprises/dispositif-aide/financement-investissements-recyclage-dechets-dont-orplast-regeneration\n</p>",
+                "contact": "<p>\n Contactez l'ADEME\n <a href=\"https://agirpourlatransition.ademe.fr/entreprises/form/contact?source_entity_type=node&amp;source_entity_bundle=dispositif_gre_a_gre&amp;source_entity_id=510\" rel=\"noopener\" target=\"_blank\">\n  via leur formulaire\n </a>\n en ligne pour en savoir plus sur ce dispositif\n <br/>\n</p>",
+                "funding_source_url": "https://agirpourlatransition.ademe.fr/entreprises/dispositif-aide/financement-investissements-recyclage-dechets-dont-orplast-regeneration"
+            },
+            {
+                "titre_aide": "Subventionner des \u00e9tudes pr\u00e9alables \u00e0 la r\u00e9alisation de centres de tri/pr\u00e9paration des d\u00e9chets pour une valorisation mati\u00e8re et \u00e9nergie",
+                "score": 1.2845635246114278,
+                "aide_detail_clean": "  R\u00e9alisation d'une \u00e9tude territoriale ou de faisabilit\u00e9 en vue de cr\u00e9er, \u00e9tendre ou moderniser un centre de tri/pr\u00e9paration de d\u00e9chets pour une valorisation mati\u00e8re ou \u00e9nergie avec le financement de l'ADEME.   R\u00e9alisez votre \u00e9tude pr\u00e9alable \u00e0 la r\u00e9alisation de centres de tri/pr\u00e9paration des d\u00e9chets  Les \u00e9tudes de faisabilit\u00e9 ou territoriales pr\u00e9alables aux investissements peuvent \u00eatre soutenues jusqu'\u00e0 70 % des d\u00e9penses \u00e9ligibles. Le tri industriel est une \u00e9tape souvent essentielle afin de pr\u00e9parer \u00e0 la valorisation mati\u00e8re ou \u00e9nerg\u00e9tique des d\u00e9chets issus de collecte s\u00e9par\u00e9e. Le parc actuel des centres de tri est estim\u00e9 \u00e0 environ 450 installations ayant une capacit\u00e9 de tri de 7 millions de tonnes (tous d\u00e9chets non dangereux et non inertes confondus). Pour le d\u00e9velopper et r\u00e9pondre aux objectifs ambitieux de la Loi de transition \u00e9nerg\u00e9tique pour la croissance verte (LTECV) et de celle relative \u00e0 la lutte contre le gaspillage et \u00e0 l'\u00e9conomie circulaire en mati\u00e8re de r\u00e9emploi et recyclage, l'ADEME accompagne les collectivit\u00e9s ou les acteurs priv\u00e9s porteurs de projets de centres de tri et de pr\u00e9paration des d\u00e9chets.",
+                "aide_detail": "<p>\n <em>\n  R\u00e9alisation d'une \u00e9tude territoriale ou de faisabilit\u00e9 en vue de cr\u00e9er, \u00e9tendre ou moderniser un centre de tri/pr\u00e9paration de d\u00e9chets pour une valorisation mati\u00e8re ou \u00e9nergie avec le financement de l'ADEME.\n </em>\n</p>\n<p>\n <strong>\n  R\u00e9alisez votre \u00e9tude pr\u00e9alable \u00e0 la r\u00e9alisation de centres de tri/pr\u00e9paration des d\u00e9chets\n </strong>\n</p>\n<p>\n Les \u00e9tudes de faisabilit\u00e9 ou territoriales pr\u00e9alables aux investissements peuvent \u00eatre soutenues jusqu'\u00e0 70 % des d\u00e9penses \u00e9ligibles.\n</p>\n<p>\n Le tri industriel est une \u00e9tape souvent essentielle afin de pr\u00e9parer \u00e0 la valorisation mati\u00e8re ou \u00e9nerg\u00e9tique des d\u00e9chets issus de collecte s\u00e9par\u00e9e.\n</p>\n<p>\n Le parc actuel des centres de tri est estim\u00e9 \u00e0 environ 450 installations ayant une capacit\u00e9 de tri de 7 millions de tonnes (tous d\u00e9chets non dangereux et non inertes confondus). Pour le d\u00e9velopper et r\u00e9pondre aux objectifs ambitieux de la Loi de transition \u00e9nerg\u00e9tique pour la croissance verte (LTECV) et de celle relative \u00e0 la lutte contre le gaspillage et \u00e0 l'\u00e9conomie circulaire en mati\u00e8re de r\u00e9emploi et recyclage, l'ADEME accompagne les collectivit\u00e9s ou les acteurs priv\u00e9s porteurs de projets de centres de tri et de pr\u00e9paration des d\u00e9chets.\n</p>",
+                "contact": "<p>\n Pour plus d'informations, cliquer sur le\n <a href=\"https://agirpourlatransition.ademe.fr/entreprises/dispositif-aide/subventions-etudes-prealables-a-realisation-centres-tri-preparation-dechets\">\n  lien vers le descriptif complet\n </a>\n .\n</p>",
+                "funding_source_url": "https://agirpourlatransition.ademe.fr/entreprises/dispositif-aide/subventions-etudes-prealables-a-realisation-centres-tri-preparation-dechets"
+            },
+            {
+                "titre_aide": "Financer les \u00e9tudes pr\u00e9alables aux investissements de recyclage",
+                "score": 1.292259422420368,
+                "aide_detail_clean": "  Aide - \u00ab \u00c9tudes pr\u00e9alables aux investissements de recyclage (dont ORPLAST r\u00e9g\u00e9n\u00e9ration) \u00bb, mis en place par l'ADEME  Objectif : Vous avez un projet d'unit\u00e9 de recyclage de d\u00e9chets dont vous souhaitez \u00e9tudier la faisabilit\u00e9 ? L'ADEME peut vous accompagner en finan\u00e7ant une \u00e9tude pr\u00e9alable. Le recyclage des d\u00e9chets organiques \u00e0 des fins de valorisation agronomique (retour au sol, alimentation) fait l'objet d'une fiche d\u00e9di\u00e9e. Afin de garantir la bonne ex\u00e9cution des projets soutenus par l'ADEME et quand cela est n\u00e9cessaire de par la \u00ab complexit\u00e9 \u00bb du projet d'investissement, l'ADEME est susceptible de financer des prestations d'assistance \u00e0 ma\u00eetrise d'ouvrage ou des prestations de ma\u00eetrise d'\u0153uvre en lien avec les projets b\u00e9n\u00e9ficiant d'aides de l'ADEME. B\u00e9n\u00e9ficiaires : entreprises de recyclage des d\u00e9chets, souhaitant structurer de nouvelles fili\u00e8res et am\u00e9liorer les performances de recyclage des d\u00e9chets. Accompagnement : subvention    Taux d'aide : 50 \u00e0 70 % des d\u00e9penses \u00e9ligibles selon le type d'acteur,      Plafond de l'assiette des d\u00e9penses \u00e9ligibles : 50 000 \u00e0 100 000 \u20ac.   ",
+                "aide_detail": "<p>\n <strong>\n  Aide - \u00ab \u00c9tudes pr\u00e9alables aux investissements de recyclage (dont ORPLAST r\u00e9g\u00e9n\u00e9ration) \u00bb, mis en place par l'ADEME\n </strong>\n</p>\n<p>\n Objectif :\n</p>\n<p>\n Vous avez un projet d'unit\u00e9 de recyclage de d\u00e9chets dont vous souhaitez \u00e9tudier la faisabilit\u00e9 ? L'ADEME peut vous accompagner en finan\u00e7ant une \u00e9tude pr\u00e9alable.\n Le recyclage des d\u00e9chets organiques \u00e0 des fins de valorisation agronomique (retour au sol, alimentation) fait l'objet d'une fiche d\u00e9di\u00e9e.\n</p>\n<p>\n Afin de garantir la bonne ex\u00e9cution des projets soutenus par l'ADEME et quand cela est n\u00e9cessaire de par la \u00ab complexit\u00e9 \u00bb du projet d'investissement, l'ADEME est susceptible de financer des prestations d'assistance \u00e0 ma\u00eetrise d'ouvrage ou des prestations de ma\u00eetrise d'\u0153uvre en lien avec les projets b\u00e9n\u00e9ficiant d'aides de l'ADEME.\n</p>\n<p>\n B\u00e9n\u00e9ficiaires : entreprises de recyclage des d\u00e9chets, souhaitant structurer de nouvelles fili\u00e8res et am\u00e9liorer les performances de recyclage des d\u00e9chets.\n</p>\n<p>\n Accompagnement : subvention\n <br/>\n <ul>\n  <li>\n   Taux d'aide : 50 \u00e0 70 % des d\u00e9penses \u00e9ligibles selon le type d'acteur,\n   <br/>\n  </li>\n  <li>\n   Plafond de l'assiette des d\u00e9penses \u00e9ligibles : 50 000 \u00e0 100 000 \u20ac.\n   <br/>\n  </li>\n </ul>\n</p>",
+                "contact": "<p>\n Contactez l'ADEME via leur\n <a href=\"https://agirpourlatransition.ademe.fr/entreprises/form/contact?source_entity_type=node&amp;source_entity_bundle=dispositif_gre_a_gre&amp;source_entity_id=7134\" rel=\"noopener\" target=\"_blank\">\n  formulaire de contact\n </a>\n pour en savoir plus sur ce dispositif.\n</p>",
+                "funding_source_url": "https://agirpourlatransition.ademe.fr/entreprises/dispositif-aide/etudes-prealables-investissements-recyclage-dont-orplast-regeneration"
+            },
+            {
+                "titre_aide": "Mener des \u00e9tudes strat\u00e9giques en mati\u00e8re d'\u00e9conomie circulaire et de d\u00e9chets",
+                "score": 1.2940378523864255,
+                "aide_detail_clean": " La loi NOTRe a confi\u00e9 aux R\u00e9gions l'\u00e9laboration du Plan R\u00e9gional Pr\u00e9vention et de Gestion des D\u00e9chets (PRPGD) qui doit permettre d'atteindre les objectifs nationaux fix\u00e9s par la loi de Transition \u00e9nerg\u00e9tique pour la croissance verte. Ce plan d\u00e9finit et coordonne sur 12 ans  l'ensemble des actions pour atteindre les objections de pr\u00e9vention et gestion des d\u00e9chets. Il comprend un Plan r\u00e9gional d'actions pour l'\u00e9conomie circulaire (PRAEC), qui a \u00e9t\u00e9 construit en concertation et mobilise les acteurs autour de 6 axes : gouvernance, syst\u00e8mes \u00e9conomiques, territoires, politiques publiques, recherche et innovation et d\u00e9chets. Afin de favoriser l'\u00e9mergence de nouvelles actions et accompagner les projets des acteurs des territoires, la R\u00e9gion a adopt\u00e9 le 20 juillet 2017 trois types d'aide pour contribuer \u00e0 d\u00e9velopper la pr\u00e9vention et la valorisation des d\u00e9chets, et d'engager concr\u00e8tement en Occitanie la mutation vers une \u00e9conomie plus circulaire :  Aide \u00e0 l'animation d'actions collectives r\u00e9gionales   Aide aux \u00e9tudes strat\u00e9giques   Aide \u00e0 la r\u00e9alisation de projets locaux  Sont concern\u00e9es par les aides aux \u00e9tudes strat\u00e9giques : les \u00e9tudes sur diff\u00e9rentes \u00e9chelles territoriales (territoire, d\u00e9partement, r\u00e9gion, supra-r\u00e9gionale) ou d'une fili\u00e8re. Ce dispositif a vocation \u00e0 :  \u00e9clairer les choix et d\u00e9cisions du b\u00e9n\u00e9ficiaire (en termes technique, organisationnel, financier, juridique...),   am\u00e9liorer et approfondir les connaissances sur un sujet pr\u00e9cis,   poser un diagnostic et proposer des pistes d'actions.     Exemples d'aides :       Etude dans le domaine de la pr\u00e9vention :    Etude d'optimisation de la pr\u00e9vention et de la gestion des d\u00e9chets \u00e0 l'\u00e9chelle d'un territoire ou d'une fili\u00e8re territorialis\u00e9e (sch\u00e9ma de planification territoriale de pr\u00e9vention et gestion des d\u00e9chets organiques...) Etude de pr\u00e9figuration li\u00e9e \u00e0 la mise en \u0153uvre de la tarification incitative Etude d'opportunit\u00e9 sur l'\u00e9mergence d'unit\u00e9 de r\u00e9-emploi  Etude dans le domaine de la valorisation :    Etude de la mise en place de fili\u00e8res de recyclage et de valorisation \u00e9mergentes ou innovantes ou pr\u00e9sentant un int\u00e9r\u00eat au regard des strat\u00e9gies r\u00e9gionales     Etude d'exp\u00e9rimentation par exemple sur l'am\u00e9lioration de la gestion des d\u00e9chets du BTP, le d\u00e9veloppement de l'utilisation de mat\u00e9riaux recyclables dans la construction    Etude visant \u00e0 am\u00e9liorer et approfondir les connaissances :    Comparer des outils, m\u00e9thodes, pratiques... (benchmark)     Produire des outils m\u00e9thodologiques     Pr\u00e9voir l'\u00e9volution des flux de d\u00e9chets     Etablir un diagnostic \u00e0 caract\u00e8re technique et/ou organisationnel avec une \u00e9tude critique et comparative des diff\u00e9rentes solutions envisageables...  ",
+                "aide_detail": "<p>\n La loi NOTRe a confi\u00e9 aux R\u00e9gions l'\u00e9laboration du Plan R\u00e9gional Pr\u00e9vention et de Gestion des D\u00e9chets (PRPGD) qui doit permettre d'atteindre les objectifs nationaux fix\u00e9s par la loi de Transition \u00e9nerg\u00e9tique pour la croissance verte. Ce plan d\u00e9finit et coordonne sur 12 ans  l'ensemble des actions pour atteindre les objections de pr\u00e9vention et gestion des d\u00e9chets. Il comprend un Plan r\u00e9gional d'actions pour l'\u00e9conomie circulaire (PRAEC), qui a \u00e9t\u00e9 construit en concertation et mobilise les acteurs autour de 6 axes : gouvernance, syst\u00e8mes \u00e9conomiques, territoires, politiques publiques, recherche et innovation et d\u00e9chets.\n</p>\n<p>\n Afin de favoriser l'\u00e9mergence de nouvelles actions et accompagner les projets des acteurs des territoires, la R\u00e9gion a adopt\u00e9 le 20 juillet 2017 trois types d'aide pour contribuer \u00e0 d\u00e9velopper la pr\u00e9vention et la valorisation des d\u00e9chets, et d'engager concr\u00e8tement en Occitanie la mutation vers une \u00e9conomie plus circulaire :\n</p>\n<ul>\n <li>\n  Aide \u00e0 l'animation d'actions collectives r\u00e9gionales\n </li>\n <li>\n  Aide aux \u00e9tudes strat\u00e9giques\n </li>\n <li>\n  Aide \u00e0 la r\u00e9alisation de projets locaux\n </li>\n</ul>\n<p>\n Sont concern\u00e9es par les aides aux \u00e9tudes strat\u00e9giques : les \u00e9tudes sur diff\u00e9rentes \u00e9chelles territoriales (territoire, d\u00e9partement, r\u00e9gion, supra-r\u00e9gionale) ou d'une fili\u00e8re.\n</p>\n<p>\n Ce dispositif a vocation \u00e0 :\n</p>\n<ul>\n <li>\n  \u00e9clairer les choix et d\u00e9cisions du b\u00e9n\u00e9ficiaire (en termes technique, organisationnel, financier, juridique...),\n </li>\n <li>\n  am\u00e9liorer et approfondir les connaissances sur un sujet pr\u00e9cis,\n </li>\n <li>\n  poser un diagnostic et proposer des pistes d'actions.\n </li>\n</ul>\n<p>\n <ul>\n  <li>\n   <strong>\n    Exemples d'aides :\n   </strong>\n  </li>\n  <li>\n   <em>\n    Etude dans le domaine de la pr\u00e9vention :\n   </em>\n  </li>\n </ul>\n Etude d'optimisation de la pr\u00e9vention et de la gestion des d\u00e9chets \u00e0 l'\u00e9chelle d'un territoire ou d'une fili\u00e8re territorialis\u00e9e (sch\u00e9ma de planification territoriale de pr\u00e9vention et gestion des d\u00e9chets organiques...)\n Etude de pr\u00e9figuration li\u00e9e \u00e0 la mise en \u0153uvre de la tarification incitative\n Etude d'opportunit\u00e9 sur l'\u00e9mergence d'unit\u00e9 de r\u00e9-emploi\n</p>\n<p>\n <em>\n  Etude dans le domaine de la valorisation :\n </em>\n</p>\n<p>\n <ul>\n  <li>\n   Etude de la mise en place de fili\u00e8res de recyclage et de valorisation \u00e9mergentes ou innovantes ou pr\u00e9sentant un int\u00e9r\u00eat au regard des strat\u00e9gies r\u00e9gionales\n  </li>\n  <li>\n   Etude d'exp\u00e9rimentation par exemple sur l'am\u00e9lioration de la gestion des d\u00e9chets du BTP, le d\u00e9veloppement de l'utilisation de mat\u00e9riaux recyclables dans la construction\n  </li>\n </ul>\n <em>\n  Etude visant \u00e0 am\u00e9liorer et approfondir les connaissances :\n </em>\n</p>\n<p>\n <ul>\n  <li>\n   Comparer des outils, m\u00e9thodes, pratiques... (benchmark)\n  </li>\n  <li>\n   Produire des outils m\u00e9thodologiques\n  </li>\n  <li>\n   Pr\u00e9voir l'\u00e9volution des flux de d\u00e9chets\n  </li>\n  <li>\n   Etablir un diagnostic \u00e0 caract\u00e8re technique et/ou organisationnel avec une \u00e9tude critique et comparative des diff\u00e9rentes solutions envisageables...\n  </li>\n </ul>\n</p>\n<p>\n</p>",
+                "contact": "<p>\n <strong>\n  Pour toute demande de renseignements, vous pouvez contacter :\n </strong>\n</p>\n<p>\n Service D\u00e9chets &amp; Economie Circulaire\n</p>\n<p>\n Mail : economie-circulaire@laregion.fr T\u00e9l\u00e9phone : 04 67 22 79 03\n</p>\n<p>\n <strong>\n  Pour les territoires : Nord Haute-Garonne, Lot, Tarn et Garonne\n </strong>\n</p>\n<p>\n Carole Bernard T\u00e9l\u00e9phone : 05 61 39 66 34 Mail : carole.bernard@laregion.fr\n</p>\n<p>\n <strong>\n  Pour les territoires : Gard et Loz\u00e8re\n </strong>\n</p>\n<p>\n Karine Freu T\u00e9l\u00e9phone : 04 67 22 81 85 Mail : karine.freu@laregion.fr\n</p>\n<p>\n <strong>\n  Pour les territoires : Est Ari\u00e8ge et Est H\u00e9rault\n </strong>\n</p>\n<p>\n Prisca Giraudo T\u00e9l\u00e9phone : 04 67 22 79 20 Mail : prisca.giraudo@laregion.fr\n</p>\n<p>\n <strong>\n  Pour les territoires : Aude, Pyr\u00e9n\u00e9es-Orientales et Ouest H\u00e9rault\n </strong>\n</p>\n<p>\n Benoit Thierry T\u00e9l\u00e9phone : 04 67 22 79 21 Mail : benoit.thierry@laregion.fr\n</p>\n<p>\n</p>\n<p>\n Pour les territoires : Aveyron et Tarn\n</p>\n<p>\n Bruno Garde T\u00e9l\u00e9phone : 04 67 22 90 66 Mail : bruno.garde@laregion.fr\n</p>\n<p>\n</p>\n<p>\n Pour les territoires : Ouest Ari\u00e8ge, Gers, hautes Pyr\u00e9n\u00e9es et Sud Haute-Garonne\n</p>\n<p>\n Simon Moulines T\u00e9l\u00e9phone : 05 61 39 52 74 Mail : simon.moulines@laregion.fr\n</p>",
+                "funding_source_url": "https://www.laregion.fr/Aides-etudes-strategiques-economie-circulaire-et-dechets"
+            },
+            {
+                "titre_aide": "Investir dans les centres de tri et de pr\u00e9paration des d\u00e9chets pour une valorisation mati\u00e8re et \u00e9nergie",
+                "score": 1.294497011419729,
+                "aide_detail_clean": "  Vous souhaitez r\u00e9aliser les investissements n\u00e9cessaires \u00e0 la cr\u00e9ation, \u00e0 l'extension ou \u00e0 la modernisation d'un centre de tri de d\u00e9chets ? L'ADEME peut vous accompagner dans le financement du projet.   Investissez et r\u00e9alisez un centre de tri et/ou de pr\u00e9paration des d\u00e9chets  Apr\u00e8s r\u00e9alisation d'une \u00e9tude de faisabilit\u00e9 ou d'une \u00e9tude territoriale, les investissements peuvent \u00eatre aid\u00e9s jusqu'\u00e0 55 % des d\u00e9penses \u00e9ligibles. Le taux d'aide pour les centres de tri des emballages m\u00e9nagers et de papiers graphiques est limit\u00e9 \u00e0 20 %. Le tri industriel est une \u00e9tape souvent essentielle afin de pr\u00e9parer \u00e0 la valorisation mati\u00e8re ou \u00e9nerg\u00e9tique des d\u00e9chets issus de collecte s\u00e9par\u00e9e. Le parc actuel des centres de tri comprend environ 450 installations pour 7 millions de tonnes de capacit\u00e9 de tri (tous d\u00e9chets non dangereux et non inertes confondus). Pour le d\u00e9velopper et r\u00e9pondre aux objectifs ambitieux de la Loi de transition \u00e9nerg\u00e9tique pour la croissance verte (LTECV) et de la loi relative \u00e0 la lutte contre le gaspillage et \u00e0 l'\u00e9conomie circulaire en mati\u00e8re de r\u00e9emploi et recyclage, l'ADEME accompagne les collectivit\u00e9s ou les acteurs priv\u00e9s porteurs de projets de centres de tri et de pr\u00e9paration des d\u00e9chets pour une valorisation mati\u00e8re et \u00e9nergie.",
+                "aide_detail": "<p>\n <em>\n  Vous souhaitez r\u00e9aliser les investissements n\u00e9cessaires \u00e0 la cr\u00e9ation, \u00e0 l'extension ou \u00e0 la modernisation d'un centre de tri de d\u00e9chets ? L'ADEME peut vous accompagner dans le financement du projet.\n </em>\n</p>\n<p>\n <strong style=\"background-color: initial;\">\n  Investissez et r\u00e9alisez un centre de tri et/ou de pr\u00e9paration des d\u00e9chets\n </strong>\n <br/>\n</p>\n<p>\n Apr\u00e8s r\u00e9alisation d'une \u00e9tude de faisabilit\u00e9 ou d'une \u00e9tude territoriale, les investissements peuvent \u00eatre aid\u00e9s jusqu'\u00e0 55 % des d\u00e9penses \u00e9ligibles. Le taux d'aide pour les centres de tri des emballages m\u00e9nagers et de papiers graphiques est limit\u00e9 \u00e0 20 %.\n</p>\n<p>\n Le tri industriel est une \u00e9tape souvent essentielle afin de pr\u00e9parer \u00e0 la valorisation mati\u00e8re ou \u00e9nerg\u00e9tique des d\u00e9chets issus de collecte s\u00e9par\u00e9e.\n</p>\n<p>\n Le parc actuel des centres de tri comprend environ 450 installations pour 7 millions de tonnes de capacit\u00e9 de tri (tous d\u00e9chets non dangereux et non inertes confondus). Pour le d\u00e9velopper et r\u00e9pondre aux objectifs ambitieux de la Loi de transition \u00e9nerg\u00e9tique pour la croissance verte (LTECV) et de la loi relative \u00e0 la lutte contre le gaspillage et \u00e0 l'\u00e9conomie circulaire en mati\u00e8re de r\u00e9emploi et recyclage, l'ADEME accompagne les collectivit\u00e9s ou les acteurs priv\u00e9s porteurs de projets de centres de tri et de pr\u00e9paration des d\u00e9chets pour une valorisation mati\u00e8re et \u00e9nergie.\n</p>",
+                "contact": "<p>\n Pour plus d'informations, cliquer sur le lien vers\n <a href=\"https://agirpourlatransition.ademe.fr/entreprises/dispositif-aide/investissements-centres-tri-preparation-dechets-valorisation-matiere-energie\">\n  la d\u00e9marche en ligne\n </a>\n .\n</p>",
+                "funding_source_url": "https://agirpourlatransition.ademe.fr/entreprises/dispositif-aide/investissements-centres-tri-preparation-dechets-valorisation-matiere-energie"
+            }
+        ],
+        "marches": [
+            {
+                "libelle": "Fourniture d\u2019\u00e9quipement de protection individuel et chaussants",
+                "domaine": "Fournitures g\u00e9n\u00e9rales",
+                "groupe_marchandise_code": "41.05.09",
+                "groupe_marchandise_nom": "Equipement de protection indiv hors militaire et s\u00e9cu civile",
+                "acheteur": "Minist\u00e8re de la Transition \u00e9cologique et solidaire - Minist\u00e8re de la Coh\u00e9sion des Territoires",
+                "entite_porteuse": "Direction Interd\u00e9partementale des Routes Nord",
+                "contexte": "Renouvellement march\u00e9 existant",
+                "duree_mois": 48.0,
+                "annee": 2021.0,
+                "depense_annualisee": "Compris entre 40 000 et 200 000 \u20ac",
+                "depense_min": 40000,
+                "depense_max": 200000,
+                "score": 0.8264870230515518
+            },
+            {
+                "libelle": "Collecte, traitement des d\u00e9chets non dangereux, y compris d\u00e9chets industriels banals",
+                "domaine": "Fournitures g\u00e9n\u00e9rales",
+                "groupe_marchandise_code": "41.06.01",
+                "groupe_marchandise_nom": "Collect, traitement d\u00e9chet non dang, yc d\u00e9chets indus banals",
+                "acheteur": "2-Plate-formes R\u00e9gionales des Achats de l'\u00c9tat (PFRA)",
+                "entite_porteuse": "PFRA - Bretagne",
+                "contexte": "Nouveau besoin r\u00e9current",
+                "duree_mois": 48.0,
+                "annee": 2021.0,
+                "depense_annualisee": "Compris entre 1M et 5M\u20ac",
+                "depense_min": 1000000,
+                "depense_max": 5000000,
+                "score": 0.8264870230515518
+            },
+            {
+                "libelle": "Collecte des d\u00e9chets",
+                "domaine": "Fournitures g\u00e9n\u00e9rales",
+                "groupe_marchandise_code": "41.06.01",
+                "groupe_marchandise_nom": "Collect, traitement d\u00e9chet non dang, yc d\u00e9chets indus banals",
+                "acheteur": "2-Plate-formes R\u00e9gionales des Achats de l'\u00c9tat (PFRA)",
+                "entite_porteuse": "PFRA - Nouvelle Aquitaine",
+                "contexte": "Renouvellement march\u00e9 existant",
+                "duree_mois": 48.0,
+                "annee": 2022.0,
+                "depense_annualisee": "Compris entre 200 000 \u20ac et 1 M\u20ac",
+                "depense_min": 200000,
+                "depense_max": 1000000,
+                "score": 0.9287667932654986
+            },
+            {
+                "libelle": "prestations de nettoyage des terrains d'aviation g\u00e9n\u00e9rale",
+                "domaine": "Fournitures g\u00e9n\u00e9rales",
+                "groupe_marchandise_code": "41.06.01",
+                "groupe_marchandise_nom": "Collect, traitement d\u00e9chet non dang, yc d\u00e9chets indus banals",
+                "acheteur": "Minist\u00e8re de la Transition \u00e9cologique et solidaire - Minist\u00e8re de la Coh\u00e9sion des Territoires",
+                "entite_porteuse": "Direction G\u00e9n\u00e9rale de l'Aviation Civile",
+                "contexte": "Renouvellement march\u00e9 existant",
+                "duree_mois": 60.0,
+                "annee": 2021.0,
+                "depense_annualisee": "Inf\u00e9rieur \u00e0 40 000\u20ac",
+                "depense_min": null,
+                "depense_max": 40000,
+                "score": 0.9704011506623534
+            },
+            {
+                "libelle": "Maintenance CVC",
+                "domaine": "Energie, fluides, carburants",
+                "groupe_marchandise_code": "32.01.04",
+                "groupe_marchandise_nom": "Chauffage urbain et r\u00e9seaux de clim",
+                "acheteur": "2-Plate-formes R\u00e9gionales des Achats de l'\u00c9tat (PFRA)",
+                "entite_porteuse": "PFRA - Hauts de France",
+                "contexte": "Renouvellement march\u00e9 existant",
+                "duree_mois": 48.0,
+                "annee": 2022.0,
+                "depense_annualisee": "Compris entre 1M et 5M\u20ac",
+                "depense_min": 1000000,
+                "depense_max": 5000000,
+                "score": 1.0
+            },
+            {
+                "libelle": "Collecte, traitement d\u00e9chet non dang, yc d\u00e9chets indus banals",
+                "domaine": "Fournitures g\u00e9n\u00e9rales",
+                "groupe_marchandise_code": "41.06.01",
+                "groupe_marchandise_nom": "Collect, traitement d\u00e9chet non dang, yc d\u00e9chets indus banals",
+                "acheteur": "2-Plate-formes R\u00e9gionales des Achats de l'\u00c9tat (PFRA)",
+                "entite_porteuse": "PFRA - Grand Est",
+                "contexte": "Nouveau besoin r\u00e9current",
+                "duree_mois": 48.0,
+                "annee": 2022.0,
+                "depense_annualisee": "Compris entre 1M et 5M\u20ac",
+                "depense_min": 1000000,
+                "depense_max": 5000000,
+                "score": 1.0148730829497503
+            },
+            {
+                "libelle": "ENTRETIEN ET ELIMINATION DES DECHETS DE LA COUR D'APPEL DE PARIS",
+                "domaine": "Fournitures g\u00e9n\u00e9rales",
+                "groupe_marchandise_code": "41.06.01",
+                "groupe_marchandise_nom": "Collect, traitement d\u00e9chet non dang, yc d\u00e9chets indus banals",
+                "acheteur": "Minist\u00e8re de la Justice ",
+                "entite_porteuse": "CA Paris - Service administratif R\u00e9gional",
+                "contexte": "Renouvellement march\u00e9 existant",
+                "duree_mois": 48.0,
+                "annee": 2022.0,
+                "depense_annualisee": "Compris entre 40 000 et 200 000 \u20ac",
+                "depense_min": 40000,
+                "depense_max": 200000,
+                "score": 1.0300227560114819
+            },
+            {
+                "libelle": "Gestion des d\u00e9chets",
+                "domaine": "Fournitures g\u00e9n\u00e9rales",
+                "groupe_marchandise_code": "41.06.01",
+                "groupe_marchandise_nom": "Collect, traitement d\u00e9chet non dang, yc d\u00e9chets indus banals",
+                "acheteur": "2-Plate-formes R\u00e9gionales des Achats de l'\u00c9tat (PFRA)",
+                "entite_porteuse": "PFRA - Ile de France",
+                "contexte": "Nouveau besoin r\u00e9current",
+                "duree_mois": 48.0,
+                "annee": 2021.0,
+                "depense_annualisee": "Compris entre 1M et 5M\u20ac",
+                "depense_min": 1000000,
+                "depense_max": 5000000,
+                "score": 1.0309880895217576
+            },
+            {
+                "libelle": "Gestion de l\u2019enl\u00e8vement des d\u00e9chets pour les services de l\u2019\u00c9tat en PACA",
+                "domaine": "Fournitures g\u00e9n\u00e9rales",
+                "groupe_marchandise_code": "41.06.01",
+                "groupe_marchandise_nom": "Collect, traitement d\u00e9chet non dang, yc d\u00e9chets indus banals",
+                "acheteur": "2-Plate-formes R\u00e9gionales des Achats de l'\u00c9tat (PFRA)",
+                "entite_porteuse": "PFRA - Provence-Alpes-C\u00f4te d'Azur",
+                "contexte": "Nouveau besoin r\u00e9current",
+                "duree_mois": 48.0,
+                "annee": 2022.0,
+                "depense_annualisee": "Inf\u00e9rieur \u00e0 40 000\u20ac",
+                "depense_min": null,
+                "depense_max": 40000,
+                "score": 1.0316328912187864
+            },
+            {
+                "libelle": "Mise \u00e0 disposition de contenants, la collecte et le traitement de d\u00e9chets au profit du GSBdD d'Angoul\u00eame LOT 5",
+                "domaine": "Fournitures g\u00e9n\u00e9rales",
+                "groupe_marchandise_code": "41.06.01",
+                "groupe_marchandise_nom": "Collect, traitement d\u00e9chet non dang, yc d\u00e9chets indus banals",
+                "acheteur": "Minist\u00e8re des Arm\u00e9es ",
+                "entite_porteuse": "Plate-Forme Commissariat Bordeaux (sud-ouest)",
+                "contexte": "Renouvellement march\u00e9 existant",
+                "duree_mois": 48.0,
+                "annee": 2022.0,
+                "depense_annualisee": "Compris entre 40 000 et 200 000 \u20ac",
+                "depense_min": 40000,
+                "depense_max": 200000,
+                "score": 1.035049788380014
+            },
+            {
+                "libelle": "Mise en place d\u2019un dispositif de collecte et de recyclage des m\u00e9gots",
+                "domaine": "Fournitures g\u00e9n\u00e9rales",
+                "groupe_marchandise_code": "41.06.01",
+                "groupe_marchandise_nom": "Collect, traitement d\u00e9chet non dang, yc d\u00e9chets indus banals",
+                "acheteur": "Services du Premier ministre",
+                "entite_porteuse": "Direction des Services Administratifs et Financiers 2",
+                "contexte": "Renouvellement march\u00e9 existant",
+                "duree_mois": 24.0,
+                "annee": 2023.0,
+                "depense_annualisee": "Compris entre 40 000 et 200 000 \u20ac",
+                "depense_min": 40000,
+                "depense_max": 200000,
+                "score": 1.0507587838798371
+            },
+            {
+                "libelle": "Collecte et traitement des d\u00e9chets ",
+                "domaine": "Fournitures g\u00e9n\u00e9rales",
+                "groupe_marchandise_code": "41.06.01",
+                "groupe_marchandise_nom": "Collect, traitement d\u00e9chet non dang, yc d\u00e9chets indus banals",
+                "acheteur": "Minist\u00e8re de la Justice ",
+                "entite_porteuse": "D\u00e9partement du budget et des finances",
+                "contexte": "Renouvellement march\u00e9 existant",
+                "duree_mois": 48.0,
+                "annee": 2024.0,
+                "depense_annualisee": "Compris entre 40 000 et 200 000 \u20ac",
+                "depense_min": 40000,
+                "depense_max": 200000,
+                "score": 1.0507587838798371
+            }
+        ],
+        "investisseurs": [
+            {
+                "nom": "Olivier BRET",
+                "mail": "ollybret@gmail.com",
+                "fonction": "g\u00e9rant",
+                "telephone": "0660119360",
+                "type_investissements": "Pr\u00e9-seed, Seed",
+                "secteurs": "Agriculture durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Efficacit\u00e9 num\u00e9rique, Gestion des risques, Sant\u00e9 et environnement",
+                "specificites": "",
+                "montant_min": 10000.0,
+                "montant_max": 20000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "UI Investissement",
+                "mail": "francois.miceli@ui-investissement.fr",
+                "fonction": "",
+                "telephone": "",
+                "type_investissements": "Pr\u00e9-seed, Seed",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Efficacit\u00e9 num\u00e9rique, Energies renouvelables, Gestion des risques, Mobilit\u00e9 durable, Num\u00e9rique durable, Sant\u00e9 et environnement",
+                "specificites": "deeptech au niveau national",
+                "montant_min": 200000.0,
+                "montant_max": 1500000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "Business Angels des Grandes Ecoles",
+                "mail": "oliviergaumont@orange.fr",
+                "fonction": "Business Angel",
+                "telephone": "0660674181",
+                "type_investissements": "Seed",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Efficacit\u00e9 num\u00e9rique, Energies renouvelables, Gestion des risques, Mobilit\u00e9 durable, Num\u00e9rique durable, Sant\u00e9 et environnement",
+                "specificites": "",
+                "montant_min": 50000.0,
+                "montant_max": 50000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "CDC Banque des Territoires",
+                "mail": "brice.laine@caissedesdepots.fr",
+                "fonction": "Directeur d'Investissement Senior",
+                "telephone": "0660096865",
+                "type_investissements": "S\u00e9rie A, S\u00e9rie B, S\u00e9rie C",
+                "secteurs": "B\u00e2timents et ville durable, Economie circulaire, Energies renouvelables, Mobilit\u00e9 durable",
+                "specificites": "France M\u00e9tropolitaine et outre-mer principalement",
+                "montant_min": 500000.0,
+                "montant_max": 10000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "Infravia Capital Partners",
+                "mail": "idegert@infraviacapital.com",
+                "fonction": "ESG Manager",
+                "telephone": "0658257650",
+                "type_investissements": "S\u00e9rie B, S\u00e9rie C",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Economie circulaire, Efficacit\u00e9 num\u00e9rique, Gestion des risques, Mobilit\u00e9 durable, Num\u00e9rique durable, Sant\u00e9 et environnement",
+                "specificites": "Europe, B2B uniquement",
+                "montant_min": 10000000.0,
+                "montant_max": 50000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "Blueprint",
+                "mail": "elaine@ewenconsulting.com",
+                "fonction": "directeur",
+                "telephone": "0663671305",
+                "type_investissements": "S\u00e9rie A, S\u00e9rie B",
+                "secteurs": "B\u00e2timents et ville durable, Economie circulaire, Energies renouvelables, Gestion des risques, Mobilit\u00e9 durable, Num\u00e9rique durable, Sant\u00e9 et environnement",
+                "specificites": "",
+                "montant_min": 2000000.0,
+                "montant_max": 10000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "Arts et M\u00e9tiers Business Angels",
+                "mail": "h.lehuy@yahoo.com",
+                "fonction": "VP Ecosysteme",
+                "telephone": "0633263005",
+                "type_investissements": "Pr\u00e9-seed, Seed",
+                "secteurs": "Agriculture durable, Economie circulaire, Efficacit\u00e9 num\u00e9rique, Mobilit\u00e9 durable, Sant\u00e9 et environnement",
+                "specificites": "",
+                "montant_min": 90000.0,
+                "montant_max": 130000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "demeter",
+                "mail": "olivier.dupont@demeter-im.com",
+                "fonction": "vice president conseil de surveillance",
+                "telephone": "0626589707",
+                "type_investissements": "Seed, S\u00e9rie A, S\u00e9rie B",
+                "secteurs": "B\u00e2timents et ville durable, Economie circulaire, Energies renouvelables, Mobilit\u00e9 durable",
+                "specificites": "",
+                "montant_min": 1000000.0,
+                "montant_max": 5000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "WiSEED Transitions",
+                "mail": "frederick.bernard@wiseed.com",
+                "fonction": "Business Developer ",
+                "telephone": "0643394192",
+                "type_investissements": "Pr\u00e9-seed, Seed, S\u00e9rie A",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Energies renouvelables, Mobilit\u00e9 durable, Sant\u00e9 et environnement",
+                "specificites": "",
+                "montant_min": 300000.0,
+                "montant_max": 2000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "50 Partners Impact",
+                "mail": "paul@50partners.fr",
+                "fonction": "Analyste",
+                "telephone": "0656750170",
+                "type_investissements": "Pr\u00e9-seed, Seed, S\u00e9rie A",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Energies renouvelables, Mobilit\u00e9 durable, Num\u00e9rique durable, Sant\u00e9 et environnement",
+                "specificites": "",
+                "montant_min": 50000.0,
+                "montant_max": 2000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "Demeter",
+                "mail": "hugo.legrand@demeter-im.com",
+                "fonction": "Analyste",
+                "telephone": "0678671313",
+                "type_investissements": "Seed, S\u00e9rie A",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Efficacit\u00e9 num\u00e9rique, Energies renouvelables, Mobilit\u00e9 durable, Num\u00e9rique durable",
+                "specificites": "Sur un fonds particulier : AURA",
+                "montant_min": 1000000.0,
+                "montant_max": 2000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "Adeline KEMPF",
+                "mail": "adeline.kempf@demeter-im.com",
+                "fonction": "Directrice d'Investissement",
+                "telephone": "0685234277",
+                "type_investissements": "Pr\u00e9-seed, Seed, S\u00e9rie A",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Efficacit\u00e9 num\u00e9rique, Energies renouvelables, Mobilit\u00e9 durable, Num\u00e9rique durable",
+                "specificites": "",
+                "montant_min": 500000.0,
+                "montant_max": 10000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "Vinciane Lhuissier / Elaia",
+                "mail": "vlhuissier@elaia.fr",
+                "fonction": "Analyste",
+                "telephone": "0651153684",
+                "type_investissements": "Seed, S\u00e9rie A, S\u00e9rie B",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Efficacit\u00e9 num\u00e9rique, Energies renouvelables, Gestion des risques, Mobilit\u00e9 durable, Num\u00e9rique durable, Sant\u00e9 et environnement",
+                "specificites": "Nous investissons exclusivement dans des entreprises portant des projets num\u00e9riques et B2B",
+                "montant_min": 1000000.0,
+                "montant_max": 10000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "Sofinnova Partners",
+                "mail": "achampsaur@sofinnovapartners.com",
+                "fonction": "",
+                "telephone": "",
+                "type_investissements": "Seed, S\u00e9rie A, S\u00e9rie B",
+                "secteurs": "Agriculture durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Sant\u00e9 et environnement",
+                "specificites": "",
+                "montant_min": 1000000.0,
+                "montant_max": 10000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "Florian Diab",
+                "mail": "Florian.diab@bpifrance.fr",
+                "fonction": "Charg\u00e9 d'investissement junior",
+                "telephone": "0788580356",
+                "type_investissements": "S\u00e9rie B, S\u00e9rie C",
+                "secteurs": "Economie circulaire, Gestion des risques, Mobilit\u00e9 durable",
+                "specificites": "Le fonds d\u2019investissement \u00ab SPI ou Soci\u00e9t\u00e9s de Projets Industriels \u00bb compl\u00e8te les outils de capital-risque et de capital d\u00e9veloppement en concentrant son action sur la phase d\u2019industrialisation d\u2019une technologie.",
+                "montant_min": 10000000.0,
+                "montant_max": 140000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "Innovacom",
+                "mail": "benjamin.wainstain@innovacom.com",
+                "fonction": "Partner",
+                "telephone": "0777769217",
+                "type_investissements": "Seed, S\u00e9rie A, S\u00e9rie B",
+                "secteurs": "B\u00e2timents et ville durable, Economie circulaire, Efficacit\u00e9 num\u00e9rique, Energies renouvelables, Mobilit\u00e9 durable, Num\u00e9rique durable, Sant\u00e9 et environnement",
+                "specificites": "",
+                "montant_min": 500000.0,
+                "montant_max": 2000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "Aquiti Gestion",
+                "mail": "adrien.lebon@aquiti.fr",
+                "fonction": "directeur de participations",
+                "telephone": "0669751144",
+                "type_investissements": "Pr\u00e9-seed, Seed, S\u00e9rie A",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Efficacit\u00e9 num\u00e9rique, Energies renouvelables, Gestion des risques, Mobilit\u00e9 durable, Num\u00e9rique durable, Sant\u00e9 et environnement",
+                "specificites": "Implantation obligatoire en Nouvelle Aquitaine",
+                "montant_min": 200000.0,
+                "montant_max": 2000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "HFS",
+                "mail": "sudac@wanadoo.fr",
+                "fonction": "G\u00e9rant",
+                "telephone": "(060) 789-1302",
+                "type_investissements": "Pr\u00e9-seed, Seed, S\u00e9rie A",
+                "secteurs": "Agriculture durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Energies renouvelables",
+                "specificites": "",
+                "montant_min": 20000.0,
+                "montant_max": 200000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "BPI France",
+                "mail": "sebastien.fiedorow@bpifrance.fr",
+                "fonction": "Charg\u00e9 d'investissement",
+                "telephone": "(067) 245-3892",
+                "type_investissements": "S\u00e9rie A, S\u00e9rie B, S\u00e9rie C",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Energies renouvelables, Mobilit\u00e9 durable, Sant\u00e9 et environnement",
+                "specificites": "France",
+                "montant_min": 1000000.0,
+                "montant_max": 10000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "BADGE (Business Angels des Grandes Ecoles) copy",
+                "mail": "marie-ange.dumesnildubuisson@orange.fr",
+                "fonction": "Business angel",
+                "telephone": "",
+                "type_investissements": "Seed",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Economie circulaire, Energies renouvelables, Mobilit\u00e9 durable, Num\u00e9rique durable",
+                "specificites": "",
+                "montant_min": 50000.0,
+                "montant_max": 400000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "Banque Ethique La Nef",
+                "mail": "grandscomptes@lanef.com",
+                "fonction": "",
+                "telephone": "",
+                "type_investissements": "S\u00e9rie A, S\u00e9rie B, S\u00e9rie C",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Energies renouvelables, Mobilit\u00e9 durable, Sant\u00e9 et environnement",
+                "specificites": "Pr\u00eat d'amor\u00e7age pour les start-up en s\u00e9ries A, B ou C : 50 000 \u20ac \u00e0 150 000 \u20ac sur 84 mois dont 24 mois de diff\u00e9r\u00e9 - garantie BPI FRANCE ou FEI",
+                "montant_min": 50000.0,
+                "montant_max": 150000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "Pl\u00e9iade Venture",
+                "mail": "mp@pleiadeventure.com ",
+                "fonction": "Venture Capital Analyst",
+                "telephone": "33659700983",
+                "type_investissements": "Seed, S\u00e9rie A",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Efficacit\u00e9 num\u00e9rique, Energies renouvelables, Gestion des risques, Mobilit\u00e9 durable, Num\u00e9rique durable, Sant\u00e9 et environnement",
+                "specificites": "Pl\u00e9iade Venture (www.pleiadeventure.com) est une Soci\u00e9t\u00e9 de Capital Risque fran\u00e7aise evergreen\u00a0(elle investit, sur le long terme et sans horizon de sortie pr\u00e9d\u00e9termin\u00e9). Pl\u00e9iade Venture soutient actuellement une trentaine d\u2019entreprises innovantes,\u00a0\u00e0\u00a0diff\u00e9rents stades de d\u00e9veloppement, de tous secteurs (hors biotech). Elle dispose de plus de 100 M\u20ac d\u2019actifs et investit en fonds propres de 0,5\u00a0\u00e0\u00a03 M\u20ac\u00a0par op\u00e9ration. Pl\u00e9iade Venture est\u00a0exclusivement financ\u00e9e par des entrepreneurs qui, forts de leur exp\u00e9rience, d\u00e9sirent contribuer activement\u00a0\u00e0\u00a0de nouveaux succ\u00e8s.\u00a0\n",
+                "montant_min": 500000.0,
+                "montant_max": 3000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "Start Me Up France",
+                "mail": "hello@saishrane.com",
+                "fonction": "Co-Founder",
+                "telephone": "+33 7 52 44 98 94",
+                "type_investissements": "Pr\u00e9-seed",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Efficacit\u00e9 num\u00e9rique, Energies renouvelables, Gestion des risques, Mobilit\u00e9 durable, Num\u00e9rique durable, Sant\u00e9 et environnement",
+                "specificites": "Entrepreneuriat \u00e9thique",
+                "montant_min": 0.0,
+                "montant_max": 25000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "START ME UP FRANCE",
+                "mail": "yann.mocquery@gmail.com",
+                "fonction": "",
+                "telephone": "07 66 46 08 22",
+                "type_investissements": "Pr\u00e9-seed",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Efficacit\u00e9 num\u00e9rique, Energies renouvelables, Gestion des risques, Mobilit\u00e9 durable, Num\u00e9rique durable, Sant\u00e9 et environnement",
+                "specificites": "",
+                "montant_min": 0.0,
+                "montant_max": 25000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "COLAS",
+                "mail": "mcs.colas@gmail.com",
+                "fonction": "DG",
+                "telephone": "(063) 422-0129",
+                "type_investissements": "Seed",
+                "secteurs": "Economie circulaire",
+                "specificites": "",
+                "montant_min": 50000.0,
+                "montant_max": 100000.0,
+                "score": 1
+            },
+            {
+                "nom": "blueprint partners",
+                "mail": "ep@blueprint.pe",
+                "fonction": "CEO",
+                "telephone": "(062) 084-3558",
+                "type_investissements": "Seed, S\u00e9rie A, S\u00e9rie B, S\u00e9rie C",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Efficacit\u00e9 num\u00e9rique, Energies renouvelables, Gestion des risques, Mobilit\u00e9 durable, Num\u00e9rique durable, Sant\u00e9 et environnement",
+                "specificites": "",
+                "montant_min": 100000.0,
+                "montant_max": 10000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "Eurazeo",
+                "mail": "cmoinet@eurazeo.com",
+                "fonction": "VC Analyst",
+                "telephone": "06 43 97 18 19 ",
+                "type_investissements": "Seed, S\u00e9rie A, S\u00e9rie B, S\u00e9rie C",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Economie circulaire, Energies renouvelables, Mobilit\u00e9 durable",
+                "specificites": "Europe / USA / Asie \nSmart City\nJe ne peux pas participer \u00e0 la session en pr\u00e9sentiel le 19 octobre mais souhaiterais suivre les autres jours en ligne ",
+                "montant_min": 1000000.0,
+                "montant_max": 20000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "France Active Investissement",
+                "mail": "lauras@franceactive.org",
+                "fonction": "Laura Santotide",
+                "telephone": "Investissement",
+                "type_investissements": "Pr\u00e9-seed, Seed, S\u00e9rie A",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Energies renouvelables, Mobilit\u00e9 durable, Sant\u00e9 et environnement",
+                "specificites": "",
+                "montant_min": 50000.0,
+                "montant_max": 1000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "Eldorado",
+                "mail": "venture@eldorado.co",
+                "fonction": "",
+                "telephone": "+33660108984",
+                "type_investissements": "Seed, S\u00e9rie A",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Efficacit\u00e9 num\u00e9rique, Energies renouvelables, Gestion des risques, Mobilit\u00e9 durable, Num\u00e9rique durable, Sant\u00e9 et environnement",
+                "specificites": "Nous sommes une banque d'affaires et animons une communaut\u00e9 de 1500 investisseurs (business angels, reseau de BAs, fonds VC et family office)",
+                "montant_min": 50000.0,
+                "montant_max": 5000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "Badge",
+                "mail": "marie.ange.du.mesnil@gmail.com",
+                "fonction": "Business angel",
+                "telephone": "(068) 808-9386",
+                "type_investissements": "Pr\u00e9-seed, Seed",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Economie circulaire, Energies renouvelables, Mobilit\u00e9 durable, Num\u00e9rique durable",
+                "specificites": "",
+                "montant_min": 50000.0,
+                "montant_max": 300000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "Amundi",
+                "mail": "florian.peudevin@hotmail.com",
+                "fonction": "",
+                "telephone": "(017) 637-2278",
+                "type_investissements": "S\u00e9rie B, S\u00e9rie C",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Energies renouvelables, Mobilit\u00e9 durable, Num\u00e9rique durable, Sant\u00e9 et environnement",
+                "specificites": "Investissements \u00e0 impact social et environnemental",
+                "montant_min": 500000.0,
+                "montant_max": 5000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "Amundi Finance & Solidarit\u00e9 ",
+                "mail": "berenice.lacroix@amundi.com",
+                "fonction": "Impact investor",
+                "telephone": "(064) 791-9490",
+                "type_investissements": "S\u00e9rie A, S\u00e9rie B, S\u00e9rie C",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Economie circulaire, Energies renouvelables, Mobilit\u00e9 durable, Sant\u00e9 et environnement",
+                "specificites": "Finance et Solidarit\u00e9 est un fonds \u00e0 impact avec prisme ESS sur 5 th\u00e9matiques d'investissement: acc\u00e8s au logement, \u00e0 l'emploi, aux soins, \u00e0 la formation, protection des ressources naturelles et solidarit\u00e9 internationale (y.c. micro-cr\u00e9dit). Investissements essentiellement en France mais investissements possibles \u00e0 l'international. ",
+                "montant_min": 2000000.0,
+                "montant_max": 8000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "sofinnova partners",
+                "mail": "mkrel@sofinnovapartners.com",
+                "fonction": "partner",
+                "telephone": "(063) 192-5356",
+                "type_investissements": "Seed, S\u00e9rie A, S\u00e9rie B",
+                "secteurs": "Agriculture durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Sant\u00e9 et environnement",
+                "specificites": "je ne serai pas disponible en octobre",
+                "montant_min": 1000000.0,
+                "montant_max": 10000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "Sowefund / Schvartzman Jules",
+                "mail": "jules@sowefund.com",
+                "fonction": "- ; Charg\u00e9 des relations investisseurs",
+                "telephone": "(076) 004-3303",
+                "type_investissements": "Pr\u00e9-seed, Seed, S\u00e9rie A",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Efficacit\u00e9 num\u00e9rique, Energies renouvelables, Gestion des risques, Mobilit\u00e9 durable, Num\u00e9rique durable, Sant\u00e9 et environnement",
+                "specificites": "Ne sera pas pr\u00e9sent le jour de l'\u00e9v\u00e9nement mais int\u00e9ress\u00e9 pour les prochains.\n\nSowefund est une\u00a0plateforme de financement participatif en equity, nous offrons aux particuliers la possibilit\u00e9 d'acheter des actions directement dans de jeunes soci\u00e9t\u00e9s innovantes ou via une holding cr\u00e9\u00e9e \u00e0 cet effet. Cela permet \u00e0 ces entreprises de renforcer leurs fonds propres n\u00e9cessaires \u00e0 leur croissance.",
+                "montant_min": 300000.0,
+                "montant_max": 2000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "Banque Ethique La Nef",
+                "mail": "j.lecouturier@lanef.com",
+                "fonction": "Conseiller Grands Comptes et Innovation",
+                "telephone": "06 17 33 68 51",
+                "type_investissements": "S\u00e9rie A, S\u00e9rie B, S\u00e9rie C",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Energies renouvelables, Mobilit\u00e9 durable, Sant\u00e9 et environnement",
+                "specificites": "Pr\u00eat d'amor\u00e7age pour les start-up en s\u00e9ries A, B ou C : 50 000 \u20ac \u00e0 150 000 \u20ac sur 84 mois dont 24 mois de diff\u00e9r\u00e9 - garantie BPI FRANCE ou FEI",
+                "montant_min": 50000.0,
+                "montant_max": 150000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "FAMAE Impact",
+                "mail": "baptiste.fradin@famaeimpact.com",
+                "fonction": "Partner",
+                "telephone": "+33675518660",
+                "type_investissements": "S\u00e9rie A, S\u00e9rie B, S\u00e9rie C",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Mobilit\u00e9 durable, Num\u00e9rique durable",
+                "specificites": "Th\u00e8se: r\u00e9duction intensit\u00e9 carbone + protection biodiversit\u00e9 en France et en Europe",
+                "montant_min": 1000000.0,
+                "montant_max": 4000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "Inco Ventures",
+                "mail": "jean-sebastien@inco-group.co",
+                "fonction": "Directeur d'investissement",
+                "telephone": "(060) 864-9863",
+                "type_investissements": "S\u00e9rie A",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Economie circulaire, Mobilit\u00e9 durable, Sant\u00e9 et environnement",
+                "specificites": "Fonds d'investissement \u00e0 impact avec un regard privil\u00e9gi\u00e9 pour les entreprises de l'ESS ou ayant l'agr\u00e9ment ESUS ",
+                "montant_min": 400000.0,
+                "montant_max": 1000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "Pl\u00e9iade Venture",
+                "mail": "cyrus.hamelin@pleiadeventure.com",
+                "fonction": " VC Analyst",
+                "telephone": "(068) 833-4642",
+                "type_investissements": "Seed, S\u00e9rie A",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Efficacit\u00e9 num\u00e9rique, Energies renouvelables, Gestion des risques, Mobilit\u00e9 durable, Num\u00e9rique durable, Sant\u00e9 et environnement",
+                "specificites": "Pl\u00e9iade Venture (www.pleiadeventure.com) est une Soci\u00e9t\u00e9 de Capital Risque fran\u00e7aise evergreen\u00a0(elle investit, sur le long terme et sans horizon de sortie pr\u00e9d\u00e9termin\u00e9). Pl\u00e9iade Venture soutient actuellement une trentaine d\u2019entreprises innovantes,\u00a0\u00e0\u00a0diff\u00e9rents stades de d\u00e9veloppement, de tous secteurs (hors biotech). Elle dispose de plus de 100 M\u20ac d\u2019actifs et investit en fonds propres de 0,5\u00a0\u00e0\u00a03 M\u20ac\u00a0par op\u00e9ration. Pl\u00e9iade Venture est\u00a0exclusivement financ\u00e9e par des entrepreneurs qui, forts de leur exp\u00e9rience, d\u00e9sirent contribuer activement\u00a0\u00e0\u00a0de nouveaux succ\u00e8s.\u00a0\n",
+                "montant_min": 500000.0,
+                "montant_max": 3000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "SUCCEED",
+                "mail": "angel@stephaneroecker.com",
+                "fonction": "Business & strategic advisor | Seed investor | EIC accelerator | InvestHorizon",
+                "telephone": "(069) 820-2107",
+                "type_investissements": "Pr\u00e9-seed, Seed",
+                "secteurs": "Agriculture durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Energies renouvelables, Sant\u00e9 et environnement",
+                "specificites": "France m\u00e9tropolitaine",
+                "montant_min": 30000.0,
+                "montant_max": 150000.0,
+                "score": 0.75
+            },
+            {
+                "nom": " Bpifrance",
+                "mail": "clemence.beguier@bpifrance.fr",
+                "fonction": "Analyste VC Ecotechnologies",
+                "telephone": "(068) 568-1787",
+                "type_investissements": "S\u00e9rie A, S\u00e9rie B",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Energies renouvelables, Mobilit\u00e9 durable",
+                "specificites": "Je ne suis pas disponible le 19 octobre mais les prochaines sessions m'int\u00e9ressent!",
+                "montant_min": 1000000.0,
+                "montant_max": 10000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "Go Capital",
+                "mail": "mohamed.abdesslam@gocapital.fr",
+                "fonction": "Partner",
+                "telephone": "(061) 575-6929",
+                "type_investissements": "S\u00e9rie A, S\u00e9rie B",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Efficacit\u00e9 num\u00e9rique, Energies renouvelables, Gestion des risques, Mobilit\u00e9 durable, Num\u00e9rique durable, Sant\u00e9 et environnement",
+                "specificites": "Focus sur le grand Ouest (Bretagne, Normandie, Centre Pays de La Loire",
+                "montant_min": 1000000.0,
+                "montant_max": 4000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "BADGE",
+                "mail": "paul.bruma@yahoo.fr",
+                "fonction": "",
+                "telephone": "(064) 878-2437",
+                "type_investissements": "Seed",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Efficacit\u00e9 num\u00e9rique, Energies renouvelables, Gestion des risques, Mobilit\u00e9 durable, Num\u00e9rique durable, Sant\u00e9 et environnement",
+                "specificites": "",
+                "montant_min": 100000.0,
+                "montant_max": 1000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "Amundi",
+                "mail": "mathieu.azzouz@amundi.com",
+                "fonction": "impact investing portfolio manager",
+                "telephone": "(064) 352-1768",
+                "type_investissements": "S\u00e9rie A, S\u00e9rie B, S\u00e9rie C",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Energies renouvelables, Mobilit\u00e9 durable, Sant\u00e9 et environnement",
+                "specificites": "allons \u00eatre difficilement disponible le 19 mais essayons de nous organiser",
+                "montant_min": 500000.0,
+                "montant_max": 10000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "Finorpa Gestion",
+                "mail": "ntramon@finorpa.fr",
+                "fonction": "Charg\u00e9e d\u2019investissement pour la transition \u00e9cologique et sociale, Correspondante ESG, Animatrice Connexion By Finorpa",
+                "telephone": "06 31 76 46 13",
+                "type_investissements": "Seed, S\u00e9rie A",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Energies renouvelables, Mobilit\u00e9 durable, Num\u00e9rique durable, Sant\u00e9 et environnement",
+                "specificites": "Investissements uniquement pour des projets ayant un lien avec la r\u00e9gion Hauts-De-France",
+                "montant_min": 200000.0,
+                "montant_max": 2000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "C\u00e9dric Lejeune",
+                "mail": "ce@obcc.me",
+                "fonction": "",
+                "telephone": "(062) 943-6218",
+                "type_investissements": "Seed, S\u00e9rie A",
+                "secteurs": "Agriculture durable, Economie circulaire, Efficacit\u00e9 num\u00e9rique, Gestion des risques, Mobilit\u00e9 durable, Num\u00e9rique durable",
+                "specificites": "je ne pourrai \u00eatre pr\u00e9sent \u00e0 la session du 19 mais merci de me tenir au courant",
+                "montant_min": 5000.0,
+                "montant_max": 10000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "CEN Innovation ",
+                "mail": "christophe.descos@cen.caisse-epargne.fr",
+                "fonction": "Membre du Directoire Finance & Op\u00e9rations",
+                "telephone": "(061) 332-3487",
+                "type_investissements": "Seed, S\u00e9rie A",
+                "secteurs": "Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Energies renouvelables, Mobilit\u00e9 durable, Num\u00e9rique durable",
+                "specificites": "Normandie IDF\n",
+                "montant_min": 100000.0,
+                "montant_max": 1000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "AFI Ventures",
+                "mail": "damien@afi.ventures",
+                "fonction": "Investor",
+                "telephone": "+33643360234",
+                "type_investissements": "Pr\u00e9-seed, Seed",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Efficacit\u00e9 num\u00e9rique, Energies renouvelables, Gestion des risques, Mobilit\u00e9 durable, Num\u00e9rique durable, Sant\u00e9 et environnement",
+                "specificites": "Europe / Pre-seed - seed / soci\u00e9t\u00e9s \u00e0 impact et ambitieuses dans leur d\u00e9ploiement.",
+                "montant_min": 150000.0,
+                "montant_max": 500000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "Asterion Impact",
+                "mail": "etienne.duriez@sciencespo.fr",
+                "fonction": "VC Analyste",
+                "telephone": "+33608604361",
+                "type_investissements": "Pr\u00e9-seed, Seed",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Efficacit\u00e9 num\u00e9rique, Energies renouvelables, Gestion des risques, Mobilit\u00e9 durable, Num\u00e9rique durable, Sant\u00e9 et environnement",
+                "specificites": "Ast\u00e9rion Impact investit dans des start up \u00e0 impact en France, en pre-seed/seed (300/2000K\u20ac), en f\u00e9d\u00e9rant un r\u00e9seau informel de BA \"exp\u00e9riment\u00e9\u00b7es\", entrepreneur\u00b7es ou cadres dirigeant\u00b7es au sein de belles boites/start up, r\u00e9uni\u00b7es dans une holding (SAS) adhoc pour chaque participation accompagn\u00e9e, permettant ainsi une gouvernance simplifi\u00e9e et facilitant les lev\u00e9es ult\u00e9rieures.\n\nL'id\u00e9e via Ast\u00e9rion est d'apporter du financement et un accompagnement actif sur 12 \u00e0 24 mois par le collectif de nos BA soigneusement s\u00e9lectionn\u00e9\u00b7es, jusqu'au market fit et l'atteinte de metrics permettant \u00e0 la start up de d\u00e9clencher une s\u00e9rie A de 3 \u00e0 7M\u20ac",
+                "montant_min": 300000.0,
+                "montant_max": 2000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "Raise Ventures",
+                "mail": "hugues.eichinger@raise.co",
+                "fonction": "VC Business Developer",
+                "telephone": "+33666361019",
+                "type_investissements": "Pr\u00e9-seed, Seed, S\u00e9rie A",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Efficacit\u00e9 num\u00e9rique, Energies renouvelables, Gestion des risques, Mobilit\u00e9 durable, Num\u00e9rique durable, Sant\u00e9 et environnement",
+                "specificites": "",
+                "montant_min": 300000.0,
+                "montant_max": 1500000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "Demeter Partners",
+                "mail": "eric.vincent@demeter-im.com",
+                "fonction": "Directeur d'Investissement",
+                "telephone": "06 45 15 61 33",
+                "type_investissements": "S\u00e9rie B, S\u00e9rie C",
+                "secteurs": "B\u00e2timents et ville durable, Economie circulaire, Energies renouvelables, Mobilit\u00e9 durable, Num\u00e9rique durable",
+                "specificites": "Soci\u00e9t\u00e9s fran\u00e7aises et europ\u00e9ennes. CA minimum 5 millions \u20ac, EBE positif.",
+                "montant_min": 5000000.0,
+                "montant_max": 15000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "BADGE (Business Angels des Grandes Ecoles)",
+                "mail": "christia.nguyen-van-yen@orange.fr",
+                "fonction": "Business angel",
+                "telephone": "(068) 874-9744",
+                "type_investissements": "Seed",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Economie circulaire, Energies renouvelables, Mobilit\u00e9 durable, Num\u00e9rique durable",
+                "specificites": "",
+                "montant_min": 50000.0,
+                "montant_max": 400000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "Accurafy4",
+                "mail": "fcaron@accurafy4.com",
+                "fonction": "",
+                "telephone": "+33610342858",
+                "type_investissements": "Seed, S\u00e9rie A",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Efficacit\u00e9 num\u00e9rique, Gestion des risques, Mobilit\u00e9 durable, Num\u00e9rique durable, Sant\u00e9 et environnement",
+                "specificites": "Investissement France et Europe\nFort Potentiel international \n",
+                "montant_min": 500000.0,
+                "montant_max": 5000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "AFI Ventures",
+                "mail": "charles@afi.ventures",
+                "fonction": "Partner",
+                "telephone": "(062) 301-0498",
+                "type_investissements": "Pr\u00e9-seed, Seed",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Efficacit\u00e9 num\u00e9rique, Energies renouvelables, Gestion des risques, Mobilit\u00e9 durable, Num\u00e9rique durable, Sant\u00e9 et environnement",
+                "specificites": "France\nImpact",
+                "montant_min": 100000.0,
+                "montant_max": 500000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "DEMETER",
+                "mail": "stephanie.chretien@demeter-im.com",
+                "fonction": "Partner",
+                "telephone": "+33633274943",
+                "type_investissements": "Seed, S\u00e9rie B, S\u00e9rie C",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Efficacit\u00e9 num\u00e9rique, Energies renouvelables, Gestion des risques, Mobilit\u00e9 durable, Num\u00e9rique durable, Sant\u00e9 et environnement",
+                "specificites": "Europe, PME\nJ\u2019investis en effet pour Paris Fonds Vert dans des PME r\u00e9alisant plus de 5m\u20ac de CA\u00a0",
+                "montant_min": 1000000.0,
+                "montant_max": 30000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "ALIAD - Air Liquide",
+                "mail": "pierre.menard@airliquide.com",
+                "fonction": "Investment Manager",
+                "telephone": "0673170762",
+                "type_investissements": "Seed, S\u00e9rie A, S\u00e9rie B, S\u00e9rie C",
+                "secteurs": "Agriculture durable, Economie circulaire, Energies renouvelables, Mobilit\u00e9 durable, Num\u00e9rique durable, Sant\u00e9 et environnement",
+                "specificites": "Nous investissons dans les soci\u00e9t\u00e9s strat\u00e9giques pour le Groupe Air Liquide i.e. maladies chroniques, parcours du patient \u00e0 l'h\u00f4pital, transition \u00e9nerg\u00e9tique (production ou utilisation de gaz industriels)",
+                "montant_min": 500000.0,
+                "montant_max": 5000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "VG Coaching and Consulting",
+                "mail": "vinuno16@icloud.com",
+                "fonction": "Coach - consultant - BA",
+                "telephone": "+79036650175",
+                "type_investissements": "Pr\u00e9-seed, Seed, S\u00e9rie A",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Economie circulaire, Energies renouvelables, Gestion des risques, Mobilit\u00e9 durable",
+                "specificites": "",
+                "montant_min": 50000.0,
+                "montant_max": 100000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "ANGELOR",
+                "mail": "sebastien.bonte@angelor.fr",
+                "fonction": "Fondateur Pr\u00e9sident",
+                "telephone": "(047) 859-4090",
+                "type_investissements": "Seed, S\u00e9rie A",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Efficacit\u00e9 num\u00e9rique, Energies renouvelables, Mobilit\u00e9 durable, Sant\u00e9 et environnement",
+                "specificites": "Investissements essentiellement en Auvergne Rhone-Alpes, mais aussi sur axe Paris/Montpellier\nJe ne serai malheureusement plus dispo le 19 oct prochain, mais int\u00e9ress\u00e9 pour recevoir des demandes d'entrepreneurs en recherche de fonds",
+                "montant_min": 200000.0,
+                "montant_max": 1000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "Citizen Capital",
+                "mail": "olivier.mougenot@citizencapital.fr",
+                "fonction": "",
+                "telephone": "(061) 864-4498",
+                "type_investissements": "Pr\u00e9-seed, Seed, S\u00e9rie A, S\u00e9rie B",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Efficacit\u00e9 num\u00e9rique, Gestion des risques, Mobilit\u00e9 durable, Num\u00e9rique durable, Sant\u00e9 et environnement",
+                "specificites": "",
+                "montant_min": 500000.0,
+                "montant_max": 4000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "Starquest Capital",
+                "mail": "hdumeurger@starquest-capital.com",
+                "fonction": "Analyste ; Analyste ; Associate ; Investment Director",
+                "telephone": "(062) 736-2427",
+                "type_investissements": "Seed, S\u00e9rie A, S\u00e9rie B",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Efficacit\u00e9 num\u00e9rique, Energies renouvelables, Gestion des risques, Mobilit\u00e9 durable, Num\u00e9rique durable, Sant\u00e9 et environnement",
+                "specificites": "France ",
+                "montant_min": 1000000.0,
+                "montant_max": 10000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "Region Sud Investissement",
+                "mail": "m.decerou@regionsudinvestissement.com",
+                "fonction": "Charg\u00e9e d'Affaires",
+                "telephone": "+33787068461",
+                "type_investissements": "Seed, S\u00e9rie A, S\u00e9rie B, S\u00e9rie C",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Efficacit\u00e9 num\u00e9rique, Energies renouvelables, Gestion des risques, Mobilit\u00e9 durable, Num\u00e9rique durable, Sant\u00e9 et environnement",
+                "specificites": "Region SUD\n\nPas en pr\u00e9sentiel le 19 oct",
+                "montant_min": 200000.0,
+                "montant_max": 2000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "AXA Venture Partners",
+                "mail": "paul@axavp.com",
+                "fonction": "Senior Associate",
+                "telephone": "06 86 98 19 22",
+                "type_investissements": "S\u00e9rie A, S\u00e9rie B, S\u00e9rie C",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Economie circulaire, Efficacit\u00e9 num\u00e9rique, Gestion des risques, Mobilit\u00e9 durable, Num\u00e9rique durable, Sant\u00e9 et environnement",
+                "specificites": "Europe, Etats-Unis",
+                "montant_min": 2000000.0,
+                "montant_max": 30000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "360 Capital",
+                "mail": "selma@360cap.vc",
+                "fonction": "Associate",
+                "telephone": "07 63 15 37 27",
+                "type_investissements": "Pr\u00e9-seed, Seed, S\u00e9rie A",
+                "secteurs": "B\u00e2timents et ville durable, Economie circulaire, Efficacit\u00e9 num\u00e9rique, Energies renouvelables, Gestion des risques, Mobilit\u00e9 durable",
+                "specificites": "",
+                "montant_min": 150000.0,
+                "montant_max": 6000000.0,
+                "score": 0.75
+            },
+            {
+                "nom": "UI Investissement",
+                "mail": "nicolas.penet@ui-investissement.fr",
+                "fonction": "directeur d'investissements",
+                "telephone": "06 27 32 75 07",
+                "type_investissements": "Pr\u00e9-seed, Seed",
+                "secteurs": "Agriculture durable, B\u00e2timents et ville durable, Eau biodiversit\u00e9 et biomim\u00e9tisme, Economie circulaire, Efficacit\u00e9 num\u00e9rique, Energies renouvelables, Gestion des risques, Mobilit\u00e9 durable, Num\u00e9rique durable, Sant\u00e9 et environnement",
+                "specificites": "deeptech au niveau national",
+                "montant_min": 200000.0,
+                "montant_max": 1500000.0,
+                "score": 0.75
+            }
+        ]
+    }
+}
