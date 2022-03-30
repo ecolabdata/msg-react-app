@@ -1,11 +1,10 @@
-
 import { useState } from 'react';
-import { Search, useNavigate, useParams } from 'react-router-dom';
-import { ApiResponse, getSearch, searchByQuery } from '../../api/Api';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getSearch, searchByQuery } from '../../api/Api';
 import { all as allCardType } from '../../model/CardType';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
 import ResultResearchPreviewCard from '../customComponents/ResultResearchPreviewCard';
-import Scrollable from '../customComponents/Scrollable';
+
 
 
 const ResearchForm: React.FC = (props) => {

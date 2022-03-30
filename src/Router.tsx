@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import isAuth from './helpers/isAuth';
 import Header from './components/Header'
@@ -15,12 +16,16 @@ import ListResearchResult from './components/anonymous/ListResearchResultPage';
 
 
 const Router = () => {
+    localStorage.setItem('scheme', 'dark');
+    useEffect( () => {
 
+    },[localStorage.scheme])
 
     return (
         <>
             <Header userIsAuth={isAuth()} />
-            <main className="h-full p-6">
+            <main className={`h-full p-6 
+                ${localStorage.scheme === 'dark' ? 'bg-[#262626]' :''}`}>
                 <Routes>
                     <Route path="/" element={<TrackPage />}>
                         <Route path="/" element={<HomePage />} />
