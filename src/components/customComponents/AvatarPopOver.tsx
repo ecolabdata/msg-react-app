@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {appActions} from './../../_actions/app.actions';
 import {RootState} from '../../_reducers/root.reducer';
+import { useEffect } from 'react';
 interface AvatarPopOverProps {
     rotation?:string,
     avatar?:string
@@ -18,17 +19,24 @@ const AvatarPopOver: React.FC<AvatarPopOverProps> = ({avatar}) => {
     
 
     const rotateChevron = () => {
+        console.log('dispatch x1 ');
         dispatch(appActions.rotatePopOverChevron())
     }
 
     return (
 
         
-        <Popover className="relative">
-            <Popover.Button className="w-44 p-4 flex " >
-                <img className="rounded-full  mt-2 mr-1.5 w-6 h-6 bg-blue-600" src={avatar ? avatar : Panda} alt="Avatar de l'utilisateur connecté"/>
+        <Popover className="relative" onClick={() => rotateChevron()}>
+            <Popover.Button className="w-44 p-4 flex" >
+                <img className="rounded-full  mt-2 mr-1.5 w-6 h-6 bg-blue-600" src={avatar||Panda} alt="Avatar de l'utilisateur connecté"/>
                 <p className="mt-1.5 mr-1.5">Constantin</p>
-                <img onClick={() => rotateChevron()} className={`${popOverChevronRotate ? "rotate-90" : ""}  mt-2 w-6 h-6`} src={Chevron} alt='chevron'/>
+                <span 
+                    className={`
+                        fr-fi-arrow-right-s-line mt-2
+                        ${popOverChevronRotate ? "rotate-90" : ""}`
+                    } 
+                    aria-hidden="true">
+                </span>
             </Popover.Button>
 
             <Transition

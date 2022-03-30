@@ -1,8 +1,8 @@
-
 import { useState } from 'react';
-import { Search, useNavigate, useParams } from 'react-router-dom';
-import { ApiResponse, getSearch, searchByQuery } from '../../api/Api';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getSearch, searchByQuery } from '../../api/Api';
 import ResultResearchPreviewCard from '../customComponents/ResultResearchPreviewCard';
+
 
 
 const ResearchForm: React.FC = (props) => {
