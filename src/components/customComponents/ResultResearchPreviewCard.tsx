@@ -4,13 +4,14 @@ import Scrollable from './Scrollable';
 import ResultPreviewCard from './ResultPreviewCard';
 import { useNavigate } from 'react-router-dom';
 import { CardType } from '../../model/CardType';
+import { NavLink } from 'react-router-dom';
 
 export interface ResultResearchPreviewCardProps {
-    cardType: CardType
+    cardType: CardType,
+    searchId: string
 }
 
-const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = (props) => {
-    const { cardType } = props;
+const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = ({ cardType, searchId, children }) => {
 
     const navigate = useNavigate()
 
@@ -29,14 +30,14 @@ const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = (pro
             </div>
 
             <div className="seeAllbutton p-2">
-                <button style={{ borderColor: cardType.color, color: cardType.color }} className="w-36 h-9 text-xs font-bold 
-                        addBorder border-2 border-private-investors p-1
-                        flex justify-center" onClick={() => navigate("/liste-resultats")}> <span className="my-auto">Voir tout</span>  &nbsp;<ArrowRight class="my-auto" width="16" height="16" /> </button>
+                <NavLink to={cardType.searchLink + "/" + searchId} style={{ borderColor: cardType.color, color: cardType.color }} className="w-36 h-9 text-xs font-bold 
+                        addBorder border-2 p-1
+                        flex justify-center"> <span className="my-auto">Voir tout</span>  &nbsp;<ArrowRight class="my-auto" width="16" height="16" /> </NavLink>
             </div>
         </div >
 
-        <div className="cardScrollContainerX -ml-2 h-72 overflow-x-scroll hiddenScrollBar flex ">
-            {props.children}
+        <div className="cardScrollContainerX -ml-2 h-72 overflow-x-scroll hiddenScrollBar flex">
+            {children}
         </div>
 
     </div >
