@@ -9,17 +9,16 @@ const HomePageCard :React.FC<HomePageCardProps> = (props : HomePageCardProps) =>
     const {SVGLogo, title, description, color} = props.cardTypeData;
     return (
         <>
-            <div className="card-container
-                w-[50%] h-content
-                p-2
+            <div style={{flex: "1 1 33.33333%"}} className="card-container
+                h-content
+                p-5
                 flex flex-col items-center
-                lg:w-4/12
                 ">
                     <div  style={{color}}>
                         <SVGLogo width="25" height="25"/>
                     </div>
                     <div className={`card-title-container
-                       w-227 h-204
+                       w-227
                        p-43
                        flex flex-col items-center 
                     `}>
