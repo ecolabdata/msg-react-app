@@ -1,71 +1,43 @@
-import ArrowInvestors from './../../assets/icons/arrow-private-investors.svg';
-import {Signal, Calendar, Euro, Rocket, Eye} from './../../assets/Icons';
+import {Signal, Calendar, Euro, Rocket, Eye, ArrowRight} from './../../assets/Icons';
 import Scrollable from './Scrollable';
 
 import ResultPreviewCard from './ResultPreviewCard';
 import { useNavigate } from 'react-router-dom';
+import { CardType } from '../../model/CardType';
 
 export interface ResultResearchPreviewCardProps { 
-    investor: string;
-    numberOfResultsFound: number
-    investorPrecisions: string,
-    emetor: string
-    cardTitle: string,
-    redirectionButton: string,
+    cardType : CardType
 } 
 
-const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = ({investor, numberOfResultsFound, investorPrecisions, emetor, cardTitle, redirectionButton}) => { 
-    
+const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = (props) => { 
+    const {cardType} = props;
 
     const navigate = useNavigate()
-    // const SVGEuroLogo = () => {
-    //     return (
-    //         <>
-            
-    //             {Euro({color:"#68A532", viewBox:"0 0 14 14", height:"42", width:"42"})}
-            
-    //         </>
-    //     )
-    // };
 
-    // hover:scale-95 hover:h-60
-
-    return (
-
-        <>
-            <div className="globalContainerCard flex flex-col justify-center bg-blue-300">
+    return (<div className="globalContainerCard flex flex-col justify-center">
                 
-                <div className="cardGeneralInformations flex justify-between bg-emerald-300">
+                <div className="cardGeneralInformations flex justify-between">
 
-                    <div className="cardTitle p-2 bg-yellow-300">
-                        {/* <img src={Euro({color:"#68A532", viewBox:"0 0 14 14", height:"42", width:"42"})} alt="Logo Euro"/> */}
+                    <div className="cardTitle p-2">
+                        <cardType.SVGLogo  style={{color: cardType.color}}/>
                         <h2 className="w-fit font-bold text-2xl">
-                            {investor} <span className="bg-yellow text-lg">{`(${numberOfResultsFound})`}</span>
+                             {cardType.title} <span className="bg-yellow text-lg">{`(???)`}</span>
                         </h2> 
-                        <p className="mt-2 text-base">{investorPrecisions}</p>
+                        <p className="mt-2 text-base">{cardType.description}</p>
                     </div>
 
-                    <div className="seeAllbutton p-2 bg-indigo-300">
-                        <button className="w-36 h-9 text-xs font-bold 
+                    <div className="seeAllbutton p-2">
+                        <button style={{borderColor: cardType.color, color: cardType.color}}className="w-36 h-9 text-xs font-bold 
                         addBorder border-2 border-private-investors p-1
-                        flex justify-center
-                        text-private-investors" onClick={() => navigate("/liste-resultats")}> <span className="my-auto">Voir tout</span> <img className="my-auto ml-1.5 w-4 h-4" src={ArrowInvestors} alt="Icône de chevron"/> </button>
+                        flex justify-center" onClick={() => navigate("/liste-resultats")}> <span className="my-auto">Voir tout</span> <ArrowRight width="16" height="16"/> </button>
                     </div>
                 </div>
 
-                <div className="cardScrollContainerX -ml-2 h-72 overflow-x-scroll hiddenScrollBar flex bg-rose-300  ">
-                    {/*MUST MAP HERE TO GENERATE THE DIFFERENT CARDS, ACTUALLY IS A MOCK COMPONENT : Scrollable, WHO HANDLE THIS BEHAVIOR*/}
-               
-                    <ResultPreviewCard emetor={emetor} cardTitle={cardTitle} redirectionButton={redirectionButton} />
-
-                    <Scrollable  emetor="Pexe" cardTitle="Arts et métiers business angels"/>
-                    <Scrollable  emetor="Pexe" cardTitle="Arts et métiers business angels"/>
-                    
+                <div className="cardScrollContainerX -ml-2 h-72 overflow-x-scroll hiddenScrollBar flex ">
+                    {props.children}                    
                 </div>
 
             </div>
-
-        </>
     ) 
 }; 
 

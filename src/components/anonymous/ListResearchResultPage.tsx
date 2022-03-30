@@ -31,8 +31,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({investor, number
             
             return (
                 <>
-                    <ResultPreviewCard emetor={card.emetor} cardTitle={card.cardTitle} redirectionButton={card.redirectButton} />
-                
+                    {/* <ResultPreviewCard cardData={card} /> */}
                 </>
 
             )

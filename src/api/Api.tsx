@@ -21,6 +21,8 @@ export type Marche = typeof mockApiResponse.cards.marches[0]
 */
 export type Investisseur = typeof mockApiResponse.cards.investisseurs[0]
 
+export type AnyCard = Partial<Aide> & Partial<Marche> & Partial<Collectivite> & Partial<Investisseur>
+
 export type ApiResponse = typeof mockApiResponse
 
 export type Query = {
