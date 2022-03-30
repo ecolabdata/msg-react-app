@@ -38,9 +38,16 @@ const updateStateProperty = (propertyValue:string, propertyName:string) => {
     };
 };
 
+const resizeScreenWidth = () => {
+    return { type: 'RESIZE_SCREEN_WIDTH' };
+};
+  
+
 export const appActions = {
     rotatePopOverChevron,
     updateStateProperty,
+    resizeScreenWidth,
+
 }
 
 
