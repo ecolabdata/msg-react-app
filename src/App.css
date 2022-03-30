@@ -38,16 +38,7 @@
   }
 }
 
-.card-container:nth-child(-n+2)::after, .card-container:nth-child(4)::after  {
-  width: 147px;
-  height: 0px;
-  content: "";
-  border-bottom: 1px solid grey;
-  transform: rotate(90deg);
-  position: relative;
-  left: 130px;
-  bottom: 110px;
-}
+
 
 .addBorder {
   border: 1px solid black;
@@ -64,9 +55,40 @@
 .hiddenScrollBar {
   scrollbar-width: none;
 
-}
+} 
 
 .hiddenScrollBar::-webkit-scrollbar {
   width: 0;
 
+}
+
+@media (min-width: 1024px) {
+  .card-container:nth-child(-n+2)::after, .card-container:nth-child(4)::after  {
+    width: 147px;
+    height: 0px;
+    content: "";
+    border-bottom: 1px solid #E1E1E1;
+    transform: rotate(90deg);
+    position: relative;
+    left: 149px;
+    bottom: 140px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .card-container:nth-child(-n+2)::after, .card-container:nth-child(4)::after  {
+    left: 165px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .card-container:nth-child(-n+2)::after, .card-container:nth-child(4)::after  {
+    left: 140px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .card-container:nth-child(-n+2)::after, .card-container:nth-child(4)::after  {
+    left: 145px;
+  }
 }

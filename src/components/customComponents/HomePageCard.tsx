@@ -10,9 +10,10 @@ const HomePageCard :React.FC<HomePageCardProps> = (props : HomePageCardProps) =>
     return (
         <>
             <div className="card-container
-                w-4/12 
-                p-4
+                w-[50%] h-content
+                p-2
                 flex flex-col items-center
+                lg:w-4/12
                 ">
                     <div  style={{color}}>
                         <SVGLogo width="25" height="25"/>
@@ -22,8 +23,8 @@ const HomePageCard :React.FC<HomePageCardProps> = (props : HomePageCardProps) =>
                        p-43
                        flex flex-col items-center 
                     `}>
-                        <h3 className="block mt-2 max-w-fit text-center text-xl">{title}</h3>
-                        <p className="mt-2 text-center text-base">{description}</p>
+                        <h3 className="block mt-4 max-w-fit text-center text-xl">{title}</h3>
+                        <p className="mt-2 w-[245px] text-center text-base">{description}</p>
 
                     </div>
             </div>
