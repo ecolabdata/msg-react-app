@@ -4,31 +4,16 @@ import Scrollable from './Scrollable';
 
 import ResultPreviewCard from './ResultPreviewCard';
 import { useNavigate } from 'react-router-dom';
+import { CardType } from '../../model/CardType';
 
 export interface ResultResearchPreviewCardProps { 
-    investor: string;
-    numberOfResultsFound: number
-    investorPrecisions: string,
-    emetor: string
-    cardTitle: string,
-    redirectionButton: string,
+    cardType : CardType
 } 
 
-const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = ({investor, numberOfResultsFound, investorPrecisions, emetor, cardTitle, redirectionButton}) => { 
-    
+const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = (props) => { 
+    const {cardType} = props;
 
     const navigate = useNavigate()
-    // const SVGEuroLogo = () => {
-    //     return (
-    //         <>
-            
-    //             {Euro({color:"#68A532", viewBox:"0 0 14 14", height:"42", width:"42"})}
-            
-    //         </>
-    //     )
-    // };
-
-    // hover:scale-95 hover:h-60
 
     return (
 
@@ -40,9 +25,9 @@ const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = ({in
                     <div className="cardTitle p-2">
                         {/* <img src={Euro({color:"#68A532", viewBox:"0 0 14 14", height:"42", width:"42"})} alt="Logo Euro"/> */}
                         <h2 className="w-fit font-bold text-2xl">
-                            {investor} <span className="bg-yellow text-lg">{`(${numberOfResultsFound})`}</span>
+                            {cardType.title} <span className="bg-yellow text-lg">{`(???)`}</span>
                         </h2> 
-                        <p className="mt-2 text-base">{investorPrecisions}</p>
+                        <p className="mt-2 text-base">{cardType.description}</p>
                     </div>
 
                     <div className="seeAllbutton p-2">
@@ -54,13 +39,7 @@ const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = ({in
                 </div>
 
                 <div className="cardScrollContainerX -ml-2 h-72 overflow-x-scroll hiddenScrollBar flex ">
-                    {/*MUST MAP HERE TO GENERATE THE DIFFERENT CARDS, ACTUALLY IS A MOCK COMPONENT : Scrollable, WHO HANDLE THIS BEHAVIOR*/}
-               
-                    <ResultPreviewCard emetor={emetor} cardTitle={cardTitle} redirectionButton={redirectionButton} />
-
-                    <Scrollable  emetor="Pexe" cardTitle="Arts et métiers business angels"/>
-                    <Scrollable  emetor="Pexe" cardTitle="Arts et métiers business angels"/>
-                    
+                    {props.children}                    
                 </div>
 
             </div>
