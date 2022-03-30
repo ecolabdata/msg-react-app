@@ -16,17 +16,20 @@ const Home = () => {
             <div className="container-title
                 mx-auto w-93 p-2
                 flex flex-col items-center">
-                <h1 className="mt-4 w-[885px] font-bold text-3xl text-center"> Start-up greentech, trouvez automatiquement des pistes pour booster votre développement !  </h1>
+                <h1 className="
+                mt-4 w-[85%] font-bold text-3xl text-center
+                xl:w-[885px]
+                "> Start-up greentech, trouvez automatiquement des pistes pour booster votre développement !  </h1>
                 <h2 className="
-                    fr-text--md
-                    w-55 mt-8 
-                    text-center"> A partir de la description de votre activité ou de votre solution, nous vous proposons des pistes <br /> de leviers autour des 5 axes suivants :</h2>
+                    fr-text--md  mt-8 text-center w-[85%]
+                    xl:w-55 font-thin"> A partir de la description de votre activité ou de votre solution, nous vous proposons des pistes <br /> de leviers autour des 5 axes suivants :</h2>
             </div>
 
-            <div className="container-content 
-                mx-auto w-55 h-[400px]
+            <div className="container-content overflow-y-scroll 
+                mx-auto h-[400px]
                 flex flex-wrap justify-center
-                .2
+                lg:w-[90%] lg:overflow-y-hidden
+                2xl:w-[55%]
                 ">
                 {allCardType.map((card) => <HomePageCard cardTypeData={card} />)}
             </div>

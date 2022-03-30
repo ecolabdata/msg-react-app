@@ -10,9 +10,10 @@ const HomePageCard :React.FC<HomePageCardProps> = (props : HomePageCardProps) =>
     return (
         <>
             <div className="card-container
-                w-4/12 h-content
+                w-[50%] h-content
                 p-2
                 flex flex-col items-center
+                lg:w-4/12
                 ">
                     <div  style={{color}}>
                         <SVGLogo width="25" height="25"/>

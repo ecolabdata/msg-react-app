@@ -6,11 +6,31 @@ import Star from './../assets/icons/star-fill.svg';
 import LogoMSG from './../assets/msg-icon.png';
 import AvatarPopOver from './customComponents/AvatarPopOver';
 import {Route} from './../utils/routes';
+import { useState, useEffect } from 'react';
+import { appActions } from '../_actions/app.actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../_reducers/root.reducer';
+
 interface HeaderProps {
     userIsAuth: boolean;
 }
 
 const Header = ({userIsAuth}: HeaderProps) => {
+    const [burgerMenuOpen, setBurgerMenuClicked] = useState(false);
+
+    const screenWidth = useSelector((state:RootState) => state?.appState.screenWidth);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        console.log('screenWidth :>> ', screenWidth);
+
+        const handleResize = () => {
+          dispatch(appActions.resizeScreenWidth());
+        };
+    
+        window.addEventListener('resize', handleResize);
+
+    }, [screenWidth]);
 
     const generatePopOverOrLoginButton = () => {
             return (
@@ -93,7 +113,7 @@ const Header = ({userIsAuth}: HeaderProps) => {
                                     </p>
                                 </div>
                                 <div className="fr-header__navbar">
-                                    <button className="fr-btn--menu fr-btn" data-fr-opened="false" aria-controls="modal-833" aria-haspopup="menu" title="Menu" id="fr-btn-menu-mobile">
+                                    <button onClick={ () => {setBurgerMenuClicked(!burgerMenuOpen)}} className="fr-btn--menu fr-btn bg-red-200" data-fr-opened={burgerMenuOpen} aria-controls="modal-833" aria-haspopup="menu" title="Menu" id="fr-btn-menu-mobile">
                                         Menu
                                     </button>
                                 </div>
@@ -107,15 +127,18 @@ const Header = ({userIsAuth}: HeaderProps) => {
                                 </a>
                             </div>
                         </div>
-                        <div className="fr-header__tools flex justify-end">
-                            <div className="">
-                                <ul className="fr-nav__list">
-                                    {/* {fr-header__tools-links} */}
-                                    {generateNavBar()}
-                                    {generatePopOverOrLoginButton()}
-                                </ul>
-                            </div>
-                        </div>
+                            { screenWidth >= 1024 &&
+
+                                <div className="fr-header__tools flex justify-end">
+                                    <div className="">
+                                        <ul className="fr-nav__list">
+                                            {/* {fr-header__tools-links} */}
+                                            {generateNavBar()}
+                                            {generatePopOverOrLoginButton()}
+                                        </ul>
+                                    </div>
+                                </div>
+                            }
                     </div>
                 </div>
             </div>
@@ -123,7 +146,10 @@ const Header = ({userIsAuth}: HeaderProps) => {
             <div className="fr-header__menu fr-modal" id="modal-833" aria-labelledby="fr-btn-menu-mobile">
                 <div className="fr-container">
                     <button className="fr-link--close fr-link" aria-controls="modal-833">Fermer</button>
-                    <div className="fr-header__menu-links"></div>
+                    <div className="fr-header__menu-links">
+                        {generateNavBar()}
+                        {generatePopOverOrLoginButton()}
+                    </div>
                 </div>
             </div>
         </header>
