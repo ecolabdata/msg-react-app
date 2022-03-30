@@ -25,7 +25,7 @@ const ResearchForm: React.FC = (props) => {
 
     const previews = initialSearch && allCardType.map(cardType => {
         return <ResultResearchPreviewCard cardType={cardType}>
-            {cardType.getCards(initialSearch.resp).map(x => <ResultPreviewCard cardData={x} />)}
+            {cardType.getCards(initialSearch.resp).map(x => <ResultPreviewCard cardData={x} cardType={cardType}/>)}
         </ResultResearchPreviewCard>
     })
 
@@ -40,10 +40,9 @@ const ResearchForm: React.FC = (props) => {
                     <h2 className="mt-3 w-11/12 text-base text-center">Décrivez en quelques lignes votre projet (thématique, technologie, cible, apports... ) pour obtenir des pistes pertinentes.</h2>
 
                     <textarea onChange={e => setDescription(e.target.value)} value={description} form="keywordsForm"
-                        className="rounded-t-sm mt-4 w-11/12 h-32 addBorder-b border-3 border-gray-300 p-4 bg-background-inputs" placeholder="Expl. : “start-up de méthanisation” ou “nous sommes une startup spécialisée dans le processus biologique de dégradation des matières organiques...”"></textarea>
+                        className="cursor-text rounded-t-sm mt-4 w-11/12 h-32 addBorder-b border-3 border-gray-300 p-4 bg-background-inputs" placeholder="Expl. : “start-up de méthanisation” ou “nous sommes une startup spécialisée dans le processus biologique de dégradation des matières organiques...”"></textarea>
 
-                    <button className="addBorder-b border-b self-start ml-5 mt-2 text-sm "> Affiner par mots clés</button>
-
+                    {/* <button className="addBorder-b border-b self-start ml-5 mt-2 text-sm ">Affiner par mots clés</button> */}
 
                     <div className="keyWordsContainer">
 
