@@ -134,7 +134,7 @@ const Header = ({userIsAuth}: HeaderProps) => {
                                         <ul className="fr-nav__list">
                                             {/* {fr-header__tools-links} */}
                                             {generateNavBar()}
-                                            {generatePopOverOrLoginButton()}
+                                            {/* {generatePopOverOrLoginButton()} */}
                                         </ul>
                                     </div>
                                 </div>
@@ -148,7 +148,7 @@ const Header = ({userIsAuth}: HeaderProps) => {
                     <button className="fr-link--close fr-link" aria-controls="modal-833">Fermer</button>
                     <div className="fr-header__menu-links">
                         {generateNavBar()}
-                        {generatePopOverOrLoginButton()}
+                        {/* {generatePopOverOrLoginButton()} */}
                     </div>
                 </div>
             </div>
