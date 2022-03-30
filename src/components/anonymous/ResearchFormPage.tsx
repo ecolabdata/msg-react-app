@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { Search, useNavigate, useParams } from 'react-router-dom';
 import { ApiResponse, getSearch, searchByQuery } from '../../api/Api';
-import { investisseur } from '../../model/CardType';
+import { all as allCardType } from '../../model/CardType';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
 import ResultResearchPreviewCard from '../customComponents/ResultResearchPreviewCard';
 import Scrollable from '../customComponents/Scrollable';
@@ -24,6 +24,12 @@ const ResearchForm: React.FC = (props) => {
         }
     };
 
+    const previews = initialSearch && allCardType.map(cardType => {
+        return <ResultResearchPreviewCard cardType={cardType}>
+            {cardType.getCards(initialSearch.resp).map(x => <ResultPreviewCard cardData={x} />)}
+        </ResultResearchPreviewCard>
+    })
+
     return (
         <>
             <div className="formContainer flex flex-col items-center">
@@ -44,15 +50,10 @@ const ResearchForm: React.FC = (props) => {
 
                     </div>
                 </form>
-
                 <button form="keywordsForm" className="mt-8 w-48 h-14 text-xl fr-btn fr-btn--primary capitalize" > <span className="mx-auto">rechercher !</span> </button>
-
             </div>
-
             <div className="researchResultContainer ml-28">
-                <ResultResearchPreviewCard cardType={investisseur}>
-                    {initialSearch?.resp.cards.investisseurs.map(x => <ResultPreviewCard cardData={x} />)}
-                </ResultResearchPreviewCard>
+                {previews}
             </div>
         </>
     )

@@ -1,5 +1,4 @@
-import ArrowInvestors from './../../assets/icons/arrow-private-investors.svg';
-import {Signal, Calendar, Euro, Rocket, Eye} from './../../assets/Icons';
+import {Signal, Calendar, Euro, Rocket, Eye, ArrowRight} from './../../assets/Icons';
 import Scrollable from './Scrollable';
 
 import ResultPreviewCard from './ResultPreviewCard';
@@ -15,26 +14,22 @@ const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = (pro
 
     const navigate = useNavigate()
 
-    return (
-
-        <>
-            <div className="globalContainerCard flex flex-col justify-center">
+    return (<div className="globalContainerCard flex flex-col justify-center">
                 
                 <div className="cardGeneralInformations flex justify-between">
 
                     <div className="cardTitle p-2">
-                        {/* <img src={Euro({color:"#68A532", viewBox:"0 0 14 14", height:"42", width:"42"})} alt="Logo Euro"/> */}
+                        <cardType.SVGLogo  style={{color: cardType.color}}/>
                         <h2 className="w-fit font-bold text-2xl">
-                            {cardType.title} <span className="bg-yellow text-lg">{`(???)`}</span>
+                             {cardType.title} <span className="bg-yellow text-lg">{`(???)`}</span>
                         </h2> 
                         <p className="mt-2 text-base">{cardType.description}</p>
                     </div>
 
                     <div className="seeAllbutton p-2">
-                        <button className="w-36 h-9 text-xs font-bold 
+                        <button style={{borderColor: cardType.color, color: cardType.color}}className="w-36 h-9 text-xs font-bold 
                         addBorder border-2 border-private-investors p-1
-                        flex justify-center
-                        text-private-investors" onClick={() => navigate("/liste-resultats")}> <span className="my-auto">Voir tout</span> <img className="my-auto ml-1.5 w-4 h-4" src={ArrowInvestors} alt="Icône de chevron"/> </button>
+                        flex justify-center" onClick={() => navigate("/liste-resultats")}> <span className="my-auto">Voir tout</span> <ArrowRight width="16" height="16"/> </button>
                     </div>
                 </div>
 
@@ -43,8 +38,6 @@ const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = (pro
                 </div>
 
             </div>
-
-        </>
     ) 
 }; 
 
