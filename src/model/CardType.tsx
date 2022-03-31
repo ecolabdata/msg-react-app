@@ -53,4 +53,4 @@ export const aideClient: CardType = {
     getCards: x => [] //TODO
 }
 
-export const all = [acheteurPublic/*,achatPrevi*/,investisseur,aideInno,aideClient]
+export const all = [acheteurPublic,achatPrevi,investisseur,aideInno,aideClient]

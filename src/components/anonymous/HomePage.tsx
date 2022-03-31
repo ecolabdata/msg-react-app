@@ -7,6 +7,10 @@ import { CardType, all as allCardType } from "../../model/CardType";
 
 import HomePageCard from '../customComponents/HomePageCard';
 
+const Separator = () => <div className='w-[0px] overflow-visible'><div className='h-[130px] w-[2px] bg-[#E1E1E1] opacity-30'></div></div>
+
+
+
 const Home = () => {
     useTitle("Accueil")
     const navigate = useNavigate();
@@ -25,13 +29,13 @@ const Home = () => {
                     xl:w-55 font-thin"> A partir de la description de votre activité ou de votre solution, nous vous proposons des pistes <br /> de leviers autour des 5 axes suivants :</h2>
             </div>
 
-            <div className="container-content overflow-y-scroll 
-                mx-auto h-[400px]
+            <div className="container-content overflow-hidden 
+                mx-auto
                 flex flex-wrap justify-center
-                lg:w-[90%] lg:overflow-y-hidden
-                2xl:w-[55%]
+                overflow-y-hidden
+                2xl:w-[55%] lg:w-[90%] items-center
                 ">
-                {allCardType.map((card) => <HomePageCard cardTypeData={card} />)}
+                {allCardType.map((card) => <HomePageCard cardTypeData={card} />).map(x => [x]).reduce((a,b) => a.concat([<Separator/>, ...b]))}
             </div>
 
             <div className="mx-auto w-55 flex justify-center my-6">
