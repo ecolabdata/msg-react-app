@@ -3,7 +3,7 @@ import Pagination from '../dsfrComponents/Pagination';
 import ToggleButton from '../dsfrComponents/ToggleButton';
 import ArrowDark from './../../assets/icons/arrow-dark-action.svg';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../_reducers/root.reducer';
 import { userActions } from '../../_actions/user.actions';
@@ -22,6 +22,11 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
     if (!searchId) throw new Error("searchId param is mandatory")
     const initialSearch = getSearch(searchId)
     if (!initialSearch) throw new Error("initialSearch is mandatory")
+    const [toggles, setToggles] = useState<Record<string, boolean>>({
+        'Venture Capital': false,
+        'Business Angel': false,
+        'Corporate': false
+    });
     console.log({ initialSearch })
     const [description, setDescription] = useState(initialSearch?.query.description || "")
 
@@ -82,11 +87,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
                         <DropDown />
 
                         <div className="toggleButtons flex justify-evenly w-full ml-4">
-
-                            <ToggleButton label='Venture Capital' />
-                            <ToggleButton label='Business Angel' />
-                            <ToggleButton label='Corporate' />
-
+                            {Object.keys(toggles).map(x => <ToggleButton label={x} checked={toggles[x]} color={cardType.color} onChange={e => setToggles({...toggles, [x]:!toggles[x]})}/>)}
                         </div>
                     </form>
 

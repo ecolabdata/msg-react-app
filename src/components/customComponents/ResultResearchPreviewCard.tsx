@@ -1,10 +1,7 @@
-import { Signal, Calendar, Euro, Rocket, Eye, ArrowRight } from './../../assets/Icons';
-import Scrollable from './Scrollable';
-
-import ResultPreviewCard from './ResultPreviewCard';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { CardType } from '../../model/CardType';
-import { NavLink } from 'react-router-dom';
+import { ArrowRight } from './../../assets/Icons';
+
 
 export interface ResultResearchPreviewCardProps {
     cardType: CardType,
