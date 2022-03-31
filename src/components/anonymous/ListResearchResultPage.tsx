@@ -1,6 +1,6 @@
 import DropDown from '../dsfrComponents/DropDown';
 import Pagination from '../dsfrComponents/Pagination';
-import ToggleButton from '../dsfrComponents/ToggleButton';
+// import ToggleButton from '../dsfrComponents/ToggleButton';
 import ArrowDark from './../../assets/icons/arrow-dark-action.svg';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
 import { useEffect, useState } from 'react';
@@ -10,6 +10,7 @@ import { userActions } from '../../_actions/user.actions';
 import { CardType } from '../../model/CardType';
 import { useParams } from 'react-router-dom';
 import { AnyCard, getSearch } from '../../api/Api';
+import ToggleButton from '../customComponents/ToggleButton';
 
 interface ListResearchResultProps {
     cardType: CardType
@@ -58,7 +59,6 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
                 <button className="ml-4 text-dark-text-action flex mt-4"> <img className="mr-2" src={ArrowDark} alt="Icone flèche" /> Retourner aux résultats </button>
 
                 <div className="cardTitle  mt-10 ml-4 p-2 text-base">
-                    {/* <img src={Euro({color:"#68A532", viewBox:"0 0 14 14", height:"42", width:"42"})} alt="Logo Euro"/> */}
                     <h2 className="w-fit font-bold text-4xl">
                         <div className="flex items-center">
                             <cardType.SVGLogo width="30" height="30" style={{ color: cardType.color }} /> &nbsp;
@@ -79,13 +79,15 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
                             <input className="text-white rounded-t-md w-64 h-10 addBorder-b border-2 border-light-accent-green bg-input-background " type="number" id="montantKEuro" />
                         </div>
 
-                        <DropDown />
+                        <DropDown borderColor="private-investors" />
 
                         <div className="toggleButtons flex justify-evenly w-full ml-4">
 
-                            <ToggleButton label='Venture Capital' />
+                            {/* <ToggleButton label='Venture Capital' />
                             <ToggleButton label='Business Angel' />
-                            <ToggleButton label='Corporate' />
+                            <ToggleButton label='Business Angel' /> */}
+
+                            <ToggleButton></ToggleButton>
 
                         </div>
                     </form>

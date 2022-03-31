@@ -13,6 +13,7 @@ import Authentication from './components/Authentication';
 import ResearchForm from './components/anonymous/ResearchFormPage';
 import { TrackPage } from './hooks/useTrackPage';
 import ListResearchResult from './components/anonymous/ListResearchResultPage';
+import { investisseur } from './model/CardType';
 
 
 const Router = () => {
@@ -31,7 +32,7 @@ const Router = () => {
                         <Route path="/" element={<HomePage />} />
                         <Route path="/formulaire-recherche-de-solutions" element={<ResearchForm />} />
                         <Route path="/recherche/:searchId" element={<ResearchForm />} />
-                        <Route path="/liste-resultats" element={<ListResearchResult investor="Investisseurs privés" numberOfResultsFound={18} investorPrecisions="Investisseurs privés adaptés à votre maturité pour votre prochaine levée de fonds." />} />
+                        <Route path="/investisseurs/:searchId" element={<ListResearchResult cardType={investisseur} />} />
                         <Route path="/authentification" element={<Authentication />} />
                         <Route path="/profile" element={<AuthenticatedComponent />}>
                             <Route path="ma-selection" element={<MySelectionPage />} />
