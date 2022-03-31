@@ -32,7 +32,8 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
 
     const pagesVisited = currentPage * cardsPerPage;
     console.log(cardType.getCards(initialSearch.resp))
-    const displayCards = cardType.getCards(initialSearch.resp)
+    const allCards = cardType.getCards(initialSearch.resp)
+    const displayCards = allCards
         .slice(pagesVisited, pagesVisited + cardsPerPage)
         .map((card) => <ResultPreviewCard cardType={cardType} cardData={card} />);
 
@@ -63,7 +64,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
                     <h2 className="w-fit font-bold text-4xl">
                         <div className="flex items-center">
                             <cardType.SVGLogo width="30" height="30" style={{ color: cardType.color }} /> &nbsp;
-                            {cardType.title} <span className="bg-yellow text-3xl font-light">{`(TODO)`}</span>
+                            {cardType.title} &nbsp; <span className="bg-yellow text-3xl font-light">{`(${allCards.length})`}</span>
                         </div>
                     </h2>
                     <p className="mt-2 text-base">{cardType.description}</p>
@@ -82,7 +83,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
                             <DropDown />
                         </div>
                         <div className="flex basis-[50%]">
-                            <div className="toggleButtons flex justify-evenly  mx-4 flex-wrap">
+                            <div className="toggleButtons flex justify-evenly w-full mx-4 flex-wrap">
                                 {Object.keys(toggles).map(x => <ToggleButton label={x} checked={toggles[x]} color={cardType.color} onChange={e => setToggles({ ...toggles, [x]: !toggles[x] })} />)}
                             </div>
                         </div>
