@@ -5,10 +5,11 @@ import { ArrowRight } from './../../assets/Icons';
 
 export interface ResultResearchPreviewCardProps {
     cardType: CardType,
-    searchId: string
+    searchId: string,
+    resultCount: number
 }
 
-const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = ({ cardType, searchId, children }) => {
+const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = ({ cardType, searchId, children, resultCount}) => {
 
     const navigate = useNavigate()
 
@@ -20,7 +21,7 @@ const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = ({ c
                 <div className="flex items-center">
                     <cardType.SVGLogo style={{ color: cardType.color }} /> &nbsp;
                     <h2 className="w-fit font-bold text-2xl">
-                        {cardType.title} <span className="bg-yellow text-lg">{`(???)`}</span>
+                        {cardType.title} <span className="bg-yellow text-lg">{`(${resultCount})`}</span>
                     </h2>
                 </div>
                 <p className="mt-2 text-base">{cardType.description}</p>
