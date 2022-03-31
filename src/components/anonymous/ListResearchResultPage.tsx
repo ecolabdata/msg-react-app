@@ -1,6 +1,6 @@
 import DropDown from '../dsfrComponents/DropDown';
 import Pagination from '../dsfrComponents/Pagination';
-import ToggleButton from '../dsfrComponents/ToggleButton';
+// import ToggleButton from '../dsfrComponents/ToggleButton';
 import ArrowDark from './../../assets/icons/arrow-dark-action.svg';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
@@ -11,6 +11,7 @@ import { CardType } from '../../model/CardType';
 import { useParams } from 'react-router-dom';
 import { AnyCard, getSearch } from '../../api/Api';
 import { NavLink } from 'react-router-dom';
+import ToggleButton from '../dsfrComponents/ToggleButton';
 
 interface ListResearchResultProps {
     cardType: CardType
@@ -60,7 +61,6 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
                     <button onClick={() => window.history.back()} className="ml-4 text-dark-text-action flex mt-4 rm-link-underline "> <img className="mr-2" src={ArrowDark} alt="Icone flèche" /> Retourner aux résultats </button>
                 </div>
                 <div className="cardTitle  mt-10 ml-4 p-2 text-base">
-                    {/* <img src={Euro({color:"#68A532", viewBox:"0 0 14 14", height:"42", width:"42"})} alt="Logo Euro"/> */}
                     <h2 className="w-fit font-bold text-4xl">
                         <div className="flex items-center">
                             <cardType.SVGLogo width="30" height="30" style={{ color: cardType.color }} /> &nbsp;
@@ -80,7 +80,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
                                 <label className="mb-1 text-white text-base" htmlFor="montantKEuro">Montant min. en K€</label>
                                 <input className="text-white rounded-t-md w-64 h-10 addBorder-b border-2 border-light-accent-green bg-input-background " type="number" id="montantKEuro" />
                             </div>
-                            <DropDown />
+                            <DropDown borderColor="private-investors" />
                         </div>
                         <div className="flex basis-[50%]">
                             <div className="toggleButtons flex justify-evenly w-full mx-4 flex-wrap">

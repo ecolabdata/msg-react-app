@@ -15,7 +15,7 @@ const Pagination: React.FC<PaginationProps> = ({cursor1, cursor2, cursor3, curso
 
         <>
 
-            <nav role="navigation" className="fr-pagination" aria-label="Pagination">
+            <nav role="navigation" className="fr-pagination mx-auto w-fit mt-10" aria-label="Pagination">
                 <ul className="fr-pagination__list">
 
                     {/* <li>
@@ -25,7 +25,7 @@ const Pagination: React.FC<PaginationProps> = ({cursor1, cursor2, cursor3, curso
                     </li> */}
 
                     <li>
-                        <a href={previousPage} className="fr-pagination__link fr-pagination__link--prev fr-pagination__link--lg-label" aria-disabled="true" role="link">
+                        <a href={previousPage} className="fr-pagination__link rounded-full fr-pagination__link--prev fr-pagination__link--lg-label" aria-disabled="true" role="link">
                             Précédent 
                         </a>
                     </li>
@@ -37,25 +37,25 @@ const Pagination: React.FC<PaginationProps> = ({cursor1, cursor2, cursor3, curso
                     </li>
 
                     <li>
-                        <a href={nextPage} className="fr-pagination__link" aria-current="page" title="Page 1">
+                        <a href={nextPage} className="fr-pagination__link rounded-full" aria-current="page" title="Page 1">
                             {cursor2}
                         </a>
                     </li>
 
                     <li>
-                        <a href="#" className="fr-pagination__link" aria-current="page" title="Page 1">
+                        <a href="#" className="fr-pagination__link rounded-full" aria-current="page" title="Page 1">
                             {cursor3}
                         </a>
                     </li>
 
                     <li>
-                        <a href="#" className="fr-pagination__link" aria-current="page" title="Page 1">
+                        <a href="#" className="fr-pagination__link rounded-full" aria-current="page" title="Page 1">
                             {cursor4}
                         </a>
                     </li>
 
                     <li>
-                        <a href={nextPage} className="fr-pagination__link fr-pagination__link--next fr-pagination__link--lg-label">
+                        <a href={nextPage} className="fr-pagination__link rounded-full fr-pagination__link--next fr-pagination__link--lg-label">
                             Suivant 
                         </a>
                     </li>
