@@ -10,8 +10,9 @@ import ResultResearchPreviewCard from '../customComponents/ResultResearchPreview
 const ResearchForm: React.FC = (props) => {
 
 
-    const { searchId } = useParams();
+    
     const navigate = useNavigate();
+    const { searchId } = useParams();
     const initialSearch = searchId ? getSearch(searchId) : null
     console.log({ initialSearch })
     const [description, setDescription] = useState(initialSearch?.query.description || "")
@@ -19,22 +20,15 @@ const ResearchForm: React.FC = (props) => {
     const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (description.length > 0) {
-            searchByQuery({ description/**/ }).then((search) => navigate(`/recherche/${search.id}`))
+            searchByQuery({ description/*, keywords*/ }).then((search) => navigate(`/recherche/${search.id}`))
         }
     };
 
     const previews = initialSearch && allCardType.map(cardType => {
-        return (
-            
-            <ResultResearchPreviewCard cardType={cardType}>
-                {cardType.getCards(initialSearch.resp).map(x => <ResultPreviewCard cardData={x} cardType={cardType}/>)}
-            </ResultResearchPreviewCard>
-        )
-    });
-
-
-
-
+        return <ResultResearchPreviewCard cardType={cardType} searchId={initialSearch.id}>
+            {cardType.getCards(initialSearch.resp).map(x => <ResultPreviewCard cardData={x} cardType={cardType}/>)}
+        </ResultResearchPreviewCard>
+    })
 
     return (
         <>
