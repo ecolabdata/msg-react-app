@@ -12,8 +12,10 @@ interface ResultPreviewCardProps {
 
 const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({cardData, cardType}) => {
 
-    return <div className="cardContainer rounded-r ml-3 mt-4 min-w-282 h-181 p-4 flex flex-col
-                    addBorder-l border-l-3 
+    const navigate = useNavigate();
+
+    return <div className="cardContainer rounded-r ml-6 t-4 min-w-282 h-181 p-4 flex flex-col
+                    truncate addBorder-l border-l-3 
                     hover:scale-y-115 hover:shadow-2xl
                     transform transition ease-out duration-200 
                     group

@@ -52,7 +52,8 @@ const ResearchForm: React.FC = (props) => {
                 </form>
                 <button form="keywordsForm" className="mt-8 w-48 h-14 text-xl fr-btn fr-btn--primary capitalize" > <span className="mx-auto">rechercher !</span> </button>
             </div>
-            <div className="researchResultContainer ml-28">
+
+            <div className="researchResultContainer mt-4 ml-[66px">
                 {previews}
             </div>
         </>

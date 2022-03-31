@@ -13,13 +13,13 @@ const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = ({ c
 
     const navigate = useNavigate()
 
-    return (<div className="globalContainerCard flex flex-col justify-center">
+    return (<div className="globalContainerCard flex flex-col justify-center ml-10">
 
         <div className="cardGeneralInformations flex">
 
             <div className="cardTitle p-2 flex-auto">
                 <div className="flex items-center">
-                    <cardType.SVGLogo style={{ color: cardType.color }} /> &nbsp;
+                    <cardType.SVGLogo  style={{ color: cardType.color }} /> &nbsp;
                     <h2 className="w-fit font-bold text-2xl">
                         {cardType.title} <span className="bg-yellow text-lg">{`(${resultCount})`}</span>
                     </h2>
