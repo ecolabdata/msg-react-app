@@ -41,7 +41,7 @@ export const aideInno: CardType = {
     title: "Aides à l’innovation",
     description: "Aides publiques dédiées à votre développement (Adème, BPI...)",
     searchLink: "/aides-innovations",
-    getCards: x => [] //TODO
+    getCards: x => x.cards.aides //TODO
 }
 
 export const aideClient: CardType = {
@@ -50,7 +50,7 @@ export const aideClient: CardType = {
     title: "Aides aux clients",
     description: "Dispositifs incitatifs (état ou régions) qui aident vos clients à accéder à vos solutions",
     searchLink: "/aides-clients",
-    getCards: x => [] //TODO
+    getCards: x => x.cards.aides //TODO
 }
 
 export const all = [investisseur,acheteurPublic,achatPrevi,aideInno,aideClient]

@@ -29,7 +29,7 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({cardData, cardType
 
         </div>
 
-        <h4 className="mt-10 w-4/5 fixed text-white font-bold text-xl ">{cardData.nom}</h4>
+        <h4 className="mt-10 w-4/5 fixed text-white font-bold text-xl ">{cardData.nom || cardData.titre_aide}</h4>
 
         <p className="uppercase opacity-0 mt-24 text-xs text-white transition-opacity duration-200 group-hover:opacity-100"> {cardData.type_investissements}</p>
 {/* 
