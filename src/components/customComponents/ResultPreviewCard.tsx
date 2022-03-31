@@ -15,7 +15,7 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({cardData, cardType
     const navigate = useNavigate();
 
     return <div className="cardContainer rounded-r ml-6 t-4 min-w-282 h-181 p-4 flex flex-col
-                    truncate addBorder-l border-l-3 
+                    addBorder-l border-l-3 
                     hover:scale-y-115 hover:shadow-2xl
                     transform transition ease-out duration-200 
                     group
@@ -31,7 +31,7 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({cardData, cardType
 
         </div>
 
-        <h4 className="mt-10 w-4/5 fixed text-white font-bold text-xl ">{cardData.nom || cardData.titre_aide}</h4>
+        <h4 className="clamp mt-10 w-4/5 fixed text-white font-bold text-xl " title={cardData.nom || cardData.titre_aide}>{cardData.nom || cardData.titre_aide}</h4>
 
         <p className="uppercase opacity-0 mt-24 text-xs text-white transition-opacity duration-200 group-hover:opacity-100"> {cardData.type_investissements}</p>
 {/* 
