@@ -58,5 +58,8 @@
 
 .hiddenScrollBar::-webkit-scrollbar {
   width: 0;
+}
 
+.rm-link-underline {
+  background-image: none;
 }
