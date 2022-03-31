@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getSearch, searchByQuery } from '../../api/Api';
 import { all as allCardType } from '../../model/CardType';
@@ -16,6 +16,12 @@ const ResearchForm: React.FC = (props) => {
     const initialSearch = searchId ? getSearch(searchId) : null
     console.log({ initialSearch })
     const [description, setDescription] = useState(initialSearch?.query.description || "")
+
+    useEffect(() => {
+        document.querySelector('#previews')?.scrollIntoView({ 
+            behavior: 'smooth' 
+          });
+    })
 
     const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -53,7 +59,7 @@ const ResearchForm: React.FC = (props) => {
                 <button form="keywordsForm" className="mt-8 w-48 h-14 text-xl fr-btn fr-btn--primary capitalize" > <span className="mx-auto">rechercher !</span> </button>
             </div>
 
-            <div className="researchResultContainer mt-4 ml-[66px">
+            <div id="previews" className="researchResultContainer mt-4 ml-[66px">
                 {previews}
             </div>
         </>

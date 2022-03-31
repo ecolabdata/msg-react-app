@@ -119,7 +119,7 @@ const Header = ({userIsAuth}: HeaderProps) => {
                                 </div>
                             </div>
                             <div className="fr-header__service flex">
-                                <a className="flex" href="/" title="Accueil - Mes services GreenTech - Ministère de la transition écologique">
+                                <a className="flex" href="/formulaire-recherche-de-solutions" title="Accueil - Mes services GreenTech - Ministère de la transition écologique">
                                     <img className="h-12 mt-1 mr-2" src={LogoMSG} alt="Icône d'indication, version beta "/>
                                     <p className="fr-header__service-title capitalize
                                      after:rounded-sm after:content-['beta'] after:ml-2 after:relative after:bottom-1 after:w-content after:h-content after:px-1 

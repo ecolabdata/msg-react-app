@@ -8,8 +8,8 @@ export interface Route {
 
 export const protectedRoutes: Route[] = [
 
-    {key: "SELECTION", path: `profile/ma-selection`, name: "Sélection",  type:"protected" },
-    {key: "CORBEILLE", path: `profile/corbeille`, name: "Corbeille",  type:"protected" },
+    {key: "SELECTION", path: `/profile/ma-selection`, name: "Sélection",  type:"protected" },
+    {key: "CORBEILLE", path: `/profile/corbeille`, name: "Corbeille",  type:"protected" },
 ];
 
 export const publicRoutes: Route[] = [
