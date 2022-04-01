@@ -1,27 +1,33 @@
 import mockApiResponse from './mock_api_resp.json'
 import sha1 from 'sha1';
 
-/*
-  From old FTE file
-*/
-export type Aide = typeof mockApiResponse.cards.aides[0]
 
 /*
-  Deduced from DECP
+https://www.notion.so/messervicesgreentech/0290b8c9cfd4437b8f9ee8bb9ee697ee?v=94b3a82bc59243e5b99ed4574bf8407f
 */
+
+export type Aide = {
+  "titre_aide": string,
+  "score": number,
+  "aide_detail_clean": string,
+  "aide_detail": string,
+  "contact": string,
+  "funding_source_url": string,
+  "clients": string[],
+  "deadline": null | string,
+  "type d'aide": string[],
+  "éligibilité": string | null,
+  "perimètre": string | null | undefined,
+  "exemples_projets": string,
+  "url_aidesterritoires": string
+}
 export type Collectivite = typeof mockApiResponse.cards.collectivites[0]
-
-/*
-  deduced from DECP
-*/
-export type Marche = typeof mockApiResponse.cards.marches[0]
-
-/*
-
-*/
+//export type Marche = typeof mockApiResponse.cards.marches[0]
 export type Investisseur = typeof mockApiResponse.cards.investisseurs[0]
 
-export type AnyCard = Partial<Aide> & Partial<Marche> & Partial<Collectivite> & Partial<Investisseur>
+export type AnyCard = Partial<Aide> /*& Partial<Marche>*/ & Partial<Collectivite> & Partial<Investisseur>
+// types of property '"deadline"' are incompatible.
+//             Type 'null' is not assignable to type 'string | undefined'
 
 export type ApiResponse = typeof mockApiResponse
 
@@ -58,33 +64,26 @@ export function searchRequest(description: string, secteurs:string[], montant_mi
   // if (useMockResponse) {
   //   return new Promise<ApiResponse>(res => setTimeout(() => res(mockApiResponse), 3000))
   // } else {
-    return fetch('https://api.msg.greentechinnovation.fr/getCards/', {
+    
+    return fetch('https://api.msg.greentechinnovation.fr:8080/getCards/', {
       method: "POST",
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        "fichier_aides": "Aides_detailsandname.xlsx",
         "fichier_decp": "decp_score.csv",
         "fichier_investisseurs": "GTIetmontant.csv",
+        "fichier_aides_inno": "corpusinno.pkl",
         "descriptionSU": description,
-        "fichier_vocab": "vocab.pkl",
-        "fichier_embeddings_achats": "vocab_achats_previs.pkl",
-        "vectorizer_achats": "vectorizer_AchatsEtat.pickle",
-        "vectorizer_aides": "vectorizer_aides.pickle",
-        "faiss_index" : "aides.index",
-        "faiss_index_generation" : "aides_newmod.index",
         "nb_aides": 10,
-        "nb_achats_previs": 12,
         "nb_acheteur": 10,
         "montant_min": montant_min,
-        "montant_max": montant_max,
         "secteurs": secteurs,    
         "cards": {
-          "collectivites": [],
-          "aides": [],
-          "marches": [],
+          "collectivites" : [],
+          "aides_clients" : [],
+          "aides_innovation":[],
           "investisseurs" : []
         }
       })

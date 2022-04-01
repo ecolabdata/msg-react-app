@@ -74,7 +74,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
 
                     <h2 className=" bold text-xl text-center text-light-accent-green">Preciser la recherche </h2>
 
-                    <form onSubmit={() => handleOnSubmit} className="inputsContainer flex justify-evenly flex-wrap">
+                    <form className="inputsContainer flex justify-evenly flex-wrap">
                         <div className="flex justify-evenly basis-[50%]  flex-wrap">
                             <div className="inputNumber mr-6 flex flex-col font-light ml-6 ">
                                 <label className="mb-1 text-white text-base" htmlFor="montantKEuro">Montant min. en K€</label>

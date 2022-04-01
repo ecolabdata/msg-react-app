@@ -24,7 +24,7 @@ export const achatPrevi: CardType = {
     title: "Achats publics prévisionnels",
     description: "Achats publics prévus ces trois prochaines années dans votre domaine.",
     searchLink: "/achats-prévisionnels",
-    getCards: x => x.cards.marches
+    getCards: x => [] //TODO
 }
 export const investisseur: CardType  = {
     SVGLogo: Euro,
@@ -41,7 +41,7 @@ export const aideInno: CardType = {
     title: "Aides à l’innovation",
     description: "Aides publiques dédiées à votre développement (Adème, BPI...)",
     searchLink: "/aides-innovations",
-    getCards: x => x.cards.aides //TODO
+    getCards: x => x.cards.aides_innovation
 }
 
 export const aideClient: CardType = {
@@ -50,7 +50,7 @@ export const aideClient: CardType = {
     title: "Aides aux clients",
     description: "Dispositifs incitatifs (état ou régions) qui aident vos clients à accéder à vos solutions",
     searchLink: "/aides-clients",
-    getCards: x => x.cards.aides //TODO
+    getCards: x => x.cards.aides_clients
 }
 
 export const all = [investisseur,acheteurPublic,achatPrevi,aideInno,aideClient]

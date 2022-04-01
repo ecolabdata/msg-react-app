@@ -1,12 +1,11 @@
-import { useNavigate, Link } from 'react-router-dom';
-import Trash from './../../assets/icons/trash-fill.svg';
-import Star from './../../assets/icons/star-fill.svg';
-import ArrowInvestors from './../../assets/icons/arrow-private-investors.svg';
-import { Aide, Collectivite, Investisseur, Marche } from '../../api/Api';
+import { useNavigate } from 'react-router-dom';
+import { AnyCard } from '../../api/Api';
 import { CardType } from '../../model/CardType';
+import Star from './../../assets/icons/star-fill.svg';
+import Trash from './../../assets/icons/trash-fill.svg';
 
 interface ResultPreviewCardProps {
-    cardData : Partial<Aide> & Partial<Marche> & Partial<Collectivite> & Partial<Investisseur> 
+    cardData : AnyCard
     cardType : CardType
 }
 

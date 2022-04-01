@@ -60,7 +60,7 @@ const ResearchForm: React.FC = (props) => {
                 <button form="keywordsForm" className="mt-8 w-48 h-14 text-xl fr-btn fr-btn--primary capitalize" > <span className="mx-auto">rechercher !</span> </button>
             </div>
 
-            <div id="previews" className="researchResultContainer mt-4 ml-[66px">
+            <div id="previews" className="researchResultContainer mt-4">
                 {previews}
             </div>
         </>
