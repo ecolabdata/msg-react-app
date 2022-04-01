@@ -7,7 +7,7 @@ interface CardDetailsProps {
     cardData: CardData,
 } 
 
-const CardDetails: React.FC<CardDetailsProps> = (props) => { 
+const CardDetails: React.FC = (props) => { 
 
     return (
 

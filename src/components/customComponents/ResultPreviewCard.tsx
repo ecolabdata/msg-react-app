@@ -1,4 +1,4 @@
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import Trash from './../../assets/icons/trash-fill.svg';
 import Star from './../../assets/icons/star-fill.svg';
 import ArrowInvestors from './../../assets/icons/arrow-private-investors.svg';
@@ -12,14 +12,21 @@ interface ResultPreviewCardProps {
 
 const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({cardData, cardType}) => {
     
+    const params = useParams()
     const navigate = useNavigate();
 
-    return <div className="cardContainer group rounded-r ml-6 t-4 min-w-282 h-181 p-4 flex flex-col
+    const currentPageURL = window.location.pathname.split('/');
+    const userIsOnResearchPage = currentPageURL[1] === "recherche" ? true : false;
+    console.log('userIsOnResearchPage :>> ', userIsOnResearchPage);
+    const animation = "transition-all ease-out duration-[400ms] hover:h-[240px] hover:shadow-xl";
+
+    
+    return <div className={`cardContainer group rounded-r ml-6 t-4 min-w-282 h-181 p-4 flex flex-col
                     addBorder-l border-l-3 
-                    transition-all ease-out duration-[400ms]
-                    hover:h-[240px] hover:shadow-xl
-                    bg-research-card-preview
-                " style={{borderColor: cardType.color}}>
+                   ${userIsOnResearchPage ? animation : ""}
+                    bg-research-card-preview`
+                }
+                style={{borderColor: cardType.color}}>
         <div className="emetor-row flex">
 
             <p className="text-xs" style={{color: cardType.color}}> Pexe ???</p>
