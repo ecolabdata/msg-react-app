@@ -93,7 +93,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
 
             </div>
 
-            <div className="cardContainer flex flex-wrap justify-center mx-auto  max-w-[1920px]">
+            <div className="cardsContainer flex flex-wrap justify-center mx-auto  max-w-[1920px]">
                 {displayCards}
             </div>
 

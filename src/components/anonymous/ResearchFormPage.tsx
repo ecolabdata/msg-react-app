@@ -31,7 +31,9 @@ const ResearchForm: React.FC = (props) => {
     };
 
     const previews = initialSearch && allCardType.map(cardType => {
+
         const results = cardType.getCards(initialSearch.resp)
+
         return <ResultResearchPreviewCard cardType={cardType} searchId={initialSearch.id} resultCount={results.length}> 
             {results.map(x => <ResultPreviewCard cardData={x} cardType={cardType}/>)}
         </ResultResearchPreviewCard>
@@ -56,7 +58,9 @@ const ResearchForm: React.FC = (props) => {
 
                     </div>
                 </form>
+
                 <button form="keywordsForm" className="mt-8 w-48 h-14 text-xl fr-btn fr-btn--primary capitalize" > <span className="mx-auto">rechercher !</span> </button>
+                
             </div>
 
             <div id="previews" className="researchResultContainer mt-4 ml-[66px">
