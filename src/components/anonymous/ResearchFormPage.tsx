@@ -32,6 +32,7 @@ const ResearchForm: React.FC = (props) => {
 
     const previews = initialSearch && allCardType.map(cardType => {
         const results = cardType.getCards(initialSearch.resp)
+        if (!results) return null;
         return <ResultResearchPreviewCard cardType={cardType} searchId={initialSearch.id} resultCount={results.length}> 
             {results.map(x => <ResultPreviewCard cardData={x} cardType={cardType}/>)}
         </ResultResearchPreviewCard>
