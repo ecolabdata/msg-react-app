@@ -57,7 +57,7 @@ const handlePagination = (jsonData: typeof JSONData) => {
 
     return (dispatch: Dispatch) => {
       
-      const cardsInRangeOfTwenty = jsonData.slice(0,20);
+      const cardsInRangeOfTwenty = jsonData.slice(0,21);
   
       dispatch(success(cardsInRangeOfTwenty));
       dispatch(request());

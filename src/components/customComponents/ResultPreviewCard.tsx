@@ -17,11 +17,11 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({cardData, cardType
 
     const currentPageURL = window.location.pathname.split('/');
     const userIsOnResearchPage = currentPageURL[1] === "recherche" ? true : false;
-    const animation = "transition-all ease-out duration-[400ms] hover:h-[240px] hover:shadow-xl";
 
-    return <div className={`cardContainer group rounded-r mt-4 min-w-282 max-w-[282px] h-181 p-4 flex flex-col
+    return <div className={`cardContainer group rounded-r -6 ml-6 min-w-282 max-w-[282px]  p-4 flex flex-col
                     addBorder-l border-l-3 
-                   ${userIsOnResearchPage ? animation : ""}
+                    hover:shadow-xl
+                    card-animation
                     bg-research-card-preview`
                 }
                 style={{borderColor: cardType.color}}>

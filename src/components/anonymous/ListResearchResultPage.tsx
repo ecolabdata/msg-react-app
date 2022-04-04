@@ -22,7 +22,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
     const { searchId } = useParams();
 
     if (!searchId) throw new Error("searchId param is mandatory")
-    
+
     const initialSearch = getSearch(searchId)
 
     if (!initialSearch) throw new Error("initialSearch is mandatory")
@@ -41,7 +41,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
 
     console.log(cardType.getCards(initialSearch.resp))
     const allCards = cardType.getCards(initialSearch.resp)
-    
+
     const displayCards = allCards
         .slice(pagesVisited, pagesVisited + cardsPerPage)
         .map((card) => <ResultPreviewCard cardType={cardType} cardData={card} />);
@@ -98,14 +98,14 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
 
                         <div className="my-2 flex flex-col items-center
                         lg:flex-row lg:mb-6">
-                        
+
                             <div className="inputNumber mr-6 flex flex-col font-light ">
                                 <label className="mb-1 text-white text-base" htmlFor="montantKEuro">Montant min. en K€</label>
                                 <input className="text-white rounded-t-md w-64 h-10 addBorder-b border-2 border-light-accent-green bg-input-background " type="number" id="montantKEuro" />
                             </div>
 
                             <div className="-ml-5">
-                            <DropDown borderColor="private-investors" />
+                                <DropDown borderColor="private-investors" />
 
                             </div>
 
@@ -122,7 +122,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
 
             </div>
 
-            <div className="cardsContainer mt-10 mx-auto max-w-[1240px] flex flex-wrap justify-evenly bg 
+            <div className="cardsContainer mt-10 mx-auto max-w-[80%] flex flex-wrap justify-evenly bg 
             xl:mx-auto
             ">
                 {displayCards}
