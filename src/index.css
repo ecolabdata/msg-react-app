@@ -14,7 +14,7 @@
   overflow: hidden;
   --line-height: 22px;
   line-height: var(--line-height);
-  min-height: calc(3 * var(--line-height));
+  min-height: calc(4 * var(--line-height));
 }
 
 textarea:focus, input:focus {

@@ -36,7 +36,7 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({cardData, cardType
 
             </div>
 
-        <h4 className="clamp mt-10 w-4/5 font-bold text-xl" title={cardData.nom || cardData.titre_aide}>{cardData.nom || cardData.titre_aide}</h4>
+        <h4 className="clamp mt-2 w-4/5 font-bold text-xl" title={cardData.nom || cardData.titre_aide}>{cardData.nom || cardData.titre_aide}</h4>
         
         {userIsOnResearchPage &&
             <p className="uppercase opacity-0 mt-8

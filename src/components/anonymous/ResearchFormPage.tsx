@@ -48,7 +48,7 @@ const ResearchForm: React.FC = (props) => {
         <>
             <div className="formContainer flex flex-col items-center">
 
-                <h1 className="w-3/5 font-bold text-3xl text-center mx-auto"> Start-up greentech, trouvez automatiquement des pistes pour booster votre développement !  </h1>
+                <h1 className="w-3/5 font-bold text-4xl text-center mx-auto max-w-4xl"> Start-up greentech, trouvez automatiquement des pistes pour booster votre développement !  </h1>
 
                 <form onSubmit={(event) => handleOnSubmitForm(event)} id="keywordsForm" className="mt-8 rounded-md w-form h-form flex flex-col items-center bg-background-form">
 
