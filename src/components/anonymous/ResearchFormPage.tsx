@@ -10,7 +10,7 @@ import ResultResearchPreviewCard from '../customComponents/ResultResearchPreview
 const ResearchForm: React.FC = (props) => {
 
 
-    
+
     const navigate = useNavigate();
     const { searchId } = useParams();
     const initialSearch = searchId ? getSearch(searchId) : null
@@ -18,9 +18,9 @@ const ResearchForm: React.FC = (props) => {
     const [description, setDescription] = useState(initialSearch?.query.description || "")
 
     useEffect(() => {
-        document.querySelector('#previews')?.scrollIntoView({ 
-            behavior: 'smooth' 
-          });
+        document.querySelector('#previews')?.scrollIntoView({
+            behavior: 'smooth'
+        });
     })
 
     const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
@@ -31,11 +31,17 @@ const ResearchForm: React.FC = (props) => {
     };
 
     const previews = initialSearch && allCardType.map(cardType => {
+
         const results = cardType.getCards(initialSearch.resp)
         if (!results) return null;
-        return <ResultResearchPreviewCard cardType={cardType} searchId={initialSearch.id} resultCount={results.length}> 
-            {results.map(x => <ResultPreviewCard cardData={x} cardType={cardType}/>)}
-        </ResultResearchPreviewCard>
+        return (
+            <ResultResearchPreviewCard cardType={cardType} searchId={initialSearch.id} resultCount={results.length}>
+                {results.map(x => <div className="ml-6 w-fit">
+                    <ResultPreviewCard cardData={x} cardType={cardType} />
+                </div>
+                )}
+            </ResultResearchPreviewCard>
+        )
     })
 
     return (
@@ -57,7 +63,9 @@ const ResearchForm: React.FC = (props) => {
 
                     </div>
                 </form>
+
                 <button form="keywordsForm" className="mt-8 w-48 h-14 text-xl fr-btn fr-btn--primary capitalize" > <span className="mx-auto">rechercher !</span> </button>
+
             </div>
 
             <div id="previews" className="researchResultContainer mt-4 ml-[66px">
