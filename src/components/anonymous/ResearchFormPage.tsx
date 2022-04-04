@@ -16,17 +16,16 @@ const ResearchForm: React.FC = (props) => {
     const initialSearch = searchId ? getSearch(searchId) : null
     console.log({ initialSearch })
     const [description, setDescription] = useState(initialSearch?.query.description || "")
-
-    useEffect(() => {
-        const element = document.getElementById('previews')
-        if (!element) return;
-        window.scrollTo({ behavior: "smooth", top: element.offsetTop - 100 })
-    })
-
+    
     const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (description.length > 0) {
-            searchByQuery({ description/*, keywords*/ }).then((search) => navigate(`/recherche/${search.id}`))
+            searchByQuery({ description/*, keywords*/ }).then((search) => {
+                const element = document.getElementById('previews')
+                if (!element) return;
+                window.scrollTo({ behavior: "smooth", top: element.offsetTop - 100 })
+                return navigate(`/recherche/${search.id}`)
+            })
         }
     };
 

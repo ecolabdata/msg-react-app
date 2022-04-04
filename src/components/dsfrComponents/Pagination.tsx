@@ -25,6 +25,7 @@ const Pagination: React.FC<PaginationProps> = ({ baseUrl, currentPageNo, nbPage 
                         to={baseUrl + "/" + (currentPageNo - 1)}
                         className="fr-pagination__link rounded-full fr-pagination__link--prev fr-pagination__link--lg-label"
                         role="link"
+                        replace={true}
                     >
                         Précédent
                     </Link>
@@ -37,6 +38,7 @@ const Pagination: React.FC<PaginationProps> = ({ baseUrl, currentPageNo, nbPage 
                     className="fr-pagination__link rounded-full"
                     role="link"
                     title={`Page ${generatedPageNo}`}
+                    replace={true}
                 >
                     {generatedPageNo}
                 </NavLink>
@@ -54,7 +56,7 @@ const Pagination: React.FC<PaginationProps> = ({ baseUrl, currentPageNo, nbPage 
                     </a> : <Link
                         to={baseUrl + "/" + (currentPageNo + 1)}
                         className="fr-pagination__link rounded-full fr-pagination__link--next fr-pagination__link--lg-label"
-                        role="link"
+                        role="link" replace={true}
                     >
                         Suivant
                     </Link>

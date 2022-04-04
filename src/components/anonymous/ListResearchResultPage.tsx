@@ -38,10 +38,14 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
     console.log({ initialSearch })
 
     useEffect(() => {
-        const element = document.getElementById('cardsContainer')
-        if (!element) return;
-        if (element?.offsetTop < window.scrollY) {
-            window.scrollTo({ behavior: "smooth", top: element?.offsetTop - 100 })
+        if (!page) {
+            window.scrollTo(0, 0)
+        } else {
+            const element = document.getElementById('cardsContainer')
+            if (!element) return;
+            if (element?.offsetTop < window.scrollY) {
+                window.scrollTo({ behavior: "smooth", top: element?.offsetTop - 100 })
+            }
         }
     }, [page]);
 
@@ -70,7 +74,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
             ">
 
                 <div className="flex">
-                    <button onClick={() => navigate(`/recherche/${searchId}`)} className="ml-4 text-dark-text-action flex mt-4 rm-link-underline "> <img className="mr-2" src={ArrowDark} alt="Icone flèche" /> Retour </button>
+                    <button onClick={() => /*navigate(`/recherche/${searchId}`)*/window.history.back()} className="ml-4 text-dark-text-action flex mt-4 rm-link-underline "> <img className="mr-2" src={ArrowDark} alt="Icone flèche" /> Retour </button>
                 </div>
 
                 <div className="cardTitle mt-10 ml-4 p-2 text-base">
