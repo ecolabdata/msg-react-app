@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../_reducers/root.reducer';
 import { userActions } from '../../_actions/user.actions';
 import { CardType } from '../../model/CardType';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { AnyCard, getSearch } from '../../api/Api';
 import { NavLink } from 'react-router-dom';
 import ToggleButton from '../dsfrComponents/ToggleButton';
@@ -19,7 +19,8 @@ interface ListResearchResultProps {
 
 const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => {
 
-    const { searchId } = useParams();
+    const { searchId, page } = useParams();
+    const pageNo = page ? parseInt(page) : 1
 
     if (!searchId) throw new Error("searchId param is mandatory")
 
@@ -35,26 +36,22 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
 
     console.log({ initialSearch })
 
-    const { currentPage, cardsPerPage, cardsInRangeOfTwenty, } = useSelector((state: RootState) => state.userState);
+    const { pathname } = useLocation();
 
-    const pagesVisited = currentPage * cardsPerPage;
+    useEffect(() => {
+      //window.scrollTo(0, 0);
+    }, [pathname]);
 
     console.log(cardType.getCards(initialSearch.resp))
     const allCards = cardType.getCards(initialSearch.resp)
-
+    const pageChunkSize = 10;
+    const nbPage = Math.ceil(allCards.length / pageChunkSize)
+    console.log({allCardsLength: allCards.length, nbPage})
     const displayCards = allCards
-        .slice(pagesVisited, pagesVisited + cardsPerPage)
-        .map((card) => <ResultPreviewCard cardType={cardType} cardData={card} />);
-
-
-    useEffect(() => {
-        // DEBUG FOR PAGINATION
-        console.log('cardsPerPage :>> ', cardsPerPage);
-        console.log('currentPage :>> ', currentPage);
-        console.log('pagesVisited :>> ', pagesVisited);
-
-
-    }, [cardsInRangeOfTwenty])
+        .slice(
+            (pageNo-1)*pageChunkSize,
+            pageNo*pageChunkSize
+        ).map((card) => <ResultPreviewCard cardType={cardType} cardData={card} />);
 
     const handleOnSubmit = () => {
         console.log("Formulaire de recherche envoyé ");
@@ -128,7 +125,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
                 {displayCards}
             </div>
 
-            <Pagination cursor1='1' cursor2='2' cursor3='3' cursor4='4' currentPage='1' nextPage='2' previousPage='0' />
+            <Pagination currentPageNo={pageNo} baseUrl={cardType.searchLink + "/" + searchId} nbPage={nbPage}/>
 
         </>
     )

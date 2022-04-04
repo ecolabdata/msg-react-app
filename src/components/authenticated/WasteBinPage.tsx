@@ -55,7 +55,7 @@ const WasteBin = () => {
                     <Scrollable emetor="Pexe" cardTitle="Information Intéréssante"/>
             </div>
 
-            <Pagination cursor1='1' cursor2='2' cursor3='3' cursor4='4' currentPage='1' previousPage='0' nextPage='2'/>
+            {/* <Pagination currentPageNo={pageNo} baseUrl={cardType.searchLink + "/" + searchId} nbPage={nbPage}/> */}
         </>
     )
 }

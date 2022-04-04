@@ -35,6 +35,7 @@ const Router = () => {
                         <Route path="/recherche" element={<ResearchForm />} />
                         <Route path="/recherche/:searchId" element={<ResearchForm />} />
                         <Route path="/investisseurs/:searchId" element={<ListResearchResult cardType={investisseur} />} />
+                        <Route path="/investisseurs/:searchId/:page" element={<ListResearchResult cardType={investisseur} />} />
                         <Route path="/exemple-details-card" element={<CardDetails/>} />
                         <Route path="/authentification" element={<Authentication />} />
                         <Route path="/profile" element={<AuthenticatedComponent />}>
