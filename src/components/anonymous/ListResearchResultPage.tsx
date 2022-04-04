@@ -64,7 +64,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
 
         <>
 
-            <div className="headContainer bg bg-red-300
+            <div className="headContainer
             mt-10 mx-auto max-w-[1240px]
             xl:mx-auto
             ">
@@ -122,7 +122,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
 
             </div>
 
-            <div className="cardsContainer mt-10 mx-auto max-w-[1240px] flex flex-wrap justify-evenly bg bg-green-500
+            <div className="cardsContainer mt-10 mx-auto max-w-[1240px] flex flex-wrap justify-evenly bg 
             xl:mx-auto
             ">
                 {displayCards}
