@@ -52,7 +52,8 @@ module.exports = {
   variants: {
     extend: {
       display: ["group-hover"],
-      opacity: ["group-hover"]
+      opacity: ["group-hover"],
+      active:  ["group-active"]
     },
   },
 }
