@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../_reducers/root.reducer';
 import { userActions } from '../../_actions/user.actions';
 import { CardType } from '../../model/CardType';
-import { useLocation, useParams } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { AnyCard, getSearch } from '../../api/Api';
 import { NavLink } from 'react-router-dom';
 import ToggleButton from '../dsfrComponents/ToggleButton';
@@ -21,6 +21,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
 
     const { searchId, page } = useParams();
     const pageNo = page ? parseInt(page) : 1
+    const navigate = useNavigate()
 
     if (!searchId) throw new Error("searchId param is mandatory")
 
@@ -40,7 +41,6 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
         const element = document.getElementById('cardsContainer')
         if (!element) return;
         if (element?.offsetTop < window.scrollY) {
-            element.scrollIntoView({ behavior: "smooth" })
             window.scrollTo({ behavior: "smooth", top: element?.offsetTop - 100 })
         }
     }, [page]);
@@ -70,7 +70,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
             ">
 
                 <div className="flex">
-                    <button onClick={() => window.history.back()} className="ml-4 text-dark-text-action flex mt-4 rm-link-underline "> <img className="mr-2" src={ArrowDark} alt="Icone flèche" /> Retour </button>
+                    <button onClick={() => navigate(`/recherche/${searchId}`)} className="ml-4 text-dark-text-action flex mt-4 rm-link-underline "> <img className="mr-2" src={ArrowDark} alt="Icone flèche" /> Retour </button>
                 </div>
 
                 <div className="cardTitle mt-10 ml-4 p-2 text-base">

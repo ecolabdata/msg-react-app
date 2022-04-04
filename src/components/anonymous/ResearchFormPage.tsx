@@ -18,9 +18,9 @@ const ResearchForm: React.FC = (props) => {
     const [description, setDescription] = useState(initialSearch?.query.description || "")
 
     useEffect(() => {
-        document.querySelector('#previews')?.scrollIntoView({
-            behavior: 'smooth'
-        });
+        const element = document.getElementById('previews')
+        if (!element) return;
+        window.scrollTo({ behavior: "smooth", top: element.offsetTop - 100 })
     })
 
     const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
