@@ -34,10 +34,17 @@ const ResearchForm: React.FC = (props) => {
 
         const results = cardType.getCards(initialSearch.resp)
 
-        return <ResultResearchPreviewCard cardType={cardType} searchId={initialSearch.id} resultCount={results.length}> 
-            {results.map(x => <ResultPreviewCard cardData={x} cardType={cardType}/>)}
-        </ResultResearchPreviewCard>
-    })
+        return (
+            <ResultResearchPreviewCard cardType={cardType} searchId={initialSearch.id} resultCount={results.length}> 
+                {results.map(x => {
+                    return (
+                        <div className="ml-6 w-fit">
+                            <ResultPreviewCard cardData={x} cardType={cardType}/>
+                        </div>
+                    )
+                })}
+            </ResultResearchPreviewCard>
+    )})
 
     return (
         <>

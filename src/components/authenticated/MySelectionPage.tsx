@@ -13,7 +13,7 @@ const MySelection = () => {
         <>
             <div className="headContainer mx-auto w-3/4 ">
 
-                <button className="ml-4 text-dark-text-action flex mt-4"> <a href="/" ><img className="mr-2" src={ArrowDark} alt="Icone flèche" /> Retour </a></button>
+                <button onClick={() => window.history.back()} className="ml-4 text-dark-text-action flex mt-4 rm-link-underline "> <img className="mr-2" src={ArrowDark} alt="Icone flèche" /> Retour </button>
 
                 <div className="cardTitle  my-10 ml-4 text-base flex justify-between items-center">
 

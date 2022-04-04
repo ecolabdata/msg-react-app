@@ -16,7 +16,7 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({label, checked, color, onCha
 
     return (
         <>
-            <div className="fr-toggle w-fit m-4" style={style}>
+            <div className="fr-toggle w-fit h-10 m-4 py-4" style={style}>
                 <input onChange={onChange} checked={checked} type="checkbox" style={inputStyle} aria-describedby="toggle-698-hint-text" id={label}/>
                 <label className="fr-toggle__label text-white text-base " htmlFor={label} data-fr-checked-label="" data-fr-unchecked-label="">{label}</label>
             </div>
