@@ -1,7 +1,7 @@
 import { CardData } from '../../model/CardData';
 import { CardType } from '../../model/CardType';
 import ArrowDark from './../../assets/icons/arrow-dark-action.svg';
-import{ Rocket } from './../../assets/Icons';
+import{ Rocket } from '../../assets/Icons';
 import { Link } from 'react-router-dom';
 import Trash from './../../assets/icons/trash-fill.svg';
 import Star from './../../assets/icons/star-fill.svg';
@@ -16,10 +16,22 @@ const CardDetails = () => {
         <>
             <div className="headContainer mx-auto w-3/5 ">
 
-                <button onClick={() => window.history.back()} className="ml-4 text-dark-text-action flex mt-4 rm-link-underline "> <img className="mr-2" src={ArrowDark} alt="Icone flèche" /> Retour </button>
+                <button className="mt-4 text-dark-text-action flex no-underline">
+                    <Link to="/" className="flex no-underline">
+                        <img className="mr-2 " src={ArrowDark} alt="Icone flèche" /> 
+                        Retourner à la recherche 
+                    </Link>
+                </button>
                 
                 <div className="categoryName mt-10 min-w-40 flex">
                     
+                    {/*TODO Will work when API will be connected*/}
+                    {/* <div  style={{color}}>
+                        <SVGLogo width="25" height="25"/>
+                    </div>
+                    <p>Aide à l'innovation</p> */}
+                    
+                    {/* Simulated data */}
                     <div  className="text-[#8585F6]">
                         <Rocket className="mt-1.5 mr-2 text-sm" width="11" height="11"/>
                     </div>
@@ -33,11 +45,14 @@ const CardDetails = () => {
                         <h2 className="w-1/2 font-bold text-xl
                         lg:text-4xl">
 
+                            {/* {props.cardData.categoryName} */}
+
+                            {{/* Simulated Data */}}
                             Soutenir la méthanisation
                         </h2>
                         <div className="w-[49%] flex justify-end">
-                            <img src={Star} alt="Icône d'étoile" className="mr-4 w-6 h-6 cursor-pointer" />
-                            <img src={Trash} alt="Icône de poubelle" className="w-6 h-6 cursor-pointer" />
+                            <img src={Star} alt="Icône d'étoile" className="mr-4 w-6 h-6" />
+                            <img src={Trash} alt="Icône de poubelle" className="w-6 h-6" />
                         </div>
                     </div>
 
@@ -56,6 +71,8 @@ const CardDetails = () => {
                     <div className="flex justify-between mt-4">
                         
                         <div className="textContainer w-1/2">
+                            {/* <p>{props.cardData.objectivesAndContext}</p> */}
+                            {{/* Simulated Data */}}
                             <p> La méthanisation contribue significativement aux objectifs de la région Nouvelle-Aquitaine en matière de transition énergétique. Ces derniers,  rappelés dans la feuille de route Néoterra (ambition 6), portent sur : </p> <br/>
 
                             <ul>
@@ -81,8 +98,25 @@ const CardDetails = () => {
 
                             <h2 className="text-[22px] font-bold text-dark-text-action ">Contact</h2>
 
+                            {/* <p className="text-base w-[280px]">{props.cardData.contact[0]}</p> */}
+                            
+                            {{/* Simulated Data */}}
                             <p className="text-base w-[280px]">Service Biogaz Chaleur renouvelable Direction de l'énergie et du climat</p>
                             
+                            {/* <button
+                                onClick={() => {console.log("bouton numéro cliqué - afficher le numéro");}} 
+                                className="
+                                fr-btn fr-btn--primary
+                                w-fit px-4 h-3 py-2
+                                hover:bg-claire-bf__hover
+                                mt-6 
+                                "> 
+                                <span className="fr-fi-phone-fill w-3 h-3 mb-[10px]" aria-hidden="true"/>
+                                <span className="mt-1 ml-4 text-base">Voir les coordonnées</span>
+                                <span className="hidden">{props.cardData.contact[1]}</span>
+                            </button> */}
+
+                            {{/* Simulated Data */}}
                             <button
                                 onClick={() => {console.log("bouton numéro cliqué - afficher le numéro");}} 
                                 className="
@@ -95,6 +129,20 @@ const CardDetails = () => {
                                 <span className="mt-1 ml-4 text-base">Voir les coordonnées</span>
                             </button>
 
+                            {/* <button
+                                onClick={() => {console.log("bouton contact cliqué - rediriger vers la ressource");}} 
+                                className="
+                                fr-btn fr-btn--secondary
+                                w-fit px-4 h-3 py-2
+                                hover:bg-claire-bf__hover
+                                my-6
+                                "> 
+                                <span className="fr-fi-external-link-line w-3 h-3 mb-[10px]" aria-hidden="true"/>
+                                <span className="mt-1 ml-4 text-base">Consulter la source de l'aide</span>
+                                <a href={props.cardData.contact[2]}> Consulter la source de l'aide</a>
+                            </button> */}
+
+                            {{/* Simulated Data */}}
                             <button
                                 onClick={() => {console.log("bouton contact cliqué - rediriger vers la ressource");}} 
                                 className="
@@ -120,7 +168,13 @@ const CardDetails = () => {
                         <div className="beneficiaries">
 
                             <h2 className="text-[22px] font-bold text-dark-text-action ">Bénéficiaires</h2>
-                            
+                            {/* <ul className="mt-8>
+                                    {props.cardData.beneficiaries.map((beneficiary, index) => {
+                                        return <li key={index} className="text-base">{beneficiary}</li>
+                                    })}
+                            </ul> */}
+
+                            {{/* Simulated Data */}}
                             <ul className="mt-8">
                                 <li className="ml-6 list-disc">
                                     Entreprises (société dédiées type SAS, entreprises agricoles, développeur, coopératives, …)
@@ -138,6 +192,9 @@ const CardDetails = () => {
                         <div className="eligibilityRequirements mt-4">
 
                             <h2 className="text-[22px] font-bold text-dark-text-action ">Conditions d’éligibilité</h2>
+                            {/* <a className="mt-8" href={props.cardData.eligibilityRequirements}>Voir détail sur le site internet ci-contre</a> */}
+
+                            {{/* Simulated Data */}}
                             <a className="mt-8" href="/google.com">Voir détail sur le site internet ci-contre</a>
 
                         </div>
@@ -145,6 +202,10 @@ const CardDetails = () => {
                         <div className="dataSource mt-4">
 
                             <h2 className="text-[22px] font-bold text-dark-text-action "> Source de la donnée </h2>
+
+                            {/* <a className="mt-8" href={props.cardData.dataSource[1]}>{props.cardData.dataSource[0]}</a> */}
+
+                            {{/* Simulated Data */}}
                             <a className="mt-8" href="#">Mission transition</a>
 
                         </div>
@@ -154,10 +215,11 @@ const CardDetails = () => {
                             <p>Partager la page</p>
 
                             <ul className="mt-8 flex">
-                                <li className=""><span className="hover:bg-gray-500 0w-5 h-5 rounded-full addBorder border-2 border-white p-2 text-white fr-fi-twitter-line" aria-hidden="true"></span></li>
-                                <li className=""><span className="hover:bg-gray-500 ml-2 w-5 h-5 rounded-full addBorder border-2 border-white p-2 text-white fr-fi-linkedin-box-line" aria-hidden="true"></span></li>
-                                <li className=""><span className="hover:bg-gray-500 ml-2 w-5 h-5 rounded-full addBorder border-2 border-white p-2 text-white fr-fi-mail-line" aria-hidden="true"></span></li>
-                                <li className=""><span className="hover:bg-gray-500 ml-2 w-5 h-5 rounded-full addBorder border-2 border-white p-2 text-white fr-fi-links-fill" aria-hidden="true"></span></li>
+                                {{/* Necessary to replace the span icon elements by <img> tags, actuall the icons are note accessible by screen readers */}}
+                                <li className=""><span className=" w-5 h-5 rounded-full addBorder border-2 border-white p-2 text-white fr-fi-twitter-line" aria-hidden="true"></span></li>
+                                <li className=""><span className="ml-2 w-5 h-5 rounded-full addBorder border-2 border-white p-2 text-white fr-fi-linkedin-box-line" aria-hidden="true"></span></li>
+                                <li className=""> <a href="mailto:"> <span className="ml-2 w-5 h-5 rounded-full addBorder border-2 border-white p-2 text-white fr-fi-mail-line" aria-hidden="true"></span></a></li>
+                                <li className=""><span className="ml-2 w-5 h-5 rounded-full addBorder border-2 border-white p-2 text-white fr-fi-links-fill" aria-hidden="true"></span></li>
                             </ul>
                         </div>
 
@@ -167,6 +229,11 @@ const CardDetails = () => {
 
                         <div className="ammount">
                             <h2 className="text-[22px] font-bold text-dark-text-action ">Montant</h2>
+                            {/* <p className="mt-8">
+                                {props.cardData.amount}
+                            </p> */}
+
+                            {{/* Simulated Data */}}
                             <p className="mt-8">
                                 Aides à la décision : les études de faisabilité et études détaillées d’injection sont finançables par la Région Nouvelle-Aquitaine ou l’ADEME à hauteur de 50% à 70 % du montant des dépenses éligibles
                             </p> <br/>
