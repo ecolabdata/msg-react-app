@@ -36,7 +36,11 @@ const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = ({ c
             </div>
         </div >
 
-        <div className="cardScrollContainerX -ml-2 h-72 overflow-x-scroll overflow-y-hidden hiddenScrollBar flex items-center">
+        <div className="cardScrollContainerX
+        -ml-2 h-72 overflow-x-scroll overflow-y-hidden hiddenScrollBar flex items-center">
+            <button className="">
+                <span className="fr-fi-arrow-right-line absolute right-14 rounded-full bg-gray-400 p-0.5  text-gray-700" aria-hidden="true"></span>
+            </button> 
             {children}
         </div>
 
