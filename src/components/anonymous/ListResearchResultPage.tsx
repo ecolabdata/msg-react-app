@@ -36,21 +36,24 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
 
     console.log({ initialSearch })
 
-    const { pathname } = useLocation();
-
     useEffect(() => {
-      //window.scrollTo(0, 0);
-    }, [pathname]);
+        const element = document.getElementById('cardsContainer')
+        if (!element) return;
+        if (element?.offsetTop < window.scrollY) {
+            element.scrollIntoView({ behavior: "smooth" })
+            window.scrollTo({ behavior: "smooth", top: element?.offsetTop - 100 })
+        }
+    }, [page]);
 
     console.log(cardType.getCards(initialSearch.resp))
     const allCards = cardType.getCards(initialSearch.resp)
     const pageChunkSize = 20;
     const nbPage = Math.ceil(allCards.length / pageChunkSize)
-    console.log({allCardsLength: allCards.length, nbPage})
+    console.log({ allCardsLength: allCards.length, nbPage })
     const displayCards = allCards
         .slice(
-            (pageNo-1)*pageChunkSize,
-            pageNo*pageChunkSize
+            (pageNo - 1) * pageChunkSize,
+            pageNo * pageChunkSize
         ).map((card) => <ResultPreviewCard cardType={cardType} cardData={card} />);
 
     const handleOnSubmit = () => {
@@ -119,13 +122,13 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
 
             </div>
 
-            <div className="cardsContainer mt-10 mx-auto max-w-[80%] flex flex-wrap justify-evenly bg 
+            <div id="cardsContainer" className="cardsContainer mt-10 mx-auto max-w-[80%] flex flex-wrap justify-evenly bg 
             xl:mx-auto
             ">
                 {displayCards}
             </div>
 
-            <Pagination currentPageNo={pageNo} baseUrl={cardType.searchLink + "/" + searchId} nbPage={nbPage}/>
+            <Pagination currentPageNo={pageNo} baseUrl={cardType.searchLink + "/" + searchId} nbPage={nbPage} />
 
         </>
     )
