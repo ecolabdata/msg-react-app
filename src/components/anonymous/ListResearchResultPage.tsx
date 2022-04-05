@@ -1,17 +1,13 @@
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getSearch } from '../../api/Api';
+import { CardType } from '../../model/CardType';
+import ResultPreviewCard from '../customComponents/ResultPreviewCard';
 import DropDown from '../dsfrComponents/DropDown';
 import Pagination from '../dsfrComponents/Pagination';
+import ToggleButton from '../dsfrComponents/ToggleButton';
 // import ToggleButton from '../dsfrComponents/ToggleButton';
 import ArrowDark from './../../assets/icons/arrow-dark-action.svg';
-import ResultPreviewCard from '../customComponents/ResultPreviewCard';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../_reducers/root.reducer';
-import { userActions } from '../../_actions/user.actions';
-import { CardType } from '../../model/CardType';
-import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
-import { AnyCard, getSearch } from '../../api/Api';
-import { NavLink } from 'react-router-dom';
-import ToggleButton from '../dsfrComponents/ToggleButton';
 
 interface ListResearchResultProps {
     cardType: CardType
