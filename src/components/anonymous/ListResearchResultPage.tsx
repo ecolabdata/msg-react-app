@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getSearch } from '../../api/Api';
+import { useTitle } from '../../hooks/useTitle';
 import { CardType } from '../../model/CardType';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
 import DropDown from '../dsfrComponents/DropDown';
@@ -18,6 +19,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
     const { searchId, page } = useParams();
     const pageNo = page ? parseInt(page) : 1
     const navigate = useNavigate()
+    useTitle(`Recherche détaillé ${cardType.title}`)
 
     if (!searchId) throw new Error("searchId param is mandatory")
 
@@ -90,7 +92,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
                 <div className="researchContainer max-w-[1240px] p-6 flex flex-col bg-research-precision-container
                 lg:p-1">
 
-                    <h2 className=" bold text-xl text-center text-light-accent-green">Preciser la recherche </h2>
+                    <h2 className=" bold text-xl text-center mt-4" style={{color: cardType.color}}>Preciser la recherche </h2>
 
                     <form onSubmit={() => handleOnSubmit} className="inputsContainer p-4 flex justify-center items-middle
                     lg:justify-between lg:items-end
@@ -101,11 +103,11 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
 
                             <div className="inputNumber mr-6 flex flex-col font-light ">
                                 <label className="mb-1 text-white text-base" htmlFor="montantKEuro">Montant min. en K€</label>
-                                <input className="text-white rounded-t-md w-64 h-10 addBorder-b border-2 border-light-accent-green bg-input-background " type="number" id="montantKEuro" />
+                                <input className={`text-white rounded-t-md w-64 h-10 addBorder-b border-2 bg-input-background`} style={{borderColor: cardType.color}} type="number" id="montantKEuro" />
                             </div>
 
                             <div className="-ml-5">
-                                <DropDown borderColor="private-investors" />
+                                <DropDown borderColor={cardType.color} />
 
                             </div>
 

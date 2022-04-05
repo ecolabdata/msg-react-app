@@ -14,7 +14,7 @@ const DropDown: React.FC<DropDownProps> = (props) => {
                     Thématiques
                 </label>
 
-                <select className={`fr-select mt-1 w-64 h-10 shadow-none addBorder-b border-3 border-${props.borderColor}
+                <select style={{borderColor: props.borderColor}} className={`fr-select mt-1 w-64 h-10 shadow-none addBorder-b border-3
                 bg-input-background`} aria-describedby="select-error-desc-error" id="select-thematic" name="select-thematic">
                     <option className="font-light text-md" value="" selected disabled hidden>Toutes</option>
                     <option className="font-light text-md" value="1">Organismes publics ouverts à l’innovation</option>
