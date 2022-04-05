@@ -24,7 +24,7 @@ export const achatPrevi: CardType = {
     color: "#D8C635",
     title: "Achats publics prévisionnels",
     description: "Achats publics prévus ces trois prochaines années dans votre domaine.",
-    searchLink: "/achats-prévisionnels",
+    searchLink: "/achats-previsionnels",
     getCards: x => x.cards.marches
 }
 export const investisseur: CardType  = {
