@@ -7,7 +7,8 @@ export interface CardType {
     title: string,
     description: string,
     searchLink: string
-    getCards: (resp : ApiResponse) => AnyCard[]
+    getCards: (resp : ApiResponse) => AnyCard[],
+    
 }
 
 export const acheteurPublic : CardType = {
@@ -32,7 +33,7 @@ export const investisseur: CardType  = {
     title: "Investisseurs privés ",
     description: "Investisseurs privés adaptés à votre maturité pour votre  prochaine levée de fonds.",
     searchLink: "/investisseurs",
-    getCards: x => x.cards.investisseurs
+    getCards: x => x.cards.investisseurs,
 }
 
 export const aideInno: CardType = {

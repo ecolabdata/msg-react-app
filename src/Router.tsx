@@ -13,36 +13,38 @@ import Authentication from './components/Authentication';
 import ResearchForm from './components/anonymous/ResearchFormPage';
 import { TrackPage } from './hooks/useTrackPage';
 import ListResearchResult from './components/anonymous/ListResearchResultPage';
-import { investisseur } from './model/CardType';
+import { all as allCardType } from './model/CardType';
 import CardDetails from './components/customComponents/CardDetails';
 
 
 const Router = () => {
     localStorage.setItem('scheme', 'dark');
-    useEffect( () => {
+    useEffect(() => {
 
-    },[localStorage.scheme])
+    }, [localStorage.scheme])
 
     return (
         <>
             <Header userIsAuth={isAuth()} />
             <main className={`h-full p-6 
-                ${localStorage.scheme === 'dark' ? 'bg-[#262626]' :''}`}>
+                ${localStorage.scheme === 'dark' ? 'bg-[#262626]' : ''}`}>
                 <Routes>
                     <Route path="/" element={<TrackPage />}>
                         <Route path="/" element={<HomePage />} />
                         <Route path="/formulaire-recherche-de-solutions" element={<ResearchForm />} />
                         <Route path="/recherche" element={<ResearchForm />} />
                         <Route path="/recherche/:searchId" element={<ResearchForm />} />
-                        <Route path="/investisseurs/:searchId" element={<ListResearchResult cardType={investisseur} />} />
-                        <Route path="/investisseurs/:searchId/:page" element={<ListResearchResult cardType={investisseur} />} />
-                        <Route path="/exemple-details-card" element={<CardDetails/>} />
+                        {allCardType.map(cardType => <>
+                            <Route path={`${cardType.searchLink}/:searchId`} element={<ListResearchResult cardType={cardType} />} />
+                            <Route path={`${cardType.searchLink}/:searchId/:page`} element={<ListResearchResult cardType={cardType} />} />
+                        </>)}
+                        <Route path="/exemple-details-card" element={<CardDetails />} />
                         <Route path="/authentification" element={<Authentication />} />
                         <Route path="/profile" element={<AuthenticatedComponent />}>
                             <Route path="ma-selection" element={<MySelectionPage />} />
                             <Route path="corbeille" element={<WasteBinPage />} />
                         </Route>
-                        <Route path="*" element={<Page404 /> } />
+                        <Route path="*" element={<Page404 />} />
                     </Route>
                 </Routes>
             </main>
