@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import isAuth from './helpers/isAuth';
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -14,6 +14,7 @@ import ResearchForm from './components/anonymous/ResearchFormPage';
 import { TrackPage } from './hooks/useTrackPage';
 import ListResearchResult from './components/anonymous/ListResearchResultPage';
 import { investisseur } from './model/CardType';
+import CardDetails from './components/customComponents/CardDetails';
 
 
 const Router = () => {
@@ -31,13 +32,17 @@ const Router = () => {
                     <Route path="/" element={<TrackPage />}>
                         <Route path="/" element={<HomePage />} />
                         <Route path="/formulaire-recherche-de-solutions" element={<ResearchForm />} />
+                        <Route path="/recherche" element={<ResearchForm />} />
                         <Route path="/recherche/:searchId" element={<ResearchForm />} />
                         <Route path="/investisseurs/:searchId" element={<ListResearchResult cardType={investisseur} />} />
+                        <Route path="/investisseurs/:searchId/:page" element={<ListResearchResult cardType={investisseur} />} />
+                        <Route path="/exemple-details-card" element={<CardDetails/>} />
                         <Route path="/authentification" element={<Authentication />} />
                         <Route path="/profile" element={<AuthenticatedComponent />}>
                             <Route path="ma-selection" element={<MySelectionPage />} />
                             <Route path="corbeille" element={<WasteBinPage />} />
                         </Route>
+                        <Route path="*" element={<Page404 /> } />
                     </Route>
                 </Routes>
             </main>

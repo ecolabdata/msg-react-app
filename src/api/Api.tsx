@@ -43,7 +43,6 @@ export type Search = {
 
 
 export function getSearch(searchId : string) : Search | null {
-  localStorage.getItem(`search-${searchId}`)
   const searchDataStr = localStorage.getItem(`search-${searchId}`)
   return searchDataStr ? (JSON.parse(searchDataStr) as Search ) : null
 }

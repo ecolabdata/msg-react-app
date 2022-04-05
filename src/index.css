@@ -14,9 +14,30 @@
   overflow: hidden;
   --line-height: 22px;
   line-height: var(--line-height);
-  min-height: calc(3 * var(--line-height));
+  min-height: calc(4 * var(--line-height));
 }
 
 textarea:focus, input:focus {
   outline: 1px solid rgba(255,255,255, 0.2);
+}
+
+
+.card-animation {
+  --h-before: 181px;
+  --h-after:  240px;
+  --m-after: 0px;
+  --m-before: calc(var(--h-after)/2 - var(--h-before)/2 + var(--m-after));
+  
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  transition-duration: 400ms;
+  height: var(--h-before);
+  margin-top: var(--m-before);
+  margin-bottom: var(--m-before);
+}
+
+.card-animation:hover {
+  height: var(--h-after);
+  margin-top: var(--m-after);
+  margin-bottom: var(--m-after);
 }

@@ -10,39 +10,44 @@ import ResultResearchPreviewCard from '../customComponents/ResultResearchPreview
 const ResearchForm: React.FC = (props) => {
 
 
-    
+
     const navigate = useNavigate();
     const { searchId } = useParams();
     const initialSearch = searchId ? getSearch(searchId) : null
     console.log({ initialSearch })
     const [description, setDescription] = useState(initialSearch?.query.description || "")
-
-    useEffect(() => {
-        document.querySelector('#previews')?.scrollIntoView({ 
-            behavior: 'smooth' 
-          });
-    })
-
+    
     const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (description.length > 0) {
-            searchByQuery({ description/*, keywords*/ }).then((search) => navigate(`/recherche/${search.id}`))
+            searchByQuery({ description/*, keywords*/ }).then((search) => {
+                const element = document.getElementById('previews')
+                if (!element) return;
+                window.scrollTo({ behavior: "smooth", top: element.offsetTop - 100 })
+                return navigate(`/recherche/${search.id}`)
+            })
         }
     };
 
     const previews = initialSearch && allCardType.map(cardType => {
+
         const results = cardType.getCards(initialSearch.resp)
         if (!results) return null;
-        return <ResultResearchPreviewCard cardType={cardType} searchId={initialSearch.id} resultCount={results.length}> 
-            {results.map(x => <ResultPreviewCard cardData={x} cardType={cardType}/>)}
-        </ResultResearchPreviewCard>
+        return (
+            <ResultResearchPreviewCard cardType={cardType} searchId={initialSearch.id} resultCount={results.length}>
+                {results.map(x => <div className="ml-6 w-fit">
+                    <ResultPreviewCard cardData={x} cardType={cardType} />
+                </div>
+                )}
+            </ResultResearchPreviewCard>
+        )
     })
 
     return (
         <>
             <div className="formContainer flex flex-col items-center">
 
-                <h1 className="w-3/5 font-bold text-3xl text-center mx-auto"> Start-up greentech, trouvez automatiquement des pistes pour booster votre développement !  </h1>
+                <h1 className="w-3/5 font-bold text-4xl text-center mx-auto max-w-4xl"> Start-up greentech, trouvez automatiquement des pistes pour booster votre développement !  </h1>
 
                 <form onSubmit={(event) => handleOnSubmitForm(event)} id="keywordsForm" className="mt-8 rounded-md w-form h-form flex flex-col items-center bg-background-form">
 
@@ -57,7 +62,9 @@ const ResearchForm: React.FC = (props) => {
 
                     </div>
                 </form>
+
                 <button form="keywordsForm" className="mt-8 w-48 h-14 text-xl fr-btn fr-btn--primary capitalize" > <span className="mx-auto">rechercher !</span> </button>
+
             </div>
 
             <div id="previews" className="researchResultContainer mt-4">
