@@ -4,9 +4,12 @@ import Scrollable from '../customComponents/Scrollable';
 import Pagination from '../dsfrComponents/Pagination';
 import { useCorbeille } from '../../utils/categoris';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
+import { ApplicationContext } from '../../Router';
+import { useContext } from 'react';
 
 const WasteBin = () => {
-    const [idc1, idc2, corbeille] = useCorbeille()
+    const {usedCorbeille} = useContext(ApplicationContext)
+    const [idc1, idc2, corbeille] = usedCorbeille
     const handleOnSubmit = () => {
         console.log("Formulaire de recherche envoyé ");
     };

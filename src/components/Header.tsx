@@ -6,11 +6,12 @@ import Star from './../assets/icons/star-fill.svg';
 import LogoMSG from './../assets/msg-icon.png';
 import AvatarPopOver from './customComponents/AvatarPopOver';
 import {Route} from './../utils/routes';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { appActions } from '../_actions/app.actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../_reducers/root.reducer';
 import { useCorbeille, useFavoris } from '../utils/categoris';
+import { ApplicationContext } from '../Router';
 
 interface HeaderProps {
     userIsAuth: boolean;
@@ -18,9 +19,10 @@ interface HeaderProps {
 
 const Header = ({userIsAuth}: HeaderProps) => {
     const [burgerMenuOpen, setBurgerMenuClicked] = useState(false);
-    const [idc1, idc2, favoris] = useFavoris()
-    const [idc3, idc4, corbeille] = useCorbeille()
-    
+    const {usedFavoris, usedCorbeille} = useContext(ApplicationContext)
+    const [idc1, idc2, favoris] = usedFavoris
+    const [idc3, idc4, corbeille] = usedCorbeille
+
     const screenWidth = useSelector((state:RootState) => state?.appState.screenWidth);
     const dispatch = useDispatch();
 

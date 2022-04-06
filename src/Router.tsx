@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { createContext, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import isAuth from './helpers/isAuth';
 import Header from './components/Header'
@@ -15,19 +15,27 @@ import { TrackPage } from './hooks/useTrackPage';
 import ListResearchResult from './components/anonymous/ListResearchResultPage';
 import { all as allCardType } from './model/CardType';
 import CardDetails from './components/customComponents/CardDetails';
+import { defaultUsedCorbeille, defaultUsedFavoris, useCorbeille, UsedCorbeille, UsedFavoris, useFavoris } from './utils/categoris';
 
+export const ApplicationContext = createContext<{
+    usedFavoris: UsedFavoris,
+    usedCorbeille: UsedCorbeille}
+>({usedFavoris: defaultUsedFavoris, usedCorbeille: defaultUsedCorbeille})
 
 const Router = () => {
     localStorage.setItem('scheme', 'dark');
     useEffect(() => {
 
     }, [localStorage.scheme])
+    const usedFavoris = useFavoris()
+    const usedCorbeille = useCorbeille()
 
     return (
         <>
+        <ApplicationContext.Provider value={{usedFavoris, usedCorbeille}}>
             <Header userIsAuth={isAuth()} />
             <main className={`h-full p-6 
-                ${localStorage.scheme === 'dark' ? 'bg-[#262626]' : ''}`}>
+                ${localStorage.scheme === 'dark' ? 'bg-[#262626]' : ''}`}>  
                 <Routes>
                     <Route path="/" element={<TrackPage />}>
                         <Route path="/" element={<HomePage />} />
@@ -49,6 +57,7 @@ const Router = () => {
                 </Routes>
             </main>
             <Footer />
+            </ApplicationContext.Provider>
         </>
 
     );

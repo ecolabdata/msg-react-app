@@ -4,9 +4,12 @@
     import Pagination from '../dsfrComponents/Pagination';
 import { useFavoris } from '../../utils/categoris';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
+import { useContext } from 'react';
+import { ApplicationContext } from '../../Router';
 
 const MySelection = () => {
-    const [idc1, idc2, favoris] = useFavoris()
+    const {usedFavoris} = useContext(ApplicationContext)
+    const [idc1, idc2, favoris] = usedFavoris
     const handleOnSubmit = () => {
         console.log("Formulaire de recherche envoyé ");
     };
@@ -24,7 +27,7 @@ const MySelection = () => {
                         <div className="flex items-center">
                             Ma sélection <span className="mt-1 mx-2 text-sm
                             font-extralight
-                            lg:text-xl">{`(TODO)`}</span>
+                            lg:text-xl">{`${Object.keys(favoris).length}`}</span>
                         </div>
                     </h2>
 

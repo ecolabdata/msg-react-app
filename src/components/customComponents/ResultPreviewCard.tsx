@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AnyCard } from '../../api/Api';
 import { Star, Trash } from '../../assets/Icons';
-import { useCorbeille, useFavoris } from '../../utils/categoris';
 import { CardType } from '../../model/CardType';
+import { ApplicationContext } from '../../Router';
+import { UsedCorbeille, UsedFavoris } from '../../utils/categoris';
 
 interface ResultPreviewCardProps {
     cardData : AnyCard
@@ -11,11 +12,12 @@ interface ResultPreviewCardProps {
 }
 
 const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({cardData, cardType}) => {
-    
+    const {usedFavoris, usedCorbeille} = useContext(ApplicationContext)
+    const [toggleFavori, isFavori] = usedFavoris
+    const [toggleInCorbeille, isInCorbeille] = usedCorbeille
+
     const params = useParams()
     const navigate = useNavigate();
-    const [toggleFavori, isFavori] = useFavoris()
-    const [toggleInCorbeille, isInCorbeille] = useCorbeille()
     const currentPageURL = window.location.pathname.split('/');
     const userIsOnResearchPage = currentPageURL[1] === "recherche" ? true : false;
     const [toggle, setToggle] = useState(true)

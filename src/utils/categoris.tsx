@@ -20,3 +20,7 @@ export const buildUseCategorie = (categorie : string) => () : [(card: AnyCard) =
 
 export const useFavoris = buildUseCategorie("favori")
 export const useCorbeille= buildUseCategorie("corbeille")
+export type UsedFavoris = ReturnType<typeof useFavoris>
+export type UsedCorbeille = ReturnType<typeof useCorbeille>
+export const defaultUsedFavoris : UsedFavoris =  [(card: AnyCard) => {}, (card: AnyCard) => true, {}, (x: Record<string, AnyCard>) => {}]
+export const defaultUsedCorbeille : UsedCorbeille =  [(card: AnyCard) => {}, (card: AnyCard) => true, {}, (x: Record<string, AnyCard>) => {}]
