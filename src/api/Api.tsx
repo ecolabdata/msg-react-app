@@ -13,7 +13,7 @@ export type Collectivite = typeof mockApiResponse.cards.collectivites[number]//D
 export type Marche = typeof mockApiResponse.cards.marches[number]//deduced from DECP
 export type Investisseur = typeof mockApiResponse.cards.investisseurs[number]//From GI file
 
-export type AnyCard = Partial<Aide> & Partial<Marche> & Partial<Collectivite> & Partial<Investisseur>
+export type AnyCard = Partial<Aide> & Partial<Marche> & Partial<Collectivite> & Partial<Investisseur>  & {id:string}
 
 export type ApiResponse = typeof mockApiResponse
 
@@ -31,18 +31,28 @@ export function getSearch(searchId : string) : Search | null {
 
 type Test<T> = Record<CardTypeName, T>
 
-const handleResp = (query : Query, resp : ApiResponse, ctn: CardTypeName |  "lol") => {
+const MAX_QUERY_STORED = 10;
+const getNextQueryId = () => {
+  const last = localStorage.getItem(`lastQueryId`)
+  const next = last ? ((JSON.parse(last) as number + 1)  % MAX_QUERY_STORED) : 0;
+  localStorage.setItem(`lastQueryId`, JSON.stringify(next))
+  return next.toString();
+}
+
+const handleResp = (query : Query, resp : ApiResponse) => {
   const queryStr = JSON.stringify(query);
-  const queryId = sha1(queryStr).slice(0, 8);
+  const queryId = (getNextQueryId() ) //sha1(queryStr).slice(0, 8);
   const cards = {
     collectivites: resp.cards.collectivites.map(x => {return {...x, id: buildId(x)}}),
     marches: resp.cards.marches.map(x => {return {...x, id: buildId(x)}}),
     investisseurs: resp.cards.investisseurs.map(x => {return {...x, id: buildId(x)}}),
     aides: resp.cards.aides.map(x => {return {...x, id: buildId(x)}})
   }
-  const toto = cards[ctn]
   const search = {id: queryId, query, resp, cards};
-  localStorage.setItem(`search-${queryId}`, JSON.stringify(search))
+  const jsonStr = JSON.stringify(search)
+  console.log({searchSize: new Blob([jsonStr]).size})
+  localStorage.setItem(`search-${queryId}`, jsonStr)
+  
   return search;
 }
 

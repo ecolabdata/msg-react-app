@@ -51,7 +51,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
     }, [page]);
 
     console.log(initialSearch.resp.cards[cardType.apiName])
-    const allCards = initialSearch.resp.cards[cardType.apiName]
+    const allCards = initialSearch.cards[cardType.apiName]
     const pageChunkSize = 20;
     const nbPage = Math.ceil(allCards.length / pageChunkSize)
     console.log({ allCardsLength: allCards.length, nbPage })

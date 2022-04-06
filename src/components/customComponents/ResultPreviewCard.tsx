@@ -1,10 +1,9 @@
-import { useNavigate, useParams, Link } from 'react-router-dom';
-import {Trash, Star} from '../../assets/Icons';
-import ArrowInvestors from './../../assets/icons/arrow-private-investors.svg';
-import { Aide, AnyCard, Collectivite, Investisseur, Marche } from '../../api/Api';
-import { CardType } from '../../model/CardType';
 import { useState } from 'react';
-import { CardData } from '../../model/CardData';
+import { useNavigate, useParams } from 'react-router-dom';
+import { AnyCard } from '../../api/Api';
+import { Star, Trash } from '../../assets/Icons';
+import { useFavoris } from '../../favoris';
+import { CardType } from '../../model/CardType';
 
 interface ResultPreviewCardProps {
     cardData : AnyCard
@@ -15,7 +14,7 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({cardData, cardType
     
     const params = useParams()
     const navigate = useNavigate();
-    //const [favoris, setFavoris] = useLocalStorage<Record<string, CardData>>("favoris", {})
+    const [toggleFavori, isFavori] = useFavoris()
     const currentPageURL = window.location.pathname.split('/');
     const userIsOnResearchPage = currentPageURL[1] === "recherche" ? true : false;
     const [toggle, setToggle] = useState(true)
@@ -31,7 +30,7 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({cardData, cardType
                 <p className="text-xs flex-1" style={{color: cardType.color}}> Pexe ???</p>
                 <div className="mb-2 opacity-0 flex flex-1 justify-end transition-opacity duration-200 group-hover:opacity-100" >
                     <div className="flex justify-between w-[43px]">
-                        <button className="cursor-pointer" onClick={() => setToggle(!toggle)}>
+                        <button className="cursor-pointer" style={{color: isFavori(cardData) ?"yellow":undefined}} onClick={() => toggleFavori(cardData)}>
                             <Star/>
                         </button>
                         <button className="cursor-pointer" style={{color: toggle?"red":undefined}} onClick={() => setToggle(!toggle)}>
