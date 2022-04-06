@@ -2,9 +2,11 @@ import ArrowDark from './../../assets/icons/arrow-dark-action.svg';
 import DropDown from '../dsfrComponents/DropDown'
 import Scrollable from '../customComponents/Scrollable';
 import Pagination from '../dsfrComponents/Pagination';
+import { useCorbeille } from '../../utils/categoris';
+import ResultPreviewCard from '../customComponents/ResultPreviewCard';
 
 const WasteBin = () => {
-    
+    const [idc1, idc2, corbeille] = useCorbeille()
     const handleOnSubmit = () => {
         console.log("Formulaire de recherche envoyé ");
     };
@@ -52,7 +54,7 @@ const WasteBin = () => {
             </div>
 
             <div className="cardsContainer mx-auto w-3/4 justify-center flex flex-wrap">
-                    <Scrollable emetor="Pexe" cardTitle="Information Intéréssante"/>
+                {Object.values(corbeille).map((card) => <ResultPreviewCard cardType={card.cardType} cardData={card} />)}
             </div>
 
             {/* <Pagination currentPageNo={pageNo} baseUrl={cardType.searchLink + "/" + searchId} nbPage={nbPage}/> */}

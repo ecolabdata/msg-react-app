@@ -10,6 +10,7 @@ import { useState, useEffect } from 'react';
 import { appActions } from '../_actions/app.actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../_reducers/root.reducer';
+import { useCorbeille, useFavoris } from '../utils/categoris';
 
 interface HeaderProps {
     userIsAuth: boolean;
@@ -17,7 +18,9 @@ interface HeaderProps {
 
 const Header = ({userIsAuth}: HeaderProps) => {
     const [burgerMenuOpen, setBurgerMenuClicked] = useState(false);
-
+    const [idc1, idc2, favoris] = useFavoris()
+    const [idc3, idc4, corbeille] = useCorbeille()
+    
     const screenWidth = useSelector((state:RootState) => state?.appState.screenWidth);
     const dispatch = useDispatch();
 
@@ -73,7 +76,7 @@ const Header = ({userIsAuth}: HeaderProps) => {
                                 
                                 <div className="flex flex-col">
                                     <p className="font-bold"> {route.name} </p>
-                                    <p className="text-xs"> X pistes </p>
+                                    <p className="text-xs"> {route.key === 'SELECTION' ? Object.keys(favoris).length : Object.keys(corbeille).length} pistes </p>
                                 </div>
 
                             </div>

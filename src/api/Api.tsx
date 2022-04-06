@@ -1,7 +1,7 @@
 import mockApiResponse from './mock_api_resp.json'
 import sha1 from 'sha1';
 import { canonicalize } from 'json-canonicalize';
-import { CardType } from '../model/CardType';
+import { achatPrevi, acheteurPublic, aideClient, CardType, investisseur } from '../model/CardType';
 
 export const buildId = (obj: any) => sha1(canonicalize(obj))
 
@@ -13,7 +13,7 @@ export type Collectivite = typeof mockApiResponse.cards.collectivites[number]//D
 export type Marche = typeof mockApiResponse.cards.marches[number]//deduced from DECP
 export type Investisseur = typeof mockApiResponse.cards.investisseurs[number]//From GI file
 
-export type AnyCard = Partial<Aide> & Partial<Marche> & Partial<Collectivite> & Partial<Investisseur>  & {id:string}
+export type AnyCard = Partial<Aide> & Partial<Marche> & Partial<Collectivite> & Partial<Investisseur>  & {id:string, cardType:CardType}
 
 export type ApiResponse = typeof mockApiResponse
 
@@ -43,10 +43,10 @@ const handleResp = (query : Query, resp : ApiResponse) => {
   const queryStr = JSON.stringify(query);
   const queryId = getNextQueryId() //sha1(queryStr).slice(0, 8);
   const cards = {
-    collectivites: resp.cards.collectivites.map(x => {return {...x, id: buildId(x)}}),
-    marches: resp.cards.marches.map(x => {return {...x, id: buildId(x)}}),
-    investisseurs: resp.cards.investisseurs.map(x => {return {...x, id: buildId(x)}}),
-    aides: resp.cards.aides.map(x => {return {...x, id: buildId(x)}})
+    collectivites: resp.cards.collectivites.map(x => {return {...x, id: buildId(x), cardType: acheteurPublic}}),
+    marches: resp.cards.marches.map(x => {return {...x, id: buildId(x), cardType: achatPrevi}}),
+    investisseurs: resp.cards.investisseurs.map(x => {return {...x, id: buildId(x), cardType: investisseur}}),
+    aides: resp.cards.aides.map(x => {return {...x, id: buildId(x), cardType: aideClient}})
   }
   const search = {id: queryId, query, resp, cards};
   const jsonStr = JSON.stringify(search)
