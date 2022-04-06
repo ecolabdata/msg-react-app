@@ -1,25 +1,17 @@
 import mockApiResponse from './mock_api_resp.json'
 import sha1 from 'sha1';
+import { canonicalize } from 'json-canonicalize';
+import { CardType } from '../model/CardType';
 
-/*
-  From old FTE file
-*/
-export type Aide = typeof mockApiResponse.cards.aides[0]
+export const buildId = (obj: any) => sha1(canonicalize(obj))
 
-/*
-  Deduced from DECP
-*/
-export type Collectivite = typeof mockApiResponse.cards.collectivites[0]
+export const cardTypeNames = ["collectivites", "marches", "investisseurs", "aides"] as const;
+export type CardTypeName = typeof cardTypeNames[number];
 
-/*
-  deduced from DECP
-*/
-export type Marche = typeof mockApiResponse.cards.marches[0]
-
-/*
-
-*/
-export type Investisseur = typeof mockApiResponse.cards.investisseurs[0]
+export type Aide = typeof mockApiResponse.cards.aides[number] //From old FTE file
+export type Collectivite = typeof mockApiResponse.cards.collectivites[number]//Deduced from DECP
+export type Marche = typeof mockApiResponse.cards.marches[number]//deduced from DECP
+export type Investisseur = typeof mockApiResponse.cards.investisseurs[number]//From GI file
 
 export type AnyCard = Partial<Aide> & Partial<Marche> & Partial<Collectivite> & Partial<Investisseur>
 
@@ -29,11 +21,7 @@ export type Query = {
   description:string
 }
 
-export type Search = {
-  id: string,
-  query: Query,
-  resp: ApiResponse
-};
+export type Search = ReturnType<typeof handleResp>
 
 
 export function getSearch(searchId : string) : Search | null {
@@ -41,15 +29,26 @@ export function getSearch(searchId : string) : Search | null {
   return searchDataStr ? (JSON.parse(searchDataStr) as Search ) : null
 }
 
-export function searchByQuery(query : Query) {
+type Test<T> = Record<CardTypeName, T>
+
+const handleResp = (query : Query, resp : ApiResponse, ctn: CardTypeName |  "lol") => {
   const queryStr = JSON.stringify(query);
   const queryId = sha1(queryStr).slice(0, 8);
+  const cards = {
+    collectivites: resp.cards.collectivites.map(x => {return {...x, id: buildId(x)}}),
+    marches: resp.cards.marches.map(x => {return {...x, id: buildId(x)}}),
+    investisseurs: resp.cards.investisseurs.map(x => {return {...x, id: buildId(x)}}),
+    aides: resp.cards.aides.map(x => {return {...x, id: buildId(x)}})
+  }
+  const toto = cards[ctn]
+  const search = {id: queryId, query, resp, cards};
+  localStorage.setItem(`search-${queryId}`, JSON.stringify(search))
+  return search;
+}
+
+export function searchByQuery(query : Query) {
   //TODO default params
-  return searchRequest(query.description, [], 0, 1000000).then(resp => {
-    const search : Search = {id: queryId, query, resp}
-    localStorage.setItem(`search-${queryId}`, JSON.stringify(search))
-    return search;
-  });
+  return searchRequest(query.description, [], 0, 1000000).then(resp => handleResp(query, resp));
 }
 
 

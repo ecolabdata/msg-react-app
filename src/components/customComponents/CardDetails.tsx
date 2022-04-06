@@ -2,7 +2,6 @@ import { CardData } from '../../model/CardData';
 import { CardType } from '../../model/CardType';
 import ArrowDark from './../../assets/icons/arrow-dark-action.svg';
 import{ Rocket } from './../../assets/Icons';
-import { Link } from 'react-router-dom';
 import Trash from './../../assets/icons/trash-fill.svg';
 import Star from './../../assets/icons/star-fill.svg';
 interface CardDetailsProps { 

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getSearch } from '../../api/Api';
+import { AnyCard, getSearch } from '../../api/Api';
 import { useTitle } from '../../hooks/useTitle';
-import { CardType } from '../../model/CardType';
+import { all, CardType } from '../../model/CardType';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
 import DropDown from '../dsfrComponents/DropDown';
 import Pagination from '../dsfrComponents/Pagination';
@@ -47,8 +47,8 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
         }
     }, [page]);
 
-    console.log(cardType.getCards(initialSearch.resp))
-    const allCards = cardType.getCards(initialSearch.resp)
+    console.log(initialSearch.resp.cards[cardType.apiName])
+    const allCards = initialSearch.resp.cards[cardType.apiName]
     const pageChunkSize = 20;
     const nbPage = Math.ceil(allCards.length / pageChunkSize)
     console.log({ allCardsLength: allCards.length, nbPage })
