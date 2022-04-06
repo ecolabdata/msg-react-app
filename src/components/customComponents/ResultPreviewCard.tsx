@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AnyCard } from '../../api/Api';
 import { Star, Trash } from '../../assets/Icons';
-import { useFavoris } from '../../favoris';
+import { useCorbeille, useFavoris } from '../../utils/categoris';
 import { CardType } from '../../model/CardType';
 
 interface ResultPreviewCardProps {
@@ -15,6 +15,7 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({cardData, cardType
     const params = useParams()
     const navigate = useNavigate();
     const [toggleFavori, isFavori] = useFavoris()
+    const [toggleInCorbeille, isInCorbeille] = useCorbeille()
     const currentPageURL = window.location.pathname.split('/');
     const userIsOnResearchPage = currentPageURL[1] === "recherche" ? true : false;
     const [toggle, setToggle] = useState(true)
@@ -33,7 +34,7 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({cardData, cardType
                         <button className="cursor-pointer" style={{color: isFavori(cardData) ?"yellow":undefined}} onClick={() => toggleFavori(cardData)}>
                             <Star/>
                         </button>
-                        <button className="cursor-pointer" style={{color: toggle?"red":undefined}} onClick={() => setToggle(!toggle)}>
+                        <button className="cursor-pointer" style={{color: isInCorbeille(cardData)?"red":undefined}} onClick={() => toggleInCorbeille(cardData)}>
                             <Trash />
                         </button>
                     </div>

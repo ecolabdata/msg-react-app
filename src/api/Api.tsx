@@ -41,7 +41,7 @@ const getNextQueryId = () => {
 
 const handleResp = (query : Query, resp : ApiResponse) => {
   const queryStr = JSON.stringify(query);
-  const queryId = (getNextQueryId() ) //sha1(queryStr).slice(0, 8);
+  const queryId = getNextQueryId() //sha1(queryStr).slice(0, 8);
   const cards = {
     collectivites: resp.cards.collectivites.map(x => {return {...x, id: buildId(x)}}),
     marches: resp.cards.marches.map(x => {return {...x, id: buildId(x)}}),
