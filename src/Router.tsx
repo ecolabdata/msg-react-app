@@ -35,7 +35,7 @@ const Router = () => {
                         <Route path="/recherche" element={<ResearchForm />} />
                         <Route path="/recherche/:searchId" element={<ResearchForm />} />
                         {allCardType.map(cardType => <>
-                            <Route path={`${cardType.searchLink}/:searchId`} element={<ListResearchResult cardType={cardType} />} />
+                            <Route path={`${cardType.searchLink}/:searchId`} element={<ListResearchResult cardType={cardType} />}/>
                             <Route path={`${cardType.searchLink}/:searchId/:page`} element={<ListResearchResult cardType={cardType} />} />
                         </>)}
                         <Route path="/exemple-details-card" element={<CardDetails />} />
