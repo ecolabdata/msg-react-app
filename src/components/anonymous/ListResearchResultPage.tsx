@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Navigate  } from 'react-router-dom';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AnyCard, getSearch } from '../../api/Api';
 import { useTitle } from '../../hooks/useTitle';
@@ -17,7 +18,9 @@ interface ListResearchResultProps {
 const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => {
 
     const { searchId, page } = useParams();
+    const redirect = <Navigate  to={`${cardType.searchLink}/${searchId}/1`} replace={true}/>
     const pageNo = page ? parseInt(page) : 1
+    console.log(pageNo)
     const navigate = useNavigate()
     useTitle(`Recherche détaillé ${cardType.title}`)
 
@@ -62,6 +65,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
         console.log("Formulaire de recherche envoyé ");
     }
 
+    if (!page) return redirect;
     return (
 
         <>
