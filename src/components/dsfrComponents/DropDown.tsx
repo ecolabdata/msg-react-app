@@ -1,31 +1,23 @@
 
 interface DropDownProps {
     borderColor: string;
+    title: string;
+    usedState: [string, (x: string) => void]
+    values: Record<string, string>
 }
-const DropDown: React.FC<DropDownProps> = (props) => { 
-
-
-    return (
-
-        <>
-            <div className="fr-select-group">
-
-                <label className="mb-1 text-white text-base font-light" htmlFor="select-thematic">
-                    Thématiques
-                </label>
-
-                <select style={{borderColor: props.borderColor}} className={`fr-select mt-1 w-64 h-10 shadow-none addBorder-b border-3
-                bg-input-background`} aria-describedby="select-error-desc-error" id="select-thematic" name="select-thematic">
-                    <option className="font-light text-md" value="" selected disabled hidden>Toutes</option>
-                    <option className="font-light text-md" value="1">Organismes publics ouverts à l’innovation</option>
-                    <option className="font-light text-md" value="2">Achats publics prévisionnels</option>
-                    <option className="font-light text-md" value="3">Investisseurs privés</option>
-                    <option className="font-light text-md" value="4">Aides à l’innovation</option>
-                    <option className="font-light text-md" value="5">Aides aux clients</option>
-                </select>
-            </div>
-        </>
-    ) 
-}; 
+const DropDown: React.FC<DropDownProps> = ({ borderColor, title, usedState, values }) => {
+    const [state, setState] = usedState
+    return <div className="fr-select-group">
+        <label className="mb-1 text-white text-base font-light" htmlFor="select-thematic">
+            {title}
+        </label>
+        <select style={{ borderColor }} className={`fr-select mt-1 w-64 h-10 shadow-none addBorder-b border-3
+                bg-input-background`} aria-describedby="select-error-desc-error" id="select-thematic" name="select-thematic" onChange={e => setState(e.target.value)}>
+            {Object.entries(values).map(([key, value]) => {
+                return <option className="font-light text-md" value={key} selected={value===state}>{value}</option>
+            })}
+        </select>
+    </div>
+};
 
 export default DropDown;

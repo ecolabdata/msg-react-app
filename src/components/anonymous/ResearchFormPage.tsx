@@ -9,7 +9,7 @@ import ResultResearchPreviewCard from '../customComponents/ResultResearchPreview
 
 
 const ResearchForm: React.FC = (props) => {
-    const {usedCorbeille} = useContext(ApplicationContext)
+    const { usedCorbeille } = useContext(ApplicationContext)
     const [toggleInCorbeille, isInCorbeille] = usedCorbeille
 
     const navigate = useNavigate();
@@ -17,14 +17,18 @@ const ResearchForm: React.FC = (props) => {
     const initialSearch = searchId ? getSearch(searchId) : null
     console.log({ initialSearch })
     const [description, setDescription] = useState(initialSearch?.query.description || "")
-    
+
+    useEffect(() => {
+        const element = document.getElementById('previews')
+        if (!element) return;
+        window.scrollTo({ behavior: "smooth", top: element.offsetTop - window.innerHeight*0.20 })
+    }, [searchId]);
+
     const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (description.length > 0) {
             searchByQuery({ description/*, keywords*/ }).then((search) => {
-                const element = document.getElementById('previews')
-                if (!element) return;
-                window.scrollTo({ behavior: "smooth", top: element.offsetTop - 100 })
+ 
                 return navigate(`/recherche/${search.id}`)
             })
         }
@@ -32,7 +36,7 @@ const ResearchForm: React.FC = (props) => {
 
     const previews = initialSearch && allCardType.map(cardType => {
 
-        const results : AnyCard[] = initialSearch.cards[cardType.apiName]
+        const results: AnyCard[] = initialSearch.cards[cardType.apiName]
         if (!results) return null;
         return (
             <ResultResearchPreviewCard cardType={cardType} searchId={initialSearch.id} resultCount={results.length}>
@@ -68,9 +72,9 @@ const ResearchForm: React.FC = (props) => {
 
             </div>
 
-            <div id="previews" className="researchResultContainer mt-4 ml-[66px">
+            {previews && <div id="previews" className="researchResultContainer mt-4 ml-[66px">
                 {previews}
-            </div>
+            </div>}
         </>
     )
 };

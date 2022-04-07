@@ -13,7 +13,7 @@ export type Collectivite = typeof mockApiResponse.cards.collectivites[number]//D
 export type Marche = typeof mockApiResponse.cards.marches[number]//deduced from DECP
 export type Investisseur = typeof mockApiResponse.cards.investisseurs[number]//From GI file
 
-export type AnyCard = Partial<Aide> & Partial<Marche> & Partial<Collectivite> & Partial<Investisseur>  & {id:string, cardType:CardType}
+export type AnyCard = Partial<Aide> & Partial<Marche> & Partial<Collectivite> & Partial<Investisseur>  & {id:string, cardTypeName:string}
 
 export type ApiResponse = typeof mockApiResponse
 
@@ -29,8 +29,6 @@ export function getSearch(searchId : string) : Search | null {
   return searchDataStr ? (JSON.parse(searchDataStr) as Search ) : null
 }
 
-type Test<T> = Record<CardTypeName, T>
-
 const MAX_QUERY_STORED = 10;
 const getNextQueryId = () => {
   const last = localStorage.getItem(`lastQueryId`)
@@ -43,10 +41,10 @@ const handleResp = (query : Query, resp : ApiResponse) => {
   const queryStr = JSON.stringify(query);
   const queryId = getNextQueryId() //sha1(queryStr).slice(0, 8);
   const cards = {
-    collectivites: resp.cards.collectivites.map(x => {return {...x, id: buildId(x), cardType: acheteurPublic}}),
-    marches: resp.cards.marches.map(x => {return {...x, id: buildId(x), cardType: achatPrevi}}),
-    investisseurs: resp.cards.investisseurs.map(x => {return {...x, id: buildId(x), cardType: investisseur}}),
-    aides: resp.cards.aides.map(x => {return {...x, id: buildId(x), cardType: aideClient}})
+    collectivites: resp.cards.collectivites.map(x => {return {...x, id: buildId(x), cardTypeName: acheteurPublic.name}}),
+    marches: resp.cards.marches.map(x => {return {...x, id: buildId(x), cardTypeName: achatPrevi.name}}),
+    investisseurs: resp.cards.investisseurs.map(x => {return {...x, id: buildId(x), cardTypeName: investisseur.name}}),
+    aides: resp.cards.aides.map(x => {return {...x, id: buildId(x), cardTypeName: aideClient.name}})
   }
   const search = {id: queryId, query, resp, cards};
   const jsonStr = JSON.stringify(search)

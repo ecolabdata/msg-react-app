@@ -1,14 +1,11 @@
-import { useContext, useEffect, useState } from 'react';
-import { Navigate  } from 'react-router-dom';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { AnyCard, getSearch } from '../../api/Api';
 import { useTitle } from '../../hooks/useTitle';
-import { all, CardType } from '../../model/CardType';
+import { CardType } from '../../model/CardType';
 import { ApplicationContext } from '../../Router';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
-import DropDown from '../dsfrComponents/DropDown';
 import Pagination from '../dsfrComponents/Pagination';
-import ToggleButton from '../dsfrComponents/ToggleButton';
 // import ToggleButton from '../dsfrComponents/ToggleButton';
 import ArrowDark from './../../assets/icons/arrow-dark-action.svg';
 
@@ -33,11 +30,12 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
 
     if (!initialSearch) throw new Error("initialSearch is mandatory")
 
-    const [toggles, setToggles] = useState<Record<string, boolean>>({
-        'Venture Capital': false,
-        'Business Angel': false,
-        'Corporate': false
-    });
+    //Not available with current vesion of API
+    // const [toggles, setToggles] = useState<Record<string, boolean>>({
+    //     'Venture Capital': false,
+    //     'Business Angel': false,
+    //     'Corporate': false
+    // });
 
     console.log({ initialSearch })
 
@@ -48,7 +46,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
             const element = document.getElementById('cardsContainer')
             if (!element) return;
             if (element?.offsetTop < window.scrollY) {
-                window.scrollTo({ behavior: "smooth", top: element?.offsetTop - 100 })
+                window.scrollTo({ behavior: "smooth", top: element?.offsetTop - window.innerHeight * 0.15 })
             }
         }
     }, [page]);
@@ -112,18 +110,12 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
                                 <label className="mb-1 text-white text-base" htmlFor="montantKEuro">Montant min. en K€</label>
                                 <input className={`text-white rounded-t-md w-64 h-10 addBorder-b border-2 bg-input-background`} style={{borderColor: cardType.color}} type="number" id="montantKEuro" />
                             </div>
-
-                            <div className="-ml-5">
-                                <DropDown borderColor={cardType.color} />
-
-                            </div>
-
                         </div>
 
-                        <div className="toggleButtons w-fit flex flex-col
+                        {/* <div className="toggleButtons w-fit flex flex-col
                         lg:flex-row lg:mb-6">
                             {Object.keys(toggles).map(x => <ToggleButton label={x} checked={toggles[x]} color={cardType.color} onChange={e => setToggles({ ...toggles, [x]: !toggles[x] })} />)}
-                        </div>
+                        </div> */}
 
                     </form>
 

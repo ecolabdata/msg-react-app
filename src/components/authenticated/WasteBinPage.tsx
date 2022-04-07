@@ -5,11 +5,13 @@ import Pagination from '../dsfrComponents/Pagination';
 import { useCorbeille } from '../../utils/categoris';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
 import { ApplicationContext } from '../../Router';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
+import { all, byName, dropdownValues } from '../../model/CardType';
 
 const WasteBin = () => {
     const {usedCorbeille} = useContext(ApplicationContext)
     const [idc1, idc2, corbeille] = usedCorbeille
+    const [selectedCardTypeName, setSelectedCardTypeName] = useState("all")
     const handleOnSubmit = () => {
         console.log("Formulaire de recherche envoyé ");
     };
@@ -48,8 +50,7 @@ const WasteBin = () => {
                     <p className=" bold text-xl text-center text-blue-france-main">Filtrer </p>
 
                     <form onSubmit={() => handleOnSubmit()} className="inputsContainer flex">
-                        <DropDown borderColor="blue-france-main"/>
-
+                        <DropDown borderColor="blue-france-main" title='Type de piste' usedState={[selectedCardTypeName, setSelectedCardTypeName]} values={{"all": "Toutes", ...dropdownValues}}/>
                     </form>
 
                 </div>
@@ -57,7 +58,7 @@ const WasteBin = () => {
             </div>
 
             <div className="cardsContainer mx-auto w-3/4 justify-center flex flex-wrap">
-                {Object.values(corbeille).map((card) => <ResultPreviewCard cardType={card.cardType} cardData={card} />)}
+                {Object.values(corbeille).filter(x => selectedCardTypeName === "all" || selectedCardTypeName === x.cardTypeName).map((card) => <ResultPreviewCard cardType={byName[card.cardTypeName]} cardData={card} />)}
             </div>
 
             {/* <Pagination currentPageNo={pageNo} baseUrl={cardType.searchLink + "/" + searchId} nbPage={nbPage}/> */}
