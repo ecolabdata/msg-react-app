@@ -24,7 +24,7 @@ const MySelection = () => {
                         <div className="flex items-center">
                             Ma sélection <span className="mt-1 mx-2 text-sm
                             font-extralight
-                            lg:text-xl">{`${Object.keys(favoris).length}`}</span>
+                            lg:text-xl">{`(${Object.keys(favoris).length})`}</span>
                         </div>
                     </h2>
 

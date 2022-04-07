@@ -27,7 +27,7 @@ const WasteBin = () => {
                         <div className="flex items-center">
                             Ma Corbeille <span className="mt-1 mx-2 text-sm
                             font-extralight
-                            lg:text-xl">{`(TODO)`}</span>
+                            lg:text-xl">{`(${Object.keys(corbeille).length})`}</span>
                         </div>
                     </h2>
 
