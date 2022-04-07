@@ -18,7 +18,8 @@ export type AnyCard = Partial<Aide> & Partial<Marche> & Partial<Collectivite> & 
 export type ApiResponse = typeof mockApiResponse
 
 export type Query = {
-  description:string
+  description:string,
+  secteurs: string[]
 }
 
 export type Search = ReturnType<typeof handleResp>
@@ -56,7 +57,7 @@ const handleResp = (query : Query, resp : ApiResponse) => {
 
 export function searchByQuery(query : Query) {
   //TODO default params
-  return searchRequest(query.description, [], 0, 1000000).then(resp => handleResp(query, resp));
+  return searchRequest(query.description, query.secteurs, 0, 1000000).then(resp => handleResp(query, resp));
 }
 
 
