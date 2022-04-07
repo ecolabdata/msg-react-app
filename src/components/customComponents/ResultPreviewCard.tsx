@@ -21,6 +21,7 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({cardData, cardType
     const currentPageURL = window.location.pathname.split('/');
     const userIsOnResearchPage = currentPageURL[1] === "recherche" ? true : false;
     const [toggle, setToggle] = useState(true)
+    //const achivedStyle = isInCorbeille(cardData) ? {"opacity": 0.3, "filter": "grayscale(50%)" } : {}
     return <div className={`cardContainer group rounded-r -6 ml-6 min-w-282 max-w-[282px]  p-4 flex flex-col
                     addBorder-l border-l-3 
                     hover:shadow-xl
@@ -33,10 +34,10 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({cardData, cardType
                 <p className="text-xs flex-1" style={{color: cardType.color}}> Pexe ???</p>
                 <div className="mb-2 opacity-0 flex flex-1 justify-end transition-opacity duration-200 group-hover:opacity-100" >
                     <div className="flex justify-between w-[43px]">
-                        <button className="cursor-pointer" style={{color: isFavori(cardData) ?"yellow":undefined}} onClick={() => toggleFavori(cardData)}>
+                        <button className="cursor-pointer" style={{color: isFavori(cardData) ? "yellow" : undefined}} onClick={() => toggleFavori(cardData)}>
                             <Star/>
                         </button>
-                        <button className="cursor-pointer" style={{color: isInCorbeille(cardData)?"red":undefined}} onClick={() => toggleInCorbeille(cardData)}>
+                        <button className="cursor-pointer" style={{color: isInCorbeille(cardData) ? "red" : undefined}} onClick={() => toggleInCorbeille(cardData)}>
                             <Trash />
                         </button>
                     </div>

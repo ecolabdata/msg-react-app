@@ -10,7 +10,6 @@ import { useState, useEffect, useContext } from 'react';
 import { appActions } from '../_actions/app.actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../_reducers/root.reducer';
-import { useCorbeille, useFavoris } from '../utils/categoris';
 import { ApplicationContext } from '../Router';
 
 interface HeaderProps {

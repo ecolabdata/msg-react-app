@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Navigate  } from 'react-router-dom';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AnyCard, getSearch } from '../../api/Api';
 import { useTitle } from '../../hooks/useTitle';
 import { all, CardType } from '../../model/CardType';
+import { ApplicationContext } from '../../Router';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
 import DropDown from '../dsfrComponents/DropDown';
 import Pagination from '../dsfrComponents/Pagination';
@@ -16,6 +17,8 @@ interface ListResearchResultProps {
 }
 
 const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => {
+    const {usedCorbeille} = useContext(ApplicationContext)
+    const [toggleInCorbeille, isInCorbeille] = usedCorbeille
 
     const { searchId, page } = useParams();
     const redirect = <Navigate  to={`${cardType.searchLink}/${searchId}/1`} replace={true}/>
@@ -51,11 +54,11 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
     }, [page]);
 
     console.log(initialSearch.resp.cards[cardType.apiName])
-    const allCards = initialSearch.cards[cardType.apiName]
+    const allCards : AnyCard[] = initialSearch.cards[cardType.apiName]
     const pageChunkSize = 20;
     const nbPage = Math.ceil(allCards.length / pageChunkSize)
     console.log({ allCardsLength: allCards.length, nbPage })
-    const displayCards = allCards
+    const displayCards = allCards.filter(x => !isInCorbeille(x))
         .slice(
             (pageNo - 1) * pageChunkSize,
             pageNo * pageChunkSize

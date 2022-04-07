@@ -1,15 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getSearch, searchByQuery } from '../../api/Api';
+import { AnyCard, getSearch, searchByQuery } from '../../api/Api';
 import { all as allCardType } from '../../model/CardType';
+import { ApplicationContext } from '../../Router';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
 import ResultResearchPreviewCard from '../customComponents/ResultResearchPreviewCard';
 
 
 
 const ResearchForm: React.FC = (props) => {
-
-
+    const {usedCorbeille} = useContext(ApplicationContext)
+    const [toggleInCorbeille, isInCorbeille] = usedCorbeille
 
     const navigate = useNavigate();
     const { searchId } = useParams();
@@ -31,11 +32,11 @@ const ResearchForm: React.FC = (props) => {
 
     const previews = initialSearch && allCardType.map(cardType => {
 
-        const results = initialSearch.cards[cardType.apiName]
+        const results : AnyCard[] = initialSearch.cards[cardType.apiName]
         if (!results) return null;
         return (
             <ResultResearchPreviewCard cardType={cardType} searchId={initialSearch.id} resultCount={results.length}>
-                {results.map(x => <div className="ml-6 w-fit">
+                {results.filter(x => !isInCorbeille(x)).map(x => <div className="ml-6">
                     <ResultPreviewCard cardData={x} cardType={cardType} />
                 </div>
                 )}

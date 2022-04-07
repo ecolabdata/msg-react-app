@@ -1,11 +1,8 @@
-    import ArrowDark from './../../assets/icons/arrow-dark-action.svg';
-    import DropDown from '../dsfrComponents/DropDown'
-    import Scrollable from '../customComponents/Scrollable';
-    import Pagination from '../dsfrComponents/Pagination';
-import { useFavoris } from '../../utils/categoris';
-import ResultPreviewCard from '../customComponents/ResultPreviewCard';
 import { useContext } from 'react';
 import { ApplicationContext } from '../../Router';
+import ResultPreviewCard from '../customComponents/ResultPreviewCard';
+import DropDown from '../dsfrComponents/DropDown';
+import ArrowDark from './../../assets/icons/arrow-dark-action.svg';
 
 const MySelection = () => {
     const {usedFavoris} = useContext(ApplicationContext)
