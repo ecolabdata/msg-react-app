@@ -17,11 +17,6 @@ export type AnyCard = Partial<Aide> & Partial<Marche> & Partial<Collectivite> & 
 
 export type ApiResponse = typeof mockApiResponse
 
-export type Query = {
-  description:string,
-  secteurs: string[]
-}
-
 export type Search = ReturnType<typeof handleResp>
 
 
@@ -38,7 +33,8 @@ const getNextQueryId = () => {
   return next.toString();
 }
 
-const handleResp = (query : Query, resp : ApiResponse) => {
+
+function  handleResp(query : Query | InvestisseurQuery, resp : ApiResponse) {
   const queryStr = JSON.stringify(query);
   const queryId = getNextQueryId() //sha1(queryStr).slice(0, 8);
   const cards = {
@@ -49,19 +45,25 @@ const handleResp = (query : Query, resp : ApiResponse) => {
   }
   const search = {id: queryId, query, resp, cards};
   const jsonStr = JSON.stringify(search)
-  console.log({searchSize: new Blob([jsonStr]).size})
   localStorage.setItem(`search-${queryId}`, jsonStr)
-  
   return search;
 }
 
-export function searchByQuery(query : Query) {
-  //TODO default params
-  return searchRequest(query.description, query.secteurs, 0, 1000000).then(resp => handleResp(query, resp));
+/*
+  GENERAL QUERY
+*/
+
+export type Query = {
+  type: "general"
+  description:string,
+  secteurs: string[]
 }
 
+export function searchByQuery(query : Query) {
+  return searchRequest(query.description, query.secteurs, 0).then(resp => handleResp(query, resp));
+}
 
-export function searchRequest(description: string, secteurs:string[], montant_min:number, montant_max:number) {
+export function searchRequest(description: string, secteurs:string[], montant_min:number) {
   // if (useMockResponse) {
   //   return new Promise<ApiResponse>(res => setTimeout(() => res(mockApiResponse), 3000))
   // } else {
@@ -85,8 +87,47 @@ export function searchRequest(description: string, secteurs:string[], montant_mi
         "nb_aides": 10,
         "nb_achats_previs": 12,
         "nb_acheteur": 10,
-        "montant_min": montant_min,
-        "montant_max": montant_max,
+        "montant_min": montant_min*1000,
+        "montant_max": 10000000000000,
+        "secteurs": secteurs,    
+        "cards": {
+          "collectivites": [],
+          "aides": [],
+          "marches": [],
+          "investisseurs" : []
+        }
+      })
+    })
+    .then(resp => resp.json())
+  // }
+}
+
+/*
+  INVESTISSEUR QUERY
+*/
+export type InvestisseurQuery = {
+  type: "investisseur"
+  description:string,
+  secteurs: string[],
+  montantMin: number
+}
+export function searchInvestisseurByQuery(query : InvestisseurQuery) {
+  return searchRequestInvestisseur(query.secteurs, query.montantMin).then(resp => handleResp(query, resp));
+}
+export function searchRequestInvestisseur(secteurs:string[], montant_min:number) {
+  // if (useMockResponse) {
+  //   return new Promise<ApiResponse>(res => setTimeout(() => res(mockApiResponse), 3000))
+  // } else {
+    return fetch('https://api.msg.greentechinnovation.fr/getCards/', {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "fichier_investisseurs": "GTIetmontant.csv",
+        "montant_min": montant_min*1000,
+        "montant_max": 10000000000000,
         "secteurs": secteurs,    
         "cards": {
           "collectivites": [],

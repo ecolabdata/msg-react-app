@@ -40,8 +40,7 @@ const ResearchForm: React.FC = (props) => {
     const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (description.length > 0) {
-            searchByQuery({ description/*, keywords*/, secteurs }).then((search) => {
-
+            searchByQuery({type: "general", description/*, keywords*/, secteurs }).then((search) => {
                 return navigate(`/recherche/${search.id}`)
             })
         }

@@ -1,6 +1,6 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
-import { AnyCard, getSearch } from '../../api/Api';
+import { AnyCard, getSearch, InvestisseurQuery, searchByQuery, searchInvestisseurByQuery } from '../../api/Api';
 import { useTitle } from '../../hooks/useTitle';
 import { CardType } from '../../model/CardType';
 import { ApplicationContext } from '../../Router';
@@ -29,6 +29,8 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
     const initialSearch = getSearch(searchId)
 
     if (!initialSearch) throw new Error("initialSearch is mandatory")
+    const query = initialSearch.query as InvestisseurQuery
+    const [montantMin, setMontantMin] = useState<number>(query.montantMin || 0)
 
     //Not available with current vesion of API
     // const [toggles, setToggles] = useState<Record<string, boolean>>({
@@ -50,21 +52,29 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
             }
         }
     }, [page]);
-
-    console.log(initialSearch.resp.cards[cardType.apiName])
     const allCards : AnyCard[] = initialSearch.cards[cardType.apiName]
     const pageChunkSize = 20;
     const nbPage = Math.ceil(allCards.length / pageChunkSize)
-    console.log({ allCardsLength: allCards.length, nbPage })
     const displayCards = allCards.filter(x => !isInCorbeille(x))
         .slice(
             (pageNo - 1) * pageChunkSize,
             pageNo * pageChunkSize
         ).map((card) => <ResultPreviewCard cardType={cardType} cardData={card} />);
 
-    const handleOnSubmit = () => {
-        console.log("Formulaire de recherche envoyé ");
-    }
+    const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        console.log("Looooo")
+        searchInvestisseurByQuery({
+            type: "investisseur",
+            description:initialSearch.query.description/*,
+            keywords*/,
+            secteurs: initialSearch.query.secteurs,
+            montantMin
+        }).then((search) => {
+            console.log({navigateTo: `/investisseurs/${search.id}`})
+            return navigate(`/investisseurs/${search.id}`)
+        })
+    };
 
     if (!page) return redirect;
     return (
@@ -99,7 +109,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
 
                     <h2 className=" bold text-xl text-center mt-4" style={{color: cardType.color}}>Preciser la recherche </h2>
 
-                    <form onSubmit={() => handleOnSubmit} className="inputsContainer p-4 flex justify-center items-middle
+                    <form  id="keywordsForm" onSubmit={e => handleOnSubmitForm(e)} className="inputsContainer p-4 flex justify-center items-middle
                     lg:justify-between lg:items-end
                     xl:justify-center">
 
@@ -108,7 +118,12 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
 
                             <div className="inputNumber mr-6 flex flex-col font-light ">
                                 <label className="mb-1 text-white text-base" htmlFor="montantKEuro">Montant min. en K€</label>
-                                <input className={`text-white rounded-t-md w-64 h-10 addBorder-b border-2 bg-input-background`} style={{borderColor: cardType.color}} type="number" id="montantKEuro" />
+                                <input
+                                    className={`text-white rounded-t-md w-64 h-10 addBorder-b border-2 bg-input-background`}
+                                    style={{borderColor: cardType.color}} type="number" id="montantKEuro"
+                                    defaultValue={montantMin.toString()}
+                                    onChange={e => setMontantMin(Number.parseInt(e.target.value))}
+                                />
                             </div>
                         </div>
 
@@ -116,7 +131,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
                         lg:flex-row lg:mb-6">
                             {Object.keys(toggles).map(x => <ToggleButton label={x} checked={toggles[x]} color={cardType.color} onChange={e => setToggles({ ...toggles, [x]: !toggles[x] })} />)}
                         </div> */}
-
+                        <button form="keywordsForm" className="mt-8 w-48 h-14 text-xl fr-btn fr-btn--primary capitalize" > <span className="mx-auto">rechercher !</span> </button>
                     </form>
 
                 </div>
