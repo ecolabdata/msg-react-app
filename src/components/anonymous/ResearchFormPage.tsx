@@ -53,7 +53,7 @@ const ResearchForm: React.FC = (props) => {
         return (
             <ResultResearchPreviewCard cardType={cardType} searchId={initialSearch.id} resultCount={results.length}>
                 {results.filter(x => !isInCorbeille(x)).map(x => <div className="ml-6">
-                    <ResultPreviewCard cardData={x} cardType={cardType} />
+                    <ResultPreviewCard cardData={x} cardType={cardType} searchId={initialSearch.id}/>
                 </div>
                 )}
             </ResultResearchPreviewCard>

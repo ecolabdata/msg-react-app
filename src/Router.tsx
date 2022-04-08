@@ -14,7 +14,7 @@ import ResearchForm from './components/anonymous/ResearchFormPage';
 import { TrackPage } from './hooks/useTrackPage';
 import ListResearchResult from './components/anonymous/ListResearchResultPage';
 import { all as allCardType } from './model/CardType';
-import CardDetails from './components/customComponents/CardDetails';
+import CardDetailsJson from './components/customComponents/CardDetailsJson';
 import { defaultUsedCorbeille, defaultUsedFavoris, useCorbeille, UsedCorbeille, UsedFavoris, useFavoris } from './utils/categoris';
 
 export const ApplicationContext = createContext<{
@@ -42,11 +42,13 @@ const Router = () => {
                         <Route path="/formulaire-recherche-de-solutions" element={<ResearchForm />} />
                         <Route path="/recherche" element={<ResearchForm />} />
                         <Route path="/recherche/:searchId" element={<ResearchForm />} />
+                        <Route path="/:cardType/:searchId/:cardId/details" element={<CardDetailsJson />} />
+                        <Route path="/:cardType/:cardId/details" element={<CardDetailsJson />} />
                         {allCardType.map(cardType => <>
                             <Route path={`${cardType.searchLink}/:searchId`} element={<ListResearchResult cardType={cardType} />}/>
                             <Route path={`${cardType.searchLink}/:searchId/:page`} element={<ListResearchResult cardType={cardType} />} />
                         </>)}
-                        <Route path="/exemple-details-card" element={<CardDetails />} />
+                        {/* <Route path="/investisseur/:cardId/details" element={<CardDetailsInvestisseur />} /> */}
                         <Route path="/authentification" element={<Authentication />} />
                         <Route path="/profile" element={<AuthenticatedComponent />}>
                             <Route path="ma-selection" element={<MySelectionPage />} />

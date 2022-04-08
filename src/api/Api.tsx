@@ -3,7 +3,7 @@ import sha1 from 'sha1';
 import { canonicalize } from 'json-canonicalize';
 import { achatPrevi, acheteurPublic, aideClient, CardType, investisseur } from '../model/CardType';
 
-export const buildId = (obj: any) => sha1(canonicalize(obj))
+export const buildId = (obj: any) => sha1(canonicalize(obj)).slice(0, 8)
 
 export const cardTypeNames = ["collectivites", "marches", "investisseurs", "aides"] as const;
 export type CardTypeName = typeof cardTypeNames[number];
@@ -43,7 +43,8 @@ function  handleResp(query : Query | InvestisseurQuery, resp : ApiResponse) {
     investisseurs: resp.cards.investisseurs.map(x => {return {...x, id: buildId(x), cardTypeName: investisseur.name}}),
     aides: resp.cards.aides.map(x => {return {...x, id: buildId(x), cardTypeName: aideClient.name}})
   }
-  const search = {id: queryId, query, resp, cards};
+  const cardsById = Object.fromEntries([...cards.collectivites, ...cards.marches, ...cards.investisseurs, ...cards.aides].map(x => [x.id, x]))
+  const search = {id: queryId, query, resp, cards, cardsById};
   const jsonStr = JSON.stringify(search)
   localStorage.setItem(`search-${queryId}`, jsonStr)
   return search;

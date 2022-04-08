@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { AnyCard, getSearch, InvestisseurQuery, searchByQuery, searchInvestisseurByQuery } from '../../api/Api';
 import { useTitle } from '../../hooks/useTitle';
 import { CardType } from '../../model/CardType';
@@ -27,6 +27,9 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
     if (!searchId) throw new Error("searchId param is mandatory")
 
     const initialSearch = getSearch(searchId)
+    const location = useLocation();
+    console.log(location.state)
+
 
     if (!initialSearch) throw new Error("initialSearch is mandatory")
     const query = initialSearch.query as InvestisseurQuery
@@ -42,16 +45,13 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
     console.log({ initialSearch })
 
     useEffect(() => {
-        if (!page) {
-            window.scrollTo(0, 0)
-        } else {
-            const element = document.getElementById('cardsContainer')
-            if (!element) return;
-            if (element?.offsetTop < window.scrollY) {
-                window.scrollTo({ behavior: "smooth", top: element?.offsetTop - window.innerHeight * 0.15 })
-            }
+        const element = document.getElementById('cardsContainer')
+        if (!element) return;
+        console.log(element?.offsetTop, window.scrollY)
+        if (element?.offsetTop > window.scrollY) {
+            window.scrollTo({ behavior: "smooth", top: element?.offsetTop - window.innerHeight * 0.15 })
         }
-    }, [page]);
+    }, [searchId]);
     const allCards: AnyCard[] = initialSearch.cards[cardType.apiName]
     const pageChunkSize = 20;
     const nbPage = Math.ceil(allCards.length / pageChunkSize)
@@ -59,7 +59,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
         .slice(
             (pageNo - 1) * pageChunkSize,
             pageNo * pageChunkSize
-        ).map((card) => <ResultPreviewCard cardType={cardType} cardData={card} />);
+        ).map((card) => <ResultPreviewCard cardType={cardType} cardData={card} searchId={searchId} />);
 
     const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();

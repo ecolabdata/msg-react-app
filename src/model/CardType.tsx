@@ -19,7 +19,7 @@ export const acheteurPublic : CardType = {
     name: "acheteurs-publics",
     searchLink: "/acheteurs-publics",
     apiName: "collectivites",
-}
+} as const
 export const achatPrevi: CardType = {
     SVGLogo: Calendar,
     color: "#D8C635",
@@ -28,7 +28,7 @@ export const achatPrevi: CardType = {
     name: "achats-previsionnels",
     searchLink: "/achats-previsionnels",
     apiName: "marches"
-}
+} as const
 export const investisseur: CardType  = {
     SVGLogo: Euro,
     color: "#68A532",
@@ -37,7 +37,7 @@ export const investisseur: CardType  = {
     name: "investisseurs",
     searchLink: "/investisseurs",
     apiName: "investisseurs",
-}
+} as const
 
 export const aideInno: CardType = {
     SVGLogo: Rocket,
@@ -47,7 +47,7 @@ export const aideInno: CardType = {
     name: "aides-innovations",
     searchLink: "/aides-innovations",
     apiName: "aides" //TODO
-}
+} as const
 
 export const aideClient: CardType = {
     SVGLogo: Eye,
@@ -57,9 +57,7 @@ export const aideClient: CardType = {
     name: "aides-clients",
     searchLink: "/aides-clients",
     apiName: "aides" //TODO
-}
-
- 
+} as const
 
 export const all = [investisseur,acheteurPublic,achatPrevi,aideInno,aideClient]
 
