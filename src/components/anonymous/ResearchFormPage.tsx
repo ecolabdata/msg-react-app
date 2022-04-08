@@ -83,7 +83,7 @@ const ResearchForm: React.FC = (props) => {
                             </div>)}
                         </div>
                         <div className="keyWordsContainer">
-
+                                
                         </div>
                     </form>
                 </div>

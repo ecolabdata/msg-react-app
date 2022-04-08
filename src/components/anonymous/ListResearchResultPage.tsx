@@ -63,7 +63,6 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
 
     const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log("Looooo")
         searchInvestisseurByQuery({
             type: "investisseur",
             description: initialSearch.query.description/*,
