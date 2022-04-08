@@ -14,11 +14,11 @@ interface ListResearchResultProps {
 }
 
 const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => {
-    const {usedCorbeille} = useContext(ApplicationContext)
+    const { usedCorbeille } = useContext(ApplicationContext)
     const [toggleInCorbeille, isInCorbeille] = usedCorbeille
 
     const { searchId, page } = useParams();
-    const redirect = <Navigate  to={`${cardType.searchLink}/${searchId}/1`} replace={true}/>
+    const redirect = <Navigate to={`${cardType.searchLink}/${searchId}/1`} replace={true} />
     const pageNo = page ? parseInt(page) : 1
     console.log(pageNo)
     const navigate = useNavigate()
@@ -52,7 +52,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
             }
         }
     }, [page]);
-    const allCards : AnyCard[] = initialSearch.cards[cardType.apiName]
+    const allCards: AnyCard[] = initialSearch.cards[cardType.apiName]
     const pageChunkSize = 20;
     const nbPage = Math.ceil(allCards.length / pageChunkSize)
     const displayCards = allCards.filter(x => !isInCorbeille(x))
@@ -66,12 +66,12 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
         console.log("Looooo")
         searchInvestisseurByQuery({
             type: "investisseur",
-            description:initialSearch.query.description/*,
+            description: initialSearch.query.description/*,
             keywords*/,
             secteurs: initialSearch.query.secteurs,
             montantMin
         }).then((search) => {
-            console.log({navigateTo: `/investisseurs/${search.id}`})
+            console.log({ navigateTo: `/investisseurs/${search.id}` })
             return navigate(`/investisseurs/${search.id}`)
         })
     };
@@ -104,36 +104,37 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
                     <p className="mt-2 text-base">{cardType.description}</p>
                 </div>
 
-                <div className="researchContainer max-w-[1240px] p-6 flex flex-col bg-research-precision-container
+                <div className=" flex flex-col items-center w-full">
+                    <div className="researchContainer max-w-[1240px] w-full p-6 flex flex-col bg-research-precision-container items-center
                 lg:p-1">
 
-                    <h2 className=" bold text-xl text-center mt-4" style={{color: cardType.color}}>Preciser la recherche </h2>
+                        <h2 className=" bold text-xl text-center mt-4" style={{ color: cardType.color }}>Preciser la recherche </h2>
 
-                    <form  id="keywordsForm" onSubmit={e => handleOnSubmitForm(e)} className="inputsContainer p-4 flex justify-center items-middle
+                        <form id="keywordsForm" onSubmit={e => handleOnSubmitForm(e)} className="inputsContainer p-4 flex justify-center items-middle
                     lg:justify-between lg:items-end
                     xl:justify-center">
 
-                        <div className="my-2 flex flex-col items-center
+                            <div className="my-2 flex flex-col items-center
                         lg:flex-row lg:mb-6">
 
-                            <div className="inputNumber mr-6 flex flex-col font-light ">
-                                <label className="mb-1 text-white text-base" htmlFor="montantKEuro">Montant min. en K€</label>
-                                <input
-                                    className={`text-white rounded-t-md w-64 h-10 addBorder-b border-2 bg-input-background`}
-                                    style={{borderColor: cardType.color}} type="number" id="montantKEuro"
-                                    defaultValue={montantMin.toString()}
-                                    onChange={e => setMontantMin(Number.parseInt(e.target.value))}
-                                />
+                                <div className="inputNumber mr-6 flex flex-col font-light ">
+                                    <label className="mb-1 text-white text-base" htmlFor="montantKEuro">Montant min. en K€</label>
+                                    <input
+                                        className={`text-white rounded-t-md w-64 h-10 addBorder-b border-2 bg-input-background`}
+                                        style={{ borderColor: cardType.color }} type="number" id="montantKEuro"
+                                        defaultValue={montantMin.toString()}
+                                        onChange={e => setMontantMin(Number.parseInt(e.target.value))}
+                                    />
+                                </div>
                             </div>
-                        </div>
 
-                        {/* <div className="toggleButtons w-fit flex flex-col
+                            {/* <div className="toggleButtons w-fit flex flex-col
                         lg:flex-row lg:mb-6">
                             {Object.keys(toggles).map(x => <ToggleButton label={x} checked={toggles[x]} color={cardType.color} onChange={e => setToggles({ ...toggles, [x]: !toggles[x] })} />)}
                         </div> */}
-                        <button form="keywordsForm" className="mt-8 w-48 h-14 text-xl fr-btn fr-btn--primary capitalize" > <span className="mx-auto">rechercher !</span> </button>
-                    </form>
-
+                        </form>
+                    </div>
+                    <button form="keywordsForm" className="mt-8 w-48 h-14 text-xl fr-btn fr-btn--primary capitalize" > <span className="mx-auto">rechercher !</span> </button>
                 </div>
 
             </div>
