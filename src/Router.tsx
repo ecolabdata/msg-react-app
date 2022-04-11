@@ -17,6 +17,7 @@ import { all as allCardType } from './model/CardType';
 import CardDetailsJson from './components/customComponents/CardDetailsJson';
 import { defaultUsedCorbeille, defaultUsedFavoris, useCorbeille, UsedCorbeille, UsedFavoris, useFavoris } from './utils/categoris';
 import CardDetails from './components/customComponents/CardDetails';
+import { DonnezVotreAvis } from './components/customComponents/DonnezVotreAvis';
 
 export const ApplicationContext = createContext<{
     usedFavoris: UsedFavoris,
@@ -34,6 +35,7 @@ const Router = () => {
     return (
         <>
         <ApplicationContext.Provider value={{usedFavoris, usedCorbeille}}>
+            <DonnezVotreAvis />
             <Header userIsAuth={isAuth()} />
             <main className={`h-full p-6 
                 ${localStorage.scheme === 'dark' ? 'bg-[#262626]' : ''}`}>  
