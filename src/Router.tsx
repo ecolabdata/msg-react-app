@@ -16,6 +16,7 @@ import ListResearchResult from './components/anonymous/ListResearchResultPage';
 import { all as allCardType } from './model/CardType';
 import CardDetailsJson from './components/customComponents/CardDetailsJson';
 import { defaultUsedCorbeille, defaultUsedFavoris, useCorbeille, UsedCorbeille, UsedFavoris, useFavoris } from './utils/categoris';
+import CardDetails from './components/customComponents/CardDetails';
 
 export const ApplicationContext = createContext<{
     usedFavoris: UsedFavoris,
@@ -44,6 +45,7 @@ const Router = () => {
                         <Route path="/recherche/:searchId" element={<ResearchForm />} />
                         <Route path="/:cardType/:searchId/:cardId/details" element={<CardDetailsJson />} />
                         <Route path="/:cardType/:cardId/details" element={<CardDetailsJson />} />
+                        <Route path="/exemple/details" element={<CardDetails/>} />
                         {allCardType.map(cardType => <>
                             <Route path={`${cardType.searchLink}/:searchId`} element={<ListResearchResult cardType={cardType} />}/>
                             <Route path={`${cardType.searchLink}/:searchId/:page`} element={<ListResearchResult cardType={cardType} />} />
