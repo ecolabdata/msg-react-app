@@ -48,10 +48,11 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
         const element = document.getElementById('cardsContainer')
         if (!element) return;
         console.log(element?.offsetTop, window.scrollY)
-        if (element?.offsetTop > window.scrollY) {
+        if (element?.offsetTop < window.scrollY) {
             window.scrollTo({ behavior: "smooth", top: element?.offsetTop - window.innerHeight * 0.15 })
         }
-    }, [searchId]);
+    }, [searchId, page]);
+
     const allCards: AnyCard[] = initialSearch.cards[cardType.apiName]
     const pageChunkSize = 20;
     const nbPage = Math.ceil(allCards.length / pageChunkSize)
