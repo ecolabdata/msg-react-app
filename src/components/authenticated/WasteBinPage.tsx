@@ -9,12 +9,15 @@ import { useContext, useState } from 'react';
 import { all, byName, dropdownValues } from '../../model/CardType';
 
 const WasteBin = () => {
-    const {usedCorbeille} = useContext(ApplicationContext)
-    const [idc1, idc2, corbeille] = usedCorbeille
+    const { usedCorbeille } = useContext(ApplicationContext)
+    const [idc1, idc2, corbeille, setCorbeille] = usedCorbeille
     const [selectedCardTypeName, setSelectedCardTypeName] = useState("all")
+    const [areYouSure, setAreYouSure] = useState(false);
     const handleOnSubmit = () => {
         console.log("Formulaire de recherche envoyé ");
     };
+
+    const top  = areYouSure ?  'top-[0em]' : 'top-[4em]'
 
     return (
         <>
@@ -34,13 +37,27 @@ const WasteBin = () => {
                     </h2>
 
                     <div className="actionButtonsContainer w-1/2 ml-15 flex justify-end items-center">
-
-                        <button className="fr-btn fr-btn--sm fr-btn--primary mr-2 h-[40px]
-                        md:h-[40%]
-                        ">
-                            Tout restaurer
-                        </button>
-                        
+                        <div className='relative overflow-hidden'>
+                            <div>
+                                <p>&nbsp;</p>
+                                <button onClick={() => setAreYouSure(true)} className="fr-btn fr-btn--sm fr-btn--primary mr-2 h-[40px]
+                                    md:h-[40%]
+                                    ">
+                                    Tout restaurer
+                                </button>
+                            </div>
+                            <div className={`absolute ${top} left-0`}>
+                                Etes vous sur ?
+                            <button onClick={() => {
+                                setAreYouSure(false)
+                                setCorbeille({})
+                            }} className="fr-btn fr-btn--sm fr-btn--primary mr-2 h-[40px]
+                                md:h-[40%]
+                                px-14">
+                                Oui
+                            </button>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -50,7 +67,7 @@ const WasteBin = () => {
                     <p className=" bold text-xl text-center text-blue-france-main">Filtrer </p>
 
                     <form onSubmit={() => handleOnSubmit()} className="inputsContainer flex">
-                        <DropDown borderColor="blue-france-main" title='Type de piste' usedState={[selectedCardTypeName, setSelectedCardTypeName]} values={{"all": "Toutes", ...dropdownValues}}/>
+                        <DropDown borderColor="blue-france-main" title='Type de piste' usedState={[selectedCardTypeName, setSelectedCardTypeName]} values={{ "all": "Toutes", ...dropdownValues }} />
                     </form>
 
                 </div>
