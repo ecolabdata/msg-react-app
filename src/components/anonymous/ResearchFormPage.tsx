@@ -26,19 +26,25 @@ const ResearchForm: React.FC = (props) => {
 
     const navigate = useNavigate();
     const { searchId } = useParams();
+    const [isLoading, setIsLoading] = useState(false)
     const initialSearch = searchId ? getSearch(searchId) : null
-    console.log({ initialSearch })
+    console.log({searchId, initialSearch, lol: searchId && getSearch(searchId) })
     const [description, setDescription] = useState(initialSearch?.query.description || "")
     const [secteurs, setSecteurs] = useState<string[]>([])
+
+    useEffect(() => {
+        setIsLoading(false)
+    }, [searchId])
 
     useEffect(() => {
         const element = document.getElementById('previews')
         if (!element) return;
         window.scrollTo({ behavior: "smooth", top: element.offsetTop - window.innerHeight * 0.20 })
-    }, [searchId]);
+    }, [isLoading]);
 
     const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        setIsLoading(true)
         if (description.length > 0) {
             searchByQuery({type: "general", description/*, keywords*/, secteurs }).then((search) => {
                 return navigate(`/recherche/${search.id}`)
@@ -62,7 +68,7 @@ const ResearchForm: React.FC = (props) => {
 
     return (
         <>
-            <div className="formContainer flex flex-col items-center">
+            <div key={searchId} className="formContainer flex flex-col items-center">
 
                 <h1 className="w-3/5 font-bold text-4xl text-center mx-auto max-w-4xl"> Start-up greentech, trouvez automatiquement des pistes pour booster votre développement !  </h1>
                 <div className="mt-8 rounded-md bg-background-form">
@@ -91,9 +97,10 @@ const ResearchForm: React.FC = (props) => {
 
             </div>
 
-            {previews && <div id="previews" className="researchResultContainer mt-4">
+            {previews && !isLoading && <div id="previews" className="researwchResultContainer mt-4">
                 {previews}
             </div>}
+            {isLoading && <div className='mx-auto'>Ca charge</div>}
         </>
     )
 };

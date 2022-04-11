@@ -48,7 +48,7 @@ export function getSearch(searchId : string) : Search | null {
   return searchDataStr ? (JSON.parse(searchDataStr) as Search ) : null
 }
 
-const MAX_QUERY_STORED = 10;
+const MAX_QUERY_STORED = 5;
 const getNextQueryId = () => {
   const last = localStorage.getItem(`lastQueryId`)
   const next = last ? ((JSON.parse(last) as number + 1)  % MAX_QUERY_STORED) : 0;
@@ -108,7 +108,8 @@ export function searchRequest(description: string, secteurs:string[], montant_mi
         "nb_acheteur": 10,
         "montant_min": montant_min*1000,
         "montant_max": 10000000000000,
-        "secteurs": secteurs,    
+        "secteurs": secteurs,
+        "keywords": [],
         "cards": {
           "collectivites" : [],
           "aides_clients" : [],
