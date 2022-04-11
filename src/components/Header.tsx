@@ -6,10 +6,11 @@ import Star from './../assets/icons/star-fill.svg';
 import LogoMSG from './../assets/msg-icon.png';
 import AvatarPopOver from './customComponents/AvatarPopOver';
 import {Route} from './../utils/routes';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { appActions } from '../_actions/app.actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../_reducers/root.reducer';
+import { ApplicationContext } from '../Router';
 
 interface HeaderProps {
     userIsAuth: boolean;
@@ -17,6 +18,9 @@ interface HeaderProps {
 
 const Header = ({userIsAuth}: HeaderProps) => {
     const [burgerMenuOpen, setBurgerMenuClicked] = useState(false);
+    const {usedFavoris, usedCorbeille} = useContext(ApplicationContext)
+    const [idc1, idc2, favoris] = usedFavoris
+    const [idc3, idc4, corbeille] = usedCorbeille
 
     const screenWidth = useSelector((state:RootState) => state?.appState.screenWidth);
     const dispatch = useDispatch();
@@ -73,7 +77,7 @@ const Header = ({userIsAuth}: HeaderProps) => {
                                 
                                 <div className="flex flex-col">
                                     <p className="font-bold"> {route.name} </p>
-                                    <p className="text-xs"> X pistes </p>
+                                    <p className="text-xs"> {route.key === 'SELECTION' ? Object.keys(favoris).length : Object.keys(corbeille).length} pistes </p>
                                 </div>
 
                             </div>

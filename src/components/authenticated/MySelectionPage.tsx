@@ -1,10 +1,14 @@
-    import ArrowDark from './../../assets/icons/arrow-dark-action.svg';
-    import DropDown from '../dsfrComponents/DropDown'
-    import Scrollable from '../customComponents/Scrollable';
-    import Pagination from '../dsfrComponents/Pagination';
+import { useContext, useState } from 'react';
+import { byName, dropdownValues } from '../../model/CardType';
+import { ApplicationContext } from '../../Router';
+import ResultPreviewCard from '../customComponents/ResultPreviewCard';
+import DropDown from '../dsfrComponents/DropDown';
+import ArrowDark from './../../assets/icons/arrow-dark-action.svg';
 
 const MySelection = () => {
-
+    const {usedFavoris} = useContext(ApplicationContext)
+    const [idc1, idc2, favoris] = usedFavoris
+    const [selectedCardTypeName, setSelectedCardTypeName] = useState("all")
     const handleOnSubmit = () => {
         console.log("Formulaire de recherche envoyé ");
     };
@@ -22,7 +26,7 @@ const MySelection = () => {
                         <div className="flex items-center">
                             Ma sélection <span className="mt-1 mx-2 text-sm
                             font-extralight
-                            lg:text-xl">{`(TODO)`}</span>
+                            lg:text-xl">{`(${Object.keys(favoris).length})`}</span>
                         </div>
                     </h2>
 
@@ -48,8 +52,7 @@ const MySelection = () => {
                     <p className=" bold text-xl text-center text-blue-france-main">Filtrer </p>
 
                     <form onSubmit={() => handleOnSubmit()} className="inputsContainer flex">
-                        <DropDown borderColor="blue-france-main"/>
-
+                        <DropDown borderColor="blue-france-main" title='Type de piste' usedState={[selectedCardTypeName, setSelectedCardTypeName]} values={{"all": "Toutes", ...dropdownValues}}/>  
                     </form>
 
                 </div>
@@ -57,7 +60,7 @@ const MySelection = () => {
             </div>
 
             <div className="cardsContainer mx-auto w-3/4 justify-center flex flex-wrap">
-                    <Scrollable emetor="Pexe" cardTitle="Information Intéréssante"/>
+                    {Object.values(favoris).filter(x => selectedCardTypeName === "all" || selectedCardTypeName === x.cardTypeName).map((card) => <ResultPreviewCard cardType={byName[card.cardTypeName]} cardData={card} searchId={null}/>)}
             </div>
 
             {/* <Pagination currentPageNo={pageNo} baseUrl={cardType.searchLink + "/" + searchId} nbPage={nbPage}/> */}

@@ -1,29 +1,46 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getSearch, searchByQuery } from '../../api/Api';
+import { AnyCard, getSearch, searchByQuery } from '../../api/Api';
 import { all as allCardType } from '../../model/CardType';
+import { ApplicationContext } from '../../Router';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
 import ResultResearchPreviewCard from '../customComponents/ResultResearchPreviewCard';
 
-
+const allSecteur = [
+    "Numérique éco-responsable",
+    "Alimentation et agriculture durables",
+    "Eau, biodiversité et biomimétisme",
+    "Économie circulaire",
+    "Santé environnement",
+    "Energies renouvelables et décarbonées",
+    "Innovations maritimes et écosystèmes marins",
+    "Prévention des risques",
+    "Bâtiments et villes durables",
+    "Décarbonation de l'industrie",
+    "Mobilité durable"
+]
 
 const ResearchForm: React.FC = (props) => {
-
-
+    const { usedCorbeille } = useContext(ApplicationContext)
+    const [toggleInCorbeille, isInCorbeille] = usedCorbeille
 
     const navigate = useNavigate();
     const { searchId } = useParams();
     const initialSearch = searchId ? getSearch(searchId) : null
     console.log({ initialSearch })
     const [description, setDescription] = useState(initialSearch?.query.description || "")
-    
+    const [secteurs, setSecteurs] = useState<string[]>([])
+
+    useEffect(() => {
+        const element = document.getElementById('previews')
+        if (!element) return;
+        window.scrollTo({ behavior: "smooth", top: element.offsetTop - window.innerHeight * 0.20 })
+    }, [searchId]);
+
     const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (description.length > 0) {
-            searchByQuery({ description/*, keywords*/ }).then((search) => {
-                const element = document.getElementById('previews')
-                if (!element) return;
-                window.scrollTo({ behavior: "smooth", top: element.offsetTop - 100 })
+            searchByQuery({type: "general", description/*, keywords*/, secteurs }).then((search) => {
                 return navigate(`/recherche/${search.id}`)
             })
         }
@@ -31,12 +48,12 @@ const ResearchForm: React.FC = (props) => {
 
     const previews = initialSearch && allCardType.map(cardType => {
 
-        const results = cardType.getCards(initialSearch.resp)
-        if (!results) return null;
+        const results: AnyCard[] = initialSearch.cards[cardType.apiName]
+        if (!results || results.length === 0) return null;
         return (
             <ResultResearchPreviewCard cardType={cardType} searchId={initialSearch.id} resultCount={results.length}>
-                {results.map(x => <div className="ml-6 w-fit">
-                    <ResultPreviewCard cardData={x} cardType={cardType} />
+                {results.filter(x => !isInCorbeille(x)).map(x => <div className="ml-6">
+                    <ResultPreviewCard cardData={x} cardType={cardType} searchId={initialSearch.id}/>
                 </div>
                 )}
             </ResultResearchPreviewCard>
@@ -48,28 +65,35 @@ const ResearchForm: React.FC = (props) => {
             <div className="formContainer flex flex-col items-center">
 
                 <h1 className="w-3/5 font-bold text-4xl text-center mx-auto max-w-4xl"> Start-up greentech, trouvez automatiquement des pistes pour booster votre développement !  </h1>
+                <div className="mt-8 rounded-md bg-background-form">
+                    <form onSubmit={(event) => handleOnSubmitForm(event)} id="keywordsForm" className="w-[900px] flex items-center m-8">
+                        <div className='flex flex-col w-[500px]'>
+                            <h2 className="w-11/12 text-base text-center">Décrivez en quelques lignes votre projet (thématique, technologie, cible, apports... ) pour obtenir des pistes pertinentes.</h2>
 
-                <form onSubmit={(event) => handleOnSubmitForm(event)} id="keywordsForm" className="mt-8 rounded-md w-form h-form flex flex-col items-center bg-background-form">
-
-                    <h2 className="mt-3 w-11/12 text-base text-center">Décrivez en quelques lignes votre projet (thématique, technologie, cible, apports... ) pour obtenir des pistes pertinentes.</h2>
-
-                    <textarea onChange={e => setDescription(e.target.value)} value={description} form="keywordsForm"
-                        className="cursor-text rounded-t-sm mt-4 w-11/12 h-32 addBorder-b border-3 border-gray-300 p-4 bg-background-inputs" placeholder="Expl. : “start-up de méthanisation” ou “nous sommes une startup spécialisée dans le processus biologique de dégradation des matières organiques...”"></textarea>
-
-                    {/* <button className="addBorder-b border-b self-start ml-5 mt-2 text-sm ">Affiner par mots clés</button> */}
-
-                    <div className="keyWordsContainer">
-
-                    </div>
-                </form>
-
+                            <textarea onChange={e => setDescription(e.target.value)} value={description} form="keywordsForm"
+                                className="cursor-text rounded-t-sm mt-4 w-11/12 h-56 addBorder-b border-3 border-gray-300 p-4 bg-background-inputs" placeholder="Expl. : “start-up de méthanisation” ou “nous sommes une startup spécialisée dans le processus biologique de dégradation des matières organiques...”"></textarea>
+                        </div>
+                        {/* <button className="addBorder-b border-b self-start ml-5 mt-2 text-sm ">Affiner par mots clés</button> */}
+                        <div className='flex flex-wrap w-[400px] h-[300px] flex-col'>
+                            {allSecteur.map(secteur => <div className="fr-checkbox-group fr-checkbox-group--sm w-[180px]">
+                                <input type="checkbox" id={secteur} name={secteur} checked={secteurs.includes(secteur)} onChange={e => {
+                                    e.currentTarget.checked ? setSecteurs([...secteurs, secteur]) : setSecteurs(secteurs.filter(x => x != secteur))
+                                }} />
+                                <label className="fr-label text-xs" htmlFor={secteur}>{secteur}</label>
+                            </div>)}
+                        </div>
+                        <div className="keyWordsContainer">
+                                
+                        </div>
+                    </form>
+                </div>
                 <button form="keywordsForm" className="mt-8 w-48 h-14 text-xl fr-btn fr-btn--primary capitalize" > <span className="mx-auto">rechercher !</span> </button>
 
             </div>
 
-            <div id="previews" className="researchResultContainer mt-4">
+            {previews && <div id="previews" className="researchResultContainer mt-4">
                 {previews}
-            </div>
+            </div>}
         </>
     )
 };
