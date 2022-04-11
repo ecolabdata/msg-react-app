@@ -49,7 +49,7 @@ const ResearchForm: React.FC = (props) => {
     const previews = initialSearch && allCardType.map(cardType => {
 
         const results: AnyCard[] = initialSearch.cards[cardType.apiName]
-        if (!results) return null;
+        if (!results || results.length === 0) return null;
         return (
             <ResultResearchPreviewCard cardType={cardType} searchId={initialSearch.id} resultCount={results.length}>
                 {results.filter(x => !isInCorbeille(x)).map(x => <div className="ml-6">
