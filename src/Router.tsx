@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import isAuth from './helpers/isAuth';
 import Header from './components/Header'
@@ -11,7 +11,7 @@ import MySelectionPage from './components/authenticated/MySelectionPage';
 import WasteBinPage from './components/authenticated/WasteBinPage';
 import Authentication from './components/Authentication';
 import ResearchForm from './components/anonymous/ResearchFormPage';
-import { TrackPage } from './hooks/useTrackPage';
+import { useTrackPage } from './hooks/useTrackPage';
 import ListResearchResult from './components/anonymous/ListResearchResultPage';
 import { all as allCardType } from './model/CardType';
 import CardDetailsJson from './components/customComponents/CardDetailsJson';
@@ -23,11 +23,9 @@ import { DonnezVotreAvis } from './components/customComponents/DonnezVotreAvis';
 export const ApplicationContext = createContext<{
     usedFavoris: UsedFavoris,
     usedCorbeille: UsedCorbeille,
-    usedNextScrollTarget: any
+    usedNextScrollTarget: [ScrollToOptions | null, Dispatch<SetStateAction<ScrollToOptions | null>>]
 }
->({usedFavoris: defaultUsedFavoris, usedCorbeille: defaultUsedCorbeille, usedNextScrollTarget: {}})
-
-
+>({ usedFavoris: defaultUsedFavoris, usedCorbeille: defaultUsedCorbeille, usedNextScrollTarget: [null, () => null] })
 
 const Router = () => {
     localStorage.setItem('scheme', 'dark');
@@ -36,24 +34,31 @@ const Router = () => {
     }, [localStorage.scheme])
     const usedFavoris = useFavoris()
     const usedCorbeille = useCorbeille()
-    const usedNextScrollTarget = useState<string | null>(null)
-
+    const usedNextScrollTarget = useState<ScrollToOptions | null>(null)
+    const [nextScrollTarget, setNextScrolTarget] = usedNextScrollTarget
+    useEffect(() => {
+        if (nextScrollTarget) {
+            console.log("scrolling to ", nextScrollTarget)
+            window.scrollTo(nextScrollTarget)
+            setNextScrolTarget(null)
+        }
+    }, [usedNextScrollTarget]);
+    useTrackPage();
     return (
         <>
-        <ApplicationContext.Provider value={{usedFavoris, usedCorbeille, usedNextScrollTarget}}>
-            <DonnezVotreAvis />
-            <Header userIsAuth={isAuth()} />
-            <main className={`h-full p-6 
-                ${localStorage.scheme === 'dark' ? 'bg-[#262626]' : ''}`}>  
-                <Routes>
-                    <Route path="/" element={<TrackPage />}>
+            <ApplicationContext.Provider value={{ usedFavoris, usedCorbeille, usedNextScrollTarget }}>
+                <DonnezVotreAvis />
+                <Header userIsAuth={isAuth()} />
+                <main className={`h-full p-6 
+                ${localStorage.scheme === 'dark' ? 'bg-[#262626]' : ''}`}>
+                    <Routes>
                         <Route path="/" element={<HomePage />} />
                         <Route path="/formulaire-recherche-de-solutions" element={<ResearchForm />} />
                         <Route path="/recherche" element={<ResearchForm />} />
                         <Route path="/:cardType/details" element={<CardDetailsJson />} />
-                        <Route path="/exemple/details" element={<CardDetails/>} />
+                        <Route path="/exemple/details" element={<CardDetails />} />
                         {allCardType.map(cardType => <>
-                            <Route path={`${cardType.searchLink}`} element={<ListResearchResult cardType={cardType} />}/>
+                            <Route path={`${cardType.searchLink}`} element={<ListResearchResult cardType={cardType} />} />
                             <Route path={`${cardType.searchLink}`} element={<ListResearchResult cardType={cardType} />} />
                         </>)}
                         {/* <Route path="/investisseur/:cardId/details" element={<CardDetailsInvestisseur />} /> */}
@@ -63,10 +68,9 @@ const Router = () => {
                             <Route path="corbeille" element={<WasteBinPage />} />
                         </Route>
                         <Route path="*" element={<Page404 />} />
-                    </Route>
-                </Routes>
-            </main>
-            <Footer />
+                    </Routes>
+                </main>
+                <Footer />
             </ApplicationContext.Provider>
         </>
 

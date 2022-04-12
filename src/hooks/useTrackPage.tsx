@@ -1,6 +1,3 @@
-import { useContext, useEffect } from "react";
-import { Outlet } from "react-router-dom";
-import { ApplicationContext } from "../Router";
 import { useLocationChange } from "./useLocation";
 
 declare global {
@@ -26,19 +23,4 @@ export const useTrackPage = () => {
         // _paq.push(['trackContentImpressionsWithinNode', content]);
         _paq.push(['enableLinkTracking']);
     })
-
-    const {usedNextScrollTarget} = useContext(ApplicationContext)
-    const [nextScrollTarget, setNextScrolTarget] = usedNextScrollTarget
-    useEffect(() => {
-        if (nextScrollTarget) {
-            console.log("scrolling to ", nextScrollTarget)
-            window.scrollTo(nextScrollTarget)
-            setNextScrolTarget(null)
-        }
-    });
-}
-
-export const TrackPage = () => {
-    useTrackPage()
-    return <Outlet />;
 }
