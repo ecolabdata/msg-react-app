@@ -49,7 +49,7 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
         <p className="uppercase opacity-0 mt-8 text-xs text-white transition-opacity duration-200 group-hover:opacity-100"> {cardData.type_investissements}</p>
 
         {/* <NavLink to={cardType.searchLink} state={initialState} NavLink/> */}
-        <Link to={`/${cardType.name}/details`} state={{cardData}} className="absolute bottom-[15px] right-[15px] rm-link-underline" style={{ color: cardType.color }}>
+        <Link to={`/${cardType.name}/details`} state={{cardData}} className="card-arrow absolute bottom-[var(--arrow-bottom)]  right-[var(--arrow-right)] rm-link-underline" style={{ color: cardType.color }}>
             <ArrowRight />
         </Link>
 
