@@ -30,7 +30,7 @@ const ResearchForm: React.FC = (props) => {
     const initialState = location.state as InitialState | null;
     const [isLoading, setIsLoading] = useState(false)
     const [description, setDescription] = useState(initialState?.description || "")
-    const [secteurs, setSecteurs] = useState<string[]>(initialState?.secteur || [])
+    const [secteurs, setSecteurs] = useState<string[]>(initialState?.secteurs || [])
 
     useEffect(() => {
         setIsLoading(false)  
