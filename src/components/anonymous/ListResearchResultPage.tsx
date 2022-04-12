@@ -4,6 +4,7 @@ import { AnyCard, getSearch, InvestisseurQuery, searchByQuery, searchInvestisseu
 import { useTitle } from '../../hooks/useTitle';
 import { CardType } from '../../model/CardType';
 import { ApplicationContext } from '../../Router';
+import { InitialState } from '../../utils/InitialState';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
 import Pagination from '../dsfrComponents/Pagination';
 // import ToggleButton from '../dsfrComponents/ToggleButton';
@@ -16,24 +17,19 @@ interface ListResearchResultProps {
 const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => {
     const { usedCorbeille } = useContext(ApplicationContext)
     const [toggleInCorbeille, isInCorbeille] = usedCorbeille
+    const location = useLocation();
+    const initialState = location.state as (InitialState & { page?: number, montantMin: number }) | null;
 
-    const { searchId, page } = useParams();
-    const redirect = <Navigate to={`${cardType.searchLink}/${searchId}/1`} replace={true} />
-    const pageNo = page ? parseInt(page) : 1
+
+    const pageNo = initialState?.page || 1
     console.log(pageNo)
     const navigate = useNavigate()
     useTitle(`Recherche détaillé ${cardType.title}`)
 
-    if (!searchId) throw new Error("searchId param is mandatory")
-
-    const initialSearch = getSearch(searchId)
-    const location = useLocation();
-    console.log(location.state)
-
-
-    if (!initialSearch) throw new Error("initialSearch is mandatory")
-    const query = initialSearch.query as InvestisseurQuery
-    const [montantMin, setMontantMin] = useState<number>(query.montantMin || 0)
+    const [isLoading, setIsLoading] = useState(false)
+    const [description, setDescription] = useState(initialState?.description || "")
+    const [secteurs, setSecteurs] = useState<string[]>(initialState?.secteur || [])
+    const [montantMin, setMontantMin] = useState<number>(initialState?.montantMin || 0)
 
     //Not available with current vesion of API
     // const [toggles, setToggles] = useState<Record<string, boolean>>({
@@ -42,7 +38,6 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
     //     'Corporate': false
     // });
 
-    console.log({ initialSearch })
 
     useEffect(() => {
         const element = document.getElementById('cardsContainer')
@@ -51,32 +46,43 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
         if (element?.offsetTop < window.scrollY) {
             window.scrollTo({ behavior: "smooth", top: element?.offsetTop - window.innerHeight * 0.15 })
         }
-    }, [searchId, page]);
+    }, [initialState]);
 
-    const allCards: AnyCard[] = Object.values(initialSearch.cardsById).filter(x => x.cardTypeName === cardType.name);
-    const pageChunkSize = 20;
-    const nbPage = Math.ceil(allCards.length / pageChunkSize)
-    const displayCards = allCards.filter(x => !isInCorbeille(x))
-        .slice(
-            (pageNo - 1) * pageChunkSize,
-            pageNo * pageChunkSize
-        ).map((card) => <ResultPreviewCard cardType={cardType} cardData={card} searchId={searchId} />);
-
+    let displayCards: JSX.Element[] | undefined;
+    let allCards: AnyCard[] = []
+    let nbPage : number | undefined;
+    if (initialState) {
+        allCards = Object.values(initialState?.cardsById != undefined && initialState.cardsById).filter(x => x.cardTypeName === cardType.name);
+        const pageChunkSize = 20;
+        nbPage = Math.ceil(allCards.length / pageChunkSize)
+        displayCards = initialState?.cardsById && allCards.filter(x => !isInCorbeille(x))
+            .slice(
+                (pageNo - 1) * pageChunkSize,
+                pageNo * pageChunkSize
+            ).map((card) => <ResultPreviewCard cardType={cardType} cardData={card}/>);
+    }
     const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         searchInvestisseurByQuery({
             type: "investisseur",
-            description: initialSearch.query.description/*,
-            keywords*/,
-            secteurs: initialSearch.query.secteurs,
+            description,
+            /*keywords,*/
+            secteurs,
             montantMin
         }).then((search) => {
-            console.log({ navigateTo: `/investisseurs/${search.id}` })
-            return navigate(`/investisseurs/${search.id}`)
+            console.log({ navigateTo: `/investisseurs}` })
+            return navigate(`/investisseurs`, {
+                replace: true,
+                state: {
+                    description,
+                    secteurs,
+                    montantMin,
+                    cardsById: search.cardsById
+                }
+            })
         })
     };
 
-    if (!page) return redirect;
     return (
 
         <>
@@ -146,7 +152,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
                 {displayCards}
             </div>
 
-            <Pagination currentPageNo={pageNo} baseUrl={cardType.searchLink + "/" + searchId} nbPage={nbPage} />
+            {initialState && nbPage && <Pagination currentPageNo={pageNo} baseUrl={cardType.searchLink} nbPage={nbPage} initialState={initialState}/>}
 
         </>
     )

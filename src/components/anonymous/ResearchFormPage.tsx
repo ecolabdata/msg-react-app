@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { AnyCard, getSearch, searchByQuery } from '../../api/Api';
 import { all as allCardType } from '../../model/CardType';
 import { ApplicationContext } from '../../Router';
+import { InitialState } from '../../utils/InitialState';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
 import ResultResearchPreviewCard from '../customComponents/ResultResearchPreviewCard';
 
@@ -25,15 +26,15 @@ const ResearchForm: React.FC = (props) => {
     const [toggleInCorbeille, isInCorbeille] = usedCorbeille
 
     const navigate = useNavigate();
-    const { searchId } = useParams();
+    const location = useLocation();
+    const initialState = location.state as InitialState | null;
     const [isLoading, setIsLoading] = useState(false)
-    const initialSearch = searchId ? getSearch(searchId) : null
-    const [description, setDescription] = useState(initialSearch?.query.description || "")
-    const [secteurs, setSecteurs] = useState<string[]>([])
+    const [description, setDescription] = useState(initialState?.description || "")
+    const [secteurs, setSecteurs] = useState<string[]>(initialState?.secteur || [])
 
     useEffect(() => {
-        setIsLoading(false)
-    }, [searchId])
+        setIsLoading(false)  
+    }, [initialState])
 
     useEffect(() => {
         const element = document.getElementById('previews')
@@ -46,19 +47,23 @@ const ResearchForm: React.FC = (props) => {
         setIsLoading(true)
         if (description.length > 0) {
             searchByQuery({type: "general", description/*, keywords*/, secteurs }).then((search) => {
-                return navigate(`/recherche/${search.id}`)
+                return navigate(`/recherche`, {state: {
+                    description,
+                    secteurs,
+                    cardsById: search.cardsById
+                }})
             })
         }
     };
-
-    const previews = initialSearch && allCardType.map(cardType => {
-        const results: AnyCard[] = Object.values(initialSearch.cardsById).filter(x => x.cardTypeName == cardType.name);
+    
+    const previews = initialState?.cardsById != undefined && allCardType.map(cardType => {
+        const results: AnyCard[] = Object.values(initialState?.cardsById != undefined && initialState.cardsById).filter(x => x.cardTypeName == cardType.name);
         if (!results || results.length === 0) return null;
         console.log(cardType.name)
         return (
-            <ResultResearchPreviewCard cardType={cardType} searchId={initialSearch.id} resultCount={results.length}>
+            <ResultResearchPreviewCard cardType={cardType} initialState={initialState} resultCount={results.length}>
                 {results.filter(x => !isInCorbeille(x)).map(x => <div className="ml-6">
-                    <ResultPreviewCard cardData={x} cardType={cardType} searchId={initialSearch.id}/>
+                    <ResultPreviewCard cardData={x} cardType={cardType}/>
                 </div>
                 )}
             </ResultResearchPreviewCard>
@@ -67,7 +72,7 @@ const ResearchForm: React.FC = (props) => {
 
     return (
         <>
-            <div key={searchId} className="formContainer flex flex-col items-center">
+            <div className="formContainer flex flex-col items-center">
 
                 <h1 className="w-3/5 font-bold text-4xl text-center mx-auto max-w-4xl"> Start-up greentech, trouvez automatiquement des pistes pour booster votre développement !  </h1>
                 <div className="mt-8 rounded-md bg-background-form">

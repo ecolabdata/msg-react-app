@@ -1,18 +1,18 @@
 import { useContext, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { AnyCard } from '../../api/Api';
 import { ArrowRight } from '../../assets/Icons';
 import { CardType } from '../../model/CardType';
 import { ApplicationContext } from '../../Router';
-import {Star, Trash} from '../../assets/Icons'
- 
+import { Star, Trash } from '../../assets/Icons'
+import { InitialState } from '../../utils/InitialState';
+
 interface ResultPreviewCardProps {
     cardData: AnyCard
     cardType: CardType
-    searchId: string | null
 }
 
-const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardType, searchId }) => {
+const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardType }) => {
     const { usedFavoris, usedCorbeille } = useContext(ApplicationContext)
     const [toggleFavori, isFavori] = usedFavoris
     const [toggleInCorbeille, isInCorbeille] = usedCorbeille
@@ -23,7 +23,6 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
     const userIsOnResearchPage = currentPageURL[1] === "recherche" ? true : false;
     const [toggle, setToggle] = useState(true)
     //const achivedStyle = isInCorbeille(cardData) ? {"opacity": 0.3, "filter": "grayscale(50%)" } : {}
-    const detailsRoute = searchId ? `/${cardType.name}/${searchId}/${cardData.id}/details` : `/${cardType.name}/${cardData.id}/details`
     return <div className={`cardContainer group rounded-r -6 ml-6 min-w-282 max-w-[282px]  p-4 flex flex-col
                     addBorder-l border-l-3 
                     hover:shadow-xl
@@ -49,8 +48,8 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
         <h4 className="clamp mt-2 w-4/5 font-bold text-xl" title={cardData.nom || cardData.titre_aide}>{cardData.nom || cardData.titre_aide}</h4>
         <p className="uppercase opacity-0 mt-8 text-xs text-white transition-opacity duration-200 group-hover:opacity-100"> {cardData.type_investissements}</p>
 
-
-        <Link to={detailsRoute} className="absolute bottom-[15px] right-[15px] rm-link-underline" style={{ color: cardType.color }}>
+        {/* <NavLink to={cardType.searchLink} state={initialState} NavLink/> */}
+        <Link to={`/${cardType.name}/details`} state={{cardData}} className="absolute bottom-[15px] right-[15px] rm-link-underline" style={{ color: cardType.color }}>
             <ArrowRight />
         </Link>
 

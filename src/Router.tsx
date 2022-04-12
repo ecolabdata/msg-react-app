@@ -44,13 +44,11 @@ const Router = () => {
                         <Route path="/" element={<HomePage />} />
                         <Route path="/formulaire-recherche-de-solutions" element={<ResearchForm />} />
                         <Route path="/recherche" element={<ResearchForm />} />
-                        <Route path="/recherche/:searchId" element={<ResearchForm />} />
-                        <Route path="/:cardType/:searchId/:cardId/details" element={<CardDetailsJson />} />
-                        <Route path="/:cardType/:cardId/details" element={<CardDetailsJson />} />
+                        <Route path="/:cardType/details" element={<CardDetailsJson />} />
                         <Route path="/exemple/details" element={<CardDetails/>} />
                         {allCardType.map(cardType => <>
-                            <Route path={`${cardType.searchLink}/:searchId`} element={<ListResearchResult cardType={cardType} />}/>
-                            <Route path={`${cardType.searchLink}/:searchId/:page`} element={<ListResearchResult cardType={cardType} />} />
+                            <Route path={`${cardType.searchLink}`} element={<ListResearchResult cardType={cardType} />}/>
+                            <Route path={`${cardType.searchLink}`} element={<ListResearchResult cardType={cardType} />} />
                         </>)}
                         {/* <Route path="/investisseur/:cardId/details" element={<CardDetailsInvestisseur />} /> */}
                         <Route path="/authentification" element={<Authentication />} />

@@ -1,16 +1,17 @@
 import React, { RefObject, useRef, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { CardType } from '../../model/CardType';
+import { InitialState } from '../../utils/InitialState';
 import { ArrowRight } from './../../assets/Icons';
 
 
 export interface ResultResearchPreviewCardProps {
     cardType: CardType,
-    searchId: string,
+    initialState: InitialState,
     resultCount: number
 }
 
-const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = ({ cardType, searchId, children, resultCount }) => {
+const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = ({ cardType, initialState , children, resultCount }) => {
 
     const navigate = useNavigate()
     const scrollable = useRef<RefObject<HTMLDivElement>>();
@@ -51,7 +52,7 @@ const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = ({ c
             </div>
 
             <div className="seeAllbutton p-2">
-                <NavLink to={cardType.searchLink + "/" + searchId} style={{ borderColor: cardType.color, color: cardType.color }} className="w-36 h-9 text-xs font-bold 
+                <NavLink to={cardType.searchLink} state={initialState} style={{ borderColor: cardType.color, color: cardType.color }} className="w-36 h-9 text-xs font-bold 
                         addBorder border-2 p-1 rm-link-underline
                         flex justify-center"> <span className="my-auto">Voir tout</span>  &nbsp;<ArrowRight class="my-auto" width="16" height="16" /> </NavLink>
             </div>
