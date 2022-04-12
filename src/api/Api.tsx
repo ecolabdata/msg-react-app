@@ -1,6 +1,6 @@
 import { canonicalize } from 'json-canonicalize';
 import sha1 from 'sha1';
-import { acheteurPublic, aideClient, investisseur } from '../model/CardType';
+import { acheteurPublic, aideClient, aideInno, investisseur } from '../model/CardType';
 import mockApiResponse from './mock_api_resp.json';
 
 export const buildId = (obj: any) => sha1(canonicalize(obj)).slice(0, 8)
@@ -61,15 +61,17 @@ function  handleResp(query : Query | InvestisseurQuery, resp : ApiResponse) {
   const queryStr = JSON.stringify(query);
   const queryId = getNextQueryId() //sha1(queryStr).slice(0, 8);
   const cards = {
+
     collectivites: resp.cards.collectivites.map(x => {return {...x, id: buildId(x), cardTypeName: acheteurPublic.name}}),
     //marches: resp.cards.marches.map(x => {return {...x, id: buildId(x), cardTypeName: achatPrevi.name}}),
     investisseurs: resp.cards.investisseurs.map(x => {return {...x, id: buildId(x), cardTypeName: investisseur.name}}),
     aides_clients: resp.cards.aides_clients.map(x => {return {...x, id: buildId(x), cardTypeName: aideClient.name}}),
-    aides_innovation: resp.cards.aides_innovation.map(x => {return {...x, id: buildId(x), cardTypeName: aideClient.name}})
+    aides_innovation: resp.cards.aides_innovation.map(x => {return {...x, id: buildId(x), cardTypeName: aideInno.name}})
   }
   const cardsById = Object.fromEntries([...cards.collectivites, /*...cards.marches,*/ ...cards.investisseurs, ...cards.aides_clients, ...cards.aides_innovation].map(x => [x.id, x]))
-  const search = {id: queryId, query, resp, cards, cardsById};
+  const search = {id: queryId, query, cardsById};
   const jsonStr = JSON.stringify(search)
+  console.log("size:", new Blob([jsonStr]).size/1024, " ko")
   localStorage.setItem(`search-${queryId}`, jsonStr)
   return search;
 }
