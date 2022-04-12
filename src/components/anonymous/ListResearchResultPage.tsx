@@ -29,8 +29,9 @@ interface ListResearchResultProps {
 }
 
 const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => {
-    const { usedCorbeille } = useContext(ApplicationContext)
+    const { usedCorbeille, usedNextScrollTarget} = useContext(ApplicationContext)
     const [toggleInCorbeille, isInCorbeille] = usedCorbeille
+    const [nextScrollTarget, setNextScrolTarget] = usedNextScrollTarget
     const location = useLocation();
     const initialState = location.state as (InitialState & { page?: number, montantMin: number }) | null;
 
@@ -51,16 +52,6 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
     //     'Business Angel': false,
     //     'Corporate': false
     // });
-
-
-    useEffect(() => {
-        const element = document.getElementById('cardsContainer')
-        if (!element) return;
-        console.log(element?.offsetTop, window.scrollY)
-        if (element?.offsetTop < window.scrollY) {
-            window.scrollTo({ behavior: "smooth", top: element?.offsetTop - window.innerHeight * 0.15 })
-        }
-    }, [initialState]);
 
     let displayCards: JSX.Element[] | undefined;
     let allCards: AnyCard[] = []
@@ -192,7 +183,10 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
                 {displayCards}
             </div>
 
-            {initialState && nbPage && <Pagination currentPageNo={pageNo} baseUrl={cardType.searchLink} nbPage={nbPage} initialState={initialState} />}
+            {initialState && nbPage && <Pagination onClick={() => {
+                const element = document.getElementById('cardsContainer')
+                if (element) setNextScrolTarget({ behavior: "smooth", top: element.offsetTop - window.innerHeight * 0.20 })
+            }} currentPageNo={pageNo} baseUrl={cardType.searchLink} nbPage={nbPage} initialState={initialState} />}
 
         </>
     )

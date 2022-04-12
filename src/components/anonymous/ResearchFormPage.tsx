@@ -21,33 +21,34 @@ const allSecteur = [
     "Mobilité durable"
 ]
 
-const ResearchForm: React.FC = (props) => {
-    const { usedCorbeille } = useContext(ApplicationContext)
-    const [toggleInCorbeille, isInCorbeille] = usedCorbeille
 
+const ResearchForm: React.FC = (props) => {
+    const { usedCorbeille, usedNextScrollTarget } = useContext(ApplicationContext)
+    const [toggleInCorbeille, isInCorbeille] = usedCorbeille
+    const [nextScrollTarget, setNextScrolTarget] = usedNextScrollTarget
     const navigate = useNavigate();
     const location = useLocation();
     const initialState = location.state as InitialState | null;
     const [isLoading, setIsLoading] = useState(false)
+    const [scrollTarget, setScrollTarget] = useState<string | null>(null)
     const [description, setDescription] = useState(initialState?.description || "")
     const [secteurs, setSecteurs] = useState<string[]>(initialState?.secteurs || [])
 
     useEffect(() => {
-        setIsLoading(false)  
-    }, [initialState])
+        if (scrollTarget) {
 
-    useEffect(() => {
-        const element = document.getElementById('previews')
-        if (!element) return;
-        window.scrollTo({ behavior: "smooth", top: element.offsetTop - window.innerHeight * 0.20 })
-    }, [isLoading]);
+        }
+    }, [initialState]);
 
     const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setIsLoading(true)
         if (description.length > 0) {
             searchByQuery({type: "general", description/*, keywords*/, secteurs }).then((search) => {
-                return navigate(`/recherche`, {state: {
+                setIsLoading(false)
+                const element = document.getElementById('previews')
+                if (element) setNextScrolTarget({ behavior: "smooth", top: element.offsetTop - window.innerHeight * 0.20 })
+                navigate(`/recherche`, {state: {
                     description,
                     secteurs,
                     cardsById: search.cardsById

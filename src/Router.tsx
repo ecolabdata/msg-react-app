@@ -1,4 +1,4 @@
-import { createContext, useEffect } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import isAuth from './helpers/isAuth';
 import Header from './components/Header'
@@ -19,10 +19,15 @@ import { defaultUsedCorbeille, defaultUsedFavoris, useCorbeille, UsedCorbeille, 
 import CardDetails from './components/customComponents/CardDetails';
 import { DonnezVotreAvis } from './components/customComponents/DonnezVotreAvis';
 
+
 export const ApplicationContext = createContext<{
     usedFavoris: UsedFavoris,
-    usedCorbeille: UsedCorbeille}
->({usedFavoris: defaultUsedFavoris, usedCorbeille: defaultUsedCorbeille})
+    usedCorbeille: UsedCorbeille,
+    usedNextScrollTarget: any
+}
+>({usedFavoris: defaultUsedFavoris, usedCorbeille: defaultUsedCorbeille, usedNextScrollTarget: {}})
+
+
 
 const Router = () => {
     localStorage.setItem('scheme', 'dark');
@@ -31,10 +36,11 @@ const Router = () => {
     }, [localStorage.scheme])
     const usedFavoris = useFavoris()
     const usedCorbeille = useCorbeille()
+    const usedNextScrollTarget = useState<string | null>(null)
 
     return (
         <>
-        <ApplicationContext.Provider value={{usedFavoris, usedCorbeille}}>
+        <ApplicationContext.Provider value={{usedFavoris, usedCorbeille, usedNextScrollTarget}}>
             <DonnezVotreAvis />
             <Header userIsAuth={isAuth()} />
             <main className={`h-full p-6 

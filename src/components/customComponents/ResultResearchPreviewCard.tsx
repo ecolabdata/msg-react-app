@@ -1,6 +1,7 @@
-import React, { RefObject, useRef, useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import React, { RefObject, useContext, useRef, useState } from 'react';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { CardType } from '../../model/CardType';
+import { ApplicationContext } from '../../Router';
 import { InitialState } from '../../utils/InitialState';
 import { ArrowRight } from './../../assets/Icons';
 
@@ -13,9 +14,8 @@ export interface ResultResearchPreviewCardProps {
 
 const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = ({ cardType, initialState , children, resultCount }) => {
 
-    const navigate = useNavigate()
-    const scrollable = useRef<RefObject<HTMLDivElement>>();
-
+    const {usedNextScrollTarget} = useContext(ApplicationContext)
+    const [nextScrollTarget, setNextScrollTarget] = usedNextScrollTarget
     const ref = useRef<HTMLDivElement>(null)
     const [leftArrow, setLeftArrow] = useState(false);
     const [rightArrow, setRightArrow] = useState(true);
@@ -52,9 +52,11 @@ const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = ({ c
             </div>
 
             <div className="seeAllbutton p-2">
-                <NavLink to={cardType.searchLink} state={initialState} style={{ borderColor: cardType.color, color: cardType.color }} className="w-36 h-9 text-xs font-bold 
-                        addBorder border-2 p-1 rm-link-underline
-                        flex justify-center"> <span className="my-auto">Voir tout</span>  &nbsp;<ArrowRight class="my-auto" width="16" height="16" /> </NavLink>
+                <NavLink
+                    onClick={() => setNextScrollTarget({top: 0})}
+                    to={cardType.searchLink} state={initialState} style={{ borderColor: cardType.color, color: cardType.color }} className="w-36 h-9 text-xs font-bold 
+                    addBorder border-2 p-1 rm-link-underline
+                    flex justify-center"> <span className="my-auto">Voir tout</span>  &nbsp;<ArrowRight class="my-auto" width="16" height="16" /> </NavLink>
             </div>
         </div >
 
