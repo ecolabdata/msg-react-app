@@ -39,7 +39,7 @@ const Home = () => {
             </div>
 
             <div className="mx-auto w-55 flex justify-center my-6">
-                <Button onClick={ () => navigate('/inscription')} arrow={true}> Créer un compte</Button>
+                {/* <Button onClick={ () => navigate('/inscription')} arrow={true}> Créer un compte</Button> */}
                 <FillButton onClick={ () => {
                     navigate('/formulaire-recherche-de-solutions')
                 }} arrow={true}>Découvrir la solution</FillButton>
