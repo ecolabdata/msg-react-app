@@ -1,4 +1,3 @@
-import { Outlet } from "react-router-dom";
 import { useLocationChange } from "./useLocation";
 
 declare global {
@@ -24,9 +23,4 @@ export const useTrackPage = () => {
         // _paq.push(['trackContentImpressionsWithinNode', content]);
         _paq.push(['enableLinkTracking']);
     })
-}
-
-export const TrackPage = () => {
-    useTrackPage()
-    return <Outlet />;
 }

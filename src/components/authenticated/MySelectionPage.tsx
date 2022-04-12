@@ -60,7 +60,7 @@ const MySelection = () => {
             </div>
 
             <div className="cardsContainer mx-auto w-3/4 justify-center flex flex-wrap">
-                    {Object.values(favoris).filter(x => selectedCardTypeName === "all" || selectedCardTypeName === x.cardTypeName).map((card) => <ResultPreviewCard cardType={byName[card.cardTypeName]} cardData={card} searchId={null}/>)}
+                    {Object.values(favoris).filter(x => selectedCardTypeName === "all" || selectedCardTypeName === x.cardTypeName).map((card) => <ResultPreviewCard cardType={byName[card.cardTypeName]} cardData={card}/>)}
             </div>
 
             {/* <Pagination currentPageNo={pageNo} baseUrl={cardType.searchLink + "/" + searchId} nbPage={nbPage}/> */}

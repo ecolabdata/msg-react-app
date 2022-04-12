@@ -1,11 +1,9 @@
 import { ReactElement, useContext, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { AnyCard, CardTypeName, getSearch } from '../../api/Api';
-import { Rocket } from '../../assets/Icons';
+import { useLocation } from 'react-router-dom';
+import { AnyCard, CardTypeName } from '../../api/Api';
 import { CardData } from '../../model/CardData';
 import { byName, CardType } from '../../model/CardType';
 import { ApplicationContext } from '../../Router';
-import ArrowDark from './../../assets/icons/arrow-dark-action.svg';
 interface CardDetailsProps {
     cardType: CardType,
     cardData: CardData,
@@ -27,13 +25,18 @@ function browseObject(obj: any,
 
 
 export const thematiqueToFieldsConf: Record<CardTypeName, Record<string, string | boolean>> = {
-    "aides": {
+    "aides_innovation": {
         titre_aide: "Nom",
         funding_source_url: "Url source",
         aide_detail: "Détails de l'aide",
         contact: "Qui contacter ?"
     },
-    "marches": {},
+    "aides_clients": {
+        titre_aide: "Nom",
+        funding_source_url: "Url source",
+        aide_detail: "Détails de l'aide",
+        contact: "Qui contacter ?"
+    },
     // "marché": {
     //     libelle: "Nom",
     //     groupe_marchandise_nom: "Groupe Marchandise",
@@ -59,23 +62,26 @@ export const thematiqueToFieldsConf: Record<CardTypeName, Record<string, string 
     }  
 };
 
-const CardDetailsJson = () => {
+const CardDetailsJson = (props:any) => {
     const { usedFavoris, usedCorbeille } = useContext(ApplicationContext)
     const [toggleFavori, isFavori, favoris] = usedFavoris
     const [toggleInCorbeille, isInCorbeille, corbeille] = usedCorbeille
-
+    const location = useLocation();
+    console.log({location, props})
+    const initialState = location.state as {cardData : AnyCard} | null;
     useEffect(() => {
         window.scrollTo(0,0)
     })
-    const { searchId, cardId } = useParams();
-    if (!cardId) throw new Error("cardId mandatory")
-    const initialSearch = searchId ? getSearch(searchId) : null
-    const data = initialSearch?.cardsById[cardId] || favoris[cardId] || corbeille[cardId]
     const devMode = true;
     const toDisplay: ReactElement[] = [];
-    const cardType = byName[data.cardTypeName]
+    const cardData = initialState?.cardData;
+    if (!cardData) {
+        console.log("cardType mandatory getting", {cardData})
+        return null;
+    }
+    const cardType = byName[cardData?.cardTypeName];
     const fieldsConf = thematiqueToFieldsConf[cardType.apiName]
-    browseObject(data, (prefix, key, value) => {
+    browseObject(cardData, (prefix, key, value) => {
         const fullname = [...prefix, key].join("/")
         if (value) {
             const humanReadableName = fieldsConf[fullname]
@@ -105,19 +111,19 @@ const CardDetailsJson = () => {
         </div> */}
         </div>
     </div>
-    return (
-        <>
-            <div className='flex justify-around'>
-                <div className="contentContainer  w-1/2" >
+    // return (
+    //     <>
+    //         <div className='flex justify-around'>
+    //             <div className="contentContainer  w-1/2" >
 
-                    <pre> 
-                        {JSON.stringify(data, null, "  ")}
-                    </pre>
+    //                 <pre> 
+    //                     {JSON.stringify(data, null, "  ")}
+    //                 </pre>
                     
-                </div>
-            </div>
-        </>
-    )
+    //             </div>
+    //         </div>
+    //     </>
+    // )
 };
 
 export default CardDetailsJson;

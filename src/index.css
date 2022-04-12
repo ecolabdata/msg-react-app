@@ -41,3 +41,17 @@ textarea:focus, input:focus {
   margin-top: var(--m-after);
   margin-bottom: var(--m-after);
 }
+
+.fr-pagination__link[aria-current] {
+  --hover: inherit;
+  --active: inherit;
+  background-color: inherit;
+  color: inherit;
+}
+
+.fr-pagination__link[aria-current=page] {
+  --hover: var(--background-active-blue-france-hover);
+  --active: var(--background-active-blue-france-active);
+  background-color: var(--background-active-blue-france);
+  color: var(--text-inverted-blue-france);
+}

@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { AnyCard, getSearch, searchByQuery } from '../../api/Api';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { AnyCard, searchByQuery } from '../../api/Api';
 import { all as allCardType } from '../../model/CardType';
 import { ApplicationContext } from '../../Router';
+import { InitialState } from '../../utils/InitialState';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
 import ResultResearchPreviewCard from '../customComponents/ResultResearchPreviewCard';
 
@@ -20,40 +21,50 @@ const allSecteur = [
     "Mobilité durable"
 ]
 
-const ResearchForm: React.FC = (props) => {
-    const { usedCorbeille } = useContext(ApplicationContext)
-    const [toggleInCorbeille, isInCorbeille] = usedCorbeille
 
+const ResearchForm: React.FC = (props) => {
+    const { usedCorbeille, usedNextScrollTarget } = useContext(ApplicationContext)
+    const [toggleInCorbeille, isInCorbeille] = usedCorbeille
+    const [nextScrollTarget, setNextScrolTarget] = usedNextScrollTarget
     const navigate = useNavigate();
-    const { searchId } = useParams();
-    const initialSearch = searchId ? getSearch(searchId) : null
-    console.log({ initialSearch })
-    const [description, setDescription] = useState(initialSearch?.query.description || "")
-    const [secteurs, setSecteurs] = useState<string[]>([])
+    const location = useLocation();
+    const initialState = location.state as InitialState | null;
+    const [isLoading, setIsLoading] = useState(false)
+    const [scrollTarget, setScrollTarget] = useState<string | null>(null)
+    const [description, setDescription] = useState(initialState?.description || "")
+    const [secteurs, setSecteurs] = useState<string[]>(initialState?.secteurs || [])
 
     useEffect(() => {
-        const element = document.getElementById('previews')
-        if (!element) return;
-        window.scrollTo({ behavior: "smooth", top: element.offsetTop - window.innerHeight * 0.20 })
-    }, [searchId]);
+        if (scrollTarget) {
+
+        }
+    }, [initialState]);
 
     const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        setIsLoading(true)
         if (description.length > 0) {
             searchByQuery({type: "general", description/*, keywords*/, secteurs }).then((search) => {
-                return navigate(`/recherche/${search.id}`)
+                setIsLoading(false)
+                const element = document.getElementById('previews')
+                if (element) setNextScrolTarget({ behavior: "smooth", top: element.offsetTop - window.innerHeight * 0.20 })
+                navigate(`/recherche`, {state: {
+                    description,
+                    secteurs,
+                    cardsById: search.cardsById
+                }})
             })
         }
     };
-
-    const previews = initialSearch && allCardType.map(cardType => {
-
-        const results: AnyCard[] = initialSearch.cards[cardType.apiName]
+    
+    const previews = initialState?.cardsById != undefined && allCardType.map(cardType => {
+        const results: AnyCard[] = Object.values(initialState?.cardsById != undefined && initialState.cardsById).filter(x => x.cardTypeName == cardType.name);
         if (!results || results.length === 0) return null;
+        console.log(cardType.name)
         return (
-            <ResultResearchPreviewCard cardType={cardType} searchId={initialSearch.id} resultCount={results.length}>
+            <ResultResearchPreviewCard cardType={cardType} initialState={initialState} resultCount={results.length}>
                 {results.filter(x => !isInCorbeille(x)).map(x => <div className="ml-6">
-                    <ResultPreviewCard cardData={x} cardType={cardType} searchId={initialSearch.id}/>
+                    <ResultPreviewCard cardData={x} cardType={cardType}/>
                 </div>
                 )}
             </ResultResearchPreviewCard>
@@ -91,9 +102,10 @@ const ResearchForm: React.FC = (props) => {
 
             </div>
 
-            {previews && <div id="previews" className="researchResultContainer mt-4 ml-[66px">
+            {previews && !isLoading && <div id="previews" className="researwchResultContainer mt-4">
                 {previews}
             </div>}
+            {isLoading && <div className='mx-auto'>Ca charge</div>}
         </>
     )
 };

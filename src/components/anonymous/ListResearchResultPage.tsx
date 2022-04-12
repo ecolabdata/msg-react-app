@@ -1,40 +1,51 @@
 import { useContext, useEffect, useState } from 'react';
-import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
-import { AnyCard, getSearch, InvestisseurQuery, searchByQuery, searchInvestisseurByQuery } from '../../api/Api';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { AnyCard, searchInvestisseurByQuery } from '../../api/Api';
 import { useTitle } from '../../hooks/useTitle';
 import { CardType } from '../../model/CardType';
 import { ApplicationContext } from '../../Router';
+import { InitialState } from '../../utils/InitialState';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
 import Pagination from '../dsfrComponents/Pagination';
 // import ToggleButton from '../dsfrComponents/ToggleButton';
 import ArrowDark from './../../assets/icons/arrow-dark-action.svg';
+
+const allSecteur = [
+    "Numérique éco-responsable",
+    "Alimentation et agriculture durables",
+    "Eau, biodiversité et biomimétisme",
+    "Économie circulaire",
+    "Santé environnement",
+    "Energies renouvelables et décarbonées",
+    "Innovations maritimes et écosystèmes marins",
+    "Prévention des risques",
+    "Bâtiments et villes durables",
+    "Décarbonation de l'industrie",
+    "Mobilité durable"
+]
 
 interface ListResearchResultProps {
     cardType: CardType
 }
 
 const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => {
-    const { usedCorbeille } = useContext(ApplicationContext)
+    const { usedCorbeille, usedNextScrollTarget} = useContext(ApplicationContext)
     const [toggleInCorbeille, isInCorbeille] = usedCorbeille
+    const [nextScrollTarget, setNextScrolTarget] = usedNextScrollTarget
+    const location = useLocation();
+    const initialState = location.state as (InitialState & { page?: number, montantMin: number }) | null;
 
-    const { searchId, page } = useParams();
-    const redirect = <Navigate to={`${cardType.searchLink}/${searchId}/1`} replace={true} />
-    const pageNo = page ? parseInt(page) : 1
+
+    const pageNo = initialState?.page || 1
     console.log(pageNo)
     const navigate = useNavigate()
     useTitle(`Recherche détaillé ${cardType.title}`)
 
-    if (!searchId) throw new Error("searchId param is mandatory")
-
-    const initialSearch = getSearch(searchId)
-    const location = useLocation();
-    console.log(location.state)
-
-
-    if (!initialSearch) throw new Error("initialSearch is mandatory")
-    const query = initialSearch.query as InvestisseurQuery
-    const [montantMin, setMontantMin] = useState<number>(query.montantMin || 0)
-
+    const [isLoading, setIsLoading] = useState(false)
+    const [description, setDescription] = useState(initialState?.description || "")
+    const [secteurs, setSecteurs] = useState<string[]>(initialState?.secteurs || [])
+    const [montantMin, setMontantMin] = useState<number>(initialState?.montantMin || 0)
+    console.log({initialState, })
     //Not available with current vesion of API
     // const [toggles, setToggles] = useState<Record<string, boolean>>({
     //     'Venture Capital': false,
@@ -42,41 +53,41 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
     //     'Corporate': false
     // });
 
-    console.log({ initialSearch })
-
-    useEffect(() => {
-        const element = document.getElementById('cardsContainer')
-        if (!element) return;
-        console.log(element?.offsetTop, window.scrollY)
-        if (element?.offsetTop < window.scrollY) {
-            window.scrollTo({ behavior: "smooth", top: element?.offsetTop - window.innerHeight * 0.15 })
-        }
-    }, [searchId, page]);
-
-    const allCards: AnyCard[] = initialSearch.cards[cardType.apiName]
-    const pageChunkSize = 20;
-    const nbPage = Math.ceil(allCards.length / pageChunkSize)
-    const displayCards = allCards.filter(x => !isInCorbeille(x))
-        .slice(
-            (pageNo - 1) * pageChunkSize,
-            pageNo * pageChunkSize
-        ).map((card) => <ResultPreviewCard cardType={cardType} cardData={card} searchId={searchId} />);
-
+    let displayCards: JSX.Element[] | undefined;
+    let allCards: AnyCard[] = []
+    let nbPage: number | undefined;
+    if (initialState) {
+        allCards = Object.values(initialState?.cardsById != undefined && initialState.cardsById).filter(x => x.cardTypeName === cardType.name);
+        const pageChunkSize = 20;
+        nbPage = Math.ceil(allCards.length / pageChunkSize)
+        displayCards = initialState?.cardsById && allCards.filter(x => !isInCorbeille(x))
+            .slice(
+                (pageNo - 1) * pageChunkSize,
+                pageNo * pageChunkSize
+            ).map((card) => <ResultPreviewCard cardType={cardType} cardData={card} />);
+    }
     const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         searchInvestisseurByQuery({
             type: "investisseur",
-            description: initialSearch.query.description/*,
-            keywords*/,
-            secteurs: initialSearch.query.secteurs,
+            description,
+            /*keywords,*/
+            secteurs,
             montantMin
         }).then((search) => {
-            console.log({ navigateTo: `/investisseurs/${search.id}` })
-            return navigate(`/investisseurs/${search.id}`)
+            console.log({ navigateTo: `/investisseurs}` })
+            return navigate(`/investisseurs`, {
+                replace: true,
+                state: {
+                    description,
+                    secteurs,
+                    montantMin,
+                    cardsById: search.cardsById
+                }
+            })
         })
     };
 
-    if (!page) return redirect;
     return (
 
         <>
@@ -105,14 +116,41 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
                 </div>
 
                 <div className=" flex flex-col items-center w-full">
+                    <div className="formContainer flex flex-col items-center">
+
+                        <div className="mt-8 rounded-md bg-background-form">
+                            <form onSubmit={(event) => handleOnSubmitForm(event)} id="keywordsForm" className="w-[900px] flex items-center m-8">
+                                <div className='flex flex-col w-[500px]'>
+                                    <h2 className="w-11/12 text-base text-center">Décrivez en quelques lignes votre projet (thématique, technologie, cible, apports... ) pour obtenir des pistes pertinentes.</h2>
+
+                                    <textarea onChange={e => setDescription(e.target.value)} value={description} form="keywordsForm"
+                                        className="cursor-text rounded-t-sm mt-4 w-11/12 h-56 addBorder-b border-3 border-gray-300 p-4 bg-background-inputs" placeholder="Expl. : “start-up de méthanisation” ou “nous sommes une startup spécialisée dans le processus biologique de dégradation des matières organiques...”"></textarea>
+                                </div>
+                                {/* <button className="addBorder-b border-b self-start ml-5 mt-2 text-sm ">Affiner par mots clés</button> */}
+                                <div className='flex flex-wrap w-[400px] h-[300px] flex-col'>
+                                    {allSecteur.map(secteur => <div className="fr-checkbox-group fr-checkbox-group--sm w-[180px]">
+                                        <input type="checkbox" id={secteur} name={secteur} checked={secteurs.includes(secteur)} onChange={e => {
+                                            e.currentTarget.checked ? setSecteurs([...secteurs, secteur]) : setSecteurs(secteurs.filter(x => x != secteur))
+                                        }} />
+                                        <label className="fr-label text-xs" htmlFor={secteur}>{secteur}</label>
+                                    </div>)}
+                                </div>
+                                <div className="keyWordsContainer">
+
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
                     <div className="researchContainer max-w-[1240px] w-full p-6 flex flex-col bg-research-precision-container items-center
                 lg:p-1">
 
                         <h2 className=" bold text-xl text-center mt-4" style={{ color: cardType.color }}>Preciser la recherche </h2>
 
+
                         <form id="keywordsForm" onSubmit={e => handleOnSubmitForm(e)} className="inputsContainer p-4 flex justify-center items-middle
-                    lg:justify-between lg:items-end
-                    xl:justify-center">
+                            lg:justify-between lg:items-end
+                            xl:justify-center">
 
                             <div className="my-2 flex flex-col items-center
                         lg:flex-row lg:mb-6">
@@ -145,7 +183,10 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
                 {displayCards}
             </div>
 
-            <Pagination currentPageNo={pageNo} baseUrl={cardType.searchLink + "/" + searchId} nbPage={nbPage} />
+            {initialState && nbPage && <Pagination onClick={() => {
+                const element = document.getElementById('cardsContainer')
+                if (element) setNextScrolTarget({ behavior: "smooth", top: element.offsetTop - window.innerHeight * 0.20 })
+            }} currentPageNo={pageNo} baseUrl={cardType.searchLink} nbPage={nbPage} initialState={initialState} />}
 
         </>
     )
