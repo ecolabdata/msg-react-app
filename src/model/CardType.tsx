@@ -46,7 +46,7 @@ export const aideClient: CardType = {
     description: "Dispositifs incitatifs (état ou régions) qui aident vos clients à accéder à vos solutions",
     name: "aides-clients",
     searchLink: "/aides-clients",
-    apiName: "aides_clients" //TODO
+    apiName: "aides_clients"
 } as const
 
 export const aideInno: CardType = {
@@ -56,7 +56,7 @@ export const aideInno: CardType = {
     description: "Aides publiques dédiées à votre développement (Adème, BPI...)",
     name: "aides-innovations",
     searchLink: "/aides-innovations",
-    apiName: "aides_innovation" //TODO
+    apiName: "aides_innovation"
 } as const
 
 

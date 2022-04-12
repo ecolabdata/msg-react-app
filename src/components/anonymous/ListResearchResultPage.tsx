@@ -53,7 +53,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
         }
     }, [searchId, page]);
 
-    const allCards: AnyCard[] = initialSearch.cards[cardType.apiName]
+    const allCards: AnyCard[] = Object.values(initialSearch.cardsById).filter(x => x.cardTypeName === cardType.name);
     const pageChunkSize = 20;
     const nbPage = Math.ceil(allCards.length / pageChunkSize)
     const displayCards = allCards.filter(x => !isInCorbeille(x))

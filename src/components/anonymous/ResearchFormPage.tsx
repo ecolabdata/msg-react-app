@@ -28,7 +28,6 @@ const ResearchForm: React.FC = (props) => {
     const { searchId } = useParams();
     const [isLoading, setIsLoading] = useState(false)
     const initialSearch = searchId ? getSearch(searchId) : null
-    console.log({searchId, initialSearch, lol: searchId && getSearch(searchId) })
     const [description, setDescription] = useState(initialSearch?.query.description || "")
     const [secteurs, setSecteurs] = useState<string[]>([])
 
@@ -53,9 +52,9 @@ const ResearchForm: React.FC = (props) => {
     };
 
     const previews = initialSearch && allCardType.map(cardType => {
-
-        const results: AnyCard[] = initialSearch.cards[cardType.apiName]
+        const results: AnyCard[] = Object.values(initialSearch.cardsById).filter(x => x.cardTypeName == cardType.name);
         if (!results || results.length === 0) return null;
+        console.log(cardType.name)
         return (
             <ResultResearchPreviewCard cardType={cardType} searchId={initialSearch.id} resultCount={results.length}>
                 {results.filter(x => !isInCorbeille(x)).map(x => <div className="ml-6">
