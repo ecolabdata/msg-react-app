@@ -1,11 +1,9 @@
 import { ReactElement, useContext, useEffect } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
-import { AnyCard, CardTypeName, cardTypeNames, getSearch } from '../../api/Api';
-import { Rocket } from '../../assets/Icons';
+import { useLocation } from 'react-router-dom';
+import { AnyCard, CardTypeName } from '../../api/Api';
 import { CardData } from '../../model/CardData';
 import { byName, CardType } from '../../model/CardType';
 import { ApplicationContext } from '../../Router';
-import ArrowDark from './../../assets/icons/arrow-dark-action.svg';
 interface CardDetailsProps {
     cardType: CardType,
     cardData: CardData,

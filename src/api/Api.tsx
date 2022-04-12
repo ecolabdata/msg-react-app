@@ -43,23 +43,7 @@ export type ApiResponse = typeof mockApiResponse
 export type Search = ReturnType<typeof handleResp>
 
 
-export function getSearch(searchId : string) : Search | null {
-  const searchDataStr = localStorage.getItem(`search-${searchId}`)
-  return searchDataStr ? (JSON.parse(searchDataStr) as Search ) : null
-}
-
-const MAX_QUERY_STORED = 5;
-const getNextQueryId = () => {
-  const last = localStorage.getItem(`lastQueryId`)
-  const next = last ? ((JSON.parse(last) as number + 1)  % MAX_QUERY_STORED) : 0;
-  localStorage.setItem(`lastQueryId`, JSON.stringify(next))
-  return next.toString();
-}
-
-
 function  handleResp(query : Query | InvestisseurQuery, resp : ApiResponse) {
-  const queryStr = JSON.stringify(query);
-  const queryId = getNextQueryId() //sha1(queryStr).slice(0, 8);
   const cards = {
 
     collectivites: resp.cards.collectivites.map(x => {return {...x, id: buildId(x), cardTypeName: acheteurPublic.name}}),
@@ -69,10 +53,9 @@ function  handleResp(query : Query | InvestisseurQuery, resp : ApiResponse) {
     aides_innovation: resp.cards.aides_innovation.map(x => {return {...x, id: buildId(x), cardTypeName: aideInno.name}})
   }
   const cardsById = Object.fromEntries([...cards.collectivites, /*...cards.marches,*/ ...cards.investisseurs, ...cards.aides_clients, ...cards.aides_innovation].map(x => [x.id, x]))
-  const search = {id: queryId, query, cardsById};
+  const search = {query, cardsById};
   const jsonStr = JSON.stringify(search)
   console.log("size:", new Blob([jsonStr]).size/1024, " ko")
-  localStorage.setItem(`search-${queryId}`, jsonStr)
   return search;
 }
 

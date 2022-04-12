@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
-import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
-import { AnyCard, getSearch, InvestisseurQuery, searchByQuery, searchInvestisseurByQuery } from '../../api/Api';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { AnyCard, searchInvestisseurByQuery } from '../../api/Api';
 import { useTitle } from '../../hooks/useTitle';
 import { CardType } from '../../model/CardType';
 import { ApplicationContext } from '../../Router';

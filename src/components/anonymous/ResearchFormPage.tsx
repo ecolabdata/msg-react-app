@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { AnyCard, getSearch, searchByQuery } from '../../api/Api';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { AnyCard, searchByQuery } from '../../api/Api';
 import { all as allCardType } from '../../model/CardType';
 import { ApplicationContext } from '../../Router';
 import { InitialState } from '../../utils/InitialState';
