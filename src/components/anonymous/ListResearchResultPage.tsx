@@ -45,7 +45,6 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
     const [description, setDescription] = useState(initialState?.description || "")
     const [secteurs, setSecteurs] = useState<string[]>(initialState?.secteurs || [])
     const [montantMin, setMontantMin] = useState<number>(initialState?.montantMin || 0)
-    console.log({initialState, })
     //Not available with current vesion of API
     // const [toggles, setToggles] = useState<Record<string, boolean>>({
     //     'Venture Capital': false,
@@ -67,6 +66,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
             ).map((card) => <ResultPreviewCard cardType={cardType} cardData={card} />);
     }
     const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
+        setIsLoading(true)
         event.preventDefault();
         searchInvestisseurByQuery({
             type: "investisseur",
@@ -75,7 +75,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
             secteurs,
             montantMin
         }).then((search) => {
-            console.log({ navigateTo: `/investisseurs}` })
+            setIsLoading(false)
             return navigate(`/investisseurs`, {
                 replace: true,
                 state: {
@@ -172,18 +172,18 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
                         </div> */}
                         </form>
                     </div>
-                    <button form="keywordsForm" className="mt-8 w-48 h-14 text-xl fr-btn fr-btn--primary capitalize" > <span className="mx-auto">rechercher !</span> </button>
+                    <button form="keywordsForm" disabled={isLoading} className="mt-8 w-48 h-14 text-xl fr-btn fr-btn--primary capitalize" > <span className="mx-auto">{isLoading ? "Chargement..." : "rechercher !"}</span> </button>
                 </div>
 
             </div>
 
-            <div id="cardsContainer" className="cardsContainer mt-10 mx-auto max-w-[80%] flex flex-wrap justify-evenly bg 
+            {!isLoading && <div id="cardsContainer" className="cardsContainer mt-10 mx-auto max-w-[80%] flex flex-wrap justify-evenly bg 
             xl:mx-auto
             ">
                 {displayCards}
-            </div>
+            </div>}
 
-            {initialState && nbPage && <Pagination onClick={() => {
+            {initialState && nbPage && !isLoading && <Pagination onClick={() => {
                 const element = document.getElementById('cardsContainer')
                 if (element) setNextScrolTarget({ behavior: "smooth", top: element.offsetTop - window.innerHeight * 0.20 })
             }} currentPageNo={pageNo} baseUrl={cardType.searchLink} nbPage={nbPage} initialState={initialState} />}
