@@ -35,6 +35,7 @@ const ResearchForm: React.FC = (props) => {
     const [scrollTarget, setScrollTarget] = useState<string | null>(null)
     const [description, setDescription] = useState(initialState?.description || "")
     const [secteurs, setSecteurs] = useState<string[]>(initialState?.secteurs || [])
+    const [errorTxt, setErrorTxt] = useState(<></>)
 
     useEffect(() => {
         if (scrollTarget) {
@@ -44,8 +45,9 @@ const ResearchForm: React.FC = (props) => {
 
     const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        setIsLoading(true)
+        
         if (description.length > 0) {
+            setIsLoading(true)
             searchByQuery({type: "general", description/*, keywords*/, secteurs }).then((search) => {
                 setIsLoading(false)
                 const element = document.getElementById('previews')
@@ -56,6 +58,8 @@ const ResearchForm: React.FC = (props) => {
                     cardsById: search.cardsById
                 }})
             })
+        } else {
+            setErrorTxt(<p style={{color: "hsla(0, 100%, 65%, 0.9)"}}>La description de l'entreprise est obligatoire</p>)
         }
     };
     
@@ -100,7 +104,10 @@ const ResearchForm: React.FC = (props) => {
                         </div>
                     </form>
                 </div>
-                <button form="keywordsForm" disabled={isLoading} className="mt-8 w-48 h-14 text-xl fr-btn fr-btn--primary capitalize" > <span className="mx-auto">{isLoading ? "Chargement..." : "rechercher !"}</span> </button>
+                <div className='h-12 w-full flex justify-center items-center color'>
+                    {errorTxt}
+                </div>
+                <button form="keywordsForm" disabled={isLoading} className="w-48 h-14 text-xl fr-btn fr-btn--primary capitalize" > <span className="mx-auto">{isLoading ? "Chargement..." : "rechercher !"}</span> </button>
 
             </div>
 
