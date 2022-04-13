@@ -39,9 +39,9 @@ const ResearchForm: React.FC = (props) => {
 
     const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-
         if (description.length > 0) {
             setIsLoading(true)
+            setErrorTxt(<></>)
             searchByQuery({ type: "general", description, motsclefs, secteurs }).then((search) => {
                 setIsLoading(false)
                 const element = document.getElementById('previews')

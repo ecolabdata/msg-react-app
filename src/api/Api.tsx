@@ -107,20 +107,19 @@ export function searchRequest(description: string, secteurs:string[], motsclefs:
 /*
   INVESTISSEUR QUERY
 */
-export type InvestisseurQuery = {
+export interface InvestisseurQuery extends Omit<Query, "type"> {
   type: "investisseur"
-  description:string,
-  secteurs: string[],
   montantMin: number
-}
+} 
+
 export function searchInvestisseurByQuery(query : InvestisseurQuery) {
-  return searchRequestInvestisseur(query.secteurs, query.montantMin).then(resp => handleResp(query, resp));
+  return searchRequestInvestisseur(query.secteurs, query.montantMin, query.motsclefs).then(resp => handleResp(query, resp));
 }
-export function searchRequestInvestisseur(secteurs:string[], montant_min:number) {
+export function searchRequestInvestisseur(secteurs:string[], montant_min:number, motsclefs:string[]) {
   // if (useMockResponse) {
   //   return new Promise<ApiResponse>(res => setTimeout(() => res(mockApiResponse), 3000))
   // } else {
-    return fetch(localStorage.apiUrl ||'https://api.msg.greentechinnovation.fr/getCards/', {
+    return fetch(localStorage.apiUrl ||'https://api.msg.greentechinnovation.fr:8080/getCards/', {
       method: "POST",
       headers: {
         'Accept': 'application/json',
@@ -129,7 +128,8 @@ export function searchRequestInvestisseur(secteurs:string[], montant_min:number)
       body: JSON.stringify({
         "fichier_investisseurs": "GTIetmontant.csv",
         "montant_min": montant_min*1000,
-        "secteurs": secteurs,    
+        "secteurs": secteurs,
+        "keywords": motsclefs,
         "cards": {
           "collectivites" : [],
           "aides_clients" : [],
