@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AnyCard, searchByQuery } from '../../api/Api';
+import { useTitle } from '../../hooks/useTitle';
 import { all as allCardType } from '../../model/CardType';
 import { ApplicationContext } from '../../Router';
 import { InitialState } from '../../utils/InitialState';
@@ -28,6 +29,7 @@ const ResearchForm: React.FC = (props) => {
     const [nextScrollTarget, setNextScrolTarget] = usedNextScrollTarget
     const navigate = useNavigate();
     const location = useLocation();
+    useTitle(`Explorer `)
     const initialState = location.state as InitialState | null;
     const [isLoading, setIsLoading] = useState(false)
     const [scrollTarget, setScrollTarget] = useState<string | null>(null)
