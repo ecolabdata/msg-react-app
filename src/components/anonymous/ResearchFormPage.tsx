@@ -32,45 +32,41 @@ const ResearchForm: React.FC = (props) => {
     useTitle(`Explorer `)
     const initialState = location.state as InitialState | null;
     const [isLoading, setIsLoading] = useState(false)
-    const [scrollTarget, setScrollTarget] = useState<string | null>(null)
     const [description, setDescription] = useState(initialState?.description || "")
     const [secteurs, setSecteurs] = useState<string[]>(initialState?.secteurs || [])
+    const [motsclefs, setMotsclef] = useState<string[]>(initialState?.motsclefs || [])
     const [errorTxt, setErrorTxt] = useState(<></>)
-
-    useEffect(() => {
-        if (scrollTarget) {
-
-        }
-    }, [initialState]);
 
     const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        
+
         if (description.length > 0) {
             setIsLoading(true)
-            searchByQuery({type: "general", description/*, keywords*/, secteurs }).then((search) => {
+            searchByQuery({ type: "general", description, motsclefs, secteurs }).then((search) => {
                 setIsLoading(false)
                 const element = document.getElementById('previews')
                 if (element) setNextScrolTarget({ behavior: "smooth", top: element.offsetTop - window.innerHeight * 0.20 })
-                navigate(`/recherche`, {state: {
-                    description,
-                    secteurs,
-                    cardsById: search.cardsById
-                }})
+                navigate(`/recherche`, {
+                    state: {
+                        description,
+                        secteurs,
+                        motsclefs,
+                        cardsById: search.cardsById
+                    }
+                })
             })
         } else {
-            setErrorTxt(<p style={{color: "hsla(0, 100%, 65%, 0.9)"}}>La description de l'entreprise est obligatoire</p>)
+            setErrorTxt(<p style={{ color: "hsla(0, 100%, 65%, 0.9)" }}>La description de l'entreprise est obligatoire</p>)
         }
     };
-    
+
     const previews = initialState?.cardsById != undefined && allCardType.map(cardType => {
         const results: AnyCard[] = Object.values(initialState?.cardsById != undefined && initialState.cardsById).filter(x => x.cardTypeName == cardType.name);
         if (!results || results.length === 0) return null;
-        console.log(cardType.name)
         return (
             <ResultResearchPreviewCard cardType={cardType} initialState={initialState} resultCount={results.length}>
                 {results.filter(x => !isInCorbeille(x)).map(x => <div className="ml-6">
-                    <ResultPreviewCard cardData={x} cardType={cardType}/>
+                    <ResultPreviewCard cardData={x} cardType={cardType} />
                 </div>
                 )}
             </ResultResearchPreviewCard>
@@ -83,24 +79,37 @@ const ResearchForm: React.FC = (props) => {
 
                 <h1 className="w-3/5 font-bold text-4xl text-center mx-auto max-w-4xl"> Start-up greentech, trouvez automatiquement des pistes pour booster votre développement !  </h1>
                 <div className="mt-8 rounded-md bg-background-form">
-                    <form onSubmit={(event) => handleOnSubmitForm(event)} id="keywordsForm" className="w-[900px] flex items-center m-8">
+                    <form onSubmit={(event) => handleOnSubmitForm(event)} id="keywordsForm" className="w-[900px] flex items-center m-8 flex-wrap">
                         <div className='flex flex-col w-[500px]'>
                             <h2 className="w-11/12 text-base text-center">Décrivez en quelques lignes votre projet (thématique, technologie, cible, apports... ) pour obtenir des pistes pertinentes.</h2>
 
                             <textarea onChange={e => setDescription(e.target.value)} value={description} form="keywordsForm"
-                                className="cursor-text rounded-t-sm mt-4 w-11/12 h-56 addBorder-b border-3 border-gray-300 p-4 bg-background-inputs" placeholder="Expl. : “start-up de méthanisation” ou “nous sommes une startup spécialisée dans le processus biologique de dégradation des matières organiques...”"></textarea>
+                                className="cursor-text rounded-t-sm mt-4 w-11/12 h-[300px] addBorder-b border-3 border-gray-300 p-4 bg-background-inputs" placeholder="Expl. : “start-up de méthanisation” ou “nous sommes une startup spécialisée dans le processus biologique de dégradation des matières organiques...”"></textarea>
                         </div>
                         {/* <button className="addBorder-b border-b self-start ml-5 mt-2 text-sm ">Affiner par mots clés</button> */}
-                        <div className='flex flex-wrap w-[400px] h-[300px] flex-col'>
-                            {allSecteur.map(secteur => <div className="fr-checkbox-group fr-checkbox-group--sm w-[180px]">
-                                <input type="checkbox" id={secteur} name={secteur} checked={secteurs.includes(secteur)} onChange={e => {
-                                    e.currentTarget.checked ? setSecteurs([...secteurs, secteur]) : setSecteurs(secteurs.filter(x => x != secteur))
-                                }} />
-                                <label className="fr-label text-xs" htmlFor={secteur}>{secteur}</label>
-                            </div>)}
-                        </div>
-                        <div className="keyWordsContainer">
-                                
+                        <div>
+                            <h2 className="mb-8 w-11/12 text-base">Thématiques</h2>
+                            <div className='flex flex-wrap w-[400px] h-[300px] flex-col'>
+                                {allSecteur.map(secteur => <div className="fr-checkbox-group fr-checkbox-group--sm w-[180px]">
+                                    <input type="checkbox" id={secteur} name={secteur} checked={secteurs.includes(secteur)} onChange={e => {
+                                        e.currentTarget.checked ? setSecteurs([...secteurs, secteur]) : setSecteurs(secteurs.filter(x => x != secteur))
+                                    }} />
+                                    <label className="fr-label text-xs" htmlFor={secteur}>{secteur}</label>
+                                </div>)}
+                            </div>
+                            <div className="keyWordsContaine w-full">
+                                <h2 className="mt-8 w-11/12 text-base">Mots-clefs</h2>
+                                <textarea
+                                    onChange={e => {
+                                        const motsclefs = e.target.value.split(",").map(x => x.trim())
+                                        console.log({ motsclefs })
+                                        setMotsclef(motsclefs)
+                                    }}
+                                    className="cursor-text rounded-t-sm mt-4 h-15 w-full addBorder-b border-3 border-gray-300 p-4 bg-background-inputs"
+                                >
+                                    {motsclefs.join(", ")}
+                                </textarea>
+                            </div>
                         </div>
                     </form>
                 </div>

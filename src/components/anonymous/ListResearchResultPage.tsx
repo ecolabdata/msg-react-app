@@ -37,7 +37,6 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
 
 
     const pageNo = initialState?.page || 1
-    console.log(pageNo)
     const navigate = useNavigate()
     useTitle(`Recherche détaillé ${cardType.title}`)
 

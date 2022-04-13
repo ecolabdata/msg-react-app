@@ -11,7 +11,6 @@ interface CardDetailsProps {
 
 function browseObject(obj: any,
     onLeaf: (prefix: string[], key: string, value: any) => void, prefix: string[] = []) {
-    console.log("browseObject", obj);
     for (const [key, value] of Object.entries(obj)) {
         if (value != null && typeof value === 'object') {
             prefix.push(key)

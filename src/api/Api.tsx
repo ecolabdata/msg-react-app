@@ -53,10 +53,7 @@ function  handleResp(query : Query | InvestisseurQuery, resp : ApiResponse) {
     aides_innovation: resp.cards.aides_innovation.map(x => {return {...x, id: buildId(x), cardTypeName: aideInno.name}})
   }
   const cardsById = Object.fromEntries([...cards.collectivites, /*...cards.marches,*/ ...cards.investisseurs, ...cards.aides_clients, ...cards.aides_innovation].map(x => [x.id, x]))
-  const search = {query, cardsById};
-  const jsonStr = JSON.stringify(search)
-  console.log("size:", new Blob([jsonStr]).size/1024, " ko")
-  return search;
+  return {query, cardsById};
 }
 
 /*
@@ -66,14 +63,15 @@ function  handleResp(query : Query | InvestisseurQuery, resp : ApiResponse) {
 export type Query = {
   type: "general"
   description:string,
-  secteurs: string[]
+  secteurs: string[],
+  motsclefs: string[]
 }
 
 export function searchByQuery(query : Query) {
-  return searchRequest(query.description, query.secteurs, 0).then(resp => handleResp(query, resp));
+  return searchRequest(query.description, query.secteurs, query.motsclefs, 0).then(resp => handleResp(query, resp));
 }
 
-export function searchRequest(description: string, secteurs:string[], montant_min:number) {
+export function searchRequest(description: string, secteurs:string[], motsclefs:string[], montant_min:number) {
   // if (useMockResponse) {
   //   return new Promise<ApiResponse>(res => setTimeout(() => res(mockApiResponse), 3000))
   // } else {
@@ -92,9 +90,8 @@ export function searchRequest(description: string, secteurs:string[], montant_mi
         "nb_aides": 10,
         "nb_acheteur": 10,
         "montant_min": montant_min*1000,
-        "montant_max": 10000000000000,
         "secteurs": secteurs,
-        "keywords": [],
+        "keywords": motsclefs,
         "cards": {
           "collectivites" : [],
           "aides_clients" : [],
@@ -132,7 +129,6 @@ export function searchRequestInvestisseur(secteurs:string[], montant_min:number)
       body: JSON.stringify({
         "fichier_investisseurs": "GTIetmontant.csv",
         "montant_min": montant_min*1000,
-        "montant_max": 10000000000000,
         "secteurs": secteurs,    
         "cards": {
           "collectivites" : [],

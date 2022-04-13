@@ -38,7 +38,6 @@ const Router = () => {
     const [nextScrollTarget, setNextScrolTarget] = usedNextScrollTarget
     useEffect(() => {
         if (nextScrollTarget) {
-            console.log("scrolling to ", nextScrollTarget)
             window.scrollTo(nextScrollTarget)
             setNextScrolTarget(null)
         }

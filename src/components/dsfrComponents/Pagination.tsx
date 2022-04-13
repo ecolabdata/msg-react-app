@@ -12,7 +12,6 @@ interface PaginationProps {
 
 const Pagination: React.FC<PaginationProps> = ({ baseUrl, currentPageNo, nbPage, initialState, onClick }) => {
     const generatedPageNos = Array(nbPage).fill(1).map((x, idx) => x + idx)
-    console.log({ baseUrl, currentPageNo, nbPage, generatedPageNos })
     return <nav role="navigation" className="fr-pagination mx-auto w-fit mt-10" aria-label="Pagination">
         <ul className="fr-pagination__list">
             <li>
