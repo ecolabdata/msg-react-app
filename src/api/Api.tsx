@@ -14,21 +14,7 @@ https://www.notion.so/messervicesgreentech/0290b8c9cfd4437b8f9ee8bb9ee697ee?v=94
 */
 
 
-export type Aide = {
-  "titre_aide": string,
-  "score": number,
-  "aide_detail_clean": string,
-  "aide_detail": string,
-  "contact": string,
-  "funding_source_url": string,
-  "clients": string[],
-  "deadline": null | string,
-  "type d'aide": string[],
-  "éligibilité": string | null,
-  "perimètre": string | null | undefined,
-  "exemples_projets": string,
-  "url_aidesterritoires": string
-}
+export type Aide = typeof mockApiResponse.cards.aides_clients[number];
 //export type Aide = typeof mockApiResponse.cards.aides[number] //From old FTE file
 export type Collectivite = typeof mockApiResponse.cards.collectivites[number]//Deduced from DECP
 //export type Marche = typeof mockApiResponse.cards.[number]//deduced from DECP

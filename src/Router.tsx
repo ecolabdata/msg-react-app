@@ -57,8 +57,8 @@ const Router = () => {
                         <Route path="/:cardType/details" element={<CardDetailsJson />} />
                         <Route path="/exemple/details" element={<CardDetails />} />
                         {allCardType.map(cardType => <>
-                            <Route path={`${cardType.searchLink}`} element={<ListResearchResult cardType={cardType} />} />
-                            <Route path={`${cardType.searchLink}`} element={<ListResearchResult cardType={cardType} />} />
+                            <Route path={`${cardType.searchLink}`} element={
+                                cardType.searchPage || <ListResearchResult cardType={cardType} />} />
                         </>)}
                         {/* <Route path="/investisseur/:cardId/details" element={<CardDetailsInvestisseur />} /> */}
                         <Route path="/authentification" element={<Authentication />} />

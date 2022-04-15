@@ -1,5 +1,6 @@
 import { CardTypeName as ApiName } from '../api/Api';
 import { Calendar, Euro, Eye, Rocket, Signal } from '../assets/Icons';
+import ListResearchResultAide from '../components/anonymous/ListResearchResultAide';
 
 export interface CardType {
     SVGLogo: ({ ...other }: {[x: string]: any;}) => JSX.Element,
@@ -9,6 +10,7 @@ export interface CardType {
     name: string,
     searchLink: string,
     apiName: ApiName,
+    searchPage?: JSX.Element
 }
 
 export const acheteurPublic : CardType = {
@@ -46,6 +48,7 @@ export const aideClient: CardType = {
     description: "Dispositifs incitatifs (état ou régions) qui aident vos clients à accéder à vos solutions",
     name: "aides-clients",
     searchLink: "/aides-clients",
+    searchPage: <ListResearchResultAide />,
     apiName: "aides_clients"
 } as const
 
@@ -56,6 +59,7 @@ export const aideInno: CardType = {
     description: "Aides publiques dédiées à votre développement (Adème, BPI...)",
     name: "aides-innovations",
     searchLink: "/aides-innovations",
+    searchPage: <ListResearchResultAide />,
     apiName: "aides_innovation"
 } as const
 

@@ -19,7 +19,8 @@ const allSecteur = [
     "Prévention des risques",
     "Bâtiments et villes durables",
     "Décarbonation de l'industrie",
-    "Mobilité durable"
+    "Mobilité durable",
+    "Finance durable & RSE"
 ]
 
 

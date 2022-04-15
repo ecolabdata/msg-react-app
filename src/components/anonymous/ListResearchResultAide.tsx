@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AnyCard, searchInvestisseurByQuery } from '../../api/Api';
 import { useTitle } from '../../hooks/useTitle';
-import { CardType } from '../../model/CardType';
+import { aideInno, CardType } from '../../model/CardType';
 import { ApplicationContext } from '../../Router';
 import { InitialState } from '../../utils/InitialState';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
@@ -25,11 +25,8 @@ const allSecteur = [
     "Finance durable & RSE"
 ]
 
-interface ListResearchResultProps {
-    cardType: CardType
-}
-
-const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => {
+const ListResearchResultAide = () => {
+    const cardType = aideInno
     const { usedCorbeille, usedNextScrollTarget } = useContext(ApplicationContext)
     const [toggleInCorbeille, isInCorbeille] = usedCorbeille
     const [nextScrollTarget, setNextScrolTarget] = usedNextScrollTarget
@@ -81,7 +78,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
                 montantMin
             }).then((search) => {
                 setIsLoading(false)
-                return navigate(`/investisseurs`, {
+                return navigate(cardType.searchLink, {
                     replace: true,
                     state: {
                         description,
@@ -213,4 +210,4 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
     )
 };
 
-export default ListResearchResult;
+export default ListResearchResultAide;
