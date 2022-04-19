@@ -1,7 +1,8 @@
 import { useState } from "react";
 
 export function useLocalStorage<T>(key: string, initialValue: T): [T, (x: T) => void] {
-    const [storedValue, setStoredValue] = useState(() => {
+
+    const [storedValue, setStoredValue] = useState<T>(() => {
         try {
             const item = window.localStorage.getItem(key);
             return item ? JSON.parse(item) : initialValue;
@@ -10,6 +11,12 @@ export function useLocalStorage<T>(key: string, initialValue: T): [T, (x: T) => 
             return initialValue;
         }
     });
+
+    // window.addEventListener('storage', () => {
+    //     console.log("window.addEventListener('storage' called")
+    //     const item = window.localStorage.getItem(key);
+    //     setStoredValue(item ? JSON.parse(item) as T : initialValue);
+    // });
 
     const setValue = (value: T) => {
         try {

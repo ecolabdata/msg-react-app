@@ -1,4 +1,3 @@
-import { Outlet } from "react-router-dom";
 import { useLocationChange } from "./useLocation";
 
 declare global {
@@ -9,7 +8,7 @@ var _paq = window._paq = window._paq || [];
 
 export const useTrackPage = () => {
     useLocationChange((location) => {
-        console.log("Matomo tracking page called", document.referrer, window.location.href)
+        console.log("Matomo tracking page called", {referrer: document.referrer, href: window.location.href})
         _paq.push(['setReferrerUrl', document.referrer]);
         _paq.push(['setCustomUrl', window.location.href]);
         //_paq.push(['setDocumentTitle', 'My New Title']);
@@ -24,9 +23,4 @@ export const useTrackPage = () => {
         // _paq.push(['trackContentImpressionsWithinNode', content]);
         _paq.push(['enableLinkTracking']);
     })
-}
-
-export const TrackPage = () => {
-    useTrackPage()
-    return <Outlet />;
 }

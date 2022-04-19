@@ -1,0 +1,20 @@
+.avis, [href].avis:hover {
+    --width: 200px;
+    --height: 50px; 
+    position: fixed;
+    width: var(--width);
+    height: var(--height);
+    top: 200px;
+    right: calc(-1*var(--width)/2 + var(--height)/2);
+    background-color: rgba(184, 254, 201, 1);
+
+    transform: rotate(-90deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: black;
+    font-weight: bolder;
+    border-radius: 5px 5px 0 0;
+    z-index: 9000;
+}

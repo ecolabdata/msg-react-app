@@ -19,7 +19,6 @@ const AvatarPopOver: React.FC<AvatarPopOverProps> = ({avatar}) => {
     
 
     const rotateChevron = () => {
-        console.log('dispatch x1 ');
         dispatch(appActions.rotatePopOverChevron())
     }
 

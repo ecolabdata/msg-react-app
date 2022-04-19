@@ -1,76 +1,81 @@
+import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom'
+import { InitialState } from '../../utils/InitialState';
 import Chevron from './../../assets/icons/chevron.svg'
-interface PaginationProps { 
-    cursor1: string
-    cursor2: string
-    cursor3: string
-    cursor4: string
-    previousPage: string
-    currentPage: string,
-    nextPage: string,
-} 
+interface PaginationProps {
+    baseUrl: string
+    currentPageNo: number,
+    nbPage: number
+    initialState: InitialState,
+    onClick?: React.MouseEventHandler<HTMLAnchorElement> | undefined
+}
 
-const Pagination: React.FC<PaginationProps> = ({cursor1, cursor2, cursor3, cursor4, previousPage, currentPage, nextPage, }) => { 
+const Pagination: React.FC<PaginationProps> = ({ baseUrl, currentPageNo, nbPage, initialState, onClick }) => {
+    const generatedPageNos = Array(nbPage).fill(1).map((x, idx) => x + idx)
+    return <nav role="navigation" className="fr-pagination mx-auto w-fit mt-10" aria-label="Pagination">
+        <ul className="fr-pagination__list">
+            <li>
+                {currentPageNo - 1 <= 0 ?
+                    <a
+                    onClick={onClick}
+                        className="fr-pagination__link rounded-full fr-pagination__link--prev fr-pagination__link--lg-label"
+                        aria-disabled="true"
+                        role="link"
+                    >
+                        Précédent
+                    </a> :
+                    <Link
+                        onClick={onClick}
+                        to={baseUrl}
+                        state={{...initialState, page: (currentPageNo - 1)}}
+                        className="fr-pagination__link rounded-full fr-pagination__link--prev fr-pagination__link--lg-label"
+                        role="link"
+                        replace={true}
+                    >
+                        Précédent
+                    </Link>
+                }
+            </li>
 
-    return (
+            {generatedPageNos.map(generatedPageNo => <li>
+                <NavLink
+                    onClick={onClick}
+                    to={baseUrl}
+                    className="fr-pagination__link rounded-full"
+                    role="link"
+                    title={`Page ${generatedPageNo}`}
+                    replace={true}
+                    state={{...initialState, page: generatedPageNo}}
+                    aria-current={generatedPageNo === currentPageNo ? "page" : "false"}
+                >
+                    {generatedPageNo}
+                </NavLink>
+            </li>)}
 
-        <>
 
-            <nav role="navigation" className="fr-pagination mx-auto w-fit mt-10" aria-label="Pagination">
-                <ul className="fr-pagination__list">
+            <li>
+                {currentPageNo >= nbPage ?
+                    <a
+                        onClick={onClick}
+                        className="fr-pagination__link rounded-full fr-pagination__link--next fr-pagination__link--lg-label"
+                        aria-disabled="true"
+                        role="link"
+                    >
+                        Suivant
+                    </a> : <Link
+                        onClick={onClick}
+                        to={baseUrl}
+                        className="fr-pagination__link rounded-full fr-pagination__link--next fr-pagination__link--lg-label"
+                        role="link" replace={true}
+                        state={{...initialState, page: (currentPageNo + 1)}}
+                    >
+                        Suivant
+                    </Link>
+                }
+            </li>
 
-                    {/* <li>
-                        <a href="#" className="fr-pagination__link fr-pagination__link--first" aria-disabled="true" role="link">
-                            Première page
-                        </a>
-                    </li> */}
-
-                    <li>
-                        <a href={previousPage} className="fr-pagination__link rounded-full fr-pagination__link--prev fr-pagination__link--lg-label" aria-disabled="true" role="link">
-                            Précédent 
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href={currentPage} className="fr-pagination__link rounded-full" aria-current="page" title="Page 1">
-                            {cursor1}
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href={nextPage} className="fr-pagination__link rounded-full" aria-current="page" title="Page 1">
-                            {cursor2}
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#" className="fr-pagination__link rounded-full" aria-current="page" title="Page 1">
-                            {cursor3}
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#" className="fr-pagination__link rounded-full" aria-current="page" title="Page 1">
-                            {cursor4}
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href={nextPage} className="fr-pagination__link rounded-full fr-pagination__link--next fr-pagination__link--lg-label">
-                            Suivant 
-                        </a>
-                    </li>
-
-                    {/* <li>
-                        <a href={lastPage} className="fr-pagination__link fr-pagination__link--last">
-                            Dernière page
-                        </a>
-                    </li> */}
-                    
-                </ul>
-            </nav>  
-
-        </>
-    ) 
-}; 
+        </ul>
+    </nav>
+};
 
 export default Pagination;

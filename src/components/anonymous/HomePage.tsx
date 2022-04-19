@@ -6,6 +6,8 @@ import { CardType, all as allCardType } from "../../model/CardType";
 
 
 import HomePageCard from '../customComponents/HomePageCard';
+import { useContext } from 'react';
+import { ApplicationContext } from '../../Router';
 
 const Separator = () => <div className='w-[0px] overflow-visible'><div className='h-[130px] w-[2px] bg-[#E1E1E1] opacity-30'></div></div>
 
@@ -13,6 +15,8 @@ const Separator = () => <div className='w-[0px] overflow-visible'><div className
 
 const Home = () => {
     useTitle("Accueil")
+    const { usedCorbeille, usedNextScrollTarget} = useContext(ApplicationContext)
+    const [nextScrollTarget, setNextScrolTarget] = usedNextScrollTarget
     const navigate = useNavigate();
 
     return (
@@ -39,8 +43,9 @@ const Home = () => {
             </div>
 
             <div className="mx-auto w-55 flex justify-center my-6">
-                <Button onClick={ () => navigate('/inscription')} arrow={true}> Créer un compte</Button>
+                {/* <Button onClick={ () => navigate('/inscription')} arrow={true}> Créer un compte</Button> */}
                 <FillButton onClick={ () => {
+                    setNextScrolTarget({top: 0})
                     navigate('/formulaire-recherche-de-solutions')
                 }} arrow={true}>Découvrir la solution</FillButton>
             </div>
