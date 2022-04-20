@@ -2,36 +2,51 @@ import { ReactElement } from "react";
 import { CardType } from "../../model/CardType";
 
 interface HomePageCardProps {
-    cardTypeData : CardType
+    cardTypeData: CardType
 }
 
-const HomePageCard :React.FC<HomePageCardProps> = (props : HomePageCardProps) => {
-    const {SVGLogo, title, description, color} = props.cardTypeData;
+const HomePageCard: React.FC<HomePageCardProps> = (props: HomePageCardProps) => {
+    const { SVGLogo, title, description, color, version } = props.cardTypeData;
+    const isAlpha = version === "alpha"
+    const opacity = isAlpha ? 0.15 : 1
     return (
         <>
-            <div style={{flex: "1 1 33.33333%"}} className="card-container
+            <div style={{ flex: "0 1 33.33333%"}} className="card-container
                 h-content
                 p-5
-                flex flex-col items-center
+                flex flex-col items-center relative
                 ">
-                    <div  style={{color}}>
-                        <SVGLogo width="25" height="25"/>
+                {/*isAlpha*/ false && <div className="absolute top-0 left-0 h-full w-full flex items-center justify-center">
+                    <div
+                        className="bg-[rgba(0,0,0,0.6)] rounded-md "
+                     style={{
+                         width: "calc(100% - 25px)",
+                         height: "calc(100% - 25px)"
+                    }}>
+                        
                     </div>
-                    <div className={`card-title-container
+                </div>}
+
+                <div style={{ color, opacity}}>
+                    <SVGLogo width="25" height="25" />
+                </div>
+                <div className={`card-title-container
                        w-227
                        p-43
                        flex flex-col items-center 
                     `}>
-                        <h3 className="block mt-4 max-w-fit text-center text-xl">{title}</h3>
-                        <p className="mt-2 w-[245px] text-center text-base">{description}</p>
-
-                    </div>
+                    <h3 style={{opacity}} className="block mt-4 max-w-fit text-center text-xl">{title}</h3>
+                    {version === "alpha" && <div style={{backgroundColor: color,zIndex: 100}} className="px-1 rounded-md">
+                        Bientôt
+                    </div>}
+                    <p style={{opacity}} className="mt-2 w-[245px] text-center text-base">{description}</p>
+                </div>
             </div>
         </>
     )
-    
+
 }
-    
+
 export default HomePageCard;
 
 
