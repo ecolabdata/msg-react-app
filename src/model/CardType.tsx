@@ -10,7 +10,8 @@ export interface CardType {
     name: string,
     searchLink: string,
     apiName: ApiName,
-    searchPage?: JSX.Element
+    searchPage?: JSX.Element,
+    version: "alpha" | "beta"
 }
 
 export const acheteurPublic : CardType = {
@@ -21,6 +22,7 @@ export const acheteurPublic : CardType = {
     name: "acheteurs-publics",
     searchLink: "/acheteurs-publics",
     apiName: "collectivites",
+    version: "alpha"
 } as const
 // export const achatPrevi: CardType = {
 //     SVGLogo: Calendar,
@@ -39,6 +41,7 @@ export const investisseur: CardType  = {
     name: "investisseurs",
     searchLink: "/investisseurs",
     apiName: "investisseurs",
+    version: "alpha"
 } as const
 
 export const aideClient: CardType = {
@@ -49,7 +52,8 @@ export const aideClient: CardType = {
     name: "aides-clients",
     searchLink: "/aides-clients",
     searchPage: <ListResearchResultAide />,
-    apiName: "aides_clients"
+    apiName: "aides_clients",
+    version: "beta"
 } as const
 
 export const aideInno: CardType = {
@@ -60,7 +64,8 @@ export const aideInno: CardType = {
     name: "aides-innovations",
     searchLink: "/aides-innovations",
     searchPage: <ListResearchResultAide />,
-    apiName: "aides_innovation"
+    apiName: "aides_innovation",
+    version: "beta"
 } as const
 
 
