@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { AnyCard, searchByQuery } from '../../api/Api';
+import { AnyCard, search } from '../../api/Api';
 import { useTitle } from '../../hooks/useTitle';
 import { all as allCardType } from '../../model/CardType';
 import { ApplicationContext } from '../../Router';
@@ -43,7 +43,7 @@ const ResearchForm: React.FC = (props) => {
         if (description.length > 0) {
             setIsLoading(true)
             setErrorTxt(<></>)
-            searchByQuery({ type: "general", description, motsclefs, secteurs }).then((search) => {
+            search({ type: "general", description, motsclefs, secteurs }).then((search) => {
                 setIsLoading(false)
                 const element = document.getElementById('previews')
                 if (element) setNextScrolTarget({ behavior: "smooth", top: element.offsetTop - window.innerHeight * 0.20 })

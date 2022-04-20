@@ -1,13 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { AnyCard, searchInvestisseurByQuery } from '../../api/Api';
+import { AnyCard, searchAidesClient, searchInvestisseur } from '../../api/Api';
 import { useTitle } from '../../hooks/useTitle';
-import { aideInno, CardType } from '../../model/CardType';
+import { aideClient, aideInno, CardType } from '../../model/CardType';
 import { ApplicationContext } from '../../Router';
 import { InitialState } from '../../utils/InitialState';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
 import Pagination from '../dsfrComponents/Pagination';
-// import ToggleButton from '../dsfrComponents/ToggleButton';
 import ArrowDark from './../../assets/icons/arrow-dark-action.svg';
 
 const allSecteur = [
@@ -25,8 +24,8 @@ const allSecteur = [
     "Finance durable & RSE"
 ]
 
-const ListResearchResultAide = () => {
-    const cardType = aideInno
+const ListResearchResultAidesClients = () => {
+    const cardType = aideClient
     const { usedCorbeille, usedNextScrollTarget } = useContext(ApplicationContext)
     const [toggleInCorbeille, isInCorbeille] = usedCorbeille
     const [nextScrollTarget, setNextScrolTarget] = usedNextScrollTarget
@@ -41,7 +40,6 @@ const ListResearchResultAide = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [description, setDescription] = useState(initialState?.description || "")
     const [secteurs, setSecteurs] = useState<string[]>(initialState?.secteurs || [])
-    const [montantMin, setMontantMin] = useState<number>(initialState?.montantMin || 0)
     const [motsclefs, setMotsclef] = useState<string[]>(initialState?.motsclefs || [])
     const [errorTxt, setErrorTxt] = useState(<></>)
 
@@ -70,12 +68,11 @@ const ListResearchResultAide = () => {
         if (description.length > 0) {
             setIsLoading(true)
             setErrorTxt(<></>)
-            searchInvestisseurByQuery({
-                type: "investisseur",
+            searchAidesClient({
+                type: "aides_clients",
                 description,
                 motsclefs,
-                secteurs,
-                montantMin
+                secteurs
             }).then((search) => {
                 setIsLoading(false)
                 return navigate(cardType.searchLink, {
@@ -83,7 +80,6 @@ const ListResearchResultAide = () => {
                     state: {
                         description,
                         secteurs,
-                        montantMin,
                         cardsById: search.cardsById
                     }
                 })
@@ -173,15 +169,6 @@ const ListResearchResultAide = () => {
                             lg:justify-between lg:items-end
                             xl:justify-center">
                                 <div className="my-2 flex flex-col items-center lg:flex-row lg:mb-6">
-                                    <div className="inputNumber mr-6 flex flex-col font-light ">
-                                        <label className="mb-1 text-white text-base" htmlFor="montantKEuro">Montant min. en K€</label>
-                                        <input
-                                            className={`text-white rounded-t-md w-64 h-10 addBorder-b border-2 bg-input-background`}
-                                            style={{ borderColor: cardType.color }} type="number" id="montantKEuro"
-                                            defaultValue={montantMin.toString()}
-                                            onChange={e => setMontantMin(Number.parseInt(e.target.value))}
-                                        />
-                                    </div>
                                 </div>
 
                                 {/* <div className="toggleButtons w-fit flex flex-col
@@ -210,4 +197,4 @@ const ListResearchResultAide = () => {
     )
 };
 
-export default ListResearchResultAide;
+export default ListResearchResultAidesClients;

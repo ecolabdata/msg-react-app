@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { AnyCard, searchInvestisseurByQuery } from '../../api/Api';
+import { AnyCard, searchInvestisseur } from '../../api/Api';
 import { useTitle } from '../../hooks/useTitle';
 import { CardType } from '../../model/CardType';
 import { ApplicationContext } from '../../Router';
@@ -73,7 +73,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
         if (description.length > 0) {
             setIsLoading(true)
             setErrorTxt(<></>)
-            searchInvestisseurByQuery({
+            searchInvestisseur({
                 type: "investisseur",
                 description,
                 motsclefs,

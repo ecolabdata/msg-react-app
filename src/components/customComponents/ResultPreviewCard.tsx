@@ -5,7 +5,6 @@ import { ArrowRight } from '../../assets/Icons';
 import { CardType } from '../../model/CardType';
 import { ApplicationContext } from '../../Router';
 import { Star, Trash } from '../../assets/Icons'
-import { InitialState } from '../../utils/InitialState';
 
 interface ResultPreviewCardProps {
     cardData: AnyCard

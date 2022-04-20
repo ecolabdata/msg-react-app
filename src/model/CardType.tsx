@@ -1,6 +1,6 @@
 import { CardTypeName as ApiName } from '../api/Api';
 import { Calendar, Euro, Eye, Rocket, Signal } from '../assets/Icons';
-import ListResearchResultAide from '../components/anonymous/ListResearchResultAide';
+import ListResearchResultAidesClients from '../components/anonymous/ListResearchResultAidesClients';
 
 export interface CardType {
     SVGLogo: ({ ...other }: {[x: string]: any;}) => JSX.Element,
@@ -36,7 +36,7 @@ export const acheteurPublic : CardType = {
 export const investisseur: CardType  = {
     SVGLogo: Euro,
     color: "#68A532",
-    title: "Investisseurs privés ",
+    title: "Investisseurs privés",
     description: "Investisseurs privés adaptés à votre maturité pour votre  prochaine levée de fonds.",
     name: "investisseurs",
     searchLink: "/investisseurs",
@@ -51,7 +51,7 @@ export const aideClient: CardType = {
     description: "Dispositifs incitatifs (état ou régions) qui aident vos clients à accéder à vos solutions",
     name: "aides-clients",
     searchLink: "/aides-clients",
-    searchPage: <ListResearchResultAide />,
+    searchPage: <ListResearchResultAidesClients />,
     apiName: "aides_clients",
     version: "beta"
 } as const
@@ -63,14 +63,14 @@ export const aideInno: CardType = {
     description: "Aides publiques dédiées à votre développement (Adème, BPI...)",
     name: "aides-innovations",
     searchLink: "/aides-innovations",
-    searchPage: <ListResearchResultAide />,
+    searchPage: <ListResearchResultAidesClients />,
     apiName: "aides_innovation",
     version: "beta"
 } as const
 
 
 
-export const all = [investisseur,acheteurPublic,/*achatPrevi,*/aideInno,aideClient]
+export const all = [aideInno,aideClient,investisseur,acheteurPublic,/*achatPrevi,*/]
 
 export const byName = Object.fromEntries(all.map(x => [x.name, x]))
 export const dropdownValues = Object.fromEntries(all.map(x => [x.name, x.title]))
