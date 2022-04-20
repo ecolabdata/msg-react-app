@@ -1,6 +1,7 @@
 import { CardTypeName as ApiName } from '../api/Api';
 import { Calendar, Euro, Eye, Rocket, Signal } from '../assets/Icons';
 import ListResearchResultAidesClients from '../components/anonymous/ListResearchResultAidesClients';
+import ListResearchResultInvestisseurs from '../components/anonymous/ListResearchResultInvestisseurs';
 
 export interface CardType {
     SVGLogo: ({ ...other }: {[x: string]: any;}) => JSX.Element,
@@ -40,6 +41,7 @@ export const investisseur: CardType  = {
     description: "Investisseurs privés adaptés à votre maturité pour votre  prochaine levée de fonds.",
     name: "investisseurs",
     searchLink: "/investisseurs",
+    searchPage: <ListResearchResultInvestisseurs />,
     apiName: "investisseurs",
     version: "alpha"
 } as const
@@ -63,7 +65,6 @@ export const aideInno: CardType = {
     description: "Aides publiques dédiées à votre développement (Adème, BPI...)",
     name: "aides-innovations",
     searchLink: "/aides-innovations",
-    searchPage: <ListResearchResultAidesClients />,
     apiName: "aides_innovation",
     version: "beta"
 } as const

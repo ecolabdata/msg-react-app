@@ -60,7 +60,6 @@ const Router = () => {
                             <Route path={`${cardType.searchLink}`} element={
                                 cardType.searchPage || <ListResearchResult cardType={cardType} />} />
                         </>)}
-                        {/* <Route path="/investisseur/:cardId/details" element={<CardDetailsInvestisseur />} /> */}
                         <Route path="/authentification" element={<Authentication />} />
                         <Route path="/profile" element={<AuthenticatedComponent />}>
                             <Route path="ma-selection" element={<MySelectionPage />} />

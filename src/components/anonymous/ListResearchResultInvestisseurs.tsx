@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { AnyCard, search, searchInvestisseur } from '../../api/Api';
+import { AnyCard, searchInvestisseur } from '../../api/Api';
 import { useTitle } from '../../hooks/useTitle';
-import { CardType } from '../../model/CardType';
+import { CardType, investisseur } from '../../model/CardType';
 import { ApplicationContext } from '../../Router';
 import { InitialState } from '../../utils/InitialState';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
@@ -25,16 +25,13 @@ const allSecteur = [
     "Finance durable & RSE"
 ]
 
-interface ListResearchResultProps {
-    cardType: CardType
-}
-
-const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => {
+const ListResearchResultInvestisseurs = () => {
+    const cardType = investisseur
     const { usedCorbeille, usedNextScrollTarget } = useContext(ApplicationContext)
     const [toggleInCorbeille, isInCorbeille] = usedCorbeille
     const [nextScrollTarget, setNextScrolTarget] = usedNextScrollTarget
     const location = useLocation();
-    const initialState = location.state as (InitialState & { page?: number }) | null;
+    const initialState = location.state as (InitialState & { page?: number, montantMin: number }) | null;
 
 
     const pageNo = initialState?.page || 1
@@ -44,6 +41,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
     const [isLoading, setIsLoading] = useState(false)
     const [description, setDescription] = useState(initialState?.description || "")
     const [secteurs, setSecteurs] = useState<string[]>(initialState?.secteurs || [])
+    const [montantMin, setMontantMin] = useState<number>(initialState?.montantMin || 0)
     const [motsclefs, setMotsclef] = useState<string[]>(initialState?.motsclefs || [])
     const [errorTxt, setErrorTxt] = useState(<></>)
 
@@ -72,11 +70,12 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
         if (description.length > 0) {
             setIsLoading(true)
             setErrorTxt(<></>)
-            search({
-                type: "general",
+            searchInvestisseur({
+                type: "investisseur",
                 description,
                 motsclefs,
-                secteurs
+                secteurs,
+                montantMin
             }).then((search) => {
                 setIsLoading(false)
                 return navigate(`${cardType.searchLink}`, {
@@ -84,6 +83,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
                     state: {
                         description,
                         secteurs,
+                        montantMin,
                         cardsById: search.cardsById
                     }
                 })
@@ -173,6 +173,15 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
                             lg:justify-between lg:items-end
                             xl:justify-center">
                                 <div className="my-2 flex flex-col items-center lg:flex-row lg:mb-6">
+                                    <div className="inputNumber mr-6 flex flex-col font-light ">
+                                        <label className="mb-1 text-white text-base" htmlFor="montantKEuro">Montant min. en K€</label>
+                                        <input
+                                            className={`text-white rounded-t-md w-64 h-10 addBorder-b border-2 bg-input-background`}
+                                            style={{ borderColor: cardType.color }} type="number" id="montantKEuro"
+                                            defaultValue={montantMin.toString()}
+                                            onChange={e => setMontantMin(Number.parseInt(e.target.value))}
+                                        />
+                                    </div>
                                 </div>
 
                                 {/* <div className="toggleButtons w-fit flex flex-col
@@ -201,4 +210,4 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
     )
 };
 
-export default ListResearchResult;
+export default ListResearchResultInvestisseurs;
