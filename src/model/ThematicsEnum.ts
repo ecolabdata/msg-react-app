@@ -1,4 +1,4 @@
-export enum Thematics {
+export enum ThematicsEnum {
  
     NUMERIC = "Numérique éco-responsable",
     ALIMENTATION = "Alimentation et agriculture durable",
