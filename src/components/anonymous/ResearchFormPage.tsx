@@ -7,24 +7,16 @@ import { ApplicationContext } from '../../Router';
 import { InitialState } from '../../utils/InitialState';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
 import ResultResearchPreviewCard from '../customComponents/ResultResearchPreviewCard';
-
-const allSecteur = [
-    "Numérique éco-responsable",
-    "Alimentation et agriculture durables",
-    "Eau, biodiversité et biomimétisme",
-    "Économie circulaire",
-    "Santé environnement",
-    "Energies renouvelables et décarbonées",
-    "Innovations maritimes et écosystèmes marins",
-    "Prévention des risques",
-    "Bâtiments et villes durables",
-    "Décarbonation de l'industrie",
-    "Mobilité durable",
-    "Finance durable & RSE"
-]
+import KeyWordsLabel from '../dsfrComponents/KeyWordsLabel';
+import Select from '../dsfrComponents/Select';
+import RocketLogo from './../../assets/icons/Rockett.svg';
+import KeywordsLogo from './../../assets/icons/Keywords.svg';
+import ThematicsLogo from './../../assets/icons/Thematics.svg';
+import { ThematicsEnum } from '../../model/ThematicsEnum';
 
 
 const ResearchForm: React.FC = (props) => {
+    
     const { usedCorbeille, usedNextScrollTarget } = useContext(ApplicationContext)
     const [toggleInCorbeille, isInCorbeille] = usedCorbeille
     const [nextScrollTarget, setNextScrolTarget] = usedNextScrollTarget
@@ -37,9 +29,11 @@ const ResearchForm: React.FC = (props) => {
     const [secteurs, setSecteurs] = useState<string[]>(initialState?.secteurs || [])
     const [motsclefs, setMotsclef] = useState<string[]>(initialState?.motsclefs || [])
     const [errorTxt, setErrorTxt] = useState(<></>)
+    const thematicsValues = Object.values(ThematicsEnum);
 
     const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        
         if (description.length > 0) {
             setIsLoading(true)
             setErrorTxt(<></>)
@@ -62,7 +56,9 @@ const ResearchForm: React.FC = (props) => {
     };
 
     const previews = initialState?.cardsById != undefined && allCardType.map(cardType => {
+        
         const results: AnyCard[] = Object.values(initialState?.cardsById != undefined && initialState.cardsById).filter(x => x.cardTypeName == cardType.name);
+        
         if (!results || results.length === 0) return null;
         return (
             <ResultResearchPreviewCard cardType={cardType} initialState={initialState} resultCount={results.length}>
@@ -79,45 +75,88 @@ const ResearchForm: React.FC = (props) => {
             <div className="formContainer flex flex-col items-center">
 
                 <h1 className="w-3/5 font-bold text-4xl text-center mx-auto max-w-4xl"> Start-up greentech, trouvez automatiquement des pistes pour booster votre développement !  </h1>
-                <div className="mt-8 rounded-md bg-background-form">
-                    <form onSubmit={(event) => handleOnSubmitForm(event)} id="keywordsForm" className="w-[900px] flex items-center m-8 flex-wrap">
-                        <div className='flex flex-col w-[500px]'>
-                            <h2 className="w-11/12 text-base text-center">Décrivez en quelques lignes votre projet (thématique, technologie, cible, apports... ) pour obtenir des pistes pertinentes.</h2>
+                   
+                    <form onSubmit={(event) => handleOnSubmitForm(event)} id="keywordsForm" className="m-8 w-[80%] p-4 flex justify-around">
 
-                            <textarea onChange={e => setDescription(e.target.value)} value={description} form="keywordsForm"
-                                className="cursor-text rounded-t-sm mt-4 w-11/12 h-[300px] addBorder-b border-3 border-gray-300 p-4 bg-background-inputs" placeholder="Expl. : “start-up de méthanisation” ou “nous sommes une startup spécialisée dans le processus biologique de dégradation des matières organiques...”"></textarea>
-                        </div>
-                        {/* <button className="addBorder-b border-b self-start ml-5 mt-2 text-sm ">Affiner par mots clés</button> */}
-                        <div>
-                            <h2 className="mb-8 w-11/12 text-base">Thématiques</h2>
-                            <div className='flex flex-wrap w-[400px] h-[300px] flex-col'>
-                                {allSecteur.map(secteur => <div className="fr-checkbox-group fr-checkbox-group--sm w-[180px]">
-                                    <input type="checkbox" id={secteur} name={secteur} checked={secteurs.includes(secteur)} onChange={e => {
-                                        e.currentTarget.checked ? setSecteurs([...secteurs, secteur]) : setSecteurs(secteurs.filter(x => x != secteur))
-                                    }} />
-                                    <label className="fr-label text-xs" htmlFor={secteur}>{secteur}</label>
-                                </div>)}
+                        <div className='leftSideForm max-w-[48%] max-h-[400px] p-4 projectContainer flex flex-col items-around justify-center items-center bg-background-form '>
+                            
+                            <div className="tilteContainer relative bottom-4 w-fit flex">
+                                <img src={RocketLogo} alt="Logo" />
+                                <h2 className="italic text-dark-text-action text-3xl  font-[Spectral]">1. Votre projet</h2>
                             </div>
-                            <div className="keyWordsContaine w-full">
-                                <h2 className="mt-8 w-11/12 text-base">Mots-clefs</h2>
+
+                            <p className="w-11/12 text-base text-center">Décrivez en quelques lignes votre projet (thématique, technologie, cible, apports... ) pour obtenir des pistes pertinentes.</p>
+                            <textarea onChange={e => setDescription(e.target.value)} value={description} form="keywordsForm"
+                                className="cursor-text my-8 min-h-[225px] rounded-t-sm mt-4 w-11/12 addBorder-b border-3 border-gray-300 p-4 bg-background-inputs" 
+                                placeholder="Expl. : “start-up de méthanisation” ou “nous sommes une startup spécialisée dans le processus biologique de dégradation des matières organiques...”">
+
+                            </textarea>
+
+                        </div>
+
+                        <div className="rightSideForm min-w-[48%] w-1/4 max-h-[400px] flex flex-col items-center">
+
+                            <div className='thematicsContainer h-[200px] w-full flex flex-col items-center  bg-background-form'>
+
+                                <div className="tilteContainer spectral relative bottom-4 w-fit flex">
+                                    <img src={ThematicsLogo} alt="Logo" />
+                                    <h2 className="italic text-dark-text-action text-3xl font-[Spectral]"> 2. La thématique</h2>
+                                </div>
+
+                                <Select classes="w-[80%] my-4"label="Thématique du projet" optionsData={thematicsValues}/>
+
+                            </div>
+
+                            <div className="keyWordsContainer mt-8 h-[200px] w-full flex flex-col items-center p-2  bg-background-form">
+
+                                <div className="tilteContainer relative w-fit flex">
+                                    <img src={KeywordsLogo} alt="Logo" />
+                                    <h2 className="italic text-dark-text-action text-3xl font-[Spectral]"> 3. Les mots clés</h2>
+                                </div>
+
+                                <p className="w-fit -ml-10 text-sm text-white
+                                2xl:text-base">Ajoutez des mots clés représentatifs de votre activité (facultatif)</p>
+                                <p className="italic text-xs font-bold">délimitez vos mots clés par une virgule</p>
                                 <textarea
                                     onChange={e => {
+
                                         const motsclefs = e.target.value.split(",").map(x => x.trim())
+
+                                    
                                         console.log({ motsclefs })
                                         setMotsclef(motsclefs)
                                     }}
-                                    className="cursor-text rounded-t-sm mt-4 h-15 w-full addBorder-b border-3 border-gray-300 p-4 bg-background-inputs"
+                                    className="cursor-text rounded-t-sm mt-4 h-15 w-[80%] addBorder-b border-3 border-gray-300 p-4 bg-background-inputs"
                                 >
                                     {motsclefs.join(", ")}
                                 </textarea>
+                                    
+                                    <ul className="keyWordsList h-full w-full mt-2 p-2 flex flex-wrap ">
+
+                                        {motsclefs.map( word => { 
+                                            console.log('word :>> ', word);
+                                            return <li> <KeyWordsLabel keyWord={word}/> </li>
+                                            
+                                        })}
+
+                                    </ul>
+
                             </div>
+
                         </div>
+
                     </form>
-                </div>
+
                 <div className='h-12 w-full flex justify-center items-center color'>
                     {errorTxt}
                 </div>
-                <button form="keywordsForm" disabled={isLoading} className="w-48 h-14 text-xl fr-btn fr-btn--primary capitalize" > <span className="mx-auto">{isLoading ? "Chargement..." : "rechercher !"}</span> </button>
+                
+                <div className='buttonsContainer w-[450px] flex justify-around'>
+                    
+                    <button className="w-48 h-14 text-base  underline capitalize" > Réinitialiser </button>
+                    <button form="keywordsForm" disabled={isLoading} className="w-48 h-14 text-xl fr-btn fr-btn--primary capitalize" > <span className="mx-auto">{isLoading ? "Chargement..." : "rechercher !"}</span> </button>
+
+                </div>
 
             </div>
 
