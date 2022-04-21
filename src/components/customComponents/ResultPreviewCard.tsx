@@ -27,7 +27,7 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
     const displayabeSubmissionDeadLine = ("0" + d?.getUTCDate()).slice(-2) + "/" + ("0" + ((d?.getUTCMonth() || 0) + 1)).slice(-2) + "/" + d?.getUTCFullYear()
     //const achivedStyle = isInCorbeille(cardData) ? {"opacity": 0.3, "filter": "grayscale(50%)" } : {}
     // if (cardType.name === "aides-innovations") debugger;
-    return <div className={`cardContainer group rounded-r ml-6 min-w-282  p-4 flex flex-col
+    return <div className={`cardContainer group rounded-r ml-6 w-[282px]  p-4 flex flex-col
                     addBorder-l border-l-3 
                     hover:shadow-xl
                     card-animation
