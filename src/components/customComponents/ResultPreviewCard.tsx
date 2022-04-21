@@ -24,7 +24,7 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
     const displayableFinancers = cardData.financers?.join(" | ") || ""
     const financersFontSize = (2 / (displayableFinancers.length ** 0.30)) + "em"
     const d = cardData.submission_deadline ? new Date(cardData.submission_deadline) : null
-    const displayabeSubmissionDeadLine = ("0" + d?.getUTCDay()).slice(-2) + "/" + ("0" + d?.getUTCMonth()).slice(-2) + "/" + d?.getUTCFullYear()
+    const displayabeSubmissionDeadLine = ("0" + d?.getUTCDate()).slice(-2) + "/" + ("0" + ((d?.getUTCMonth() || 0) + 1)).slice(-2) + "/" + d?.getUTCFullYear()
     //const achivedStyle = isInCorbeille(cardData) ? {"opacity": 0.3, "filter": "grayscale(50%)" } : {}
     // if (cardType.name === "aides-innovations") debugger;
     return <div className={`cardContainer group rounded-r ml-6 min-w-282  p-4 flex flex-col
