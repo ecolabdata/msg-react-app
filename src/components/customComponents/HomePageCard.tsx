@@ -35,7 +35,7 @@ const HomePageCard: React.FC<HomePageCardProps> = (props: HomePageCardProps) => 
                        p-43
                        flex flex-col items-center 
                     `}>
-                    <h3 style={{opacity}} className="block mt-4 max-w-fit text-center text-xl">{title}</h3>
+                    <h3 style={{opacity}} className="block mt-4 max-w-fit text-center text-xl font-bold">{title}</h3>
                     {version === "alpha" && <div style={{backgroundColor: color,zIndex: 100}} className="px-1 rounded-md">
                         Bientôt
                     </div>}

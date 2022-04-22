@@ -8,6 +8,7 @@ import { CardType, all as allCardType } from "../../model/CardType";
 import HomePageCard from '../customComponents/HomePageCard';
 import { useContext } from 'react';
 import { ApplicationContext } from '../../Router';
+import ExplorerHomePageCard from '../customComponents/ExplorerHomePageCard';
 
 const Separator = () => <div className='w-[0px] overflow-visible'><div className='h-[130px] w-[2px] bg-[#E1E1E1] opacity-30'></div></div>
 
@@ -39,7 +40,10 @@ const Home = () => {
                 overflow-y-hidden
                 2xl:w-[55%] lg:w-[90%] items-center
                 ">
-                {allCardType.map((card) => <HomePageCard cardTypeData={card} />).map(x => [x]).reduce((a,b) => a.concat([<Separator/>, ...b]))}
+                {allCardType.map((card) =>
+                    <HomePageCard cardTypeData={card} />).map(x => [x]).reduce((a,b) => a.concat([<Separator/>, ...b])
+                )}
+                <ExplorerHomePageCard />
             </div>
 
             <div className="mx-auto w-55 flex justify-center my-6">
