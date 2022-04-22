@@ -10,8 +10,10 @@ const HomePageCard: React.FC<HomePageCardProps> = (props: HomePageCardProps) => 
     const isAlpha = version === "alpha"
     const opacity = isAlpha ? 0.15 : 1
     return (
-        <>
-            <div style={{ flex: "0 1 33.33333%"}} className="card-container
+        <div style={{ flex: "1 1 33.33333%"}}  className="flex flex-col items-center relative">
+            <div style={{
+                width: "300px", height: "238px"
+            }} className="card-container
                 h-content
                 p-5
                 flex flex-col items-center relative
@@ -42,7 +44,7 @@ const HomePageCard: React.FC<HomePageCardProps> = (props: HomePageCardProps) => 
                     <p style={{opacity}} className="mt-2 w-[245px] text-center text-base">{description}</p>
                 </div>
             </div>
-        </>
+        </div>
     )
 
 }

@@ -45,15 +45,6 @@ const Home = () => {
                 )}
                 <ExplorerHomePageCard />
             </div>
-
-            <div className="mx-auto w-55 flex justify-center my-6">
-                {/* <Button onClick={ () => navigate('/inscription')} arrow={true}> Créer un compte</Button> */}
-                <FillButton onClick={ () => {
-                    setNextScrolTarget({top: 0})
-                    navigate('/formulaire-recherche-de-solutions')
-                }} arrow={true}>Découvrir la solution</FillButton>
-            </div>
-
         </>
     );
 };

@@ -26,7 +26,7 @@ const ExplorerHomePageCard = () => {
         }}
         className="
         fr-btn fr-btn--primary
-        my-6 mx-3 h-full
+        my-2 mx-3 py-0 h-full
         hover:bg-claire-bf__hover flex justify-between"
         style={{ border: "1px solid var(--text-inverted-blue-france)" }}
     >
@@ -34,9 +34,9 @@ const ExplorerHomePageCard = () => {
         <span className="fr-fi-arrow-right-line ml-1 mt-1" aria-hidden="true"></span>
     </button>
     return (
-        <>
+        <div style={{ flex: "1 1 33.33333%"}} className="flex flex-col items-center relative">
             <div style={{
-                flex: "0 1 33.33333%",
+                width: "300px", height: "238px",
                 backgroundColor: "var(--background-action-high-blue-france)",
                 color: "var(--text-inverted-blue-france)"
             }} className="
@@ -59,7 +59,7 @@ const ExplorerHomePageCard = () => {
                     <Button/>
                 </div>
             </div>
-        </>
+        </div>
     )
 
 }
