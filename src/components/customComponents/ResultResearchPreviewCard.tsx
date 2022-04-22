@@ -19,11 +19,10 @@ const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = ({ c
     const ref = useRef<HTMLDivElement>(null)
     const [leftArrow, setLeftArrow] = useState(false);
     const [rightArrow, setRightArrow] = useState(true);
-    const simulateScroll = (scrollSpeed : number) => {
-        setLeftArrow(true)
-        setRightArrow(true)
+    const handleArrowDisplay = (nextScrollLeft : number) => {
         if (ref.current) {
-            const nextScrollLeft = ref.current.scrollLeft + window.innerWidth * scrollSpeed
+            setLeftArrow(true)
+            setRightArrow(true)
             if (nextScrollLeft <= 0) {
                 setLeftArrow(false)
             }
@@ -31,6 +30,12 @@ const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = ({ c
             if (nextScrollLeft >= (ref.current.scrollWidth - ref.current.clientWidth)) {
                 setRightArrow(false)
             }
+        }
+    }
+    const simulateScroll = (scrollSpeed : number) => {
+        if (ref.current) {
+            const nextScrollLeft = ref.current.scrollLeft + window.innerWidth * scrollSpeed
+            handleArrowDisplay(nextScrollLeft)
             ref.current.scrollTo({ behavior: "smooth", left: nextScrollLeft})
         }
     }
@@ -61,7 +66,7 @@ const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = ({ c
         </div >
 
         <div className="cardScrollContainerX
-        -ml-2 h-72 overflow-x-scroll overflow-y-hidden hiddenScrollBar flex items-center" ref={ref} >
+        -ml-2 h-72 overflow-x-scroll overflow-y-hidden hiddenScrollBar flex items-center" ref={ref} onScroll={e => handleArrowDisplay(e.currentTarget.scrollLeft)}>
             {leftArrow && <button className="" onClick={() => simulateScroll(-0.80)}>
                 <span className="fr-fi-arrow-left-line absolute left-14 rounded-full bg-gray-400 p-0.5  text-gray-700 z-50" aria-hidden="true"></span>
             </button>

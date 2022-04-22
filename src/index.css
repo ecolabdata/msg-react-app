@@ -9,12 +9,24 @@
 
 .clamp {
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  --nb-lines:  3;
+  -webkit-line-clamp: var(--nb-lines);
   -webkit-box-orient: vertical;
   overflow: hidden;
   --line-height: 22px;
   line-height: var(--line-height);
-  min-height: calc(4 * var(--line-height));
+  min-height: calc(var(--nb-lines) * var(--line-height));
+}
+
+.clamp-2 {
+  display: -webkit-box;
+  --nb-lines:  1;
+  -webkit-line-clamp: var(--nb-lines);
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  --line-height: 22px;
+  line-height: var(--line-height);
+  min-height: calc(var(--nb-lines) * var(--line-height));
 }
 
 textarea:focus, input:focus {
@@ -24,7 +36,7 @@ textarea:focus, input:focus {
 
 .card-animation {
   --h-before: 181px;
-  --h-after:  240px;
+  --h-after:  224px;
   --m-after: 0px;
   --m-before: calc(var(--h-after)/2 - var(--h-before)/2 + var(--m-after));
   
