@@ -20,10 +20,6 @@ const ExplorerHomePageCard = () => {
     const opacity = undefined;
 
     const Button = () => <button
-        onClick={() => {
-            setNextScrolTarget({ top: 0 })
-            navigate('/formulaire-recherche-de-solutions')
-        }}
         className="
         fr-btn fr-btn--primary
         my-2 mx-3 py-0 h-full
@@ -44,7 +40,12 @@ const ExplorerHomePageCard = () => {
                     h-content
                     p-5 rounded-[3px]
                     flex flex-col items-center relative
-                ">
+                    cursor-pointer
+                "
+            onClick={() => {
+                setNextScrolTarget({ top: 0 })
+                navigate('/formulaire-recherche-de-solutions')
+            }}>
 
                 <div style={{ color, opacity }}>
                     <SVGLogo width="25" height="25" />
