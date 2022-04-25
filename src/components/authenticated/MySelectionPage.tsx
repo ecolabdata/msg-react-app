@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react';
+import { AnyCard } from '../../api/Api';
 import { byName, dropdownValues } from '../../model/CardType';
 import { ApplicationContext } from '../../Router';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
@@ -12,6 +13,50 @@ const MySelection = () => {
     const handleOnSubmit = () => {
         console.log("Formulaire de recherche envoyé ");
     };
+
+    const download = (cards : AnyCard[]) => {
+            const propNames = Array.from(new Set(cards.flatMap(x => Object.keys(x))))
+            var processRow = function (row : string[]) {
+                var finalVal = '';
+                
+                for (var j = 0; j < row.length; j++) {
+                    var innerValue = row[j] === null ? '' : row[j].toString();
+                    var result = innerValue.replace(/"/g, '""');
+                    if (result.search(/("|,|\n)/g) >= 0)
+                        result = '"' + result + '"';
+                    if (j > 0)
+                        finalVal += ', ';
+                    finalVal += result;
+                }
+                return finalVal + '\n';
+            };
+            
+            function cardsToRow(card : AnyCard) {
+                return propNames.map(key => (card as any)[key]?.toString() || "")
+            }
+
+            const rows = [
+                propNames,
+                ...cards.map(cardsToRow)
+            ];
+            var csvFile = '';
+            for (var i = 0; i < rows.length; i++) {
+                csvFile += processRow(rows[i]);
+            }
+    
+            var blob = new Blob(["\uFEFF", csvFile], {type:"text/plain;charset=UTF-16LE"});
+            var link = document.createElement("a");
+            if (link.download !== undefined) { // feature detection
+                // Browsers that support HTML5 download attribute
+                var url = URL.createObjectURL(blob);
+                link.setAttribute("href", url);
+                link.setAttribute("download", "favoris.csv");
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+    }
 
     return (
         <>
@@ -34,15 +79,16 @@ const MySelection = () => {
 
                         <button className="fr-btn fr-btn--sm fr-btn--primary fr-fi-download-line fr-btn--icon-left mr-2 h-[40px]
                         md:h-[40%]
-                        ">
+                        "
+                        onClick={() => download(Object.values(favoris))}>
                             Télécharger
                         </button>
 
-                        <button className="fr-btn fr-btn--sm fr-btn--primary fr-fi-mail-fill fr-btn--icon-left
+                        {/* <button className="fr-btn fr-btn--sm fr-btn--primary fr-fi-mail-fill fr-btn--icon-left
                         sm:h-[45%] sm:text-xs
                         lg:ml-2">
                             Envoyer par email
-                        </button>
+                        </button> */}
                     </div>
 
                 </div>
