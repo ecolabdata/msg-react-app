@@ -1,5 +1,5 @@
 import { CardTypeName as ApiName } from '../api/Api';
-import { Calendar, Euro, Eye, Rocket, Signal } from '../assets/Icons';
+import { Calendar, Euro, Eye, Rocket, Signal, Unicorn } from '../assets/Icons';
 import ListResearchResultAidesClients from '../components/anonymous/ListResearchResultAidesClients';
 import ListResearchResultInvestisseurs from '../components/anonymous/ListResearchResultInvestisseurs';
 
@@ -69,9 +69,20 @@ export const aideInno: CardType = {
     version: "beta"
 } as const
 
+export const startups: CardType = {
+    SVGLogo: Unicorn,
+    color: "hsla(167, 53%, 55%, 1)",
+    title: "Start-up greentech",
+    description: "Entreprises éco-innovantes.",
+    name: "startups",
+    searchLink: "/startups",
+    apiName: "startups",
+    version: "beta"
+} as const
 
 
-export const all = [aideInno,aideClient,investisseur,acheteurPublic,/*achatPrevi,*/]
+
+export const all = [aideInno,aideClient,investisseur,acheteurPublic,/*achatPrevi,*/ startups]
 
 export const byName = Object.fromEntries(all.map(x => [x.name, x]))
 export const dropdownValues = Object.fromEntries(all.map(x => [x.name, x.title]))

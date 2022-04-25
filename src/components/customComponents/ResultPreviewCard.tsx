@@ -36,7 +36,7 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
         style={{ borderColor: cardType.color }}>
 
         <div className="emetor-row flex">
-            <p className="text-xs flex-1 grow-[10] clamp-2" style={{ color: cardType.color }} title={displayableFinancers}>{displayableFinancers}</p>
+            <p className="text-xs flex-1 grow-[10] clamp-2" style={{ color: cardType.color }} title={displayableFinancers}>{displayableFinancers || cardData['Thématique']}</p>
             <div className="opacity-0 flex flex-1 justify-end transition-opacity duration-200 group-hover:opacity-100" >
                 <div className="flex justify-between w-[43px]">
                     <button className="cursor-pointer" style={{ color: isFavori(cardData) ? "yellow" : undefined }} onClick={() => toggleFavori(cardData)}>
@@ -50,7 +50,7 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
         </div>
 
         <Link to={`/${cardType.name}/details`} state={{ cardData }} className="rm-link-underline">
-            <h4 className="clamp mt-2 w-4/5 font-bold text-xl" title={cardData.nom || cardData.name}>{cardData.nom || cardData.name}</h4>
+            <h4 className="clamp mt-2 w-4/5 font-bold text-xl" title={cardData.nom || cardData.name }>{cardData.nom || cardData.name || cardData['Start-up']}</h4>
             {/* <p className="uppercase opacity-0 mt-8 text-xs text-white transition-opacity duration-200 group-hover:opacity-100 w-[225px]">
                 <br />
 
@@ -63,7 +63,7 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
                     opacity-0 transition-opacity duration-200 group-hover:opacity-100
                     text-xs text-white font-light
                     flex flex-col justify-evenly'>
-                {cardData.submission_deadline && <div data-org-value={cardData.submission_deadline}>Date de clôture: {displayabeSubmissionDeadLine}</div>}
+                {cardData['Pitch'] && <div>{cardData['Pitch']}</div>}
                 {cardData.aid_types && <div style={{ color: cardType.color }}>{cardData.aid_types.join(" | ")}</div>}
             </div>
             {/* <NavLink to={cardType.searchLink} state={initialState} NavLink/> */}

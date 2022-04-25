@@ -23,43 +23,43 @@ function browseObject(obj: any,
 }
 
 
-export const thematiqueToFieldsConf: Record<CardTypeName, Record<string, string | boolean>> = {
-    "aides_innovation": {
-        titre_aide: "Nom",
-        funding_source_url: "Url source",
-        aide_detail: "Détails de l'aide",
-        contact: "Qui contacter ?"
-    },
-    "aides_clients": {
-        titre_aide: "Nom",
-        funding_source_url: "Url source",
-        aide_detail: "Détails de l'aide",
-        contact: "Qui contacter ?"
-    },
-    // "marché": {
-    //     libelle: "Nom",
-    //     groupe_marchandise_nom: "Groupe Marchandise",
-    //     duree_mois: "Durée (en mois)",
-    //     annee: "Année",
-    //     depense_annualisee: "Dépense annualisée",
-    //     acheteur: "Acheteur",
-    //     entite_porteuse: "Entité Porteuse",
-    //     contexte: "Contexte"
-    // },
-    "collectivites": {
-        nom: "Nom"
-    },
-    "investisseurs": {
-        "nom": "Nom",
-        "mail": "Email",
-        "fonction": "Fonction",
-        "telephone": "Telephone",
-        "type_investissements": "Types d'investissements",
-        "secteurs": "Secteurs",
-        "montant_min": "Investissement minimum (€)",
-        "montant_max": "Investissement maximum (€)"
-    }  
-};
+// export const thematiqueToFieldsConf: Record<CardTypeName, Record<string, string | boolean>> = {
+//     "aides_innovation": {
+//         titre_aide: "Nom",
+//         funding_source_url: "Url source",
+//         aide_detail: "Détails de l'aide",
+//         contact: "Qui contacter ?"
+//     },
+//     "aides_clients": {
+//         titre_aide: "Nom",
+//         funding_source_url: "Url source",
+//         aide_detail: "Détails de l'aide",
+//         contact: "Qui contacter ?"
+//     },
+//     // "marché": {
+//     //     libelle: "Nom",
+//     //     groupe_marchandise_nom: "Groupe Marchandise",
+//     //     duree_mois: "Durée (en mois)",
+//     //     annee: "Année",
+//     //     depense_annualisee: "Dépense annualisée",
+//     //     acheteur: "Acheteur",
+//     //     entite_porteuse: "Entité Porteuse",
+//     //     contexte: "Contexte"
+//     // },
+//     "collectivites": {
+//         nom: "Nom"
+//     },
+//     "investisseurs": {
+//         "nom": "Nom",
+//         "mail": "Email",
+//         "fonction": "Fonction",
+//         "telephone": "Telephone",
+//         "type_investissements": "Types d'investissements",
+//         "secteurs": "Secteurs",
+//         "montant_min": "Investissement minimum (€)",
+//         "montant_max": "Investissement maximum (€)"
+//     }  
+// };
 
 const CardDetailsJson = (props:any) => {
     const { usedFavoris, usedCorbeille } = useContext(ApplicationContext)
@@ -79,25 +79,25 @@ const CardDetailsJson = (props:any) => {
         return null;
     }
     const cardType = byName[cardData?.cardTypeName];
-    const fieldsConf = thematiqueToFieldsConf[cardType.apiName]
+    // const fieldsConf = thematiqueToFieldsConf[cardType.apiName]
     browseObject(cardData, (prefix, key, value) => {
         const fullname = [...prefix, key].join("/")
         if (value) {
-            const humanReadableName = fieldsConf[fullname]
-            if (humanReadableName) {
-                const devTitle = (devMode && humanReadableName) ? <span style={{ filter: "opacity(25%)" }}>({fullname})</span> : null
-                toDisplay.push(<div key={key} style={{ margin: "20px" }}>
-                    <div style={{ margin: "20px 0px", color: cardType.color }}>{humanReadableName || fullname} {devTitle}</div>
+            // const humanReadableName = fieldsConf[fullname]
+            // if (humanReadableName) {
+            //     const devTitle = (devMode && humanReadableName) ? <span style={{ filter: "opacity(25%)" }}>({fullname})</span> : null
+            //     toDisplay.push(<div key={key} style={{ margin: "20px" }}>
+            //         <div style={{ margin: "20px 0px", color: cardType.color }}>{humanReadableName || fullname} {devTitle}</div>
+            //         <div style={{ margin: "20px 0px" }} dangerouslySetInnerHTML={{ __html: value + "" }}></div>
+            //         <div style={{ width: "200px", border: "0.5px solid rgba(206, 206, 206, 0.2)" }}></div>
+            //     </div>)
+            // } else if (devMode) {
+                toDisplay.push(<div key={key} style={{ margin: "20px", filter: "opacity(100%)" }}>
+                    <div style={{ margin: "20px 0px", color: cardType.color }}>{fullname}</div>
                     <div style={{ margin: "20px 0px" }} dangerouslySetInnerHTML={{ __html: value + "" }}></div>
                     <div style={{ width: "200px", border: "0.5px solid rgba(206, 206, 206, 0.2)" }}></div>
                 </div>)
-            } else if (devMode) {
-                toDisplay.push(<div key={key} style={{ margin: "20px", filter: "opacity(25%)" }}>
-                    <div style={{ margin: "20px 0px", color: cardType.color }}>{humanReadableName || fullname}</div>
-                    <div style={{ margin: "20px 0px" }} dangerouslySetInnerHTML={{ __html: value + "" }}></div>
-                    <div style={{ width: "200px", border: "0.5px solid rgba(206, 206, 206, 0.2)" }}></div>
-                </div>)
-            }
+            // }
         }
     })
     return <div>

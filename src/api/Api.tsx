@@ -1,11 +1,11 @@
 import { canonicalize } from 'json-canonicalize';
 import sha1 from 'sha1';
-import { acheteurPublic, aideClient, aideInno, investisseur } from '../model/CardType';
+import { acheteurPublic, aideClient, aideInno, all as allCardType, investisseur, startups } from '../model/CardType';
 import mockApiResponse from './mock_api_resp.json';
 
 export const buildId = (obj: any) => sha1(canonicalize(obj)).slice(0, 8)
 
-export const cardTypeNames = ["collectivites", /*"marches",*/ "investisseurs", "aides_clients", "aides_innovation"] as const;
+export const cardTypeNames = ["collectivites", /*"marches",*/ "investisseurs", "aides_clients", "aides_innovation", 'startups'] as const;
 export type CardTypeName = typeof cardTypeNames[number];
 
 /*
@@ -18,7 +18,9 @@ export type Collectivite = typeof mockApiResponse.cards.collectivites[number]//D
 //export type Marche = typeof mockApiResponse.cards.[number]//deduced from DECP
 export type Investisseur = typeof mockApiResponse.cards.investisseurs[number]//From GI file
 
-export type AnyCard = Partial<Aide> /*& Partial<Marche>*/ & Partial<Collectivite> & Partial<Investisseur> & { id: string, cardTypeName: string }
+export type Startup = typeof mockApiResponse.cards.startups[number]//From GI file
+
+export type AnyCard = Partial<Aide> /*& Partial<Marche>*/ & Partial<Collectivite> & Partial<Investisseur> & Partial<Startup> & { id: string, cardTypeName: string }
 // types of property '"deadline"' are incompatible.
 //             Type 'null' is not assignable to type 'string | undefined'
 
@@ -29,13 +31,14 @@ export type Search = ReturnType<typeof handleResp>
 
 function handleResp(query: Query | InvestisseurQuery | AidesClientQuery | AidesInnoQuery, resp: ApiResponse) {
   const cards = {
-    collectivites: resp.cards.collectivites.map(x => { return { ...x, id: buildId(x), cardTypeName: acheteurPublic.name } }),
+    collectivites: !resp.cards.collectivites ? [] : resp.cards.collectivites.map(x => { return { ...x, id: buildId(x), cardTypeName: acheteurPublic.name } }),
     //marches: resp.cards.marches.map(x => {return {...x, id: buildId(x), cardTypeName: achatPrevi.name}}),
-    investisseurs: resp.cards.investisseurs.map(x => { return { ...x, id: buildId(x), cardTypeName: investisseur.name } }),
-    aides_clients: resp.cards.aides_clients.map(x => { return { ...x, id: buildId(x), cardTypeName: aideClient.name } }),
-    aides_innovation: resp.cards.aides_innovation.map(x => { return { ...x, id: buildId(x), cardTypeName: aideInno.name } })
+    investisseurs: !resp.cards.investisseurs ? [] : resp.cards.investisseurs.map(x => { return { ...x, id: buildId(x), cardTypeName: investisseur.name } }),
+    aides_clients: !resp.cards.aides_clients ? [] : resp.cards.aides_clients.map(x => { return { ...x, id: buildId(x), cardTypeName: aideClient.name } }),
+    aides_innovation: !resp.cards.aides_innovation ? [] : resp.cards.aides_innovation.map(x => { return { ...x, id: buildId(x), cardTypeName: aideInno.name } }),
+    startups: !resp.cards.startups ? [] : resp.cards.startups.map(x => { return { ...x, id: buildId(x), cardTypeName: startups.name } }),
   }
-  const cardsById = Object.fromEntries([...cards.collectivites, /*...cards.marches,*/ ...cards.investisseurs, ...cards.aides_clients, ...cards.aides_innovation].map(x => [x.id, x]))
+  const cardsById = Object.fromEntries(allCardType.flatMap(x => cards[x.apiName] as AnyCard[]).map(x => [x.id, x]))
   return { query, cardsById };
 }
 
@@ -56,7 +59,8 @@ function buildFetchRequest(params: any) {
           "collectivites": [],
           "aides_clients": [],
           "aides_innovation": [],
-          "investisseurs": []
+          "investisseurs": [],
+          "startups":[]
         }
       }, params)
     )
@@ -83,6 +87,7 @@ export const search = (query: Query) => buildFetchRequest({
   "descriptionSU": query.description,
   "nb_aides": 100,
   "nb_acheteur": 100,
+  "nb_Startups" : 100,
   "montant_min": 0,
   "secteurs": query.secteurs,
   "keywords": query.motsclefs
