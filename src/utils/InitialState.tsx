@@ -1,8 +1,5 @@
-import { AnyCard } from "../api/Api";
+import { AnyCard, Search } from "../api/Api";
 
 export type InitialState = {
-    secteurs?: string[],
-    description?: string,
-    cardsById?: Record<string, AnyCard>
-    motsclefs?: string[]
+    search : Search
 }

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { AnyCard, searchInvestisseur } from '../../api/Api';
+import { AnyCard, InvestisseurQuery, Search, searchInvestisseur } from '../../api/Api';
 import { useTitle } from '../../hooks/useTitle';
 import { CardType, investisseur } from '../../model/CardType';
 import { ApplicationContext } from '../../Router';
@@ -39,10 +39,10 @@ const ListResearchResultInvestisseurs = () => {
     useTitle(`Recherche détaillé ${cardType.title}`)
 
     const [isLoading, setIsLoading] = useState(false)
-    const [description, setDescription] = useState(initialState?.description || "")
-    const [secteurs, setSecteurs] = useState<string[]>(initialState?.secteurs || [])
-    const [montantMin, setMontantMin] = useState<number>(initialState?.montantMin || 0)
-    const [motsclefs, setMotsclef] = useState<string[]>(initialState?.motsclefs || [])
+    const [description, setDescription] = useState(initialState?.search.query.description || "")
+    const [secteurs, setSecteurs] = useState<string[]>(initialState?.search.query.secteurs || [])
+    const [montantMin, setMontantMin] = useState<number>((initialState?.search.query as InvestisseurQuery).montantMin || 0)
+    const [motsclefs, setMotsclef] = useState<string[]>(initialState?.search.query.motsclefs || [])
     const [errorTxt, setErrorTxt] = useState(<></>)
 
     //Not available with current vesion of API
@@ -53,13 +53,13 @@ const ListResearchResultInvestisseurs = () => {
     // });
 
     let displayCards: JSX.Element[] | undefined;
-    let allCards: AnyCard[] = []
+    let allCards: Search['cards']['investisseurs']  = []
     let nbPage: number | undefined;
     if (initialState) {
-        allCards = Object.values(initialState?.cardsById != undefined && initialState.cardsById).filter(x => x.cardTypeName === cardType.name);
+        allCards =  initialState.search.cards.investisseurs
         const pageChunkSize = 20;
         nbPage = Math.ceil(allCards.length / pageChunkSize)
-        displayCards = initialState?.cardsById && allCards.filter(x => !isInCorbeille(x))
+        displayCards = allCards.filter(x => !isInCorbeille(x))
             .slice(
                 (pageNo - 1) * pageChunkSize,
                 pageNo * pageChunkSize
@@ -80,12 +80,7 @@ const ListResearchResultInvestisseurs = () => {
                 setIsLoading(false)
                 return navigate(`${cardType.searchLink}`, {
                     replace: true,
-                    state: {
-                        description,
-                        secteurs,
-                        montantMin,
-                        cardsById: search.cardsById
-                    }
+                    state: {search}
                 })
             })
         } else {

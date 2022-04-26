@@ -42,9 +42,9 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
     useTitle(`Recherche détaillé ${cardType.title}`)
 
     const [isLoading, setIsLoading] = useState(false)
-    const [description, setDescription] = useState(initialState?.description || "")
-    const [secteurs, setSecteurs] = useState<string[]>(initialState?.secteurs || [])
-    const [motsclefs, setMotsclef] = useState<string[]>(initialState?.motsclefs || [])
+    const [description, setDescription] = useState(initialState?.search.query.description || "")
+    const [secteurs, setSecteurs] = useState<string[]>(initialState?.search.query.secteurs || [])
+    const [motsclefs, setMotsclef] = useState<string[]>(initialState?.search.query.motsclefs || [])
     const [errorTxt, setErrorTxt] = useState(<></>)
 
     //Not available with current vesion of API
@@ -58,10 +58,10 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
     let allCards: AnyCard[] = []
     let nbPage: number | undefined;
     if (initialState) {
-        allCards = Object.values(initialState?.cardsById != undefined && initialState.cardsById).filter(x => x.cardTypeName === cardType.name);
+        allCards = initialState.search.cards[cardType.apiName];
         const pageChunkSize = 20;
         nbPage = Math.ceil(allCards.length / pageChunkSize)
-        displayCards = initialState?.cardsById && allCards.filter(x => !isInCorbeille(x))
+        displayCards = allCards.filter(x => !isInCorbeille(x))
             .slice(
                 (pageNo - 1) * pageChunkSize,
                 pageNo * pageChunkSize
@@ -81,11 +81,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
                 setIsLoading(false)
                 return navigate(`${cardType.searchLink}`, {
                     replace: true,
-                    state: {
-                        description,
-                        secteurs,
-                        cardsById: search.cardsById
-                    }
+                    state: {search}
                 })
             })
         } else {

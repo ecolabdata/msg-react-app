@@ -25,9 +25,9 @@ const ResearchForm: React.FC = (props) => {
     useTitle(`Explorer `)
     const initialState = location.state as InitialState | null;
     const [isLoading, setIsLoading] = useState(false)
-    const [description, setDescription] = useState(initialState?.description || "")
-    const [secteurs, setSecteurs] = useState<string[]>(initialState?.secteurs || [])
-    const [motsclefs, setMotsclef] = useState<string[]>(initialState?.motsclefs || [])
+    const [description, setDescription] = useState(initialState?.search.query.description || "")
+    const [secteurs, setSecteurs] = useState<string[]>(initialState?.search.query.secteurs || [])
+    const [motsclefs, setMotsclef] = useState<string[]>(initialState?.search.query.motsclefs || [])
     const [errorTxt, setErrorTxt] = useState(<></>)
     const thematicsValues = Object.values(ThematicsEnum);
 
@@ -42,12 +42,7 @@ const ResearchForm: React.FC = (props) => {
                 const element = document.getElementById('previews')
                 if (element) setNextScrolTarget({ behavior: "smooth", top: element.offsetTop - window.innerHeight * 0.20 })
                 navigate(`/recherche`, {
-                    state: {
-                        description,
-                        secteurs,
-                        motsclefs,
-                        cardsById: search.cardsById
-                    }
+                    state: {search}
                 })
             })
         } else {
@@ -55,10 +50,10 @@ const ResearchForm: React.FC = (props) => {
         }
     };
 
-    const previews = initialState?.cardsById != undefined && allCardType.map(cardType => {
-        
-        const results: AnyCard[] = Object.values(initialState?.cardsById != undefined && initialState.cardsById).filter(x => x.cardTypeName == cardType.name);
-        if (!results || results.length === 0) return null;
+    const previews = allCardType.map(cardType => {
+        if (!initialState) return null;
+        const results : AnyCard[] = initialState.search.cards[cardType.apiName];
+        if (results.length === 0) return null;
 
         return (
             <ResultResearchPreviewCard cardType={cardType} initialState={initialState} resultCount={results.length}>
@@ -103,7 +98,10 @@ const ResearchForm: React.FC = (props) => {
                                     <h2 className="italic text-dark-text-action text-3xl font-[Spectral]"> 2. La thématique</h2>
                                 </div>
 
-                                <Select classes="w-[80%] my-4"label="Thématique du projet" optionsData={thematicsValues}/>
+                                <Select classes="w-[80%] my-4"label="Thématique du projet" optionsData={thematicsValues} onChange={e => {
+                                    console.log("Setting secteur to ", [e.currentTarget.value])
+                                    setSecteurs([e.currentTarget.value])
+                                }}/>
 
                             </div>
 

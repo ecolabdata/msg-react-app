@@ -12,7 +12,7 @@ export type CardTypeName = typeof cardTypeNames[number];
 cardType list
 https://www.notion.so/messervicesgreentech/0290b8c9cfd4437b8f9ee8bb9ee697ee?v=94b3a82bc59243e5b99ed4574bf8407f
 */
-export type Aide = typeof mockApiResponse.cards.aides_clients[number];
+export type Aide = typeof mockApiResponse.cards.aides_clients[number] | typeof mockApiResponse.cards.aides_innovation[number];
 //export type Aide = typeof mockApiResponse.cards.aides[number] //From old FTE file
 export type Collectivite = typeof mockApiResponse.cards.collectivites[number]//Deduced from DECP
 //export type Marche = typeof mockApiResponse.cards.[number]//deduced from DECP
@@ -20,7 +20,7 @@ export type Investisseur = typeof mockApiResponse.cards.investisseurs[number]//F
 
 export type Startup = typeof mockApiResponse.cards.startups[number]//From GI file
 
-export type AnyCard = Partial<Aide> /*& Partial<Marche>*/ & Partial<Collectivite> & Partial<Investisseur> & Partial<Startup> & { id: string, cardTypeName: string }
+export type AnyCard = Omit<Partial<Aide>, "id"> /*& Partial<Marche>*/ & Partial<Collectivite> & Partial<Investisseur> & Partial<Startup> & { id: string, cardTypeName: string }
 // types of property '"deadline"' are incompatible.
 //             Type 'null' is not assignable to type 'string | undefined'
 
@@ -31,15 +31,15 @@ export type Search = ReturnType<typeof handleResp>
 
 function handleResp(query: Query | InvestisseurQuery | AidesClientQuery | AidesInnoQuery, resp: ApiResponse) {
   const cards = {
-    collectivites: !resp.cards.collectivites ? [] : resp.cards.collectivites.map(x => { return { ...x, id: buildId(x), cardTypeName: acheteurPublic.name } }),
+    collectivites: !resp.cards.collectivites ? [] : resp.cards.collectivites.map((x) => { return { ...x, id: buildId(x), cardTypeName: acheteurPublic.name } }),
     //marches: resp.cards.marches.map(x => {return {...x, id: buildId(x), cardTypeName: achatPrevi.name}}),
-    investisseurs: !resp.cards.investisseurs ? [] : resp.cards.investisseurs.map(x => { return { ...x, id: buildId(x), cardTypeName: investisseur.name } }),
-    aides_clients: !resp.cards.aides_clients ? [] : resp.cards.aides_clients.map(x => { return { ...x, id: buildId(x), cardTypeName: aideClient.name } }),
-    aides_innovation: !resp.cards.aides_innovation ? [] : resp.cards.aides_innovation.map(x => { return { ...x, id: buildId(x), cardTypeName: aideInno.name } }),
-    startups: !resp.cards.startups ? [] : resp.cards.startups.map(x => { return { ...x, id: buildId(x), cardTypeName: startups.name } }),
+    investisseurs: !resp.cards.investisseurs ? [] : resp.cards.investisseurs.map((x) => { return { ...x, id: buildId(x), cardTypeName: investisseur.name } }),
+    aides_clients: !resp.cards.aides_clients ? [] : resp.cards.aides_clients.map((x) => { return { ...x, id: buildId(x), cardTypeName: aideClient.name } }),
+    aides_innovation: !resp.cards.aides_innovation ? [] : resp.cards.aides_innovation.map((x)=> { return { ...x, id: buildId(x), cardTypeName: aideInno.name } }),
+    startups: !resp.cards.startups ? [] : resp.cards.startups.map((x) => { return { ...x, id: buildId(x), cardTypeName: startups.name } }),
   }
-  const cardsById = Object.fromEntries(allCardType.flatMap(x => cards[x.apiName] as AnyCard[]).map(x => [x.id, x]))
-  return { query, cardsById };
+  const cardsById = Object.fromEntries(allCardType.flatMap((x) : AnyCard[] => cards[x.apiName]).map(x => [x.id, x]))
+  return { query, cardsById, cards};
 }
 
 
@@ -85,9 +85,9 @@ export const search = (query: Query) => buildFetchRequest({
   "fichier_investisseurs": "GTIetmontant.csv",
   "fichier_aides_inno": "corpusinno.pkl",
   "descriptionSU": query.description,
-  "nb_aides": 100,
-  "nb_acheteur": 100,
-  "nb_Startups" : 100,
+  "nb_aides": 10,
+  "nb_acheteur": 10,
+  "nb_Startups" : 10,
   "montant_min": 0,
   "secteurs": query.secteurs,
   "keywords": query.motsclefs
