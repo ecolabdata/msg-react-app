@@ -41,7 +41,7 @@ const ResearchForm: React.FC = (props) => {
                 setIsLoading(false)
                 const element = document.getElementById('previews')
                 if (element) setNextScrolTarget({ behavior: "smooth", top: element.offsetTop - window.innerHeight * 0.20 })
-                navigate(`/recherche`, {
+                navigate(`/explorer`, {
                     state: {search}
                 })
             })

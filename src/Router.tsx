@@ -52,8 +52,7 @@ const Router = () => {
                 ${localStorage.scheme === 'dark' ? 'bg-[#262626]' : ''}`}>
                     <Routes>
                         <Route path="/" element={<HomePage />} />
-                        <Route path="/formulaire-recherche-de-solutions" element={<ResearchForm />} />
-                        <Route path="/recherche" element={<ResearchForm />} />
+                        <Route path="/explorer" element={<ResearchForm />} />
                         <Route path="/:cardType/details" element={<CardDetailsJson />} />
                         <Route path="/exemple/details" element={<CardDetails />} />
                         {allCardType.map(cardType => <>

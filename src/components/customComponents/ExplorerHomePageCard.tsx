@@ -44,7 +44,7 @@ const ExplorerHomePageCard = () => {
                 "
             onClick={() => {
                 setNextScrolTarget({ top: 0 })
-                navigate('/formulaire-recherche-de-solutions')
+                navigate('/explorer')
             }}>
 
                 <div style={{ color, opacity }}>
