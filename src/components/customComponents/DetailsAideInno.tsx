@@ -2,14 +2,18 @@ import { CardData } from '../../model/CardData';
 import { aideInno, CardType } from '../../model/CardType';
 import ArrowDark from './../../assets/icons/arrow-dark-action.svg';
 import { Rocket } from '../../assets/Icons';
-import Trash from './../../assets/icons/trash-fill.svg';
-import Star from './../../assets/icons/star-fill.svg';
+import { Star, Trash } from '../../assets/Icons'
 import { Aide } from '../../api/Api';
-import { ReactNode } from 'react';
+import { ReactNode, useContext, useState } from 'react';
+import { ApplicationContext } from '../../Router';
 
 
 const CardDetailsInno = (props: { cardData: Aide }) => {
-    const { cardData } = props
+    const { usedFavoris, usedCorbeille } = useContext(ApplicationContext)
+    const [toggleFavori, isFavori] = usedFavoris
+    const [toggleInCorbeille, isInCorbeille] = usedCorbeille
+
+    const cardData = Object.assign({ id: "TODO", cardTypeName: "" }, props.cardData)
     const cardType = aideInno
 
     const displayableFinancers = cardData.financers?.join(" | ") || ""
@@ -22,7 +26,6 @@ const CardDetailsInno = (props: { cardData: Aide }) => {
     return (
         <>
             <div style={{ marginLeft: "calc(max(10% - 100px, 0px))", marginRight: "calc(max(10% - 100px, min(8vw, 50px)))" }} className="headContainer">
-
                 <button
                     onClick={() => window.history.back()}
                     className="ml-4 text-dark-text-action flex mt-4 rm-link-underline ">
@@ -43,14 +46,27 @@ const CardDetailsInno = (props: { cardData: Aide }) => {
                         lg:text-4xl">
                             {cardData.name}
                         </h2>
-                        <div className="w-[49%] flex justify-end">
-                            <img src={Star} alt="Icône d'étoile" className="mr-4 w-6 h-6 cursor-pointer" />
-                            <img src={Trash} alt="Icône de poubelle" className="w-6 h-6 cursor-pointer" />
+                        <div className="w-fit flex justify-end">
+                            <div className="flex justify-between w-[43px]">
+                                <button className="cursor-pointer" style={{ color: isFavori(cardData) ? "yellow" : undefined }} onClick={() => toggleFavori(cardData)}>
+                                    <Star />
+                                </button>
+                                <button className="cursor-pointer" style={{ color: isInCorbeille(cardData) ? "red" : undefined }} onClick={() => toggleInCorbeille(cardData)}>
+                                    <Trash />
+                                </button>
+                            </div>
                         </div>
                     </div>
-
-                    <p style={{ color: cardType.color }} className="mt-6 w-full text-base">{displayableFinancers}</p>
-
+                    <div className='flex  w-2/3'>
+                        <div className='flex justify-start flex-1 w-1/2'>
+                            <p style={{ color: cardType.color }} className="mt-6 w-fit text-base">{displayableFinancers}</p>
+                        </div>
+                        <div className='flex justify-end flex-1 w-1/2'>
+                            <p style={{ opacity: 0.6 }} className="mt-6 w-fit text-base font-thin">
+                                Source: <a href={"https://aides-territoires.beta.gouv.fr" + cardData["url"]} target="_blank">Aides territoires</a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -85,7 +101,7 @@ const CardDetailsInno = (props: { cardData: Aide }) => {
                             my-6
                             ">
                         <span className="fr-fi-external-link-line w-3 h-3 mb-[10px]" aria-hidden="true" />
-                        <span className="mt-1 ml-4 text-base">Consulter la source de l'aide</span>
+                        <span className="mt-1 ml-4 text-base">Lien vers la démarche en ligne</span>
                     </a>}
 
                 </div>
@@ -135,13 +151,25 @@ const SmallFields: React.FC<{ color: string, fieldname: ReactNode }> = ({ color,
     <div className="mt-6" style={{ width: "74px", borderTop: "1px solid rgba(206, 206, 206, 0.2)" }}></div>
 </div>
 
-const BigFields: React.FC<{ color: string, fieldname: ReactNode }> = ({ color, fieldname, children }) => <div
-    style={{ flex: "1 1 100%", background: "#353434" }}
-    className='short-field p-[18px]  mt-8'
->
-    <div style={{ color }} className="font-[700] text-[22px]">{fieldname}</div>
-    <div className="mt-2">{children}</div>
-</div>
+const BigFields: React.FC<{ color: string, fieldname: ReactNode }> = ({ color, fieldname, children }) => {
+    const [showAll, setShowAll] = useState(false)
+    const maxHeight = showAll ? "" : "max-h-[13.8em]"
+    return <div
+        style={{ flex: "1 1 100%", background: "#353434", }}
+        className='short-field p-[18px] mt-8'
+    >
+        <div style={{ color }} className="font-[700] text-[22px]">{fieldname}</div>
+        <div className={`mt-2 ${maxHeight} overflow-hidden relative transition-all ease`}>
+            {children}
+            {!showAll && <div className='absolute top-1 left-0 h-full w-full' style={{ background: "linear-gradient(180deg, rgba(0,0,0,0) 50%, #353434 90%)" }}></div>}
+        </div>
+        <button className="fr-btn fr-btn--secondary mt-2" onClick={
+            () => setShowAll(!showAll)
+        }>
+            {showAll ? "Réduire" : "Voir plus"}
+        </button>
+    </div>
+}
 
 
 export default CardDetailsInno;
