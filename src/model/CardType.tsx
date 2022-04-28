@@ -1,10 +1,11 @@
-import { CardTypeName as ApiName } from '../api/Api';
+import { AnyCard, CardTypeName as ApiName, cardTypeNames } from '../api/Api';
 import { Calendar, Euro, Eye, Rocket, Signal, Unicorn } from '../assets/Icons';
 import ListResearchResultAidesClients from '../components/anonymous/ListResearchResultAidesClients';
 import ListResearchResultInvestisseurs from '../components/anonymous/ListResearchResultInvestisseurs';
+import { versions } from './CardVersions';
 
 export interface CardType {
-    SVGLogo: ({ ...other }: {[x: string]: any;}) => JSX.Element,
+    SVGLogo: ({ ...other }: { [x: string]: any; }) => JSX.Element,
     color: string,
     title: string,
     description: string,
@@ -12,10 +13,10 @@ export interface CardType {
     searchLink: string,
     apiName: ApiName,
     searchPage?: JSX.Element,
-    version: "alpha" | "beta"
+    version: typeof versions[number];
 }
 
-export const acheteurPublic : CardType = {
+export const acheteurPublic: CardType = {
     SVGLogo: Signal,
     color: "#F95C5E",
     title: "Organismes publics ouverts à l’innovation",
@@ -34,7 +35,7 @@ export const acheteurPublic : CardType = {
 //     searchLink: "/achats-previsionnels",
 //     apiName: "marches"
 // } as const
-export const investisseur: CardType  = {
+export const investisseur: CardType = {
     SVGLogo: Euro,
     color: "#68A532",
     title: "Investisseurs privés",
@@ -73,16 +74,13 @@ export const startups: CardType = {
     SVGLogo: Unicorn,
     color: "hsla(167, 53%, 55%, 1)",
     title: "Start-up greentech",
-    description: "Entreprises éco-innovantes.",
+    description: "Entreprises éco-innovantes qui vous ressemblent ou répondent à vos besoins",
     name: "startups",
     searchLink: "/startups",
     apiName: "startups",
     version: "beta"
 } as const
 
-
-
-export const all = [aideInno,aideClient,investisseur,acheteurPublic,/*achatPrevi,*/ startups]
-
+export const all = [aideInno, aideClient, investisseur, acheteurPublic,/*achatPrevi,*/ startups]
 export const byName = Object.fromEntries(all.map(x => [x.name, x]))
 export const dropdownValues = Object.fromEntries(all.map(x => [x.name, x.title]))

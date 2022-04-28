@@ -18,6 +18,8 @@ import CardDetailsJson from './components/customComponents/CardDetailsJson';
 import { defaultUsedCorbeille, defaultUsedFavoris, useCorbeille, UsedCorbeille, UsedFavoris, useFavoris } from './utils/categoris';
 import CardDetails from './components/customComponents/CardDetails';
 import { DonnezVotreAvis } from './components/customComponents/DonnezVotreAvis';
+import mockApiResponse from './api/mock_api_resp.json';
+import CardDetailsInno from './components/customComponents/DetailsAideInno';
 
 
 export const ApplicationContext = createContext<{
@@ -55,6 +57,7 @@ const Router = () => {
                         <Route path="/explorer" element={<ResearchForm />} />
                         <Route path="/:cardType/details" element={<CardDetailsJson />} />
                         <Route path="/exemple/details" element={<CardDetails />} />
+                        <Route path="/exemple/details-aide-inno" element={<CardDetailsInno cardData={mockApiResponse.cards.aides_innovation[0]}/>} />
                         {allCardType.map(cardType => <>
                             <Route path={`${cardType.searchLink}`} element={
                                 cardType.searchPage || <ListResearchResult cardType={cardType} />} />
