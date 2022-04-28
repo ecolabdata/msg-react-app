@@ -52,18 +52,18 @@ const CardDetailsInno = (props: { cardData: Aide }) => {
 
             </div>
             <div style={{marginRight: "calc(max(10% - 100px, 0px))", marginLeft: "calc(max(10% - 100px, 0px))"}} className='flex justify-around flex-wrap'>
-                <div style={{flex: "1 1 350px"}} className="contentContainer flex flex-wrap justify-between m-4" >
+                <div style={{flex: "1 1 350px"}} className="contentContainer flex flex-wrap justify-left m-4" >
                     <SmallFields color={cardType.color} fieldname={"Calendrier"}>
                         Date de clôture: {cardData.submission_deadline ? `${displayabeSubmissionDeadLine}` : "Aide permanente"}
                     </SmallFields>
-                    <SmallFields color={cardType.color} fieldname={"Calendrier"}>
+                    <SmallFields color={cardType.color} fieldname={"Bénéficiaires"}>
                         Date de clôture: {cardData.submission_deadline ? `${displayabeSubmissionDeadLine}` : "Aide permanente"}
                     </SmallFields>
-                    <SmallFields color={cardType.color} fieldname={"Calendrier"}>
+                    <SmallFields color={cardType.color} fieldname={"Zone géographique couverte"}>
                         Date de clôture: {cardData.submission_deadline ? `${displayabeSubmissionDeadLine}` : "Aide permanente"}
                     </SmallFields>
                 </div>
-                <div style={{flex: "0 0 380px"}} className="contactCard rounded addBorder border-2 p-3 border-dark-text-action flex flex-col items-start">
+                <div style={{flex: "0 0 380px"}} className="contactCard h-fit rounded addBorder border-2 p-6 border-dark-text-action flex flex-col items-start">
 
 
                     <h2 className="text-[22px] font-bold text-dark-text-action ">Contact</h2>
@@ -100,10 +100,10 @@ const CardDetailsInno = (props: { cardData: Aide }) => {
     )
 };
 
-const SmallFields : React.FC<{color: string, fieldname : ReactNode}> = ({color, fieldname, children}) => <div style={{flex: "0 0 auto"}} className='short-field'>
+const SmallFields : React.FC<{color: string, fieldname : ReactNode}> = ({color, fieldname, children}) => <div style={{flex: "1 1 auto"}} className='short-field mr-20 mt-8'>
     <div style={{color}} className="font-[700] text-[22px]">{fieldname}</div>
     <div className="mt-2">{children}</div>
-    <div className="mt-6" style={{ width: "74px", border: "1px solid rgba(206, 206, 206, 0.2)" }}></div>
+    <div className="mt-6" style={{ width: "74px", borderTop: "1px solid rgba(206, 206, 206, 0.2)" }}></div>
 </div>
 
 export default CardDetailsInno;
