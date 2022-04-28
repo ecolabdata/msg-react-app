@@ -57,7 +57,7 @@ const CardDetailsInno = (props: { cardData: Aide }) => {
                             </div>
                         </div>
                     </div>
-                    <div className='flex  w-2/3'>
+                    <div className='flex mr-[50px]'>
                         <div className='flex justify-start flex-1 w-1/2'>
                             <p style={{ color: cardType.color }} className="mt-6 w-fit text-base">{displayableFinancers}</p>
                         </div>
