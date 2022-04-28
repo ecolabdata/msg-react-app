@@ -77,3 +77,7 @@ textarea:focus, input:focus {
   background-color: var(--background-active-blue-france);
   color: var(--text-inverted-blue-france);
 }
+
+.dangerouslySetInnerHTML li {
+  margin-left: 23px
+}
