@@ -1,6 +1,6 @@
 .avis, [href].avis:hover {
     --width: 200px;
-    --height: 50px; 
+    --height: calc(min(8vw, 50px)); 
     position: fixed;
     width: var(--width);
     height: var(--height);

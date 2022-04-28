@@ -21,7 +21,7 @@ const CardDetailsInno = (props: { cardData: Aide }) => {
     )
     return (
         <>
-            <div  style={{marginLeft: "calc(max(10% - 100px, 0px))", marginRight: "calc(max(10% - 100px, 50px))"}} className="headContainer">
+            <div style={{ marginLeft: "calc(max(10% - 100px, 0px))", marginRight: "calc(max(10% - 100px, min(8vw, 50px)))" }} className="headContainer">
 
                 <button
                     onClick={() => window.history.back()}
@@ -54,8 +54,42 @@ const CardDetailsInno = (props: { cardData: Aide }) => {
                 </div>
 
             </div>
-            <div style={{marginRight: "calc(max(10% - 100px, 0px))", marginLeft: "calc(max(10% - 100px, 0px))"}} className='flex justify-around flex-wrap'>
-                <div style={{flex: "1 1 350px"}} className="contentContainer flex flex-wrap justify-left mx-[5vw]" >
+            <div style={{ marginRight: "calc(max(10% - 100px, 0px))", marginLeft: "calc(max(10% - 100px, 0px))" }} className='flex justify-around flex-wrap flex-row-reverse'>
+                <div style={{ flex: "0 0 380px" }} className="contactCard h-fit rounded addBorder border-2 p-6 border-dark-text-action flex flex-col items-start">
+
+
+                    <h2 className="text-[22px] font-bold text-dark-text-action ">Contact</h2>
+
+                    <p className="text-base w-[280px]"> <span dangerouslySetInnerHTML={{ __html: cardData["contact"] + "" }}></span></p>
+
+                    <a
+                        href={cardData["origin_url"]}
+                        className="
+                            fr-btn fr-btn--primary
+                            w-fit px-4 h-3 py-2
+                            hover:bg-claire-bf__hover
+                            mt-6 
+                            "
+                        target="_blank"
+                    >
+                        <span className="fr-fi-phone-fill w-3 h-3 mb-[10px]" aria-hidden="true" />
+                        <span className="mt-1 ml-4 text-base">Liens vers l'aide originale</span>
+                    </a>
+
+                    {cardData["application_url"] && <a
+                        href={cardData["application_url"]}
+                        className="
+                            fr-btn fr-btn--secondary
+                            w-fit px-4 h-3 py-2
+                            hover:bg-claire-bf__hover
+                            my-6
+                            ">
+                        <span className="fr-fi-external-link-line w-3 h-3 mb-[10px]" aria-hidden="true" />
+                        <span className="mt-1 ml-4 text-base">Consulter la source de l'aide</span>
+                    </a>}
+
+                </div>
+                <div style={{ flex: "1 1 350px" }} className="contentContainer flex flex-wrap justify-left mx-[5vw]" >
                     <SmallFields color={cardType.color} fieldname={"Calendrier"}>
                         Date de clôture: {cardData.submission_deadline ? `${displayabeSubmissionDeadLine}` : "Aide permanente"}
                     </SmallFields>
@@ -80,66 +114,32 @@ const CardDetailsInno = (props: { cardData: Aide }) => {
                         {subvention.txt}
                     </SmallFields>}
                 </div>
-                <div style={{flex: "0 0 380px"}} className="contactCard h-fit rounded addBorder border-2 p-6 border-dark-text-action flex flex-col items-start">
-
-
-                    <h2 className="text-[22px] font-bold text-dark-text-action ">Contact</h2>
-
-                    <p className="text-base w-[280px]"> <span dangerouslySetInnerHTML={{ __html: cardData["contact"] + "" }}></span></p>
-
-                    <a
-                        href={cardData["origin_url"]}
-                        className="
-                                fr-btn fr-btn--primary
-                                w-fit px-4 h-3 py-2
-                                hover:bg-claire-bf__hover
-                                mt-6 
-                                "
-                        target="_blank"
-                    >
-                        <span className="fr-fi-phone-fill w-3 h-3 mb-[10px]" aria-hidden="true" />
-                        <span className="mt-1 ml-4 text-base">Liens vers l'aide originale</span>
-                    </a>
-
-                    {cardData["application_url"] && <a
-                        href={cardData["application_url"]}
-                        className="
-                                fr-btn fr-btn--secondary
-                                w-fit px-4 h-3 py-2
-                                hover:bg-claire-bf__hover
-                                my-6
-                                ">
-                        <span className="fr-fi-external-link-line w-3 h-3 mb-[10px]" aria-hidden="true" />
-                        <span className="mt-1 ml-4 text-base">Consulter la source de l'aide</span>
-                    </a>}
-
-                </div>
             </div>
         </>
     )
 };
 
-function  handleSubventionDisplay(min?: number | null, max?: number | null) {
+function handleSubventionDisplay(min?: number | null, max?: number | null) {
     const minMax = []
     min && minMax.push(`Min: ${min}`)
     max && minMax.push(`Min: ${max}`)
     return {
         display: minMax.length || undefined,
-        txt: minMax.map(x => <>{x}</>).reduce((a,b) => <><a/><br/><b/></>, <></>)
+        txt: minMax.map(x => <>{x}</>).reduce((a, b) => <><a /><br /><b /></>, <></>)
     }
 }
 
-const SmallFields : React.FC<{color: string, fieldname : ReactNode}> = ({color, fieldname, children}) => <div style={{flex: "1 1 auto"}} className='short-field mr-[5vw] mt-8'>
-    <div style={{color}} className="font-[700] text-[22px]">{fieldname}</div>
+const SmallFields: React.FC<{ color: string, fieldname: ReactNode }> = ({ color, fieldname, children }) => <div style={{ flex: "1 1 auto" }} className='short-field mr-[5vw] mt-8'>
+    <div style={{ color }} className="font-[700] text-[22px]">{fieldname}</div>
     <div className="mt-2">{children}</div>
     <div className="mt-6" style={{ width: "74px", borderTop: "1px solid rgba(206, 206, 206, 0.2)" }}></div>
 </div>
 
-const BigFields : React.FC<{color: string, fieldname : ReactNode}> = ({color, fieldname, children}) => <div
-    style={{flex: "1 1 100%", background: "#353434"}}
+const BigFields: React.FC<{ color: string, fieldname: ReactNode }> = ({ color, fieldname, children }) => <div
+    style={{ flex: "1 1 100%", background: "#353434" }}
     className='short-field p-[18px]  mt-8'
 >
-    <div style={{color}} className="font-[700] text-[22px]">{fieldname}</div>
+    <div style={{ color }} className="font-[700] text-[22px]">{fieldname}</div>
     <div className="mt-2">{children}</div>
 </div>
 
