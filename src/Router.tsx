@@ -55,13 +55,15 @@ const Router = () => {
                     <Routes>
                         <Route path="/" element={<HomePage />} />
                         <Route path="/explorer" element={<ResearchForm />} />
-                        <Route path="/:cardType/details" element={<CardDetailsJson />} />
                         <Route path="/exemple/details" element={<CardDetails />} />
-                        <Route path="/exemple/details-aide-inno" element={<CardDetailsInno cardData={mockApiResponse.cards.aides_innovation[0]}/>} />
-                        {allCardType.map(cardType => <>
-                            <Route path={`${cardType.searchLink}`} element={
-                                cardType.searchPage || <ListResearchResult cardType={cardType} />} />
-                        </>)}
+                        {allCardType.map((cardType => <>
+                            <Route path={cardType.searchLink} element={
+                                cardType.SearchPage ? <cardType.SearchPage /> : <ListResearchResult cardType={cardType}/>
+                            }/>
+                            <Route path={`/${cardType.name}/details`} element={
+                                cardType.DetailsPage ? <cardType.DetailsPage /> : <CardDetailsJson cardType={cardType}/>
+                            }/>
+                        </>))}
                         <Route path="/authentification" element={<Authentication />} />
                         <Route path="/profile" element={<AuthenticatedComponent />}>
                             <Route path="ma-selection" element={<MySelectionPage />} />

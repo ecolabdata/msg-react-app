@@ -12,9 +12,10 @@ interface ResultPreviewCardProps {
 }
 
 const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardType }) => {
-    const { usedFavoris, usedCorbeille } = useContext(ApplicationContext)
+    const { usedFavoris, usedCorbeille, usedNextScrollTarget } = useContext(ApplicationContext)
     const [toggleFavori, isFavori] = usedFavoris
     const [toggleInCorbeille, isInCorbeille] = usedCorbeille
+    const [nextScrollTarget, setNextScrolTarget] = usedNextScrollTarget
 
     const params = useParams()
     const navigate = useNavigate();
@@ -49,7 +50,7 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
             </div>
         </div>
 
-        <Link to={`/${cardType.name}/details`} state={{ cardData }} className="rm-link-underline">
+        <Link onClick={() => setNextScrolTarget({ top: 0 })} to={`/${cardType.name}/details`} state={{ cardData }} className="rm-link-underline">
             <h4 className="clamp mt-2 font-bold text-lg" title={cardData.nom || cardData.name || cardData['Start-up']}>{cardData.nom || cardData.name || cardData['Start-up']}</h4>
             {/* <p className="uppercase opacity-0 mt-8 text-xs text-white transition-opacity duration-200 group-hover:opacity-100 w-[225px]">
                 <br />

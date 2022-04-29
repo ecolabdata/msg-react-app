@@ -3,17 +3,20 @@ import { aideInno, CardType } from '../../model/CardType';
 import ArrowDark from './../../assets/icons/arrow-dark-action.svg';
 import { Rocket } from '../../assets/Icons';
 import { Star, Trash } from '../../assets/Icons'
-import { Aide } from '../../api/Api';
+import { Aide, AnyCard } from '../../api/Api';
 import { ReactNode, useContext, useState } from 'react';
 import { ApplicationContext } from '../../Router';
+import { useLocation } from 'react-router-dom';
 
 
-const CardDetailsInno = (props: { cardData: Aide }) => {
+const CardDetailsInno : React.FC = (props) => {
     const { usedFavoris, usedCorbeille } = useContext(ApplicationContext)
     const [toggleFavori, isFavori] = usedFavoris
     const [toggleInCorbeille, isInCorbeille] = usedCorbeille
-
-    const cardData = Object.assign({ id: "TODO", cardTypeName: "" }, props.cardData)
+    const location = useLocation();
+    const initialState = location.state as {cardData : AnyCard} | null;
+    if (!initialState?.cardData) throw new Error("Missing cardData to generate page")
+    const cardData : Omit<Partial<Aide>, "id"> & { id: string, cardTypeName: string } = initialState.cardData
     const cardType = aideInno
 
     const displayableFinancers = cardData.financers?.join(" | ") || ""
@@ -111,7 +114,7 @@ const CardDetailsInno = (props: { cardData: Aide }) => {
                     </SmallFields>
                     <SmallFields color={cardType.color} fieldname={"Bénéficiaires"}>
                         <ul>
-                            {cardData.targeted_audiences.map(x => <li>{x}</li>)}
+                            {cardData.targeted_audiences?.map(x => <li>{x}</li>)}
                         </ul>
                     </SmallFields>
                     <SmallFields color={cardType.color} fieldname={"Zone géographique couverte"}>
@@ -124,7 +127,7 @@ const CardDetailsInno = (props: { cardData: Aide }) => {
                         <span className='dangerouslySetInnerHTML' dangerouslySetInnerHTML={{ __html: cardData["description"] + "" }}></span>
                     </BigFields>
                     <SmallFields color={cardType.color} fieldname={"Nature de l’aide"}>
-                        {cardData.aid_types.join(" | ")}
+                        {cardData.aid_types?.join(" | ")}
                     </SmallFields>
                     {subvention.display && <SmallFields color={cardType.color} fieldname={"Taux de subvention"}>
                         {subvention.txt}

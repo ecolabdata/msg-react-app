@@ -1,7 +1,9 @@
+import React from 'react';
 import { AnyCard, CardTypeName as ApiName, cardTypeNames } from '../api/Api';
 import { Calendar, Euro, Eye, Rocket, Signal, Unicorn } from '../assets/Icons';
 import ListResearchResultAidesClients from '../components/anonymous/ListResearchResultAidesClients';
 import ListResearchResultInvestisseurs from '../components/anonymous/ListResearchResultInvestisseurs';
+import CardDetailsInno from '../components/customComponents/DetailsAideInno';
 import { versions } from './CardVersions';
 
 export interface CardType {
@@ -12,7 +14,8 @@ export interface CardType {
     name: string,
     searchLink: string,
     apiName: ApiName,
-    searchPage?: JSX.Element,
+    SearchPage?: React.FC,
+    DetailsPage?: React.FC<{}>,
     version: typeof versions[number];
 }
 
@@ -42,7 +45,7 @@ export const investisseur: CardType = {
     description: "Investisseurs privés adaptés à votre maturité pour votre  prochaine levée de fonds.",
     name: "investisseurs",
     searchLink: "/investisseurs",
-    searchPage: <ListResearchResultInvestisseurs />,
+    SearchPage: ListResearchResultInvestisseurs,
     apiName: "investisseurs",
     version: "alpha"
 } as const
@@ -54,7 +57,7 @@ export const aideClient: CardType = {
     description: "Dispositifs incitatifs (état ou régions) qui aident vos clients à accéder à vos solutions",
     name: "aides-clients",
     searchLink: "/aides-clients",
-    searchPage: <ListResearchResultAidesClients />,
+    SearchPage: ListResearchResultAidesClients,
     apiName: "aides_clients",
     version: "beta"
 } as const
@@ -66,6 +69,7 @@ export const aideInno: CardType = {
     description: "Aides publiques dédiées à votre développement (Adème, BPI...)",
     name: "aides-innovations",
     searchLink: "/aides-innovations",
+    DetailsPage: CardDetailsInno,
     apiName: "aides_innovation",
     version: "beta"
 } as const

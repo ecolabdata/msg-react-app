@@ -61,12 +61,11 @@ function browseObject(obj: any,
 //     }  
 // };
 
-const CardDetailsJson = (props:any) => {
+const CardDetailsJson : React.FC<{cardType:CardType}> = ({cardType}) => {
     const { usedFavoris, usedCorbeille } = useContext(ApplicationContext)
     const [toggleFavori, isFavori, favoris] = usedFavoris
     const [toggleInCorbeille, isInCorbeille, corbeille] = usedCorbeille
     const location = useLocation();
-    console.log({location, props})
     const initialState = location.state as {cardData : AnyCard} | null;
     useEffect(() => {
         window.scrollTo(0,0)
@@ -78,7 +77,6 @@ const CardDetailsJson = (props:any) => {
         console.log("cardType mandatory getting", {cardData})
         return null;
     }
-    const cardType = byName[cardData?.cardTypeName];
     // const fieldsConf = thematiqueToFieldsConf[cardType.apiName]
     browseObject(cardData, (prefix, key, value) => {
         const fullname = [...prefix, key].join("/")
