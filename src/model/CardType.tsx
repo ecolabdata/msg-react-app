@@ -3,7 +3,7 @@ import { AnyCard, CardTypeName as ApiName, cardTypeNames } from '../api/Api';
 import { Calendar, Euro, Eye, Rocket, Signal, Unicorn } from '../assets/Icons';
 import ListResearchResultAidesClients from '../components/anonymous/ListResearchResultAidesClients';
 import ListResearchResultInvestisseurs from '../components/anonymous/ListResearchResultInvestisseurs';
-import CardDetailsInno from '../components/customComponents/DetailsAideInno';
+import {CardDetailsInno, CardDetailsClient}  from '../components/customComponents/DetailsAide';
 import { versions } from './CardVersions';
 
 export interface CardType {
@@ -58,6 +58,7 @@ export const aideClient: CardType = {
     name: "aides-clients",
     searchLink: "/aides-clients",
     SearchPage: ListResearchResultAidesClients,
+    DetailsPage: CardDetailsClient,
     apiName: "aides_clients",
     version: "beta"
 } as const

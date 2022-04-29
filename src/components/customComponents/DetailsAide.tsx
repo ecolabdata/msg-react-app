@@ -1,15 +1,14 @@
 import { CardData } from '../../model/CardData';
-import { aideInno, CardType } from '../../model/CardType';
+import { aideClient, aideInno, CardType } from '../../model/CardType';
 import ArrowDark from './../../assets/icons/arrow-dark-action.svg';
 import { Rocket } from '../../assets/Icons';
 import { Star, Trash } from '../../assets/Icons'
 import { Aide, AnyCard } from '../../api/Api';
-import { ReactNode, useContext, useState } from 'react';
+import { CSSProperties, ReactNode, useContext, useState } from 'react';
 import { ApplicationContext } from '../../Router';
 import { useLocation } from 'react-router-dom';
 
-
-const CardDetailsInno : React.FC = (props) => {
+const CardDetails : React.FC<{cardType: CardType}> = ({cardType}) => {
     const { usedFavoris, usedCorbeille } = useContext(ApplicationContext)
     const [toggleFavori, isFavori] = usedFavoris
     const [toggleInCorbeille, isInCorbeille] = usedCorbeille
@@ -17,7 +16,6 @@ const CardDetailsInno : React.FC = (props) => {
     const initialState = location.state as {cardData : AnyCard} | null;
     if (!initialState?.cardData) throw new Error("Missing cardData to generate page")
     const cardData : Omit<Partial<Aide>, "id"> & { id: string, cardTypeName: string } = initialState.cardData
-    const cardType = aideInno
 
     const displayableFinancers = cardData.financers?.join(" | ") || ""
     const d = cardData.submission_deadline ? new Date(cardData.submission_deadline) : null
@@ -26,6 +24,12 @@ const CardDetailsInno : React.FC = (props) => {
         cardData["subvention_rate_lower_bound"],
         cardData["subvention_rate_upper_bound"]
     )
+
+    const cardTypeColor = {
+        "--border-action-high-blue-france":  cardType.color,
+        color: cardType.color,
+        borderColor: cardType.color
+    } as CSSProperties
     return (
         <>
             <div style={{ marginLeft: "calc(max(10% - 100px, 0px))", marginRight: "calc(max(10% - 100px, min(8vw, 50px)))" }} className="headContainer">
@@ -34,9 +38,9 @@ const CardDetailsInno : React.FC = (props) => {
                     className="ml-4 text-dark-text-action flex mt-4 rm-link-underline ">
                     <img className="mr-2" src={ArrowDark} alt="Icone flèche" /> Retour </button>
 
-                <div style={{ color: cardType.color }} className="categoryName mt-10 min-w-40 flex">
+                <div style={cardTypeColor} className="categoryName mt-10 min-w-40 flex">
                     <div>
-                        <cardType.SVGLogo className="mt-1.5 mr-2 text-sm" style={{ color: cardType.color }} width="11" height="11" />
+                        <cardType.SVGLogo className="mt-1.5 mr-2 text-sm" style={cardTypeColor} width="11" height="11" />
                     </div>
                     <p>{cardType.title}</p>
                     &nbsp;
@@ -62,7 +66,7 @@ const CardDetailsInno : React.FC = (props) => {
                     </div>
                     <div className='flex mr-[50px]'>
                         <div className='flex justify-start flex-1 w-1/2'>
-                            <p style={{ color: cardType.color }} className="mt-6 w-fit text-base">{displayableFinancers}</p>
+                            <p style={cardTypeColor} className="mt-6 w-fit text-base">{displayableFinancers}</p>
                         </div>
                         <div className='flex justify-end flex-1 w-1/2'>
                             <p style={{ opacity: 0.6 }} className="mt-6 w-fit text-base font-thin">
@@ -71,17 +75,17 @@ const CardDetailsInno : React.FC = (props) => {
                         </div>
                     </div>
                 </div>
-
             </div>
             <div style={{ marginRight: "calc(max(10% - 100px, 0px))", marginLeft: "calc(max(10% - 100px, 0px))" }} className='flex justify-around flex-wrap flex-row-reverse'>
-                <div style={{ flex: "0 0 380px" }} className="contactCard h-fit rounded addBorder border-2 p-6 border-dark-text-action flex flex-col items-start">
+                <div style={{ flex: "0 0 380px", ...cardTypeColor}} className="contactCard h-fit rounded addBorder border-2 p-6 flex flex-col items-start">
 
 
-                    <h2 className="text-[22px] font-bold text-dark-text-action ">Contact</h2>
+                    <h2 style={cardTypeColor} className="text-[22px] font-bold  ">Contact</h2>
 
                     <p className="text-base w-[280px]"> <span dangerouslySetInnerHTML={{ __html: cardData["contact"] + "" }}></span></p>
 
                     <a
+                        style={{backgroundColor: cardType.color, color: "hsla(0, 0%, 9%, 1)"}}
                         href={cardData["origin_url"]}
                         className="
                             fr-btn fr-btn--primary
@@ -97,6 +101,7 @@ const CardDetailsInno : React.FC = (props) => {
 
                     {cardData["application_url"] && <a
                         href={cardData["application_url"]}
+                        style={cardTypeColor}
                         className="
                             fr-btn fr-btn--secondary
                             w-fit px-4 h-3 py-2
@@ -166,7 +171,7 @@ const BigFields: React.FC<{ color: string, fieldname: ReactNode }> = ({ color, f
             {children}
             {!showAll && <div className='absolute top-1 left-0 h-full w-full' style={{ background: "linear-gradient(180deg, rgba(0,0,0,0) 50%, #353434 90%)" }}></div>}
         </div>
-        <button className="fr-btn fr-btn--secondary mt-2" onClick={
+        <button style={{"--border-action-high-blue-france":  color, color: color} as CSSProperties} className="fr-btn fr-btn--secondary mt-2" onClick={
             () => setShowAll(!showAll)
         }>
             {showAll ? "Réduire" : "Voir plus"}
@@ -174,5 +179,5 @@ const BigFields: React.FC<{ color: string, fieldname: ReactNode }> = ({ color, f
     </div>
 }
 
-
-export default CardDetailsInno;
+export const CardDetailsInno = () => <CardDetails cardType={aideInno}/>
+export const CardDetailsClient = () => <CardDetails cardType={aideClient}/>

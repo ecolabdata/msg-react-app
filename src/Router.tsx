@@ -19,7 +19,7 @@ import { defaultUsedCorbeille, defaultUsedFavoris, useCorbeille, UsedCorbeille, 
 import CardDetails from './components/customComponents/CardDetails';
 import { DonnezVotreAvis } from './components/customComponents/DonnezVotreAvis';
 import mockApiResponse from './api/mock_api_resp.json';
-import CardDetailsInno from './components/customComponents/DetailsAideInno';
+import {CardDetailsInno, CardDetailsClient} from './components/customComponents/DetailsAide';
 
 
 export const ApplicationContext = createContext<{
