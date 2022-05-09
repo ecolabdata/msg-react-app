@@ -1,7 +1,7 @@
 import React from 'react';
 import { AnyCard, CardTypeName as ApiName, cardTypeNames } from '../api/Api';
 import { Calendar, Euro, Eye, Rocket, Signal, Unicorn } from '../assets/Icons';
-import ListResearchResultAidesClients from '../components/anonymous/ListResearchResultAidesClients';
+import { ListResearchResultAidesInno, ListResearchResultAidesClient } from '../components/anonymous/ListResearchResultAidesClients';
 import ListResearchResultInvestisseurs from '../components/anonymous/ListResearchResultInvestisseurs';
 import {CardDetailsInno, CardDetailsClient}  from '../components/customComponents/DetailsAide';
 import { versions } from './CardVersions';
@@ -57,7 +57,7 @@ export const aideClient: CardType = {
     description: "Dispositifs incitatifs (état ou régions) qui aident vos clients à accéder à vos solutions",
     name: "aides-clients",
     searchLink: "/aides-clients",
-    SearchPage: ListResearchResultAidesClients,
+    SearchPage: ListResearchResultAidesClient,
     DetailsPage: CardDetailsClient,
     apiName: "aides_clients",
     version: "beta"
@@ -70,6 +70,7 @@ export const aideInno: CardType = {
     description: "Aides publiques dédiées à votre développement (Adème, BPI...)",
     name: "aides-innovations",
     searchLink: "/aides-innovations",
+    SearchPage: ListResearchResultAidesInno,
     DetailsPage: CardDetailsInno,
     apiName: "aides_innovation",
     version: "beta"

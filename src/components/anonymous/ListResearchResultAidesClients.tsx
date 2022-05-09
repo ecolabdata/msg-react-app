@@ -24,8 +24,7 @@ const allSecteur = [
     "Finance durable & RSE"
 ]
 
-const ListResearchResultAidesClients = () => {
-    const cardType = aideClient
+const ListResearchResultAides: React.FC<{cardType: CardType}> = ({cardType}) =>  {
     const { usedCorbeille, usedNextScrollTarget } = useContext(ApplicationContext)
     const [toggleInCorbeille, isInCorbeille] = usedCorbeille
     const [nextScrollTarget, setNextScrolTarget] = usedNextScrollTarget
@@ -54,7 +53,7 @@ const ListResearchResultAidesClients = () => {
     let allCards: Search['cards']['aides_clients'] = []
     let nbPage: number | undefined;
     if (initialState?.search.cards) {
-        allCards =  initialState.search.cards.aides_clients
+        allCards = initialState.search.cards.aides_clients
         const pageChunkSize = 20;
         nbPage = Math.ceil(allCards.length / pageChunkSize)
         displayCards = allCards.filter(x => !isInCorbeille(x))
@@ -77,7 +76,7 @@ const ListResearchResultAidesClients = () => {
                 setIsLoading(false)
                 return navigate(cardType.searchLink, {
                     replace: true,
-                    state: {search}
+                    state: { search }
                 })
             })
         } else {
@@ -164,13 +163,17 @@ const ListResearchResultAidesClients = () => {
                             <div className="inputsContainer p-4 flex justify-center items-middle
                             lg:justify-between lg:items-end
                             xl:justify-center">
-                                <div className="my-2 flex flex-col items-center lg:flex-row lg:mb-6">
-                                </div>
-
-                                {/* <div className="toggleButtons w-fit flex flex-col
-                        lg:flex-row lg:mb-6">
-                            {Object.keys(toggles).map(x => <ToggleButton label={x} checked={toggles[x]} color={cardType.color} onChange={e => setToggles({ ...toggles, [x]: !toggles[x] })} />)}
-                        </div> */}
+                                {/* <div className="my-2 flex flex-col items-center lg:flex-row lg:mb-6">
+                                    <div className="inputNumber mr-6 flex flex-col font-light ">
+                                        <label className="mb-1 text-white text-base" htmlFor="montantKEuro">Montant min. en K€</label>
+                                        <input
+                                            className={`text-white rounded-t-md w-64 h-10 addBorder-b border-2 bg-input-background`}
+                                            style={{ borderColor: cardType.color }} type="number" id="montantKEuro"
+                                            defaultValue={montantMin.toString()}
+                                            onChange={e => setMontantMin(Number.parseInt(e.target.value))}
+                                        />
+                                    </div>
+                                </div> */}
                             </div>
                         </div>
                     </form>
@@ -193,4 +196,5 @@ const ListResearchResultAidesClients = () => {
     )
 };
 
-export default ListResearchResultAidesClients;
+export const ListResearchResultAidesInno = () => <ListResearchResultAides cardType={aideInno}/>
+export const ListResearchResultAidesClient = () => <ListResearchResultAides cardType={aideClient}/>
