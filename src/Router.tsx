@@ -49,7 +49,10 @@ const Router = () => {
         <>
             <ApplicationContext.Provider value={{ usedFavoris, usedCorbeille, usedNextScrollTarget }}>
                 <DonnezVotreAvis />
-                <Header userIsAuth={isAuth()} />
+                <Routes>
+                    <Route path="/" element={<Header userIsAuth={isAuth()} decouvrir={true}/>} />
+                    <Route path="*" element={<Header userIsAuth={isAuth()} />} />
+                </Routes>
                 <main className={`h-full p-6 
                 ${localStorage.scheme === 'dark' ? 'bg-[#262626]' : ''}`}>
                     <Routes>
