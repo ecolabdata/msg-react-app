@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { AnyCard, search } from '../../api/Api';
 import { useTitle } from '../../hooks/useTitle';
 import { all as allCardType } from '../../model/CardType';
@@ -15,7 +15,7 @@ import ThematicsLogo from './../../assets/icons/Thematics.svg';
 import { ThematicsEnum } from '../../model/ThematicsEnum';
 
 
-const ResearchForm: React.FC = (props) => {
+const ResearchForm: React.FC<{alpha: boolean}> = ({alpha}) => {
     
     const { usedCorbeille, usedNextScrollTarget } = useContext(ApplicationContext)
     const [toggleInCorbeille, isInCorbeille] = usedCorbeille
@@ -30,10 +30,22 @@ const ResearchForm: React.FC = (props) => {
     const [motsclefs, setMotsclef] = useState<string[]>(initialState?.search.query.motsclefs || [])
     const [errorTxt, setErrorTxt] = useState(<></>)
     const thematicsValues = Object.values(ThematicsEnum);
+    const [ctrlPressed, setCtrlPressed] = useState(false);
+
+    useEffect(() => {
+        const keyDown = (ev: KeyboardEvent) => setCtrlPressed(true)
+        const keyUp = (ev: KeyboardEvent) => setCtrlPressed(false)
+
+        document.addEventListener('keydown', keyDown);
+        document.addEventListener('keyup', keyUp);
+        return () => {
+            document.removeEventListener('keydown', keyDown)
+            document.removeEventListener('keyup', keyUp)
+        }
+    }, [])
 
     const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        
         if (description.length > 0) {
             setIsLoading(true)
             setErrorTxt(<></>)
@@ -41,7 +53,7 @@ const ResearchForm: React.FC = (props) => {
                 setIsLoading(false)
                 const element = document.getElementById('previews')
                 if (element) setNextScrolTarget({ behavior: "smooth", top: element.offsetTop - window.innerHeight * 0.20 })
-                navigate(`/explorer`, {
+                navigate(ctrlPressed ? `/explorer-alpha` : `/explorer`, {
                     state: {search}
                 })
             })
@@ -50,7 +62,7 @@ const ResearchForm: React.FC = (props) => {
         }
     };
 
-    const previews = allCardType.map(cardType => {
+    const previews = allCardType.filter(x => alpha || x.version === "beta").map(cardType => {
         if (!initialState) return null;
         const results : AnyCard[] = initialState.search.cards[cardType.apiName];
         if (results.length === 0) return null;
@@ -152,7 +164,7 @@ const ResearchForm: React.FC = (props) => {
                 <div className='buttonsContainer w-[450px] flex justify-around'>
                     
                     <button className="w-48 h-14 text-base  underline capitalize" > Réinitialiser </button>
-                    <button form="keywordsForm" disabled={isLoading} className="w-48 h-14 text-xl fr-btn fr-btn--primary capitalize" > <span className="mx-auto">{isLoading ? "Chargement..." : "rechercher !"}</span> </button>
+                    <button form="keywordsForm" disabled={isLoading} className="w-48 h-14 text-xl fr-btn fr-btn--primary capitalize" > <span className="mx-auto">{isLoading ? "Chargement..." : ctrlPressed ? "Tout rechercher !" : "rechercher !"}</span> </button>
 
                 </div>
 
