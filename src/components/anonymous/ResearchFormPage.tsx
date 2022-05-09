@@ -30,19 +30,6 @@ const ResearchForm: React.FC<{alpha: boolean}> = ({alpha}) => {
     const [motsclefs, setMotsclef] = useState<string[]>(initialState?.search.query.motsclefs || [])
     const [errorTxt, setErrorTxt] = useState(<></>)
     const thematicsValues = Object.values(ThematicsEnum);
-    const [ctrlPressed, setCtrlPressed] = useState(false);
-
-    useEffect(() => {
-        const keyDown = (ev: KeyboardEvent) => setCtrlPressed(true)
-        const keyUp = (ev: KeyboardEvent) => setCtrlPressed(false)
-
-        document.addEventListener('keydown', keyDown);
-        document.addEventListener('keyup', keyUp);
-        return () => {
-            document.removeEventListener('keydown', keyDown)
-            document.removeEventListener('keyup', keyUp)
-        }
-    }, [])
 
     const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -53,7 +40,7 @@ const ResearchForm: React.FC<{alpha: boolean}> = ({alpha}) => {
                 setIsLoading(false)
                 const element = document.getElementById('previews')
                 if (element) setNextScrolTarget({ behavior: "smooth", top: element.offsetTop - window.innerHeight * 0.20 })
-                navigate(ctrlPressed ? `/explorer-alpha` : `/explorer`, {
+                navigate(`/explorer`, {
                     state: {search}
                 })
             })
@@ -164,7 +151,7 @@ const ResearchForm: React.FC<{alpha: boolean}> = ({alpha}) => {
                 <div className='buttonsContainer w-[450px] flex justify-around'>
                     
                     <button className="w-48 h-14 text-base  underline capitalize" > Réinitialiser </button>
-                    <button form="keywordsForm" disabled={isLoading} className="w-48 h-14 text-xl fr-btn fr-btn--primary capitalize" > <span className="mx-auto">{isLoading ? "Chargement..." : ctrlPressed ? "Tout rechercher !" : "rechercher !"}</span> </button>
+                    <button form="keywordsForm" disabled={isLoading} className="w-48 h-14 text-xl fr-btn fr-btn--primary capitalize" > <span className="mx-auto">{isLoading ? "Chargement..." : "rechercher !"}</span> </button>
 
                 </div>
 
