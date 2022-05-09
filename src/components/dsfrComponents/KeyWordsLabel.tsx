@@ -14,7 +14,7 @@ const KeyWordsLabel: React.FC<KeyWordsLabelProps> = ({keyWord}) => {
         <>
                 <button onClick={ (event) => {
                     onClickHandler(event);
-                }} type="button" className="fr-tag fr-tag--sm fr-tag--dismiss" aria-label={`Retirer${keyWord}`}>{keyWord}</button>
+                }} type="button" className="m-1 fr-tag fr-tag--sm fr-tag--dismiss" aria-label={`Retirer${keyWord}`}>{keyWord}</button>
         </>
     ) 
 }; 
