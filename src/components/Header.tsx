@@ -3,7 +3,7 @@ import FillButton from './dsfrComponents/FillButton';
 import { protectedRoutes, publicRoutes } from './../utils';
 import Trash from './../assets/icons/trash-fill.svg';
 import Star from './../assets/icons/star-fill.svg';
-import LogoMSG from './../assets/msg-icon.png';
+import LogoMSG from './../assets/msg-icon.svg';
 import AvatarPopOver from './customComponents/AvatarPopOver';
 import {Route} from './../utils/routes';
 import { useState, useEffect, useContext } from 'react';
