@@ -31,8 +31,7 @@ const ResearchForm: React.FC<{alpha: boolean}> = ({alpha}) => {
     const [errorTxt, setErrorTxt] = useState(<></>)
     const thematicsValues = Object.values(ThematicsEnum);
 
-    const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
+    const handleOnSubmitForm = (ctrlPress:boolean) => {
         if (description.length > 0) {
             setIsLoading(true)
             setErrorTxt(<></>)
@@ -40,9 +39,7 @@ const ResearchForm: React.FC<{alpha: boolean}> = ({alpha}) => {
                 setIsLoading(false)
                 const element = document.getElementById('previews')
                 if (element) setNextScrolTarget({ behavior: "smooth", top: element.offsetTop - window.innerHeight * 0.20 })
-                navigate(`/explorer`, {
-                    state: {search}
-                })
+                navigate(ctrlPress ? `/explorer-alpha` : `/explorer`, {state: {search}})
             })
         } else {
             setErrorTxt(<p style={{ color: "hsla(0, 100%, 65%, 0.9)" }}>La description de l'entreprise est obligatoire</p>)
@@ -70,7 +67,10 @@ const ResearchForm: React.FC<{alpha: boolean}> = ({alpha}) => {
 
                 <h1 className="w-3/5 font-bold text-4xl text-center mx-auto max-w-4xl"> Start-up greentech, trouvez automatiquement des pistes pour booster votre développement !  </h1>
                    
-                    <form onSubmit={(event) => handleOnSubmitForm(event)} id="keywordsForm" className="m-8 w-[80%] p-4 flex justify-around">
+                    <form onSubmit={(event) => {
+                        event.preventDefault()
+                        handleOnSubmitForm(false)
+                    }} id="keywordsForm" className="m-8 w-[80%] p-4 flex justify-around">
 
                         <div className='leftSideForm max-w-[48%] max-h-[400px] p-4 projectContainer flex flex-col items-around justify-center items-center bg-background-form '>
                             
@@ -151,7 +151,10 @@ const ResearchForm: React.FC<{alpha: boolean}> = ({alpha}) => {
                 <div className='buttonsContainer w-[450px] flex justify-around'>
                     
                     <button className="w-48 h-14 text-base  underline capitalize" > Réinitialiser </button>
-                    <button form="keywordsForm" disabled={isLoading} className="w-48 h-14 text-xl fr-btn fr-btn--primary capitalize" > <span className="mx-auto">{isLoading ? "Chargement..." : "rechercher !"}</span> </button>
+                    <button onClick={(event) => {
+                        event.preventDefault()
+                        handleOnSubmitForm(event.ctrlKey)
+                    }} form="keywordsForm" disabled={isLoading} className="w-48 h-14 text-xl fr-btn fr-btn--primary capitalize" > <span className="mx-auto">{isLoading ? "Chargement..." : "rechercher !"}</span> </button>
 
                 </div>
 
