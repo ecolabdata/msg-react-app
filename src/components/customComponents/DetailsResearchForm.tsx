@@ -29,9 +29,9 @@ const DetailsResearchForm: React.FC<DetailsResearchFormProps> = (props) => {
     const initialState = location.state as InitialState | null;
     const [isLoading, setIsLoading] = useState(false)
 
-    const [description, setDescription] = useState(initialState?.description || "")
-    const [secteurs, setSecteurs] = useState<string[]>(initialState?.secteurs || [])
-    const [motsclefs, setMotsclef] = useState<string[]>(initialState?.motsclefs || [])
+    const [description, setDescription] = useState(initialState?.search.query.description || "")
+    const [secteurs, setSecteurs] = useState<string[]>(initialState?.search.query.secteurs || [])
+    const [motsclefs, setMotsclef] = useState<string[]>(initialState?.search.query.motsclefs || [])
     const [errorTxt, setErrorTxt] = useState(<></>)
     
     //? Liste des Thématiques

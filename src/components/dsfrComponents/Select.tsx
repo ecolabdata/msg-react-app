@@ -2,7 +2,7 @@ interface SelectProps {
     optionsData : string[];
     label: string;
     classes: string;
-    onChange: React.ChangeEventHandler<HTMLSelectElement>;
+    onChange?: React.ChangeEventHandler<HTMLSelectElement>;
 } 
 
 const Select: React.FC<SelectProps> = ({optionsData, label, classes, onChange}) => { 
