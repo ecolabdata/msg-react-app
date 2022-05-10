@@ -17,7 +17,6 @@ const Pagination: React.FC<PaginationProps> = ({ baseUrl, currentPageNo, nbPage,
             <li>
                 {currentPageNo - 1 <= 0 ?
                     <a
-                    onClick={onClick}
                         className="fr-pagination__link rounded-full fr-pagination__link--prev fr-pagination__link--lg-label"
                         aria-disabled="true"
                         role="link"
@@ -56,7 +55,6 @@ const Pagination: React.FC<PaginationProps> = ({ baseUrl, currentPageNo, nbPage,
             <li>
                 {currentPageNo >= nbPage ?
                     <a
-                        onClick={onClick}
                         className="fr-pagination__link rounded-full fr-pagination__link--next fr-pagination__link--lg-label"
                         aria-disabled="true"
                         role="link"
