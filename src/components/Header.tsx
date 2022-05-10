@@ -176,7 +176,6 @@ function DecouvrirButton() {
 fr-btn fr-btn--primary
 my-2 mx-3 py-0 h-full
 hover:bg-claire-bf__hover flex justify-between"
-        style={{ border: "1px solid var(--text-inverted-blue-france)" }}
     >
         <span>Découvrir</span>
         <span className="fr-fi-arrow-right-line ml-1 mt-1" aria-hidden="true"></span>

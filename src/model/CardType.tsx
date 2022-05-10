@@ -1,7 +1,7 @@
 import React from 'react';
 import { AnyCard, CardTypeName as ApiName, cardTypeNames } from '../api/Api';
 import { Calendar, Euro, Eye, Rocket, Signal, Unicorn } from '../assets/Icons';
-import { ListResearchResultAidesInno, ListResearchResultAidesClient } from '../components/anonymous/ListResearchResultAidesClients';
+import { ListResearchResultAidesInno, ListResearchResultAidesClient } from '../components/anonymous/ListResearchResultAides';
 import ListResearchResultInvestisseurs from '../components/anonymous/ListResearchResultInvestisseurs';
 import {CardDetailsInno, CardDetailsClient}  from '../components/customComponents/DetailsAide';
 import { versions } from './CardVersions';

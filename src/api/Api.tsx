@@ -107,10 +107,14 @@ export const searchInvestisseur = (query: InvestisseurQuery) => buildFetchReques
   "keywords": query.motsclefs,
 }).then(resp => handleResp(query, resp));
 
+export interface AidesQuery extends Omit<Query, "type"> {
+  //"Afficher les aides permanentes": boolean
+}
+
 /* Aides Client */
 
-export interface AidesClientQuery extends Omit<Query, "type"> {
-  type: "aides_clients"
+export interface AidesClientQuery extends AidesQuery {
+  type: "aides_clients",
 }
 
 export const searchAidesClient = (query: AidesClientQuery) => buildFetchRequest({
@@ -122,8 +126,8 @@ export const searchAidesClient = (query: AidesClientQuery) => buildFetchRequest(
 
 /* Aides Inno */
 
-export interface AidesInnoQuery extends Omit<Query, "type"> {
-  type: "aides_innovation"
+export interface AidesInnoQuery extends AidesQuery {
+  type: "aides_innovation",
 }
 
 export const searchAidesInno = (query: AidesInnoQuery) => buildFetchRequest({

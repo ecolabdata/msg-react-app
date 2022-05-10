@@ -1,13 +1,16 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { AnyCard, Search, searchAidesClient, searchInvestisseur } from '../../api/Api';
+import { AidesClientQuery, AidesQuery, AnyCard, Search, searchAidesClient, searchInvestisseur } from '../../api/Api';
 import { useTitle } from '../../hooks/useTitle';
 import { aideClient, aideInno, CardType } from '../../model/CardType';
 import { ApplicationContext } from '../../Router';
 import { InitialState } from '../../utils/InitialState';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
+import ToggleButton from '../dsfrComponents/ToggleButton';
 import Pagination from '../dsfrComponents/Pagination';
 import ArrowDark from './../../assets/icons/arrow-dark-action.svg';
+import all_aides_types from "../../api/aide-types.json"
+import Select from '../dsfrComponents/Select';
 
 const allSecteur = [
     "Numérique éco-responsable",
@@ -24,44 +27,49 @@ const allSecteur = [
     "Finance durable & RSE"
 ]
 
-const ListResearchResultAides: React.FC<{cardType: CardType}> = ({cardType}) =>  {
+const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType }) => {
     const { usedCorbeille, usedNextScrollTarget } = useContext(ApplicationContext)
     const [toggleInCorbeille, isInCorbeille] = usedCorbeille
     const [nextScrollTarget, setNextScrolTarget] = usedNextScrollTarget
     const location = useLocation();
     const initialState = location.state as (InitialState & { page?: number, montantMin: number }) | null;
-
+    const initialQuery = initialState?.search.query as (AidesQuery | null)
 
     const pageNo = initialState?.page || 1
     const navigate = useNavigate()
     useTitle(`Recherche détaillé ${cardType.title}`)
 
     const [isLoading, setIsLoading] = useState(false)
-    const [description, setDescription] = useState(initialState?.search.query.description || "")
-    const [secteurs, setSecteurs] = useState<string[]>(initialState?.search.query.secteurs || [])
-    const [motsclefs, setMotsclef] = useState<string[]>(initialState?.search.query.motsclefs || [])
+    const [description, setDescription] = useState(initialQuery?.description || "")
+    const [secteurs, setSecteurs] = useState<string[]>(initialQuery?.secteurs || [])
+    const [motsclefs, setMotsclef] = useState<string[]>(initialQuery?.motsclefs || [])
     const [errorTxt, setErrorTxt] = useState(<></>)
+    const [toggles, setToggles] = useState({
+        "Afficher les aides permanentes": true//(initialQuery && initialQuery["Afficher les aides permanentes"] != undefined) ? initialQuery["Afficher les aides permanentes"] : true
+    })
+    const [aid_type, setAid_type] = useState("")
+    const toggleKeys = Object.keys(toggles) as (keyof typeof toggles)[]
 
-    //Not available with current vesion of API
-    // const [toggles, setToggles] = useState<Record<string, boolean>>({
-    //     'Venture Capital': false,
-    //     'Business Angel': false,
-    //     'Corporate': false
-    // });
-
-    let displayCards: JSX.Element[] | undefined;
-    let allCards: Search['cards']['aides_clients'] = []
     let nbPage: number | undefined;
-    if (initialState?.search.cards) {
-        allCards = initialState.search.cards.aides_clients
-        const pageChunkSize = 20;
-        nbPage = Math.ceil(allCards.length / pageChunkSize)
-        displayCards = allCards.filter(x => !isInCorbeille(x))
-            .slice(
+    let displayCards: JSX.Element[] | undefined = useMemo(() => {
+        console.log("Running use memo")
+        if (initialState?.search.cards) {
+            let allCards = initialState.search.cards.aides_clients
+            const pageChunkSize = 20;
+            nbPage = Math.ceil(allCards.length / pageChunkSize)
+            allCards = allCards.filter(x => !isInCorbeille(x))
+            if (!toggles["Afficher les aides permanentes"]) allCards = allCards.filter(x => x.submission_deadline)
+            if (aid_type) allCards = allCards.filter(x => x.aid_types.includes(aid_type))
+            allCards = allCards.slice(
                 (pageNo - 1) * pageChunkSize,
                 pageNo * pageChunkSize
-            ).map((card) => <ResultPreviewCard cardType={cardType} cardData={card} />);
-    }
+            )
+            return allCards.map((card) => <ResultPreviewCard cardType={cardType} cardData={card} />);
+        } else {
+            return []
+        }
+    }, [initialState])
+
     const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (description.length > 0) {
@@ -85,9 +93,7 @@ const ListResearchResultAides: React.FC<{cardType: CardType}> = ({cardType}) => 
     };
 
     return (
-
         <>
-
             <div className="headContainer
             mt-10 mx-auto max-w-[1240px]
             xl:mx-auto
@@ -103,7 +109,7 @@ const ListResearchResultAides: React.FC<{cardType: CardType}> = ({cardType}) => 
 
                         <div className="flex items-center">
                             <cardType.SVGLogo width="30" height="30" style={{ color: cardType.color }} /> &nbsp;
-                            {cardType.title} &nbsp; <span className="bg-yellow text-3xl font-light">{`(${allCards.length})`}</span>
+                            {cardType.title} &nbsp; <span className="bg-yellow text-3xl font-light">{`(${displayCards.length})`}</span>
                         </div>
 
                     </h2>
@@ -174,6 +180,17 @@ const ListResearchResultAides: React.FC<{cardType: CardType}> = ({cardType}) => 
                                         />
                                     </div>
                                 </div> */}
+
+                                <Select classes="w-[80%] my-4" label="Nature de l'aide"
+                                    color={cardType.color}
+                                    defaultOption={"Toutes"}
+                                    optionsData={all_aides_types.results.map(x => x.name)} onChange={e => {
+                                    setAid_type(e.currentTarget.value)
+                                }} />
+                                <div className="toggleButtons w-fit flex flex-col
+                        lg:flex-row lg:mb-6">
+                                    {toggleKeys.map(x => <ToggleButton label={x} checked={toggles[x]} color={cardType.color} onChange={e => setToggles({ ...toggles, [x]: !toggles[x] })} />)}
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -196,5 +213,5 @@ const ListResearchResultAides: React.FC<{cardType: CardType}> = ({cardType}) => 
     )
 };
 
-export const ListResearchResultAidesInno = () => <ListResearchResultAides cardType={aideInno}/>
-export const ListResearchResultAidesClient = () => <ListResearchResultAides cardType={aideClient}/>
+export const ListResearchResultAidesInno = () => <ListResearchResultAides cardType={aideInno} />
+export const ListResearchResultAidesClient = () => <ListResearchResultAides cardType={aideClient} />
