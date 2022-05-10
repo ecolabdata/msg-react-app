@@ -64,7 +64,7 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
                     opacity-0 transition-opacity duration-200 group-hover:opacity-100
                     text-xs text-white font-light
                     flex flex-col justify-evenly'>
-                { <div data-org-value={cardData.submission_deadline}> {cardData.submission_deadline ? `Date de clôture: ${displayabeSubmissionDeadLine}` : "Aide permanente"}</div>}
+                { ["aides-innovations", "aides-clients"].includes(cardType.name) && <div data-org-value={cardData.submission_deadline}> {cardData.submission_deadline ? `Date de clôture: ${displayabeSubmissionDeadLine}` : "Aide permanente"}</div>}
                 {cardData['Pitch'] && <div>{cardData['Pitch']}</div>}
                 {cardData.aid_types && <div style={{ color: cardType.color }}>{cardData.aid_types.join(" | ")}</div>}
             </div>
