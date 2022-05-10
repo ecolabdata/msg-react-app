@@ -1,0 +1,357 @@
+{
+    "count": 37242,
+    "next": "https://aides-territoires.beta.gouv.fr/api/perimeters/?page=2",
+    "previous": null,
+    "results": [
+      {
+        "id": "70957-europe",
+        "text": "Europe",
+        "name": "Europe",
+        "scale": "Continent",
+        "zipcodes": null
+      },
+      {
+        "id": "70956-france",
+        "text": "France",
+        "name": "France",
+        "scale": "Pays",
+        "zipcodes": null
+      },
+      {
+        "id": "109666-action-cur-de-ville",
+        "text": "Action cœur de ville",
+        "name": "Action cœur de ville",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109700-alliance-intermetropolitaine-loire-bretagne",
+        "text": "Alliance Intermétropolitaine Loire Bretagne",
+        "name": "Alliance Intermétropolitaine Loire Bretagne",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "110384-allier-cantal-correze-creuse-puy-de-dome",
+        "text": "Allier Cantal Corrèze Creuse Puy-de-Dôme",
+        "name": "Allier Cantal Corrèze Creuse Puy-de-Dôme",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109698-alpes-de-haute-provence-hautes-alpes-alpes-maritimes-bouches-du-rhone-corse-du-sud-haute-corse-var-vaucluse",
+        "text": "Alpes de Haute-Provence, Hautes-Alpes, Alpes-Maritimes, Bouches-du-Rhône, Corse-du-Sud, Haute-Corse, Var, Vaucluse",
+        "name": "Alpes de Haute-Provence, Hautes-Alpes, Alpes-Maritimes, Bouches-du-Rhône, Corse-du-Sud, Haute-Corse, Var, Vaucluse",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109787-alpes-maritimes-bouches-du-rhone-et-var",
+        "text": "Alpes-Maritimes, Bouches-du-Rhône et Var",
+        "name": "Alpes-Maritimes, Bouches-du-Rhône et Var",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109702-alpilles-parc-naturel-regional",
+        "text": "ALPILLES (Parc naturel régional)",
+        "name": "ALPILLES (Parc naturel régional)",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109017-alsace",
+        "text": "Alsace",
+        "name": "Alsace",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109004-aquitaine",
+        "text": "Aquitaine",
+        "name": "Aquitaine",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109036-arc-de-linnovation",
+        "text": "Arc de l'innovation",
+        "name": "Arc de l'innovation",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109695-ardennes-08-aube-10-marne-51-haute-marne-52-meurthe-et-moselle-54-meuse-55-vosges-88",
+        "text": "Ardennes (08) + Aube (10) + Marne (51) + Haute-Marne (52) + Meurthe-et-Moselle (54) + Meuse (55) + Vosges (88)",
+        "name": "Ardennes (08) + Aube (10) + Marne (51) + Haute-Marne (52) + Meurthe-et-Moselle (54) + Meuse (55) + Vosges (88)",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109704-ardennes-parc-naturel-regional",
+        "text": "ARDENNES (Parc naturel régional)",
+        "name": "ARDENNES (Parc naturel régional)",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109706-armorique-parc-naturel-regional",
+        "text": "ARMORIQUE (Parc naturel régional)",
+        "name": "ARMORIQUE (Parc naturel régional)",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "110387-aura-bfc-bretagne-centre-vdl-idf-normandie-occitanie-pays-de-loire-guyane-martinique-mayotte-reunion",
+        "text": "AURA + BFC + Bretagne + Centre VdL + IDF + Normandie + Occitanie + Pays de Loire + Guyane + Martinique + Mayotte + Réunion",
+        "name": "AURA + BFC + Bretagne + Centre VdL + IDF + Normandie + Occitanie + Pays de Loire + Guyane + Martinique + Mayotte + Réunion",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109002-auvergne",
+        "text": "Auvergne",
+        "name": "Auvergne",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109707-avesnois-parc-naturel-regional",
+        "text": "AVESNOIS (Parc naturel régional)",
+        "name": "AVESNOIS (Parc naturel régional)",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109760-aveyron-herault-lot-lozere-tarn-tarn-et-garonne",
+        "text": "Aveyron, Hérault, Lot, Lozere, Tarn, Tarn-et-Garonne",
+        "name": "Aveyron, Hérault, Lot, Lozere, Tarn, Tarn-et-Garonne",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109708-ballons-des-vosges-parc-naturel-regional",
+        "text": "BALLONS des VOSGES (Parc naturel régional)",
+        "name": "BALLONS des VOSGES (Parc naturel régional)",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109709-baronnies-provencales-parc-naturel-regional",
+        "text": "BARONNIES PROVENCALES (Parc naturel régional)",
+        "name": "BARONNIES PROVENCALES (Parc naturel régional)",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109008-basse-normandie",
+        "text": "Basse-Normandie",
+        "name": "Basse-Normandie",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109047-bassins-hydrographiques-artois-picardie-seine-normandie-loire-bretagne-adour-garonne",
+        "text": "Bassins hydrographiques Artois-Picardie / Seine-Normandie / Loire-Bretagne / Adour-Garonne",
+        "name": "Bassins hydrographiques Artois-Picardie / Seine-Normandie / Loire-Bretagne / Adour-Garonne",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109043-boucle-nord-de-seine-ept",
+        "text": "Boucle Nord de Seine (EPT)",
+        "name": "Boucle Nord de Seine (EPT)",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109711-boucles-de-la-seine-normande-parc-naturel-regional",
+        "text": "BOUCLES DE LA SEINE NORMANDE (Parc naturel régional)",
+        "name": "BOUCLES DE LA SEINE NORMANDE (Parc naturel régional)",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109013-bourgogne",
+        "text": "Bourgogne",
+        "name": "Bourgogne",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109021-bourgs-structurants-en-milieu-rural-du-grand-est",
+        "text": "Bourgs structurants en milieu rural du Grand Est",
+        "name": "Bourgs structurants en milieu rural du Grand Est",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109712-brenne-parc-naturel-regional",
+        "text": "BRENNE (Parc naturel régional)",
+        "name": "BRENNE (Parc naturel régional)",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109674-bretagne-guadeloupe-guyane-hauts-de-france-la-reunion-martinique-mayotte-nouvelle-aquitaine-occitanie-pays-de-la-loire",
+        "text": "Bretagne, Guadeloupe, Guyane, Hauts-de-France, La Réunion, Martinique, Mayotte, Nouvelle-Aquitaine, Occitanie, Pays de la Loire",
+        "name": "Bretagne, Guadeloupe, Guyane, Hauts-de-France, La Réunion, Martinique, Mayotte, Nouvelle-Aquitaine, Occitanie, Pays de la Loire",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109713-briere-parc-naturel-regional",
+        "text": "BRIERE (Parc naturel régional)",
+        "name": "BRIERE (Parc naturel régional)",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109715-camargue-parc-naturel-regional",
+        "text": "CAMARGUE (Parc naturel régional)",
+        "name": "CAMARGUE (Parc naturel régional)",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109716-caps-et-marais-dopale-parc-naturel-regional",
+        "text": "CAPS et MARAIS d'OPALE (Parc naturel régional)",
+        "name": "CAPS et MARAIS d'OPALE (Parc naturel régional)",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109717-causses-du-quercy-parc-naturel-regional",
+        "text": "CAUSSES du QUERCY (Parc naturel régional)",
+        "name": "CAUSSES du QUERCY (Parc naturel régional)",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109672-cc-sauer-pechelbronn-epci-cc-du-pays-de-wissembourg",
+        "text": "CC Sauer-Pechelbronn (EPCI) + CC du Pays de Wissembourg",
+        "name": "CC Sauer-Pechelbronn (EPCI) + CC du Pays de Wissembourg",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109685-centre-et-sud-yvelines",
+        "text": "Centre et sud Yvelines",
+        "name": "Centre et sud Yvelines",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109686-centre-vosges",
+        "text": "Centre Vosges",
+        "name": "Centre Vosges",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109019-champagne-ardenne",
+        "text": "Champagne-Ardenne",
+        "name": "Champagne-Ardenne",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109697-charente-16-charente-maritime-17-correze-19-creuse-23-deux-sevres-79-vienne-86-haute-vienne-87",
+        "text": "Charente (16), Charente-Maritime (17), Corrèze (19), Creuse (23), Deux-Sèvres (79), Vienne (86), Haute-Vienne (87)",
+        "name": "Charente (16), Charente-Maritime (17), Corrèze (19), Creuse (23), Deux-Sèvres (79), Vienne (86), Haute-Vienne (87)",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109675-charente-maritime-deux-sevres",
+        "text": "Charente-Maritime + Deux-Sèvres",
+        "name": "Charente-Maritime + Deux-Sèvres",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109718-chartreuse-parc-naturel-regional",
+        "text": "CHARTREUSE (Parc naturel régional)",
+        "name": "CHARTREUSE (Parc naturel régional)",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109701-comminges-pyrenees-petr",
+        "text": "Comminges Pyrénées (PETR)",
+        "name": "Comminges Pyrénées (PETR)",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109944-communaute-dagglomeration-bergeracoise",
+        "text": "COMMUNAUTE D'AGGLOMERATION BERGERACOISE",
+        "name": "COMMUNAUTE D'AGGLOMERATION BERGERACOISE",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109756-communaute-dagglomeration-du-pays-ajaccien-et-communaute-de-communes-celavu-prunelli",
+        "text": "Communauté d'agglomération du pays ajaccien et Communauté de communes Celavu-Prunelli",
+        "name": "Communauté d'agglomération du pays ajaccien et Communauté de communes Celavu-Prunelli",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109776-communaute-de-communes-picardie-des-chateaux-et-communaute-dagglomeration-chauny-tergnier-la-fere",
+        "text": "Communauté de Communes Picardie des Châteaux et Communauté d'Agglomération Chauny - Tergnier - La Fère",
+        "name": "Communauté de Communes Picardie des Châteaux et Communauté d'Agglomération Chauny - Tergnier - La Fère",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109774-communaute-de-communes-picardie-des-chateaux-et-communaute-dagglomeration-chauny-tergnier-la-fere",
+        "text": "Communauté de Communes Picardie des Châteaux et Communauté d'Agglomération Chauny - Tergnier - La Fère",
+        "name": "Communauté de Communes Picardie des Châteaux et Communauté d'Agglomération Chauny - Tergnier - La Fère",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109775-communaute-de-communes-picardie-des-chateaux-et-communaute-dagglomeration-chauny-tergnier-la-fere",
+        "text": "Communauté de Communes Picardie des Châteaux et Communauté d'Agglomération Chauny - Tergnier - La Fère",
+        "name": "Communauté de Communes Picardie des Châteaux et Communauté d'Agglomération Chauny - Tergnier - La Fère",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109792-communes-classees-en-zone-de-revitalisation-rurale",
+        "text": "Communes classées en zone de revitalisation rurale",
+        "name": "Communes classées en zone de revitalisation rurale",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "110371-communes-de-moins-de-3-000-habitants-ayant-un-site-patrimonial-remarquable-en-pays-de-la-loire",
+        "text": "Communes de moins de 3 000 habitants ayant un site patrimonial remarquable en Pays de la Loire",
+        "name": "Communes de moins de 3 000 habitants ayant un site patrimonial remarquable en Pays de la Loire",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "110390-communes-de-moins-de-3500-habitants",
+        "text": "Communes de moins de 3.500 habitants",
+        "name": "Communes de moins de 3.500 habitants",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "110407-communes-de-moins-de-3500-habitants-et-epci-de-moins-de-15000-habitants",
+        "text": "Communes de moins de 3.500 habitants et EPCI de moins de 15.000 habitants",
+        "name": "Communes de moins de 3.500 habitants et EPCI de moins de 15.000 habitants",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      },
+      {
+        "id": "109788-communes-des-parcs-naturels-marins",
+        "text": "Communes des Parcs naturels marins",
+        "name": "Communes des Parcs naturels marins",
+        "scale": "Ad-hoc",
+        "zipcodes": null
+      }
+    ]
+  }
