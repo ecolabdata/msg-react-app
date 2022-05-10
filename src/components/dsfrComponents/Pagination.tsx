@@ -8,11 +8,12 @@ interface PaginationProps {
     nbPage: number
     initialState: InitialState,
     onClick?: React.MouseEventHandler<HTMLAnchorElement> | undefined
+    isLoading?: boolean
 }
 
-const Pagination: React.FC<PaginationProps> = ({ baseUrl, currentPageNo, nbPage, initialState, onClick }) => {
+const Pagination: React.FC<PaginationProps> = ({ baseUrl, currentPageNo, nbPage, initialState, onClick, isLoading}) => {
     const generatedPageNos = Array(nbPage).fill(1).map((x, idx) => x + idx)
-    return <nav role="navigation" className="fr-pagination mx-auto w-fit mt-10" aria-label="Pagination">
+    return <nav role="navigation" className="fr-pagination mx-auto w-fit mt-10 transition-opacity duration-200" aria-label="Pagination" style={{opacity: isLoading ? 0 : 1}}>
         <ul className="fr-pagination__list">
             <li>
                 {currentPageNo - 1 <= 0 ?

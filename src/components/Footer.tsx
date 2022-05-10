@@ -60,11 +60,12 @@ const Footer: React.FC = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="git-version text-gray-300 text-xs">
+                    <div className="git-version text-gray-600 text-xs">
                         git version: <a href={`https://github.com/ecolabdata/mes-services-greentech/commit/${window.gitInfo.gitCommitFullHash}`}>
                             {window.gitInfo.gitCommitHash}
                         </a>
                     </div>
+                    <div style={{height: 600}}></div>
                 </div>
             </footer>
 

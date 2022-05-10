@@ -252,10 +252,10 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
                 {cardsSlice}
             </div> : initialState ? "Aucun résultat trouvé" : null}
 
-            {initialState && nbPage && !isLoading ? <Pagination onClick={() => {
+            {initialState &&  <Pagination isLoading={isLoading && nbPage > 0} onClick={() => {
                 const element = document.getElementById('cardsContainer')
                 if (element) setNextScrolTarget({ behavior: "smooth", top: element.offsetTop - window.innerHeight * 0.20 })
-            }} currentPageNo={pageNo} baseUrl={cardType.searchLink} nbPage={nbPage} initialState={initialState} /> : null}
+            }} currentPageNo={pageNo} baseUrl={cardType.searchLink} nbPage={nbPage} initialState={initialState} />}
 
         </>
     )
