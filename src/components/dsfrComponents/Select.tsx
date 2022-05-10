@@ -19,7 +19,7 @@ const Select: React.FC<SelectProps> = ({optionsData, label, classes, onChange, c
                     {label}
                 </label>
                 <select className="fr-select" onChange={onChange} style={style}> 
-                    <option value="" selected disabled hidden>{defaultOption || "Selectionnez une option"}</option>
+                    <option value="" selected disabled={!defaultOption} hidden={!defaultOption}>{defaultOption || "Selectionnez une option"}</option>
                     {optionsData.map(option => <option value={option}>{option}</option>)}
                 </select>
             </div>

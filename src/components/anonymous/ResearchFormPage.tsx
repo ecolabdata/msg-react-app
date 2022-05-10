@@ -35,7 +35,7 @@ const ResearchForm: React.FC<{alpha: boolean}> = ({alpha}) => {
         if (description.length > 0) {
             setIsLoading(true)
             setErrorTxt(<></>)
-            search({ type: "general", description, motsclefs, secteurs }).then((search) => {
+            search({description, motsclefs, secteurs }).then((search) => {
                 setIsLoading(false)
                 const element = document.getElementById('previews')
                 if (element) setNextScrolTarget({ behavior: "smooth", top: element.offsetTop - window.innerHeight * 0.20 })

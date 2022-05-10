@@ -1,6 +1,6 @@
 import { useContext, useEffect, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { AidesClientQuery, AidesQuery, AnyCard, Search, searchAidesClient, searchInvestisseur } from '../../api/Api';
+import { AidesClientQuery, AidesQuery, AnyCard, Search, searchAidesClient, searchAidesInno, searchInvestisseur } from '../../api/Api';
 import { useTitle } from '../../hooks/useTitle';
 import { aideClient, aideInno, CardType } from '../../model/CardType';
 import { ApplicationContext } from '../../Router';
@@ -27,6 +27,12 @@ const allSecteur = [
     "Finance durable & RSE"
 ]
 
+const echeances: Record<string, number> = {
+    "Moins d'1 mois": 1,
+    "Moins de 3 mois": 3,
+    "Moins de 6 mois": 6
+}
+
 const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType }) => {
     const { usedCorbeille, usedNextScrollTarget } = useContext(ApplicationContext)
     const [toggleInCorbeille, isInCorbeille] = usedCorbeille
@@ -45,48 +51,83 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
     const [motsclefs, setMotsclef] = useState<string[]>(initialQuery?.motsclefs || [])
     const [errorTxt, setErrorTxt] = useState(<></>)
     const [toggles, setToggles] = useState({
-        "Afficher les aides permanentes": true//(initialQuery && initialQuery["Afficher les aides permanentes"] != undefined) ? initialQuery["Afficher les aides permanentes"] : true
+        "Afficher les aides permanentes": (initialQuery && initialQuery["Afficher les aides permanentes"] != undefined) ? initialQuery["Afficher les aides permanentes"] : true
     })
-    const [aid_type, setAid_type] = useState("")
+    const [aid_type, setAid_type] = useState(initialQuery?.aid_type || "")
+    const [echeance, setEcheance] = useState(initialQuery?.echeance || "")
     const toggleKeys = Object.keys(toggles) as (keyof typeof toggles)[]
-
-    let nbPage: number | undefined;
-    let displayCards: JSX.Element[] | undefined = useMemo(() => {
+    const pageChunkSize = 20;
+    const filteredCards: JSX.Element[] | undefined = useMemo(() => {
         console.log("Running use memo")
         if (initialState?.search.cards) {
-            let allCards = initialState.search.cards.aides_clients
-            const pageChunkSize = 20;
-            nbPage = Math.ceil(allCards.length / pageChunkSize)
+            let allCards : AnyCard[] = cardType.name === "aides-innovations" ? initialState.search.cards.aides_innovation : initialState.search.cards.aides_clients
             allCards = allCards.filter(x => !isInCorbeille(x))
-            if (!toggles["Afficher les aides permanentes"]) allCards = allCards.filter(x => x.submission_deadline)
-            if (aid_type) allCards = allCards.filter(x => x.aid_types.includes(aid_type))
-            allCards = allCards.slice(
-                (pageNo - 1) * pageChunkSize,
-                pageNo * pageChunkSize
-            )
-            return allCards.map((card) => <ResultPreviewCard cardType={cardType} cardData={card} />);
+            if (aid_type) allCards = allCards.filter(x => x.aid_types?.includes(aid_type))
+            if (echeance) {
+                allCards = allCards.filter(card => {
+                    if (card.name === "Réaliser des projets de solidarité internationale d'accès à l'eau") debugger;
+                    if (card.submission_deadline) {
+                        const Xmonth = echeances[echeance]
+                        const XmonthLater = new Date()
+                        XmonthLater.setMonth(XmonthLater.getMonth() + Xmonth)
+                        const deadline = new Date(card.submission_deadline)
+                        return deadline < XmonthLater
+                    } else {
+                        return toggles["Afficher les aides permanentes"]
+                    }
+                })
+            }
+            if (!toggles["Afficher les aides permanentes"]) allCards = allCards.filter(card => card.submission_deadline)
+            return allCards
         } else {
             return []
         }
-    }, [initialState])
+    }, [initialState]).map((card) => <ResultPreviewCard isLoading={isLoading} cardType={cardType} cardData={card} />);
+
+    const nbPage = Math.ceil(filteredCards.length / pageChunkSize)
+    const cardsSlice = filteredCards.slice(
+        (pageNo - 1) * pageChunkSize,
+        pageNo * pageChunkSize
+    )
 
     const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (description.length > 0) {
             setIsLoading(true)
             setErrorTxt(<></>)
-            searchAidesClient({
-                type: "aides_clients",
-                description,
-                motsclefs,
-                secteurs
-            }).then((search) => {
-                setIsLoading(false)
-                return navigate(cardType.searchLink, {
-                    replace: true,
-                    state: { search }
+            if (cardType.name === "aides-clients") {
+                searchAidesClient({
+                    description,
+                    motsclefs,
+                    secteurs,
+                    "Afficher les aides permanentes": toggles["Afficher les aides permanentes"],
+                    aid_type,
+                    echeance
+
+                }).then((search) => {
+                    setIsLoading(false)
+                    return navigate(cardType.searchLink, {
+                        replace: true,
+                        state: { search }
+                    })
                 })
-            })
+            } else if (cardType.name === "aides-innovations") {
+                searchAidesInno({
+                    description,
+                    motsclefs,
+                    secteurs,
+                    "Afficher les aides permanentes": toggles["Afficher les aides permanentes"],
+                    aid_type,
+                    echeance
+
+                }).then((search) => {
+                    setIsLoading(false)
+                    return navigate(cardType.searchLink, {
+                        replace: true,
+                        state: { search }
+                    })
+                })
+            }
         } else {
             setErrorTxt(<p style={{ color: "hsla(0, 100%, 65%, 0.9)" }}>La description de l'entreprise est obligatoire</p>)
         }
@@ -109,7 +150,7 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
 
                         <div className="flex items-center">
                             <cardType.SVGLogo width="30" height="30" style={{ color: cardType.color }} /> &nbsp;
-                            {cardType.title} &nbsp; <span className="bg-yellow text-3xl font-light">{`(${displayCards.length})`}</span>
+                            {cardType.title} &nbsp; <span className="bg-yellow text-3xl font-light">{`(${filteredCards.length})`}</span>
                         </div>
 
                     </h2>
@@ -181,12 +222,19 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
                                     </div>
                                 </div> */}
 
-                                <Select classes="w-[80%] my-4" label="Nature de l'aide"
+                                <Select classes="my-4" label="Nature de l'aide"
                                     color={cardType.color}
                                     defaultOption={"Toutes"}
                                     optionsData={all_aides_types.results.map(x => x.name)} onChange={e => {
-                                    setAid_type(e.currentTarget.value)
-                                }} />
+                                        setAid_type(e.currentTarget.value)
+                                    }} />
+                                &nbsp;&nbsp;&nbsp;
+                                <Select classes="my-4" label="Echéance"
+                                    color={cardType.color}
+                                    defaultOption={"Toutes"}
+                                    optionsData={Object.keys(echeances)} onChange={e => {
+                                        setEcheance(e.currentTarget.value)
+                                    }} />
                                 <div className="toggleButtons w-fit flex flex-col
                         lg:flex-row lg:mb-6">
                                     {toggleKeys.map(x => <ToggleButton label={x} checked={toggles[x]} color={cardType.color} onChange={e => setToggles({ ...toggles, [x]: !toggles[x] })} />)}
@@ -198,16 +246,16 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
                 </div>
             </div>
 
-            {!isLoading && <div id="cardsContainer" className="cardsContainer mt-10 mx-auto max-w-[80%] flex flex-wrap justify-evenly bg 
+            {cardsSlice.length > 0 ? <div id="cardsContainer" className="cardsContainer mt-10 mx-auto max-w-[80%] flex flex-wrap justify-evenly bg 
             xl:mx-auto
             ">
-                {displayCards}
-            </div>}
+                {cardsSlice}
+            </div> : initialState ? "Aucun résultat trouvé" : null}
 
-            {initialState && nbPage && !isLoading && <Pagination onClick={() => {
+            {initialState && nbPage && !isLoading ? <Pagination onClick={() => {
                 const element = document.getElementById('cardsContainer')
                 if (element) setNextScrolTarget({ behavior: "smooth", top: element.offsetTop - window.innerHeight * 0.20 })
-            }} currentPageNo={pageNo} baseUrl={cardType.searchLink} nbPage={nbPage} initialState={initialState} />}
+            }} currentPageNo={pageNo} baseUrl={cardType.searchLink} nbPage={nbPage} initialState={initialState} /> : null}
 
         </>
     )

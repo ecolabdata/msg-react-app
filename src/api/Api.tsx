@@ -74,7 +74,6 @@ function buildFetchRequest(params: any) {
 */
 
 export type Query = {
-  type: "general"
   description: string,
   secteurs: string[],
   motsclefs: string[]
@@ -108,13 +107,14 @@ export const searchInvestisseur = (query: InvestisseurQuery) => buildFetchReques
 }).then(resp => handleResp(query, resp));
 
 export interface AidesQuery extends Omit<Query, "type"> {
-  //"Afficher les aides permanentes": boolean
+  "Afficher les aides permanentes": boolean,
+  "aid_type": string,
+  "echeance": string
 }
 
 /* Aides Client */
 
 export interface AidesClientQuery extends AidesQuery {
-  type: "aides_clients",
 }
 
 export const searchAidesClient = (query: AidesClientQuery) => buildFetchRequest({
@@ -127,7 +127,6 @@ export const searchAidesClient = (query: AidesClientQuery) => buildFetchRequest(
 /* Aides Inno */
 
 export interface AidesInnoQuery extends AidesQuery {
-  type: "aides_innovation",
 }
 
 export const searchAidesInno = (query: AidesInnoQuery) => buildFetchRequest({

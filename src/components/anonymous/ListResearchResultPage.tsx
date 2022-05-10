@@ -73,7 +73,6 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
             setIsLoading(true)
             setErrorTxt(<></>)
             search({
-                type: "general",
                 description,
                 motsclefs,
                 secteurs

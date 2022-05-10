@@ -9,9 +9,10 @@ import { Star, Trash } from '../../assets/Icons'
 interface ResultPreviewCardProps {
     cardData: AnyCard
     cardType: CardType
+    isLoading?: boolean
 }
 
-const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardType }) => {
+const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardType, isLoading}) => {
     const { usedFavoris, usedCorbeille, usedNextScrollTarget } = useContext(ApplicationContext)
     const [toggleFavori, isFavori] = usedFavoris
     const [toggleInCorbeille, isInCorbeille] = usedCorbeille
@@ -34,7 +35,7 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
                     card-animation
                     bg-research-card-preview relative overflow-hidden`
     }
-        style={{ borderColor: cardType.color }}>
+        style={{ borderColor: cardType.color, opacity: isLoading ? 0 : 1 }}>
 
         <div className="emetor-row flex">
             <p className="text-xs flex-1 grow-[10] clamp-2" style={{ color: cardType.color }} title={displayableFinancers}>{displayableFinancers || cardData['Thématique']}</p>

@@ -47,7 +47,7 @@ const DetailsResearchForm: React.FC<DetailsResearchFormProps> = (props) => {
             setErrorTxt(<></>)
 
             //? Requête récupération des cards
-            search({ type: "general", description, motsclefs, secteurs }).then((search) => {
+            search({description, motsclefs, secteurs }).then((search) => {
 
                 setIsLoading(false)
 
