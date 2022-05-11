@@ -9,7 +9,7 @@ import { ThematicsEnum } from '../../model/ThematicsEnum';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
 import ResultResearchPreviewCard from '../customComponents/ResultResearchPreviewCard';
 import KeyWordsLabel from '../dsfrComponents/KeyWordsLabel';
-import Select from '../dsfrComponents/SelectInputOptions';
+import Select from './SelectInputOptions';
 import RocketLogo from './../../assets/icons/Rockett.svg';
 import KeywordsLogo from './../../assets/icons/Keywords.svg';
 import ThematicsLogo from './../../assets/icons/Thematics.svg';

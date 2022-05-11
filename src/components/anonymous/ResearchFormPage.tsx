@@ -12,7 +12,8 @@ import RocketLogo from './../../assets/icons/Rockett.svg';
 import KeywordsLogo from './../../assets/icons/Keywords.svg';
 import ThematicsLogo from './../../assets/icons/Thematics.svg';
 import { ThematicsEnum } from '../../model/ThematicsEnum';
-import SelectInputOptions from '../dsfrComponents/SelectInputOptions';
+import SelectInputOptions from '../customComponents/SelectInputOptions';
+import Select from '../dsfrComponents/Select';
 
 
 const ResearchForm: React.FC<{alpha: boolean}> = ({alpha}) => {
@@ -74,7 +75,7 @@ const ResearchForm: React.FC<{alpha: boolean}> = ({alpha}) => {
 
                         <div className='leftSideForm max-w-[48%] max-h-[400px] p-4 projectContainer flex flex-col items-around justify-center items-center bg-background-form '>
                             
-                            <div className="tilteContainer relative bottom-4 w-fit flex">
+                            <div className="titleContainer relative bottom-4 w-fit flex">
                                 <img src={RocketLogo} alt="Logo" />
                                 <h2 className="italic text-dark-text-action text-3xl  font-[Spectral]">1. Votre projet</h2>
                             </div>
@@ -92,7 +93,7 @@ const ResearchForm: React.FC<{alpha: boolean}> = ({alpha}) => {
 
                             <div className='thematicsContainer h-[200px] w-full flex flex-col items-center bg-background-form'>
 
-                                <div className="tilteContainer spectral relative bottom-4 w-fit flex">
+                                <div className="titleContainer spectral relative bottom-4 w-fit flex">
                                     <img src={ThematicsLogo} alt="Logo" />
                                     <h2 className="italic text-dark-text-action text-3xl font-[Spectral]"> 2. La thématique</h2>
                                 </div>
@@ -106,7 +107,7 @@ const ResearchForm: React.FC<{alpha: boolean}> = ({alpha}) => {
 
                             <div className="keyWordsContainer mt-8 h-[200px] w-full flex flex-col items-center p-2 bg-background-form">
 
-                                <div className="tilteContainer relative w-fit flex">
+                                <div className="titleContainer relative w-fit flex">
                                     <img src={KeywordsLogo} alt="Logo" />
                                     <h2 className="italic text-dark-text-action text-3xl font-[Spectral]"> 3. Les mots clés</h2>
                                 </div>
@@ -115,6 +116,7 @@ const ResearchForm: React.FC<{alpha: boolean}> = ({alpha}) => {
                                 2xl:text-base">Ajoutez des mots clés représentatifs de votre activité (facultatif)</p>
                                 <p className="italic text-xs font-bold">délimitez vos mots clés par une virgule</p>
                                 <textarea
+                                
                                     onChange={e => {
 
                                         const motsclefs = e.target.value.split(",").map(x => x.trim())
