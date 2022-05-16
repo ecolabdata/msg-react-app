@@ -1,35 +1,34 @@
 import { useEffect, useState } from 'react';
 import Chevron from './../../assets/icons/chevronWhite.svg'
 
-interface SelectProps { 
-    optionsData : string[];
+interface SelectProps {
+    optionsData: string[];
     label: string;
     classes: string;
     onChange?: React.ChangeEventHandler<HTMLSelectElement>;
 }
-interface SelectInputOptionsProps { 
-    optionsData : string[];
-    secteurs : string[];
+interface SelectInputOptionsProps {
+    optionsData: string[];
+    secteurs: string[];
     setSecteurs: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({optionsData, secteurs, setSecteurs}) => { 
-    
+const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({ optionsData, secteurs, setSecteurs }) => {
+
     const [displaySelect, setDisplaySelect] = useState(false);
     const [checkBoxesArrayData, setCheckBoxesArrayData] = useState(new Array(optionsData.length).fill(false));
 
-    const handleOnChange = (checkboxIndex:number) => {
-       
+    const handleOnChange = (checkboxIndex: number) => {
+
         const newCheckBoxesArrayState = checkBoxesArrayData.map((checkbox, index) => {
             return index === checkboxIndex ? !checkbox : checkbox
         });
-        
+
 
         setCheckBoxesArrayData(newCheckBoxesArrayState);
     }
 
     useEffect(() => {
-        
 
         checkBoxesArrayData.filter((checkbox, currentCheckboxIndex) => {
 
@@ -38,7 +37,7 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({optionsData, sec
                 return setSecteurs([...secteurs, optionsData[currentCheckboxIndex]]);
             }
 
-            if(!checkbox && secteurs.includes(optionsData[currentCheckboxIndex])) {
+            if (!checkbox && secteurs.includes(optionsData[currentCheckboxIndex])) {
 
                 const indexOfTheValueToDelete = secteurs.indexOf(optionsData[currentCheckboxIndex]);
 
@@ -53,35 +52,36 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({optionsData, sec
 
     return (
         <>
-
-            <button type="button" className=" z-[10] h-10 w-[80%] flex justify-between py-2 px-3 bg-input-background addBorder-b border-3 border-b-white " onClick={() => {setDisplaySelect(!displaySelect);}}> 
+            <button type="button" className=" z-[10] h-10 w-[80%] flex justify-between py-2 px-3 bg-input-background addBorder-b border-3 border-b-white " onClick={() => { setDisplaySelect(!displaySelect); }}>
                 <p> Sélectionnez une option </p>
-                <img className={`${displaySelect ? 'rotate-90': ''} h-5 w-5 m-0.5`} src={Chevron} alt="Chevron" />
+                <img className={`${displaySelect ? 'rotate-90' : ''} h-5 w-5 m-0.5`} src={Chevron} alt="Chevron" />
             </button>
 
-            {displaySelect &&
-                
-                <ul  className="w-[80%] z-[10] bg-input-background">
+            {displaySelect && <>
+                <div style={{ position: "fixed", width: "100vw", height: "100vh", top: 0, left: 0, zIndex: 5 }} onClick={e => setDisplaySelect(false)}></div>
+                <ul className="w-[700px] mh-[350px] z-[10] bg-input-background flex flex-wrap content-evenly shadow-slate-400 shadow-sm">
                     {optionsData.map((option, index) => {
-                        return(
-                            
-                            <li className="ml-2 my-2" key={option}>
-                                <input 
-                                className="bg-red-200 appearance-on addBorder border text-black border-black  mx-1"
-                                id={option}
-                                type="checkbox"
-                                value={checkBoxesArrayData[index]}
-                                onChange={() => {handleOnChange(index)}}
-                                checked={checkBoxesArrayData[index]}
+                        return (
+
+                            <li className="p-0 w-[350px] flex content-center items-center" key={option}>
+                                <input
+                                    className="bg-red-200 appearance-on addBorder border text-black border-black  mx-4"
+                                    id={option}
+                                    type="checkbox"
+                                    value={checkBoxesArrayData[index]}
+                                    onChange={() => { handleOnChange(index) }}
+                                    checked={checkBoxesArrayData[index]}
                                 />
-                                <label className="capitalize" htmlFor={option}>{option}</label>        
+                                <label className="capitalize h-12 flex items-center" htmlFor={option}>{option}</label>
                             </li>
-                        
-                        )})}
+
+                        )
+                    })}
                 </ul>
+            </>
             }
         </>
-    ) 
-}; 
+    )
+};
 
 export default SelectInputOptions;
