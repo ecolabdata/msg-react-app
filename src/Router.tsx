@@ -31,7 +31,7 @@ export const ApplicationContext = createContext<{
 
 const Router = () => {
     localStorage.setItem('scheme', 'dark');
-    useEffect(() => {
+    useEffect(() => {   
 
     }, [localStorage.scheme])
     const usedFavoris = useFavoris()
