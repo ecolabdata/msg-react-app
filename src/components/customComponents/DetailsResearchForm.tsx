@@ -105,7 +105,7 @@ const DetailsResearchForm: React.FC<DetailsResearchFormProps> = (props) => {
                             <h2 className="italic text-dark-text-action text-3xl font-[Spectral]"> 2. La thématique</h2>
                         </div>
 
-                        <Select classes="w-[80%] my-4"label="Thématique du projet" optionsData={thematicsValues}/>
+                        {/* <Select classes="w-[80%] my-4"label="Thématique du projet" optionsData={thematicsValues}/> */}
 
                     </div>
 

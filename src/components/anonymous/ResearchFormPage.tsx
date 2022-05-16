@@ -13,7 +13,6 @@ import KeywordsLogo from './../../assets/icons/Keywords.svg';
 import ThematicsLogo from './../../assets/icons/Thematics.svg';
 import { ThematicsEnum } from '../../model/ThematicsEnum';
 import SelectInputOptions from '../customComponents/SelectInputOptions';
-import Select from '../dsfrComponents/Select';
 
 
 const ResearchForm: React.FC<{alpha: boolean}> = ({alpha}) => {
@@ -31,13 +30,17 @@ const ResearchForm: React.FC<{alpha: boolean}> = ({alpha}) => {
     const [motsclefs, setMotsclef] = useState<string[]>(initialState?.search.query.motsclefs || [])
     const [errorTxt, setErrorTxt] = useState(<></>)
     const thematicsValues = Object.values(ThematicsEnum);
-
+    
     const handleOnSubmitForm = (ctrlPress:boolean) => {
+
         if (description.length > 0) {
+
             setIsLoading(true)
             setErrorTxt(<></>)
             search({ type: "general", description, motsclefs, secteurs }).then((search) => {
+                console.log('search :>> ', search);
                 setIsLoading(false)
+                //? Scroll
                 const element = document.getElementById('previews')
                 if (element) setNextScrolTarget({ behavior: "smooth", top: element.offsetTop - window.innerHeight * 0.20 })
                 navigate(ctrlPress ? `/explorer-alpha` : `/explorer`, {state: {search}})
@@ -47,8 +50,11 @@ const ResearchForm: React.FC<{alpha: boolean}> = ({alpha}) => {
         }
     };
 
+
     const previews = allCardType.filter(x => alpha || x.version === "beta").map(cardType => {
+
         if (!initialState) return null;
+
         const results : AnyCard[] = initialState.search.cards[cardType.apiName];
         if (results.length === 0) return null;
 
@@ -60,6 +66,7 @@ const ResearchForm: React.FC<{alpha: boolean}> = ({alpha}) => {
                 )}
             </ResultResearchPreviewCard>
         )
+
     })
 
     return (
@@ -83,9 +90,7 @@ const ResearchForm: React.FC<{alpha: boolean}> = ({alpha}) => {
                             <p className="w-11/12 text-base text-center">Décrivez en quelques lignes votre projet (thématique, technologie, cible, apports... ) pour obtenir des pistes pertinentes.</p>
                             <textarea onChange={e => setDescription(e.target.value)} value={description} form="keywordsForm"
                                 className="cursor-text my-8 min-h-[225px] rounded-t-sm mt-4 w-11/12 addBorder-b border-3 border-gray-300 p-4 bg-background-inputs" 
-                                placeholder="Expl. : “start-up de méthanisation” ou “nous sommes une startup spécialisée dans le processus biologique de dégradation des matières organiques...”">
-
-                            </textarea>
+                                placeholder="Expl. : “start-up de méthanisation” ou “nous sommes une startup spécialisée dans le processus biologique de dégradation des matières organiques...”"/>
 
                         </div>
 
@@ -98,10 +103,7 @@ const ResearchForm: React.FC<{alpha: boolean}> = ({alpha}) => {
                                     <h2 className="italic text-dark-text-action text-3xl font-[Spectral]"> 2. La thématique</h2>
                                 </div>
 
-                                <SelectInputOptions classes="bg-red-200 my-4"label="Thématique du projet" optionsData={thematicsValues} onChange={e => {
-                                    console.log("Setting secteur to ", [e.currentTarget.value])
-                                    setSecteurs([e.currentTarget.value])
-                                }}/>
+                                <SelectInputOptions  optionsData={thematicsValues} secteurs={secteurs} setSecteurs={setSecteurs}/>
 
                             </div>
 
@@ -133,7 +135,7 @@ const ResearchForm: React.FC<{alpha: boolean}> = ({alpha}) => {
 
                                         {motsclefs.map( word => { 
                                             console.log('word :>> ', word);
-                                            return <li> <KeyWordsLabel keyWord={word}/> </li>
+                                            return <li key={word}> <KeyWordsLabel keyWord={word}/> </li>
                                             
                                         })}
 
