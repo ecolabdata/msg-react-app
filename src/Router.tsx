@@ -38,12 +38,14 @@ const Router = () => {
     const usedCorbeille = useCorbeille()
     const usedNextScrollTarget = useState<ScrollToOptions | null>(null)
     const [nextScrollTarget, setNextScrolTarget] = usedNextScrollTarget
+
     useEffect(() => {
         if (nextScrollTarget) {
             window.scrollTo(nextScrollTarget)
             setNextScrolTarget(null)
         }
     }, [usedNextScrollTarget]);
+    
     useTrackPage();
     return (
         <>

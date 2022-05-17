@@ -27,6 +27,19 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({ optionsData, se
 
         setCheckBoxesArrayData(newCheckBoxesArrayState);
     }
+    const handleSlectInputOptionDefaultLayout = () => {
+
+        if(secteurs.length <= 0 ) {
+            return 
+        }else {
+
+            <>
+                
+
+                <span>{secteurs.length}</span>
+            </>
+        }
+    }
 
     useEffect(() => {
 
@@ -53,7 +66,26 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({ optionsData, se
     return (
         <>
             <button type="button" className=" z-[10] h-10 w-[80%] flex justify-between py-2 px-3 bg-input-background addBorder-b border-3 border-b-white " onClick={() => { setDisplaySelect(!displaySelect); }}>
-                <p> Sélectionnez une option </p>
+                
+                {secteurs.length <= 0
+
+                    ? 
+                    <p> Sélectionnez une option </p>
+                    :
+                    <>
+                        <p className="w-5/6 truncate"> {secteurs.map(secteur => {
+                            return (
+                                <span>{secteur}, </span>
+                            )
+                        })} </p>
+
+                        <span className={`
+                        ${localStorage.scheme === "dark" ? "bg-dark-text-action" : "bg-blue-france"}
+                            w-6 h-6 rounded-full text-white font-bold`
+                        }> {secteurs.length} </span>
+                    </>
+                }
+
                 <img className={`${displaySelect ? 'rotate-90' : ''} h-5 w-5 m-0.5`} src={Chevron} alt="Chevron" />
             </button>
 
