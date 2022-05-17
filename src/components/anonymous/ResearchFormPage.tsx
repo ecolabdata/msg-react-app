@@ -49,7 +49,6 @@ const ResearchForm: React.FC<{alpha: boolean}> = ({alpha}) => {
         }
     };
 
-
     const previews = allCardType.filter(x => alpha || x.version === "beta").map(cardType => {
 
         if (!initialState) return null;
@@ -94,7 +93,6 @@ const ResearchForm: React.FC<{alpha: boolean}> = ({alpha}) => {
                         </div>
 
                         <div className="rightSideForm min-w-[48%] w-1/4 max-h-[400px] flex flex-col items-center">
-
                             <div className='thematicsContainer h-[200px] w-full flex flex-col items-center bg-background-form'>
 
                                 <div className="titleContainer spectral relative bottom-4 w-fit flex">

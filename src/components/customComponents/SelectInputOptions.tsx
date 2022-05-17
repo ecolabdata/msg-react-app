@@ -44,7 +44,7 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({ optionsData, se
     useEffect(() => {
 
         checkBoxesArrayData.filter((checkbox, currentCheckboxIndex) => {
-
+            
             if (checkbox && !secteurs.includes(optionsData[currentCheckboxIndex])) {
 
                 return setSecteurs([...secteurs, optionsData[currentCheckboxIndex]]);
@@ -55,13 +55,22 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({ optionsData, se
                 const indexOfTheValueToDelete = secteurs.indexOf(optionsData[currentCheckboxIndex]);
 
                 secteurs.splice(indexOfTheValueToDelete, 1);
-
             }
 
             return null;
         })
 
     }, [checkBoxesArrayData, secteurs])
+    
+    useEffect(() => {
+
+        const checkIfTrue = checkBoxesArrayData.find( checkbox =>  checkbox === true)
+        console.log('checkIfTrue :>> ', checkIfTrue);
+
+        if (checkIfTrue === undefined) {
+            setSecteurs([]);
+        }
+    },[checkBoxesArrayData])
 
     return (
         <>
