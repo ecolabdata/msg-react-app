@@ -6,16 +6,19 @@ import { Star, Trash } from '../../assets/Icons'
 import { Aide, AnyCard } from '../../api/Api';
 import { CSSProperties, ReactNode, useContext, useState } from 'react';
 import { ApplicationContext } from '../../Router';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
+import { useQuery } from '../../hooks/useQuery';
 
 const CardDetails : React.FC<{cardType: CardType}> = ({cardType}) => {
+    const query = useQuery();
     const { usedFavoris, usedCorbeille } = useContext(ApplicationContext)
     const [toggleFavori, isFavori] = usedFavoris
     const [toggleInCorbeille, isInCorbeille] = usedCorbeille
     const location = useLocation();
     const initialState = location.state as {cardData : AnyCard} | null;
-    if (!initialState?.cardData) throw new Error("Missing cardData to generate page")
-    const cardData : Omit<Partial<Aide>, "id"> & { id: string, cardTypeName: string } = initialState.cardData
+    console.log({query})
+    if (!initialState?.cardData && !query.cardData) throw new Error("Missing cardData to generate page")
+    const cardData : Omit<Partial<Aide>, "id"> & { id: string, cardTypeName: string } = initialState?.cardData || JSON.parse(query.cardData)
 
     const displayableFinancers = cardData.financers?.join(" | ") || ""
     const d = cardData.submission_deadline ? new Date(cardData.submission_deadline) : null

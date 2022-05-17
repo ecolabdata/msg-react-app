@@ -51,7 +51,7 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
             </div>
         </div>
 
-        <Link onClick={() => setNextScrolTarget({ top: 0 })} to={`/${cardType.name}/details`} state={{ cardData }} className="rm-link-underline">
+        <Link onClick={() => setNextScrolTarget({ top: 0 })} to={`/${cardType.name}/details?cardData=${encodeURIComponent(JSON.stringify(cardData))}`} state={{ cardData }} className="rm-link-underline">
             <h4 className="clamp mt-2 font-bold text-lg" title={cardData.nom || cardData.name || cardData['Start-up']}>{cardData.nom || cardData.name || cardData['Start-up']}</h4>
             {/* <p className="uppercase opacity-0 mt-8 text-xs text-white transition-opacity duration-200 group-hover:opacity-100 w-[225px]">
                 <br />

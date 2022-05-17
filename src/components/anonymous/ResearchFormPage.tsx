@@ -43,6 +43,10 @@ const ResearchForm: React.FC<{alpha: boolean}> = ({alpha}) => {
                 const element = document.getElementById('previews')
                 if (element) setNextScrolTarget({ behavior: "smooth", top: element.offsetTop - window.innerHeight * 0.20 })
                 navigate(ctrlPress ? `/explorer-alpha` : `/explorer`, {state: {search}})
+            }).catch(e => {
+                setIsLoading(false)
+                navigate(ctrlPress ? `/explorer-alpha` : `/explorer`)
+                setErrorTxt(<p style={{ color: "hsla(0, 100%, 65%, 0.9)" }}>Une erreur serveur inconnue est survenue</p>)
             })
         } else {
             setErrorTxt(<p style={{ color: "hsla(0, 100%, 65%, 0.9)" }}>La description de l'entreprise est obligatoire</p>)

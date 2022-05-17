@@ -1,6 +1,7 @@
 import { ReactElement, useContext, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { AnyCard, CardTypeName } from '../../api/Api';
+import { useQuery } from '../../hooks/useQuery';
 import { CardData } from '../../model/CardData';
 import { byName, CardType } from '../../model/CardType';
 import { ApplicationContext } from '../../Router';
@@ -62,6 +63,7 @@ function browseObject(obj: any,
 // };
 
 const CardDetailsJson : React.FC<{cardType:CardType}> = ({cardType}) => {
+    const query = useQuery();
     const { usedFavoris, usedCorbeille } = useContext(ApplicationContext)
     const [toggleFavori, isFavori, favoris] = usedFavoris
     const [toggleInCorbeille, isInCorbeille, corbeille] = usedCorbeille
@@ -72,7 +74,7 @@ const CardDetailsJson : React.FC<{cardType:CardType}> = ({cardType}) => {
     })
     const devMode = true;
     const toDisplay: ReactElement[] = [];
-    const cardData = initialState?.cardData;
+    const cardData : AnyCard = initialState?.cardData || JSON.parse(query.cardData)
     if (!cardData) {
         console.log("cardType mandatory getting", {cardData})
         return null;
