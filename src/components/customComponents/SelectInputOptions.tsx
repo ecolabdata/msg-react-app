@@ -24,37 +24,31 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({ optionsData, se
             return index === checkboxIndex ? !checkbox : checkbox
         });
 
-
         setCheckBoxesArrayData(newCheckBoxesArrayState);
-    }
-    const handleSlectInputOptionDefaultLayout = () => {
-
-        if(secteurs.length <= 0 ) {
-            return 
-        }else {
-
-            <>
-                
-
-                <span>{secteurs.length}</span>
-            </>
-        }
     }
 
     useEffect(() => {
+        console.log('ckb1 - secteurs :>> ', secteurs);
+        console.log('ckb1 - secteurs.length :>> ', secteurs.length);  
 
         checkBoxesArrayData.filter((checkbox, currentCheckboxIndex) => {
             
             if (checkbox && !secteurs.includes(optionsData[currentCheckboxIndex])) {
+                console.log("JE PASSE ICI");
+                setSecteurs([...secteurs, optionsData[currentCheckboxIndex]]);
 
-                return setSecteurs([...secteurs, optionsData[currentCheckboxIndex]]);
+                console.log('ckb1* - secteurs :>> ', secteurs);
+                console.log('ckb1* - secteurs.length :>> ', secteurs.length);  
+        
             }
 
             if (!checkbox && secteurs.includes(optionsData[currentCheckboxIndex])) {
+                console.log("JE PASSE ICI 2 ");
 
                 const indexOfTheValueToDelete = secteurs.indexOf(optionsData[currentCheckboxIndex]);
-
-                secteurs.splice(indexOfTheValueToDelete, 1);
+                console.log('indexOfTheValueToDelete :>> ', indexOfTheValueToDelete);
+                setSecteurs(secteurs.splice(indexOfTheValueToDelete, 1))
+                // secteurs.splice(indexOfTheValueToDelete, 1)
             }
 
             return null;
@@ -64,13 +58,21 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({ optionsData, se
     
     useEffect(() => {
 
+        console.log('ckb2 - secteurs :>> ', secteurs);
+        console.log('ckb2 - secteurs.length :>> ', secteurs.length);  
+
+
         const checkIfTrue = checkBoxesArrayData.find( checkbox =>  checkbox === true)
-        console.log('checkIfTrue :>> ', checkIfTrue);
 
         if (checkIfTrue === undefined) {
             setSecteurs([]);
         }
     },[checkBoxesArrayData])
+
+    // useEffect(() => {
+    //     console.log('secteurs :>> ', secteurs);
+    //     console.log('secteurs.length :>> ', secteurs.length);  
+    // }, [secteurs, secteurs.length])
 
     return (
         <>
@@ -87,7 +89,6 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({ optionsData, se
                                 <span>{secteur}, </span>
                             )
                         })} </p>
-
                         <span className={`
                         ${localStorage.scheme === "dark" ? "bg-dark-text-action" : "bg-blue-france"}
                             w-6 h-6 rounded-full text-white font-bold`
@@ -103,7 +104,7 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({ optionsData, se
                 <ul className="w-[700px] mh-[350px] z-[10] bg-input-background flex flex-wrap content-evenly shadow-slate-400 shadow-sm">
                     {optionsData.map((option, index) => {
                         return (
-
+                            
                             <li className="p-0 w-[350px] flex content-center items-center" key={option}>
                                 <input
                                     className="bg-red-200 appearance-on addBorder border text-black border-black  mx-4"
@@ -112,12 +113,11 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({ optionsData, se
                                     value={checkBoxesArrayData[index]}
                                     onChange={() => { handleOnChange(index) }}
                                     checked={checkBoxesArrayData[index]}
-                                />
+                                    />
                                 <label className="capitalize h-12 flex items-center" htmlFor={option}>{option}</label>
                             </li>
 
-                        )
-                    })}
+                        )})}
                 </ul>
             </>
             }
