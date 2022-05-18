@@ -159,7 +159,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
                             </div>
 
                         </div>
-                        <div className="researchContainer max-w-[1240px] w-full p-6 flex flex-col bg-research-precision-container items-center  lg:p-1">
+                        <div className="researchContainer max-w-[1240px] w-full p-6 flex hidden flex-col bg-research-precision-container items-center  lg:p-1">
 
                             <h2 className=" bold text-xl text-center mt-4" style={{ color: cardType.color }}>Preciser la recherche </h2>
 

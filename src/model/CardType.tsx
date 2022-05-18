@@ -84,7 +84,7 @@ export const startups: CardType = {
     name: "startups",
     searchLink: "/startups",
     apiName: "startups",
-    version: "beta"
+    version: "alpha"
 } as const
 
 export const all = [aideInno, aideClient, investisseur, acheteurPublic,/*achatPrevi,*/ startups]
