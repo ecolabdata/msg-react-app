@@ -11,6 +11,7 @@ import Pagination from '../dsfrComponents/Pagination';
 import ArrowDark from './../../assets/icons/arrow-dark-action.svg';
 import all_aides_types from "../../api/aide-types.json"
 import Select from '../dsfrComponents/Select';
+import { PitchThematicsKeywords } from '../PitchThematicsKeywords';
 
 const allSecteur = [
     "Numérique éco-responsable",
@@ -60,7 +61,7 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
     const filteredCards: JSX.Element[] | undefined = useMemo(() => {
         console.log("Running use memo")
         if (initialState?.search.cards) {
-            let allCards : AnyCard[] = cardType.name === "aides-innovations" ? initialState.search.cards.aides_innovation : initialState.search.cards.aides_clients
+            let allCards: AnyCard[] = cardType.name === "aides-innovations" ? initialState.search.cards.aides_innovation : initialState.search.cards.aides_clients
             allCards = allCards.filter(x => !isInCorbeille(x))
             if (aid_type) allCards = allCards.filter(x => x.aid_types?.includes(aid_type))
             if (echeance) {
@@ -161,46 +162,12 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
 
                 <div className=" flex flex-col items-center w-full">
                     <form onSubmit={(event) => handleOnSubmitForm(event)} id="keywordsForm">
-                        <div className="formContainer flex flex-col items-center">
-                            <div className="mt-8 rounded-md bg-background-form">
-                                <div className="w-[900px] flex items-center m-8 flex-wrap">
-                                    <div className='flex flex-col w-[500px]'>
-                                        <h2 className="w-11/12 text-base text-center">Décrivez en quelques lignes votre projet (thématique, technologie, cible, apports... ) pour obtenir des pistes pertinentes.</h2>
-
-                                        <textarea onChange={e => setDescription(e.target.value)} value={description} form="keywordsForm"
-                                            className="cursor-text rounded-t-sm mt-4 w-11/12 h-[300px] addBorder-b border-3 border-gray-300 p-4 bg-background-inputs" placeholder="Expl. : “start-up de méthanisation” ou “nous sommes une startup spécialisée dans le processus biologique de dégradation des matières organiques...”"></textarea>
-                                    </div>
-                                    {/* <button className="addBorder-b border-b self-start ml-5 mt-2 text-sm ">Affiner par mots clés</button> */}
-                                    <div>
-                                        <h2 className="mb-8 w-11/12 text-base">Thématiques</h2>
-                                        <div className='flex flex-wrap w-[400px] h-[300px] flex-col'>
-                                            {allSecteur.map(secteur => <div className="fr-checkbox-group fr-checkbox-group--sm w-[180px]">
-                                                <input type="checkbox" id={secteur} name={secteur} checked={secteurs.includes(secteur)} onChange={e => {
-                                                    e.currentTarget.checked ? setSecteurs([...secteurs, secteur]) : setSecteurs(secteurs.filter(x => x != secteur))
-                                                }} />
-                                                <label className="fr-label text-xs" htmlFor={secteur}>{secteur}</label>
-                                            </div>)}
-                                        </div>
-                                        <div className="keyWordsContaine w-full">
-                                            <h2 className="mt-8 w-11/12 text-base">Mots-clefs</h2>
-                                            <textarea
-                                                onChange={e => {
-                                                    const motsclefs = e.target.value.split(",").map(x => x.trim())
-                                                    console.log({ motsclefs })
-                                                    setMotsclef(motsclefs)
-                                                }}
-                                                className="cursor-text rounded-t-sm mt-4 h-15 w-full addBorder-b border-3 border-gray-300 p-4 bg-background-inputs"
-                                            >
-                                                {motsclefs.join(", ")}
-                                            </textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='h-12 w-full flex justify-center items-center color'>
-                                {errorTxt}
-                            </div>
-
+                        <div  className="m-auto w-[80%] p-4 flex justify-around">
+                            <PitchThematicsKeywords
+                                usedDescription={[description, setDescription]}
+                                usedMotsClef={[motsclefs, setMotsclef]}
+                                usedSecteurs={[secteurs, setSecteurs]}
+                            />
                         </div>
                         <div className="researchContainer max-w-[1240px] w-full p-6 flex flex-col bg-research-precision-container items-center  lg:p-1">
 
@@ -252,7 +219,7 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
                 {cardsSlice}
             </div> : initialState ? "Aucun résultat trouvé" : null}
 
-            {initialState &&  <Pagination isLoading={isLoading && nbPage > 0} onClick={() => {
+            {initialState && <Pagination isLoading={isLoading && nbPage > 0} onClick={() => {
                 const element = document.getElementById('cardsContainer')
                 if (element) setNextScrolTarget({ behavior: "smooth", top: element.offsetTop - window.innerHeight * 0.20 })
             }} currentPageNo={pageNo} baseUrl={cardType.searchLink} nbPage={nbPage} initialState={initialState} />}
