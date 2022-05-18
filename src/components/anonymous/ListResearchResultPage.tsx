@@ -7,6 +7,7 @@ import { ApplicationContext } from '../../Router';
 import { InitialState } from '../../utils/InitialState';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
 import Pagination from '../dsfrComponents/Pagination';
+import { PitchThematicsKeywords } from '../PitchThematicsKeywords';
 // import ToggleButton from '../dsfrComponents/ToggleButton';
 import ArrowDark from './../../assets/icons/arrow-dark-action.svg';
 
@@ -80,7 +81,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
                 setIsLoading(false)
                 return navigate(`${cardType.searchLink}`, {
                     replace: true,
-                    state: {search}
+                    state: { search }
                 })
             })
         } else {
@@ -118,46 +119,12 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
 
                 <div className=" flex flex-col items-center w-full">
                     <form onSubmit={(event) => handleOnSubmitForm(event)} id="keywordsForm">
-                        <div className="formContainer flex flex-col items-center">
-                            <div className="mt-8 rounded-md bg-background-form">
-                                <div className="w-[900px] flex items-center m-8 flex-wrap">
-                                    <div className='flex flex-col w-[500px]'>
-                                        <h2 className="w-11/12 text-base text-center">Décrivez en quelques lignes votre projet (thématique, technologie, cible, apports... ) pour obtenir des pistes pertinentes.</h2>
-
-                                        <textarea onChange={e => setDescription(e.target.value)} value={description} form="keywordsForm"
-                                            className="cursor-text rounded-t-sm mt-4 w-11/12 h-[300px] addBorder-b border-3 border-gray-300 p-4 bg-background-inputs" placeholder="Expl. : “start-up de méthanisation” ou “nous sommes une startup spécialisée dans le processus biologique de dégradation des matières organiques...”"></textarea>
-                                    </div>
-                                    {/* <button className="addBorder-b border-b self-start ml-5 mt-2 text-sm ">Affiner par mots clés</button> */}
-                                    <div>
-                                        <h2 className="mb-8 w-11/12 text-base">Thématiques</h2>
-                                        <div className='flex flex-wrap w-[400px] h-[300px] flex-col'>
-                                            {allSecteur.map(secteur => <div className="fr-checkbox-group fr-checkbox-group--sm w-[180px]">
-                                                <input type="checkbox" id={secteur} name={secteur} checked={secteurs.includes(secteur)} onChange={e => {
-                                                    e.currentTarget.checked ? setSecteurs([...secteurs, secteur]) : setSecteurs(secteurs.filter(x => x != secteur))
-                                                }} />
-                                                <label className="fr-label text-xs" htmlFor={secteur}>{secteur}</label>
-                                            </div>)}
-                                        </div>
-                                        <div className="keyWordsContaine w-full">
-                                            <h2 className="mt-8 w-11/12 text-base">Mots-clefs</h2>
-                                            <textarea
-                                                onChange={e => {
-                                                    const motsclefs = e.target.value.split(",").map(x => x.trim())
-                                                    console.log({ motsclefs })
-                                                    setMotsclef(motsclefs)
-                                                }}
-                                                className="cursor-text rounded-t-sm mt-4 h-15 w-full addBorder-b border-3 border-gray-300 p-4 bg-background-inputs"
-                                            >
-                                                {motsclefs.join(", ")}
-                                            </textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='h-12 w-full flex justify-center items-center color'>
-                                {errorTxt}
-                            </div>
-
+                        <div className="m-auto w-[80%] p-4 flex justify-around mt-8">
+                            <PitchThematicsKeywords
+                                usedDescription={[description, setDescription]}
+                                usedMotsClef={[motsclefs, setMotsclef]}
+                                usedSecteurs={[secteurs, setSecteurs]}
+                            />
                         </div>
                         <div className="researchContainer max-w-[1240px] w-full p-6 flex hidden flex-col bg-research-precision-container items-center  lg:p-1">
 
