@@ -81,7 +81,7 @@ const MySelection = () => {
                         md:h-[40%]
                         "
                         onClick={() => download(Object.values(favoris))}>
-                            Télécharger
+                            Télécharger (WIP)
                         </button>
 
                         {/* <button className="fr-btn fr-btn--sm fr-btn--primary fr-fi-mail-fill fr-btn--icon-left

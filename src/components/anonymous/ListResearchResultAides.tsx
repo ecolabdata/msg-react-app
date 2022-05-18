@@ -162,7 +162,7 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
 
                 <div className=" flex flex-col items-center w-full">
                     <form onSubmit={(event) => handleOnSubmitForm(event)} id="keywordsForm">
-                        <div  className="m-auto w-[80%] p-4 flex justify-around mt-8">
+                        <div className="m-auto w-[80%] p-4 flex justify-around mt-8">
                             <PitchThematicsKeywords
                                 usedDescription={[description, setDescription]}
                                 usedMotsClef={[motsclefs, setMotsclef]}
@@ -209,6 +209,9 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
                             </div>
                         </div>
                     </form>
+                    <div className='h-12 w-full flex justify-center items-center color'>
+                        {errorTxt}
+                    </div>
                     <button form="keywordsForm" disabled={isLoading} className="mt-8 w-48 h-14 text-xl fr-btn fr-btn--primary capitalize" > <span className="mx-auto">{isLoading ? "Chargement..." : "rechercher !"}</span> </button>
                 </div>
             </div>

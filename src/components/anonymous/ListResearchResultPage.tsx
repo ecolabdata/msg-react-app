@@ -57,17 +57,17 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
 
     let displayCards: JSX.Element[] | undefined;
     let allCards: AnyCard[] = []
-    let nbPage: number | undefined;
+    const pageChunkSize = 20;
     if (initialState) {
         allCards = initialState.search.cards[cardType.apiName];
-        const pageChunkSize = 20;
-        nbPage = Math.ceil(allCards.length / pageChunkSize)
+
         displayCards = allCards.filter(x => !isInCorbeille(x))
             .slice(
                 (pageNo - 1) * pageChunkSize,
                 pageNo * pageChunkSize
-            ).map((card) => <ResultPreviewCard cardType={cardType} cardData={card} />);
+            ).map((card) => <ResultPreviewCard isLoading={isLoading} cardType={cardType} cardData={card} />);
     }
+    let nbPage = Math.ceil(allCards.length / pageChunkSize)
     const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (description.length > 0) {
@@ -144,17 +144,20 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
                             </div>
                         </div>
                     </form>
+                    <div className='h-12 w-full flex justify-center items-center color'>
+                        {errorTxt}
+                    </div>
                     <button form="keywordsForm" disabled={isLoading} className="mt-8 w-48 h-14 text-xl fr-btn fr-btn--primary capitalize" > <span className="mx-auto">{isLoading ? "Chargement..." : "rechercher !"}</span> </button>
                 </div>
             </div>
 
-            {!isLoading && <div id="cardsContainer" className="cardsContainer mt-10 mx-auto max-w-[80%] flex flex-wrap justify-evenly bg 
+            {displayCards && displayCards.length > 0 ? <div id="cardsContainer" className="cardsContainer mt-10 mx-auto max-w-[80%] flex flex-wrap justify-evenly bg 
             xl:mx-auto
             ">
                 {displayCards}
-            </div>}
+            </div> : initialState ? "Aucun résultat trouvé" : null}
 
-            {initialState && nbPage && !isLoading && <Pagination onClick={() => {
+            {initialState && <Pagination isLoading={isLoading && nbPage > 0} onClick={() => {
                 const element = document.getElementById('cardsContainer')
                 if (element) setNextScrolTarget({ behavior: "smooth", top: element.offsetTop - window.innerHeight * 0.20 })
             }} currentPageNo={pageNo} baseUrl={cardType.searchLink} nbPage={nbPage} initialState={initialState} />}
