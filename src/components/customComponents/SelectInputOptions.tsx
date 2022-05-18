@@ -21,6 +21,7 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({ optionsData, se
 
     return (
         <>
+            <label className="fr-label" htmlFor="select">Thématique du projet</label>
             <button type="button" className=" z-[10] h-10 w-[80%] flex justify-between py-2 px-3 bg-input-background addBorder-b border-3 border-b-white " onClick={() => { setDisplaySelect(!displaySelect); }}>
                 
                 {secteurs.length <= 0

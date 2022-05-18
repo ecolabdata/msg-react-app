@@ -10,11 +10,11 @@ const KeyWordsLabel: React.FC<KeyWordsLabelProps> = ({keyWord}) => {
     };
 
     return (
-
+        // fr-tag--dismiss to add delete 
         <>
                 <button onClick={ (event) => {
                     onClickHandler(event);
-                }} type="button" className="m-1 fr-tag fr-tag--sm fr-tag--dismiss" aria-label={`Retirer${keyWord}`}>{keyWord}</button>
+                }} type="button" className="m-1 fr-tag fr-tag--sm" aria-label={`Retirer${keyWord}`}>{keyWord}</button>
         </>
     ) 
 }; 

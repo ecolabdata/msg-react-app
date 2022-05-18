@@ -15,8 +15,8 @@ import { ThematicsEnum } from '../../model/ThematicsEnum';
 import SelectInputOptions from '../customComponents/SelectInputOptions';
 
 
-const ResearchForm: React.FC<{alpha: boolean}> = ({alpha}) => {
-    
+const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
+
     const { usedCorbeille, usedNextScrollTarget } = useContext(ApplicationContext)
     const [toggleInCorbeille, isInCorbeille] = usedCorbeille
     const [nextScrollTarget, setNextScrolTarget] = usedNextScrollTarget
@@ -30,19 +30,19 @@ const ResearchForm: React.FC<{alpha: boolean}> = ({alpha}) => {
     const [motsclefs, setMotsclef] = useState<string[]>(initialState?.search.query.motsclefs || [])
     const [errorTxt, setErrorTxt] = useState(<></>)
     const thematicsValues = Object.values(ThematicsEnum);
-    
-    const handleOnSubmitForm = (ctrlPress:boolean) => {
+
+    const handleOnSubmitForm = (ctrlPress: boolean) => {
 
         if (description.length > 0) {
 
             setIsLoading(true)
             setErrorTxt(<></>)
-            search({description, motsclefs, secteurs }).then((search) => {
+            search({ description, motsclefs, secteurs }).then((search) => {
                 setIsLoading(false)
                 //? Scroll
                 const element = document.getElementById('previews')
                 if (element) setNextScrolTarget({ behavior: "smooth", top: element.offsetTop - window.innerHeight * 0.20 })
-                navigate(ctrlPress ? `/explorer-alpha` : `/explorer`, {state: {search}})
+                navigate(ctrlPress ? `/explorer-alpha` : `/explorer`, { state: { search } })
             }).catch(e => {
                 setIsLoading(false)
                 navigate(ctrlPress ? `/explorer-alpha` : `/explorer`)
@@ -57,7 +57,7 @@ const ResearchForm: React.FC<{alpha: boolean}> = ({alpha}) => {
 
         if (!initialState) return null;
 
-        const results : AnyCard[] = initialState.search.cards[cardType.apiName];
+        const results: AnyCard[] = initialState.search.cards[cardType.apiName];
         if (results.length === 0) return null;
 
         return (
@@ -76,83 +76,77 @@ const ResearchForm: React.FC<{alpha: boolean}> = ({alpha}) => {
             <div className="formContainer flex flex-col items-center">
 
                 <h1 className="w-3/5 font-bold text-4xl text-center mx-auto max-w-4xl"> Start-up greentech, trouvez automatiquement des pistes pour booster votre développement !  </h1>
-                   
-                    <form onSubmit={(event) => {
-                        event.preventDefault()
-                        handleOnSubmitForm(false)
-                    }} id="keywordsForm" className="m-8 w-[80%] p-4 flex justify-around">
 
-                        <div className='leftSideForm max-w-[48%] max-h-[400px] p-4 projectContainer flex flex-col items-around justify-center items-center bg-background-form '>
-                            
-                            <div className="titleContainer relative bottom-4 w-fit flex">
-                                <img src={RocketLogo} alt="Logo" />
-                                <h2 className="italic text-dark-text-action text-3xl  font-[Spectral]">1. Votre projet</h2>
+                <form onSubmit={(event) => {
+                    event.preventDefault()
+                    handleOnSubmitForm(false)
+                }} id="keywordsForm" className="m-8 w-[80%] p-4 flex justify-around">
+
+                    <div className='leftSideForm max-w-[48%] max-h-[400px] p-4 projectContainer flex flex-col items-around justify-center items-center bg-background-form '>
+
+                        <div className="titleContainer relative bottom-4 w-fit flex">
+                            <img src={RocketLogo} alt="Logo" />
+                            <h2 className="italic text-dark-text-action text-3xl  font-[Spectral]">1. Votre projet</h2>
+                        </div>
+
+                        <p className="w-11/12 text-base text-center">Décrivez en quelques lignes votre projet (thématique, technologie, cible, apports... ) pour obtenir des pistes pertinentes.</p>
+                        <textarea onChange={e => setDescription(e.target.value)} value={description} form="keywordsForm"
+                            className="cursor-text my-8 min-h-[225px] rounded-t-sm mt-4 w-11/12 addBorder-b border-3 border-gray-300 p-4 bg-background-inputs"
+                            placeholder="Expl. : “start-up de méthanisation” ou “nous sommes une startup spécialisée dans le processus biologique de dégradation des matières organiques...”" />
+
+                    </div>
+
+                    <div className="rightSideForm min-w-[48%] w-1/4 max-h-[400px] flex flex-col items-center">
+                        <div className='thematicsContainer p-2 w-full flex flex-col items-center bg-background-form'>
+                            <div className="titleContainer spectral relative bottom-4 w-fit flex">
+                                <img src={ThematicsLogo} alt="Logo" />
+                                <h2 className="italic text-dark-text-action text-3xl font-[Spectral]"> 2. La thématique</h2>
                             </div>
 
-                            <p className="w-11/12 text-base text-center">Décrivez en quelques lignes votre projet (thématique, technologie, cible, apports... ) pour obtenir des pistes pertinentes.</p>
-                            <textarea onChange={e => setDescription(e.target.value)} value={description} form="keywordsForm"
-                                className="cursor-text my-8 min-h-[225px] rounded-t-sm mt-4 w-11/12 addBorder-b border-3 border-gray-300 p-4 bg-background-inputs" 
-                                placeholder="Expl. : “start-up de méthanisation” ou “nous sommes une startup spécialisée dans le processus biologique de dégradation des matières organiques...”"/>
+                            <SelectInputOptions optionsData={thematicsValues} secteurs={secteurs} setSecteurs={setSecteurs} />
 
                         </div>
 
-                        <div className="rightSideForm min-w-[48%] w-1/4 max-h-[400px] flex flex-col items-center">
-                            <div className='thematicsContainer h-[200px] w-full flex flex-col items-center bg-background-form'>
-                                <div className="titleContainer spectral relative bottom-4 w-fit flex">
-                                    <img src={ThematicsLogo} alt="Logo" />
-                                    <h2 className="italic text-dark-text-action text-3xl font-[Spectral]"> 2. La thématique</h2>
-                                </div>
+                        <div className="keyWordsContainer mt-8 w-full flex flex-col items-center p-2 bg-background-form">
 
-                                <SelectInputOptions  optionsData={thematicsValues} secteurs={secteurs} setSecteurs={setSecteurs}/>
-
+                            <div className="titleContainer relative w-fit flex">
+                                <img src={KeywordsLogo} alt="Logo" />
+                                <h2 className="italic text-dark-text-action text-3xl font-[Spectral]"> 3. Les mots clés</h2>
                             </div>
 
-                            <div className="keyWordsContainer mt-8 h-[200px] w-full flex flex-col items-center p-2 bg-background-form">
-
-                                <div className="titleContainer relative w-fit flex">
-                                    <img src={KeywordsLogo} alt="Logo" />
-                                    <h2 className="italic text-dark-text-action text-3xl font-[Spectral]"> 3. Les mots clés</h2>
-                                </div>
-
-                                <p className="text-sm text-white
+                            <p className="text-sm text-white
                                 2xl:text-base">Ajoutez des mots clés représentatifs de votre activité (facultatif)</p>
-                                <p className="italic text-xs font-bold">délimitez vos mots clés par une virgule</p>
-                                <textarea
-                                
-                                    onChange={e => {
-
+                            <p className="italic text-xs font-bold">délimitez vos mots clés par une virgule</p>
+                            <textarea
+                                onChange={e => {
+                                    if (e.target.value) {
                                         const motsclefs = e.target.value.split(",").map(x => x.trim())
-
-                                        console.log({ motsclefs })
                                         setMotsclef(motsclefs)
-                                    }}
-                                    className="cursor-text rounded-t-sm mt-4 h-15 w-[80%] addBorder-b border-3 border-gray-300 p-4 bg-background-inputs"
-                                >
-                                    {motsclefs.join(", ")}
-                                </textarea>
-                                    
-                                    <ul className="keyWordsList h-full w-full mt-2 p-2 flex flex-wrap ">
+                                    } else {
+                                        setMotsclef([])
+                                    }
+                                }}
+                                className="cursor-text rounded-t-sm mt-4 h-15 w-[80%] addBorder-b border-3 border-gray-300 p-4 bg-background-inputs overflow-hidden resize-none"
+                                value={motsclefs.join(", ")}
+                            >
+                            </textarea>
 
-                                        {motsclefs.map( word => { 
-                                            console.log('word :>> ', word);
-                                            return <li key={word}> <KeyWordsLabel keyWord={word}/> </li>
-                                            
-                                        })}
-
-                                    </ul>
-
-                            </div>
+                            <ul className="keyWordsList h-[52px] w-full mt-2 p-2 flex flex-wrap">
+                                {motsclefs.map(word => <li key={word}> <KeyWordsLabel keyWord={word} /> </li>)}
+                            </ul>
 
                         </div>
 
-                    </form>
+                    </div>
+
+                </form>
 
                 <div className='h-12 w-full flex justify-center items-center color'>
                     {errorTxt}
                 </div>
-                
+
                 <div className='buttonsContainer w-[450px] flex justify-around'>
-                    
+
                     <button className="w-48 h-14 text-base  underline capitalize" onClick={(event) => {
                         setDescription("")
                         setSecteurs([])
