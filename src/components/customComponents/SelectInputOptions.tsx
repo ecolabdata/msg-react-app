@@ -47,31 +47,33 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({ optionsData, se
 
             {displaySelect && <>
                 <div style={{ position: "fixed", width: "100vw", height: "100vh", top: 0, left: 0, zIndex: 5 }} onClick={e => setDisplaySelect(false)}></div>
-                <ul className="w-[700px] mh-[350px] z-[10] bg-input-background flex flex-wrap content-evenly shadow-slate-400 shadow-sm">
-                    {optionsData.map((option, index) => {
-                        return (
-                            
-                            <li className="p-0 w-[350px] flex content-center items-center" key={option}>
-                                <input
-                                    className="bg-red-200 appearance-on addBorder border text-black border-black  mx-4"
-                                    id={option}
-                                    type="checkbox"
-                                    value={option}
-                                    onChange={e => {
-                                        if (e.target.checked) {
-                                            secteursSet.add(option)
-                                        } else {
-                                            secteursSet.delete(option)
-                                        }
-                                        setSecteurs(Array.from(secteursSet))
-                                    }}
-                                    checked={secteursSet.has(option)}
-                                    />
-                                <label className="capitalize h-12 flex items-center" htmlFor={option}>{option}</label>
-                            </li>
+                <div className='h-0 overflow-visible z-[10]'>
+                    <ul className="w-[700px] mh-[350px] bg-input-background flex flex-wrap content-evenly shadow-slate-400 shadow-sm">
+                        {optionsData.map((option, index) => {
+                            return (
+                                
+                                <li className="p-0 w-[350px] flex content-center items-center" key={option}>
+                                    <input
+                                        className="bg-red-200 appearance-on addBorder border text-black border-black  mx-4"
+                                        id={option}
+                                        type="checkbox"
+                                        value={option}
+                                        onChange={e => {
+                                            if (e.target.checked) {
+                                                secteursSet.add(option)
+                                            } else {
+                                                secteursSet.delete(option)
+                                            }
+                                            setSecteurs(Array.from(secteursSet))
+                                        }}
+                                        checked={secteursSet.has(option)}
+                                        />
+                                    <label className="capitalize h-12 flex items-center" htmlFor={option}>{option}</label>
+                                </li>
 
-                        )})}
-                </ul>
+                            )})}
+                    </ul>
+                </div>
             </>
             }
         </>

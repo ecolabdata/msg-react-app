@@ -82,10 +82,10 @@ const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
                     handleOnSubmitForm(false)
                 }} id="keywordsForm" className="m-8 w-[80%] p-4 flex justify-around">
 
-                    <div className='leftSideForm max-w-[48%] max-h-[400px] p-4 projectContainer flex flex-col items-around justify-center items-center bg-background-form '>
+                    <div className='leftSideForm max-w-[48%] max-h-[400px] pt-8 projectContainer flex flex-col items-around justify-center items-center bg-background-form '>
 
-                        <div className="titleContainer relative bottom-4 w-fit flex">
-                            <img src={RocketLogo} alt="Logo" />
+                        <div className="titleContainer relative bottom-[68px] w-fit flex h-0 w-500px overflow-visible">
+                            <img className="h-fit" src={RocketLogo} alt="Logo" />
                             <h2 className="italic text-dark-text-action text-3xl  font-[Spectral]">1. Votre projet</h2>
                         </div>
 
@@ -97,8 +97,8 @@ const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
                     </div>
 
                     <div className="rightSideForm min-w-[48%] w-1/4 max-h-[400px] flex flex-col items-center">
-                        <div className='thematicsContainer p-2 w-full flex flex-col items-center bg-background-form'>
-                            <div className="titleContainer spectral relative bottom-4 w-fit flex">
+                        <div className='thematicsContainer p-8 w-full flex flex-col items-center bg-background-form'>
+                            <div className="titleContainer spectral relative bottom-[50px] h-0 overflow-visible w-fit flex">
                                 <img src={ThematicsLogo} alt="Logo" />
                                 <h2 className="italic text-dark-text-action text-3xl font-[Spectral]"> 2. La thématique</h2>
                             </div>
@@ -107,9 +107,9 @@ const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
 
                         </div>
 
-                        <div className="keyWordsContainer mt-8 w-full flex flex-col items-center p-2 bg-background-form">
+                        <div className="keyWordsContainer mt-8 w-full flex flex-col items-center pt-8 bg-background-form">
 
-                            <div className="titleContainer relative w-fit flex">
+                            <div className="titleContainer relative w-fit flex bottom-[47px] h-0 overflow-visible">
                                 <img src={KeywordsLogo} alt="Logo" />
                                 <h2 className="italic text-dark-text-action text-3xl font-[Spectral]"> 3. Les mots clés</h2>
                             </div>
