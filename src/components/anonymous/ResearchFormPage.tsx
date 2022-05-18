@@ -154,7 +154,11 @@ const ResearchForm: React.FC<{alpha: boolean}> = ({alpha}) => {
                 
                 <div className='buttonsContainer w-[450px] flex justify-around'>
                     
-                    <button className="w-48 h-14 text-base  underline capitalize" > Réinitialiser </button>
+                    <button className="w-48 h-14 text-base  underline capitalize" onClick={(event) => {
+                        setDescription("")
+                        setSecteurs([])
+                        setMotsclef([])
+                    }}> Réinitialiser </button>
                     <button onClick={(event) => {
                         event.preventDefault()
                         handleOnSubmitForm(event.ctrlKey)
