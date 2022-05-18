@@ -16,63 +16,8 @@ interface SelectInputOptionsProps {
 const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({ optionsData, secteurs, setSecteurs }) => {
 
     const [displaySelect, setDisplaySelect] = useState(false);
-    const [checkBoxesArrayData, setCheckBoxesArrayData] = useState(new Array(optionsData.length).fill(false));
 
-    const handleOnChange = (checkboxIndex: number) => {
-
-        const newCheckBoxesArrayState = checkBoxesArrayData.map((checkbox, index) => {
-            return index === checkboxIndex ? !checkbox : checkbox
-        });
-
-        setCheckBoxesArrayData(newCheckBoxesArrayState);
-    }
-
-    useEffect(() => {
-        console.log('ckb1 - secteurs :>> ', secteurs);
-        console.log('ckb1 - secteurs.length :>> ', secteurs.length);  
-
-        checkBoxesArrayData.filter((checkbox, currentCheckboxIndex) => {
-            
-            if (checkbox && !secteurs.includes(optionsData[currentCheckboxIndex])) {
-                console.log("JE PASSE ICI");
-                setSecteurs([...secteurs, optionsData[currentCheckboxIndex]]);
-
-                console.log('ckb1* - secteurs :>> ', secteurs);
-                console.log('ckb1* - secteurs.length :>> ', secteurs.length);  
-        
-            }
-
-            if (!checkbox && secteurs.includes(optionsData[currentCheckboxIndex])) {
-                console.log("JE PASSE ICI 2 ");
-
-                const indexOfTheValueToDelete = secteurs.indexOf(optionsData[currentCheckboxIndex]);
-                console.log('indexOfTheValueToDelete :>> ', indexOfTheValueToDelete);
-                setSecteurs(secteurs.splice(indexOfTheValueToDelete, 1))
-                // secteurs.splice(indexOfTheValueToDelete, 1)
-            }
-
-            return null;
-        })
-
-    }, [checkBoxesArrayData, secteurs])
-    
-    useEffect(() => {
-
-        console.log('ckb2 - secteurs :>> ', secteurs);
-        console.log('ckb2 - secteurs.length :>> ', secteurs.length);  
-
-
-        const checkIfTrue = checkBoxesArrayData.find( checkbox =>  checkbox === true)
-
-        if (checkIfTrue === undefined) {
-            setSecteurs([]);
-        }
-    },[checkBoxesArrayData])
-
-    // useEffect(() => {
-    //     console.log('secteurs :>> ', secteurs);
-    //     console.log('secteurs.length :>> ', secteurs.length);  
-    // }, [secteurs, secteurs.length])
+    const secteursSet = new Set(secteurs)
 
     return (
         <>
@@ -110,9 +55,16 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({ optionsData, se
                                     className="bg-red-200 appearance-on addBorder border text-black border-black  mx-4"
                                     id={option}
                                     type="checkbox"
-                                    value={checkBoxesArrayData[index]}
-                                    onChange={() => { handleOnChange(index) }}
-                                    checked={checkBoxesArrayData[index]}
+                                    value={option}
+                                    onChange={e => {
+                                        if (e.target.checked) {
+                                            secteursSet.add(option)
+                                        } else {
+                                            secteursSet.delete(option)
+                                        }
+                                        setSecteurs(Array.from(secteursSet))
+                                    }}
+                                    checked={secteursSet.has(option)}
                                     />
                                 <label className="capitalize h-12 flex items-center" htmlFor={option}>{option}</label>
                             </li>
