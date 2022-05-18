@@ -67,6 +67,9 @@ const ResearchForm: React.FC<{alpha: boolean}> = ({alpha}) => {
 
     })
 
+    useEffect(() => {
+        console.log('rschF - secteurs :>> ', secteurs);
+    },[secteurs])
     return (
         <>
             <div className="formContainer flex flex-col items-center">
@@ -94,7 +97,7 @@ const ResearchForm: React.FC<{alpha: boolean}> = ({alpha}) => {
 
                         <div className="rightSideForm min-w-[48%] w-1/4 max-h-[400px] flex flex-col items-center">
                             <div className='thematicsContainer h-[200px] w-full flex flex-col items-center bg-background-form'>
-
+                                    {JSON.stringify(secteurs)}
                                 <div className="titleContainer spectral relative bottom-4 w-fit flex">
                                     <img src={ThematicsLogo} alt="Logo" />
                                     <h2 className="italic text-dark-text-action text-3xl font-[Spectral]"> 2. La thématique</h2>
