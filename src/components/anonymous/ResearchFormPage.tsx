@@ -77,11 +77,11 @@ const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
             <div className="formContainer flex flex-col items-center w-full">
 
                 <h1 className="font-bold text-2xl md:text-4xl text-center mx-auto max-w-4xl"> Start-up greentech, trouvez automatiquement des pistes pour booster votre développement !  </h1>
-                <div className="">
+                <div className="mt-4">
                 <form onSubmit={(event) => {
                     event.preventDefault()
                     handleOnSubmitForm(false)
-                }} id="keywordsForm"  className="flex justify-around flex-wrap">
+                }} id="keywordsForm"  className="flex flex-wrap">
                     <PitchThematicsKeywords
                         usedDescription={[description, setDescription]}
                         usedMotsClef={[motsclefs, setMotsclef]}

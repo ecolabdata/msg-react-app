@@ -27,42 +27,55 @@ export const PitchThematicsKeywords: React.FC<PitchThematicsKeywordsParams> = ({
     const [motsclefs, setMotsclef] = usedMotsClef
     const thematicsValues = Object.values(ThematicsEnum);
     return <>
-        <div className='leftSideForm mt-4 projectContainer flex flex-col items-around justify-center items-center bg-background-form relative'>
-            <OverlappingTitle logo={RocketLogo} txt={"1. Votre projet"} />
-            <p className="text-base text-center m-2">Décrivez en quelques lignes votre projet (thématique, technologie, cible, apports... ) pour obtenir des pistes pertinentes.</p>
-            <textarea onChange={e => setDescription(e.target.value)} value={description} form="keywordsForm"
-                className="cursor-text my-8 min-h-[225px] rounded-t-sm mt-4 addBorder-b border-3 border-gray-300 p-4 bg-background-inputs"
-                placeholder="Expl. : “start-up de méthanisation” ou “nous sommes une startup spécialisée dans le processus biologique de dégradation des matières organiques...”" />
-
+        <div className='leftSideForm projectContainer flex justify-center items-stretch basis-auto flex-shrink'>
+            <div className={"flex flex-col items-around justify-center items-center  bg-background-form relative  m-2"}>
+                <OverlappingTitle logo={RocketLogo} txt={"1. Votre projet"} />
+                <div className="w-full flex flex-col items-stretch">
+                    <div className="fieldsContainer m-4 flex flex-col items-stretch">
+                        <p className="text-base text-center m-2">Décrivez en quelques lignes votre projet (thématique, technologie, cible, apports... ) pour obtenir des pistes pertinentes.</p>
+                        <textarea onChange={e => setDescription(e.target.value)} value={description} form="keywordsForm"
+                            className="cursor-text my-8 min-h-[225px] rounded-t-sm mt-4 addBorder-b border-3 border-gray-300 bg-background-inputs"
+                            placeholder="Expl. : “start-up de méthanisation” ou “nous sommes une startup spécialisée dans le processus biologique de dégradation des matières organiques...”" />
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div className="rightSideForm mt-4  flex flex-col items-center">
-            <div className='thematicsContainer flex flex-col items-center bg-background-form relative'>
+        <div className="rightSideForm flex flex-col items-stretch  basis-auto flex-shrink">
+            <div className='thematicsContainer flex flex-col items-center bg-background-form relative m-2'>
                 <OverlappingTitle logo={ThematicsLogo} txt={"2. La thématique"} />
-                <SelectInputOptions optionsData={thematicsValues} secteurs={secteurs} setSecteurs={setSecteurs} />
+                <div className="w-full flex flex-col items-stretch">
+                    <div className="fieldsContainer m-4 flex flex-col items-stretch">
+                        <div className='fieldsContainer m-4 flex flex-col items-stretch'>
+                            <SelectInputOptions optionsData={thematicsValues} secteurs={secteurs} setSecteurs={setSecteurs} />
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <div className="keyWordsContainer mt-8 flex flex-col items-center pt-4 md:p-8 bg-background-form relative">
+            <div className="keyWordsContainer mt-8 flex flex-col items-center  relative bg-background-form m-2">
                 <OverlappingTitle logo={KeywordsLogo} txt="3. Les mots clés" />
+                <div className="w-full flex flex-col items-stretch">
+                    <div className="fieldsContainer m-4 flex flex-col items-stretch">
+                        <p className="text-base text-center">Ajoutez des mots clés représentatifs de votre activité. (facultatif)</p>
+                        <textarea
+                            onChange={e => {
+                                if (e.target.value) {
+                                    const motsclefs = e.target.value.split(",").map(x => x.trim())
+                                    setMotsclef(motsclefs)
+                                } else {
+                                    setMotsclef([])
+                                }
+                            }}
+                            className="cursor-text rounded-t-sm mt-4 h-15 addBorder-b border-3 border-gray-300 bg-background-inputs overflow-hidden resize-none"
+                            value={motsclefs.join(", ")}
+                        >
+                        </textarea>
 
-                <textarea
-                    onChange={e => {
-                        if (e.target.value) {
-                            const motsclefs = e.target.value.split(",").map(x => x.trim())
-                            setMotsclef(motsclefs)
-                        } else {
-                            setMotsclef([])
-                        }
-                    }}
-                    className="cursor-text rounded-t-sm mt-4 h-15 addBorder-b border-3 border-gray-300 p-4 bg-background-inputs overflow-hidden resize-none"
-                    value={motsclefs.join(", ")}
-                >
-                </textarea>
-
-                <ul className="keyWordsList h-[52px] mt-2 p-2 flex flex-wrap">
-                    {motsclefs.map(word => <li key={word}> <KeyWordsLabel keyWord={word} /> </li>)}
-                </ul>
-
+                        <ul className="keyWordsList h-[52px] mt-2 flex flex-wrap">
+                            {motsclefs.map(word => <li key={word}> <KeyWordsLabel keyWord={word} /> </li>)}
+                        </ul>
+                    </div>
+                </div>
             </div>
 
         </div>
