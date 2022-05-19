@@ -87,7 +87,7 @@ const DetailsStartup : React.FC<DetailsStartupProps> = ({cardType}) => {
                 </div>
             </div>
 
-            <div className="contactAndDescription mx-auto w-[85%] h-60 flex justify-betweencls ">
+            <div className="contactAndDescription mx-auto w-[85%] h-60 flex justify-between">
                 
                 <div className="leftSide w-[60%] flex flex-wrap">
 
