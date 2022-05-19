@@ -18,10 +18,13 @@ const DetailsStartup : React.FC<DetailsStartupProps> = ({cardType}) => {
         color: cardType.color,
         borderColor: cardType.color
     } as CSSProperties
-
+    const [showContactDetails, setShowContactDetails] = useState(false);
     const { usedFavoris, usedCorbeille } = useContext(ApplicationContext)
     const [toggleFavori, isFavori] = usedFavoris
 
+    const handleClickOnContactDetails = () => {
+        setShowContactDetails(true);
+    }
     return (
 
         <>
@@ -84,24 +87,24 @@ const DetailsStartup : React.FC<DetailsStartupProps> = ({cardType}) => {
                 </div>
             </div>
 
-            <div className="contactAndDescription mx-auto w-[85%] h-60 flex">
+            <div className="contactAndDescription mx-auto w-[85%] h-60 flex justify-betweenbg-yellow-600 ">
                 
-                <div className="leftSide w-3/5 max-h-full flex flex-wrap justify-between">
+                <div className="leftSide w-[60%] flex flex-wrap">
 
-                    <div className="relative min-w-[50%] flex flex-col">
+                    <div className="min-w-[50%] max-w-[50%] flex flex-col">
                         <h3 style={cardTypeColor} className="font-bold text-xl">Pitch</h3>
                         {/* <p className="text-[16px]">{cardData.pitch}</p> */}
                         <p className="mt-2 text-[16px]">
                         Petite éolienne de toiture, légère et discrète</p>
                     </div>
 
-                    <div className="relative min-w-[50%] flex flex-col">
+                    <div className="min-w-[50%] max-w-[50%] flex flex-col">
                         <h3 style={cardTypeColor} className="font-bold text-xl">Région</h3>
                         {/* <p className="text-base">{cardData.region} </p> */}
                         <p className="mt-2 text-base">Bourgogne-Franche-Comté</p>
                     </div>
 
-                    <div className="mt-4 max-w-[50%] flex flex-col">
+                    <div className="mt-4 min-w-[50%] max-w-[50%] flex flex-col">
                         <h3 style={cardTypeColor} className="font-bold text-xl">Soutiens et clients</h3>
                         <div className="mt-2 -ml-[10px] w-full flex flex-wrap">
                             {/* {cardData.supports.map( support => <Label>{support}</Label>)} */}
@@ -115,31 +118,104 @@ const DetailsStartup : React.FC<DetailsStartupProps> = ({cardType}) => {
                         </div>
                     </div>
 
-                    <div className="mt-4 max-w-[50%] flex flex-col">
+                    <div className="mt-4 min-w-[50%] max-w-[50%] flex flex-col ">
                         <h3 style={cardTypeColor} className="font-bold text-xl">Clients publics</h3>
                         <div className="mt-2 -ml-[10px] w-full flex flex-wrap justify-start ">
                             {/* {cardData.supports.map( support => <Label>{support}</Label>)} */}
-                            <Label bgColor="#E5FFF4" textColor="text-[#37635F]">ParisTech</Label>
-                            <Label bgColor="#E5FFF4" textColor="text-[#37635F]">BPI France</Label>
-                            <Label bgColor="#E5FFF4" textColor="text-[#37635F]">Pépite France</Label>
-                            <Label bgColor="#E5FFF4" textColor="text-[#37635F]">Petit Poucet</Label>
+                            <Label bgColor="#E5FFF4" textColor="text-[#37635F]">Ville</Label>
+                            <Label bgColor="#E5FFF4" textColor="text-[#37635F]">Commune</Label>
+                            <Label bgColor="#E5FFF4" textColor="text-[#37635F]">Métropole</Label>
+                            <Label bgColor="#E5FFF4" textColor="text-[#37635F]">Blabla</Label>
                             <Label bgColor="#E5FFF4" textColor="text-[#37635F]">CGI</Label>
                             <Label bgColor="#E5FFF4" textColor="text-[#37635F]">Région Ile de France</Label>
                             <Label bgColor="#E5FFF4" textColor="text-[#37635F]">Leonard Prix de l’innovation VINCI</Label>
+
                         </div>
                     </div>
 
                 </div>
 
-                <div className="contact w-96 h-[230px] text-2xl mx-auto my-auto p-6 flex flex-col justify-evenly items-center addBorder border-2 border-[#4EC8AE]">
-                    <h3 style={cardTypeColor} className="text-base"> Contacts et Détails </h3>
+                <div className="contact rounded-sm w-96 h-[230px] text-2xl my-auto p-6 flex flex-col justify-evenly addBorder border-2 border-[#4EC8AE]">
+                    
+                    <h3 style={cardTypeColor} className="font-bold text-2xl"> Contacts et détails </h3>
                     {/* <p>{cardData.nomReferente}</p> */}
-                    <p className="">Nom prénom référent.e</p>
-                    <button type="button" className="text-base bg-[#4EC8AE] p-2">
-                        <span className="fr-fi-mail-fill mr-1 w-3 h-3 mb-[10px]" aria-hidden="true" />
-                        Voir les coordonnées
+                    <p className="text-base font-bold">Nom prénom référent.e</p>
+                    <button onClick={ () => handleClickOnContactDetails()} type="button" className="w-fit text-base text-left py-2 px-6 text-[#3A3A3A] bg-[#4EC8AE]">
+                        
+                        { !showContactDetails ?
+                            <>
+                                <span className="fr-fi-mail-fill mr-1 w-3 h-3 mb-[10px]" aria-hidden="true" />
+                                <span >Voir les coordonnées</span>
+                            </>
+                            :
+                            <>
+                                <span >M.Dupont</span> <br/>
+                                <span >Directeur de la société "Le Vert"</span> <br/>
+                                <span >02.99.23.14.52</span> <br/>
+                                <span >dupont@levert.fr</span> <br/>
+
+                            </>
+                        }
+
                     </button>
 
+                </div>
+
+            </div>
+
+            <div className="contentContainer mx-auto w-[85%] ">
+                
+                <div className="entreprise -ml-4 mt-8 w-[60%] flex flex-col justify-around">
+                <h3 style={cardTypeColor} className="font-bold text-xl m-4">Entreprise</h3>
+                    {/* <p>{cardData.project}</p> */}
+                    <p className="m-4">WIND my ROOF est une start-up qui développe et commercialise une éolienne de toiture innovante, la WINDBox.</p>
+                </div>
+                
+                <div className="project mt-12 w-[60%] flex flex-col justify-around p-[14px] bg-[#353434]">
+                    <h3 style={cardTypeColor} className="font-bold text-xl m-4">Le Projet</h3>
+                    {/* <p>{cardData.project}</p> */}
+                    <p className="m-4">La solution s’adresse en priorité aux professionnels et aux collectivités : à la différence des produits équivalents, ce module éolien mis au point par cette équipe exploite le vent de façade sur les bâtiments à toiture terrasse (toits plats), au niveau de l’acrotère en bordure de toiture. Elle prend la forme d’une « boîte » (carène) guidant le vent vers le rotor, qui permet de...</p>
+                    <button  style={cardTypeColor} className="max-w-[25%] m-4 addBorder border text-sm  p-1" type="button">
+                        Voir le projet complet
+                    </button>
+                </div>
+
+                <div className="marketsAndChallenges mt-12 w-[60%] flex flex-wrap justify-around">
+                    
+                    <div className="markets mt-4 min-w-[50%] max-w-[50%] flex flex-col">
+                        <h3 style={cardTypeColor} className="font-bold text-xl">Marchés</h3>
+                        <div className="mt-2 -ml-[10px] w-full flex flex-wrap justify-start ">
+                            {/* {cardData.markets.map( market => <Label>{market}</Label>)} */}
+                            <Label bgColor="#E5FFF4" textColor="text-[#37635F]">B to B</Label>
+                            <Label bgColor="#E5FFF4" textColor="text-[#37635F]">B to C</Label>
+                            <Label bgColor="#E5FFF4" textColor="text-[#37635F]">B to A</Label>
+                        </div>
+                    </div>
+
+                    <div className="challenges mt-4 min-w-[50%] max-w-[50%] flex flex-col">
+
+                    <h3 style={cardTypeColor} className="font-bold text-xl">Enjeux ODD</h3>
+                        <div className="mt-2 -ml-[10px] w-full flex flex-wrap justify-start ">
+                            {/* {cardData.markets.map( market => <Label>{market}</Label>)} */}
+                            <Label bgColor="#E5FFF4" textColor="text-[#37635F]">B to B</Label>
+                            <Label bgColor="#E5FFF4" textColor="text-[#37635F]">B to C</Label>
+                            <Label bgColor="#E5FFF4" textColor="text-[#37635F]">B to A</Label>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <p className="mt-16">Source de la donnée : <a href="#annuaur Greentech Innovation"> Annuaire Greentech</a> </p>
+            
+                <p className="mb-5 mt-10">Partager la page</p>
+
+                <div className="share mb-16 -ml-6 w-64 flex justify-evenly">
+                    <a className="" href="Facebook"><span className="fr-fi-facebook-circle-fill" aria-hidden="true"/></a> 
+                    <a className="" href="Twitter"><span className="fr-fi-twitter-fill" aria-hidden="true"/></a> 
+                    <a className="" href="LinkedIn"><span className="fr-fi-linkedin-box-fill" aria-hidden="true"/></a> 
+                    <a className="" href="Mail"><span className="fr-fi-mail-fill" aria-hidden="true"/></a> 
+                    <a className="" href="Copier le lien"><span className="fr-fi-links-fill" aria-hidden="true"/></a> 
                 </div>
 
             </div>
