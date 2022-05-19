@@ -25,16 +25,11 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({ optionsData, se
             <button type="button" className=" z-[10] h-10 w-[80%] flex justify-between py-2 px-3 bg-input-background addBorder-b border-3 border-b-white " onClick={() => { setDisplaySelect(!displaySelect); }}>
                 
                 {secteurs.length <= 0
-
                     ? 
                     <p> Sélectionnez une option </p>
                     :
                     <>
-                        <p className="w-5/6 truncate"> {secteurs.map(secteur => {
-                            return (
-                                <span>{secteur}, </span>
-                            )
-                        })} </p>
+                        <p className="w-[320px] truncate text-left"> {secteurs.join(", ")}</p>
                         <span className={`
                         ${localStorage.scheme === "dark" ? "bg-dark-text-action" : "bg-blue-france"}
                             w-6 h-6 rounded-full text-white font-bold`
