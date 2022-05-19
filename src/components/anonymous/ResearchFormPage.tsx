@@ -74,14 +74,14 @@ const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
 
     return (
         <>
-            <div className="formContainer flex flex-col items-center w-full">
+            <div className="formContainer flex flex-col items-center">
 
-                <h1 className="font-bold text-2xl md:text-4xl text-center mx-auto max-w-4xl"> Start-up greentech, trouvez automatiquement des pistes pour booster votre développement !  </h1>
+                <h1 className="font-bold text-2xl md:text-4xl my-2 md:my-8 lh text-center mx-auto max-w-4xl md:leading-10"> Start-up greentech, trouvez automatiquement des pistes pour booster votre développement !  </h1>
                 <div className="mt-4">
                 <form onSubmit={(event) => {
                     event.preventDefault()
                     handleOnSubmitForm(false)
-                }} id="keywordsForm"  className="flex flex-wrap">
+                }} id="keywordsForm"  className="flex flex-wrap max-w-[1920px]">
                     <PitchThematicsKeywords
                         usedDescription={[description, setDescription]}
                         usedMotsClef={[motsclefs, setMotsclef]}
@@ -89,7 +89,7 @@ const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
                     />
                 </form>
                 </div>
-                <div className='h-12 w-full flex justify-center items-center color'>
+                <div className='h-12 flex justify-center items-center color'>
                     {errorTxt}
                 </div>
 

@@ -27,10 +27,10 @@ export const PitchThematicsKeywords: React.FC<PitchThematicsKeywordsParams> = ({
     const [motsclefs, setMotsclef] = usedMotsClef
     const thematicsValues = Object.values(ThematicsEnum);
     return <>
-        <div className='leftSideForm projectContainer flex justify-center items-stretch basis-auto flex-shrink'>
-            <div className={"flex flex-col items-around justify-center items-center  bg-background-form relative  m-2"}>
+        <div className='leftSideForm flex justify-center items-stretch basis-[50%] flex-shrink flex-grow'>
+            <div className={"flex flex-col items-around justify-center items-center  bg-background-form relative m-2"}>
                 <OverlappingTitle logo={RocketLogo} txt={"1. Votre projet"} />
-                <div className="w-full flex flex-col items-stretch">
+                <div className="flex flex-col items-stretch">
                     <div className="fieldsContainer m-4 flex flex-col items-stretch">
                         <p className="text-base text-center m-2">Décrivez en quelques lignes votre projet (thématique, technologie, cible, apports... ) pour obtenir des pistes pertinentes.</p>
                         <textarea onChange={e => setDescription(e.target.value)} value={description} form="keywordsForm"
@@ -41,10 +41,10 @@ export const PitchThematicsKeywords: React.FC<PitchThematicsKeywordsParams> = ({
             </div>
         </div>
 
-        <div className="rightSideForm flex flex-col items-stretch  basis-auto flex-shrink">
+        <div className="rightSideForm flex flex-col items-stretch  basis-[50%] flex-shrink flex-grow">
             <div className='thematicsContainer flex flex-col items-center bg-background-form relative m-2'>
                 <OverlappingTitle logo={ThematicsLogo} txt={"2. La thématique"} />
-                <div className="w-full flex flex-col items-stretch">
+                <div className="flex flex-col items-stretch">
                     <div className="fieldsContainer m-4 flex flex-col items-stretch">
                         <div className='fieldsContainer m-4 flex flex-col items-stretch'>
                             <SelectInputOptions optionsData={thematicsValues} secteurs={secteurs} setSecteurs={setSecteurs} />
@@ -59,15 +59,11 @@ export const PitchThematicsKeywords: React.FC<PitchThematicsKeywordsParams> = ({
                         <p className="text-base text-center">Ajoutez des mots clés représentatifs de votre activité. (facultatif)</p>
                         <textarea
                             onChange={e => {
-                                if (e.target.value) {
-                                    const motsclefs = e.target.value.split(",").map(x => x.trim())
-                                    setMotsclef(motsclefs)
-                                } else {
-                                    setMotsclef([])
-                                }
+                                const motsclefs = e.target.value.split(",").map(x => x.trim()).filter(x => x)
+                                setMotsclef(motsclefs)
                             }}
                             className="cursor-text rounded-t-sm mt-4 h-15 addBorder-b border-3 border-gray-300 bg-background-inputs overflow-hidden resize-none"
-                            value={motsclefs.join(", ")}
+                            defaultValue={motsclefs.join(", ")}
                         >
                         </textarea>
 
