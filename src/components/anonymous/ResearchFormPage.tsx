@@ -63,7 +63,7 @@ const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
 
         return (
             <ResultResearchPreviewCard cardType={cardType} initialState={initialState} resultCount={results.length}>
-                {results.filter(x => !isInCorbeille(x)).map(x => <div className="ml-6">
+                {results.filter(x => !isInCorbeille(x)).map(x => <div className="md:ml-6">
                     <ResultPreviewCard cardData={x} cardType={cardType} />
                 </div>
                 )}
@@ -74,26 +74,26 @@ const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
 
     return (
         <>
-            <div className="formContainer flex flex-col items-center">
+            <div className="formContainer flex flex-col items-center w-full">
 
                 <h1 className="font-bold text-2xl md:text-4xl text-center mx-auto max-w-4xl"> Start-up greentech, trouvez automatiquement des pistes pour booster votre développement !  </h1>
-
+                <div className="">
                 <form onSubmit={(event) => {
                     event.preventDefault()
                     handleOnSubmitForm(false)
-                }} id="keywordsForm"  className="m-8 w-[80%] p-4 flex justify-around flex-wrap">
+                }} id="keywordsForm"  className="flex justify-around flex-wrap">
                     <PitchThematicsKeywords
                         usedDescription={[description, setDescription]}
                         usedMotsClef={[motsclefs, setMotsclef]}
                         usedSecteurs={[secteurs, setSecteurs]}
                     />
                 </form>
-
+                </div>
                 <div className='h-12 w-full flex justify-center items-center color'>
                     {errorTxt}
                 </div>
 
-                <div className='buttonsContainer w-[450px] flex justify-around'>
+                <div className='buttonsContainer flex justify-around flex-wrap'>
 
                     <button className="w-48 h-14 text-base  underline capitalize" onClick={(event) => {
                         setDescription("")

@@ -43,7 +43,7 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({ optionsData, se
             {displaySelect && <>
                 <div style={{ position: "fixed", width: "100vw", height: "100vh", top: 0, left: 0, zIndex: 5 }} onClick={e => setDisplaySelect(false)}></div>
                 <div className='h-0 overflow-visible z-[10]'>
-                    <ul className="w-[700px] mh-[350px] bg-input-background flex flex-wrap content-evenly shadow-slate-400 shadow-sm">
+                    <ul className="w-[350px] md:w-[700px] mh-[350px] bg-input-background flex flex-wrap content-evenly shadow-slate-400 shadow-sm">
                         {optionsData.map((option, index) => {
                             return (
                                 

@@ -40,16 +40,16 @@ const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = ({ c
         }
     }
 
-    return (<div className="globalContainerCard flex flex-col justify-center ml-10">
+    return (<div className="globalContainerCard flex flex-col justify-center md:ml-10">
 
-        <div className="cardGeneralInformations flex">
+        <div className="cardGeneralInformations flex flex-wrap">
 
             <div className="cardTitle p-2 flex-auto">
 
                 <div className="flex items-center">
                     <cardType.SVGLogo style={{ color: cardType.color }} /> &nbsp;
-                    <h2 className="w-fit font-bold text-2xl">
-                        {cardType.title} <span className="bg-yellow text-lg">{`(${resultCount})`}</span>
+                    <h2 className="w-fit font-bold md:text-2xl">
+                        {cardType.title} <span className="bg-yellow md:text-lg">{`(${resultCount})`}</span>
                     </h2>
                 </div>
 
