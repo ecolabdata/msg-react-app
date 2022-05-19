@@ -18,7 +18,7 @@ export const PitchThematicsKeywords : React.FC<PitchThematicsKeywordsParams> = (
     const thematicsValues = Object.values(ThematicsEnum);
     return <>
 
-        <div className='leftSideForm max-w-[48%] max-h-[400px] p-8 projectContainer flex flex-col items-around justify-center items-center bg-background-form '>
+        <div className='leftSideForm mt-4 min-w-282 max-h-[400px] p-8 projectContainer flex flex-col items-around justify-center items-center bg-background-form '>
 
             <div className="titleContainer relative top-[-3rem] w-fit flex h-0 w-500px overflow-visible">
                 <img className="h-fit" src={RocketLogo} alt="Logo" />
@@ -32,7 +32,7 @@ export const PitchThematicsKeywords : React.FC<PitchThematicsKeywordsParams> = (
 
         </div>
 
-        <div className="rightSideForm min-w-[48%] w-1/4 flex flex-col items-center">
+        <div className="rightSideForm mt-4  min-w-282 flex flex-col items-center">
             <div className='thematicsContainer p-8 w-full flex flex-col items-center bg-background-form'>
                 <div className="titleContainer spectral relative bottom-[50px] h-0 overflow-visible w-fit flex">
                     <img className="h-fit" src={ThematicsLogo} alt="Logo" />

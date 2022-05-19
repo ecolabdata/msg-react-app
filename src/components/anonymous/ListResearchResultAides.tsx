@@ -162,7 +162,7 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
 
                 <div className=" flex flex-col items-center w-full">
                     <form onSubmit={(event) => handleOnSubmitForm(event)} id="keywordsForm">
-                        <div className="m-auto w-[80%] p-4 flex justify-around mt-8">
+                        <div className="m-auto w-[80%] p-4 flex justify-around mt-8 flex-wrap">
                             <PitchThematicsKeywords
                                 usedDescription={[description, setDescription]}
                                 usedMotsClef={[motsclefs, setMotsclef]}

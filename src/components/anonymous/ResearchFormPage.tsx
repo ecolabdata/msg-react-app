@@ -81,7 +81,7 @@ const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
                 <form onSubmit={(event) => {
                     event.preventDefault()
                     handleOnSubmitForm(false)
-                }} id="keywordsForm"  className="m-8 w-[80%] p-4 flex justify-around">
+                }} id="keywordsForm"  className="m-8 w-[80%] p-4 flex justify-around flex-wrap">
                     <PitchThematicsKeywords
                         usedDescription={[description, setDescription]}
                         usedMotsClef={[motsclefs, setMotsclef]}
