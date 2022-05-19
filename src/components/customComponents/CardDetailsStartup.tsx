@@ -4,6 +4,9 @@ import ArrowDark from './../../assets/icons/arrow-dark-action.svg';
 import { ApplicationContext } from '../../Router';
 import { Star, Trash } from '../../assets/Icons'
 import Label from '../dsfrComponents/Label';
+import { useLocation } from 'react-router-dom';
+import { AnyCard, Startup } from '../../api/Api';
+import { useQuery } from '../../hooks/useQuery';
 
 
 
@@ -18,6 +21,10 @@ const DetailsStartup : React.FC<DetailsStartupProps> = ({cardType}) => {
         color: cardType.color,
         borderColor: cardType.color
     } as CSSProperties
+
+    const query = useQuery();
+    const location = useLocation();
+    const initialState = location.state as {cardData : AnyCard} | null;
     const [showContactDetails, setShowContactDetails] = useState(false);
     const { usedFavoris, usedCorbeille } = useContext(ApplicationContext)
     const [toggleFavori, isFavori] = usedFavoris
@@ -25,6 +32,8 @@ const DetailsStartup : React.FC<DetailsStartupProps> = ({cardType}) => {
     const handleClickOnContactDetails = () => {
         setShowContactDetails(true);
     }
+
+    const cardData : Omit<Partial<Startup>, "id"> & { id: string, cardTypeName: string } = initialState?.cardData || JSON.parse(query.cardData)
     return (
 
         <>
