@@ -12,14 +12,14 @@ export interface ResultResearchPreviewCardProps {
     resultCount: number
 }
 
-const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = ({ cardType, initialState , children, resultCount }) => {
+const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = ({ cardType, initialState, children, resultCount }) => {
 
-    const {usedNextScrollTarget} = useContext(ApplicationContext)
+    const { usedNextScrollTarget } = useContext(ApplicationContext)
     const [nextScrollTarget, setNextScrollTarget] = usedNextScrollTarget
     const ref = useRef<HTMLDivElement>(null)
     const [leftArrow, setLeftArrow] = useState(false);
     const [rightArrow, setRightArrow] = useState(true);
-    const handleArrowDisplay = (nextScrollLeft : number) => {
+    const handleArrowDisplay = (nextScrollLeft: number) => {
         if (ref.current) {
             setLeftArrow(true)
             setRightArrow(true)
@@ -32,11 +32,18 @@ const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = ({ c
             }
         }
     }
-    const simulateScroll = (scrollSpeed : number) => {
+    const simulateScroll = (scrollSpeed: number) => {
         if (ref.current) {
-            const nextScrollLeft = ref.current.scrollLeft + window.innerWidth * scrollSpeed
-            handleArrowDisplay(nextScrollLeft)
-            ref.current.scrollTo({ behavior: "smooth", left: nextScrollLeft})
+            const outerCard = ref.current.getElementsByClassName("outer-card")[0] as HTMLElement | null
+            if (outerCard) {
+                console.log(outerCard)
+                const cardWidth = outerCard.offsetWidth
+                const compFct = scrollSpeed > 0 ? Math.max : Math.min
+                const minimumMouvement = compFct(window.innerWidth * scrollSpeed - cardWidth * scrollSpeed, cardWidth * scrollSpeed)
+                const nextScrollLeft = Math.round((ref.current.scrollLeft + minimumMouvement) / cardWidth) * cardWidth
+                handleArrowDisplay(nextScrollLeft)
+                ref.current.scrollTo({ behavior: "smooth", left: nextScrollLeft })
+            }
         }
     }
 
@@ -58,7 +65,7 @@ const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = ({ c
 
             <div className="seeAllbutton p-2">
                 <NavLink
-                    onClick={() => setNextScrollTarget({top: 0})}
+                    onClick={() => setNextScrollTarget({ top: 0 })}
                     to={cardType.searchLink} state={initialState} style={{ borderColor: cardType.color, color: cardType.color }} className="w-36 h-9 text-xs font-bold 
                     addBorder border-2 p-1 rm-link-underline
                     flex justify-center"> <span className="my-auto">Voir tout & filtrer</span>  &nbsp;<ArrowRight className="my-auto" width="16" height="16" /> </NavLink>
@@ -67,12 +74,12 @@ const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = ({ c
 
         <div className="cardScrollContainerX
         -ml-2 h-72 overflow-x-scroll overflow-y-hidden hiddenScrollBar flex items-center" ref={ref} onScroll={e => handleArrowDisplay(e.currentTarget.scrollLeft)}>
-            {leftArrow && <button className="" onClick={() => simulateScroll(-0.80)}>
-                <span className="fr-fi-arrow-left-line absolute left-14 rounded-full bg-gray-400 p-0.5  text-gray-700 z-50" aria-hidden="true"></span>
+            {leftArrow && <button className="" onClick={() => simulateScroll(-1)}>
+                <span className="fr-fi-arrow-left-line absolute left-[1vw] rounded-full bg-gray-400 p-0.5  text-gray-700 z-50" aria-hidden="true"></span>
             </button>
             }
-            {rightArrow && <button className="" onClick={() => simulateScroll(0.80)}>
-                <span className="fr-fi-arrow-right-line absolute right-14 rounded-full bg-gray-400 p-0.5  text-gray-700 z-50" aria-hidden="true"></span>
+            {rightArrow && <button className="" onClick={() => simulateScroll(1)}>
+                <span className="fr-fi-arrow-right-line absolute right-[2vw] rounded-full bg-gray-400 p-0.5  text-gray-700 z-50" aria-hidden="true"></span>
             </button>}
             {children}
         </div>
