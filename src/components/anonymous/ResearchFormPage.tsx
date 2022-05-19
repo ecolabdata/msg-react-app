@@ -76,7 +76,7 @@ const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
         <>
             <div className="formContainer flex flex-col items-center">
 
-                <h1 className="w-3/5 font-bold text-4xl text-center mx-auto max-w-4xl"> Start-up greentech, trouvez automatiquement des pistes pour booster votre développement !  </h1>
+                <h1 className="font-bold text-2xl md:text-4xl text-center mx-auto max-w-4xl"> Start-up greentech, trouvez automatiquement des pistes pour booster votre développement !  </h1>
 
                 <form onSubmit={(event) => {
                     event.preventDefault()
