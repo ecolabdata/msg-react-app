@@ -67,7 +67,7 @@ export const aideInno: CardType = {
     SVGLogo: Rocket,
     color: "#8585F6",
     title: "Aides à l’innovation",
-    description: "Aides publiques dédiées à votre développement (Adème, BPI...)",
+    description: "Aides publiques dédiées à votre développement (ADEME, Bpifrance...)",
     name: "aides-innovations",
     searchLink: "/aides-innovations",
     SearchPage: ListResearchResultAidesInno,

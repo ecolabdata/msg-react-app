@@ -15,7 +15,7 @@ const Separator = () => <div className='w-[0px] overflow-visible'><div className
 
 
 const Home = () => {
-    useTitle("Accueil")
+    useTitle("Accueil ")
     const { usedCorbeille, usedNextScrollTarget} = useContext(ApplicationContext)
     const [nextScrollTarget, setNextScrolTarget] = usedNextScrollTarget
     const navigate = useNavigate();
