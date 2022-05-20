@@ -4,7 +4,7 @@
     position: fixed;
     width: var(--width);
     height: var(--height);
-    top: 200px;
+    bottom: 200px;
     right: calc(-1*var(--width)/2 + var(--height)/2);
     background-color: rgba(184, 254, 201, 1);
 

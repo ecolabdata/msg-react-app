@@ -1,7 +1,7 @@
 export enum ThematicsEnum {
  
     NUMERIC = "Numérique éco-responsable",
-    ALIMENTATION = "Alimentation et agriculture durable",
+    ALIMENTATION = "Alimentation et agriculture durables",
     WATER = "Eau, biodiversité et biomimétisme",
     ECONOMY = "Économie circulaire",
     HEALTH = "Santé environnement",
