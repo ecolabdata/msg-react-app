@@ -63,9 +63,9 @@ const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
 
         return (
             <ResultResearchPreviewCard cardType={cardType} initialState={initialState} resultCount={results.length}>
-                {results.filter(x => !isInCorbeille(x)).map(x => <div className="ml-6">
+                {results.filter(x => !isInCorbeille(x)).map(x => <div className='outer-card'><div className="md:ml-6">
                     <ResultPreviewCard cardData={x} cardType={cardType} />
-                </div>
+                </div></div>
                 )}
             </ResultResearchPreviewCard>
         )
@@ -76,24 +76,24 @@ const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
         <>
             <div className="formContainer flex flex-col items-center">
 
-                <h1 className="w-3/5 font-bold text-4xl text-center mx-auto max-w-4xl"> Start-up greentech, trouvez automatiquement des pistes pour booster votre développement !  </h1>
-
+                <h1 className="font-bold text-2xl md:text-4xl my-2 md:my-8 lh text-center mx-auto max-w-4xl md:leading-10"> Start-up greentech, trouvez automatiquement des pistes pour booster votre développement !  </h1>
+                <div className="mt-4">
                 <form onSubmit={(event) => {
                     event.preventDefault()
                     handleOnSubmitForm(false)
-                }} id="keywordsForm"  className="m-8 w-[80%] p-4 flex justify-around">
+                }} id="keywordsForm"  className="flex flex-wrap max-w-[1920px]">
                     <PitchThematicsKeywords
                         usedDescription={[description, setDescription]}
                         usedMotsClef={[motsclefs, setMotsclef]}
                         usedSecteurs={[secteurs, setSecteurs]}
                     />
                 </form>
-
-                <div className='h-12 w-full flex justify-center items-center color'>
+                </div>
+                <div className='h-12 flex justify-center items-center color'>
                     {errorTxt}
                 </div>
 
-                <div className='buttonsContainer w-[450px] flex justify-around'>
+                <div className='buttonsContainer flex justify-around flex-wrap'>
 
                     <button className="w-48 h-14 text-base  underline capitalize" onClick={(event) => {
                         setDescription("")

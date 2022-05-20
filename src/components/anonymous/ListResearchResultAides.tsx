@@ -147,11 +147,11 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
 
                 <div className="cardTitle mt-10 ml-4 p-2 text-base">
 
-                    <h2 className="w-fit font-bold text-4xl">
+                    <h2 className="w-fit font-bold  text-2xl md:text-4xl">
 
                         <div className="flex items-center">
                             <cardType.SVGLogo width="30" height="30" style={{ color: cardType.color }} /> &nbsp;
-                            {cardType.title} &nbsp; <span className="bg-yellow text-3xl font-light">{`(${filteredCards.length})`}</span>
+                            {cardType.title} &nbsp; <span className="bg-yellow md:text-3xl font-light">{`(${filteredCards.length})`}</span>
                         </div>
 
                     </h2>
@@ -162,7 +162,7 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
 
                 <div className=" flex flex-col items-center w-full">
                     <form onSubmit={(event) => handleOnSubmitForm(event)} id="keywordsForm">
-                        <div className="m-auto w-[80%] p-4 flex justify-around mt-8">
+                        <div className="m-auto flex justify-around mt-8 flex-wrap">
                             <PitchThematicsKeywords
                                 usedDescription={[description, setDescription]}
                                 usedMotsClef={[motsclefs, setMotsclef]}
@@ -176,7 +176,7 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
 
                             <div className="inputsContainer p-4 flex justify-center items-middle
                             lg:justify-between lg:items-end
-                            xl:justify-center">
+                            xl:justify-center flex-wrap">
                                 {/* <div className="my-2 flex flex-col items-center lg:flex-row lg:mb-6">
                                     <div className="inputNumber mr-6 flex flex-col font-light ">
                                         <label className="mb-1 text-white text-base" htmlFor="montantKEuro">Montant min. en K€</label>
