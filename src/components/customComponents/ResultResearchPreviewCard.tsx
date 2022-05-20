@@ -36,7 +36,6 @@ const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = ({ c
         if (ref.current) {
             const outerCard = ref.current.getElementsByClassName("outer-card")[0] as HTMLElement | null
             if (outerCard) {
-                console.log(outerCard)
                 const cardWidth = outerCard.offsetWidth
                 const compFct = scrollSpeed > 0 ? Math.max : Math.min
                 const minimumMouvement = compFct(window.innerWidth * scrollSpeed - cardWidth * scrollSpeed, cardWidth * scrollSpeed)
