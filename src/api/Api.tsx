@@ -81,7 +81,7 @@ export type Query = {
 
 export const search = (query: Query) => buildFetchRequest({
   "fichier_decp": "decp_score.csv",
-  "fichier_investisseurs": "GTIetmontant.csv",
+  "fichier_investisseurs": "out_PEXE.json",
   "fichier_aides_inno": "corpusinno.pkl",
   "descriptionSU": query.description,
   "nb_aides": 10,
