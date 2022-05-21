@@ -47,7 +47,7 @@ function buildFetchRequest(params: any) {
   // if (useMockResponse) {
   //   return new Promise<ApiResponse>(res => setTimeout(() => res(mockApiResponse), 3000))
   // } else {
-  return fetch(localStorage.apiUrl || 'https://api.msg.greentechinnovation.fr:8080/getCards/', {
+  return fetch(localStorage.apiUrl || 'https://api.msg.greentechinnovation.fr:9000/getCards/', {
     method: "POST",
     headers: {
       'Accept': 'application/json',
