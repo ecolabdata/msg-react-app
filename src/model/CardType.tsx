@@ -46,7 +46,7 @@ export const achatPrevi: CardType = {
     SearchPage: ListResearchResultAidesInno, //?Perhaps we need to create the right component now ?
     DetailsPage: CardDetailsInno, //?Perhaps we need to create the right component now ?
     apiName: "aides_innovation",
-    version: "beta"
+    version: "alpha"
     //?-------------------------------------------------------------------
 
 } as const

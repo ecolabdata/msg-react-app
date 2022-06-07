@@ -1,4 +1,5 @@
 import { ReactElement } from "react";
+import { NavLink } from 'react-router-dom';
 import { CardType } from "../../model/CardType";
 
 interface HomePageCardProps {
@@ -6,7 +7,7 @@ interface HomePageCardProps {
 }
 
 const HomePageCard: React.FC<HomePageCardProps> = (props: HomePageCardProps) => {
-    const { SVGLogo, title, description, color, version } = props.cardTypeData;
+    const { SVGLogo, title, description, color, version, searchLink } = props.cardTypeData;
     const isAlpha = version === "alpha"
     const opacity = isAlpha ? 0.15 : 1
     return (
@@ -42,6 +43,7 @@ const HomePageCard: React.FC<HomePageCardProps> = (props: HomePageCardProps) => 
                         Bientôt
                     </div>}
                     <p style={{opacity}} className="mt-2 w-[245px] text-center text-base">{description}</p>
+                    <NavLink to={searchLink}>voir tout</NavLink>
                 </div>
             </div>
         </div>

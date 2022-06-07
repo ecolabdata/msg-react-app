@@ -30,7 +30,7 @@ const ExplorerHomePageCard = () => {
         <span className="fr-fi-arrow-right-line ml-1 mt-1" aria-hidden="true"></span>
     </button>
     return (
-        <div style={{ flex: "1 1 33.33333%"}} className="flex flex-col items-center relative">
+        <div style={{ flex: "1 1 33.33333%"}} className="flex flex-col items-center relative m-6">
             <div style={{
                 width: "300px", height: "238px",
                 backgroundColor: "var(--background-action-high-blue-france)",
