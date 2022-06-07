@@ -4,12 +4,12 @@
 @tailwind utilities;
 
 .rm-link-underline {
-    background-image: none;
-  }
+  background-image: none;
+}
 
 .clamp {
   display: -webkit-box;
-  --nb-lines:  3;
+  --nb-lines: 3;
   -webkit-line-clamp: var(--nb-lines);
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -20,7 +20,7 @@
 
 .clamp-2 {
   display: -webkit-box;
-  --nb-lines:  1;
+  --nb-lines: 1;
   -webkit-line-clamp: var(--nb-lines);
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -29,17 +29,18 @@
   min-height: calc(var(--nb-lines) * var(--line-height));
 }
 
-textarea:focus, input:focus {
-  outline: 1px solid rgba(255,255,255, 0.2);
+textarea:focus,
+input:focus {
+  outline: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 
 .card-animation {
   --h-before: 181px;
-  --h-after:  224px;
+  --h-after: 224px;
   --m-after: 0px;
   --m-before: calc(var(--h-after)/2 - var(--h-before)/2 + var(--m-after));
-  
+
   transition-property: all;
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
   transition-duration: 400ms;

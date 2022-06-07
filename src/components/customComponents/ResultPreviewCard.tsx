@@ -38,7 +38,7 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
         style={{ borderColor: cardType.color, opacity: isLoading ? 0 : 1 }}>
 
         <div className="emetor-row flex">
-            <p className="text-xs flex-1 grow-[10] clamp-2" style={{ color: cardType.color }} title={displayableFinancers}>{displayableFinancers || cardData['Thématique']}</p>
+            <p className="text-xs flex-1 grow-[10] clamp-2" style={{ color: cardType.color }} title={displayableFinancers}>{displayableFinancers || cardData['Thématique'] || cardData['Vous êtes']}</p>
             <div className="opacity-0 flex flex-1 justify-end transition-opacity duration-200 group-hover:opacity-100" >
                 <div className="flex justify-between w-[43px]">
                     <button className="cursor-pointer" style={{ color: isFavori(cardData) ? "yellow" : undefined }} onClick={() => toggleFavori(cardData)}>
@@ -51,8 +51,11 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
             </div>
         </div>
 
-        <Link onClick={() => setNextScrolTarget({ top: 0 })} to={`/${cardType.name}/details?cardData=${encodeURIComponent(JSON.stringify(cardData))}`} state={{ cardData }} className="rm-link-underline">
-            <h4 className="clamp mt-2 font-bold text-lg" title={cardData.nom || cardData.name || cardData['Start-up']}>{cardData.nom || cardData.name || cardData['Start-up']}</h4>
+        <Link onClick={() => {
+            console.log("Onclick triggered")
+            setNextScrolTarget({ top: 0 })
+        }} to={`/${cardType.name}/details?cardData=${encodeURIComponent(JSON.stringify(cardData))}`} state={{ cardData }} className="rm-link-underline">
+            <h4 className="clamp mt-2 font-bold text-lg" title={cardData.nom || cardData.name || cardData['Start-up'] || cardData['Nom du fonds']}>{cardData.nom || cardData.name || cardData['Start-up'] || cardData['Nom du fonds']}</h4>
             {/* <p className="uppercase opacity-0 mt-8 text-xs text-white transition-opacity duration-200 group-hover:opacity-100 w-[225px]">
                 <br />
 
@@ -68,6 +71,10 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
                 { ["aides-innovations", "aides-clients"].includes(cardType.name) && <div data-org-value={cardData.submission_deadline}> {cardData.submission_deadline ? `Date de clôture: ${displayabeSubmissionDeadLine}` : "Aide permanente"}</div>}
                 {cardData['Pitch'] && <div>{cardData['Pitch']}</div>}
                 {cardData.aid_types && <div style={{ color: cardType.color }}>{cardData.aid_types.join(" | ")}</div>}
+                { ["investisseurs"].includes(cardType.name) && <div>{cardData['Ticket min en K€']}K€ - {cardData['Ticket max en K€']}K€</div>}
+                {cardData["Présentation de la politique d'investissement"] && <div className='h-[3em] truncate' title={cardData["Présentation de la politique d'investissement"]}>{cardData["Présentation de la politique d'investissement"].split(";").join(" | ")}</div>}
+                {cardData["Type de financement"] && <div className="truncate" style={{ color: cardType.color }} title={cardData["Type de financement"]}>{cardData["Type de financement"]}</div>}
+
             </div>
             {/* <NavLink to={cardType.searchLink} state={initialState} NavLink/> */}
             <div className="card-arrow absolute bottom-[var(--arrow-bottom)]  right-[var(--arrow-right)] rm-link-underline" style={{ color: cardType.color }}>

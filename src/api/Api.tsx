@@ -52,7 +52,7 @@ function buildFetchRequest(params: any) {
   // if (useMockResponse) {
   //   return new Promise<ApiResponse>(res => setTimeout(() => res(mockApiResponse), 3000))
   // } else {
-  return fetch(localStorage.apiUrl || 'https://api.msg.greentechinnovation.fr:8080/getCards/', {
+  return fetch(localStorage.apiUrl || 'https://api.msg.greentechinnovation.fr:9000/getCards/', {
     method: "POST",
     headers: {
       'Accept': 'application/json',
@@ -86,7 +86,7 @@ export type Query = {
 
 export const search = (query: Query) => buildFetchRequest({
   "fichier_decp": "decp_score.csv",
-  "fichier_investisseurs": "GTIetmontant.csv",
+  "fichier_investisseurs": "out_PEXE.json",
   "fichier_aides_inno": "corpusinno.pkl",
   "descriptionSU": query.description,
   "nb_aides": 10,
