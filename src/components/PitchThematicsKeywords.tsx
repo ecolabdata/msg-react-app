@@ -42,6 +42,7 @@ export const PitchThematicsKeywords: React.FC<PitchThematicsKeywordsParams> = ({
         </div>
 
         <div className="rightSideForm flex flex-col items-stretch  basis-[50%] flex-shrink flex-grow">
+            
             <div className='thematicsContainer flex flex-col items-center bg-background-form relative m-2'>
                 <OverlappingTitle logo={ThematicsLogo} txt={"2. La thématique"} />
                 <div className="flex flex-col items-stretch">
@@ -52,6 +53,7 @@ export const PitchThematicsKeywords: React.FC<PitchThematicsKeywordsParams> = ({
                     </div>
                 </div>
             </div>
+
             <div className="keyWordsContainer mt-8 flex flex-col items-center  relative bg-background-form m-2">
                 <OverlappingTitle logo={KeywordsLogo} txt="3. Les mots clés" />
                 <div className="w-full flex flex-col items-stretch">
