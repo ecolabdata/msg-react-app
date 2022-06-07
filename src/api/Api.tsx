@@ -5,7 +5,7 @@ import mockApiResponse from './mock_api_resp.json';
 
 export const buildId = (obj: any) => sha1(canonicalize(obj)).slice(0, 8)
 
-export const cardTypeNames = ["collectivites", /*"marches",*/ "investisseurs", "aides_clients", "aides_innovation", 'startups'] as const;
+export const cardTypeNames = ["collectivites", "marches", "investisseurs", "aides_clients", "aides_innovation", 'startups'] as const;
 export type CardTypeName = typeof cardTypeNames[number];
 
 /*
@@ -15,12 +15,14 @@ https://www.notion.so/messervicesgreentech/0290b8c9cfd4437b8f9ee8bb9ee697ee?v=94
 export type Aide = typeof mockApiResponse.cards.aides_clients[number] | typeof mockApiResponse.cards.aides_innovation[number];
 //export type Aide = typeof mockApiResponse.cards.aides[number] //From old FTE file
 export type Collectivite = typeof mockApiResponse.cards.collectivites[number]//Deduced from DECP
-//export type Marche = typeof mockApiResponse.cards.[number]//deduced from DECP
+//? PROVISORY : This type is provisory until we get the good one
+export type Marche = typeof mockApiResponse.cards.collectivites[number]//deduced from DECP
+//?----------------------------------------------------------------
 export type Investisseur = typeof mockApiResponse.cards.investisseurs[number]//From GI file
 
 export type Startup = typeof mockApiResponse.cards.startups[number]//From GI file
 
-export type AnyCard = Omit<Partial<Aide>, "id"> /*& Partial<Marche>*/ & Partial<Collectivite> & Partial<Investisseur> & Partial<Startup> & { id: string, cardTypeName: string }
+export type AnyCard = Omit<Partial<Aide>, "id"> & Partial<Marche> & Partial<Collectivite> & Partial<Investisseur> & Partial<Startup> & { id: string, cardTypeName: string }
 // types of property '"deadline"' are incompatible.
 //             Type 'null' is not assignable to type 'string | undefined'
 
@@ -32,7 +34,10 @@ export type Search = ReturnType<typeof handleResp>
 function handleResp(query: Query | InvestisseurQuery | AidesClientQuery | AidesInnoQuery, resp: ApiResponse) {
   const cards = {
     collectivites: !resp.cards.collectivites ? [] : resp.cards.collectivites.map((x) => { return { ...x, id: buildId(x), cardTypeName: acheteurPublic.name } }),
-    //marches: resp.cards.marches.map(x => {return {...x, id: buildId(x), cardTypeName: achatPrevi.name}}),
+    // marches: resp.cards.marches.map(x => {return {...x, id: buildId(x), cardTypeName: achatPrevi.name}}),
+    //?Provisory
+    marches: !resp.cards.aides_innovation ? [] : resp.cards.aides_innovation.map((x)=> { return { ...x, id: buildId(x), cardTypeName: aideInno.name } }),
+    //?-------------------------------------------------------------------
     investisseurs: !resp.cards.investisseurs ? [] : resp.cards.investisseurs.map((x) => { return { ...x, id: buildId(x), cardTypeName: investisseur.name } }),
     aides_clients: !resp.cards.aides_clients ? [] : resp.cards.aides_clients.map((x) => { return { ...x, id: buildId(x), cardTypeName: aideClient.name } }),
     aides_innovation: !resp.cards.aides_innovation ? [] : resp.cards.aides_innovation.map((x)=> { return { ...x, id: buildId(x), cardTypeName: aideInno.name } }),

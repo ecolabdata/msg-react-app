@@ -33,6 +33,8 @@ const CardDetails : React.FC<{cardType: CardType}> = ({cardType}) => {
         color: cardType.color,
         borderColor: cardType.color
     } as CSSProperties
+
+    console.log('cardData :>> ', cardData);
     return (
         <>
             <div style={{ marginLeft: "calc(max(10% - 100px, 0px))", marginRight: "calc(max(10% - 100px, min(8vw, 50px)))" }} className="headContainer">
@@ -116,7 +118,7 @@ const CardDetails : React.FC<{cardType: CardType}> = ({cardType}) => {
                     </a>}
 
                 </div>
-                <div style={{ flex: "1 1 350px" }} className="contentContainer flex flex-wrap justify-left mx-[5vw]" >
+                <div style={{ flex: "1 1 350px" }} className="contentContainer flex flex-wrap justify-left mx-[5vw] " >
                     <SmallFields color={cardType.color} fieldname={"Calendrier"}>
                         Date de clôture: {cardData.submission_deadline ? `${displayabeSubmissionDeadLine}` : "Aide permanente"}
                     </SmallFields>

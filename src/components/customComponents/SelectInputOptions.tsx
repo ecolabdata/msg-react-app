@@ -18,7 +18,7 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({ optionsData, se
     const [displaySelect, setDisplaySelect] = useState(false);
 
     const secteursSet = new Set(secteurs)
-
+    console.log('optionsData :>> ', optionsData);
     return (
         <>
             <label className="fr-label" htmlFor="select">Thématique du projet</label>
@@ -34,14 +34,17 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({ optionsData, se
 
             {displaySelect && <>
                 <div style={{ position: "fixed", width: "100vw", height: "100vh", top: 0, left: 0, zIndex: 5 }} onClick={e => setDisplaySelect(false)}></div>
-                <div className='h-0 w-0 overflow-visible z-[10]'>
-                    <ul className="w-[350px] md:w-[700px] mh-[350px] bg-input-background flex flex-wrap content-evenly shadow-slate-400 shadow-sm">
+                <div className='h-0 w-0 z-[10]'>
+                    <ul className="w-[302px] h-[320px] overflow-y-auto flex flex-col bg-background-inputs  shadow-slate-400 shadow-sm 
+                    sm:w-[322px] 
+                    md:w-[280px]
+                    lg:w-[392px]">
                         {optionsData.map((option, index) => {
                             return (
 
-                                <li className="p-0 w-[350px] flex content-center items-center" key={option}>
+                                <li className="flex content-center items-center" key={option}>
                                     <input
-                                        className="bg-red-200 appearance-on addBorder border text-black border-black  mx-4"
+                                        className="appearance-on addBorder border text-black border-black  mx-4"
                                         id={option}
                                         type="checkbox"
                                         value={option}

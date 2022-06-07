@@ -3,7 +3,9 @@ import { AnyCard, CardTypeName as ApiName, cardTypeNames } from '../api/Api';
 import { Calendar, Euro, Eye, Rocket, Signal, Unicorn } from '../assets/Icons';
 import { ListResearchResultAidesInno, ListResearchResultAidesClient } from '../components/anonymous/ListResearchResultAides';
 import ListResearchResultInvestisseurs from '../components/anonymous/ListResearchResultInvestisseurs';
-import {CardDetailsInno, CardDetailsClient}  from '../components/customComponents/DetailsAide';
+import {CardDetailsStartup} from '../components/customComponents/CardDetailsStartup';
+import {CardDetailsInno, CardDetailsClient, }  from '../components/customComponents/DetailsAide';
+
 import { versions } from './CardVersions';
 
 export interface CardType {
@@ -30,15 +32,26 @@ export const acheteurPublic: CardType = {
     apiName: "collectivites",
     version: "alpha"
 } as const
-// export const achatPrevi: CardType = {
-//     SVGLogo: Calendar,
-//     color: "#D8C635",
-//     title: "Achats publics prévisionnels",
-//     description: "Achats publics prévus ces trois prochaines années dans votre domaine.",
-//     name: "achats-previsionnels",
-//     searchLink: "/achats-previsionnels",
-//     apiName: "marches"
-// } as const
+
+export const achatPrevi: CardType = {
+    SVGLogo: Calendar,
+    color: "#D8C635",
+    title: "Achats publics prévisionnels",
+    description: "Achats publics prévus ces trois prochaines années dans votre domaine.",
+    // name: "achats-previsionnels",
+    // searchLink: "/achats-previsionnels",
+    // apiName: "marches",
+    //? PROVISORY : We use this data until we get the good one
+    name: "aides-innovations",
+    searchLink: "/aides-innovations",
+    SearchPage: ListResearchResultAidesInno, //?Perhaps we need to create the right component now ?
+    DetailsPage: CardDetailsInno, //?Perhaps we need to create the right component now ?
+    apiName: "aides_innovation",
+    version: "alpha"
+    //?-------------------------------------------------------------------
+
+} as const
+
 export const investisseur: CardType = {
     SVGLogo: Euro,
     color: "#68A532",
@@ -79,15 +92,18 @@ export const aideInno: CardType = {
 
 export const startups: CardType = {
     SVGLogo: Unicorn,
-    color: "hsla(167, 53%, 55%, 1)",
+    color: "#4EC8AE",
     title: "Start-up greentech",
     description: "Entreprises éco-innovantes qui vous ressemblent ou répondent à vos besoins",
     name: "startups",
     searchLink: "/startups",
+    DetailsPage: CardDetailsStartup,
     apiName: "startups",
     version: "beta"
 } as const
 
-export const all = [aideInno, aideClient, investisseur, acheteurPublic,/*achatPrevi,*/ startups]
+
+
+export const all = [aideInno, aideClient, investisseur, acheteurPublic, achatPrevi, startups]
 export const byName = Object.fromEntries(all.map(x => [x.name, x]))
 export const dropdownValues = Object.fromEntries(all.map(x => [x.name, x.title]))
