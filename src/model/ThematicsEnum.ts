@@ -10,6 +10,6 @@ export enum ThematicsEnum {
     PREVENTION = "Prévention des risques",
     BUILDINGS = "Bâtiments et villes durables",
     DECARBONATION = "Décarbonation de l'industrie",
-    MOBILITY = "Mobilité durable"
-    
+    MOBILITY = "Mobilité durable",
+    FINANCE = "Finance durable & RSE"
 }
