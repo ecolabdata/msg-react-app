@@ -6,7 +6,7 @@ interface HomePageCardProps {
     cardTypeData: CardType
 }
 
-const HomePageCard: React.FC<HomePageCardProps> = (props: HomePageCardProps) => {
+const HomePageCard: React.FC<HomePageCardProps> = (props) => {
     const { SVGLogo, title, description, color, version, searchLink } = props.cardTypeData;
     const isAlpha = version === "alpha"
     const opacity = isAlpha ? 0.15 : 1

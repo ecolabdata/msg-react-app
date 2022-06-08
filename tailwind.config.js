@@ -46,8 +46,14 @@ module.exports = {
         '115':"1.15",
         '120':"1.20",
       },
+      screens: {
+        'desktop-L': '1920px',
+        '2XL': '1680px',
+        'desktop-XL': '2200px',
+      },
       plugins: [],
     },
+    
   },
   variants: {
     extend: {
