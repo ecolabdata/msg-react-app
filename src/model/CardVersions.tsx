@@ -1,4 +1,4 @@
-export const versions = ["live", "beta", "alpha"] as const;
+export const versions = ["live", "beta", "alpha",] as const;
 
 export const versionConf = {
     "alpha": {

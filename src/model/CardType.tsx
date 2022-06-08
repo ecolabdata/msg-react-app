@@ -24,8 +24,7 @@ export interface CardType {
 export const acheteurPublic: CardType = {
     SVGLogo: Signal,
     color: "#F95C5E",
-    // title: "Organismes publics ouverts à l’innovation",
-    title: "Clients publics à démarcher",
+    title: "Organismes publics à démarcher",
     description: "Collectivités ou organismes publiques ouverts à l’innovation",
     name: "acheteurs-publics",
     searchLink: "/acheteurs-publics",
@@ -36,7 +35,7 @@ export const acheteurPublic: CardType = {
 export const achatPrevi: CardType = {
     SVGLogo: Calendar,
     color: "#D8C635",
-    title: "Achats publics prévisionnels",
+    title: "Achats publics à venir",
     description: "Achats publics prévus ces trois prochaines années dans votre domaine.",
     // name: "achats-previsionnels",
     // searchLink: "/achats-previsionnels",
@@ -55,7 +54,7 @@ export const achatPrevi: CardType = {
 export const investisseur: CardType = {
     SVGLogo: Euro,
     color: "#68A532",
-    title: "Investisseurs privés",
+    title: "Investisseurs",
     description: "Investisseurs privés adaptés à votre maturité pour votre  prochaine levée de fonds.",
     name: "investisseurs",
     searchLink: "/investisseurs",
