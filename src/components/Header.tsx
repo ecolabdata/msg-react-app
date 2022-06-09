@@ -11,6 +11,7 @@ import { appActions } from '../_actions/app.actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../_reducers/root.reducer';
 import { ApplicationContext } from '../Router';
+import { Link } from 'react-router-dom';
 
 interface HeaderProps {
     userIsAuth: boolean;
@@ -65,7 +66,7 @@ const Header = ({ userIsAuth, decouvrir }: HeaderProps) => {
                 {userIsAuth &&
                     <li key={route.key} className="fr-nav__item h-full w-full p-0">
 
-                        <a href={route.path} className="fr-nav__link">
+                        <Link to={route.path} className="fr-nav__link">
 
                             <div className="flex">
 
@@ -83,7 +84,7 @@ const Header = ({ userIsAuth, decouvrir }: HeaderProps) => {
                                 </div>
 
                             </div>
-                        </a>
+                        </Link>
 
                     </li>
                 }
@@ -125,12 +126,12 @@ const Header = ({ userIsAuth, decouvrir }: HeaderProps) => {
                                 </div>
                             </div>
                             <div className="fr-header__service flex">
-                                <a className="flex" href="/explorer" title="Accueil - Mes services GreenTech - Ministère de la transition écologique">
+                                <Link className="flex" to="/" title="Accueil - Mes services GreenTech - Ministère de la transition écologique">
                                     <img className="h-12 mt-1 mr-2" src={LogoMSG} alt="Icône d'indication, version beta " />
                                     <p className="fr-header__service-title capitalize
                                      after:rounded-sm after:content-['beta'] after:ml-2 after:relative after:bottom-1 after:w-content after:h-content after:px-1 
                                      after:text-center after:text-xs after:font-bold after:bg-beta">mes services<br /> greentech</p>
-                                </a>
+                                </Link>
                             </div>
                         </div>
                         {screenWidth >= 1024 &&
