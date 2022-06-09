@@ -60,6 +60,7 @@ const Router = () => {
                     <Routes>
                         <Route path="/" element={<HomePage />} />
                         <Route path="/explorer" element={<ResearchForm alpha={false} />} />
+                        <Route path="/explorer/search" element={<ResearchForm alpha={false} />} />
                         <Route path="/explorer-alpha" element={<ResearchForm alpha={true}/>} />
                         <Route path="/exemple/details" element={<CardDetails />} />
                         {allCardType.map((cardType => <>
