@@ -24,7 +24,9 @@ export interface CardType {
 export const acheteurPublic: CardType = {
     SVGLogo: Signal,
     color: "#F95C5E",
-    title: "Organismes publics à démarcher",
+    //title: "Organismes publics à démarcher",
+    // title: "Organismes publics ouverts à l’innovation",
+    title: "Clients publics à démarcher",
     description: "Collectivités ou organismes publiques ouverts à l’innovation",
     name: "acheteurs-publics",
     searchLink: "/acheteurs-publics",

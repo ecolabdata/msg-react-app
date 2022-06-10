@@ -25,6 +25,7 @@
     "redux": "^4.1.2",
     "redux-thunk": "^2.4.1",
     "sha1": "^1.1.1",
+    "slugify": "^1.6.5",
     "typescript": "^4.6.2",
     "web-vitals": "^2.1.4"
   },

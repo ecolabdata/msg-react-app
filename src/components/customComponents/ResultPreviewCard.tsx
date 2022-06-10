@@ -5,6 +5,7 @@ import { ArrowRight } from '../../assets/Icons';
 import { CardType } from '../../model/CardType';
 import { ApplicationContext } from '../../Router';
 import { Star, Trash } from '../../assets/Icons'
+import slugify from 'slugify'
 
 interface ResultPreviewCardProps {
     cardData: AnyCard
@@ -29,6 +30,12 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
     const displayabeSubmissionDeadLine = ("0" + d?.getUTCDate()).slice(-2) + "/" + ("0" + ((d?.getUTCMonth() || 0) + 1)).slice(-2) + "/" + d?.getUTCFullYear()
     //const achivedStyle = isInCorbeille(cardData) ? {"opacity": 0.3, "filter": "grayscale(50%)" } : {}
     // if (cardType.name === "aides-innovations") debugger;
+    const slug = slugify(
+        cardData.nom || //collectivites, investisseurs
+        cardData.slug || //aides_clients, aides_innovation
+        cardData['Start-up'] || //startup
+        'unknown-slug'
+    )
     return <div className={`cardContainer group rounded-r ml-6 w-[282px]  p-4 flex flex-col
                     addBorder-l border-l-3 
                     hover:shadow-xl
@@ -54,7 +61,7 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
         <Link onClick={() => {
             console.log("Onclick triggered")
             setNextScrolTarget({ top: 0 })
-        }} to={`/${cardType.name}/details?cardData=${encodeURIComponent(JSON.stringify(cardData))}`} state={{ cardData }} className="rm-link-underline">
+        }} to={`/${cardType.name}/details/${slug}?cardData=${encodeURIComponent(JSON.stringify(cardData))}`} state={{ cardData }} className="rm-link-underline">
             <h4 className="clamp mt-2 font-bold text-lg" title={cardData.nom || cardData.name || cardData['Start-up'] || cardData['Nom du fonds']}>{cardData.nom || cardData.name || cardData['Start-up'] || cardData['Nom du fonds']}</h4>
             {/* <p className="uppercase opacity-0 mt-8 text-xs text-white transition-opacity duration-200 group-hover:opacity-100 w-[225px]">
                 <br />

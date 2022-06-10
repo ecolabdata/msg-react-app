@@ -9,16 +9,16 @@ import { ApplicationContext } from '../../Router';
 import { useLocation, useParams } from 'react-router-dom';
 import { useQuery } from '../../hooks/useQuery';
 
-const CardDetails : React.FC<{cardType: CardType}> = ({cardType}) => {
+const CardDetails: React.FC<{ cardType: CardType }> = ({ cardType }) => {
     const query = useQuery();
     const { usedFavoris, usedCorbeille } = useContext(ApplicationContext)
     const [toggleFavori, isFavori] = usedFavoris
     const [toggleInCorbeille, isInCorbeille] = usedCorbeille
     const location = useLocation();
-    const initialState = location.state as {cardData : AnyCard} | null;
-    console.log({query})
+    const initialState = location.state as { cardData: AnyCard } | null;
+    console.log({ query })
     if (!initialState?.cardData && !query.cardData) throw new Error("Missing cardData to generate page")
-    const cardData : Omit<Partial<Aide>, "id"> & { id: string, cardTypeName: string } = initialState?.cardData || JSON.parse(query.cardData)
+    const cardData: Omit<Partial<Aide>, "id"> & { id: string, cardTypeName: string } = initialState?.cardData || JSON.parse(query.cardData)
 
     const displayableFinancers = cardData.financers?.join(" | ") || ""
     const d = cardData.submission_deadline ? new Date(cardData.submission_deadline) : null
@@ -29,7 +29,7 @@ const CardDetails : React.FC<{cardType: CardType}> = ({cardType}) => {
     )
 
     const cardTypeColor = {
-        "--border-action-high-blue-france":  cardType.color,
+        "--border-action-high-blue-france": cardType.color,
         color: cardType.color,
         borderColor: cardType.color
     } as CSSProperties
@@ -82,7 +82,25 @@ const CardDetails : React.FC<{cardType: CardType}> = ({cardType}) => {
                 </div>
             </div>
             <div style={{ marginRight: "calc(max(10% - 100px, 0px))", marginLeft: "calc(max(10% - 100px, 0px))" }} className='flex justify-around flex-wrap flex-row-reverse'>
-                <div style={{ flex: "0 0 380px", ...cardTypeColor}} className="contactCard h-fit rounded addBorder border-2 p-6 flex flex-col items-start">
+                <div style={{ flex: "0 0 380px", ...cardTypeColor }} onClick={() => {
+                    let _paq = window._paq = window._paq || [];
+                    const url = new URL(window.location.href);
+                    url.searchParams.delete("cardData")
+                    url.pathname = url.pathname + "/contacted"
+                    console.log("Matomo tracking page called", { _paq, referrer: document.referrer, url: url.href })
+                    _paq.push(['setCustomUrl', url.href]);
+                    // _paq.push(['setCustomVariable',
+                    //     // Index, the number from 1 to 5 where this custom variable name is stored
+                    //     1,
+                    //     // Name, the name of the variable, for example: Gender, VisitorType
+                    //     "Gender",
+                    //     // Value, for example: "Male", "Female" or "new", "engaged", "customer"
+                    //     "Male",
+                    //     // Scope of the custom variable, "visit" means the custom variable applies to the current visit
+                    //     "visit"
+                    // ]);
+                    _paq.push(['trackPageView']);
+                }} className="contactCard h-fit rounded addBorder border-2 p-6 flex flex-col items-start">
 
 
                     <h2 style={cardTypeColor} className="text-[22px] font-bold  ">Contact</h2>
@@ -90,7 +108,7 @@ const CardDetails : React.FC<{cardType: CardType}> = ({cardType}) => {
                     <p className="text-base w-[280px]"> <span dangerouslySetInnerHTML={{ __html: cardData["contact"] + "" }}></span></p>
 
                     <a
-                        style={{backgroundColor: cardType.color, color: "hsla(0, 0%, 9%, 1)"}}
+                        style={{ backgroundColor: cardType.color, color: "hsla(0, 0%, 9%, 1)" }}
                         href={cardData["origin_url"]}
                         className="
                             fr-btn fr-btn--primary
@@ -176,7 +194,7 @@ const BigFields: React.FC<{ color: string, fieldname: ReactNode }> = ({ color, f
             {children}
             {!showAll && <div className='absolute top-1 left-0 h-full w-full' style={{ background: "linear-gradient(180deg, rgba(0,0,0,0) 50%, #353434 90%)" }}></div>}
         </div>
-        <button style={{"--border-action-high-blue-france":  color, color: color} as CSSProperties} className="fr-btn fr-btn--secondary mt-2" onClick={
+        <button style={{ "--border-action-high-blue-france": color, color: color } as CSSProperties} className="fr-btn fr-btn--secondary mt-2" onClick={
             () => setShowAll(!showAll)
         }>
             {showAll ? "Réduire" : "Voir plus"}
@@ -184,5 +202,5 @@ const BigFields: React.FC<{ color: string, fieldname: ReactNode }> = ({ color, f
     </div>
 }
 
-export const CardDetailsInno = () => <CardDetails cardType={aideInno}/>
-export const CardDetailsClient = () => <CardDetails cardType={aideClient}/>
+export const CardDetailsInno = () => <CardDetails cardType={aideInno} />
+export const CardDetailsClient = () => <CardDetails cardType={aideClient} />

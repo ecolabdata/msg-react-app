@@ -12,4 +12,3 @@ aws s3 ls --endpoint-url=https://s3.fr-par.scw.cloud --region=fr-par
 aws s3 sync --endpoint-url=https://s3.fr-par.scw.cloud --region=fr-par  build/ s3://msg-prod
 
 aws s3 sync --endpoint-url=https://s3.fr-par.scw.cloud --region=fr-par  build/ s3://msg-next --delete
-

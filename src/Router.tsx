@@ -60,13 +60,17 @@ const Router = () => {
                     <Routes>
                         <Route path="/" element={<HomePage />} />
                         <Route path="/explorer" element={<ResearchForm alpha={false} />} />
+                        <Route path="/explorer/search" element={<ResearchForm alpha={false} />} />
                         <Route path="/explorer-alpha" element={<ResearchForm alpha={true}/>} />
                         <Route path="/exemple/details" element={<CardDetails />} />
                         {allCardType.map((cardType => <>
                             <Route path={cardType.searchLink} element={
                                 cardType.SearchPage ? <cardType.SearchPage /> : <ListResearchResult cardType={cardType}/>
                             }/>
-                            <Route path={`/${cardType.name}/details`} element={
+                            <Route path={cardType.searchLink+"/search"} element={
+                                cardType.SearchPage ? <cardType.SearchPage /> : <ListResearchResult cardType={cardType}/>
+                            }/>
+                            <Route path={`/${cardType.name}/details/:slug`} element={
                                 cardType.DetailsPage ? <cardType.DetailsPage /> : <CardDetailsJson cardType={cardType}/>
                             }/>
                         </>))}
