@@ -79,7 +79,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
                 secteurs
             }).then((search) => {
                 setIsLoading(false)
-                return navigate(`${cardType.searchLink}`, {
+                return navigate(`${cardType.searchLink}/search`, {
                     replace: true,
                     state: { search }
                 })

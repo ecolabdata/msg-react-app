@@ -107,7 +107,7 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
 
                 }).then((search) => {
                     setIsLoading(false)
-                    return navigate(cardType.searchLink, {
+                    return navigate(cardType.searchLink+'/search', {
                         replace: true,
                         state: { search }
                     })
@@ -123,7 +123,7 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
 
                 }).then((search) => {
                     setIsLoading(false)
-                    return navigate(cardType.searchLink, {
+                    return navigate(cardType.searchLink+'/search', {
                         replace: true,
                         state: { search }
                     })

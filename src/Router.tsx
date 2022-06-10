@@ -67,6 +67,9 @@ const Router = () => {
                             <Route path={cardType.searchLink} element={
                                 cardType.SearchPage ? <cardType.SearchPage /> : <ListResearchResult cardType={cardType}/>
                             }/>
+                            <Route path={cardType.searchLink+"/search"} element={
+                                cardType.SearchPage ? <cardType.SearchPage /> : <ListResearchResult cardType={cardType}/>
+                            }/>
                             <Route path={`/${cardType.name}/details/:slug`} element={
                                 cardType.DetailsPage ? <cardType.DetailsPage /> : <CardDetailsJson cardType={cardType}/>
                             }/>
