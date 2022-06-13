@@ -16,7 +16,6 @@ import ListResearchResult from './components/anonymous/ListResearchResultPage';
 import { all as allCardType } from './model/CardType';
 import CardDetailsJson from './components/customComponents/CardDetailsJson';
 import { defaultUsedCorbeille, defaultUsedFavoris, useCorbeille, UsedCorbeille, UsedFavoris, useFavoris } from './utils/categoris';
-import CardDetails from './components/customComponents/CardDetails';
 import { DonnezVotreAvis } from './components/customComponents/DonnezVotreAvis';
 import mockApiResponse from './api/mock_api_resp.json';
 import {CardDetailsInno, CardDetailsClient} from './components/customComponents/DetailsAide';
@@ -61,7 +60,6 @@ const Router = () => {
                         <Route path="/" element={<HomePage />} />
                         <Route path="/explorer" element={<ResearchForm alpha={false} />} />
                         <Route path="/explorer-alpha" element={<ResearchForm alpha={true}/>} />
-                        <Route path="/exemple/details" element={<CardDetails />} />
                         {allCardType.map((cardType => <>
                             <Route path={cardType.searchLink} element={
                                 cardType.SearchPage ? <cardType.SearchPage /> : <ListResearchResult cardType={cardType}/>
