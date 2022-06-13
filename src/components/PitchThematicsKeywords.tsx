@@ -37,9 +37,19 @@ export const PitchThematicsKeywords: React.FC<PitchThematicsKeywordsParams> = ({
 
              { collapsePitchContainer 
                 ?
-                <button type="button" onClick={ () => setCollapsePitchContainer(!collapsePitchContainer)} className="w-full text-dark-text-action flex justify-center items-center">Modifier la recherche <span className="ml-2">+</span></button>
+                    <button 
+                        type="button" 
+                        onClick={ () => setCollapsePitchContainer(!collapsePitchContainer)} 
+                        className="w-full text-dark-text-action flex justify-center items-center">
+                            Modifier la recherche <span className="ml-2">+</span>
+                    </button>
                 : <>
-                    <button type="button" className="text-dark-text-action absolute top-0 right-10 m-2 w-[7%] flex justify-around items-center" onClick={() => {setCollapsePitchContainer(!collapsePitchContainer)}} > <span className="underline">Fermer</span><span className="rotate-45 block ml-2 text-3xl">+</span> </button>
+                    <button 
+                        type="button" 
+                        onClick={() => {setCollapsePitchContainer(!collapsePitchContainer)}}
+                        className="text-dark-text-action absolute top-0 right-10 m-2 w-[7%] flex justify-around items-center">
+                        <span className="underline">Fermer</span><span className="rotate-45 block ml-2 text-3xl">+</span> 
+                    </button>
                     
                     <div className='leftSideForm mb-8 h-[75%] w-full flex justify-center
                     lg:w-1/2 '>

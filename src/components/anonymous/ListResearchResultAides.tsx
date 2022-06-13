@@ -159,7 +159,7 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
 
     return (
         <>
-            <div className="headContainer  container mt-10 mx-auto max-w-headerSize
+            <div className="headContainer container mt-10 mx-auto max-w-headerSize
             xl:mx-auto
             ">
 
@@ -200,7 +200,8 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
                             
                             <div className="specifyAndLogoContainer w-full ">
 
-                                <h2 className={`mt-4 bold text-xl text-[${cardType.color}] flex justify-center items-center`}>
+                                <h2 className={`mt-4 bold text-xl flex justify-center items-center`}
+                                    style={{color: color}}>
                                     <Filtrer className="mr-6" width="20" height="20"/> 
                                     Préciser la recherche 
                                 </h2>
