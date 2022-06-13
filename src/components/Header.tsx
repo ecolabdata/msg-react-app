@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import FillButton from './dsfrComponents/FillButton';
 import { protectedRoutes, publicRoutes } from './../utils';
 import Trash from './../assets/icons/trash-fill.svg';
@@ -25,7 +25,6 @@ const Header = ({ userIsAuth, decouvrir }: HeaderProps) => {
 
     const screenWidth = useSelector((state: RootState) => state?.appState.screenWidth);
     const dispatch = useDispatch();
-
     useEffect(() => {
         console.log('screenWidth :>> ', screenWidth);
 
@@ -107,9 +106,9 @@ const Header = ({ userIsAuth, decouvrir }: HeaderProps) => {
         <header role="banner" className="fr-header">
 
             <div className="fr-header__body">
-                <div className="fr-container">
+                <div className="fr-container ">
                     <div className="fr-header__body-row">
-                        <div className="fr-header__brand fr-enlarge-link">
+                        <div className="fr-header__brand fr-enlarge-link ">
                             <div className="fr-header__brand-top">
                                 <div className="fr-header__logo">
                                     <p className="fr-logo uppercase">
@@ -125,7 +124,7 @@ const Header = ({ userIsAuth, decouvrir }: HeaderProps) => {
                                 </div>
                             </div>
                             <div className="fr-header__service flex">
-                                <a className="flex" href="/explorer" title="Accueil - Mes services GreenTech - Ministère de la transition écologique">
+                                <a className="flex" href="/" title="Accueil - Mes services GreenTech - Ministère de la transition écologique">
                                     <img className="h-12 mt-1 mr-2" src={LogoMSG} alt="Icône d'indication, version beta " />
                                     <p className="fr-header__service-title capitalize
                                      after:rounded-sm after:content-['beta'] after:ml-2 after:relative after:bottom-1 after:w-content after:h-content after:px-1 
