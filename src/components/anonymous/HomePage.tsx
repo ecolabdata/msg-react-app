@@ -5,29 +5,32 @@ import FillButton from '../dsfrComponents/FillButton';
 import { CardType, all as allCardType } from "../../model/CardType";
 import { SpeechBubble } from '../../assets/Icons';
 
-import HomePageCard from '../customComponents/HomePageCard';
 import { useContext } from 'react';
 import { ApplicationContext } from '../../Router';
 import ExplorerHomePageCard from '../customComponents/ExplorerHomePageCard';
 import Card from '../dsfrComponents/Card';
-
 export interface ExplorerTypeCard  {
-    SVGLogo: ({ ...other}: { [x: string]: any; }) => JSX.Element,
-    title: "Explorer",
-    color: "rgba(0, 0, 145, 1)",
-    description: "Découvrez tous les leviers proposés par Mes Services Greentech !",
-    searchLink: "explorer",
+    SVGLogo: ({...other}: {[x : string]: any; }) => JSX.Element,
+    title: string,
+    color: string,
+    description: string,
+    searchLink: string,
+    version: string,
+    name: string
 };
 
-
 const Home = () => {
+
        const explorerCard:ExplorerTypeCard = {
         SVGLogo: SpeechBubble,
         title: "Explorer",
         color: "rgba(0, 0, 145, 1)",
         description: "Découvrez tous les leviers proposés par Mes Services Greentech !",
         searchLink: "explorer",
+        version: "no",
+        name: "explorer"
     };
+
     useTitle("Accueil ")
     const { usedCorbeille, usedNextScrollTarget} = useContext(ApplicationContext)
     const [nextScrollTarget, setNextScrolTarget] = usedNextScrollTarget

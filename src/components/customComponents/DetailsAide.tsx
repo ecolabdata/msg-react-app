@@ -1,4 +1,3 @@
-import { CardData } from '../../model/CardData';
 import { aideClient, aideInno, CardType } from '../../model/CardType';
 import ArrowDark from './../../assets/icons/arrow-dark-action.svg';
 import { Rocket } from '../../assets/Icons';
