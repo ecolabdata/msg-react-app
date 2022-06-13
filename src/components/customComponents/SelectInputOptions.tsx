@@ -16,30 +16,22 @@ interface SelectInputOptionsProps {
 const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({ optionsData, secteurs, setSecteurs }) => {
 
     const [displaySelect, setDisplaySelect] = useState(false);
-
     const secteursSet = new Set(secteurs)
-    console.log('optionsData :>> ', optionsData);
+    
     return (
-        <>
+        <div className="relative">
             <label className="fr-label" htmlFor="select">Thématique du projet</label>
-            <button type="button" className=" z-[10] h-10 flex flex-shrink flex-grow justify-between bg-input-background addBorder-b border-3 border-b-white " onClick={() => { setDisplaySelect(!displaySelect); }}>
-                <div className='my-2 mx-3 flex basis-0'>
-                    <p className="w-[250px] md:w-[220px] lg:w-[320px]  flex-1 truncate text-left">
+            <button type="button" className="mt-2 w-full max-h-10 addBorder-b border-3 border-b-white p-2 flex bg-input-background" onClick={() => { setDisplaySelect(!displaySelect); }}>
+                    <p className="flex-1 truncate text-left max-w-full">
                         {secteurs.length <= 0 ? "Sélectionnez une option" : secteurs.join(", ")}
                     </p>
                     <span className={`${localStorage.scheme === "dark" ? "bg-dark-text-action" : "bg-blue-france"} w-6 h-6 rounded-full text-white font-bold`}> {secteurs.length} </span>
                     <img className={`${displaySelect ? 'rotate-90' : ''} h-5 w-5 m-0.5`} src={Chevron} alt="Chevron" />
-                </div>
             </button>
 
             {displaySelect && <>
-                <div style={{ position: "fixed", width: "100vw", height: "100vh", top: 0, left: 0, zIndex: 5 }} onClick={e => setDisplaySelect(false)}></div>
-                <div className='h-0 w-0 z-[10]'>
-                    <ul className="w-[302px] h-[320px] overflow-y-auto flex flex-col bg-background-inputs  shadow-slate-400 shadow-sm 
-                    sm:w-[322px] 
-                    md:w-[280px]
-                    lg:w-[392px]">
-                        {optionsData.map((option, index) => {
+                    <ul className="z-10 absolute w-full max-h-[320px] overflow-auto flex flex-col bg-background-inputs  shadow-slate-400 shadow-sm">
+                        {optionsData.map( option => {
                             return (
 
                                 <li className="flex content-center items-center" key={option}>
@@ -64,10 +56,9 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({ optionsData, se
                             )
                         })}
                     </ul>
-                </div>
             </>
             }
-        </>
+        </div>
     )
 };
 
