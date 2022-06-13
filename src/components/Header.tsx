@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import FillButton from './dsfrComponents/FillButton';
 import { protectedRoutes, publicRoutes } from './../utils';
 import Trash from './../assets/icons/trash-fill.svg';
@@ -26,7 +26,6 @@ const Header = ({ userIsAuth, decouvrir }: HeaderProps) => {
 
     const screenWidth = useSelector((state: RootState) => state?.appState.screenWidth);
     const dispatch = useDispatch();
-
     useEffect(() => {
         console.log('screenWidth :>> ', screenWidth);
 
@@ -108,9 +107,9 @@ const Header = ({ userIsAuth, decouvrir }: HeaderProps) => {
         <header role="banner" className="fr-header">
 
             <div className="fr-header__body">
-                <div className="fr-container">
+                <div className="fr-container ">
                     <div className="fr-header__body-row">
-                        <div className="fr-header__brand fr-enlarge-link">
+                        <div className="fr-header__brand fr-enlarge-link ">
                             <div className="fr-header__brand-top">
                                 <div className="fr-header__logo">
                                     <p className="fr-logo uppercase">

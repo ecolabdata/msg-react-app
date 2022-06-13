@@ -86,6 +86,7 @@ const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
                         usedDescription={[description, setDescription]}
                         usedMotsClef={[motsclefs, setMotsclef]}
                         usedSecteurs={[secteurs, setSecteurs]}
+                        usedInListPage={false}
                     />
                 </form>
                 </div>

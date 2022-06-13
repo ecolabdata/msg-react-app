@@ -18,6 +18,9 @@ module.exports = {
       minWidth: {
         '282': '282px',
       },
+      maxWidth: {
+        'headerSize': '1240px',
+      },
       height: {
         '55': '55%',
         '93': '93%',

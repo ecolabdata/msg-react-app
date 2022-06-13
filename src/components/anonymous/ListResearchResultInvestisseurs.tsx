@@ -41,7 +41,9 @@ const ListResearchResultInvestisseurs = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [description, setDescription] = useState(initialState?.search.query.description || "")
     const [secteurs, setSecteurs] = useState<string[]>(initialState?.search.query.secteurs || [])
-    const [montantMin, setMontantMin] = useState<number>((initialState?.search.query as InvestisseurQuery).montantMin || 0)
+    //? Type error
+    // const [montantMin, setMontantMin] = useState<number>((initialState?.search.query as InvestisseurQuery).montantMin || 0)
+    const [montantMin, setMontantMin] = useState(0)
     const [motsclefs, setMotsclef] = useState<string[]>(initialState?.search.query.motsclefs || [])
     const [errorTxt, setErrorTxt] = useState(<></>)
 

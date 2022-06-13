@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+    import { useNavigate } from 'react-router-dom';
 import { useTitle } from '../../hooks/useTitle';
 import Button from '../dsfrComponents/Button';
 import FillButton from '../dsfrComponents/FillButton';
@@ -47,10 +47,8 @@ const Home = () => {
                     xl:w-55 font-thin"> A partir de la description de votre activité ou de votre solution, nous vous proposons des pistes <br /> de leviers autour des 5 axes suivants :</h2>
             </div>
             
-            <div className="container-content mx-auto w-[66%] flex flex-wrap justify-center
-                2XL:w-[75%] 2XL:justify-start 
-                desktop-L:w-[66%] desktop-L:justify-start
-                desktop-XL:justify-center
+            <div className="cardsContainer mx-auto max-w-headerSize w-headerSize flex flex-wrap justify-center
+            xl:justify-start
                 ">
                 {allCardType.map((card) =>
                     <Card cardTypeData={card} />

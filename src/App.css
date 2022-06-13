@@ -71,3 +71,11 @@
 .overflow-gradient {
   background: linear-gradient(rgba(0, 0, 0, 0) 50%, rgb(53, 52, 52) 90%);
 }
+
+.elipsis {
+  border-radius: 9999px;
+  height: 0.4rem;
+  width: 0.4rem;
+  background-color: rgb(133 133 246 / var(--tw-bg-opacity));
+  
+}
