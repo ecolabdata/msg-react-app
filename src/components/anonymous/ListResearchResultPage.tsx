@@ -124,9 +124,10 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
                                 usedDescription={[description, setDescription]}
                                 usedMotsClef={[motsclefs, setMotsclef]}
                                 usedSecteurs={[secteurs, setSecteurs]}
+                                usedInListPage={true}
                             />
                         </div>
-                        <div className="researchContainer max-w-[1240px] w-full p-6 flex hidden flex-col bg-research-precision-container items-center  lg:p-1">
+                        <div className="researchContainer max-w-[1240px] w-full p-6 flex flex-col bg-research-precision-container items-center  lg:p-1">
 
                             <h2 className=" bold text-xl text-center mt-4" style={{ color: cardType.color }}>Preciser la recherche </h2>
 
@@ -136,11 +137,6 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
                             xl:justify-center">
                                 <div className="my-2 flex flex-col items-center lg:flex-row lg:mb-6">
                                 </div>
-
-                                {/* <div className="toggleButtons w-fit flex flex-col
-                        lg:flex-row lg:mb-6">
-                            {Object.keys(toggles).map(x => <ToggleButton label={x} checked={toggles[x]} color={cardType.color} onChange={e => setToggles({ ...toggles, [x]: !toggles[x] })} />)}
-                        </div> */}
                             </div>
                         </div>
                     </form>
