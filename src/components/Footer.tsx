@@ -1,10 +1,12 @@
+import { DonnezVotreAvis } from './../components/customComponents/DonnezVotreAvis';
 
 const Footer: React.FC = () => {
 
     return (
         <>
-            <footer className="fr-footer" role="contentinfo" id="footer">
-                <div className="fr-container">
+            <footer className="fr-footer relative" role="contentinfo" id="footer">
+                
+                <div className="fr-container dsfr-lg:relative">
                     <div className="fr-footer__body">
                         <div className="fr-footer__brand fr-enlarge-link">
                             <a href="/" title="Retour à l’accueil">
@@ -65,8 +67,10 @@ const Footer: React.FC = () => {
                             {window.gitInfo.gitCommitHash}
                         </a>
                     </div>
-                    <div style={{height: 600}}></div>
+                    <DonnezVotreAvis />
+                    {/* <div style={{height: 600}}> </div> */}
                 </div>
+
             </footer>
 
         </>

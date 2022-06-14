@@ -2,13 +2,8 @@ import { ReactElement, useContext, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { AnyCard, CardTypeName } from '../../api/Api';
 import { useQuery } from '../../hooks/useQuery';
-import { CardData } from '../../model/CardData';
 import { byName, CardType } from '../../model/CardType';
 import { ApplicationContext } from '../../Router';
-interface CardDetailsProps {
-    cardType: CardType,
-    cardData: CardData,
-}
 
 function browseObject(obj: any,
     onLeaf: (prefix: string[], key: string, value: any) => void, prefix: string[] = []) {

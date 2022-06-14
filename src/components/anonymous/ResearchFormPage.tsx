@@ -30,6 +30,7 @@ const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
     const [secteurs, setSecteurs] = useState<string[]>(initialState?.search.query.secteurs || [])
     const [motsclefs, setMotsclef] = useState<string[]>(initialState?.search.query.motsclefs || [])
     const [errorTxt, setErrorTxt] = useState(<></>)
+    const userFromHomePage = location.state === null;
     const thematicsValues = Object.values(ThematicsEnum);
 
     const handleOnSubmitForm = (ctrlPress: boolean) => {
@@ -64,7 +65,7 @@ const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
         return (
             <ResultResearchPreviewCard cardType={cardType} initialState={initialState} resultCount={results.length}>
                 {results.filter(x => !isInCorbeille(x)).map(x => <div className='outer-card'><div className="md:ml-6">
-                    <ResultPreviewCard cardData={x} cardType={cardType} />
+                    <ResultPreviewCard pageList={false} cardData={x} cardType={cardType} />
                 </div></div>
                 )}
             </ResultResearchPreviewCard>
@@ -87,6 +88,7 @@ const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
                         usedMotsClef={[motsclefs, setMotsclef]}
                         usedSecteurs={[secteurs, setSecteurs]}
                         usedInListPage={false}
+                        userFromHomePage={userFromHomePage}
                     />
                 </form>
                 </div>
