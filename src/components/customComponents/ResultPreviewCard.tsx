@@ -29,6 +29,12 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
     const financersFontSize = (2 / (displayableFinancers.length ** 0.30)) + "em"
     const d = cardData.submission_deadline ? new Date(cardData.submission_deadline) : null
     const displayabeSubmissionDeadLine = ("0" + d?.getUTCDate()).slice(-2) + "/" + ("0" + ((d?.getUTCMonth() || 0) + 1)).slice(-2) + "/" + d?.getUTCFullYear()
+    const slug = slugify(
+        cardData.nom || //collectivites, investisseurs
+        cardData.slug || //aides_clients, aides_innovation
+        cardData['Start-up'] || //startup
+        'unknown-slug'
+    );
     //const achivedStyle = isInCorbeille(cardData) ? {"opacity": 0.3, "filter": "grayscale(50%)" } : {}
     // if (cardType.name === "aides-innovations") debugger;
     return <div className={`cardContainer ${!pageList && 'ml-6'}
