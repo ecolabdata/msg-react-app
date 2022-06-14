@@ -26,8 +26,12 @@ const Card: React.FC<CardTypeProps> = (props) => {
                 <div className="fr-card__body -mt-4 mb- p-0">
                     <div className="fr-card__content">
                         <h4 className="fr-card__title">
-                            <a href={searchLink} className={`${isExplorerCard && 'text-blue-france hover:text-white'}
-                                text-lg`}>{title}</a>
+                            {!isAlpha ?
+                                <a href={searchLink} className={`${isExplorerCard && 'text-blue-france hover:text-white'}
+                                    text-lg`}>{title}</a>
+                                :
+                                <p  className="text-lg">{title}</p>
+                            }
                         </h4>
                         <p className="fr-card__desc text-base ">{description}</p>
                     </div>
