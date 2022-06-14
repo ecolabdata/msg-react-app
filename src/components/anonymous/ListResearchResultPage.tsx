@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AnyCard, search, searchInvestisseur } from '../../api/Api';
 import { useTitle } from '../../hooks/useTitle';
@@ -36,6 +36,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
     const [nextScrollTarget, setNextScrolTarget] = usedNextScrollTarget
     const location = useLocation();
     const initialState = location.state as (InitialState & { page?: number }) | null;
+    const userFromHomePage = location.state === null;
 
 
     const pageNo = initialState?.page || 1
@@ -65,7 +66,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
             .slice(
                 (pageNo - 1) * pageChunkSize,
                 pageNo * pageChunkSize
-            ).map((card) => <ResultPreviewCard isLoading={isLoading} cardType={cardType} cardData={card} />);
+            ).map((card) => <ResultPreviewCard pageList={false} isLoading={isLoading} cardType={cardType} cardData={card} />);
     }
     let nbPage = Math.ceil(allCards.length / pageChunkSize)
     const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
@@ -125,6 +126,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
                                 usedMotsClef={[motsclefs, setMotsclef]}
                                 usedSecteurs={[secteurs, setSecteurs]}
                                 usedInListPage={true}
+                                userFromHomePage={userFromHomePage}
                             />
                         </div>
                         <div className="researchContainer max-w-[1240px] w-full p-6 flex flex-col bg-research-precision-container items-center  lg:p-1">

@@ -1,4 +1,9 @@
 module.exports = {
+  mode: 'jit',
+  purge: [
+    './public/**/*.html',
+    './src/**/*.{js,jsx,ts,tsx,}',
+  ],
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
@@ -13,6 +18,7 @@ module.exports = {
         '282': '282px',
         'formTitle':'535px',
         'form': '588px',
+        'headerSize': '1240px',
 
       },
       minWidth: {
@@ -20,6 +26,7 @@ module.exports = {
       },
       maxWidth: {
         'headerSize': '1240px',
+        'cardsListContainer': '1120px',
       },
       height: {
         '55': '55%',
@@ -32,8 +39,6 @@ module.exports = {
       colors: {
         'blue-france': '#000091',
         'blue-france-main': '#6A6AF4',
-        'private-investors': '#68A532',
-        'light-accent-green' : '#95E257',
         "research-card-preview": '#161616',
         "research-precision-container": '#353434',
         "input-background": '#242424',
@@ -41,6 +46,10 @@ module.exports = {
         "background-form" : '#1F1F1F',
         "background-inputs" :'#242424',
         "beta": "#019D78",
+        "investisseurs": "#68A532",
+        "acheteurs-publics":"#F95C5E",
+        "aides-innovations":"#D8C635",
+
       },
       borderWidth: {
         "3": "3px",
@@ -49,7 +58,8 @@ module.exports = {
         '115':"1.15",
         '120':"1.20",
       },
-      screens: {
+      screens: { 
+        'dsfr-lg': '992px',
         'desktop-L': '1920px',
         '2XL': '1680px',
         'desktop-XL': '2200px',

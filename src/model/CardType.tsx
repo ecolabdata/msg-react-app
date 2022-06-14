@@ -62,7 +62,7 @@ export const investisseur: CardType = {
     searchLink: "/investisseurs",
     SearchPage: ListResearchResultInvestisseurs,
     apiName: "investisseurs",
-    version: "beta"
+    version: "alpha"
 } as const
 
 export const aideClient: CardType = {
