@@ -18,6 +18,7 @@ module.exports = {
         '282': '282px',
         'formTitle':'535px',
         'form': '588px',
+        'headerSize': '1240px',
 
       },
       minWidth: {
@@ -25,6 +26,7 @@ module.exports = {
       },
       maxWidth: {
         'headerSize': '1240px',
+        'cardsListContainer': '1120px',
       },
       height: {
         '55': '55%',
@@ -56,7 +58,8 @@ module.exports = {
         '115':"1.15",
         '120':"1.20",
       },
-      screens: {
+      screens: { 
+        'dsfr-lg': '992px',
         'desktop-L': '1920px',
         '2XL': '1680px',
         'desktop-XL': '2200px',
