@@ -75,7 +75,7 @@ const WasteBin = () => {
             </div>
 
             <div className="cardsContainer mx-auto w-3/4 justify-center flex flex-wrap">
-                {Object.values(corbeille).filter(x => selectedCardTypeName === "all" || selectedCardTypeName === x.cardTypeName).map((card) => <ResultPreviewCard cardType={byName[card.cardTypeName]} cardData={card} />)}
+                {Object.values(corbeille).filter(x => selectedCardTypeName === "all" || selectedCardTypeName === x.cardTypeName).map((card) => <ResultPreviewCard pageList={true} cardType={byName[card.cardTypeName]} cardData={card} />)}
             </div>
 
             {/* <Pagination currentPageNo={pageNo} baseUrl={cardType.searchLink + "/" + searchId} nbPage={nbPage}/> */}

@@ -39,7 +39,6 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
     
    
     const { color } = cardType;
-    console.log('typeof color :>> ', typeof color);
     const { usedCorbeille, usedNextScrollTarget } = useContext(ApplicationContext);
     const [toggleInCorbeille, isInCorbeille] = usedCorbeille;
     const [nextScrollTarget, setNextScrolTarget] = usedNextScrollTarget;
@@ -63,7 +62,7 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
     const [echeance, setEcheance] = useState(initialQuery?.echeance || "");
     const toggleKeys = Object.keys(toggles) as (keyof typeof toggles)[]
     const pageChunkSize = 20;
-
+    const userFromHomePage = location.state === null;
     const filteredCards: JSX.Element[] | undefined = useMemo(() => {
 
         console.log("Running use memo")
@@ -96,7 +95,8 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
         } else {
             return []
         }
-    }, [initialState]).map((card) => <ResultPreviewCard isLoading={isLoading} cardType={cardType} cardData={card} />);
+
+    }, [initialState]).map((card) => <ResultPreviewCard pageList={true} isLoading={isLoading} cardType={cardType} cardData={card} />);
 
     const nbPage = Math.ceil(filteredCards.length / pageChunkSize)
     const cardsSlice = filteredCards.slice(
@@ -191,6 +191,7 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
                                 usedMotsClef={[motsclefs, setMotsclef]}
                                 usedSecteurs={[secteurs, setSecteurs]}
                                 usedInListPage={true}
+                                userFromHomePage={userFromHomePage}
                             />
 
                         </div>
@@ -257,12 +258,12 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
                     </div>
 
                     <div className="researchButtonsContainer mt-4 w-full flex justify-center">
+
                         <button type="button" disabled={isLoading} className="mx-3 fr-btn fr-btn--sm underline fr-btn--tertiary-no-outline   
                         "> <span className={`mx-auto`}>Réinitialiser</span> </button>
 
                         <button form="keywordsForm" disabled={isLoading} className="mx-3 fr-btn fr-btn--sm fr-btn--primary 
                         "> <span className={`mx-auto`}>{isLoading ? "Chargement..." : "Valider et rechercher"}</span> </button>
-
 
                     </div>
 
@@ -270,7 +271,7 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
                 </div>
             </div>
 
-            {cardsSlice.length > 0 ? <div id="cardsContainer" className="cardsContainer mt-10 mx-auto max-w-[80%] flex flex-wrap justify-evenly bg 
+            {cardsSlice.length > 0 ? <div id="cardsContainer" className="cardsContainer mt-10 mx-auto max-w-headerSize flex flex-wrap justify-evenly
             xl:mx-auto
             ">
                 {cardsSlice}

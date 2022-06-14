@@ -9,10 +9,11 @@ import { Star, Trash } from '../../assets/Icons'
 interface ResultPreviewCardProps {
     cardData: AnyCard
     cardType: CardType
-    isLoading?: boolean
+    isLoading?: boolean,
+    pageList : boolean,
 }
 
-const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardType, isLoading}) => {
+const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardType, isLoading, pageList}) => {
     const { usedFavoris, usedCorbeille, usedNextScrollTarget } = useContext(ApplicationContext)
     const [toggleFavori, isFavori] = usedFavoris
     const [toggleInCorbeille, isInCorbeille] = usedCorbeille
@@ -29,11 +30,12 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
     const displayabeSubmissionDeadLine = ("0" + d?.getUTCDate()).slice(-2) + "/" + ("0" + ((d?.getUTCMonth() || 0) + 1)).slice(-2) + "/" + d?.getUTCFullYear()
     //const achivedStyle = isInCorbeille(cardData) ? {"opacity": 0.3, "filter": "grayscale(50%)" } : {}
     // if (cardType.name === "aides-innovations") debugger;
-    return <div className={`cardContainer group rounded-r ml-6 w-[282px]  p-4 flex flex-col
-                    addBorder-l border-l-3 
-                    hover:shadow-xl
-                    card-animation
-                    bg-research-card-preview relative overflow-hidden`
+    return <div className={`cardContainer ${!pageList && 'ml-6'}
+            group rounded-r w-[282px] p-4 flex flex-col
+            addBorder-l border-l-3 
+            hover:shadow-xl
+            card-animation
+            bg-research-card-preview relative overflow-hidden`
     }
         style={{ borderColor: cardType.color, opacity: isLoading ? 0 : 1 }}>
 

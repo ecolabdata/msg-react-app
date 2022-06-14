@@ -64,7 +64,7 @@ const ListResearchResultInvestisseurs = () => {
             .slice(
                 (pageNo - 1) * pageChunkSize,
                 pageNo * pageChunkSize
-            ).map((card) => <ResultPreviewCard cardType={cardType} cardData={card} />);
+            ).map((card) => <ResultPreviewCard pageList={true} cardType={cardType} cardData={card} />);
     }
     const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
