@@ -8,7 +8,7 @@ import { ApplicationContext } from '../../Router';
 import { useLocation, useParams } from 'react-router-dom';
 import { useQuery } from '../../hooks/useQuery';
 
-const CardDetails: React.FC<{ cardType: CardType }> = ({ cardType }) => {
+const CardDetails: React.FC<{ cardType: AnyCardType }> = ({ cardType }) => {
     const query = useQuery();
     const { usedFavoris, usedCorbeille } = useContext(ApplicationContext)
     const [toggleFavori, isFavori] = usedFavoris
@@ -17,7 +17,7 @@ const CardDetails: React.FC<{ cardType: CardType }> = ({ cardType }) => {
     const initialState = location.state as { cardData: AnyCard } | null;
     console.log({ query })
     if (!initialState?.cardData && !query.cardData) throw new Error("Missing cardData to generate page")
-    const cardData: Omit<Partial<Aide>, "id"> & { id: string, cardTypeName: string } = initialState?.cardData || JSON.parse(query.cardData)
+    const cardData: Aide = initialState?.cardData || JSON.parse(query.cardData)
 
     const displayableFinancers = cardData.financers?.join(" | ") || ""
     const d = cardData.submission_deadline ? new Date(cardData.submission_deadline) : null

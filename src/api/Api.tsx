@@ -8,21 +8,24 @@ export const buildId = (obj: any) => sha1(canonicalize(obj)).slice(0, 8)
 export const cardTypeNames = ["collectivites", "marches", "investisseurs", "aides_clients", "aides_innovation", 'startups'] as const;
 export type CardTypeName = typeof cardTypeNames[number];
 
+type GeneratedData = { id: string, cardTypeName: string }
 /*
 cardType list
 https://www.notion.so/messervicesgreentech/0290b8c9cfd4437b8f9ee8bb9ee697ee?v=94b3a82bc59243e5b99ed4574bf8407f
 */
-export type Aide = typeof mockApiResponse.cards.aides_clients[number] | typeof mockApiResponse.cards.aides_innovation[number];
+export type Aide = Omit<typeof mockApiResponse.cards.aides_clients[number] | typeof mockApiResponse.cards.aides_innovation[number], "id"> & GeneratedData
 //export type Aide = typeof mockApiResponse.cards.aides[number] //From old FTE file
-export type Collectivite = typeof mockApiResponse.cards.collectivites[number]//Deduced from DECP
+export type Collectivite = typeof mockApiResponse.cards.collectivites[number] & GeneratedData//Deduced from DECP
 //? PROVISORY : This type is provisory until we get the good one
-export type Marche = typeof mockApiResponse.cards.collectivites[number]//deduced from DECP
+export type Marche = typeof mockApiResponse.cards.collectivites[number] & GeneratedData//deduced from DECP
 //?----------------------------------------------------------------
-export type Investisseur = typeof mockApiResponse.cards.investisseurs[number]//From GI file
+export type Investisseur = typeof mockApiResponse.cards.investisseurs[number] & GeneratedData//From GI file
 
-export type Startup = typeof mockApiResponse.cards.startups[number]//From GI file
+export type Startup = typeof mockApiResponse.cards.startups[number] & GeneratedData//From GI file
 
-export type AnyCard = Omit<Partial<Aide>, "id"> & Partial<Marche> & Partial<Collectivite> & Partial<Investisseur> & Partial<Startup> & { id: string, cardTypeName: string }
+export type ACard = Aide | Marche | Collectivite | Investisseur | Startup
+
+export type AnyCard = Partial<Aide> & Partial<Marche> & Partial<Collectivite> & Partial<Investisseur> & Partial<Startup>
 // types of property '"deadline"' are incompatible.
 //             Type 'null' is not assignable to type 'string | undefined'
 
