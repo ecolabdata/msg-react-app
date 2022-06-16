@@ -65,7 +65,7 @@ const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = ({ c
             <div className="seeAllbutton p-2">
                 <NavLink
                     onClick={() => setNextScrollTarget({ top: 0 })}
-                    to={cardType.searchLink} state={initialState} style={{ borderColor: cardType.color, color: cardType.color }} className="w-36 h-9 text-xs font-bold 
+                    to={cardType.searchLink} state={initialState} style={{ borderColor: cardType.color, color: cardType.color }} className="w-fit h-9 text-base font-bold 
                     addBorder border-2 p-1 rm-link-underline
                     flex justify-center"> <span className="my-auto">Voir tout & filtrer</span>  &nbsp;<ArrowRight className="my-auto" width="16" height="16" /> </NavLink>
             </div>
