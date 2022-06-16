@@ -86,3 +86,5 @@ export const aideInnoFilters : AideFilterConfig = {
     filterCards: aideFilterCards,
     Component: aideComponent(aideInno)
 }
+
+export const ListResearchResultAidesInno = () => listResearchResult<Aide ()

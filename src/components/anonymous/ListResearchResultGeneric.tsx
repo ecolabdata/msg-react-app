@@ -12,9 +12,11 @@ import { Filtrer } from '../../assets/Icons';
 
 
 import { PitchThematicsKeywords } from '../PitchThematicsKeywords';
-import { AnyFiltersConfig } from '../customComponents/filter/FiltersConfig';
+import { AnyFiltersConfig, SearchFilterConfig } from '../customComponents/filter/FiltersConfig';
 
-const ListResearchResult: React.FC<{ cardType: AnyCardType, filtersConfig : AnyFiltersConfig }> =  ({ cardType, filtersConfig }) => {
+
+
+const ListResearchResult : SearchFilterConfig => React.FC =  (config) => (props) => {
     const { color } = cardType;
     console.log('typeof color :>> ', typeof color);
     const { usedCorbeille, usedNextScrollTarget } = useContext(ApplicationContext);
@@ -204,5 +206,5 @@ const ListResearchResult: React.FC<{ cardType: AnyCardType, filtersConfig : AnyF
     )
 };
 
-export const ListResearchResultAidesInno = () => <ListResearchResult cardType={aideInno} />
+
 export const ListResearchResultAidesClient = () => <ListResearchResult cardType={aideClient} />

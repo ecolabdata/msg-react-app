@@ -19,10 +19,10 @@ export interface CardType {
     searchLink: string,
     apiName: ApiName,
     DetailsPage?: React.FC<{}>,
-    version: typeof versions[number];
+    version: typeof versions[number]
 }
 
-export const acheteurPublic = {
+export const acheteurPublic : CardType = {
     SVGLogo: Signal,
     color: "#F95C5E",
     //title: "Organismes publics à démarcher",
@@ -35,7 +35,7 @@ export const acheteurPublic = {
     version: "alpha"
 } as const
 
-export const achatPrevi = {
+export const achatPrevi : CardType = {
     SVGLogo: Calendar,
     color: "#D8C635",
     title: "Achats publics à venir",
@@ -53,7 +53,7 @@ export const achatPrevi = {
 
 } as const
 
-export const investisseur = {
+export const investisseur : CardType = {
     SVGLogo: Euro,
     color: "#68A532",
     title: "Investisseurs",
@@ -64,7 +64,7 @@ export const investisseur = {
     version: "alpha"
 } as const
 
-export const aideClient = {
+export const aideClient : CardType = {
     SVGLogo: Eye,
     color: "#A558A0",
     title: "Aides aux clients",
@@ -76,7 +76,7 @@ export const aideClient = {
     version: "beta"
 } as const
 
-export const aideInno = {
+export const aideInno : CardType = {
     SVGLogo: Rocket,
     color: "#8585F6",
     title: "Aides à l’innovation",
@@ -88,7 +88,7 @@ export const aideInno = {
     version: "beta"
 } as const
 
-export const startups = {
+export const startups : CardType = {
     SVGLogo: Unicorn,
     color: "#4EC8AE",
     title: "Start-up greentech",
@@ -103,6 +103,5 @@ export const startups = {
 
 
 export const all = [aideInno, aideClient, investisseur, acheteurPublic, achatPrevi, startups] as const
-export type Any = typeof all[number];
 export const byName = Object.fromEntries(all.map(x => [x.name, x]))
 export const dropdownValues = Object.fromEntries(all.map(x => [x.name, x.title]))
