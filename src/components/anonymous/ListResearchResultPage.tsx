@@ -36,7 +36,6 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
     const [nextScrollTarget, setNextScrolTarget] = usedNextScrollTarget
     const location = useLocation();
     const initialState = location.state as (InitialState & { page?: number }) | null;
-    const userFromHomePage = location.state === null;
 
 
     const pageNo = initialState?.page || 1
@@ -126,7 +125,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
                                 usedMotsClef={[motsclefs, setMotsclef]}
                                 usedSecteurs={[secteurs, setSecteurs]}
                                 usedInListPage={true}
-                                userFromHomePage={userFromHomePage}
+                                openPitchContainerFromStart={true}
                             />
                         </div>
                         <div className="researchContainer max-w-[1240px] w-full p-6 flex flex-col bg-research-precision-container items-center  lg:p-1">
