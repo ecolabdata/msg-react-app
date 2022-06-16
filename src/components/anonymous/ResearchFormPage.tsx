@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from 'react';
-import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AnyCard, search } from '../../api/Api';
 import { useTitle } from '../../hooks/useTitle';
 import { all as allCardType } from '../../model/CardType';
@@ -7,14 +7,8 @@ import { ApplicationContext } from '../../Router';
 import { InitialState } from '../../utils/InitialState';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
 import ResultResearchPreviewCard from '../customComponents/ResultResearchPreviewCard';
-import KeyWordsLabel from '../dsfrComponents/KeyWordsLabel';
-import RocketLogo from './../../assets/icons/Rockett.svg';
-import KeywordsLogo from './../../assets/icons/Keywords.svg';
-import ThematicsLogo from './../../assets/icons/Thematics.svg';
-import { ThematicsEnum } from '../../model/ThematicsEnum';
-import SelectInputOptions from '../customComponents/SelectInputOptions';
 import { PitchThematicsKeywords } from '../PitchThematicsKeywords';
-
+import { FillMagnifying, Magnifying } from './../../assets/Icons';
 
 const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
 
@@ -29,16 +23,15 @@ const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
     const [description, setDescription] = useState(initialState?.search.query.description || "")
     const [secteurs, setSecteurs] = useState<string[]>(initialState?.search.query.secteurs || [])
     const [motsclefs, setMotsclef] = useState<string[]>(initialState?.search.query.motsclefs || [])
-    const [errorTxt, setErrorTxt] = useState(<></>)
+    const [errorTxt, setErrorTxt] = useState('');
     const userFromHomePage = location.state === null;
-    const thematicsValues = Object.values(ThematicsEnum);
 
     const handleOnSubmitForm = (ctrlPress: boolean) => {
 
         if (description.length > 0) {
 
             setIsLoading(true)
-            setErrorTxt(<></>)
+            setErrorTxt('')
             search({ description, motsclefs, secteurs }).then((search) => {
                 setIsLoading(false)
                 //? Scroll
@@ -46,12 +39,13 @@ const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
                 if (element) setNextScrolTarget({ behavior: "smooth", top: element.offsetTop - window.innerHeight * 0.20 })
                 navigate(ctrlPress ? `/explorer-alpha` : `/explorer`, { state: { search } })
             }).catch(e => {
-                setIsLoading(false)
-                navigate(ctrlPress ? `/explorer-alpha` : `/explorer`)
-                setErrorTxt(<p style={{ color: "hsla(0, 100%, 65%, 0.9)" }}>Une erreur serveur inconnue est survenue</p>)
+                setIsLoading(false);
+                navigate(ctrlPress ? `/explorer-alpha` : `/explorer/search`);
+                setErrorTxt('Une erreur serveur inconnue est survenue');
             })
+
         } else {
-            setErrorTxt(<p style={{ color: "hsla(0, 100%, 65%, 0.9)" }}>La description de l'entreprise est obligatoire</p>)
+            setErrorTxt("La description de l'entreprise est obligatoire");
         }
     };
 
@@ -71,51 +65,69 @@ const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
             </ResultResearchPreviewCard>
         )
 
-    })
+    });
 
     return (
         <>
-            <div className="formContainer flex flex-col items-center">
 
-                <h1 className="font-bold text-2xl md:text-4xl my-2 md:my-8 lh text-center mx-auto max-w-4xl md:leading-10"> Start-up greentech, trouvez automatiquement des pistes pour booster votre développement !  </h1>
-                <div className="mt-4">
-                <form onSubmit={(event) => {
-                    event.preventDefault()
-                    handleOnSubmitForm(false)
-                }} id="keywordsForm"  className="flex flex-wrap max-w-[1920px]">
-                    <PitchThematicsKeywords
-                        usedDescription={[description, setDescription]}
-                        usedMotsClef={[motsclefs, setMotsclef]}
-                        usedSecteurs={[secteurs, setSecteurs]}
-                        usedInListPage={false}
-                        userFromHomePage={userFromHomePage}
-                    />
-                </form>
-                </div>
-                <div className='h-12 flex justify-center items-center color'>
+            <h1 className="font-bold my-2 mx-auto max-w-headerSize text-xl flex text-center justify-center items-center w-[90%]
+            md:my-8 md:text-[30px] leading-5"> <Magnifying width="31px" height="31px" className="mr-4"/> Formulaire de recherche en 3 étapes ! </h1>
+
+            <form onSubmit={(event) => {
+                event.preventDefault()
+                handleOnSubmitForm(false)
+            }} 
+            id="keywordsForm"
+            className="h-fit mx-auto max-w-headerSize
+            ">
+
+                <PitchThematicsKeywords
+                    usedDescription={[description, setDescription]}
+                    usedMotsClef={[motsclefs, setMotsclef]}
+                    usedSecteurs={[secteurs, setSecteurs]}
+                    usedInListPage={false}
+                    openPitchContainerFromStart={false}
+                />
+
+            </form>
+            
+            <div className={`errorContainer ${errorTxt.length <= 0 && 'hidden'} 
+            h-12 flex justify-center items-center color`}>
+                <p style={{ color: "hsla(0, 100%, 65%, 0.9)" }}>
                     {errorTxt}
-                </div>
+                </p>
+            </div>
 
-                <div className='buttonsContainer flex justify-around flex-wrap'>
+            <div className='buttonsContainer mx-auto max-w-headerSize flex justify-center flex-wrap'>
 
-                    <button className="w-48 h-14 text-base  underline capitalize" onClick={(event) => {
-                        setDescription("")
-                        setSecteurs([])
-                        setMotsclef([])
-                    }}> Réinitialiser </button>
-                    <button onClick={(event) => {
-                        event.preventDefault()
-                        handleOnSubmitForm(event.ctrlKey)
-                    }} form="keywordsForm" disabled={isLoading} className="w-48 h-14 text-xl fr-btn fr-btn--primary capitalize" > <span className="mx-auto">{isLoading ? "Chargement..." : "rechercher !"}</span> </button>
+                <button className="w-48 h-14 text-base underline capitalize" onClick={ () => {
+                    setDescription("")
+                    setSecteurs([])
+                    setMotsclef([])
+                }}> réinitialiser </button>
 
-                </div>
+                <button onClick={(event) => {
+                    event.preventDefault()
+                    handleOnSubmitForm(event.ctrlKey)
+                }} form="keywordsForm" disabled={isLoading} className="fr-btn fr-btn--lg fr-btn--primary capitalize" > 
+                    <span className="mx-auto flex items-center">
+
+                        {!isLoading && <FillMagnifying fill="true" width="20px" height="20px" className="mr-2"/>}
+                        
+                        <span>
+                            {isLoading ? "chargement..." : "rechercher !"}
+                        </span>
+
+                    </span> 
+                </button>
 
             </div>
 
-            {previews && !isLoading && <div id="previews" className="researwchResultContainer mt-4">
+            {previews && !isLoading && <div id="previews" className="researwchResultContainer mt-4 ">
                 {previews}
             </div>}
-            {isLoading && <div className='mx-auto'>Ca charge</div>}
+
+            {isLoading && <div className='mx-auto'>Chargement...</div>}
         </>
     )
 };
