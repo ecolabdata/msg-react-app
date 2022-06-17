@@ -19,7 +19,8 @@ import { defaultUsedCorbeille, defaultUsedFavoris, useCorbeille, UsedCorbeille, 
 import CardDetails from './components/customComponents/CardDetails';
 import { DonnezVotreAvis } from './components/customComponents/DonnezVotreAvis';
 import mockApiResponse from './api/mock_api_resp.json';
-import {CardDetailsInno, CardDetailsClient} from './components/customComponents/DetailsAide';
+import { CardDetailsInno, CardDetailsClient } from './components/customComponents/DetailsAide';
+import { JwtAuth } from './jwt';
 
 
 export const ApplicationContext = createContext<{
@@ -31,7 +32,7 @@ export const ApplicationContext = createContext<{
 
 const Router = () => {
     localStorage.setItem('scheme', 'dark');
-    useEffect(() => {   
+    useEffect(() => {
 
     }, [localStorage.scheme])
     const usedFavoris = useFavoris()
@@ -45,44 +46,46 @@ const Router = () => {
             setNextScrolTarget(null)
         }
     }, [usedNextScrollTarget]);
-    
+
     useTrackPage();
     return (
         <>
             <ApplicationContext.Provider value={{ usedFavoris, usedCorbeille, usedNextScrollTarget }}>
-                <DonnezVotreAvis />
-                <Routes>
-                    <Route path="/" element={<Header userIsAuth={isAuth()} decouvrir={true}/>} />
-                    <Route path="*" element={<Header userIsAuth={isAuth()} />} />
-                </Routes>
-                <main className={`h-full p-1 md:p-6 
-                ${localStorage.scheme === 'dark' ? 'bg-[#262626]' : ''}`}>
+                <JwtAuth>
+                    <DonnezVotreAvis />
                     <Routes>
-                        <Route path="/" element={<HomePage />} />
-                        <Route path="/explorer" element={<ResearchForm alpha={false} />} />
-                        <Route path="/explorer/search" element={<ResearchForm alpha={false} />} />
-                        <Route path="/explorer-alpha" element={<ResearchForm alpha={true}/>} />
-                        <Route path="/exemple/details" element={<CardDetails />} />
-                        {allCardType.map((cardType => <>
-                            <Route path={cardType.searchLink} element={
-                                cardType.SearchPage ? <cardType.SearchPage /> : <ListResearchResult cardType={cardType}/>
-                            }/>
-                            <Route path={cardType.searchLink+"/search"} element={
-                                cardType.SearchPage ? <cardType.SearchPage /> : <ListResearchResult cardType={cardType}/>
-                            }/>
-                            <Route path={`/${cardType.name}/details/:slug`} element={
-                                cardType.DetailsPage ? <cardType.DetailsPage /> : <CardDetailsJson cardType={cardType}/>
-                            }/>
-                        </>))}
-                        <Route path="/authentification" element={<Authentication />} />
-                        <Route path="/profile" element={<AuthenticatedComponent />}>
-                            <Route path="ma-selection" element={<MySelectionPage />} />
-                            <Route path="corbeille" element={<WasteBinPage />} />
-                        </Route>
-                        <Route path="*" element={<Page404 />} />
+                        <Route path="/" element={<Header userIsAuth={isAuth()} decouvrir={true} />} />
+                        <Route path="*" element={<Header userIsAuth={isAuth()} />} />
                     </Routes>
-                </main>
-                <Footer />
+                    <main className={`h-full p-1 md:p-6 
+                ${localStorage.scheme === 'dark' ? 'bg-[#262626]' : ''}`}>
+                        <Routes>
+                            <Route path="/" element={<HomePage />} />
+                            <Route path="/explorer" element={<ResearchForm alpha={false} />} />
+                            <Route path="/explorer/search" element={<ResearchForm alpha={false} />} />
+                            <Route path="/explorer-alpha" element={<ResearchForm alpha={true} />} />
+                            <Route path="/exemple/details" element={<CardDetails />} />
+                            {allCardType.map((cardType => <>
+                                <Route path={cardType.searchLink} element={
+                                    cardType.SearchPage ? <cardType.SearchPage /> : <ListResearchResult cardType={cardType} />
+                                } />
+                                <Route path={cardType.searchLink + "/search"} element={
+                                    cardType.SearchPage ? <cardType.SearchPage /> : <ListResearchResult cardType={cardType} />
+                                } />
+                                <Route path={`/${cardType.name}/details/:slug`} element={
+                                    cardType.DetailsPage ? <cardType.DetailsPage /> : <CardDetailsJson cardType={cardType} />
+                                } />
+                            </>))}
+                            <Route path="/authentification" element={<Authentication />} />
+                            <Route path="/profile" element={<AuthenticatedComponent />}>
+                                <Route path="ma-selection" element={<MySelectionPage />} />
+                                <Route path="corbeille" element={<WasteBinPage />} />
+                            </Route>
+                            <Route path="*" element={<Page404 />} />
+                        </Routes>
+                    </main>
+                    <Footer />
+                </JwtAuth>
             </ApplicationContext.Provider>
         </>
 
