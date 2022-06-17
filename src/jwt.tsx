@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useHref, useNavigate, useSearchParams } from "react-router-dom";
 import { useQuery } from "./hooks/useQuery";
 import * as jose from 'jose'
 
@@ -20,49 +20,59 @@ export const JwtPayloadContext = createContext<JwtPayload | null>(null);
 type Props = {
     children: React.ReactNode
 }
-export const JwtAuth: React.FC<Props> = ({ children }) => {
-    const [searchParams, setSearchParams] = useSearchParams();
-    const [authMsg, setAuthMsg] = useState<React.ReactElement>(<CheckingAuth />)
-    
-    let jwt = searchParams.get("jwt")
-    searchParams.delete("jwt")
-    if (!jwt) jwt = localStorage.jwt;
-    if (!jwt) setAuthMsg(<NoAuth />)
 
+const useJwtAuth = (noToken: () => void, invalidToken: () => void, validToken: (payload: JwtPayload) => void) => {
+    const navigate = useNavigate();
+    const url = new URL(window.location.href);
+    if (url.searchParams.has("jwt")) {
+        localStorage.jwt = url.searchParams.get("jwt");
+        url.searchParams.delete("jwt");
+        window.location.href = url.href
+    }
+    let jwt = localStorage.jwt
     useEffect(() => {
-        if (!jwt) return;
-        jose.importJWK(jwk, 'RS256').then(publicKey => {
-            if (!jwt) {
-                setAuthMsg(<NoAuth />)
-            } else {
+        if (!jwt) {
+            noToken()
+        } else {
+            jose.importJWK(jwk, 'RS256').then(publicKey => {
                 jose.jwtVerify(jwt, publicKey)
                     .then(verifiedJwt => {
                         localStorage.jwt = jwt;
                         const msgJwtPayload = verifiedJwt.payload as JwtPayload;
-                        setAuthMsg(<JwtPayloadContext.Provider value={msgJwtPayload}>
-                            {children}
-                        </JwtPayloadContext.Provider>)
+                        validToken(msgJwtPayload)
                     })
                     .catch(e => {
                         console.log(e)
-                        delete localStorage.jwt
-                        setAuthMsg(<BadToken />)
+                        invalidToken()
                     })
-            }
-        })
+            })
+        }
     }, [jwt])
+}
 
+export const JwtAuth: React.FC<Props> = ({ children }) => {
+    const [authMsg, setAuthMsg] = useState<React.ReactElement>(<CheckingAuth />)
+    useJwtAuth(
+        () => setAuthMsg(<NoAuth />),
+        () => setAuthMsg(<BadToken />),
+        payload => setAuthMsg(<JwtPayloadContext.Provider value={payload}>
+            {children}
+        </JwtPayloadContext.Provider>)
+    )
     return authMsg
 }
 
+
+
+
 const NoAuth: React.FC = () => {
-    return <div>No Jwt token TODO: Page ask for a token</div>
+    return <div>Contactez nous pour avoir un accès anticipé</div>
 }
 
 const CheckingAuth: React.FC = () => {
-    return <div>Verifying authentification</div>
+    return <div>Vérification du token</div>
 }
 
 const BadToken: React.FC = () => {
-    return <div>Bad token</div>
+    return <div>Votre session a expiré ou votre token est invalide. Contactez nous pour avoir un accès anticipé</div>
 }   
