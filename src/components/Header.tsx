@@ -12,13 +12,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../_reducers/root.reducer';
 import { ApplicationContext } from '../Router';
 import { Link } from 'react-router-dom';
+import { useJwtPayload } from '../jwt';
 
 interface HeaderProps {
-    userIsAuth: boolean;
     decouvrir?: boolean;
 }
 
-const Header = ({ userIsAuth, decouvrir }: HeaderProps) => {
+const Header = ({decouvrir} : HeaderProps) => {
     const [burgerMenuOpen, setBurgerMenuClicked] = useState(false);
     const { usedFavoris, usedCorbeille } = useContext(ApplicationContext)
     const [idc1, idc2, favoris] = usedFavoris
@@ -26,7 +26,7 @@ const Header = ({ userIsAuth, decouvrir }: HeaderProps) => {
 
     const screenWidth = useSelector((state: RootState) => state?.appState.screenWidth);
     const dispatch = useDispatch();
-
+    const userIsAuth = useJwtPayload() != null 
     useEffect(() => {
         console.log('screenWidth :>> ', screenWidth);
 
@@ -140,7 +140,7 @@ const Header = ({ userIsAuth, decouvrir }: HeaderProps) => {
                                 <div className="">
                                     <ul className="fr-nav__list">
                                         {/* {fr-header__tools-links} */}
-                                        {decouvrir ? <DecouvrirButton /> : generateNavBar()}
+                                        {decouvrir && userIsAuth ? <DecouvrirButton /> : generateNavBar()}
                                         {/* {generatePopOverOrLoginButton()} */}
                                     </ul>
                                 </div>
