@@ -8,7 +8,6 @@ export interface JwtPayload extends jose.JWTPayload {
 }
 
 const useJwtAuth = (noToken: () => void, invalidToken: () => void, validToken: (payload: JwtPayload) => void) => {
-    const navigate = useNavigate();
     const url = new URL(window.location.href);
     if (url.searchParams.has("jwt")) {
         localStorage.jwt = url.searchParams.get("jwt");
@@ -29,9 +28,13 @@ const useJwtAuth = (noToken: () => void, invalidToken: () => void, validToken: (
                         validToken(msgJwtPayload)
                     })
                     .catch(e => {
-                        console.log({ badJwt: jose.decodeJwt(jwt) })
-                        console.log(e)
-                        invalidToken()
+                        try {
+                            console.log({ badJwt: jose.decodeJwt(jwt) })
+                        } catch (e) {
+                        } finally {
+                            console.log(e)
+                            invalidToken()
+                        }
                     })
             })
         }
