@@ -54,7 +54,7 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
     const [description, setDescription] = useState(initialQuery?.description || "");
     const [secteurs, setSecteurs] = useState<string[]>(initialQuery?.secteurs || []);
     const [motsclefs, setMotsclef] = useState<string[]>(initialQuery?.motsclefs || []);
-    const [errorTxt, setErrorTxt] = useState(<></>)
+    const [errorTxt, setErrorTxt] = useState('')
     const [toggles, setToggles] = useState({
         "Afficher les aides permanentes": (initialQuery && initialQuery["Afficher les aides permanentes"] !== undefined) ? initialQuery["Afficher les aides permanentes"] : true
     });
@@ -109,8 +109,8 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
         event.preventDefault();
 
         if (description.length > 0) {
-            setIsLoading(true)
-            setErrorTxt(<></>)
+            setIsLoading(true);
+            setErrorTxt('');
             
             switch (cardType.name) {
                 
@@ -124,7 +124,7 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
                         echeance
     
                     }).then((search) => {
-                        setIsLoading(false)
+                        setIsLoading(false);
                         return navigate(cardType.searchLink, {
                             replace: true,
                             state: { search }
@@ -141,7 +141,7 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
                         echeance
     
                     }).then((search) => {
-                        setIsLoading(false)
+                        setIsLoading(false);
                         return navigate(cardType.searchLink, {
                             replace: true,
                             state: { search }
@@ -153,7 +153,7 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
             }
 
         } else {
-            setErrorTxt(<p style={{ color: "hsla(0, 100%, 65%, 0.9)" }}>La description de l'entreprise est obligatoire</p>)
+            setErrorTxt("La description de l'entreprise est obligatoire")
         }
     };
 
@@ -163,7 +163,7 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
             xl:mx-auto
             ">
 
-                <button onClick={() => window.history.back()} className="text-dark-text-action flex mt-4 rm-link-underline "> <img className="mr-2" src={ArrowDark} alt="Icone flèche" /> Retour </button>
+                <button type="button" onClick={() => window.history.back()} className="text-dark-text-action flex mt-4 rm-link-underline "> <img className="mr-2" src={ArrowDark} alt="Icone flèche" /> Retour </button>
 
                 <div className="cardTitleAndLogo mt-10 p-2 text-base">
 
@@ -182,16 +182,19 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
 
                 <div className="flex flex-col items-center w-full">
                     
-                    <form onSubmit={(event) => handleOnSubmitForm(event)} id="keywordsForm" className="h-fit w-full">
+                    <form 
+                    onSubmit={(event) => handleOnSubmitForm(event)} 
+                    id="keywordsForm" 
+                    className="h-fit w-full">
                         
-                        <div className="researchContainer m-auto flex justify-around flex-wrap">
+                        <div className="researchContainer m-auto flex justify-around flex-wrap bg-blue-500">
 
                             <PitchThematicsKeywords
                                 usedDescription={[description, setDescription]}
                                 usedMotsClef={[motsclefs, setMotsclef]}
                                 usedSecteurs={[secteurs, setSecteurs]}
                                 usedInListPage={true}
-                                userFromHomePage={userFromHomePage}
+                                openPitchContainerFromStart={userFromHomePage}
                             />
 
                         </div>
@@ -209,10 +212,10 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
 
                             </div>
 
-                            <div className="inputsAndToggleContainer self-end flex items-end  justify-around w-full mt-2
+                            <div className="inputsAndToggleContainer self-end mt-2 w-full flex justify-around  
                             ">
 
-                                <div className="inputsContainer w-full mt-2 flex flex-col items-center justify-center   
+                                <div className="inputsContainer w-full mt-2 flex flex-col items-center justify-center 
                                 lg:h-fit lg:w-[85%] lg:flex-row">
 
                                     <Select classes=" w-[93%] 
@@ -227,7 +230,7 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
                                     lg:mx-2 lg:max-w-[202px]" label="Zone géographique ciblée"
                                         color={cardType.color}
                                         defaultOption={"Toutes"}
-                                        //? Value muste be changed 
+                                        //? Values muste be changed 
                                         optionsData={Object.keys(echeances)} onChange={e => {
                                             setEcheance(e.currentTarget.value)
                                         }} />
@@ -237,11 +240,11 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
                                         color={cardType.color}
                                         defaultOption={"Toutes"}
                                         optionsData={Object.keys(echeances)} onChange={e => {
-                                            setEcheance(e.currentTarget.value)
+                                            setEcheance(e.currentTarget.value);
                                         }} />
 
-                                    <div className="toggleButtonsContainer w-[93%] flex flex-col grow
-                                    lg:h-full lg:flex lg:flex-col lg:items-center lg:justify-center">
+                                    <div className="toggleButtonsContainer mb-2 w-[93%] flex flex-col grow
+                                    lg:mb-0 lg:h-full lg:flex lg:flex-col lg:items-center lg:justify-center">
                                         {toggleKeys.map(x => <ToggleButton label={x} checked={toggles[x]} color={cardType.color} onChange={e => setToggles({ ...toggles, [x]: !toggles[x] })} />)}
                                     </div>
 
@@ -253,14 +256,23 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
 
                     </form>
                     
-                    <div className='h-12 w-full flex justify-center items-center color'>
-                        {errorTxt}
+                    <div className={`errorContainer ${errorTxt.length <= 0 && 'hidden'} 
+                    h-12 flex justify-center items-center color`}>
+                        <p style={{ color: "hsla(0, 100%, 65%, 0.9)" }}>
+                            {errorTxt}
+                        </p>
                     </div>
 
                     <div className="researchButtonsContainer mt-4 w-full flex justify-center">
 
-                        <button type="button" disabled={isLoading} className="mx-3 fr-btn fr-btn--sm underline fr-btn--tertiary-no-outline   
-                        "> <span className={`mx-auto`}>Réinitialiser</span> </button>
+                        <button className="fr-btn--primary-no-outline mx-4 underline capitalize"
+                            onClick={ () => {
+                            setDescription("")
+                            setSecteurs([])
+                            setMotsclef([])
+                            }}> 
+                        réinitialiser 
+                        </button>
 
                         <button form="keywordsForm" disabled={isLoading} className="mx-3 fr-btn fr-btn--sm fr-btn--primary 
                         "> <span className={`mx-auto`}>{isLoading ? "Chargement..." : "Valider et rechercher"}</span> </button>
@@ -269,9 +281,10 @@ const ListResearchResultAides: React.FC<{ cardType: CardType }> = ({ cardType })
 
 
                 </div>
+
             </div>
 
-            {cardsSlice.length > 0 ? <div id="cardsContainer" className="cardsContainer mt-10 mx-auto max-w-headerSize flex flex-wrap justify-evenly
+            {cardsSlice.length > 0 ? <div id="cardsContainer" className="cardsContainer mt-10 mx-auto max-w-headerSize flex flex-wrap justify-around
             xl:mx-auto
             ">
                 {cardsSlice}

@@ -1,7 +1,3 @@
-import { getValue } from "@testing-library/user-event/dist/utils";
-import { Tracing } from "trace_events";
-import { investisseur } from "../../model/CardType";
-
 interface ToggleButtonProps { 
     label : string
     checked : boolean
