@@ -12,13 +12,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../_reducers/root.reducer';
 import { ApplicationContext } from '../Router';
 import { Link } from 'react-router-dom';
+import { useJwtPayload } from '../jwt';
 
 interface HeaderProps {
-    userIsAuth: boolean;
     decouvrir?: boolean;
 }
 
-const Header = ({ userIsAuth, decouvrir }: HeaderProps) => {
+const Header = ({decouvrir} : HeaderProps) => {
     const [burgerMenuOpen, setBurgerMenuClicked] = useState(false);
     const { usedFavoris, usedCorbeille } = useContext(ApplicationContext)
     const [idc1, idc2, favoris] = usedFavoris
@@ -26,6 +26,9 @@ const Header = ({ userIsAuth, decouvrir }: HeaderProps) => {
 
     const screenWidth = useSelector((state: RootState) => state?.appState.screenWidth);
     const dispatch = useDispatch();
+    const jwtPayload = useJwtPayload()
+    const userIsAuth = jwtPayload != null 
+
     useEffect(() => {
         console.log('screenWidth :>> ', screenWidth);
 
@@ -60,23 +63,20 @@ const Header = ({ userIsAuth, decouvrir }: HeaderProps) => {
 
     }
     const generateNavLinks = (route: Route) => {
+        
         return (
             <>
                 {userIsAuth &&
                     <li key={route.key} className="fr-nav__item h-full w-full p-0">
 
                         <Link to={route.path} className="fr-nav__link">
-
                             <div className="flex">
-
                                 {route.key === 'SELECTION' ?
                                     <img className="w-5 h-5 m-1" src={Star} alt="Icône d'étoile" />
-
                                     :
                                     <img className="w-5 h-5 m-1" src={Trash} alt="Icône de poubelle" />
                                 }
                                 {route.key === "ACCUEIL"}
-
                                 <div className="flex flex-col">
                                     <p className="font-bold"> {route.name} </p>
                                     <p className="text-xs"> {route.key === 'SELECTION' ? Object.keys(favoris).length : Object.keys(corbeille).length} pistes </p>
@@ -137,9 +137,10 @@ const Header = ({ userIsAuth, decouvrir }: HeaderProps) => {
 
                             <div className="fr-header__tools flex justify-end">
                                 <div className="">
+                                    {userIsAuth && <div>Connected as: {jwtPayload?.name}</div>}
                                     <ul className="fr-nav__list">
                                         {/* {fr-header__tools-links} */}
-                                        {decouvrir ? <DecouvrirButton /> : generateNavBar()}
+                                        {decouvrir && userIsAuth ? <DecouvrirButton /> : generateNavBar()}
                                         {/* {generatePopOverOrLoginButton()} */}
                                     </ul>
                                 </div>
