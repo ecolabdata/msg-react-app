@@ -1,14 +1,11 @@
 import React from 'react';
 import { AnyCard, CardTypeName as ApiName, cardTypeNames, ACard, Collectivite, Investisseur, Aide, Startup, Marche } from '../api/Api';
 import { Calendar, Euro, Eye, Rocket, Signal, Unicorn } from '../assets/Icons';
-import { ListResearchResultAidesInno, ListResearchResultAidesClient } from '../components/anonymous/ListResearchResultAides';
-import ListResearchResultInvestisseurs from '../components/anonymous/ListResearchResultInvestisseurs';
+import { ListResearchResultAidesInno, ListResearchResultAidesClient } from '../components/anonymous/ListResearchResultGeneric';
 import { CardDetailsStartup } from '../components/customComponents/CardDetailsStartup';
 import { CardDetailsInno, CardDetailsClient, } from '../components/customComponents/DetailsAide';
 
 import { versions } from './CardVersions';
-import { SearchFilterConfig } from '../components/customComponents/filter/FiltersConfig';
-import { AideFilterConfig } from '../components/customComponents/filter/AideFilter';
 
 export interface CardType {
     SVGLogo: ({ ...other }: { [x: string]: any; }) => JSX.Element,
@@ -19,6 +16,7 @@ export interface CardType {
     searchLink: string,
     apiName: ApiName,
     DetailsPage?: React.FC<{}>,
+    SearchPage?: React.FC,
     version: typeof versions[number]
 }
 
@@ -72,6 +70,7 @@ export const aideClient : CardType = {
     name: "aides-clients",
     searchLink: "/aides-clients",
     DetailsPage: CardDetailsClient,
+    SearchPage: ListResearchResultAidesClient,
     apiName: "aides_clients",
     version: "beta"
 } as const
@@ -84,6 +83,7 @@ export const aideInno : CardType = {
     name: "aides-innovations",
     searchLink: "/aides-innovations",
     DetailsPage: CardDetailsInno,
+    SearchPage: ListResearchResultAidesInno,
     apiName: "aides_innovation",
     version: "beta"
 } as const

@@ -25,7 +25,7 @@ export type Startup = typeof mockApiResponse.cards.startups[number] & GeneratedD
 
 export type ACard = Aide | Marche | Collectivite | Investisseur | Startup
 
-export type AnyCard = Partial<Aide> & Partial<Marche> & Partial<Collectivite> & Partial<Investisseur> & Partial<Startup>
+export type AnyCard = Partial<Aide> & Partial<Marche> & Partial<Collectivite> & Partial<Investisseur> & Partial<Startup> & GeneratedData
 // types of property '"deadline"' are incompatible.
 //             Type 'null' is not assignable to type 'string | undefined'
 
@@ -115,7 +115,7 @@ export const searchInvestisseur = (query: InvestisseurQuery) => buildFetchReques
 }).then(resp => handleResp(query, resp));
 
 export interface AidesQuery extends Omit<Query, "type"> {
-  "Afficher les aides permanentes": boolean,
+  displayAidePermanente: boolean,
   "aid_type": string,
   "echeance": string
 }

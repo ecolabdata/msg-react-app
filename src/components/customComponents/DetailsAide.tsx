@@ -8,7 +8,7 @@ import { ApplicationContext } from '../../Router';
 import { useLocation, useParams } from 'react-router-dom';
 import { useQuery } from '../../hooks/useQuery';
 
-const CardDetails: React.FC<{ cardType: AnyCardType }> = ({ cardType }) => {
+const CardDetails: React.FC<{ cardType: CardType }> = ({ cardType }) => {
     const query = useQuery();
     const { usedFavoris, usedCorbeille } = useContext(ApplicationContext)
     const [toggleFavori, isFavori] = usedFavoris

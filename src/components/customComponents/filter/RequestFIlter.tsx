@@ -1,9 +1,12 @@
+import { AnyCard, Search } from "../../../api/Api";
 
 
 export interface RequestFilter {
+    
+    search(description: string, motsclefs: string[], secteurs: string[]): Promise<Search>
 
-    filterCards(cards);
+    get cards() : AnyCard[]
 
-    Component
+    Component({}: {}): JSX.Element
 
 }
