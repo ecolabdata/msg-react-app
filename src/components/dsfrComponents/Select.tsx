@@ -5,9 +5,10 @@ interface SelectProps {
     onChange?: React.ChangeEventHandler<HTMLSelectElement>;
     color?: string,
     defaultOption?: string
+    selected?: string
 } 
 
-const Select: React.FC<SelectProps> = ({optionsData, label, classes, onChange, color, defaultOption}) => {
+const Select: React.FC<SelectProps> = ({optionsData, label, classes, onChange, color, defaultOption, selected}) => {
     let style = {} 
     if (color) style = {"boxShadow": `inset 0 -2px 0 0 ${color}` }
     return (
@@ -19,8 +20,8 @@ const Select: React.FC<SelectProps> = ({optionsData, label, classes, onChange, c
                     {label}
                 </label>
                 <select className="fr-select" onChange={onChange} style={style}> 
-                    <option value="" selected disabled={!defaultOption} hidden={!defaultOption}>{defaultOption || "Selectionnez une option"}</option>
-                    {optionsData.map(option => <option value={option}>{option}</option>)}
+                    <option value="" selected={selected === ""} disabled={!defaultOption} hidden={!defaultOption}>{defaultOption || "Selectionnez une option"}</option>
+                    {optionsData.map(option => <option selected={selected===option} value={option}>{option}</option>)}
                 </select>
             </div>
     )
