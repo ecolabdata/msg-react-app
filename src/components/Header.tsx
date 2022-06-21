@@ -13,12 +13,13 @@ import { RootState } from '../_reducers/root.reducer';
 import { ApplicationContext } from '../Router';
 import { Link } from 'react-router-dom';
 import { useJwtPayload } from '../jwt';
+import Countdown from 'react-countdown'
 
 interface HeaderProps {
     decouvrir?: boolean;
 }
 
-const Header = ({decouvrir} : HeaderProps) => {
+const Header = ({ decouvrir }: HeaderProps) => {
     const [burgerMenuOpen, setBurgerMenuClicked] = useState(false);
     const { usedFavoris, usedCorbeille } = useContext(ApplicationContext)
     const [idc1, idc2, favoris] = usedFavoris
@@ -27,7 +28,8 @@ const Header = ({decouvrir} : HeaderProps) => {
     const screenWidth = useSelector((state: RootState) => state?.appState.screenWidth);
     const dispatch = useDispatch();
     const jwtPayload = useJwtPayload()
-    const userIsAuth = jwtPayload != null 
+    const userIsAuth = jwtPayload != null
+
     useEffect(() => {
         console.log('screenWidth :>> ', screenWidth);
 
@@ -62,7 +64,7 @@ const Header = ({decouvrir} : HeaderProps) => {
 
     }
     const generateNavLinks = (route: Route) => {
-        
+
         return (
             <>
                 {userIsAuth &&
@@ -136,7 +138,10 @@ const Header = ({decouvrir} : HeaderProps) => {
 
                             <div className="fr-header__tools flex justify-end">
                                 <div className="">
-                                    {userIsAuth && <div>Connected as: {jwtPayload?.name}</div>}
+                                    {userIsAuth && <div>
+                                        Connected as: {jwtPayload?.name}
+                                        {jwtPayload?.exp && <div>Votre lien magique expire dans <Countdown intervalDelay={1000} date={jwtPayload?.exp * 1000} renderer={countdownRenderer} /> </div>}
+                                    </div>}
                                     <ul className="fr-nav__list">
                                         {/* {fr-header__tools-links} */}
                                         {decouvrir && userIsAuth ? <DecouvrirButton /> : generateNavBar()}
@@ -181,5 +186,17 @@ hover:bg-claire-bf__hover flex justify-between"
         <span className="fr-fi-arrow-right-line ml-1 mt-1" aria-hidden="true"></span>
     </button>
 }
+
+type CountdownRendererType = (o:{days: any, hours: any, minutes: any,seconds: any,completed: any}) => JSX.Element
+const countdownRenderer : CountdownRendererType  = ({days, hours, minutes, seconds, completed }) => {
+    if (completed) {
+        // Render a completed state
+        document.location.href='/'
+    } else {
+        // Render a countdown
+        return <span>{days}j {hours%24}h {minutes}min {seconds}sec</span>;
+    }
+    return <></>
+};
 
 export default Header;

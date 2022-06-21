@@ -1,4 +1,4 @@
-import { createContext, Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { createContext, Dispatch, ReactChildren, SetStateAction, useEffect, useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import isAuth from './helpers/isAuth';
 import Header from './components/Header'
@@ -48,8 +48,10 @@ const Router = () => {
         }
     }, [usedNextScrollTarget]);
 
-    useTrackPage();
-
+    const TrackPage = () => {
+        useTrackPage();
+        return <></>
+    }
     const Authentified = () => <>
         <DonnezVotreAvis />
         <Routes>
@@ -90,11 +92,11 @@ const Router = () => {
         <>
             <ApplicationContext.Provider value={{ usedFavoris, usedCorbeille, usedNextScrollTarget }}>
                 <JwtAuthProvider>
+                    <TrackPage />
                     <Routes>
-                        <Route path="/" element={<AuthentificationRequired />}>
-                            <Route path="/" element={<Authentified />} />
+                        <Route path="*" element={<AuthentificationRequired />}>
+                            <Route path="*" element={<Authentified />} />
                         </Route>
-                        <Route path="*" element={<Page404 />} />
                     </Routes>
                 </JwtAuthProvider>
             </ApplicationContext.Provider>
