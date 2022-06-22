@@ -4,7 +4,8 @@ import * as jose from 'jose'
 import jwk from './msg-RS256.key.pub.json'
 
 export interface JwtPayload extends jose.JWTPayload {
-    name: string
+    name?: string
+    userTestCampaign?: string
 }
 
 const useJwtAuth = (noToken: () => void, invalidToken: () => void, validToken: (payload: JwtPayload) => void) => {
@@ -41,7 +42,7 @@ const useJwtAuth = (noToken: () => void, invalidToken: () => void, validToken: (
     }, [jwt])
 }
 
-export type JwtState = { name: "checking" } | { name: "notoken" } | { name: "badtoken" } | { name: "expiredToken" } | { name: "valid", payload: JwtPayload }
+export type JwtState = { name: "checking" } | { name: "notoken" } | { name: "badtoken" }  | { name: "valid", payload: JwtPayload }
 export const JwtStateContext = createContext<JwtState | null>(null);
 
 type Props = {
@@ -57,7 +58,7 @@ export const JwtAuthProvider = ({ children }: Props) => {
     useJwtAuth(
         () => provideState({ name: "notoken" }),
         () => provideState({ name: "badtoken" }),
-        payload => provideState({ name: "valid", payload })
+        payload =>  provideState({ name: "valid", payload }) 
     )
     return authMsg
 }

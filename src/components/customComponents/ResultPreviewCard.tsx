@@ -35,6 +35,13 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
         cardData['Start-up'] || //startup
         'unknown-slug'
     );
+    let linkTo = `/${cardType.name}/details/${slug}?cardData=${encodeURIComponent(JSON.stringify(cardData))}`;
+    
+    if (linkTo.length > 8192) {
+        console.log(linkTo.length)
+        linkTo = `/${cardType.name}/details/${slug}`;
+    }
+
     //const achivedStyle = isInCorbeille(cardData) ? {"opacity": 0.3, "filter": "grayscale(50%)" } : {}
     // if (cardType.name === "aides-innovations") debugger;
     return <div className={`cardContainer ${!pageList && 'ml-6'}
@@ -59,11 +66,10 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
                 </div>
             </div>
         </div>
-
         <Link onClick={() => {
             console.log("Onclick triggered")
             setNextScrolTarget({ top: 0 })
-        }} to={`/${cardType.name}/details/${slug}?cardData=${encodeURIComponent(JSON.stringify(cardData))}`} state={{ cardData }} className="rm-link-underline">
+        }} to={linkTo} state={{ cardData }} className="rm-link-underline">
             <h4 className="clamp mt-2 font-bold text-lg" title={cardData.nom || cardData.name || cardData['Start-up'] || cardData['Nom du fonds']}>{cardData.nom || cardData.name || cardData['Start-up'] || cardData['Nom du fonds']}</h4>
             {/* <p className="uppercase opacity-0 mt-8 text-xs text-white transition-opacity duration-200 group-hover:opacity-100 w-[225px]">
                 <br />
