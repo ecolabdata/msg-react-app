@@ -139,7 +139,7 @@ const Header = ({ decouvrir }: HeaderProps) => {
                             <div className="fr-header__tools flex justify-end">
                                 <div className="">
                                     {userIsAuth && <div>
-                                        Connected as: {jwtPayload?.name}
+                                        {jwtPayload?.name && <span>Connected as: {jwtPayload?.name}</span>}
                                         {jwtPayload?.exp && <div>Votre lien magique expire dans <Countdown intervalDelay={1000} date={jwtPayload?.exp * 1000} renderer={countdownRenderer} /> </div>}
                                     </div>}
                                     <ul className="fr-nav__list">

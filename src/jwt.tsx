@@ -4,8 +4,8 @@ import * as jose from 'jose'
 import jwk from './msg-RS256.key.pub.json'
 
 export interface JwtPayload extends jose.JWTPayload {
-    name: string
-    userTestCampaign: string
+    name?: string
+    userTestCampaign?: string
 }
 
 const useJwtAuth = (noToken: () => void, invalidToken: () => void, validToken: (payload: JwtPayload) => void) => {
