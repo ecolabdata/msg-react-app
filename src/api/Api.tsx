@@ -35,6 +35,7 @@ export type Search = ReturnType<typeof handleResp>
 
 
 function handleResp(query: Query | InvestisseurQuery | AidesClientQuery | AidesInnoQuery, resp: ApiResponse) {
+  console.log('resp :>> ', resp);
   const cards = {
     collectivites: !resp.cards.collectivites ? [] : resp.cards.collectivites.map((x) => { return { ...x, id: buildId(x), cardTypeName: acheteurPublic.name } }),
     // marches: resp.cards.marches.map(x => {return {...x, id: buildId(x), cardTypeName: achatPrevi.name}}),
@@ -141,3 +142,5 @@ export const searchAidesInno = (query: AidesInnoQuery) => buildFetchRequest({
   "fichier_aides_inno": "corpusinno.pkl"
 }).then(resp => handleResp(query, resp));
 
+export const searchStartups = (query: Query) => buildFetchRequest({
+}).then(resp => handleResp(query, resp));

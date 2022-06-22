@@ -1,6 +1,6 @@
 import { useState } from "react";
 import all_aides_types from "../../../api/aide-types.json";
-import { Startup, AnyCard, } from "../../../api/Api";
+import { Startup, AnyCard, search, searchStartups } from "../../../api/Api";
 import { CardType } from "../../../model/CardType";
 import { InitialState } from "../../../utils/InitialState";
 import Select from '../../dsfrComponents/Select';
@@ -14,7 +14,7 @@ const echeances: Record<string, number> = {
 }
 
 
-export class AideRequestFilter implements RequestFilter {
+export class StartupsRequestFilter implements RequestFilter {
     
     displayAidePermanente: boolean = true
     aid_type: string = ""
@@ -23,15 +23,14 @@ export class AideRequestFilter implements RequestFilter {
     cardType : CardType
 
     constructor(initialState : (InitialState & { page?: number, montantMin: number }) | null, cardType : CardType) {
-       
         this.cardType = cardType
 
         if (initialState?.search.cards) {
-            const initialQuery = initialState?.search.query as (Startup | null);
-            this.displayAidePermanente = initialQuery ? initialQuery.displayAidePermanente : true
-            this.aid_type = initialQuery?.aid_type || ""
-            this.echeance = initialQuery?.echeance || ""
-            this.allCards = this.filter(cardType.name === "aides-innovations" ? initialState.search.cards.aides_innovation : initialState.search.cards.aides_clients)
+            // const initialQuery = initialState?.search.query as (Startup | null);
+            // this.displayAidePermanente = initialQuery ? initialQuery.displayAidePermanente : true
+            // this.aid_type = initialQuery?.aid_type || ""
+            // this.echeance = initialQuery?.echeance || ""
+            // this.allCards = this.filter(cardType.name === "aides-innovations" ? initialState.search.cards.aides_innovation : initialState.search.cards.aides_clients)
         }
     }
 
@@ -65,78 +64,52 @@ export class AideRequestFilter implements RequestFilter {
     }
 
     search(description: string, motsclefs: string[], secteurs: string[]) {
-        const {cardType, aid_type, echeance, displayAidePermanente} = this;
-        switch (cardType.name) {
-            case "aides-clients":
-                return searchAidesClient({
-                    description,
-                    motsclefs,
-                    secteurs,
-                    displayAidePermanente,
-                    aid_type,
-                    echeance
-
-                })
-            case "aides-innovations":
-                return searchAidesInno({
-                    description,
-                    motsclefs,
-                    secteurs,
-                    displayAidePermanente,
-                    aid_type,
-                    echeance
-
-                })
-            default : 
-                return Promise.reject("Unknown card type")
-        }
+     console.log('ICI =>',search({description, motsclefs, secteurs}));
+     search({description, motsclefs, secteurs}).then(response => {
+        console.log('response :>> ', response);
+     });
+     return search({description, motsclefs, secteurs});
     }
 
     Component = ({}) => {
-        const {cardType} = this;
-        const [displayAidePermanente, setDisplayAidePermanente] = useState(this.displayAidePermanente);
-        const [aid_type, setAid_type] = useState(this.aid_type);
-        const [echeance, setEcheance] = useState(this.echeance);
+        <></>
+        // const {cardType} = this;
+        // const [displayAidePermanente, setDisplayAidePermanente] = useState(this.displayAidePermanente);
+        // const [aid_type, setAid_type] = useState(this.aid_type);
+        // const [echeance, setEcheance] = useState(this.echeance);
     
         return <>
-            <Select classes=" w-[93%] 
-                lg:mx-2 lg:max-w-[202px]" label="Nature de l'aide"
+            {/* <Select classes=" w-[93%] 
+                lg:mx-2 lg:max-w-[202px]" label="Région"
                 color={cardType.color}
                 defaultOption={"Toutes"}
                 optionsData={all_aides_types.results.map(x => x.name)} onChange={e => {
                     this.aid_type = e.currentTarget.value
                     setAid_type(e.currentTarget.value)
                 }}
-                selected={aid_type}/>
+                selected={aid_type}/> */}
     
             {/* <Select classes=" w-[93%]
-                                    lg:mx-2 lg:max-w-[202px]" label="Zone géographique ciblée"
+                lg:mx-2 lg:max-w-[202px]" label="Zone géographique ciblée"
                 color={cardType.color}
-                defaultOption={"Toutes"}
-                optionsData={Object.keys(echeances)} onChange={e => {
-                    this.echeance = e.currentTarget.value
-                    setEcheance(e.currentTarget.value)
-                }}
-                selected={echeance}/> */}
-    
-            <Select classes=" w-[93%]
-                                    lg:mx-2 lg:max-w-[202px]" label="Echéance"
-                color={cardType.color}
-                defaultOption={"Toutes"}
+                defaultOption={"Marurité"}
                 optionsData={Object.keys(echeances)} onChange={e => {
                     this.echeance = e.currentTarget.value
                     setEcheance(e.currentTarget.value)
                 }}
                 selected={echeance}/>
     
-            <div className="toggleButtonsContainer w-[93%] flex flex-col grow
-                                    lg:h-full lg:flex lg:flex-col lg:items-center lg:justify-center">
-                <ToggleButton label={"Afficher les aides permanentes"} checked={displayAidePermanente} color={cardType.color} onChange={e => {
-                    this.displayAidePermanente = !displayAidePermanente
-                    setDisplayAidePermanente(!displayAidePermanente)
+            <Select classes=" w-[93%]
+                
+                lg:mx-2 lg:max-w-[202px]" label="Echéance"
+                color={cardType.color}
+                defaultOption={"Marché"}
+                optionsData={Object.keys(echeances)} onChange={e => {
+                    this.echeance = e.currentTarget.value
+                    setEcheance(e.currentTarget.value)
                 }}
-                />
-            </div>
+                selected={echeance}/> */}
+    
         </>
     }
 

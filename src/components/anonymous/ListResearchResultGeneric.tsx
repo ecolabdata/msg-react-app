@@ -7,11 +7,13 @@ import { aideClient, aideInno, startups, CardType } from '../../model/CardType';
 import { ApplicationContext } from '../../Router';
 import { InitialState } from '../../utils/InitialState';
 import { AideRequestFilter } from '../customComponents/filter/AideRequestFilter';
-import { RequestFilter } from '../customComponents/filter/RequestFIlter';
+import { StartupsRequestFilter } from '../customComponents/filter/StartupsRequestFilter';
+import { RequestFilter, } from '../customComponents/filter/RequestFIlter';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
 import Pagination from '../dsfrComponents/Pagination';
 import { PitchThematicsKeywords } from '../PitchThematicsKeywords';
 import ArrowDark from './../../assets/icons/arrow-dark-action.svg';
+
 
 type Props = {
     cardType : CardType,
@@ -19,7 +21,6 @@ type Props = {
 }
 
 const ListResearchResult : React.FC<Props> = ({ cardType, requestFilterBuilder}) => {
-
     const { color } = cardType;
     console.log('typeof color :>> ', typeof color);
     const { usedCorbeille, usedNextScrollTarget } = useContext(ApplicationContext);
@@ -172,4 +173,4 @@ const ListResearchResult : React.FC<Props> = ({ cardType, requestFilterBuilder})
 
 export const ListResearchResultAidesClient = () => <ListResearchResult cardType={aideClient} requestFilterBuilder={initState => new AideRequestFilter(initState as any, aideClient)}/>
 export const ListResearchResultAidesInno = () => <ListResearchResult cardType={aideInno} requestFilterBuilder={initState => new AideRequestFilter(initState as any, aideInno)}/>
-export const ListResearchResultStartups = () => <ListResearchResult cardType={startups} requestFilterBuilder={initState => new AideRequestFilter(initState as any, startups)}/>
+export const ListResearchResultStartups = () => <ListResearchResult cardType={startups} requestFilterBuilder={initState => new StartupsRequestFilter(initState as any, startups)}/>

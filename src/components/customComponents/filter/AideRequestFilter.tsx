@@ -81,7 +81,6 @@ export class AideRequestFilter implements RequestFilter {
                     displayAidePermanente,
                     aid_type,
                     echeance
-
                 })
             default : 
                 return Promise.reject("Unknown card type")
