@@ -13,6 +13,10 @@ interface ResultPreviewCardProps {
     isLoading?: boolean
 }
 
+const stats : any = [];
+(window as any).stats = stats;
+
+
 const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardType, isLoading}) => {
     const { usedFavoris, usedCorbeille, usedNextScrollTarget } = useContext(ApplicationContext)
     const [toggleFavori, isFavori] = usedFavoris
@@ -36,6 +40,13 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
         cardData['Start-up'] || //startup
         'unknown-slug'
     )
+    let linkTo = `/${cardType.name}/details/${slug}?cardData=${encodeURIComponent(JSON.stringify(cardData))}`;
+    
+    if (linkTo.length > 8192) {
+        console.log(linkTo.length)
+        linkTo = `/${cardType.name}/details/${slug}`;
+    }
+
     return <div className={`cardContainer group rounded-r ml-6 w-[282px]  p-4 flex flex-col
                     addBorder-l border-l-3 
                     hover:shadow-xl
@@ -58,7 +69,7 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
             </div>
         </div>
 
-        <Link onClick={() => setNextScrolTarget({ top: 0 })} to={`/${cardType.name}/details/${slug}?cardData=${encodeURIComponent(JSON.stringify(cardData))}`} state={{ cardData }} className="rm-link-underline">
+        <Link onClick={() => setNextScrolTarget({ top: 0 })} to={linkTo} state={{ cardData }} className="rm-link-underline">
             <h4 className="clamp mt-2 font-bold text-lg" title={cardData.nom || cardData.name || cardData['Start-up']}>{cardData.nom || cardData.name || cardData['Start-up']}</h4>
             {/* <p className="uppercase opacity-0 mt-8 text-xs text-white transition-opacity duration-200 group-hover:opacity-100 w-[225px]">
                 <br />
