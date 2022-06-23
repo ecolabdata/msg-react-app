@@ -32,8 +32,8 @@ const template = (bigTitle: string, smallTitle: string) => <div className="flex 
 </div>
 
 const messages: Record<JwtState["name"], ReactElement | null> = {
-    notoken: template("La plateforme Mes Services Greentech est pour l’instant disponible en accès limité.", "Contactez-nous et recevez un lien magique de connexion !"),
-    badtoken: template("Le lien magique dont vous disposez est faux ou expiré.", "Contactez-nous pour recevoir un nouveau lien magique !"),
+    notoken: template("La plateforme Mes Services Greentech est pour l’instant disponible en accès limité.", "Contactez-nous et recevez un accès anticipé !"),
+    badtoken: template("Le lien magique dont vous disposez est faux ou expiré.", "Contactez-nous pour recevoir un nouvel accès !"),
     checking: <></>,
     valid: null
 }
