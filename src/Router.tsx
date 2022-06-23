@@ -52,7 +52,7 @@ const Router = () => {
             <Route path="/" element={<Header decouvrir={true} />} />
             <Route path="*" element={<Header />} />
         </Routes>
-        <main className={`h-full p-1 md:p-6 ${localStorage.scheme === 'dark' ? 'bg-[#262626]' : ''}`}>
+        <main className={`h-full p-1 md:p-6 ${localStorage.scheme === 'dark' && 'bg-[#262626]'}`}>
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/explorer" element={<ResearchForm alpha={false} />} />

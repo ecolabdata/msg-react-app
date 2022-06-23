@@ -73,7 +73,7 @@ const ListResearchResult : React.FC<Props> = ({ cardType, requestFilterBuilder})
     return (
         <>
             <div className="headContainer  container mt-10 mx-auto max-w-headerSize
-            xl:mx-auto bg-blue-500
+            xl:mx-auto
             ">
 
                 <button onClick={() => window.history.back()} className="text-dark-text-action flex mt-4 rm-link-underline "> <img className="mr-2" src={ArrowDark} alt="Icone flèche" /> Retour </button>
