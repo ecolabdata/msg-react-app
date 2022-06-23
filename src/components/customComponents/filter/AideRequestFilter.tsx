@@ -1,6 +1,6 @@
 import { useState } from "react";
 import all_aides_types from "../../../api/aide-types.json";
-import { AidesQuery, AnyCard, searchAidesClient, searchAidesInno } from "../../../api/Api";
+import { Aide, AidesQuery, AnyCard, searchAidesClient, searchAidesInno } from "../../../api/Api";
 import { CardType } from "../../../model/CardType";
 import { InitialState } from "../../../utils/InitialState";
 import Select from '../../dsfrComponents/Select';
@@ -18,7 +18,7 @@ export class AideRequestFilter implements RequestFilter {
     displayAidePermanente: boolean = true
     aid_type: string = ""
     echeance: string = ""
-    allCards: AnyCard[] = []
+    allCards: Aide[] = []
     cardType : CardType
 
     constructor(initialState : (InitialState & { page?: number, montantMin: number }) | null, cardType : CardType) {
@@ -32,7 +32,7 @@ export class AideRequestFilter implements RequestFilter {
         }
     }
 
-    filter(cards: AnyCard[]) {
+    filter(cards: Aide[]) {
         const {displayAidePermanente, aid_type, echeance} = this
         if (aid_type) cards = cards.filter(x => x.aid_types?.includes(aid_type))
     
