@@ -76,8 +76,6 @@ const ListResearchResult : React.FC<Props> = ({ cardType, requestFilterBuilder})
             xl:mx-auto
             ">
 
-                <button onClick={() => window.history.back()} className="text-dark-text-action flex mt-4 rm-link-underline "> <img className="mr-2" src={ArrowDark} alt="Icone flèche" /> Retour </button>
-
                 <div className="cardTitleAndLogo mt-10 p-2 text-base">
 
                     <h2 className="w-fit font-bold text-2xl md:text-4xl">
