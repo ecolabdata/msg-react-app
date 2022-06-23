@@ -92,7 +92,6 @@ const Router = () => {
                             <Route path="*" element={<Authentified />} />
                         </Route>
                     </Routes>
-
                 </JwtAuthProvider>
             </ApplicationContext.Provider>
         </>

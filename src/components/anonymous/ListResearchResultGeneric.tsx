@@ -3,17 +3,16 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { AidesQuery } from '../../api/Api';
 import { Filtrer } from '../../assets/Icons';
 import { useTitle } from '../../hooks/useTitle';
-import { aideClient, aideInno, CardType } from '../../model/CardType';
+import { aideClient, aideInno, startups, CardType } from '../../model/CardType';
 import { ApplicationContext } from '../../Router';
 import { InitialState } from '../../utils/InitialState';
 import { AideRequestFilter } from '../customComponents/filter/AideRequestFilter';
-import { RequestFilter } from '../customComponents/filter/RequestFIlter';
+import { StartupsRequestFilter } from '../customComponents/filter/StartupsRequestFilter';
+import { RequestFilter, } from '../customComponents/filter/RequestFIlter';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
 import Pagination from '../dsfrComponents/Pagination';
 import { PitchThematicsKeywords } from '../PitchThematicsKeywords';
 import ArrowDark from './../../assets/icons/arrow-dark-action.svg';
-
-
 
 
 type Props = {
@@ -74,7 +73,7 @@ const ListResearchResult : React.FC<Props> = ({ cardType, requestFilterBuilder})
     return (
         <>
             <div className="headContainer  container mt-10 mx-auto max-w-headerSize
-            xl:mx-auto
+            xl:mx-auto bg-blue-500
             ">
 
                 <button onClick={() => window.history.back()} className="text-dark-text-action flex mt-4 rm-link-underline "> <img className="mr-2" src={ArrowDark} alt="Icone flèche" /> Retour </button>
@@ -174,3 +173,4 @@ const ListResearchResult : React.FC<Props> = ({ cardType, requestFilterBuilder})
 
 export const ListResearchResultAidesClient = () => <ListResearchResult cardType={aideClient} requestFilterBuilder={initState => new AideRequestFilter(initState as any, aideClient)}/>
 export const ListResearchResultAidesInno = () => <ListResearchResult cardType={aideInno} requestFilterBuilder={initState => new AideRequestFilter(initState as any, aideInno)}/>
+export const ListResearchResultStartups = () => <ListResearchResult cardType={startups} requestFilterBuilder={initState => new StartupsRequestFilter(initState as any, startups)}/>

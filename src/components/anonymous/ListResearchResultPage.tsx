@@ -73,6 +73,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
         if (description.length > 0) {
             setIsLoading(true)
             setErrorTxt(<></>)
+
             search({
                 description,
                 motsclefs,
@@ -84,6 +85,7 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
                     state: { search }
                 })
             })
+            
         } else {
             setErrorTxt(<p style={{ color: "hsla(0, 100%, 65%, 0.9)" }}>La description de l'entreprise est obligatoire</p>)
         }

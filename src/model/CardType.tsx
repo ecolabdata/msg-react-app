@@ -1,7 +1,7 @@
 import React from 'react';
 import { AnyCard, CardTypeName as ApiName, cardTypeNames, ACard, Collectivite, Investisseur, Aide, Startup, Marche } from '../api/Api';
 import { Calendar, Euro, Eye, Rocket, Signal, Unicorn } from '../assets/Icons';
-import { ListResearchResultAidesInno, ListResearchResultAidesClient } from '../components/anonymous/ListResearchResultGeneric';
+import { ListResearchResultAidesInno, ListResearchResultAidesClient, ListResearchResultStartups } from '../components/anonymous/ListResearchResultGeneric';
 import { CardDetailsStartup } from '../components/customComponents/CardDetailsStartup';
 import { CardDetailsInno, CardDetailsClient, } from '../components/customComponents/DetailsAide';
 
@@ -96,6 +96,7 @@ export const startups : CardType = {
     name: "startups",
     searchLink: "/startups",
     DetailsPage: CardDetailsStartup,
+    SearchPage: ListResearchResultStartups,
     apiName: "startups",
     version: "beta"
 } as const
