@@ -7,7 +7,7 @@ import { aideClient, aideInno, startups, CardType } from '../../model/CardType';
 import { ApplicationContext } from '../../Router';
 import { InitialState } from '../../utils/InitialState';
 import { AideRequestFilter } from '../customComponents/filter/AideRequestFilter';
-import { StartupsRequestFilter } from '../customComponents/filter/StartupsRequestFilter';
+import { NoRequestFilter } from '../customComponents/filter/NoRequestFilter';
 import { RequestFilter, } from '../customComponents/filter/RequestFIlter';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
 import Pagination from '../dsfrComponents/Pagination';
@@ -173,4 +173,6 @@ const ListResearchResult : React.FC<Props> = ({ cardType, requestFilterBuilder})
 
 export const ListResearchResultAidesClient = () => <ListResearchResult cardType={aideClient} requestFilterBuilder={initState => new AideRequestFilter(initState as any, aideClient)}/>
 export const ListResearchResultAidesInno = () => <ListResearchResult cardType={aideInno} requestFilterBuilder={initState => new AideRequestFilter(initState as any, aideInno)}/>
-export const ListResearchResultStartups = () => <ListResearchResult cardType={startups} requestFilterBuilder={initState => new StartupsRequestFilter(initState as any, startups)}/>
+export const ListResearchResultStartups = () => <ListResearchResult cardType={startups} requestFilterBuilder={initState => new NoRequestFilter(initState as any)}/>
+export const ListResearchResultAcheteurPublic = () => <ListResearchResult cardType={startups} requestFilterBuilder={initState => new NoRequestFilter(initState as any)}/>
+export const ListResearchResultAchatPrevi = () => <ListResearchResult cardType={startups} requestFilterBuilder={initState => new NoRequestFilter(initState as any)}/>

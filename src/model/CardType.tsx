@@ -1,7 +1,7 @@
 import React from 'react';
 import { AnyCard, CardTypeName as ApiName, cardTypeNames, ACard, Collectivite, Investisseur, Aide, Startup, Marche } from '../api/Api';
 import { Calendar, Euro, Eye, Rocket, Signal, Unicorn } from '../assets/Icons';
-import { ListResearchResultAidesInno, ListResearchResultAidesClient, ListResearchResultStartups } from '../components/anonymous/ListResearchResultGeneric';
+import { ListResearchResultAidesInno, ListResearchResultAidesClient, ListResearchResultStartups, ListResearchResultAcheteurPublic, ListResearchResultAchatPrevi } from '../components/anonymous/ListResearchResultGeneric';
 import { CardDetailsStartup } from '../components/customComponents/CardDetailsStartup';
 import { CardDetailsInno, CardDetailsClient, } from '../components/customComponents/DetailsAide';
 
@@ -16,7 +16,7 @@ export interface CardType {
     searchLink: string,
     apiName: ApiName,
     DetailsPage?: React.FC<{}>,
-    SearchPage?: React.FC,
+    SearchPage: React.FC,
     version: typeof versions[number]
 }
 
@@ -29,6 +29,7 @@ export const acheteurPublic : CardType = {
     description: "Collectivités ou organismes publiques ouverts à l’innovation",
     name: "acheteurs-publics",
     searchLink: "/acheteurs-publics",
+    SearchPage: ListResearchResultAcheteurPublic,
     apiName: "collectivites",
     version: "alpha"
 } as const
@@ -45,6 +46,7 @@ export const achatPrevi : CardType = {
     name: "aides-innovations",
     searchLink: "/aides-innovations",
     DetailsPage: CardDetailsInno, //?Perhaps we need to create the right component now ?
+    SearchPage: ListResearchResultAchatPrevi,
     apiName: "aides_innovation",
     version: "alpha"
     //?-------------------------------------------------------------------
@@ -59,6 +61,7 @@ export const investisseur : CardType = {
     name: "investisseurs",
     searchLink: "/investisseurs",
     apiName: "investisseurs",
+    SearchPage: ListResearchResultStartups,
     version: "alpha"
 } as const
 
