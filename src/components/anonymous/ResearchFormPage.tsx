@@ -53,6 +53,7 @@ const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
 
         if (!initialState) return null;
 
+        if (cardType.apiName === "marches") debugger;
         const results: AnyCard[] = initialState.search.cards[cardType.apiName];
         if (results.length === 0) return null;
 

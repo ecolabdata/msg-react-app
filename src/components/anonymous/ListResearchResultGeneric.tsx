@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { AidesQuery } from '../../api/Api';
 import { Filtrer } from '../../assets/Icons';
 import { useTitle } from '../../hooks/useTitle';
-import { aideClient, aideInno, startups, CardType } from '../../model/CardType';
+import { aideClient, aideInno, startups, CardType, acheteurPublic, achatPrevi } from '../../model/CardType';
 import { ApplicationContext } from '../../Router';
 import { InitialState } from '../../utils/InitialState';
 import { AideRequestFilter } from '../customComponents/filter/AideRequestFilter';
@@ -173,6 +173,6 @@ const ListResearchResult : React.FC<Props> = ({ cardType, requestFilterBuilder})
 
 export const ListResearchResultAidesClient = () => <ListResearchResult cardType={aideClient} requestFilterBuilder={initState => new AideRequestFilter(initState as any, aideClient)}/>
 export const ListResearchResultAidesInno = () => <ListResearchResult cardType={aideInno} requestFilterBuilder={initState => new AideRequestFilter(initState as any, aideInno)}/>
-export const ListResearchResultStartups = () => <ListResearchResult cardType={startups} requestFilterBuilder={initState => new NoRequestFilter(initState as any)}/>
-export const ListResearchResultAcheteurPublic = () => <ListResearchResult cardType={startups} requestFilterBuilder={initState => new NoRequestFilter(initState as any)}/>
-export const ListResearchResultAchatPrevi = () => <ListResearchResult cardType={startups} requestFilterBuilder={initState => new NoRequestFilter(initState as any)}/>
+export const ListResearchResultStartups = () => <ListResearchResult cardType={startups} requestFilterBuilder={initState => new NoRequestFilter(initState as any, startups)}/>
+export const ListResearchResultAcheteurPublic = () => <ListResearchResult cardType={acheteurPublic} requestFilterBuilder={initState => new NoRequestFilter(initState as any, acheteurPublic)}/>
+export const ListResearchResultAchatPrevi = () => <ListResearchResult cardType={achatPrevi} requestFilterBuilder={initState => new NoRequestFilter(initState as any, achatPrevi)}/>

@@ -1,17 +1,13 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { AnyCard, search } from '../../api/Api';
+import { search } from '../../api/Api';
 import { useTitle } from '../../hooks/useTitle';
-import { all as allCardType } from '../../model/CardType';
+import { ThematicsEnum } from '../../model/ThematicsEnum';
 import { ApplicationContext } from '../../Router';
 import { InitialState } from '../../utils/InitialState';
-import { ThematicsEnum } from '../../model/ThematicsEnum';
-import ResultPreviewCard from '../customComponents/ResultPreviewCard';
-import ResultResearchPreviewCard from '../customComponents/ResultResearchPreviewCard';
 import KeyWordsLabel from '../dsfrComponents/KeyWordsLabel';
-import Select from './SelectInputOptions';
-import RocketLogo from './../../assets/icons/Rockett.svg';
 import KeywordsLogo from './../../assets/icons/Keywords.svg';
+import RocketLogo from './../../assets/icons/Rockett.svg';
 import ThematicsLogo from './../../assets/icons/Thematics.svg';
 interface DetailsResearchFormProps { 
 

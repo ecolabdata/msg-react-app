@@ -35,13 +35,9 @@ export type Search = ReturnType<typeof handleResp>
 
 
 function handleResp(query: Query | InvestisseurQuery | AidesClientQuery | AidesInnoQuery, resp: ApiResponse) {
-  console.log('resp :>> ', resp);
   const cards = {
     collectivites: !resp.cards.collectivites ? [] : resp.cards.collectivites.map((x) => { return { ...x, id: buildId(x), cardTypeName: acheteurPublic.name } }),
-    // marches: resp.cards.marches.map(x => {return {...x, id: buildId(x), cardTypeName: achatPrevi.name}}),
-    //?Provisory
-    marches: !resp.cards.aides_innovation ? [] : resp.cards.aides_innovation.map((x)=> { return { ...x, id: buildId(x), cardTypeName: aideInno.name } }),
-    //?-------------------------------------------------------------------
+    //marches: resp.cards.marches.map(x => {return {...x, id: buildId(x), cardTypeName: achatPrevi.name}}),
     investisseurs: !resp.cards.investisseurs ? [] : resp.cards.investisseurs.map((x) => { return { ...x, id: buildId(x), cardTypeName: investisseur.name } }),
     aides_clients: !resp.cards.aides_clients ? [] : resp.cards.aides_clients.map((x) => { return { ...x, id: buildId(x), cardTypeName: aideClient.name } }),
     aides_innovation: !resp.cards.aides_innovation ? [] : resp.cards.aides_innovation.map((x)=> { return { ...x, id: buildId(x), cardTypeName: aideInno.name } }),

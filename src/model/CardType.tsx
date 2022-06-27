@@ -39,15 +39,10 @@ export const achatPrevi : CardType = {
     color: "#D8C635",
     title: "Achats publics à venir",
     description: "Achats publics prévus ces trois prochaines années dans votre domaine.",
-    // name: "achats-previsionnels",
-    // searchLink: "/achats-previsionnels",
-    // apiName: "marches",
-    //? PROVISORY : We use this data until we get the good one
-    name: "aides-innovations",
-    searchLink: "/aides-innovations",
-    DetailsPage: CardDetailsInno, //?Perhaps we need to create the right component now ?
+    name: "achats-previsionnels",
+    searchLink: "/achats-previsionnels",
+    apiName: "marches",
     SearchPage: ListResearchResultAchatPrevi,
-    apiName: "aides_innovation",
     version: "alpha"
     //?-------------------------------------------------------------------
 

@@ -10,13 +10,13 @@ import { RequestFilter } from "./RequestFIlter";
 
 export class NoRequestFilter implements RequestFilter {
     
-    allCards: Startup[] = []
+    allCards: AnyCard[] = []
 
-    constructor(initialState : (InitialState & { page?: number, montantMin: number }) | null) {
+    constructor(initialState : (InitialState & { page?: number, montantMin: number }) | null, cardType:CardType) {
 
         if (initialState?.search.cards) {
             const initialQuery = initialState?.search.query as Query;
-            this.allCards = initialState.search.cards.startups
+            this.allCards = initialState.search.cards[cardType.apiName]
         }
     }
 
