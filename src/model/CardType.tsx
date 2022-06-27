@@ -41,11 +41,9 @@ export const achatPrevi : CardType = {
     description: "Achats publics prévus ces trois prochaines années dans votre domaine.",
     name: "achats-previsionnels",
     searchLink: "/achats-previsionnels",
-    apiName: "marches",
+    apiName: "projets_achats",
     SearchPage: ListResearchResultAchatPrevi,
     version: "alpha"
-    //?-------------------------------------------------------------------
-
 } as const
 
 export const investisseur : CardType = {
