@@ -37,14 +37,14 @@ export type Search = ReturnType<typeof handleResp>
 function handleResp(query: Query | InvestisseurQuery | AidesClientQuery | AidesInnoQuery, resp: ApiResponse) {
   const cards = {
     collectivites: !resp.cards.collectivites ? [] : resp.cards.collectivites.map((x) => { return { ...x, id: buildId(x), cardTypeName: acheteurPublic.name } }),
-    projets_achats: resp.cards.projets_achats.map(x => {return {...x, id: buildId(x), cardTypeName: achatPrevi.name}}),
+    projets_achats: resp.cards.projets_achats.map(x => { return { ...x, id: buildId(x), cardTypeName: achatPrevi.name } }),
     investisseurs: !resp.cards.investisseurs ? [] : resp.cards.investisseurs.map((x) => { return { ...x, id: buildId(x), cardTypeName: investisseur.name } }),
     aides_clients: !resp.cards.aides_clients ? [] : resp.cards.aides_clients.map((x) => { return { ...x, id: buildId(x), cardTypeName: aideClient.name } }),
-    aides_innovation: !resp.cards.aides_innovation ? [] : resp.cards.aides_innovation.map((x)=> { return { ...x, id: buildId(x), cardTypeName: aideInno.name } }),
+    aides_innovation: !resp.cards.aides_innovation ? [] : resp.cards.aides_innovation.map((x) => { return { ...x, id: buildId(x), cardTypeName: aideInno.name } }),
     startups: !resp.cards.startups ? [] : resp.cards.startups.map((x) => { return { ...x, id: buildId(x), cardTypeName: startups.name } }),
   }
-  const cardsById = Object.fromEntries(allCardType.flatMap((x) : AnyCard[] => cards[x.apiName]).map(x => [x.id, x]))
-  return { query, cardsById, cards};
+  const cardsById = Object.fromEntries(allCardType.flatMap((x): AnyCard[] => cards[x.apiName]).map(x => [x.id, x]))
+  return { query, cardsById, cards };
 }
 
 
@@ -65,12 +65,13 @@ function buildFetchRequest(params: any) {
           "aides_clients": [],
           "aides_innovation": [],
           "investisseurs": [],
-          "startups":[]
+          "startups": [],
+          "projets_achats": []
         }
       }, params)
     )
 
-  }).then(resp => resp.json())
+  }).then(resp => resp.text()).then(str => JSON.parse(str.replace(/\bNaN\b/g, "null")))
   // }
 }
 
@@ -91,7 +92,8 @@ export const search = (query: Query) => buildFetchRequest({
   "descriptionSU": query.description,
   "nb_aides": 10,
   "nb_acheteur": 10,
-  "nb_Startups" : 10,
+  "nb_Startups": 10,
+  "nb_projetsachat":  10,
   "montant_min": 0,
   "secteurs": query.secteurs,
   "keywords": query.motsclefs

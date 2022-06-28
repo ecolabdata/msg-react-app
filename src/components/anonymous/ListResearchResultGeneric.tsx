@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { AidesQuery } from '../../api/Api';
 import { Filtrer } from '../../assets/Icons';
 import { useTitle } from '../../hooks/useTitle';
-import { aideClient, aideInno, startups, CardType, acheteurPublic, achatPrevi } from '../../model/CardType';
+import { aideClient, aideInno, startups, CardType, acheteurPublic, achatPrevi, investisseur } from '../../model/CardType';
 import { ApplicationContext } from '../../Router';
 import { InitialState } from '../../utils/InitialState';
 import { AideRequestFilter } from '../customComponents/filter/AideRequestFilter';
@@ -176,3 +176,4 @@ export const ListResearchResultAidesInno = () => <ListResearchResult cardType={a
 export const ListResearchResultStartups = () => <ListResearchResult cardType={startups} requestFilterBuilder={initState => new NoRequestFilter(initState as any, startups)}/>
 export const ListResearchResultAcheteurPublic = () => <ListResearchResult cardType={acheteurPublic} requestFilterBuilder={initState => new NoRequestFilter(initState as any, acheteurPublic)}/>
 export const ListResearchResultAchatPrevi = () => <ListResearchResult cardType={achatPrevi} requestFilterBuilder={initState => new NoRequestFilter(initState as any, achatPrevi)}/>
+export const ListResearchResultInvestisseur = () => <ListResearchResult cardType={investisseur} requestFilterBuilder={initState => new NoRequestFilter(initState as any, investisseur)}/>

@@ -40,7 +40,7 @@ const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
                 navigate(ctrlPress ? `/explorer-alpha` : `/explorer/search`, { state: { search } })
             }).catch(e => {
                 setIsLoading(false);
-                navigate(ctrlPress ? `/explorer-alpha` : `/explorer/search`);
+                console.log(e)
                 setErrorTxt('Une erreur serveur inconnue est survenue');
             })
 

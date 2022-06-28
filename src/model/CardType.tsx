@@ -1,7 +1,7 @@
 import React from 'react';
 import { AnyCard, CardTypeName as ApiName, cardTypeNames, ACard, Collectivite, Investisseur, Aide, Startup, Marche } from '../api/Api';
 import { Calendar, Euro, Eye, Rocket, Signal, Unicorn } from '../assets/Icons';
-import { ListResearchResultAidesInno, ListResearchResultAidesClient, ListResearchResultStartups, ListResearchResultAcheteurPublic, ListResearchResultAchatPrevi } from '../components/anonymous/ListResearchResultGeneric';
+import { ListResearchResultAidesInno, ListResearchResultAidesClient, ListResearchResultStartups, ListResearchResultAcheteurPublic, ListResearchResultAchatPrevi, ListResearchResultInvestisseur } from '../components/anonymous/ListResearchResultGeneric';
 import { CardDetailsStartup } from '../components/customComponents/CardDetailsStartup';
 import { CardDetailsInno, CardDetailsClient, } from '../components/customComponents/DetailsAide';
 
@@ -31,7 +31,7 @@ export const acheteurPublic : CardType = {
     searchLink: "/acheteurs-publics",
     SearchPage: ListResearchResultAcheteurPublic,
     apiName: "collectivites",
-    version: "alpha"
+    version: "beta"
 } as const
 
 export const achatPrevi : CardType = {
@@ -43,7 +43,7 @@ export const achatPrevi : CardType = {
     searchLink: "/achats-previsionnels",
     apiName: "projets_achats",
     SearchPage: ListResearchResultAchatPrevi,
-    version: "alpha"
+    version: "beta"
 } as const
 
 export const investisseur : CardType = {
@@ -54,8 +54,8 @@ export const investisseur : CardType = {
     name: "investisseurs",
     searchLink: "/investisseurs",
     apiName: "investisseurs",
-    SearchPage: ListResearchResultStartups,
-    version: "alpha"
+    SearchPage: ListResearchResultInvestisseur,
+    version: "beta"
 } as const
 
 export const aideClient : CardType = {
