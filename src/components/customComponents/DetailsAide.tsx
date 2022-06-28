@@ -37,10 +37,6 @@ const CardDetails: React.FC<{ cardType: CardType }> = ({ cardType }) => {
     return (
         <>
             <div style={{ marginLeft: "calc(max(10% - 100px, 0px))", marginRight: "calc(max(10% - 100px, min(8vw, 50px)))" }} className="headContainer">
-                <button
-                    onClick={() => window.history.back()}
-                    className="ml-4 text-dark-text-action flex mt-4 rm-link-underline ">
-                    <img className="mr-2" src={ArrowDark} alt="Icone flèche" /> Retour </button>
 
                 <div style={cardTypeColor} className="categoryName mt-10 min-w-40 flex">
                     <div>

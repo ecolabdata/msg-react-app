@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useTitle } from '../../hooks/useTitle';
 import { all as allCardType } from "../../model/CardType";
-import { SpeechBubble } from '../../assets/Icons';
+import { PictoExplorer } from '../../assets/Icons';
 
 import { useContext } from 'react';
 import { ApplicationContext } from '../../Router';
@@ -19,7 +19,7 @@ export interface ExplorerTypeCard  {
 const Home = () => {
 
     const explorerCard:ExplorerTypeCard = {
-        SVGLogo: SpeechBubble,
+        SVGLogo: PictoExplorer,
         title: "Explorer",
         color: "rgba(0, 0, 145, 1)",
         description: "Découvrez tous les leviers proposés par Mes Services Greentech !",
@@ -48,10 +48,11 @@ const Home = () => {
             <div className="cardsContainer mx-auto max-w-headerSize flex flex-wrap justify-center
             xl:justify-start
                 ">
+                <Card explorerCard={true} cardTypeData={explorerCard} />
+                
                 {allCardType.map((card) =>
                     <Card cardTypeData={card} />
                 )}
-                    <Card explorerCard={true} cardTypeData={explorerCard} />
 
             </div>
         </>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { AnyCard, CardTypeName as ApiName, cardTypeNames, ACard, Collectivite, Investisseur, Aide, Startup, Marche } from '../api/Api';
-import { Calendar, Euro, Eye, Rocket, Signal, Unicorn } from '../assets/Icons';
+import { PictoEnvironnement, PictoHealth, PictoRocket, PictoCalendar, PictoMoney, PictoCityHall } from '../assets/Icons';
 import { ListResearchResultAidesInno, ListResearchResultAidesClient, ListResearchResultStartups } from '../components/anonymous/ListResearchResultGeneric';
 import { CardDetailsStartup } from '../components/customComponents/CardDetailsStartup';
 import { CardDetailsInno, CardDetailsClient, } from '../components/customComponents/DetailsAide';
@@ -21,7 +21,7 @@ export interface CardType {
 }
 
 export const acheteurPublic : CardType = {
-    SVGLogo: Signal,
+    SVGLogo: PictoCityHall,
     color: "#F95C5E",
     //title: "Organismes publics à démarcher",
     // title: "Organismes publics ouverts à l’innovation",
@@ -34,7 +34,7 @@ export const acheteurPublic : CardType = {
 } as const
 
 export const achatPrevi : CardType = {
-    SVGLogo: Calendar,
+    SVGLogo: PictoCalendar,
     color: "#D8C635",
     title: "Achats publics à venir",
     description: "Achats publics prévus ces trois prochaines années dans votre domaine.",
@@ -52,7 +52,7 @@ export const achatPrevi : CardType = {
 } as const
 
 export const investisseur : CardType = {
-    SVGLogo: Euro,
+    SVGLogo: PictoMoney,
     color: "#68A532",
     title: "Investisseurs",
     description: "Investisseurs privés adaptés à votre maturité pour votre  prochaine levée de fonds.",
@@ -63,7 +63,7 @@ export const investisseur : CardType = {
 } as const
 
 export const aideClient : CardType = {
-    SVGLogo: Eye,
+    SVGLogo: PictoHealth,
     color: "#A558A0",
     title: "Aides aux clients",
     description: "Dispositifs incitatifs (état ou régions) qui aident vos clients à accéder à vos solutions",
@@ -76,7 +76,7 @@ export const aideClient : CardType = {
 } as const
 
 export const aideInno : CardType = {
-    SVGLogo: Rocket,
+    SVGLogo: PictoEnvironnement,
     color: "#8585F6",
     title: "Aides à l’innovation",
     description: "Aides publiques dédiées à votre développement (ADEME, Bpifrance...)",
@@ -89,7 +89,7 @@ export const aideInno : CardType = {
 } as const
 
 export const startups : CardType = {
-    SVGLogo: Unicorn,
+    SVGLogo: PictoRocket,
     color: "#4EC8AE",
     title: "Start-up greentech",
     description: "Entreprises éco-innovantes qui vous ressemblent ou répondent à vos besoins",
@@ -103,6 +103,6 @@ export const startups : CardType = {
 
 
 
-export const all = [aideInno, aideClient, investisseur, acheteurPublic, achatPrevi, startups] as const
+export const all = [aideInno, aideClient, startups, achatPrevi, investisseur, acheteurPublic,] as const
 export const byName = Object.fromEntries(all.map(x => [x.name, x]))
 export const dropdownValues = Object.fromEntries(all.map(x => [x.name, x.title]))

@@ -21,7 +21,7 @@ const Card: React.FC<CardTypeProps> = (props) => {
                 ${name === "aides-innovations" && isAlpha && "after:bg-aides-innovations after:text-black"}
                 ${name === "acheteurs-publics" && isAlpha && "after:bg-acheteurs-publics"}
                 before:bottom-2 before:right-2
-                relative m-3 max-w-[282px] max-h-[215px] p-4 
+                relative m-3 max-w-[282px] max-h-[261px] p-4 
                 `}>
                 <div className="fr-card__body -mt-4 mb- p-0">
                     <div className="fr-card__content">

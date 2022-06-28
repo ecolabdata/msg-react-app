@@ -17,7 +17,7 @@ import { useTrackPage } from './hooks/useTrackPage';
 import { JwtAuthProvider } from './jwt';
 import { all as allCardType } from './model/CardType';
 import { defaultUsedCorbeille, defaultUsedFavoris, useCorbeille, UsedCorbeille, UsedFavoris, useFavoris } from './utils/categoris';
-
+import BreadCumb from './components/dsfrComponents/BreadCumb';
 
 export const ApplicationContext = createContext<{
     usedFavoris: UsedFavoris,
@@ -52,7 +52,8 @@ const Router = () => {
             <Route path="/" element={<Header decouvrir={true} />} />
             <Route path="*" element={<Header />} />
         </Routes>
-        <main className={`h-full p-1 md:p-6 ${localStorage.scheme === 'dark' ? 'bg-[#262626]' : ''}`}>
+        <main className={`h-full p-1 md:p-6 ${localStorage.scheme === 'dark' && 'bg-[#262626]'}`}>
+            <BreadCumb />
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/explorer" element={<ResearchForm alpha={false} />} />

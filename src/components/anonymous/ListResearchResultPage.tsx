@@ -100,10 +100,6 @@ const ListResearchResult: React.FC<ListResearchResultProps> = ({ cardType }) => 
             xl:mx-auto
             ">
 
-                <div className="flex">
-                    <button onClick={() => window.history.back()} className="ml-4 text-dark-text-action flex mt-4 rm-link-underline "> <img className="mr-2" src={ArrowDark} alt="Icone flèche" /> Retour </button>
-                </div>
-
                 <div className="cardTitle mt-10 ml-4 p-2 text-base">
 
                     <h2 className="w-fit font-bold text-xl md:text-4xl">
