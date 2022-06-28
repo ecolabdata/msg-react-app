@@ -32,6 +32,11 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
         const d = cardData.submission_deadline ? new Date(cardData.submission_deadline) : null
         displayabeSubmissionDeadLine = ("0" + d?.getUTCDate()).slice(-2) + "/" + ("0" + ((d?.getUTCMonth() || 0) + 1)).slice(-2) + "/" + d?.getUTCFullYear()
     }
+    let targetDate = ""
+    if (isProjetAchat(cardData)) {
+        const d = new Date(cardData.publicationTargetDate)
+        targetDate = ("0" + d?.getUTCDate()).slice(-2) + "/" + ("0" + ((d?.getUTCMonth() || 0) + 1)).slice(-2) + "/" + d?.getUTCFullYear()
+    }
     const cardSlug = applyCard(cardData,
         ap => ap.nom,
         pa => pa.label,
@@ -45,15 +50,21 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
         ap => ap.nom,
         pa => pa.label,
         i => i['Nom du fonds'],
-        a => a.slug,
+        a => a.name,
         su => su['Start-up'],
         () => 'unknown-slug')
     let linkTo = `/${cardType.name}/details/${slug}?cardData=${encodeURIComponent(JSON.stringify(cardData))}`;
 
     if (linkTo.length > 8192) {
-        console.log(linkTo.length)
         linkTo = `/${cardType.name}/details/${slug}`;
     }
+
+    const toprow = isAide(cardData) ? displayableFinancers :
+        isStartup(cardData) ? cardData['Thématique'] :
+            isInvestisseur(cardData) ? cardData['Vous êtes'] :
+                isAcheteurPublic(cardData) ? 'Ville / Région' :
+                    isProjetAchat(cardData) ? cardData.purchasingEntity.label :
+                        ""
 
     //const achivedStyle = isInCorbeille(cardData) ? {"opacity": 0.3, "filter": "grayscale(50%)" } : {}
     // if (cardType.name === "aides-innovations") debugger;
@@ -64,17 +75,13 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
             card-animation
             bg-research-card-preview relative overflow-hidden`
     }
-        style={{ borderColor: cardType.color, opacity: isLoading ? 0 : 1 }}>
+        style={{ borderColor: cardType.color, opacity: isLoading ? 0 : 1 }}
+        onMouseEnter={() => console.log(cardData)}
+    >
 
         <div className="emetor-row flex">
-            <p className="text-xs flex-1 grow-[10] clamp-2" style={{ color: cardType.color }} title={displayableFinancers}>
-                {
-                    isAide(cardData) ? displayableFinancers :
-                        isStartup(cardData) ? cardData['Thématique'] :
-                            isInvestisseur(cardData) ? cardData['Vous êtes'] :
-                                isAcheteurPublic(cardData) ? cardData.refpubliqueslabellises :
-                                    isProjetAchat(cardData) && cardData.label
-                }
+            <p className="text-xs flex-1 grow-[10] clamp-2" style={{ color: cardType.color }} title={toprow}>
+                {toprow}
             </p>
             <div className="opacity-0 flex flex-1 justify-end transition-opacity duration-200 group-hover:opacity-100" >
                 <div className="flex justify-between w-[43px]">
@@ -88,7 +95,6 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
             </div>
         </div>
         <Link onClick={() => {
-            console.log("Onclick triggered")
             setNextScrolTarget({ top: 0 })
         }} to={linkTo} state={{ cardData }} className="rm-link-underline">
             <h4 className="clamp mt-2 font-bold text-lg" title={name}>{name}</h4>
@@ -106,8 +112,8 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
                     flex flex-col justify-evenly'>
                 {
                     applyCard(cardData,
-                        ap => <div>{ap.refpubliqueslabellises}</div>,
-                        pa => <div>{pa.marketMaxDuration}</div>,
+                        ap => ap.Startups != "0"  ? <div>Ils ont travaillés avec:<br/>{ap.Startups.split(",").join(', ')}</div> : null,
+                        pa => <div>Date visée de publication:  {targetDate}</div>,
                         i => <>
                             <div>{i['Ticket min en K€']}K€ - {i['Ticket max en K€']}K€</div>
                             <div className='h-[3em] truncate' title={i["Présentation de la politique d'investissement"]}>{i["Présentation de la politique d'investissement"].split(";").join(" | ")}</div>
