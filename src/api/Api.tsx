@@ -16,8 +16,8 @@ https://www.notion.so/messervicesgreentech/0290b8c9cfd4437b8f9ee8bb9ee697ee?v=94
 export type Aide = Omit<typeof mockApiResponse.cards.aides_clients[number] | typeof mockApiResponse.cards.aides_innovation[number], "id"> & GeneratedData
 //export type Aide = typeof mockApiResponse.cards.aides[number] //From old FTE file
 export type Collectivite = typeof mockApiResponse.cards.collectivites[number] & GeneratedData//Deduced from DECP
-//? PROVISORY : This type is provisory until we get the good one
-export type Marche = typeof mockApiResponse.cards.collectivites[number] & GeneratedData//deduced from DECP
+
+export type Marche = typeof mockApiResponse.cards.projets_achats[number] & GeneratedData//deduced from DECP
 //?----------------------------------------------------------------
 export type Investisseur = typeof mockApiResponse.cards.investisseurs[number] & GeneratedData//From GI file
 
@@ -71,7 +71,9 @@ function buildFetchRequest(params: any) {
       }, params)
     )
 
-  }).then(resp => resp.text()).then(str => JSON.parse(str.replace(/\bNaN\b/g, "null")))
+  })
+  .then(resp => resp.json())
+  //.then(resp => resp.text()).then(str => JSON.parse(str.replace(/\bNaN\b/g, "null")))
   // }
 }
 
@@ -93,7 +95,7 @@ export const search = (query: Query) => buildFetchRequest({
   "nb_aides": 10,
   "nb_acheteur": 10,
   "nb_Startups": 10,
-  "nb_projetsachat":  10,
+  "nb_projetsachat": 10,
   "montant_min": 0,
   "secteurs": query.secteurs,
   "keywords": query.motsclefs
