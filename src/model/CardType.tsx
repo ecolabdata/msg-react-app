@@ -1,11 +1,11 @@
 import React from 'react';
-import { AnyCard, CardTypeName as ApiName, cardTypeNames, ACard, Collectivite, Investisseur, Aide, Startup, Marche } from '../api/Api';
+import { CardTypeName as ApiName } from '../api/Api';
 import { Calendar, Euro, Eye, Rocket, Signal, Unicorn } from '../assets/Icons';
-import { ListResearchResultAidesInno, ListResearchResultAidesClient, ListResearchResultStartups, ListResearchResultAcheteurPublic, ListResearchResultAchatPrevi, ListResearchResultInvestisseur } from '../components/anonymous/ListResearchResultGeneric';
+import { ListResearchResultAchatPrevi, ListResearchResultAcheteurPublic, ListResearchResultAidesClient, ListResearchResultAidesInno, ListResearchResultInvestisseur, ListResearchResultStartups } from '../components/anonymous/ListResearchResultGeneric';
 import { CardDetailsStartup } from '../components/customComponents/CardDetailsStartup';
-import { CardDetailsInno, CardDetailsClient, } from '../components/customComponents/DetailsAide';
-
+import { CardDetailsClient, CardDetailsInno } from '../components/customComponents/DetailsAide';
 import { versions } from './CardVersions';
+
 
 export interface CardType {
     SVGLogo: ({ ...other }: { [x: string]: any; }) => JSX.Element,

@@ -14,21 +14,51 @@ cardType list
 https://www.notion.so/messervicesgreentech/0290b8c9cfd4437b8f9ee8bb9ee697ee?v=94b3a82bc59243e5b99ed4574bf8407f
 */
 export type Aide = Omit<typeof mockApiResponse.cards.aides_clients[number] | typeof mockApiResponse.cards.aides_innovation[number], "id"> & GeneratedData
-//export type Aide = typeof mockApiResponse.cards.aides[number] //From old FTE file
+
 export type Collectivite = typeof mockApiResponse.cards.collectivites[number] & GeneratedData//Deduced from DECP
 
-export type Marche = typeof mockApiResponse.cards.projets_achats[number] & GeneratedData//deduced from DECP
+export type ProjetAchat = typeof mockApiResponse.cards.projets_achats[number] & GeneratedData//deduced from DECP
 
 export type Investisseur = typeof mockApiResponse.cards.investisseurs[number] & GeneratedData//From GI file
 
 export type Startup = typeof mockApiResponse.cards.startups[number] & GeneratedData//From GI file
 
-export type AnyCard = Aide | Marche | Collectivite | Investisseur | Startup
+export type AnyCard = Aide | ProjetAchat | Collectivite | Investisseur | Startup
 
 export type ApiResponse = typeof mockApiResponse
 
 export type Search = ReturnType<typeof handleResp>
 
+export function isAcheteurPublic(x : AnyCard) : x is Collectivite {
+  return x.cardTypeName === acheteurPublic.name
+}
+export function isProjetAchat(x : AnyCard) : x is ProjetAchat {
+  return x.cardTypeName === achatPrevi.name
+}
+export function isInvestisseur(x : AnyCard) : x is Investisseur {
+  return x.cardTypeName === investisseur.name
+}
+export function isAide(x : AnyCard) : x is Aide {
+  return x.cardTypeName === aideClient.name || x.cardTypeName === aideInno.name
+}
+export function isStartup(x : AnyCard) : x is Startup {
+  return x.cardTypeName === startups.name
+}
+
+export function applyCard<T>(cardData : AnyCard,
+  doAcheteurPublic : (x : Collectivite) => T,
+  doProjetAchat : (x : ProjetAchat) => T,
+  doInvestisseur : (x : Investisseur) => T,
+  doAide : (x : Aide) => T,
+  doStartup : (x : Startup) => T,
+  other : () => T) : T{
+  if (isAcheteurPublic(cardData)) return doAcheteurPublic(cardData)
+  else if (isProjetAchat(cardData)) return doProjetAchat(cardData)
+  else if (isInvestisseur(cardData)) return doInvestisseur(cardData)
+  else if (isAide(cardData)) return doAide(cardData)
+  else if (isStartup(cardData)) return doStartup(cardData)
+  return other()
+}
 
 function handleResp(query: Query | InvestisseurQuery | AidesClientQuery | AidesInnoQuery, resp: ApiResponse) {
   const cards = {

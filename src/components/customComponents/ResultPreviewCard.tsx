@@ -1,28 +1,19 @@
 import { useContext, useState } from 'react';
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
-import { AnyCard, Collectivite, Investisseur, Marche } from '../../api/Api';
-import { ArrowRight } from '../../assets/Icons';
-import { CardType, investisseur } from '../../model/CardType';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import slugify from 'slugify';
+import { AnyCard, applyCard, isAcheteurPublic, isAide, isInvestisseur, isProjetAchat, isStartup } from '../../api/Api';
+import { ArrowRight, Star, Trash } from '../../assets/Icons';
+import { CardType } from '../../model/CardType';
 import { ApplicationContext } from '../../Router';
-import { Star, Trash } from '../../assets/Icons'
-import slugify from 'slugify'
 
 interface ResultPreviewCardProps {
     cardData: AnyCard
     cardType: CardType
     isLoading?: boolean,
-    pageList : boolean,
+    pageList: boolean,
 }
 
-function asInvestisseur(cardData : AnyCard) {
-    if (cardData.cardTypeName === investisseur.name) {
-        return cardData as Investisseur
-    } else {
-        null
-    }
-}
-
-const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardType, isLoading, pageList}) => {
+const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardType, isLoading, pageList }) => {
     const { usedFavoris, usedCorbeille, usedNextScrollTarget } = useContext(ApplicationContext)
     const [toggleFavori, isFavori] = usedFavoris
     const [toggleInCorbeille, isInCorbeille] = usedCorbeille
@@ -33,18 +24,32 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
     const currentPageURL = window.location.pathname.split('/');
     const userIsOnResearchPage = currentPageURL[1] === "recherche" ? true : false;
     const [toggle, setToggle] = useState(true)
-    const displayableFinancers = cardData.financers?.join(" | ") || ""
-    const financersFontSize = (2 / (displayableFinancers.length ** 0.30)) + "em"
-    const d = cardData.submission_deadline ? new Date(cardData.submission_deadline) : null
-    const displayabeSubmissionDeadLine = ("0" + d?.getUTCDate()).slice(-2) + "/" + ("0" + ((d?.getUTCMonth() || 0) + 1)).slice(-2) + "/" + d?.getUTCFullYear()
-    const slug = slugify(
-        cardData.nom || //collectivites, investisseurs
-        cardData.slug || //aides_clients, aides_innovation
-        cardData['Start-up'] || //startup
-        'unknown-slug'
-    );
+    let displayableFinancers = ""
+    let displayabeSubmissionDeadLine = ""
+    if (isAide(cardData)) {
+        displayableFinancers = cardData.financers?.join(" | ") || ""
+        const financersFontSize = (2 / (displayableFinancers.length ** 0.30)) + "em"
+        const d = cardData.submission_deadline ? new Date(cardData.submission_deadline) : null
+        displayabeSubmissionDeadLine = ("0" + d?.getUTCDate()).slice(-2) + "/" + ("0" + ((d?.getUTCMonth() || 0) + 1)).slice(-2) + "/" + d?.getUTCFullYear()
+    }
+    const cardSlug = applyCard(cardData,
+        ap => ap.nom,
+        pa => pa.label,
+        i => i['Nom du fonds'],
+        a => a.slug,
+        su => su['Start-up'],
+        () => 'unknown-slug'
+    )
+    let slug = slugify(cardSlug);
+    const name = applyCard(cardData,
+        ap => ap.nom,
+        pa => pa.label,
+        i => i['Nom du fonds'],
+        a => a.slug,
+        su => su['Start-up'],
+        () => 'unknown-slug')
     let linkTo = `/${cardType.name}/details/${slug}?cardData=${encodeURIComponent(JSON.stringify(cardData))}`;
-    
+
     if (linkTo.length > 8192) {
         console.log(linkTo.length)
         linkTo = `/${cardType.name}/details/${slug}`;
@@ -64,11 +69,11 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
         <div className="emetor-row flex">
             <p className="text-xs flex-1 grow-[10] clamp-2" style={{ color: cardType.color }} title={displayableFinancers}>
                 {
-                    displayableFinancers ||
-                    cardData['Thématique'] ||
-                    cardData['Vous êtes'] ||
-                    //(cardData as Partial<Collectivite>) ||
-                    (cardData as Partial<Marche>).label
+                    isAide(cardData) ? displayableFinancers :
+                        isStartup(cardData) ? cardData['Thématique'] :
+                            isInvestisseur(cardData) ? cardData['Vous êtes'] :
+                                isAcheteurPublic(cardData) ? cardData.refpubliqueslabellises :
+                                    isProjetAchat(cardData) && cardData.label
                 }
             </p>
             <div className="opacity-0 flex flex-1 justify-end transition-opacity duration-200 group-hover:opacity-100" >
@@ -86,7 +91,7 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
             console.log("Onclick triggered")
             setNextScrolTarget({ top: 0 })
         }} to={linkTo} state={{ cardData }} className="rm-link-underline">
-            <h4 className="clamp mt-2 font-bold text-lg" title={cardData.nom || cardData.name || cardData['Start-up'] || cardData['Nom du fonds']}>{cardData.nom || cardData.name || cardData['Start-up'] || cardData['Nom du fonds']}</h4>
+            <h4 className="clamp mt-2 font-bold text-lg" title={name}>{name}</h4>
             {/* <p className="uppercase opacity-0 mt-8 text-xs text-white transition-opacity duration-200 group-hover:opacity-100 w-[225px]">
                 <br />
 
@@ -99,20 +104,30 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
                     opacity-0 transition-opacity duration-200 group-hover:opacity-100
                     text-xs text-white font-light
                     flex flex-col justify-evenly'>
-                { ["aides-innovations", "aides-clients"].includes(cardType.name) && <div data-org-value={cardData.submission_deadline}> {cardData.submission_deadline ? `Date de clôture: ${displayabeSubmissionDeadLine}` : "Aide permanente"}</div>}
-                {cardData['Pitch'] && <div>{cardData['Pitch']}</div>}
-                {cardData.aid_types && <div style={{ color: cardType.color }}>{cardData.aid_types.join(" | ")}</div>}
-                { ["investisseurs"].includes(cardType.name) && <div>{cardData['Ticket min en K€']}K€ - {cardData['Ticket max en K€']}K€</div>}
-                {cardData["Présentation de la politique d'investissement"] && <div className='h-[3em] truncate' title={cardData["Présentation de la politique d'investissement"]}>{cardData["Présentation de la politique d'investissement"].split(";").join(" | ")}</div>}
-                {cardData["Type de financement"] && <div className="truncate" style={{ color: cardType.color }} title={cardData["Type de financement"]}>{cardData["Type de financement"]}</div>}
-
+                {
+                    applyCard(cardData,
+                        ap => <div>{ap.refpubliqueslabellises}</div>,
+                        pa => <div>{pa.marketMaxDuration}</div>,
+                        i => <>
+                            <div>{i['Ticket min en K€']}K€ - {i['Ticket max en K€']}K€</div>
+                            <div className='h-[3em] truncate' title={i["Présentation de la politique d'investissement"]}>{i["Présentation de la politique d'investissement"].split(";").join(" | ")}</div>
+                            <div className="truncate" style={{ color: cardType.color }} title={i["Type de financement"]}>{i["Type de financement"]}</div>
+                        </>,
+                        a => <>
+                            <div data-org-value={a.submission_deadline}> {a.submission_deadline ? `Date de clôture: ${displayabeSubmissionDeadLine}` : "Aide permanente"}</div>
+                            <div style={{ color: cardType.color }}>{a.aid_types.join(" | ")}</div>
+                        </>,
+                        su => <div>{su['Pitch']}</div>,
+                        () => <></>
+                    )
+                }
             </div>
             {/* <NavLink to={cardType.searchLink} state={initialState} NavLink/> */}
             <div className="card-arrow absolute bottom-[var(--arrow-bottom)]  right-[var(--arrow-right)] rm-link-underline" style={{ color: cardType.color }}>
                 <ArrowRight />
             </div>
         </Link>
-    </div>
+    </div >
 };
 
 export default ResultPreviewCard;
