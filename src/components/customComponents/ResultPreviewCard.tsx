@@ -1,8 +1,8 @@
 import { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
-import { AnyCard } from '../../api/Api';
+import { AnyCard, Collectivite, Investisseur, Marche } from '../../api/Api';
 import { ArrowRight } from '../../assets/Icons';
-import { CardType } from '../../model/CardType';
+import { CardType, investisseur } from '../../model/CardType';
 import { ApplicationContext } from '../../Router';
 import { Star, Trash } from '../../assets/Icons'
 import slugify from 'slugify'
@@ -12,6 +12,14 @@ interface ResultPreviewCardProps {
     cardType: CardType
     isLoading?: boolean,
     pageList : boolean,
+}
+
+function asInvestisseur(cardData : AnyCard) {
+    if (cardData.cardTypeName === investisseur.name) {
+        return cardData as Investisseur
+    } else {
+        null
+    }
 }
 
 const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardType, isLoading, pageList}) => {
@@ -54,7 +62,15 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
         style={{ borderColor: cardType.color, opacity: isLoading ? 0 : 1 }}>
 
         <div className="emetor-row flex">
-            <p className="text-xs flex-1 grow-[10] clamp-2" style={{ color: cardType.color }} title={displayableFinancers}>{displayableFinancers || cardData['Thématique'] || cardData['Vous êtes']}</p>
+            <p className="text-xs flex-1 grow-[10] clamp-2" style={{ color: cardType.color }} title={displayableFinancers}>
+                {
+                    displayableFinancers ||
+                    cardData['Thématique'] ||
+                    cardData['Vous êtes'] ||
+                    //(cardData as Partial<Collectivite>) ||
+                    (cardData as Partial<Marche>).label
+                }
+            </p>
             <div className="opacity-0 flex flex-1 justify-end transition-opacity duration-200 group-hover:opacity-100" >
                 <div className="flex justify-between w-[43px]">
                     <button className="cursor-pointer" style={{ color: isFavori(cardData) ? "yellow" : undefined }} onClick={() => toggleFavori(cardData)}>

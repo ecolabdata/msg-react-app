@@ -97,8 +97,6 @@ export const startups : CardType = {
     version: "beta"
 } as const
 
-
-
 export const all = [aideInno, aideClient, investisseur, acheteurPublic, achatPrevi, startups] as const
 export const byName = Object.fromEntries(all.map(x => [x.name, x]))
 export const dropdownValues = Object.fromEntries(all.map(x => [x.name, x.title]))

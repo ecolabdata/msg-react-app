@@ -18,16 +18,12 @@ export type Aide = Omit<typeof mockApiResponse.cards.aides_clients[number] | typ
 export type Collectivite = typeof mockApiResponse.cards.collectivites[number] & GeneratedData//Deduced from DECP
 
 export type Marche = typeof mockApiResponse.cards.projets_achats[number] & GeneratedData//deduced from DECP
-//?----------------------------------------------------------------
+
 export type Investisseur = typeof mockApiResponse.cards.investisseurs[number] & GeneratedData//From GI file
 
 export type Startup = typeof mockApiResponse.cards.startups[number] & GeneratedData//From GI file
 
-export type ACard = Aide | Marche | Collectivite | Investisseur | Startup
-
-export type AnyCard = Partial<Aide> & Partial<Marche> & Partial<Collectivite> & Partial<Investisseur> & Partial<Startup> & GeneratedData
-// types of property '"deadline"' are incompatible.
-//             Type 'null' is not assignable to type 'string | undefined'
+export type AnyCard = Aide | Marche | Collectivite | Investisseur | Startup
 
 export type ApiResponse = typeof mockApiResponse
 
@@ -123,8 +119,7 @@ export interface AidesQuery extends Omit<Query, "type"> {
 
 /* Aides Client */
 
-export interface AidesClientQuery extends AidesQuery {
-}
+export interface AidesClientQuery extends AidesQuery {}
 
 export const searchAidesClient = (query: AidesClientQuery) => buildFetchRequest({
   "descriptionSU": query.description,
