@@ -22,7 +22,6 @@ type Props = {
 
 const ListResearchResult : React.FC<Props> = ({ cardType, requestFilterBuilder}) => {
     const { color } = cardType;
-    console.log('typeof color :>> ', typeof color);
     const { usedCorbeille, usedNextScrollTarget } = useContext(ApplicationContext);
     const [toggleInCorbeille, isInCorbeille] = usedCorbeille;
     const [nextScrollTarget, setNextScrolTarget] = usedNextScrollTarget;
