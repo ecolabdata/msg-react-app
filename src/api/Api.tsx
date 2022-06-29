@@ -135,7 +135,7 @@ export interface InvestisseurQuery extends Omit<Query, "type"> {
 }
 
 export const searchInvestisseur = (query: InvestisseurQuery) => buildFetchRequest({
-  "fichier_investisseurs": "GTIetmontant.csv",
+  "fichier_investisseurs": "out_PEXE.json",
   "montant_min": query.montantMin * 1000,
   "secteurs": query.secteurs,
   "keywords": query.motsclefs,

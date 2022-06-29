@@ -112,7 +112,7 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
                     flex flex-col justify-evenly'>
                 {
                     applyCard(cardData,
-                        ap => ap.Startups != "0"  ? <div>Ils ont travaillés avec:<br/>{ap.Startups.split(",").join(', ')}</div> : null,
+                        ap => ap.Startups != "0" ? <div>Ils ont travaillés avec:<br />{ap.Startups.split(",").join(', ')}</div> : null,
                         pa => <div>Date visée de publication:  {targetDate}</div>,
                         i => <>
                             <div>{i['Ticket min en K€']}K€ - {i['Ticket max en K€']}K€</div>

@@ -23,7 +23,7 @@ export class InvestisseurRequestFilter implements RequestFilter {
             // this.displayAidePermanente = initialQuery ? initialQuery.displayAidePermanente : true
             // this.aid_type = initialQuery?.aid_type || ""
             // this.echeance = initialQuery?.echeance || ""
-            // this.allCards = this.filter(cardType.name === "aides-innovations" ? initialState.search.cards.aides_innovation : initialState.search.cards.aides_clients)
+            this.allCards = initialState.search.cards.investisseurs
         }
     }
 

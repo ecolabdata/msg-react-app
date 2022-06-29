@@ -16,13 +16,18 @@ const useJwtAuth = (noToken: () => void, invalidToken: () => void, validToken: (
         window.location.href = url.href
     }
     let jwt = localStorage.jwt
+    console.log({useJwtAuth: jwt})
     useEffect(() => {
         if (!jwt) {
+            console.log({noToken: jwt})
             noToken()
         } else {
+            console.log({tokenPresent: jwt})
             jose.importJWK(jwk, 'RS256').then(publicKey => {
+                console.log({importJWK: jwt})
                 jose.jwtVerify(jwt, publicKey)
                     .then(verifiedJwt => {
+                        console.log({jwtVerify: jwt})
                         localStorage.jwt = jwt;
                         console.log({ verifiedJwt })
                         const msgJwtPayload = verifiedJwt.payload as JwtPayload;

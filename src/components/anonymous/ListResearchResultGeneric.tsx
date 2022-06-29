@@ -7,6 +7,7 @@ import { aideClient, aideInno, startups, CardType, acheteurPublic, achatPrevi, i
 import { ApplicationContext } from '../../Router';
 import { InitialState } from '../../utils/InitialState';
 import { AideRequestFilter } from '../customComponents/filter/AideRequestFilter';
+import { InvestisseurRequestFilter } from '../customComponents/filter/InvestisseurRequestFilter';
 import { NoRequestFilter } from '../customComponents/filter/NoRequestFilter';
 import { RequestFilter, } from '../customComponents/filter/RequestFIlter';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
@@ -170,7 +171,7 @@ const ListResearchResult: React.FC<Props> = ({ cardType, requestFilterBuilder })
 
 export const ListResearchResultAidesClient = () => <ListResearchResult cardType={aideClient} requestFilterBuilder={initState => new AideRequestFilter(initState as any, aideClient)} />
 export const ListResearchResultAidesInno = () => <ListResearchResult cardType={aideInno} requestFilterBuilder={initState => new AideRequestFilter(initState as any, aideInno)} />
+export const ListResearchResultInvestisseur = () => <ListResearchResult cardType={investisseur} requestFilterBuilder={initState => new InvestisseurRequestFilter(initState as any, investisseur)} />
 export const ListResearchResultStartups = () => <ListResearchResult cardType={startups} requestFilterBuilder={initState => new NoRequestFilter(initState as any, startups)} />
 export const ListResearchResultAcheteurPublic = () => <ListResearchResult cardType={acheteurPublic} requestFilterBuilder={initState => new NoRequestFilter(initState as any, acheteurPublic)} />
 export const ListResearchResultAchatPrevi = () => <ListResearchResult cardType={achatPrevi} requestFilterBuilder={initState => new NoRequestFilter(initState as any, achatPrevi)} />
-export const ListResearchResultInvestisseur = () => <ListResearchResult cardType={investisseur} requestFilterBuilder={initState => new NoRequestFilter(initState as any, investisseur)} />
