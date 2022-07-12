@@ -17,8 +17,7 @@ interface DetailsStartupProps {
 } 
 
 const DetailsStartup : React.FC<DetailsStartupProps> = ({cardType}) => { 
-    
-    
+
     const cardTypeColor = {
         "--border-action-high-blue-france":  cardType.color,
         color: cardType.color,
@@ -28,7 +27,7 @@ const DetailsStartup : React.FC<DetailsStartupProps> = ({cardType}) => {
     const query = useQuery();
     const location = useLocation();
     const initialState = location.state as {cardData : AnyCard} | null;
-    const cardData : Omit<Partial<Startup>, "id"> & { id: string, cardTypeName: string } = initialState?.cardData || JSON.parse(query.cardData) 
+    const cardData : Startup = initialState?.cardData || JSON.parse(query.cardData) 
     const cardSoutiens = cardData.Soutiens ? cardData.Soutiens.split(',') : [];
     const cardPublicMarkets = cardData['Références publiques'] ? cardData['Références publiques'].split(',') : [];
     const cardMarkets = cardData.Marché ? cardData.Marché.split(',') : [];

@@ -49,7 +49,7 @@ const BreadCumb: React.FC = () => {
 
     return (
 
-        <nav role="navigation" className="fr-breadcrumb !max-w-headerSize bg-red-500 mx-auto" aria-label="vous êtes ici :">
+        <nav role="navigation" className="fr-breadcrumb !max-w-headerSize mx-auto" aria-label="vous êtes ici :">
             <button className="fr-breadcrumb__button" aria-expanded="false" aria-controls="breadcrumb-1">Voir le fil d’Ariane</button>
             <div className="fr-collapse" id="breadcrumb-1">
                 <ol className="fr-breadcrumb__list">

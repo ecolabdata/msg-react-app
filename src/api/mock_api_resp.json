@@ -19,214 +19,244 @@
   "cards": {
     "collectivites": [
       {
-        "nom": "EST METROPOLE HABITAT",
+        "nom": "Ville de Paris",
         "score_details": {
           "innovation": {
-            "proportion_numerateur": "",
-            "proportion_denominateur": "",
-            "proportion": ""
+            "proportion_numerateur": 0.0,
+            "proportion_denominateur": 0.0,
+            "proportion": 0.0
           },
           "sous_les_seuils": {
-            "proportion_numerateur": "",
-            "proportion_denominateur": "",
-            "proportion": ""
+            "proportion_numerateur": 0.0,
+            "proportion_denominateur": 0.0,
+            "proportion": 0.0
           },
           "petites_entreprises": {
-            "proportion_numerateur": "38.0",
-            "proportion_denominateur": "39.0",
-            "proportion": "95.1219512195122"
+            "proportion_numerateur": 0.0,
+            "proportion_denominateur": 0.0,
+            "proportion": 0.0
           }
         },
-        "score": 95.1219512195122
+        "refpubliqueslabellises": 900.0,
+        "Startups": "BeeBryte,Cool Roof,Deepki,Ecosec,Explorama,Les Alchimistes / Les couches fertiles,Pandobac,Qarnot computing,Wintics",
+        "innovant_bercy": 0.0,
+        "score": 900.0
       },
       {
-        "nom": "Minist\u00e8re de la Transition \u00c9cologique et Solidaire, Minist\u00e8re de la Coh\u00e9sion des Territoires - Direction R\u00e9gionale Environnement, Am\u00e9nagement et Logement de la Nouvelle-Aquitaine ",
+        "nom": "BORDEAUX METROPOLE",
         "score_details": {
           "innovation": {
-            "proportion_numerateur": "",
-            "proportion_denominateur": "",
-            "proportion": ""
+            "proportion_numerateur": 0.0,
+            "proportion_denominateur": 0.0,
+            "proportion": 0.0
           },
           "sous_les_seuils": {
-            "proportion_numerateur": "",
-            "proportion_denominateur": "",
-            "proportion": ""
+            "proportion_numerateur": 0.0,
+            "proportion_denominateur": 0.0,
+            "proportion": 0.0
           },
           "petites_entreprises": {
-            "proportion_numerateur": "14.0",
-            "proportion_denominateur": "14.0",
-            "proportion": "93.75"
+            "proportion_numerateur": 0.0,
+            "proportion_denominateur": 0.0,
+            "proportion": 0.0
           }
         },
-        "score": 93.75
+        "refpubliqueslabellises": 300.0,
+        "Startups": "Trizzy,wever,Zei",
+        "innovant_bercy": 300.0,
+        "score": 600.0
       },
       {
-        "nom": "SEM FACONEO",
+        "nom": "Toulouse M\u00e9tropole",
         "score_details": {
           "innovation": {
-            "proportion_numerateur": "",
-            "proportion_denominateur": "",
-            "proportion": ""
+            "proportion_numerateur": 2.0,
+            "proportion_denominateur": 95.0,
+            "proportion": 3.0927835051546397
           },
           "sous_les_seuils": {
-            "proportion_numerateur": "",
-            "proportion_denominateur": "",
-            "proportion": ""
+            "proportion_numerateur": 0.0,
+            "proportion_denominateur": 0.0,
+            "proportion": 0.0
           },
           "petites_entreprises": {
-            "proportion_numerateur": "14.0",
-            "proportion_denominateur": "14.0",
-            "proportion": "93.75"
+            "proportion_numerateur": 49.0,
+            "proportion_denominateur": 95.0,
+            "proportion": 51.546391752577314
           }
         },
-        "score": 93.75
+        "refpubliqueslabellises": 400.0,
+        "Startups": "Ecosec,HD Rain,IMMOBLADE,WaltR",
+        "innovant_bercy": 100.0,
+        "score": 556.9587628865979
       },
       {
-        "nom": "Communaut\u00e9 de Communes de la Grandvalli\u00e8re ",
+        "nom": "Ville de Roubaix",
         "score_details": {
           "innovation": {
-            "proportion_numerateur": "",
-            "proportion_denominateur": "",
-            "proportion": ""
+            "proportion_numerateur": 0.0,
+            "proportion_denominateur": 0.0,
+            "proportion": 0.0
           },
           "sous_les_seuils": {
-            "proportion_numerateur": "",
-            "proportion_denominateur": "",
-            "proportion": ""
+            "proportion_numerateur": 0.0,
+            "proportion_denominateur": 0.0,
+            "proportion": 0.0
           },
           "petites_entreprises": {
-            "proportion_numerateur": "13.0",
-            "proportion_denominateur": "13.0",
-            "proportion": "93.33333333333333"
+            "proportion_numerateur": 25.0,
+            "proportion_denominateur": 39.0,
+            "proportion": 63.41463414634146
           }
         },
-        "score": 93.33333333333331
+        "refpubliqueslabellises": 400.0,
+        "Startups": "Accenta,E-DEMAIN,Trizzy,UNEOLE",
+        "innovant_bercy": 0.0,
+        "score": 463.4146341463415
       },
       {
-        "nom": "Communaut\u00e9 d'Agglom\u00e9ration Grand Cognac",
+        "nom": "M\u00e9tropole de Lyon",
         "score_details": {
           "innovation": {
-            "proportion_numerateur": "",
-            "proportion_denominateur": "",
-            "proportion": ""
+            "proportion_numerateur": 2.0,
+            "proportion_denominateur": 297.0,
+            "proportion": 1.0033444816053512
           },
           "sous_les_seuils": {
-            "proportion_numerateur": "",
-            "proportion_denominateur": "",
-            "proportion": ""
+            "proportion_numerateur": 7.0,
+            "proportion_denominateur": 297.0,
+            "proportion": 2.6755852842809364
           },
           "petites_entreprises": {
-            "proportion_numerateur": "11.0",
-            "proportion_denominateur": "11.0",
-            "proportion": "92.3076923076923"
+            "proportion_numerateur": 147.0,
+            "proportion_denominateur": 297.0,
+            "proportion": 49.49832775919732
           }
         },
-        "score": 92.3076923076923
+        "refpubliqueslabellises": 300.0,
+        "Startups": "Atmotrack,Ecov,Les Alchimistes / Les couches fertiles",
+        "innovant_bercy": 0.0,
+        "score": 357.2742474916388
       },
       {
-        "nom": "Commune de POILLEY ",
+        "nom": "Eurom\u00e9tropole de Strasbourg",
         "score_details": {
           "innovation": {
-            "proportion_numerateur": "",
-            "proportion_denominateur": "",
-            "proportion": ""
+            "proportion_numerateur": 0.0,
+            "proportion_denominateur": 0.0,
+            "proportion": 0.0
           },
           "sous_les_seuils": {
-            "proportion_numerateur": "",
-            "proportion_denominateur": "",
-            "proportion": ""
+            "proportion_numerateur": 0.0,
+            "proportion_denominateur": 0.0,
+            "proportion": 0.0
           },
           "petites_entreprises": {
-            "proportion_numerateur": "10.0",
-            "proportion_denominateur": "10.0",
-            "proportion": "91.66666666666666"
+            "proportion_numerateur": 0.0,
+            "proportion_denominateur": 0.0,
+            "proportion": 0.0
           }
         },
-        "score": 91.66666666666666
+        "refpubliqueslabellises": 300.0,
+        "Startups": "In sun we trust,Neovya Mobility by Technology,wever",
+        "innovant_bercy": 0.0,
+        "score": 300.0
       },
       {
-        "nom": "Universit\u00e9 Clermont Auvergne - Direction des achats",
+        "nom": "Ville de Cannes",
         "score_details": {
           "innovation": {
-            "proportion_numerateur": "",
-            "proportion_denominateur": "",
-            "proportion": ""
+            "proportion_numerateur": 0.0,
+            "proportion_denominateur": 0.0,
+            "proportion": 0.0
           },
           "sous_les_seuils": {
-            "proportion_numerateur": "",
-            "proportion_denominateur": "",
-            "proportion": ""
+            "proportion_numerateur": 0.0,
+            "proportion_denominateur": 0.0,
+            "proportion": 0.0
           },
           "petites_entreprises": {
-            "proportion_numerateur": "10.0",
-            "proportion_denominateur": "10.0",
-            "proportion": "91.66666666666666"
+            "proportion_numerateur": 0.0,
+            "proportion_denominateur": 0.0,
+            "proportion": 0.0
           }
         },
-        "score": 91.66666666666666
+        "refpubliqueslabellises": 300.0,
+        "Startups": "HD Rain,Uvoji,WAVES'N SEE",
+        "innovant_bercy": 0.0,
+        "score": 300.0
       },
       {
-        "nom": "Commune de Salles Lavalette",
+        "nom": "MSA SUD AQUITAINE",
         "score_details": {
           "innovation": {
-            "proportion_numerateur": "",
-            "proportion_denominateur": "",
-            "proportion": ""
+            "proportion_numerateur": 1.0,
+            "proportion_denominateur": 5.0,
+            "proportion": 28.57142857142857
           },
           "sous_les_seuils": {
-            "proportion_numerateur": "",
-            "proportion_denominateur": "",
-            "proportion": ""
+            "proportion_numerateur": 4.0,
+            "proportion_denominateur": 5.0,
+            "proportion": 71.42857142857143
           },
           "petites_entreprises": {
-            "proportion_numerateur": "9.0",
-            "proportion_denominateur": "9.0",
-            "proportion": "90.9090909090909"
+            "proportion_numerateur": 4.0,
+            "proportion_denominateur": 5.0,
+            "proportion": 71.42857142857143
           }
         },
-        "score": 90.9090909090909
+        "refpubliqueslabellises": 0.0,
+        "Startups": "0",
+        "innovant_bercy": 0.0,
+        "score": 282.1428571428572
       },
       {
-        "nom": "SYNDICAT MIXTE CENTRE NORD ATL COMPTAB",
+        "nom": "VILLE DE LIMOGES",
         "score_details": {
           "innovation": {
-            "proportion_numerateur": "",
-            "proportion_denominateur": "",
-            "proportion": ""
+            "proportion_numerateur": 3.0,
+            "proportion_denominateur": 8.0,
+            "proportion": 40.0
           },
           "sous_les_seuils": {
-            "proportion_numerateur": "",
-            "proportion_denominateur": "",
-            "proportion": ""
+            "proportion_numerateur": 1.0,
+            "proportion_denominateur": 8.0,
+            "proportion": 20.0
           },
           "petites_entreprises": {
-            "proportion_numerateur": "8.0",
-            "proportion_denominateur": "8.0",
-            "proportion": "90.0"
+            "proportion_numerateur": 5.0,
+            "proportion_denominateur": 8.0,
+            "proportion": 60.0
           }
         },
-        "score": 90.0
+        "refpubliqueslabellises": 100.0,
+        "Startups": "Wintics",
+        "innovant_bercy": 0.0,
+        "score": 275.0
       },
       {
-        "nom": "Service d\u00e9partemental d'incendie et de secours 21 ",
+        "nom": "Ville de Lyon",
         "score_details": {
           "innovation": {
-            "proportion_numerateur": "",
-            "proportion_denominateur": "",
-            "proportion": ""
+            "proportion_numerateur": 22.0,
+            "proportion_denominateur": 218.0,
+            "proportion": 10.454545454545451
           },
           "sous_les_seuils": {
-            "proportion_numerateur": "",
-            "proportion_denominateur": "",
-            "proportion": ""
+            "proportion_numerateur": 2.0,
+            "proportion_denominateur": 218.0,
+            "proportion": 1.3636363636363635
           },
           "petites_entreprises": {
-            "proportion_numerateur": "8.0",
-            "proportion_denominateur": "8.0",
-            "proportion": "90.0"
+            "proportion_numerateur": 106.0,
+            "proportion_denominateur": 218.0,
+            "proportion": 48.63636363636364
           }
         },
-        "score": 90.0
+        "refpubliqueslabellises": 200.0,
+        "Startups": "Explorama,Greencityzen",
+        "innovant_bercy": 0.0,
+        "score": 270.0
       }
     ],
     "aides_clients": [
@@ -2038,7 +2068,7 @@
         ],
         "instructors": [],
         "programs": [],
-        "description": "<p>\n Nature 2050 est un programme d'action national port\u00e9 par CDC Biodiversit\u00e9 et le Fonds Nature 2050, visant\r\n \u00e0 promouvoir et co-financer la mise en \u0153uvre de solutions fond\u00e9es sur la nature\r\n qui contribueront \u00e0 horizon 2050, \u00e0 atteindre les objectifs suivants :\n</p>\n<p>\n - pr\u00e9server et restaurer la biodiversit\u00e9 (ordinaire et remarquable) ainsi que la diversit\u00e9 et la\r\n compl\u00e9mentarit\u00e9 des processus \u00e9cologiques pour renforcer la stabilit\u00e9 dynamique et la\r\n r\u00e9silience des \u00e9cosyst\u00e8mes naturels et anthropis\u00e9s, et ainsi le maintien et la valorisation des\r\n bouquets de services \u00e9cosyst\u00e9miques\r\n ;\n</p>\n<p>\n - att\u00e9nuer les changements climatiques en renfor\u00e7ant les\r\n capacit\u00e9s de stockage ou de captage de CO2 (probl\u00e8me global) ;\n</p>\n<p>\n - et adapter les territoires \u00e0 ces changements, notamment en limitant leurs\r\n effets (ex : ilot de chaleur en ville) et les risques naturels (glissement de terrain, \u00e9rosion,\r\n inondation, s\u00e9cheresse, incendie, submersion marine...).\n</p>\n<p>\n Ces solutions fond\u00e9es sur la nature favorisent le maintien des services \u00e9cosyst\u00e9miques et renforcent la r\u00e9silience et la viabilit\u00e9 socio\u00e9conomique des activit\u00e9s humaines et des territoires \u00e0 travers les cinq cibles d'actions suivantes :\n</p>\n<ul>\n <li>\n  Ecosyst\u00e8mes marins et c\u00f4tiers\n </li>\n <li>\n  Zones humides\n </li>\n <li>\n  Transitions agricole et foresti\u00e8re\n </li>\n <li>\n  Continuit\u00e9s \u00e9cologiques\n </li>\n <li>\n  Biodiversit\u00e9 en ville\n </li>\n</ul>\n<p>\n Le programme a \u00e9t\u00e9 lanc\u00e9 par CDC Biodiversit\u00e9, entreprise priv\u00e9e \u00e0 mission et filiale du groupe Caisse des D\u00e9p\u00f4ts et Consignations. Il est \u00e9galement soutenu par le Fonds Nature 2050; fonds de dotation cr\u00e9\u00e9 en 2019 et d\u00e9di\u00e9 au programme.\n</p>\n<p>\n Nature 2050 est un programme partenarial conduit avec des associations environnementales, des scientifiques et des acteurs publics qui en forment le Comit\u00e9 de pilotage, responsable du suivi des objectifs du programme. Il repose sur l'engagement volontaire des acteurs \u00e9conomiques priv\u00e9s ou publics \u00e0 agir au-del\u00e0 de leurs obligations r\u00e9glementaires. Les financements apport\u00e9s par les acteurs \u00e9conomiques \u00e0 Nature 2050 visent \u00e0 soutenir les actions port\u00e9s localement par les acteurs des territoires en faveur de la biodiversit\u00e9 et du climat.\n</p>",
+        "description": "<p>\n Nature 2050 est un programme d'action national port\u00e9 par CDC Biodiversit\u00e9 et le Fonds Nature 2050, visant\r\n \u00e0 promouvoir et co-financer la mise en \u0153uvre de solutions fond\u00e9es sur la nature\r\n qui contribueront \u00e0 horizon 2050, \u00e0 atteindre les objectifs suivants :\n</p>\n<p>\n <ul>\n  <li>\n   pr\u00e9server et restaurer la biodiversit\u00e9 (ordinaire et remarquable) ainsi que la diversit\u00e9 et la\r\n compl\u00e9mentarit\u00e9 des processus \u00e9cologiques pour renforcer la stabilit\u00e9 dynamique et la\r\n r\u00e9silience des \u00e9cosyst\u00e8mes naturels et anthropis\u00e9s, et ainsi le maintien et la valorisation des\r\n bouquets de services \u00e9cosyst\u00e9miques\r\n ;\n  </li>\n  <li>\n   att\u00e9nuer les changements climatiques en renfor\u00e7ant les\r\n capacit\u00e9s de stockage ou de captage de CO2 (probl\u00e8me global) ;\n  </li>\n  <li>\n   et adapter les territoires \u00e0 ces changements, notamment en limitant leurs\r\n effets (ex : ilot de chaleur en ville) et les risques naturels (glissement de terrain, \u00e9rosion,\r\n inondation, s\u00e9cheresse, incendie, submersion marine...).\n  </li>\n </ul>\n</p>\n<p>\n Ces solutions fond\u00e9es sur la nature favorisent le maintien des services \u00e9cosyst\u00e9miques et renforcent la r\u00e9silience et la viabilit\u00e9 socio\u00e9conomique des activit\u00e9s humaines et des territoires \u00e0 travers les cinq cibles d'actions suivantes :\n</p>\n<ul>\n <li>\n  Ecosyst\u00e8mes marins et c\u00f4tiers\n </li>\n <li>\n  Zones humides\n </li>\n <li>\n  Transitions agricole et foresti\u00e8re\n </li>\n <li>\n  Continuit\u00e9s \u00e9cologiques\n </li>\n <li>\n  Biodiversit\u00e9 en ville\n </li>\n</ul>\n<p>\n Le programme a \u00e9t\u00e9 lanc\u00e9 par CDC Biodiversit\u00e9, entreprise priv\u00e9e \u00e0 mission et filiale du groupe Caisse des D\u00e9p\u00f4ts et Consignations. Il est \u00e9galement soutenu par le Fonds Nature 2050; fonds de dotation cr\u00e9\u00e9 en 2019 et d\u00e9di\u00e9 au programme.\n</p>\n<p>\n Nature 2050 est un programme partenarial conduit avec des associations environnementales, des scientifiques et des acteurs publics qui en forment le Comit\u00e9 de pilotage, responsable du suivi des objectifs du programme. Il repose sur l'engagement volontaire des acteurs \u00e9conomiques priv\u00e9s ou publics \u00e0 agir au-del\u00e0 de leurs obligations r\u00e9glementaires. Les financements apport\u00e9s par les acteurs \u00e9conomiques \u00e0 Nature 2050 visent \u00e0 soutenir les actions port\u00e9s localement par les acteurs des territoires en faveur de la biodiversit\u00e9 et du climat.\n</p>",
         "eligibility": "<p>\n Le porteur de projet doit :\n</p>\n<ul>\n <li>\n  Recourir aux solutions fond\u00e9es sur la nature\n </li>\n <li>\n  D\u00e9montrer une additionnalit\u00e9 \u00e9cologique du projet (en mati\u00e8re d'att\u00e9nuation et d'adaptation au changement climatique et en mati\u00e8re de pr\u00e9servation et de restauration de la biodiversit\u00e9) vis-\u00e0-vis de l'\u00e9tat initial du site et de la r\u00e9glementation environnementale.\n  <br/>\n </li>\n <li>\n  Pr\u00e9senter un budget structur\u00e9 o\u00f9 la participation Nature 2050 se concentre sur les d\u00e9penses d'investissement (r\u00e9alisation des travaux) et de reporting/suivi jusqu'en 2050 ;\n </li>\n <li>\n  Garantir la p\u00e9rennit\u00e9 de l'action et l'acc\u00e8s au foncier jusqu'en 2050  ;\n </li>\n <li>\n  Pr\u00e9senter un caract\u00e8re reproductible (innovant ou exp\u00e9rimental) ;\n </li>\n <li>\n  Mettre en place un dispositif de suivi-\u00e9valuation.\n </li>\n</ul>",
         "perimeter": "France",
         "mobilization_steps": [
@@ -2093,6 +2123,65 @@
         "project_examples": "<p>\n Quelques exemples de projets soutenus par Nature 2050 :\n <br/>\n</p>\n<ul>\n <li>\n  Transformation d'une peupleraie d\u00e9p\u00e9rissante en for\u00eat durable, Jura (porteur: Le Printemps des Terres) -\n  <a href=\"https://www.cdc-biodiversite.fr/realisations/bois-magnin/\" rel=\"noopener\" target=\"_blank\">\n   lien\n  </a>\n </li>\n <li>\n  Cr\u00e9ation d'un parc ouvert aux habitants conciliant milieux ouverts, espaces arbor\u00e9s de fra\u00eecheur et usages, Seine-Saint-Denis (porteur: EPT Plaine Commune) -\n  <a href=\"https://www.cdc-biodiversite.fr/realisations/coeur-vert-des-tartres/\" rel=\"noopener\" target=\"_blank\">\n   lien\n  </a>\n </li>\n <li>\n  Restauration \u00e9cologique des hauts de plages aux dunes grises et du fonctionnement des zones c\u00f4ti\u00e8res atlantiques y compris le maintien du trait de c\u00f4te, Vend\u00e9e (porteur: Communaut\u00e9 de communes Oc\u00e9an-Marais de Monts) -\n  <a href=\"https://www.cdc-biodiversite.fr/realisations/dunes-du-pays-de-monts/\" rel=\"noopener\" target=\"_blank\">\n   lien\n  </a>\n </li>\n <li>\n  Transition de parcelles agricoles conventionnelles vers un nouveau mod\u00e8le agricole int\u00e9grant la biodiversit\u00e9 et les enjeux d'adaptation au changement climatique, Haute-Garonne (porteur: Ferme La Granja) -\n  <a href=\"https://www.cdc-biodiversite.fr/realisations/ferme-de-la-granja/\" rel=\"noopener\" target=\"_blank\">\n   lien\n  </a>\n </li>\n <li>\n  Restauration d'une tourbi\u00e8re pour am\u00e9liorer la gestion des crues fr\u00e9quentes et le transport s\u00e9dimentaire, Savoie (porteur: CEN Savoie) -\n  <a href=\"https://www.nature2050.com/projet/tourbiere-du-plan-de-leau/\" rel=\"noopener\" target=\"_blank\">\n   lien\n  </a>\n </li>\n</ul>\n<p>\n L'ensemble des projets Nature 2050 sont accessibles\r\n en suivant ce\n <a href=\"https://www.nature2050.com/les-projets/\" rel=\"noopener\" target=\"_blank\">\n  lien\n </a>\n .\n</p>",
         "date_created": "2022-04-27T09:57:02.504849+02:00",
         "date_updated": "2022-04-27T09:57:02.504856+02:00"
+      },
+      {
+        "id": 117638,
+        "slug": "c564-amenager-et-requalifier-les-espaces-publics",
+        "url": "/aides/c564-amenager-et-requalifier-les-espaces-publics/",
+        "name": "Am\u00e9nager et requalifier les espaces publics",
+        "short_title": "",
+        "financers": [
+          "Conseil r\u00e9gional de Normandie"
+        ],
+        "instructors": [],
+        "programs": [
+          "\ud83c\uddea\ud83c\uddfa FSE - Fonds social europ\u00e9en",
+          "\ud83c\uddea\ud83c\uddfa FEDER - Fonds europ\u00e9en de d\u00e9veloppement r\u00e9gional"
+        ],
+        "description": "<p>\n Dans le cadre du Programme Op\u00e9rationnel FEDER FSE+ FTJ Normandie 2021-2027, la R\u00e9gion Normandie, en tant qu'Autorit\u00e9 de Gestion des Fonds Europ\u00e9ens, lance deux Appels \u00e0 Projets pour l'am\u00e9nagement et la requalification d'espaces publics ; l'un est \u00e0 destination des \u00ab zones urbaines* \u00bb et l'autre des zones dites \u00ab non urbaines** \u00bb.\n</p>\n<p>\n *\n <a href=\"https://sig.normandie.fr/appel-projets-feder-perimetres-eligibles-territoires-urbains\" rel=\"noopener\" target=\"_blank\">\n  https://sig.normandie.fr/appel-projets-feder-perimetres-eligibles-territoires-urbains\n </a>\n</p>\n<p>\n **\n <a href=\"https://sig.normandie.fr/appel-projets-feder-perimetres-eligibles-territoires-non-urbains\" rel=\"noopener\" target=\"_blank\">\n  https://sig.normandie.fr/appel-projets-feder-perimetres-eligibles-territoires-non-urbains\n </a>\n <br/>\n</p>\n<p>\n Le montant indicatif des cr\u00e9dits de l'objectif sp\u00e9cifique est de 7 M\u20ac pour les zones urbaines et 4 M\u20ac pour les zones non urbaines.\n <br/>\n</p>\n<p>\n Les dossiers complets de candidatures devront \u00eatre d\u00e9pos\u00e9s au plus tard le 30 juin 2022 sur l'espace des Aides en cliquant sur D\u00e9poser une demande.\n <br/>\n</p>\n<p>\n Pour vous accompagner dans vos d\u00e9marches, un guide du porteur de projet FEDER-FSE-FTJ est disponible sur le site Europe en Normandie : https://www.europe-en-normandie.eu/avant-de-commencer#guide_porteurLes cr\u00e9dits europ\u00e9ens FEDER doivent \u00eatre mobilis\u00e9s pour permettre l'am\u00e9lioration du cadre de vie et le renforcement de l'attractivit\u00e9 des c\u0153urs de villes ou des centres-bourgs tout en consid\u00e9rant les enjeux environnementaux actuels et futurs li\u00e9s notamment au changement climatique.\n <br/>\n</p>\n<p>\n Les projets devront \u00eatre propos\u00e9s sur l'espace public ou le domaine public. Ils devront \u00eatre inclusifs et accessibles \u00e0 tous, pour l'usage de tous sans restriction et gratuits. Ils valoriseront une qualit\u00e9 urbaine et paysag\u00e8re. Des projets de v\u00e9g\u00e9talisation d'espaces ext\u00e9rieurs des sites scolaires, p\u00e9riscolaires, ou d'accueil de la petite enfance publics sont \u00e9galement \u00e9ligibles.\n</p>\n<p>\n L'approche environnementale des projets r\u00e9pondant \u00e0 l'appel \u00e0 projet est une condition sine qua non au financement du FEDER.\n</p>\n<p>\n Le d\u00e9veloppement des modes doux, la valorisation de la trame verte et bleue, de la nature en ville, l'adaptation au changement climatique, la r\u00e9duction de l'imperm\u00e9abilisation des sols, le r\u00e9emploi des mat\u00e9riaux, l'accessibilit\u00e9 et le caract\u00e8re inclusif des projets, sont autant d'orientations qui devront \u00eatre prises en compte par les porteurs de projets.\n</p>\n<p>\n Sous r\u00e9serve de l'approbation du Programme Op\u00e9rationnel par la Commission europ\u00e9enne, et des Documents de Mise en \u0152uvre par le Comit\u00e9 de suivi, le taux maximum de l'aide FEDER allou\u00e9e par op\u00e9ration sera de 60%. Le taux maximum d'aides publiques par op\u00e9ration est de 80%.\n</p>",
+        "eligibility": "<p>\n Faire partie des p\u00e9rim\u00e8tres d'\u00e9ligibilit\u00e9 des \u00ab zones urbaines* \u00bb et zones \u00ab zones non urbaines** \u00bb (\r\n *\n <a href=\"https://sig.normandie.fr/appel-projets-feder-perimetres-eligibles-territoires-urbains\" rel=\"noopener\" target=\"_blank\">\n  https://sig.normandie.fr/appel-projets-feder-perimetres-eligibles-territoires-urbains\n </a>\n ,\r\n **\n <a href=\"https://sig.normandie.fr/appel-projets-feder-perimetres-eligibles-territoires-non-urbains\" rel=\"noopener\" target=\"_blank\">\n  https://sig.normandie.fr/appel-projets-feder-perimetres-eligibles-territoires-non-urbains\n </a>\n )\n</p>\n<p>\n Pour que le projet soit \u00e9ligible au pr\u00e9sent appel \u00e0 projets, l'ensemble des crit\u00e8res suivants doivent \u00eatre\r\n remplis :\n</p>\n<ul>\n <li>\n  Le porteur fait partie des b\u00e9n\u00e9ficiaires \u00e9ligibles ;\n </li>\n <li>\n  Le projet pr\u00e9sent\u00e9 fait partie des actions \u00e9ligibles ;\n </li>\n <li>\n  Le projet pr\u00e9sent\u00e9 par le porteur se situe sur un territoire \u00e9ligible ;\n </li>\n <li>\n  Le montant du projet est au minimum de 150 000 \u20ac ;\n </li>\n <li>\n  Le porteur pr\u00e9sente un calendrier d'op\u00e9ration compatible avec les d\u00e9lais du PO 21-27. L'\u00e9ligibilit\u00e9\r\n des d\u00e9penses est comprise entre le 1er janvier 2021 et le 31 d\u00e9cembre 2028.\n </li>\n <li>\n  Le porteur atteste que les d\u00e9penses pr\u00e9sent\u00e9es ne font pas l'objet d'un double financement\r\n europ\u00e9en (plan de relance europ\u00e9en, FEADER, LEADER...)\n </li>\n</ul>",
+        "perimeter": "Normandie (R\u00e9gion)",
+        "mobilization_steps": [
+          "R\u00e9flexion / conception",
+          "Mise en \u0153uvre / r\u00e9alisation",
+          "Usage / valorisation"
+        ],
+        "origin_url": "https://www.normandie.fr/amenagement-et-requalification-despaces-publics",
+        "categories": [
+          "Nature / environnement|Biodiversit\u00e9",
+          "Urbanisme / logement / am\u00e9nagement|R\u00e9habilitation",
+          "Nature / environnement|Sols",
+          "Urbanisme / logement / am\u00e9nagement|Espaces verts",
+          "Urbanisme / logement / am\u00e9nagement|Espace public",
+          "Nature / environnement|Solutions d'adaptation fond\u00e9es sur la nature (SafN)",
+          "Urbanisme / logement / am\u00e9nagement|Voirie et r\u00e9seaux"
+        ],
+        "is_call_for_project": true,
+        "application_url": "https://monespace-aides.normandie.fr/account-management/crno-demandeurs/ux/#/login?redirectTo=https:%2F%2Fmonespace-aides.normandie.fr%2Faides%2F%23%2Fcrno%2Fconnecte%2FF_27FED_TERR001%2Fdepot%2Fsimple&jwtKey=jwt-crno-portail-depot-demande-aides&footer=https:%2F%2Fmonespace-aides.normandie.fr%2Faides%2F%23%2Fcrno%2Fmentions-legales,Mentions%20l%C3%A9gales,_self;https:%2F%2Faides.normandie.fr%2Fbesoin-d-aide,Nous%20contacter,_blank",
+        "targeted_audiences": [
+          "Communes",
+          "Intercommunalit\u00e9s / Pays",
+          "Entreprises publiques locales (Sem, Spl, SemOp)",
+          "\u00c9tablissements publics (\u00e9coles, biblioth\u00e8ques\u2026) / Services de l'\u00c9tat"
+        ],
+        "aid_types": [
+          "Subvention"
+        ],
+        "destinations": [
+          "D\u00e9penses d'investissement"
+        ],
+        "start_date": null,
+        "predeposit_date": null,
+        "submission_deadline": "2022-10-31",
+        "subvention_rate_lower_bound": null,
+        "subvention_rate_upper_bound": 60,
+        "loan_amount": null,
+        "recoverable_advance_amount": null,
+        "contact": "<ul>\n <li>\n  aap-feder-espaces-publics@normandie.fr\n </li>\n</ul>",
+        "recurrence": "Ponctuelle",
+        "project_examples": "<p>\n Quelques exemples d'am\u00e9nagement :\n</p>\n<ul>\n <li>\n  Centre-bourg et traverse de Roumare,\r\n 76480, Roumare\n </li>\n <li>\n  Am\u00e9nagement des quais de la Seine,\r\n 76350, Oissel\n </li>\n <li>\n  Les jardins suspendus,\r\n 76600, Le Havre\n </li>\n <li>\n  V\u00e9g\u00e9talisation de cours d'\u00e9cole\n </li>\n</ul>",
+        "date_created": "2022-05-25T11:03:15.138492+02:00",
+        "date_updated": "2022-05-25T11:03:15.138499+02:00"
       },
       {
         "id": 116637,

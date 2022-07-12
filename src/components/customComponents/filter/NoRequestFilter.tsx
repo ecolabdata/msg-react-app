@@ -8,18 +8,15 @@ import ToggleButton from '../../dsfrComponents/ToggleButton';
 import { RequestFilter } from "./RequestFIlter";
 
 
-export class StartupsRequestFilter implements RequestFilter {
+export class NoRequestFilter implements RequestFilter {
     
+    allCards: AnyCard[] = []
 
-    allCards: Startup[] = []
-    cardType : CardType
-
-    constructor(initialState : (InitialState & { page?: number, montantMin: number }) | null, cardType : CardType) {
-        this.cardType = cardType
+    constructor(initialState : (InitialState & { page?: number, montantMin: number }) | null, cardType:CardType) {
 
         if (initialState?.search.cards) {
             const initialQuery = initialState?.search.query as Query;
-            this.allCards = initialState.search.cards.startups
+            this.allCards = initialState.search.cards[cardType.apiName]
         }
     }
 
@@ -31,6 +28,6 @@ export class StartupsRequestFilter implements RequestFilter {
      return search({description, motsclefs, secteurs});
     }
 
-    Component = () => <></>
+    Component = () => <>Aucun filtre supplémentaire disponible</>
 
 }

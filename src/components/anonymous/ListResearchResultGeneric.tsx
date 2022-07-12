@@ -3,11 +3,12 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { AidesQuery } from '../../api/Api';
 import { Filtrer } from '../../assets/Icons';
 import { useTitle } from '../../hooks/useTitle';
-import { aideClient, aideInno, startups, CardType } from '../../model/CardType';
+import { aideClient, aideInno, startups, CardType, acheteurPublic, achatPrevi, investisseur } from '../../model/CardType';
 import { ApplicationContext } from '../../Router';
 import { InitialState } from '../../utils/InitialState';
 import { AideRequestFilter } from '../customComponents/filter/AideRequestFilter';
-import { StartupsRequestFilter } from '../customComponents/filter/StartupsRequestFilter';
+import { InvestisseurRequestFilter } from '../customComponents/filter/InvestisseurRequestFilter';
+import { NoRequestFilter } from '../customComponents/filter/NoRequestFilter';
 import { RequestFilter, } from '../customComponents/filter/RequestFIlter';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
 import Pagination from '../dsfrComponents/Pagination';
@@ -16,17 +17,17 @@ import ArrowDark from './../../assets/icons/arrow-dark-action.svg';
 
 
 type Props = {
-    cardType : CardType,
-    requestFilterBuilder : (initialState : unknown) => RequestFilter
+    cardType: CardType,
+    requestFilterBuilder: (initialState: unknown) => RequestFilter
 }
 
-const ListResearchResult : React.FC<Props> = ({ cardType, requestFilterBuilder}) => {
+const ListResearchResult: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
     const { color } = cardType;
     const { usedCorbeille, usedNextScrollTarget } = useContext(ApplicationContext);
     const [toggleInCorbeille, isInCorbeille] = usedCorbeille;
     const [nextScrollTarget, setNextScrolTarget] = usedNextScrollTarget;
     const location = useLocation();
-    console.log({state: location.state})
+    console.log({ state: location.state })
     const requestFilter = requestFilterBuilder(location.state)
     const initialState = location.state as (InitialState & { page?: number, montantMin: number }) | null;
     const initialQuery = initialState?.search.query as (AidesQuery | null);
@@ -111,7 +112,7 @@ const ListResearchResult : React.FC<Props> = ({ cardType, requestFilterBuilder})
 
                             <div className="specifyAndLogoContainer w-full ">
 
-                                <h2 className={`mt-4 bold text-xl text-[${cardType.color}] flex justify-center items-center`}>
+                                <h2 style={{ color: cardType.color }} className={`mt-4 bold text-xl flex justify-center items-center`}>
                                     <Filtrer className="mr-6" width="20" height="20" />
                                     Préciser la recherche
                                 </h2>
@@ -168,6 +169,9 @@ const ListResearchResult : React.FC<Props> = ({ cardType, requestFilterBuilder})
 };
 
 
-export const ListResearchResultAidesClient = () => <ListResearchResult cardType={aideClient} requestFilterBuilder={initState => new AideRequestFilter(initState as any, aideClient)}/>
-export const ListResearchResultAidesInno = () => <ListResearchResult cardType={aideInno} requestFilterBuilder={initState => new AideRequestFilter(initState as any, aideInno)}/>
-export const ListResearchResultStartups = () => <ListResearchResult cardType={startups} requestFilterBuilder={initState => new StartupsRequestFilter(initState as any, startups)}/>
+export const ListResearchResultAidesClient = () => <ListResearchResult cardType={aideClient} requestFilterBuilder={initState => new AideRequestFilter(initState as any, aideClient)} />
+export const ListResearchResultAidesInno = () => <ListResearchResult cardType={aideInno} requestFilterBuilder={initState => new AideRequestFilter(initState as any, aideInno)} />
+export const ListResearchResultInvestisseur = () => <ListResearchResult cardType={investisseur} requestFilterBuilder={initState => new InvestisseurRequestFilter(initState as any, investisseur)} />
+export const ListResearchResultStartups = () => <ListResearchResult cardType={startups} requestFilterBuilder={initState => new NoRequestFilter(initState as any, startups)} />
+export const ListResearchResultAcheteurPublic = () => <ListResearchResult cardType={acheteurPublic} requestFilterBuilder={initState => new NoRequestFilter(initState as any, acheteurPublic)} />
+export const ListResearchResultAchatPrevi = () => <ListResearchResult cardType={achatPrevi} requestFilterBuilder={initState => new NoRequestFilter(initState as any, achatPrevi)} />

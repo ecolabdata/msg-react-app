@@ -2,7 +2,6 @@ import { createContext, Dispatch, SetStateAction, useEffect, useState } from 're
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import HomePage from './components/anonymous/HomePage';
-import ListResearchResult from './components/anonymous/ListResearchResultPage';
 import Page404 from './components/anonymous/Page404';
 import ResearchForm from './components/anonymous/ResearchFormPage';
 import AuthenticatedComponent from './components/authenticated/AuthenticatedComponent';
@@ -53,7 +52,7 @@ const Router = () => {
             <Route path="*" element={<Header />} />
         </Routes>
         <main className={`h-full p-1 md:p-6 ${localStorage.scheme === 'dark' && 'bg-[#262626]'}`}>
-            <BreadCumb />
+            {/* <BreadCumb /> */}
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/explorer" element={<ResearchForm alpha={false} />} />
@@ -61,12 +60,8 @@ const Router = () => {
                 <Route path="/explorer-alpha" element={<ResearchForm alpha={true} />} />
 
                 {allCardType.map((cardType => <>
-                    <Route path={cardType.searchLink} element={
-                        cardType.SearchPage ? <cardType.SearchPage /> : <ListResearchResult cardType={cardType} />
-                    } />
-                    <Route path={cardType.searchLink + "/search"} element={
-                        cardType.SearchPage ? <cardType.SearchPage /> : <ListResearchResult cardType={cardType} />
-                    } />
+                    <Route path={cardType.searchLink} element={<cardType.SearchPage />} />
+                    <Route path={cardType.searchLink + "/search"} element={<cardType.SearchPage />} />
                     <Route path={`/${cardType.name}/details/:slug`} element={
                         cardType.DetailsPage ? <cardType.DetailsPage /> : <CardDetailsJson cardType={cardType} />
                     } />
