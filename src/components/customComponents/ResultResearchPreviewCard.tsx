@@ -12,39 +12,13 @@ export interface ResultResearchPreviewCardProps {
     resultCount: number
 }
 
+const getCardWidth = () => (document.getElementsByClassName("outer-card")[0] as HTMLElement | null)?.offsetWidth
+
 const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = ({ cardType, initialState, children, resultCount }) => {
 
     const { usedNextScrollTarget } = useContext(ApplicationContext)
     const [nextScrollTarget, setNextScrollTarget] = usedNextScrollTarget
     const ref = useRef<HTMLDivElement>(null)
-    const [leftArrow, setLeftArrow] = useState(false);
-    const [rightArrow, setRightArrow] = useState(true);
-    const handleArrowDisplay = (nextScrollLeft: number) => {
-        if (ref.current) {
-            setLeftArrow(true)
-            setRightArrow(true)
-            if (nextScrollLeft <= 0) {
-                setLeftArrow(false)
-            }
-
-            if (nextScrollLeft >= (ref.current.scrollWidth - ref.current.clientWidth)) {
-                setRightArrow(false)
-            }
-        }
-    }
-    const simulateScroll = (scrollSpeed: number) => {
-        if (ref.current) {
-            const outerCard = ref.current.getElementsByClassName("outer-card")[0] as HTMLElement | null
-            if (outerCard) {
-                const cardWidth = outerCard.offsetWidth
-                const compFct = scrollSpeed > 0 ? Math.max : Math.min
-                const minimumMouvement = compFct(window.innerWidth * scrollSpeed - cardWidth * scrollSpeed, cardWidth * scrollSpeed)
-                const nextScrollLeft = Math.round((ref.current.scrollLeft + minimumMouvement) / cardWidth) * cardWidth
-                handleArrowDisplay(nextScrollLeft)
-                ref.current.scrollTo({ behavior: "smooth", left: nextScrollLeft })
-            }
-        }
-    }
 
     return (<div className="globalContainerCard flex flex-col justify-center md:ml-10">
 
@@ -72,14 +46,7 @@ const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = ({ c
         </div >
 
         <div className="cardScrollContainerX
-        -ml-2 h-72 overflow-x-scroll overflow-y-hidden hiddenScrollBar flex items-center" ref={ref} onScroll={e => handleArrowDisplay(e.currentTarget.scrollLeft)}>
-            {leftArrow && <button className="" onClick={() => simulateScroll(-1)}>
-                <span className="fr-fi-arrow-left-line absolute left-[1vw] rounded-full bg-gray-400 p-0.5  text-gray-700 z-50" aria-hidden="true"></span>
-            </button>
-            }
-            {rightArrow && <button className="" onClick={() => simulateScroll(1)}>
-                <span className="fr-fi-arrow-right-line absolute right-[2vw] rounded-full bg-gray-400 p-0.5  text-gray-700 z-50" aria-hidden="true"></span>
-            </button>}
+        -ml-2 flex flex-wrap justify-evenly" ref={ref} >
             {children}
         </div>
 

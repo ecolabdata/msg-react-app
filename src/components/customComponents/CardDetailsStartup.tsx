@@ -135,7 +135,7 @@ const DetailsStartup : React.FC<DetailsStartupProps> = ({cardType}) => {
                     </div>
 
                     <div className="mt-4 flex flex-col overflow-y-auto
-                    xl:min-w-[50%] xl:max-w-[50%] xl:max-h-[50%]">
+                    xl:min-w-[50%] xl:max-w-[50%]">
                         <h3 style={cardTypeColor} className="font-bold text-xl">Soutiens et clients</h3>
                         <div className="mt-2 -ml-[10px] w-full flex flex-wrap">
                             {cardSoutiens.length > 0 ? cardSoutiens.map( soutien => <Label bgColor="#E5FFF4" textColor="text-[#37635F]">{soutien}</Label>) : null}
@@ -143,7 +143,7 @@ const DetailsStartup : React.FC<DetailsStartupProps> = ({cardType}) => {
                     </div>
 
                     <div className="mt-4 flex flex-col overflow-y-auto
-                    xl:min-w-[50%] xl:max-w-[50%] xl:max-h-[50%] ">
+                    xl:min-w-[50%] xl:max-w-[50%]">
                         <h3 style={cardTypeColor} className="font-bold text-xl">Clients publics</h3>
                         <div className="mt-2 -ml-[10px] w-full flex flex-wrap">
                             {cardPublicMarkets.length > 0 ? cardPublicMarkets.map( publicMarket => <Label bgColor="#E5FFF4" textColor="text-[#37635F]">{publicMarket}</Label>) : null}

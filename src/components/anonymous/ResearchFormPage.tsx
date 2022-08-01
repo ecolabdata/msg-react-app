@@ -58,7 +58,7 @@ const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
 
         return (
             <ResultResearchPreviewCard cardType={cardType} initialState={initialState} resultCount={results.length}>
-                {results.filter(x => !isInCorbeille(x)).map(x => <div className='outer-card'><div className="md:ml-6">
+                {results.filter(x => !isInCorbeille(x)).slice(0, 8).map(x => <div className='outer-card'><div className="md:ml-6">
                     <ResultPreviewCard pageList={false} cardData={x} cardType={cardType} />
                 </div></div>
                 )}
