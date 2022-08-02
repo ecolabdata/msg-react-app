@@ -52,7 +52,7 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
         i => i['Nom du fonds'],
         a => a.name,
         su => su['Start-up'],
-        () => 'unknown-slug')
+        () => 'No title')
     let linkTo = `/${cardType.name}/details/${slug}?cardData=${encodeURIComponent(JSON.stringify(cardData))}`;
 
     if (linkTo.length > 8192) {

@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AnyCard, search } from '../../api/Api';
 import { useTitle } from '../../hooks/useTitle';
@@ -8,13 +9,13 @@ import { InitialState } from '../../utils/InitialState';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
 import ResultResearchPreviewCard from '../customComponents/ResultResearchPreviewCard';
 import { PitchThematicsKeywords } from '../PitchThematicsKeywords';
-import { FillMagnifying, Magnifying } from './../../assets/Icons';
+import { ArrowRight, FillMagnifying, Magnifying } from './../../assets/Icons';
 
 const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
 
     const { usedCorbeille, usedNextScrollTarget } = useContext(ApplicationContext)
     const [toggleInCorbeille, isInCorbeille] = usedCorbeille
-    const [nextScrollTarget, setNextScrolTarget] = usedNextScrollTarget
+    const [nextScrollTarget, setNextScrollTarget] = usedNextScrollTarget
     const navigate = useNavigate();
     const location = useLocation();
     useTitle(`Explorer `)
@@ -36,7 +37,7 @@ const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
                 setIsLoading(false)
                 //? Scroll
                 const element = document.getElementById('previews')
-                if (element) setNextScrolTarget({ behavior: "smooth", top: element.offsetTop - window.innerHeight * 0.20 })
+                if (element) setNextScrollTarget({ behavior: "smooth", top: element.offsetTop - window.innerHeight * 0.20 })
                 navigate(ctrlPress ? `/explorer-alpha` : `/explorer/search`, { state: { search } })
             }).catch(e => {
                 setIsLoading(false);
@@ -55,13 +56,29 @@ const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
 
         const results: AnyCard[] = initialState.search.cards[cardType.apiName];
         if (results.length === 0) return null;
-
+        const cardSliceSize = Math.floor(window.innerWidth / 330) * 2 - 1;
+        //{name: `Voir les ${results.length - cardSliceSize } autres cartes`}
         return (
             <ResultResearchPreviewCard cardType={cardType} initialState={initialState} resultCount={results.length}>
-                {results.filter(x => !isInCorbeille(x)).slice(0, 8).map(x => <div className='outer-card'><div className="md:ml-6">
+                {results.filter(x => !isInCorbeille(x)).slice(0, cardSliceSize).map(x => <div className='outer-card'><div className="md:ml-6">
                     <ResultPreviewCard pageList={false} cardData={x} cardType={cardType} />
                 </div></div>
                 )}
+                <div className={`cardContainer ml-6
+            rounded-r w-[282px] p-4 flex flex-col
+            justify-center
+            items-center
+            align-middle
+            relative`
+                }
+                    style={{ color: cardType.color, opacity: isLoading ? 0 : 1 }}
+                >
+                    <NavLink
+                        onClick={() => setNextScrollTarget({ top: 0 })}
+                        to={cardType.searchLink} state={initialState}>
+                        {`Voir les ${results.length - cardSliceSize} autres cartes`} <ArrowRight />
+                    </NavLink>
+                </div>
             </ResultResearchPreviewCard>
         )
 
@@ -71,14 +88,14 @@ const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
         <>
 
             <h1 className="font-bold my-2 mx-auto max-w-headerSize text-xl flex text-center justify-center items-center w-[90%]
-            md:my-8 md:text-[30px] leading-5"> <Magnifying width="31px" height="31px" className="mr-4"/> Formulaire de recherche en 3 étapes ! </h1>
+            md:my-8 md:text-[30px] leading-5"> <Magnifying width="31px" height="31px" className="mr-4" /> Formulaire de recherche en 3 étapes ! </h1>
 
             <form onSubmit={(event) => {
                 event.preventDefault()
                 handleOnSubmitForm(false)
-            }} 
-            id="keywordsForm"
-            className="h-fit mx-auto max-w-headerSize
+            }}
+                id="keywordsForm"
+                className="h-fit mx-auto max-w-headerSize
             ">
 
                 <PitchThematicsKeywords
@@ -90,7 +107,7 @@ const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
                 />
 
             </form>
-            
+
             <div className={`errorContainer ${errorTxt.length <= 0 && 'hidden'} 
             h-12 flex justify-center items-center color`}>
                 <p style={{ color: "hsla(0, 100%, 65%, 0.9)" }}>
@@ -100,7 +117,7 @@ const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
 
             <div className='buttonsContainer mx-auto max-w-headerSize flex justify-center flex-wrap'>
 
-                <button className="w-48 h-14 text-base underline capitalize" onClick={ () => {
+                <button className="w-48 h-14 text-base underline capitalize" onClick={() => {
                     setDescription("")
                     setSecteurs([])
                     setMotsclef([])
@@ -109,16 +126,16 @@ const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
                 <button onClick={(event) => {
                     event.preventDefault()
                     handleOnSubmitForm(event.ctrlKey)
-                }} form="keywordsForm" disabled={isLoading} className="fr-btn fr-btn--lg fr-btn--primary capitalize" > 
+                }} form="keywordsForm" disabled={isLoading} className="fr-btn fr-btn--lg fr-btn--primary capitalize" >
                     <span className="mx-auto flex items-center">
 
-                        {!isLoading && <FillMagnifying fill="true" width="20px" height="20px" className="mr-2"/>}
-                        
+                        {!isLoading && <FillMagnifying fill="true" width="20px" height="20px" className="mr-2" />}
+
                         <span>
                             {isLoading ? "chargement..." : "rechercher !"}
                         </span>
 
-                    </span> 
+                    </span>
                 </button>
 
             </div>
