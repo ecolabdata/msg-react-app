@@ -20,9 +20,9 @@ const Home = () => {
 
     const explorerCard:ExplorerTypeCard = {
         SVGLogo: PictoExplorer,
-        title: "Explorer",
+        title: "Rechercher les leviers dans toutes les thématiques",
         color: "rgba(0, 0, 145, 1)",
-        description: "Découvrez tous les leviers proposés par Mes Services Greentech !",
+        description: "Découvrez tous les leviers proposés par Mes Services Greentech : aides à l’innovation, aide pour vos clients, achats publics à venir, investisseurs, start-up greentech.",
         searchLink: "explorer",
         version: "no",
         name: "explorer"
@@ -45,15 +45,14 @@ const Home = () => {
                 "> A partir de la description de votre activité ou de votre solution, nous vous proposons des pistes de leviers autour des 5 axes suivants :</h2>
             </div>
             
-            <div className="cardsContainer mx-auto max-w-headerSize flex flex-wrap justify-center
-            xl:justify-start
-                ">
+            <div
+                className="cardsContainer mx-auto flex flex-wrap justify-start"
+                style={{width: Math.floor((window.innerWidth - 60) / 393) * 393}}
+            >
                 <Card explorerCard={true} cardTypeData={explorerCard} />
-                
                 {allCardType.map((card) =>
                     <Card cardTypeData={card} />
                 )}
-
             </div>
         </>
     );

@@ -46,7 +46,7 @@ export const FillMagnifying = ({...other}) => <svg width="24" height="24" viewBo
 <path fill-rule="evenodd" clip-rule="evenodd" d="M18.031 16.617L22.314 20.899L20.899 22.314L16.617 18.031C15.0237 19.3082 13.042 20.0029 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20.0029 13.042 19.3082 15.0237 18.031 16.617Z" fill="currentColor"/>
 </svg>
 
-export const PictoExplorer = ({...other}) => <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+export const PictoExplorer = ({...other}) => <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" {...other}>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M73 18C72.4486 18 72 17.5514 72 17C72 16.4486 72.4486 16 73 16C73.5514 16 74 16.4486 74 17C74 17.5514 73.5514 18 73 18Z" fill="#000091"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M7 18C6.4486 18 6 17.5514 6 17C6 16.4486 6.4486 16 7 16C7.5514 16 8 16.4486 8 17C8 17.5514 7.5514 18 7 18Z" fill="#000091"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M11 68C10.4486 68 10 67.5514 10 67C10 66.4486 10.4486 66 11 66C11.5514 66 12 66.4486 12 67C12 67.5514 11.5514 68 11 68Z" fill="#000091"/>
@@ -64,7 +64,7 @@ export const PictoExplorer = ({...other}) => <svg width="80" height="80" viewBox
 <path d="M35 46C35 45.4477 34.5523 45 34 45H22L21.8834 45.0067C21.386 45.0645 21 45.4872 21 46C21 46.5523 21.4477 47 22 47H34L34.1166 46.9933C34.614 46.9355 35 46.5128 35 46Z" fill="#000091"/>
 </svg>
 
-export const PictoEnvironnement = ({...other}) => <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+export const PictoEnvironnement = ({...other}) => <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" {...other}>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M63 5C62.4486 5 62 4.5514 62 4C62 3.44855 62.4486 3 63 3C63.5514 3 64 3.44855 64 4C64 4.5514 63.5514 5 63 5Z" fill="#8585F6"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M27 77C26.4486 77 26 76.5514 26 76C26 75.4486 26.4486 75 27 75C27.5514 75 28 75.4486 28 76C28 76.5514 27.5514 77 27 77Z" fill="#8585F6"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M17 13C16.4486 13 16 12.5514 16 12C16 11.4486 16.4486 11 17 11C17.5514 11 18 11.4486 18 12C18 12.5514 17.5514 13 17 13Z" fill="#8585F6"/>
@@ -74,7 +74,7 @@ export const PictoEnvironnement = ({...other}) => <svg width="80" height="80" vi
 <path d="M55.2 59.9999C55.7523 59.9999 56.2 59.5522 56.2 58.9999C56.2 58.4476 55.7523 57.9999 55.2 57.9999C54.6477 57.9999 54.2 58.4476 54.2 58.9999C54.2 59.5522 54.6477 59.9999 55.2 59.9999Z" fill="#8585F6"/>
 </svg>
 
-export const PictoHealth = ({...other}) => <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+export const PictoHealth = ({...other}) => <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" {...other}>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M67 11C66.4486 11 66 10.5514 66 10C66 9.44855 66.4486 9 67 9C67.5514 9 68 9.44855 68 10C68 10.5514 67.5514 11 67 11Z" fill="#8585F6"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M40 74C39.4486 74 39 73.5514 39 73C39 72.4486 39.4486 72 40 72C40.5514 72 41 72.4486 41 73C41 73.5514 40.5514 74 40 74Z" fill="#8585F6"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M14 8C13.4486 8 13 7.5514 13 7C13 6.44855 13.4486 6 14 6C14.5514 6 15 6.44855 15 7C15 7.5514 14.5514 8 14 8Z" fill="#8585F6"/>
@@ -88,7 +88,7 @@ export const PictoHealth = ({...other}) => <svg width="80" height="80" viewBox="
 </svg>
 
 
-export const PictoRocket = ({...other}) => <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+export const PictoRocket = ({...other}) => <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" {...other}>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M55.6525 30.9337C53.7099 32.8763 50.5603 32.8763 48.6177 30.9337C46.6751 28.9911 46.6751 25.8415 48.6177 23.8989C50.5603 21.9562 53.7099 21.9562 55.6525 23.8989C57.5952 25.8415 57.5952 28.9911 55.6525 30.9337ZM57.0668 32.3479C54.3431 35.0715 49.9272 35.0715 47.2035 32.3479C44.4798 29.6242 44.4798 25.2083 47.2035 22.4846C49.9272 19.761 54.3431 19.761 57.0668 22.4846C59.7904 25.2083 59.7904 29.6242 57.0668 32.3479ZM22.3559 50.5401C22.7464 50.1495 22.7464 49.5164 22.3559 49.1258C21.9654 48.7353 21.3322 48.7353 20.9417 49.1258L15.5617 54.5058C15.1712 54.8963 15.1712 55.5295 15.5617 55.92C15.9523 56.3105 16.5854 56.3105 16.976 55.92L22.3559 50.5401ZM31.3225 59.5066C31.713 59.1161 31.713 58.483 31.3225 58.0924C30.932 57.7019 30.2988 57.7019 29.9083 58.0924L24.5283 63.4724C24.1378 63.8629 24.1378 64.4961 24.5283 64.8866C24.9189 65.2771 25.552 65.2771 25.9425 64.8866L31.3225 59.5066ZM22.3559 59.5066C22.7464 59.1161 22.7464 58.483 22.3559 58.0924C21.9654 57.7019 21.3322 57.7019 20.9417 58.0924L14.6651 64.369C14.2746 64.7596 14.2746 65.3927 14.6651 65.7833C15.0556 66.1738 15.6888 66.1738 16.0793 65.7833L22.3559 59.5066Z" fill="#4EC8AE"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M22.9244 41.7628C23.7055 40.9818 24.9718 40.9818 25.7528 41.7628L38.6852 54.6952C39.4662 55.4762 39.4662 56.7426 38.6852 57.5236L34.7194 61.4893C33.9384 62.2704 32.672 62.2704 31.891 61.4893L18.9587 48.557C18.1776 47.776 18.1776 46.5096 18.9587 45.7286L22.9244 41.7628ZM37.2709 56.1094L24.3386 43.1771L20.3729 47.1428L33.3052 60.0751L37.2709 56.1094Z" fill="#6A6AF4"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M64.7424 15.0999C64.6025 15.6341 64.056 15.9538 63.5217 15.8139C59.2792 14.7027 52.2118 14.5994 44.986 18.0099C37.7911 21.4057 30.3657 28.3205 25.4243 41.3707C25.2288 41.8872 24.6515 42.1474 24.135 41.9518C23.6185 41.7563 23.3583 41.179 23.5539 40.6625C28.6602 27.1767 36.4233 19.8397 44.1323 16.2012C51.8103 12.5773 59.3621 12.657 64.0284 13.8791C64.5627 14.0191 64.8824 14.5656 64.7424 15.0999Z" fill="#6A6AF4"/>
@@ -102,7 +102,7 @@ export const PictoRocket = ({...other}) => <svg width="80" height="80" viewBox="
 <path fill-rule="evenodd" clip-rule="evenodd" d="M22 5C21.4486 5 21 4.5514 21 4C21 3.44855 21.4486 3 22 3C22.5514 3 23 3.44855 23 4C23 4.5514 22.5514 5 22 5Z" fill="#8585F6"/>
 </svg>
 
-export const PictoCalendar = ({...other}) => <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+export const PictoCalendar = ({...other}) => <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" {...other}>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M77 24C76.4486 24 76 23.5514 76 23C76 22.4486 76.4486 22 77 22C77.5514 22 78 22.4486 78 23C78 23.5514 77.5514 24 77 24Z" fill="#8585F6"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M29 80C28.4486 80 28 79.5514 28 79C28 78.4486 28.4486 78 29 78C29.5514 78 30 78.4486 30 79C30 79.5514 29.5514 80 29 80Z" fill="#8585F6"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M15 10C14.4486 10 14 9.5514 14 9C14 8.44855 14.4486 8 15 8C15.5514 8 16 8.44855 16 9C16 9.5514 15.5514 10 15 10Z" fill="#8585F6"/>
@@ -117,7 +117,7 @@ export const PictoCalendar = ({...other}) => <svg width="80" height="80" viewBox
 <path fill-rule="evenodd" clip-rule="evenodd" d="M43 48H37C35.3431 48 34 49.3431 34 51V55C34 56.6569 35.3431 58 37 58H43C44.6569 58 46 56.6569 46 55V51C46 49.3431 44.6569 48 43 48ZM37 50H43C43.5523 50 44 50.4477 44 51V55C44 55.5523 43.5523 56 43 56H37C36.4477 56 36 55.5523 36 55V51C36 50.4477 36.4477 50 37 50Z" fill="#8585F6"/>
 </svg>
 
-export const PictoMoney = ({...other}) =><svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+export const PictoMoney = ({...other}) =><svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" {...other}>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M70 69C69.4486 69 69 68.5514 69 68C69 67.4486 69.4486 67 70 67C70.5514 67 71 67.4486 71 68C71 68.5514 70.5514 69 70 69Z" fill="#8585F6"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M68 13C67.4486 13 67 12.5514 67 12C67 11.4486 67.4486 11 68 11C68.5514 11 69 11.4486 69 12C69 12.5514 68.5514 13 68 13Z" fill="#8585F6"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M14 69C13.4486 69 13 68.5514 13 68C13 67.4486 13.4486 67 14 67C14.5514 67 15 67.4486 15 68C15 68.5514 14.5514 69 14 69Z" fill="#8585F6"/>
@@ -132,7 +132,7 @@ export const PictoMoney = ({...other}) =><svg width="80" height="80" viewBox="0 
 </svg>
 
 
-export const PictoCityHall = ({...other}) => <svg width="84" height="86" viewBox="0 0 84 86" fill="none" xmlns="http://www.w3.org/2000/svg">
+export const PictoCityHall = ({...other}) => <svg width="84" height="86" viewBox="0 0 84 86" fill="none" xmlns="http://www.w3.org/2000/svg" {...other}>
 <g filter="url(#filter0_d_6373_50426)">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M59 78C58.4486 78 58 77.5514 58 77C58 76.4486 58.4486 76 59 76C59.5514 76 60 76.4486 60 77C60 77.5514 59.5514 78 59 78Z" fill="#8585F6"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M63 6C62.4486 6 62 5.5514 62 5C62 4.44855 62.4486 4 63 4C63.5514 4 64 4.44855 64 5C64 5.5514 63.5514 6 63 6Z" fill="#8585F6"/>

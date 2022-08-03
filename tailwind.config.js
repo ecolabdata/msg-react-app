@@ -39,6 +39,7 @@ module.exports = {
       colors: {
         'blue-france': '#000091',
         'blue-france-main': '#6A6AF4',
+        'blue-france-main-hover': '#a0a0f8',
         "research-card-preview": '#161616',
         "research-precision-container": '#353434',
         "input-background": '#242424',
