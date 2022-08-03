@@ -39,9 +39,6 @@ const CardDetails: React.FC<{ cardType: CardType }> = ({ cardType }) => {
             <div style={{ marginLeft: "calc(max(10% - 100px, 0px))", marginRight: "calc(max(10% - 100px, min(8vw, 50px)))" }} className="headContainer">
 
                 <div style={cardTypeColor} className="categoryName mt-10 min-w-40 flex">
-                    <div>
-                        <cardType.SVGLogo className="mt-1.5 mr-2 text-sm" style={cardTypeColor} width="11" height="11" />
-                    </div>
                     <p>{cardType.title}</p>
                     &nbsp;
                 </div>

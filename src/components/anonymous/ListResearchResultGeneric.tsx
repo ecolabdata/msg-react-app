@@ -81,7 +81,7 @@ const ListResearchResult: React.FC<Props> = ({ cardType, requestFilterBuilder })
                     <h2 className="w-fit font-bold text-2xl md:text-4xl">
 
                         <div className="flex items-center ">
-                            <cardType.SVGLogo width="30" height="30" style={{ color: cardType.color }} /> &nbsp;
+                            <cardType.SVGLogo width="80" height="80" style={{ color: cardType.color }} /> &nbsp;
                             {cardType.title} &nbsp; <span className="bg-yellow md:text-3xl font-light">{`(${filteredCards.length})`}</span>
                         </div>
 
