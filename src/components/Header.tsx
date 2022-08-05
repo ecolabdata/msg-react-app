@@ -28,7 +28,7 @@ const Header = ({ decouvrir }: HeaderProps) => {
     const screenWidth = useSelector((state: RootState) => state?.appState.screenWidth);
     const dispatch = useDispatch();
     const jwtPayload = useJwtPayload()
-    const userIsAuth = jwtPayload != null 
+    const userIsAuth = jwtPayload != null
 
     useEffect(() => {
         console.log('screenWidth :>> ', screenWidth);
@@ -177,24 +177,20 @@ function DecouvrirButton() {
             setNextScrolTarget({ top: 0 })
             navigate('/explorer')
         }}
-        className="
-fr-btn fr-btn--primary
-my-2 mx-3 py-0 h-full
-hover:bg-claire-bf__hover flex justify-between"
+        className=" fr-btn"
     >
-        <span>Découvrir</span>
-        <span className="fr-fi-arrow-right-line ml-1 mt-1" aria-hidden="true"></span>
+        Découvrir
     </button>
 }
 
-type CountdownRendererType = (o:{days: any, hours: any, minutes: any,seconds: any,completed: any}) => JSX.Element
-const countdownRenderer : CountdownRendererType  = ({days, hours, minutes, seconds, completed }) => {
+type CountdownRendererType = (o: { days: any, hours: any, minutes: any, seconds: any, completed: any }) => JSX.Element
+const countdownRenderer: CountdownRendererType = ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
         // Render a completed state
-        document.location.href='/'
+        document.location.href = '/'
     } else {
         // Render a countdown
-        return <span>{days}j {hours%24}h {minutes}min {seconds}sec</span>;
+        return <span>{days}j {hours % 24}h {minutes}min {seconds}sec</span>;
     }
     return <></>
 };
