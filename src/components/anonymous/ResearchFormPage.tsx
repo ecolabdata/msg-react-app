@@ -56,7 +56,8 @@ const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
 
         const results: AnyCard[] = initialState.search.cards[cardType.apiName];
         if (results.length === 0) return null;
-        const cardSliceSize = Math.floor(window.innerWidth / 330) * 2 - 1;
+        const cardSliceSize = Math.max(Math.floor((window.innerWidth - 60) / 330) * 2 - 1, 3)
+        console.log({ cardSliceSize })
         //{name: `Voir les ${results.length - cardSliceSize } autres cartes`}
         return (
             <ResultResearchPreviewCard cardType={cardType} initialState={initialState} resultCount={results.length}>
@@ -64,8 +65,8 @@ const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
                     <ResultPreviewCard pageList={false} cardData={x} cardType={cardType} />
                 </div></div>
                 )}
-                <div className={`cardContainer ml-6
-            rounded-r w-[282px] p-4 flex flex-col
+                {results.length - cardSliceSize < 0 ? null : <div className={`cardContainer ml-6
+            rounded-r w-[330px] p-4 flex flex-col
             justify-center
             items-center
             align-middle
@@ -76,9 +77,9 @@ const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
                     <NavLink
                         onClick={() => setNextScrollTarget({ top: 0 })}
                         to={cardType.searchLink} state={initialState}>
-                        {`Voir les ${results.length - cardSliceSize} autres cartes`} <ArrowRight />
+                        {`Voir les ${results.length - cardSliceSize} autres cartes`}
                     </NavLink>
-                </div>
+                </div>}
             </ResultResearchPreviewCard>
         )
 
