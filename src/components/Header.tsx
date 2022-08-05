@@ -4,7 +4,6 @@ import { protectedRoutes, publicRoutes } from './../utils';
 import Trash from './../assets/icons/trash-fill.svg';
 import Star from './../assets/icons/star-fill.svg';
 import LogoMSG from './../assets/msg-icon.svg';
-import AvatarPopOver from './customComponents/AvatarPopOver';
 import { Route } from './../utils/routes';
 import { useState, useEffect, useContext } from 'react';
 import { appActions } from '../_actions/app.actions';
@@ -41,28 +40,6 @@ const Header = ({ decouvrir }: HeaderProps) => {
 
     }, [screenWidth]);
 
-    const generatePopOverOrLoginButton = () => {
-        return (
-            <>
-                {userIsAuth ?
-
-                    <li className="fr-nav__item">
-                        <AvatarPopOver />
-                    </li>
-                    :
-
-
-                    <li className="fr-nav__item" >
-                        <FillButton>
-                            <a href="/authentification">Connexion</a>
-                        </FillButton>
-                    </li>
-
-                }
-            </>
-        )
-
-    }
     const generateNavLinks = (route: Route) => {
 
         return (
@@ -77,7 +54,6 @@ const Header = ({ decouvrir }: HeaderProps) => {
                                     :
                                     <img className="w-5 h-5 m-1" src={Trash} alt="Icône de poubelle" />
                                 }
-                                {route.key === "ACCUEIL"}
                                 <div className="flex flex-col">
                                     <p className="font-bold"> {route.name} </p>
                                     <p className="text-xs"> {route.key === 'SELECTION' ? Object.keys(favoris).length : Object.keys(corbeille).length} pistes </p>
