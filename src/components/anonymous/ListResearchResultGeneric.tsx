@@ -25,7 +25,7 @@ const ListResearchResult: React.FC<Props> = ({ cardType, requestFilterBuilder })
     const { color } = cardType;
     const { usedCorbeille, usedNextScrollTarget } = useContext(ApplicationContext);
     const [toggleInCorbeille, isInCorbeille] = usedCorbeille;
-    const [nextScrollTarget, setNextScrolTarget] = usedNextScrollTarget;
+    const [nextScrollTarget, setNextScrollTarget] = usedNextScrollTarget;
     const location = useLocation();
     console.log({ state: location.state })
     const requestFilter = requestFilterBuilder(location.state)
@@ -60,6 +60,8 @@ const ListResearchResult: React.FC<Props> = ({ cardType, requestFilterBuilder })
             setErrorTxt(<></>)
             requestFilter.search(description, motsclefs, secteurs).then((search) => {
                 setIsLoading(false)
+                const element = document.getElementById('cardsContainer')
+                if (element) setNextScrollTarget({ behavior: "smooth", top: element.offsetTop - window.innerHeight * 0.20 })
                 return navigate(cardType.searchLink, {
                     replace: true,
                     state: { search }
@@ -161,7 +163,7 @@ const ListResearchResult: React.FC<Props> = ({ cardType, requestFilterBuilder })
 
             {initialState && <Pagination isLoading={isLoading && nbPage > 0} onClick={() => {
                 const element = document.getElementById('cardsContainer')
-                if (element) setNextScrolTarget({ behavior: "smooth", top: element.offsetTop - window.innerHeight * 0.20 })
+                if (element) setNextScrollTarget({ behavior: "smooth", top: element.offsetTop - window.innerHeight * 0.20 })
             }} currentPageNo={pageNo} baseUrl={cardType.searchLink} nbPage={nbPage} initialState={initialState} />}
 
         </>
