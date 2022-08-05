@@ -47,7 +47,7 @@ const Home = () => {
             
             <div
                 className="cardsContainer mx-auto flex flex-wrap justify-start"
-                style={{width: Math.floor((window.innerWidth - 60) / 393) * 393}}
+                style={{width: Math.floor((Math.min(window.innerWidth, 1920) - 60) / 393) * 393}}
             >
                 <Card explorerCard={true} cardTypeData={explorerCard} />
                 {allCardType.map((card) =>
