@@ -104,7 +104,7 @@ const ListResearchResult: React.FC<Props> = ({ cardType, requestFilterBuilder })
                                 usedMotsClef={[motsclefs, setMotsclef]}
                                 usedSecteurs={[secteurs, setSecteurs]}
                                 usedInListPage={true}
-                                openPitchContainerFromStart={true}
+                                openPitchContainerFromStart={!initialQuery}
                             />
 
                         </div>
