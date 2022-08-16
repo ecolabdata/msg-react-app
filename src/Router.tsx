@@ -44,6 +44,7 @@ const Router = () => {
         useTrackPage();
         return <></>
     }
+
     const Authentified = () => <>
         <Routes>
             <Route path="/" element={<Header decouvrir={true} />} />

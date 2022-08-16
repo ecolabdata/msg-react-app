@@ -1,10 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import FillButton from './dsfrComponents/FillButton';
-import { protectedRoutes, publicRoutes } from './../utils';
-import Trash from './../assets/icons/trash-fill.svg';
-import Star from './../assets/icons/star-fill.svg';
+
 import LogoMSG from './../assets/msg-icon.svg';
-import { Route } from './../utils/routes';
+import { pages, Route } from '../utils/pages';
 import { useState, useEffect, useContext } from 'react';
 import { ApplicationContext } from '../Router';
 import { Link } from 'react-router-dom';
@@ -25,49 +23,32 @@ const Header = ({ decouvrir }: HeaderProps) => {
     const jwtPayload = useJwtPayload()
     const userIsAuth = jwtPayload != null
 
-
+    const routeKeyToItemLength : Record<string, number> = {
+        "SELECTION": Object.keys(favoris).length,
+        "CORBEILLE": Object.keys(corbeille).length
+    }
 
     window.addEventListener('resize', e => setScreenWidth(window.innerWidth));
 
-    const generateNavLinks = (route: Route) => {
+    const generateNavLinks = (route: Route) => <>
+        {userIsAuth &&
+            <li key={route.key} className="fr-nav__item h-full w-full p-0">
+                <Link to={route.path} className="fr-nav__link">
+                    <div className="flex">
+                        {route.icon}
+                        <div className="flex flex-col">
+                            <p className="font-bold"> {route.name} </p>
+                            <p className="text-xs"> {routeKeyToItemLength[route.key]} pistes </p>
+                        </div>
 
-        return (
-            <>
-                {userIsAuth &&
-                    <li key={route.key} className="fr-nav__item h-full w-full p-0">
+                    </div>
+                </Link>
 
-                        <Link to={route.path} className="fr-nav__link">
-                            <div className="flex">
-                                {route.key === 'SELECTION' ?
-                                    <img className="w-5 h-5 m-1" src={Star} alt="Icône d'étoile" />
-                                    :
-                                    <img className="w-5 h-5 m-1" src={Trash} alt="Icône de poubelle" />
-                                }
-                                <div className="flex flex-col">
-                                    <p className="font-bold"> {route.name} </p>
-                                    <p className="text-xs"> {route.key === 'SELECTION' ? Object.keys(favoris).length : Object.keys(corbeille).length} pistes </p>
-                                </div>
+            </li>
+        }
+    </>
 
-                            </div>
-                        </Link>
-
-                    </li>
-                }
-            </>
-        )
-
-    };
-
-    const generateNavBar = () => {
-
-        let routesToDisplay;
-        routesToDisplay = userIsAuth ? protectedRoutes : publicRoutes;
-
-        return routesToDisplay.map((route: Route) => {
-
-            return generateNavLinks(route);
-        })
-    };
+    const navbar = pages.map((route: Route) =>  generateNavLinks(route))
 
     return (
         <header role="banner" className="fr-header">
@@ -109,7 +90,7 @@ const Header = ({ decouvrir }: HeaderProps) => {
                                     </div>}
                                     <ul className="fr-nav__list">
                                         {/* {fr-header__tools-links} */}
-                                        {decouvrir && userIsAuth ? <DecouvrirButton /> : generateNavBar()}
+                                        {decouvrir && userIsAuth ? <DecouvrirButton /> : navbar}
                                         {/* {generatePopOverOrLoginButton()} */}
                                     </ul>
                                 </div>
@@ -123,7 +104,7 @@ const Header = ({ decouvrir }: HeaderProps) => {
                 <div className="fr-container">
                     <button className="fr-link--close fr-link" aria-controls="modal-833">Fermer</button>
                     <div className="fr-header__menu-links">
-                        {decouvrir ? <DecouvrirButton /> : generateNavBar()}
+                        {decouvrir ? <DecouvrirButton /> : navbar}
                         {/* {generatePopOverOrLoginButton()} */}
                     </div>
                 </div>
