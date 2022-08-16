@@ -2,11 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import thunkMiddleware from 'redux-thunk';
-import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import {BrowserRouter} from 'react-router-dom';
 import Router from './Router';
-import rootReducer from './_reducers/root.reducer';
 import './index.css';
 import'./main.js';
 import gitInfo from './generatedGitInfo.json'; //If you have compilation problem here just run `npm run git-info`
@@ -17,15 +15,11 @@ declare global {
 }
 Object.assign(window, { gitInfo })
 
-const store = createStore(rootReducer,applyMiddleware(thunkMiddleware));
-
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
       <BrowserRouter>
         <Router />
       </BrowserRouter>
-    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

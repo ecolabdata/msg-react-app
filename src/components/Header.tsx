@@ -6,9 +6,6 @@ import Star from './../assets/icons/star-fill.svg';
 import LogoMSG from './../assets/msg-icon.svg';
 import { Route } from './../utils/routes';
 import { useState, useEffect, useContext } from 'react';
-import { appActions } from '../_actions/app.actions';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../_reducers/root.reducer';
 import { ApplicationContext } from '../Router';
 import { Link } from 'react-router-dom';
 import { useJwtPayload } from '../jwt';
@@ -23,22 +20,14 @@ const Header = ({ decouvrir }: HeaderProps) => {
     const { usedFavoris, usedCorbeille } = useContext(ApplicationContext)
     const [idc1, idc2, favoris] = usedFavoris
     const [idc3, idc4, corbeille] = usedCorbeille
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth)
 
-    const screenWidth = useSelector((state: RootState) => state?.appState.screenWidth);
-    const dispatch = useDispatch();
     const jwtPayload = useJwtPayload()
     const userIsAuth = jwtPayload != null
 
-    useEffect(() => {
-        console.log('screenWidth :>> ', screenWidth);
 
-        const handleResize = () => {
-            dispatch(appActions.resizeScreenWidth());
-        };
 
-        window.addEventListener('resize', handleResize);
-
-    }, [screenWidth]);
+    window.addEventListener('resize', e => setScreenWidth(window.innerWidth));
 
     const generateNavLinks = (route: Route) => {
 

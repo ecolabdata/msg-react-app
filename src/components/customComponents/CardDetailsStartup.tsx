@@ -8,7 +8,6 @@ import { useLocation } from 'react-router-dom';
 import { AnyCard, Startup } from '../../api/Api';
 import { useQuery } from '../../hooks/useQuery';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../_reducers/root.reducer';
 
 
 
@@ -52,8 +51,8 @@ const DetailsStartup : React.FC<DetailsStartupProps> = ({cardType}) => {
     after:bg-${localStorage.scheme = 'dark' ? backgroundDarktheme : backgroundLighttheme }
     `;
     const [seeEntireProjectDescription, setSeeEntireProjectDescription] = useState(false);
-    const screenWidth = useSelector((state: RootState) => state?.appState.screenWidth);
-
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth)
+    window.addEventListener('resize', e => setScreenWidth(window.innerWidth));
     const handleClickOnContactDetails = () => {
         setShowContactDetails(!showContactDetails);
     };
