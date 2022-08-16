@@ -5,7 +5,7 @@ import HomePage from './components/anonymous/HomePage';
 import Page404 from './components/anonymous/Page404';
 import ResearchForm from './components/anonymous/ExplorePage';
 import AuthenticatedComponent from './components/authenticated/AuthenticatedComponent';
-import MySelectionPage from './components/authenticated/MySelectionPage';
+import MySelectionPage from './components/anonymous/MySelectionPage';
 import WasteBinPage from './components/authenticated/WasteBinPage';
 import Authentication from './components/Authentication';
 import { AuthentificationRequired } from './components/AuthentificationRequired';
