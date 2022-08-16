@@ -4,7 +4,7 @@ import { all as allCardType } from "../../model/CardType";
 import { PictoExplorer } from '../../assets/Icons';
 
 import { useContext } from 'react';
-import { ApplicationContext } from '../../Router';
+import { ApplicationContext } from '../../App';
 import Card from '../dsfrComponents/Card';
 export interface ExplorerTypeCard  {
     SVGLogo: ({...other}: {[x : string]: any; }) => JSX.Element,

@@ -4,7 +4,7 @@ import { Rocket } from '../../assets/Icons';
 import { Star, Trash } from '../../assets/Icons'
 import { Aide, AnyCard } from '../../api/Api';
 import { CSSProperties, ReactNode, useContext, useState } from 'react';
-import { ApplicationContext } from '../../Router';
+import { ApplicationContext } from '../../App';
 import { useLocation, useParams } from 'react-router-dom';
 import { useQuery } from '../../hooks/useQuery';
 

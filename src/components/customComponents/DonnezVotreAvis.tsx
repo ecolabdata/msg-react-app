@@ -1,4 +1,4 @@
-import { useJwtPayload } from "../../jwt"
+import { useJwtPayload } from "../../utils/jwt"
 
 export const DonnezVotreAvis = () => {
 

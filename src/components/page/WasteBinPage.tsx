@@ -4,7 +4,7 @@ import Scrollable from '../customComponents/Scrollable';
 import Pagination from '../dsfrComponents/Pagination';
 import { useCorbeille } from '../../utils/categoris';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
-import { ApplicationContext } from '../../Router';
+import { ApplicationContext } from '../../App';
 import { useContext, useState } from 'react';
 import { all, byName, dropdownValues } from '../../model/CardType';
 

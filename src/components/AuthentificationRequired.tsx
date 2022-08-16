@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
-import { JwtState, useJwtState } from "../jwt"
+import { JwtState, useJwtState } from "../utils/jwt"
 import LogoMSG from './../assets/msg-icon.svg';
 
 

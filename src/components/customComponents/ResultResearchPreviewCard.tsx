@@ -1,7 +1,7 @@
 import React, { RefObject, useContext, useRef, useState } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { CardType } from '../../model/CardType';
-import { ApplicationContext } from '../../Router';
+import { ApplicationContext } from '../../App';
 import { InitialState } from '../../utils/InitialState';
 import { ArrowRight } from './../../assets/Icons';
 

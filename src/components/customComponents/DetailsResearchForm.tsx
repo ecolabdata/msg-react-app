@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { search } from '../../api/Api';
 import { useTitle } from '../../hooks/useTitle';
 import { ThematicsEnum } from '../../model/ThematicsEnum';
-import { ApplicationContext } from '../../Router';
+import { ApplicationContext } from '../../App';
 import { InitialState } from '../../utils/InitialState';
 import KeyWordsLabel from '../dsfrComponents/KeyWordsLabel';
 import KeywordsLogo from './../../assets/icons/Keywords.svg';

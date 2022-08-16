@@ -1,7 +1,7 @@
 import {CardType, startups} from '../../model/CardType';
 import { CSSProperties, ReactNode, useContext, useState, useEffect } from 'react';
 import ArrowDark from './../../assets/icons/arrow-dark-action.svg';
-import { ApplicationContext } from '../../Router';
+import { ApplicationContext } from '../../App';
 import { Star, Trash } from '../../assets/Icons'
 import Label from '../dsfrComponents/Label';
 import { useLocation } from 'react-router-dom';

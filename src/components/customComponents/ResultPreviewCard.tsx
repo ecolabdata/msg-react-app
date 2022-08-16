@@ -4,7 +4,7 @@ import slugify from 'slugify';
 import { AnyCard, applyCard, isAcheteurPublic, isAide, isInvestisseur, isProjetAchat, isStartup } from '../../api/Api';
 import { ArrowRight, Star, Trash } from '../../assets/Icons';
 import { CardType } from '../../model/CardType';
-import { ApplicationContext } from '../../Router';
+import { ApplicationContext } from '../../App';
 
 interface ResultPreviewCardProps {
     cardData: AnyCard

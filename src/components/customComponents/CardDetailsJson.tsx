@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { AnyCard, CardTypeName } from '../../api/Api';
 import { useQuery } from '../../hooks/useQuery';
 import { byName, CardType } from '../../model/CardType';
-import { ApplicationContext } from '../../Router';
+import { ApplicationContext } from '../../App';
 
 function browseObject(obj: any,
     onLeaf: (prefix: string[], key: string, value: any) => void, prefix: string[] = []) {

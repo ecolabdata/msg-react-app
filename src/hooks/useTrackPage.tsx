@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { useJwtPayload } from "../jwt";
+import { useJwtPayload } from "../utils/jwt";
 import { useLocationChange } from "./useLocation";
 
 declare global {

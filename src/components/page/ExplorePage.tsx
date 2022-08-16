@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { AnyCard, search } from '../../api/Api';
 import { useTitle } from '../../hooks/useTitle';
 import { all as allCardType } from '../../model/CardType';
-import { ApplicationContext } from '../../Router';
+import { ApplicationContext } from '../../App';
 import { InitialState } from '../../utils/InitialState';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
 import ResultResearchPreviewCard from '../customComponents/ResultResearchPreviewCard';

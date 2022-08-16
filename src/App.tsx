@@ -11,7 +11,7 @@ import CardDetailsJson from './components/customComponents/CardDetailsJson';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import { useTrackPage } from './hooks/useTrackPage';
-import { JwtAuthProvider } from './jwt';
+import { JwtAuthProvider } from './utils/jwt';
 import { all as allCardType } from './model/CardType';
 import { defaultUsedCorbeille, defaultUsedFavoris, useCorbeille, UsedCorbeille, UsedFavoris, useFavoris } from './utils/categoris';
 import BreadCumb from './components/dsfrComponents/BreadCumb';

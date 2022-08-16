@@ -4,9 +4,10 @@ import reportWebVitals from './reportWebVitals';
 import thunkMiddleware from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 import {BrowserRouter} from 'react-router-dom';
-import Router from './Router';
+import Router from './App';
 import './index.css';
-import'./main.js';
+import '@gouvfr/dsfr/dist/dsfr/dsfr.module';
+import '@gouvfr/dsfr/dist/dsfr/dsfr.nomodule';
 import gitInfo from './generatedGitInfo.json'; //If you have compilation problem here just run `npm run git-info`
 
 type GitInfo = typeof gitInfo

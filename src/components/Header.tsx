@@ -4,9 +4,9 @@ import FillButton from './dsfrComponents/FillButton';
 import LogoMSG from './../assets/msg-icon.svg';
 import { pages, Route } from '../utils/pages';
 import { useState, useEffect, useContext } from 'react';
-import { ApplicationContext } from '../Router';
+import { ApplicationContext } from '../App';
 import { Link } from 'react-router-dom';
-import { useJwtPayload } from '../jwt';
+import { useJwtPayload } from '../utils/jwt';
 import Countdown from 'react-countdown'
 
 interface HeaderProps {
