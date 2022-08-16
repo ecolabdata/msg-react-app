@@ -1,7 +1,7 @@
 import React from 'react';
 import { CardTypeName as ApiName } from '../api/Api';
 import { PictoCalendar, PictoCityHall, PictoEnvironnement, PictoHealth, PictoMoney, PictoRocket } from '../assets/Icons';
-import { ListResearchResultAchatPrevi, ListResearchResultAcheteurPublic, ListResearchResultAidesClient, ListResearchResultAidesInno, ListResearchResultInvestisseur, ListResearchResultStartups } from '../components/anonymous/ListResearchResultGeneric';
+import { ListResearchResultAchatPrevi, ListResearchResultAcheteurPublic, ListResearchResultAidesClient, ListResearchResultAidesInno, ListResearchResultInvestisseur, ListResearchResultStartups } from '../components/anonymous/SearchPage';
 import { CardDetailsStartup } from '../components/customComponents/CardDetailsStartup';
 import { CardDetailsClient, CardDetailsInno } from '../components/customComponents/DetailsAide';
 import { versions } from './CardVersions';

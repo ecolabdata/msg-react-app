@@ -9,7 +9,7 @@ import { InitialState } from '../../utils/InitialState';
 import ResultPreviewCard from '../customComponents/ResultPreviewCard';
 import ResultResearchPreviewCard from '../customComponents/ResultResearchPreviewCard';
 import { PitchThematicsKeywords } from '../PitchThematicsKeywords';
-import { ArrowRight, FillMagnifying, Magnifying } from './../../assets/Icons';
+import { ArrowRight, FillMagnifying, Magnifying } from '../../assets/Icons';
 
 const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
 

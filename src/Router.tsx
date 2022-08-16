@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import HomePage from './components/anonymous/HomePage';
 import Page404 from './components/anonymous/Page404';
-import ResearchForm from './components/anonymous/ResearchFormPage';
+import ResearchForm from './components/anonymous/ExplorePage';
 import AuthenticatedComponent from './components/authenticated/AuthenticatedComponent';
 import MySelectionPage from './components/authenticated/MySelectionPage';
 import WasteBinPage from './components/authenticated/WasteBinPage';
