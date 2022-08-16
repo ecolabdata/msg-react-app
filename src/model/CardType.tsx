@@ -1,7 +1,7 @@
 import React from 'react';
 import { CardTypeName as ApiName } from '../api/Api';
 import { PictoCalendar, PictoCityHall, PictoEnvironnement, PictoHealth, PictoMoney, PictoRocket } from '../assets/Icons';
-import { ListResearchResultAchatPrevi, ListResearchResultAcheteurPublic, ListResearchResultAidesClient, ListResearchResultAidesInno, ListResearchResultInvestisseur, ListResearchResultStartups } from '../components/anonymous/SearchPage';
+import { SearchPageAchatPrevi, SearchPageAcheteurPublic, SearchPageAidesClient, SearchPageAidesInno, SearchPageInvestisseur, SearchPageStartups } from '../components/page/SearchPage';
 import { CardDetailsStartup } from '../components/customComponents/CardDetailsStartup';
 import { CardDetailsClient, CardDetailsInno } from '../components/customComponents/DetailsAide';
 import { versions } from './CardVersions';
@@ -29,7 +29,7 @@ export const acheteurPublic : CardType = {
     description: "Collectivités ou organismes publiques ouverts à l’innovation",
     name: "acheteurs-publics",
     searchLink: "/acheteurs-publics",
-    SearchPage: ListResearchResultAcheteurPublic,
+    SearchPage: SearchPageAcheteurPublic,
     apiName: "collectivites",
     version: "beta"
 } as const
@@ -42,7 +42,7 @@ export const achatPrevi : CardType = {
     name: "achats-previsionnels",
     searchLink: "/achats-previsionnels",
     apiName: "projets_achats",
-    SearchPage: ListResearchResultAchatPrevi,
+    SearchPage: SearchPageAchatPrevi,
     version: "beta"
 } as const
 
@@ -54,7 +54,7 @@ export const investisseur : CardType = {
     name: "investisseurs",
     searchLink: "/investisseurs",
     apiName: "investisseurs",
-    SearchPage: ListResearchResultInvestisseur,
+    SearchPage: SearchPageInvestisseur,
     version: "beta"
 } as const
 
@@ -66,7 +66,7 @@ export const aideClient : CardType = {
     name: "aides-clients",
     searchLink: "/aides-clients",
     DetailsPage: CardDetailsClient,
-    SearchPage: ListResearchResultAidesClient,
+    SearchPage: SearchPageAidesClient,
     apiName: "aides_clients",
     version: "beta"
 } as const
@@ -79,7 +79,7 @@ export const aideInno : CardType = {
     name: "aides-innovations",
     searchLink: "/aides-innovations",
     DetailsPage: CardDetailsInno,
-    SearchPage: ListResearchResultAidesInno,
+    SearchPage: SearchPageAidesInno,
     apiName: "aides_innovation",
     version: "beta"
 } as const
@@ -92,7 +92,7 @@ export const startups : CardType = {
     name: "startups",
     searchLink: "/startups",
     DetailsPage: CardDetailsStartup,
-    SearchPage: ListResearchResultStartups,
+    SearchPage: SearchPageStartups,
     apiName: "startups",
     version: "beta"
 } as const

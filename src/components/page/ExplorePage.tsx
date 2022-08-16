@@ -11,7 +11,7 @@ import ResultResearchPreviewCard from '../customComponents/ResultResearchPreview
 import { PitchThematicsKeywords } from '../PitchThematicsKeywords';
 import { ArrowRight, FillMagnifying, Magnifying } from '../../assets/Icons';
 
-const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
+const ExplorePage: React.FC<{ alpha: boolean }> = ({ alpha }) => {
 
     const { usedCorbeille, usedNextScrollTarget } = useContext(ApplicationContext)
     const [toggleInCorbeille, isInCorbeille] = usedCorbeille
@@ -150,4 +150,4 @@ const ResearchForm: React.FC<{ alpha: boolean }> = ({ alpha }) => {
     )
 };
 
-export default ResearchForm;
+export default ExplorePage;

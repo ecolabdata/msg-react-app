@@ -1,12 +1,11 @@
 import { createContext, Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import HomePage from './components/anonymous/HomePage';
-import Page404 from './components/anonymous/Page404';
-import ResearchForm from './components/anonymous/ExplorePage';
-import AuthenticatedComponent from './components/authenticated/AuthenticatedComponent';
-import MySelectionPage from './components/anonymous/MySelectionPage';
-import WasteBinPage from './components/authenticated/WasteBinPage';
+import HomePage from './components/page/HomePage';
+import Page404 from './components/page/Page404';
+import ExplorePage from './components/page/ExplorePage';
+import MySelectionPage from './components/page/MySelectionPage';
+import WasteBinPage from './components/page/WasteBinPage';
 import Authentication from './components/Authentication';
 import { AuthentificationRequired } from './components/AuthentificationRequired';
 import CardDetailsJson from './components/customComponents/CardDetailsJson';
@@ -55,9 +54,9 @@ const Router = () => {
             {/* <BreadCumb /> */}
             <Routes>
                 <Route path="/" element={<HomePage />} />
-                <Route path="/explorer" element={<ResearchForm alpha={false} />} />
-                <Route path="/explorer/search" element={<ResearchForm alpha={false} />} />
-                <Route path="/explorer-alpha" element={<ResearchForm alpha={true} />} />
+                <Route path="/explorer" element={<ExplorePage alpha={false} />} />
+                <Route path="/explorer/search" element={<ExplorePage alpha={false} />} />
+                <Route path="/explorer-alpha" element={<ExplorePage alpha={true} />} />
 
                 {allCardType.map((cardType => <>
                     <Route path={cardType.searchLink} element={<cardType.SearchPage />} />
@@ -67,11 +66,10 @@ const Router = () => {
                     } />
                 </>))}
                 <Route path="/authentification" element={<Authentication />} />
-                <Route path="/profile" element={<AuthenticatedComponent />}>
+                <Route path="/profile">
                     <Route path="ma-selection" element={<MySelectionPage />} />
                     <Route path="corbeille" element={<WasteBinPage />} />
                 </Route>
-
                 <Route path="*" element={<Page404 />} />
             </Routes>
         </main>

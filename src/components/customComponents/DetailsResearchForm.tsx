@@ -9,11 +9,11 @@ import KeyWordsLabel from '../dsfrComponents/KeyWordsLabel';
 import KeywordsLogo from './../../assets/icons/Keywords.svg';
 import RocketLogo from './../../assets/icons/Rockett.svg';
 import ThematicsLogo from './../../assets/icons/Thematics.svg';
-interface DetailsResearchFormProps { 
+interface DetailsExplorePageProps { 
 
 } 
 
-const DetailsResearchForm: React.FC<DetailsResearchFormProps> = (props) => { 
+const DetailsExplorePage: React.FC<DetailsExplorePageProps> = (props) => { 
 
     
     const { usedCorbeille, usedNextScrollTarget } = useContext(ApplicationContext)
@@ -148,4 +148,4 @@ const DetailsResearchForm: React.FC<DetailsResearchFormProps> = (props) => {
     ) 
 }; 
 
-export default DetailsResearchForm;
+export default DetailsExplorePage;
