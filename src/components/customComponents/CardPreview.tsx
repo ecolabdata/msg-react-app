@@ -3,7 +3,7 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { CardType } from '../../model/CardType';
 import { ApplicationContext } from '../../App';
 import { InitialState } from '../../utils/InitialState';
-import { ArrowRight } from './../../assets/Icons';
+import { ArrowRight } from '../../assets/Icons';
 
 
 export interface ResultResearchPreviewCardProps {

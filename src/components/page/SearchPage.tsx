@@ -10,7 +10,7 @@ import { AideRequestFilter } from '../customComponents/filter/AideRequestFilter'
 import { InvestisseurRequestFilter } from '../customComponents/filter/InvestisseurRequestFilter';
 import { NoRequestFilter } from '../customComponents/filter/NoRequestFilter';
 import { RequestFilter, } from '../customComponents/filter/RequestFIlter';
-import ResultPreviewCard from '../customComponents/ResultPreviewCard';
+import ResultPreviewCard from '../customComponents/Card';
 import Pagination from '../dsfrComponents/Pagination';
 import { PitchThematicsKeywords } from '../PitchThematicsKeywords';
 import ArrowDark from './../../assets/icons/arrow-dark-action.svg';

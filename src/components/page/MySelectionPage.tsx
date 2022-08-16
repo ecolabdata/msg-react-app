@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { AnyCard } from '../../api/Api';
 import { byName, dropdownValues } from '../../model/CardType';
 import { ApplicationContext } from '../../App';
-import ResultPreviewCard from '../customComponents/ResultPreviewCard';
+import ResultPreviewCard from '../customComponents/Card';
 import DropDown from '../dsfrComponents/DropDown';
 import ArrowDark from './../../assets/icons/arrow-dark-action.svg';
 

@@ -3,7 +3,7 @@ import DropDown from '../dsfrComponents/DropDown'
 import Scrollable from '../customComponents/Scrollable';
 import Pagination from '../dsfrComponents/Pagination';
 import { useCorbeille } from '../../utils/categoris';
-import ResultPreviewCard from '../customComponents/ResultPreviewCard';
+import ResultPreviewCard from '../customComponents/Card';
 import { ApplicationContext } from '../../App';
 import { useContext, useState } from 'react';
 import { all, byName, dropdownValues } from '../../model/CardType';

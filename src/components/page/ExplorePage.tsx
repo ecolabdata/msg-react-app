@@ -6,8 +6,8 @@ import { useTitle } from '../../hooks/useTitle';
 import { all as allCardType } from '../../model/CardType';
 import { ApplicationContext } from '../../App';
 import { InitialState } from '../../utils/InitialState';
-import ResultPreviewCard from '../customComponents/ResultPreviewCard';
-import ResultResearchPreviewCard from '../customComponents/ResultResearchPreviewCard';
+import ResultPreviewCard from '../customComponents/Card';
+import ResultResearchPreviewCard from '../customComponents/CardPreview';
 import { PitchThematicsKeywords } from '../PitchThematicsKeywords';
 import { ArrowRight, FillMagnifying, Magnifying } from '../../assets/Icons';
 
