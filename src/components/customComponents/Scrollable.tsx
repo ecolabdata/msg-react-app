@@ -5,13 +5,13 @@ import Star from './../../assets/icons/star-fill.svg';
 interface ScrollableProps { 
 
 } 
-interface ResultResearchPreviewCardProps { 
+interface CardsPreviewProps { 
  
     emetor: string
     cardTitle: string,
 } 
 
-const Scrollable: React.FC<ResultResearchPreviewCardProps> = ({emetor, cardTitle}) => { 
+const Scrollable: React.FC<CardsPreviewProps> = ({emetor, cardTitle}) => { 
     const navigate = useNavigate();
 
     return (

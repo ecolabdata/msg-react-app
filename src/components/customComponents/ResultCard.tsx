@@ -6,14 +6,14 @@ import { ArrowRight, Star, Trash } from '../../assets/Icons';
 import { CardType } from '../../model/CardType';
 import { ApplicationContext } from '../../App';
 
-interface ResultPreviewCardProps {
+interface CardProps {
     cardData: AnyCard
     cardType: CardType
     isLoading?: boolean,
     pageList: boolean,
 }
 
-const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardType, isLoading, pageList }) => {
+const ResultCard: React.FC<CardProps> = ({ cardData, cardType, isLoading, pageList }) => {
     const { usedFavoris, usedCorbeille, usedNextScrollTarget } = useContext(ApplicationContext)
     const [toggleFavori, isFavori] = usedFavoris
     const [toggleInCorbeille, isInCorbeille] = usedCorbeille
@@ -136,4 +136,4 @@ const ResultPreviewCard: React.FC<ResultPreviewCardProps> = ({ cardData, cardTyp
     </div >
 };
 
-export default ResultPreviewCard;
+export default ResultCard;

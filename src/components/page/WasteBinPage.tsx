@@ -3,7 +3,7 @@ import DropDown from '../dsfrComponents/DropDown'
 import Scrollable from '../customComponents/Scrollable';
 import Pagination from '../dsfrComponents/Pagination';
 import { useCorbeille } from '../../utils/categoris';
-import ResultPreviewCard from '../customComponents/Card';
+import ResultCard from '../customComponents/ResultCard';
 import { ApplicationContext } from '../../App';
 import { useContext, useState } from 'react';
 import { all, byName, dropdownValues } from '../../model/CardType';
@@ -74,7 +74,7 @@ const WasteBin = () => {
             </div>
 
             <div className="cardsContainer mx-auto w-3/4 justify-center flex flex-wrap">
-                {Object.values(corbeille).filter(x => selectedCardTypeName === "all" || selectedCardTypeName === x.cardTypeName).map((card) => <ResultPreviewCard pageList={true} cardType={byName[card.cardTypeName]} cardData={card} />)}
+                {Object.values(corbeille).filter(x => selectedCardTypeName === "all" || selectedCardTypeName === x.cardTypeName).map((card) => <ResultCard pageList={true} cardType={byName[card.cardTypeName]} cardData={card} />)}
             </div>
 
             {/* <Pagination currentPageNo={pageNo} baseUrl={cardType.searchLink + "/" + searchId} nbPage={nbPage}/> */}

@@ -57,7 +57,7 @@ function browseObject(obj: any,
 //     }  
 // };
 
-const CardDetailsJson : React.FC<{cardType:CardType}> = ({cardType}) => {
+const DetailsJson : React.FC<{cardType:CardType}> = ({cardType}) => {
     const query = useQuery();
     const { usedFavoris, usedCorbeille } = useContext(ApplicationContext)
     const [toggleFavori, isFavori, favoris] = usedFavoris
@@ -120,4 +120,4 @@ const CardDetailsJson : React.FC<{cardType:CardType}> = ({cardType}) => {
     // )
 };
 
-export default CardDetailsJson;
+export default DetailsJson;

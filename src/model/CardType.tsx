@@ -2,8 +2,8 @@ import React from 'react';
 import { CardTypeName as ApiName } from '../api/Api';
 import { PictoCalendar, PictoCityHall, PictoEnvironnement, PictoHealth, PictoMoney, PictoRocket } from '../assets/Icons';
 import { SearchPageAchatPrevi, SearchPageAcheteurPublic, SearchPageAidesClient, SearchPageAidesInno, SearchPageInvestisseur, SearchPageStartups } from '../components/page/SearchPage';
-import { CardDetailsStartup } from '../components/customComponents/CardDetailsStartup';
-import { CardDetailsClient, CardDetailsInno } from '../components/customComponents/DetailsAide';
+import { DetailsStartup } from '../components/customComponents/DetailsStartup';
+import { DetailsAideClient, DetailsAideInno } from '../components/customComponents/DetailsAide';
 import { versions } from './CardVersions';
 
 
@@ -65,7 +65,7 @@ export const aideClient : CardType = {
     description: "Dispositifs incitatifs (état ou régions) qui aident vos clients à accéder à vos solutions",
     name: "aides-clients",
     searchLink: "/aides-clients",
-    DetailsPage: CardDetailsClient,
+    DetailsPage: DetailsAideClient,
     SearchPage: SearchPageAidesClient,
     apiName: "aides_clients",
     version: "beta"
@@ -78,7 +78,7 @@ export const aideInno : CardType = {
     description: "Aides publiques dédiées à votre développement (ADEME, Bpifrance...)",
     name: "aides-innovations",
     searchLink: "/aides-innovations",
-    DetailsPage: CardDetailsInno,
+    DetailsPage: DetailsAideInno,
     SearchPage: SearchPageAidesInno,
     apiName: "aides_innovation",
     version: "beta"
@@ -91,7 +91,7 @@ export const startups : CardType = {
     description: "Entreprises éco-innovantes qui vous ressemblent ou répondent à vos besoins",
     name: "startups",
     searchLink: "/startups",
-    DetailsPage: CardDetailsStartup,
+    DetailsPage: DetailsStartup,
     SearchPage: SearchPageStartups,
     apiName: "startups",
     version: "beta"

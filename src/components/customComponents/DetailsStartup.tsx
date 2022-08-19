@@ -15,7 +15,7 @@ interface DetailsStartupProps {
     cardType: CardType
 } 
 
-const DetailsStartup : React.FC<DetailsStartupProps> = ({cardType}) => { 
+const Details : React.FC<DetailsStartupProps> = ({cardType}) => { 
 
     const cardTypeColor = {
         "--border-action-high-blue-france":  cardType.color,
@@ -261,6 +261,4 @@ const DetailsStartup : React.FC<DetailsStartupProps> = ({cardType}) => {
         </div>
     ) 
 }; 
-export const CardDetailsStartup = () => <DetailsStartup cardType={startups}/>
-
-// export default CardDetailsStartup;
+export const DetailsStartup = () => <Details cardType={startups}/>

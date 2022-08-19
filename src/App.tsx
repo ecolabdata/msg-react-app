@@ -7,7 +7,7 @@ import ExplorePage from './components/page/ExplorePage';
 import MySelectionPage from './components/page/MySelectionPage';
 import WasteBinPage from './components/page/WasteBinPage';
 import { AuthentificationRequired } from './components/AuthentificationRequired';
-import CardDetailsJson from './components/customComponents/CardDetailsJson';
+import DetailsJson from './components/customComponents/DetailsJson';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import { useTrackPage } from './hooks/useTrackPage';
@@ -62,7 +62,7 @@ const Router = () => {
                     <Route path={cardType.searchLink} element={<cardType.SearchPage />} />
                     <Route path={cardType.searchLink + "/search"} element={<cardType.SearchPage />} />
                     <Route path={`/${cardType.name}/details/:slug`} element={
-                        cardType.DetailsPage ? <cardType.DetailsPage /> : <CardDetailsJson cardType={cardType} />
+                        cardType.DetailsPage ? <cardType.DetailsPage /> : <DetailsJson cardType={cardType} />
                     } />
                 </>))}
                 <Route path="/profile">

@@ -6,8 +6,8 @@ import { useTitle } from '../../hooks/useTitle';
 import { all as allCardType } from '../../model/CardType';
 import { ApplicationContext } from '../../App';
 import { InitialState } from '../../utils/InitialState';
-import ResultPreviewCard from '../customComponents/Card';
-import ResultResearchPreviewCard from '../customComponents/CardPreview';
+import ResultCard from '../customComponents/ResultCard';
+import ResultCardsPreview from '../customComponents/ResultCardsPreview';
 import { PitchThematicsKeywords } from '../PitchThematicsKeywords';
 import { ArrowRight, FillMagnifying, Magnifying } from '../../assets/Icons';
 
@@ -60,9 +60,9 @@ const ExplorePage: React.FC<{ alpha: boolean }> = ({ alpha }) => {
         console.log({ cardSliceSize })
         //{name: `Voir les ${results.length - cardSliceSize } autres cartes`}
         return (
-            <ResultResearchPreviewCard cardType={cardType} initialState={initialState} resultCount={results.length}>
+            <ResultCardsPreview cardType={cardType} initialState={initialState} resultCount={results.length}>
                 {results.filter(x => !isInCorbeille(x)).slice(0, cardSliceSize).map(x => <div className='outer-card'><div className="md:ml-6">
-                    <ResultPreviewCard pageList={false} cardData={x} cardType={cardType} />
+                    <ResultCard pageList={false} cardData={x} cardType={cardType} />
                 </div></div>
                 )}
                 {results.length - cardSliceSize < 0 ? null : <div className={`cardContainer ml-6
@@ -80,7 +80,7 @@ const ExplorePage: React.FC<{ alpha: boolean }> = ({ alpha }) => {
                         {`Voir les ${results.length - cardSliceSize} autres cartes`}
                     </NavLink>
                 </div>}
-            </ResultResearchPreviewCard>
+            </ResultCardsPreview>
         )
 
     });

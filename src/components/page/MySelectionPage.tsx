@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { AnyCard } from '../../api/Api';
 import { byName, dropdownValues } from '../../model/CardType';
 import { ApplicationContext } from '../../App';
-import ResultPreviewCard from '../customComponents/Card';
+import ResultCard from '../customComponents/ResultCard';
 import DropDown from '../dsfrComponents/DropDown';
 import ArrowDark from './../../assets/icons/arrow-dark-action.svg';
 
@@ -104,7 +104,7 @@ const MySelection = () => {
             </div>
 
             <div className="cardsContainer mx-auto w-3/4 justify-center flex flex-wrap">
-                    {Object.values(favoris).filter(x => selectedCardTypeName === "all" || selectedCardTypeName === x.cardTypeName).map((card) => <ResultPreviewCard pageList={true} cardType={byName[card.cardTypeName]} cardData={card}/>)}
+                    {Object.values(favoris).filter(x => selectedCardTypeName === "all" || selectedCardTypeName === x.cardTypeName).map((card) => <ResultCard pageList={true} cardType={byName[card.cardTypeName]} cardData={card}/>)}
             </div>
 
             {/* <Pagination currentPageNo={pageNo} baseUrl={cardType.searchLink + "/" + searchId} nbPage={nbPage}/> */}

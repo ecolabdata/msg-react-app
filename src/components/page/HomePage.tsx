@@ -5,7 +5,7 @@ import { PictoExplorer } from '../../assets/Icons';
 
 import { useContext } from 'react';
 import { ApplicationContext } from '../../App';
-import Card from '../dsfrComponents/Card';
+import HomeCard from '../dsfrComponents/HomeCard';
 export interface ExplorerTypeCard  {
     SVGLogo: ({...other}: {[x : string]: any; }) => JSX.Element,
     title: string,
@@ -49,9 +49,9 @@ const Home = () => {
                 className="cardsContainer mx-auto flex flex-wrap justify-start"
                 style={{width: Math.floor((Math.min(window.innerWidth, 1920) - 60) / 393) * 393}}
             >
-                <Card explorerCard={true} cardTypeData={explorerCard} />
+                <HomeCard explorerCard={true} cardTypeData={explorerCard} />
                 {allCardType.map((card) =>
-                    <Card cardTypeData={card} />
+                    <HomeCard cardTypeData={card} />
                 )}
             </div>
         </>

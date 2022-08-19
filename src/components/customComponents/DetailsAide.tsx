@@ -194,5 +194,5 @@ const BigFields: React.FC<{ color: string, fieldname: ReactNode }> = ({ color, f
     </div>
 }
 
-export const CardDetailsInno = () => <CardDetails cardType={aideInno} />
-export const CardDetailsClient = () => <CardDetails cardType={aideClient} />
+export const DetailsAideInno = () => <CardDetails cardType={aideInno} />
+export const DetailsAideClient = () => <CardDetails cardType={aideClient} />

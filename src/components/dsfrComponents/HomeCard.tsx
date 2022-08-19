@@ -1,4 +1,4 @@
-import { CardType } from "./../../model/CardType";
+import { CardType } from "../../model/CardType";
 import Panda from "./../../assets/images/panda.jpg";
 import { ExplorerTypeCard } from '../page/HomePage';
 
@@ -7,7 +7,7 @@ interface CardTypeProps  {
     explorerCard?:boolean
 };
 
-const Card: React.FC<CardTypeProps> = (props) => {
+const HomeCard: React.FC<CardTypeProps> = (props) => {
     const isExplorerCard = props.explorerCard ?? false;
     const { SVGLogo, title, description, color, searchLink, version, name } =   props.cardTypeData;
     const isAlpha = version === "alpha";
@@ -48,6 +48,6 @@ const Card: React.FC<CardTypeProps> = (props) => {
     ) 
 }; 
 
-export default Card;
+export default HomeCard;
 
   

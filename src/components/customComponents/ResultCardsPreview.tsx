@@ -6,7 +6,7 @@ import { InitialState } from '../../utils/InitialState';
 import { ArrowRight } from '../../assets/Icons';
 
 
-export interface ResultResearchPreviewCardProps {
+export interface CardsPreviewProps {
     cardType: CardType,
     initialState: InitialState,
     resultCount: number
@@ -14,7 +14,7 @@ export interface ResultResearchPreviewCardProps {
 
 const getCardWidth = () => (document.getElementsByClassName("outer-card")[0] as HTMLElement | null)?.offsetWidth
 
-const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = ({ cardType, initialState, children, resultCount }) => {
+const ResultCardsPreview: React.FC<CardsPreviewProps> = ({ cardType, initialState, children, resultCount }) => {
 
     const { usedNextScrollTarget } = useContext(ApplicationContext)
     const [nextScrollTarget, setNextScrollTarget] = usedNextScrollTarget
@@ -54,4 +54,4 @@ const ResultResearchPreviewCard: React.FC<ResultResearchPreviewCardProps> = ({ c
     )
 };
 
-export default ResultResearchPreviewCard;
+export default ResultCardsPreview;
