@@ -50,7 +50,7 @@ const CardDetails: React.FC<{ cardType: CardType }> = ({ cardType }) => {
                         lg:text-4xl">
                             {cardData.name}
                         </h2>
-                        <div className="w-fit flex justify-end">
+                        {/* <div className="w-fit flex justify-end">
                             <div className="flex justify-between w-[43px]">
                                 <button className="cursor-pointer" style={{ color: isFavori(cardData) ? "yellow" : undefined }} onClick={() => toggleFavori(cardData)}>
                                     <Star />
@@ -59,7 +59,7 @@ const CardDetails: React.FC<{ cardType: CardType }> = ({ cardType }) => {
                                     <Trash />
                                 </button>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                     <div className='flex mr-[50px]'>
                         <div className='flex justify-start flex-1 w-1/2'>

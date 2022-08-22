@@ -61,7 +61,7 @@ const Details : React.FC<DetailsStartupProps> = ({cardType}) => {
 
         setUrlCopied(true);
         navigator.clipboard.writeText(window.location.href);
-        setTimeout(() =>{ setUrlCopied(false)},1300)
+        setTimeout(() =>{setUrlCopied(false)},1300)
 
     };
 
@@ -95,7 +95,7 @@ const Details : React.FC<DetailsStartupProps> = ({cardType}) => {
                         lg:text-4xl">
                             {cardData.Projet}
                         </h2>
-
+{/* 
                         <div className="w-fit flex justify-end">
                             <div className="flex justify-between w-[43px]">
                                 <button className="cursor-pointer" style={{ color: isFavori(cardData) ? "yellow" : undefined }} onClick={() => toggleFavori(cardData)}>
@@ -105,7 +105,7 @@ const Details : React.FC<DetailsStartupProps> = ({cardType}) => {
                                     <Trash />
                                 </button>
                             </div>
-                        </div>
+                        </div> */}
 
                     </div>
                     <div  style={cardTypeColor} className="thematics mt-4">
