@@ -12,7 +12,7 @@ import { NoRequestFilter } from '../customComponents/filter/NoRequestFilter';
 import { RequestFilter, } from '../customComponents/filter/RequestFIlter';
 import ResultCard from '../customComponents/ResultCard';
 import Pagination from '../dsfrComponents/Pagination';
-import { PitchThematicsKeywords } from '../PitchThematicsKeywords';
+import { PitchThematicsKeywords } from '../customComponents/PitchThematicsKeywords';
 import ArrowDark from './../../assets/icons/arrow-dark-action.svg';
 
 

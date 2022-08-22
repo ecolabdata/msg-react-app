@@ -1,7 +1,7 @@
 import {useState} from 'react';
-import SelectInputOptions from './customComponents/SelectInputOptions';
-import { ThematicsEnum } from '../model/ThematicsEnum';
-import KeyWordsLabel from './dsfrComponents/KeyWordsLabel';
+import SelectInputOptions from './SelectInputOptions';
+import { ThematicsEnum } from '../../model/ThematicsEnum';
+import KeyWordsLabel from '../dsfrComponents/KeyWordsLabel';
 
 type PitchThematicsKeywordsParams = {
     usedDescription: [string, React.Dispatch<React.SetStateAction<string>>]

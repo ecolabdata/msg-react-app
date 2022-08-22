@@ -8,7 +8,7 @@ import { ApplicationContext } from '../../App';
 import { InitialState } from '../../utils/InitialState';
 import ResultCard from '../customComponents/ResultCard';
 import ResultCardsPreview from '../customComponents/ResultCardsPreview';
-import { PitchThematicsKeywords } from '../PitchThematicsKeywords';
+import { PitchThematicsKeywords } from '../customComponents/PitchThematicsKeywords';
 import { ArrowRight, FillMagnifying, Magnifying } from '../../assets/Icons';
 
 const ExplorePage: React.FC<{ alpha: boolean }> = ({ alpha }) => {

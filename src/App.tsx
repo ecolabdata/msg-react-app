@@ -6,7 +6,7 @@ import Page404 from './components/page/Page404';
 import ExplorePage from './components/page/ExplorePage';
 import MySelectionPage from './components/page/MySelectionPage';
 import WasteBinPage from './components/page/WasteBinPage';
-import { AuthentificationRequired } from './components/AuthentificationRequired';
+import { AuthRequiredWall } from './components/page/AuthRequiredWall';
 import DetailsJson from './components/customComponents/DetailsJson';
 import Footer from './components/Footer';
 import Header from './components/Header';
@@ -81,7 +81,7 @@ const Router = () => {
                 <JwtAuthProvider>
                     <TrackPage />
                     <Routes>
-                        <Route path="*" element={<AuthentificationRequired />}>
+                        <Route path="*" element={<AuthRequiredWall />}>
                             <Route path="*" element={<Authentified />} />
                         </Route>
                     </Routes>

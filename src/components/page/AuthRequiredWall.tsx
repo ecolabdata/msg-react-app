@@ -1,8 +1,8 @@
 import { ReactElement } from "react";
 import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
-import { JwtState, useJwtState } from "../utils/jwt"
-import LogoMSG from './../assets/msg-icon.svg';
+import { JwtState, useJwtState } from "../../utils/jwt"
+import LogoMSG from '../../assets/msg-icon.svg';
 
 
 const template = (bigTitle: string, smallTitle: string) => <div className="flex flex-col items-center justify-center w-[800px]">
@@ -38,7 +38,7 @@ const messages: Record<JwtState["name"], ReactElement | null> = {
     valid: null
 }
 
-export const AuthentificationRequired = () => {
+export const AuthRequiredWall = () => {
     const jwtState = useJwtState();
     if (jwtState?.name === "valid") {
         return <Outlet />
