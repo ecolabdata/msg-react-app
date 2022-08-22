@@ -3,7 +3,7 @@ import { useTitle } from '../../hooks/useTitle';
 import { all as allCardType } from "../../model/CardType";
 import { PictoExplorer } from '../../assets/Icons';
 
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ApplicationContext } from '../../App';
 import HomeCard from '../dsfrComponents/HomeCard';
 export interface ExplorerTypeCard  {
@@ -29,7 +29,23 @@ const Home = () => {
     };
 
     useTitle("Accueil ")
-
+    const cardWidth = 393
+    const [cardContainerWidth, setCardContainerWidth] = useState<number | "auto">(
+        Math.floor((Math.min(window.innerWidth, 1920) - 60) / cardWidth) * cardWidth
+    )
+    const handleResize = () => {
+        const width = Math.floor((Math.min(window.innerWidth, 1920) - 60) / cardWidth) * cardWidth
+        console.log("Resize called", width)
+        if (width < cardWidth) {
+            setCardContainerWidth("auto")
+        } else{
+            setCardContainerWidth(width)
+        }
+    }
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize)
+    })
     return (
         <>
             
@@ -47,7 +63,7 @@ const Home = () => {
             
             <div
                 className="cardsContainer mx-auto flex flex-wrap justify-start"
-                style={{width: Math.floor((Math.min(window.innerWidth, 1920) - 60) / 393) * 393}}
+                style={{width: cardContainerWidth}}
             >
                 <HomeCard explorerCard={true} cardTypeData={explorerCard} />
                 {allCardType.map((card) =>

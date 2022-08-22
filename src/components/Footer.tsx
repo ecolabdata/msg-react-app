@@ -68,7 +68,6 @@ const Footer: React.FC = () => {
                         </a>
                     </div>
                     <DonnezVotreAvis />
-                    {/* <div style={{height: 600}}> </div> */}
                 </div>
 
             </footer>
