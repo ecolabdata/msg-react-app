@@ -51,11 +51,10 @@ const HomeStartup = () => {
         <>
             <div className="container-title container max-w-headerSize mx-auto p-2 
                 flex flex-col items-center">
-               
+                <Link className="self-end text-xs" to="/acteurs-publics">Vous n'êtes pas une startup mais un <b>acteur public </b>? &gt;</Link>               
                 <h1 className="mt-4 w-full font-bold text-3xl text-center 
                 md:max-w-[70%]
                 "> Start-up greentech, trouvez automatiquement des pistes pour booster votre développement !  </h1>
-                <Link className="mt-2 " to="/acteurs-publics">Vous n'êtes pas une startup mais un <b>acteur public </b>?</Link>
                 <h2 className="mt-8 text-center w-[65%] leading-7 
                 lg:max-w-[62%]
                 "> A partir de la description de votre activité ou de votre solution, nous vous proposons des pistes de leviers autour des axes suivants :</h2>

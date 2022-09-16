@@ -52,11 +52,10 @@ const HomePagePublicActor = () => {
             
             <div className="container-title container max-w-headerSize mx-auto p-2 
                 flex flex-col items-center">
-               
+                <Link className="self-end text-xs" to="/startup">Vous n'êtes pas un acteur public mais une <b>startup</b>? &gt;</Link>               
                 <h1 className="mt-4 w-full font-bold text-3xl text-center 
                 md:max-w-[70%]
                 "> Acteurs publics, sourcez des entreprises éco-innovantes et financez vos achats verts</h1>
-                <Link className="mt-2 " to="/startup">Vous n'êtes pas une acteur public mais un <b>startup</b>?</Link>
                 <h2 className="mt-8 text-center w-[65%] leading-7 
                 lg:max-w-[62%]
                 "> A partir de la description de votre besoin, nous vous proposons des pistes de leviers autour des axes suivants :</h2>

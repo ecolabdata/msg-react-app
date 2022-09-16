@@ -1,7 +1,7 @@
 import React from 'react';
 import { CardTypeName as ApiName } from '../api/Api';
 import { PictoCalendar, PictoCityHall, PictoEnvironnement, PictoHealth, PictoMoney, PictoRocket } from '../assets/Icons';
-import { SearchPageAchatPrevi, SearchPageAchatProg, SearchPageAcheteurPublic, SearchPageAidesClient, SearchPageAidesInno, SearchPageInvestisseur, SearchPageRetex, SearchPageSourcingSu, SearchPageStartups } from '../components/page/SearchPage';
+import { SearchPageAchatPrevi, SearchPageAchatProg, SearchPageAcheteurPublic, SearchPageAidesClient, SearchPageAidesFin, SearchPageAidesInno, SearchPageInvestisseur, SearchPageRetex, SearchPageSourcingSu, SearchPageStartups } from '../components/page/SearchPage';
 import { DetailsStartup } from '../components/customComponents/DetailsStartup';
 import { DetailsAideClient, DetailsAideInno } from '../components/customComponents/DetailsAide';
 import { versions } from './CardVersions';
@@ -112,7 +112,7 @@ export const aideFin : CardType = {
     name: "aides-financieres",
     searchLink: "/aides-financieres",
     DetailsPage: DetailsAideClient,
-    SearchPage: SearchPageAidesClient,
+    SearchPage: SearchPageAidesFin,
     apiName: "aides_clients",
     version: "beta"
 } as const
