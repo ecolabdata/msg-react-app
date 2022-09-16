@@ -1,6 +1,6 @@
 import { CardType } from "../../model/CardType";
 import Panda from "./../../assets/images/panda.jpg";
-import { ExplorerTypeCard } from '../page/HomePage';
+import { ExplorerTypeCard } from '../page/HomePageStartup';
 
 interface CardTypeProps  {
     cardTypeData: CardType | ExplorerTypeCard

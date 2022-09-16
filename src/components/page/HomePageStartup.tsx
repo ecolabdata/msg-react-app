@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useTitle } from '../../hooks/useTitle';
-import { all as allCardType } from "../../model/CardType";
+import { startup as allCardType } from "../../model/CardType";
 import { PictoExplorer } from '../../assets/Icons';
 
 import { useContext, useEffect, useState } from 'react';
@@ -16,7 +16,7 @@ export interface ExplorerTypeCard  {
     name: string
 };
 
-const Home = () => {
+const HomeStartup = () => {
 
     const explorerCard:ExplorerTypeCard = {
         SVGLogo: PictoExplorer,
@@ -74,5 +74,5 @@ const Home = () => {
     );
 };
 
-export default Home
+export default HomeStartup
 

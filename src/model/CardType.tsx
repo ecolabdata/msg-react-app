@@ -1,11 +1,10 @@
 import React from 'react';
 import { CardTypeName as ApiName } from '../api/Api';
 import { PictoCalendar, PictoCityHall, PictoEnvironnement, PictoHealth, PictoMoney, PictoRocket } from '../assets/Icons';
-import { SearchPageAchatPrevi, SearchPageAcheteurPublic, SearchPageAidesClient, SearchPageAidesInno, SearchPageInvestisseur, SearchPageStartups } from '../components/page/SearchPage';
+import { SearchPageAchatPrevi, SearchPageAchatProg, SearchPageAcheteurPublic, SearchPageAidesClient, SearchPageAidesInno, SearchPageInvestisseur, SearchPageRetex, SearchPageSourcingSu, SearchPageStartups } from '../components/page/SearchPage';
 import { DetailsStartup } from '../components/customComponents/DetailsStartup';
 import { DetailsAideClient, DetailsAideInno } from '../components/customComponents/DetailsAide';
 import { versions } from './CardVersions';
-
 
 export interface CardType {
     SVGLogo: ({ ...other }: { [x: string]: any; }) => JSX.Element,
@@ -20,11 +19,15 @@ export interface CardType {
     version: typeof versions[number]
 }
 
+/*
+    START-UP
+*/
+
 export const acheteurPublic : CardType = {
     SVGLogo: PictoCityHall,
     color: "#F95C5E",
     //title: "Organismes publics à démarcher",
-    // title: "Organismes publics ouverts à l’innovation",
+    //title: "Organismes publics ouverts à l’innovation",
     title: "Clients publics à démarcher",
     description: "Collectivités ou organismes publics ouverts à l’innovation",
     name: "acheteurs-publics",
@@ -97,6 +100,62 @@ export const startups : CardType = {
     version: "beta"
 } as const
 
-export const all = [aideInno, aideClient, startups, achatPrevi, investisseur, acheteurPublic] as const
+/*
+    PUBLIC ACTOR
+*/
+
+export const aideFin : CardType = {
+    SVGLogo: PictoMoney,
+    color: "#68A532",
+    title: "Aides financières",
+    description: "Trouvez des aides pour financer vos achats",
+    name: "aides-financieres",
+    searchLink: "/aides-financieres",
+    DetailsPage: DetailsAideClient,
+    SearchPage: SearchPageAidesClient,
+    apiName: "aides_clients",
+    version: "beta"
+} as const
+
+export const sourcingSu : CardType = {
+    SVGLogo: PictoRocket,
+    color: "#4EC8AE",
+    title: "Entreprises éco-innovantes",
+    description: "Sourcez des entreprises éco-innovantes qui répondent à vos besoins",
+    name: "sourcingSu",
+    searchLink: "/sourcing-startup",
+    DetailsPage: DetailsStartup,
+    SearchPage: SearchPageSourcingSu,
+    apiName: "startups",
+    version: "beta"
+} as const
+
+export const retex : CardType = {
+    SVGLogo: PictoCityHall,
+    color: "#F95C5E",
+    title: "Retour d'expériences",
+    description: "Collectivités ou organismes publics ayant eu des expériences avec nos entreprises éco-innovantes",
+    name: "retex",
+    searchLink: "/retour-experience",
+    SearchPage: SearchPageRetex,
+    apiName: "collectivites",
+    version: "beta"
+} as const
+
+export const achatProg : CardType = {
+    SVGLogo: PictoCalendar,
+    color: "#D8C635",
+    title: "Achats publics programmés",
+    description: "___________",
+    name: "achats-programmes",
+    searchLink: "/achats-programmes",
+    apiName: "projets_achats",
+    SearchPage: SearchPageAchatProg,
+    version: "beta"
+} as const
+
+export const startup = [aideInno, aideClient, startups, achatPrevi, investisseur, acheteurPublic] as const
+export const publicActor = [aideFin, sourcingSu, retex, achatProg]
+export const all = [...startup, ...publicActor] as const
 export const byName = Object.fromEntries(all.map(x => [x.name, x]))
 export const dropdownValues = Object.fromEntries(all.map(x => [x.name, x.title]))

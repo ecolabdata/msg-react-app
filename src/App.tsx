@@ -1,7 +1,8 @@
 import { createContext, Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import HomePage from './components/page/HomePage';
+import HomePageStartup from './components/page/HomePageStartup';
+import HomePagePublicActor from './components/page/HomePagePublicActor';
 import Page404 from './components/page/Page404';
 import ExplorePage from './components/page/ExplorePage';
 import MySelectionPage from './components/page/MySelectionPage';
@@ -53,7 +54,9 @@ const Router = () => {
         <main className={`h-full p-1 md:p-6 ${localStorage.scheme === 'dark' && 'bg-[#262626]'}`}>
             {/* <BreadCumb /> */}
             <Routes>
-                <Route path="/" element={<HomePage />} />
+                <Route path="/" element={<HomePageStartup />} />
+                <Route path="/startup" element={<HomePageStartup />} />
+                <Route path="/acteurs-publics" element={<HomePagePublicActor />} />
                 <Route path="/explorer" element={<ExplorePage alpha={false} />} />
                 <Route path="/explorer/search" element={<ExplorePage alpha={false} />} />
                 <Route path="/explorer-alpha" element={<ExplorePage alpha={true} />} />
