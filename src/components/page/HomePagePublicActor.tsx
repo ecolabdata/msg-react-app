@@ -52,7 +52,7 @@ const HomePagePublicActor = () => {
             
             <div className="container-title container max-w-headerSize mx-auto p-2 
                 flex flex-col items-center">
-                <Link className="self-end text-xs" to="/startup">Vous n'êtes pas un acteur public mais une <b>startup</b>? &gt;</Link>               
+                <Link className="self-end text-xs" to="/startup">Vous n'êtes pas un acteur public mais une <b>startup</b>?</Link>               
                 <h1 className="mt-4 w-full font-bold text-3xl text-center 
                 md:max-w-[70%]
                 "> Acteurs publics, sourcez des entreprises éco-innovantes et financez vos achats verts</h1>

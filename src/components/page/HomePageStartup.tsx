@@ -51,7 +51,7 @@ const HomeStartup = () => {
         <>
             <div className="container-title container max-w-headerSize mx-auto p-2 
                 flex flex-col items-center">
-                <Link className="self-end text-xs" to="/acteurs-publics">Vous n'êtes pas une startup mais un <b>acteur public </b>? &gt;</Link>               
+                <Link className="self-end text-xs" to="/acteurs-publics">Vous n'êtes pas une startup mais un <b>acteur public </b>?</Link>               
                 <h1 className="mt-4 w-full font-bold text-3xl text-center 
                 md:max-w-[70%]
                 "> Start-up greentech, trouvez automatiquement des pistes pour booster votre développement !  </h1>
