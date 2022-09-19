@@ -1,12 +1,10 @@
-import { useNavigate } from 'react-router-dom';
+import { PictoExplorer } from '../../assets/Icons';
 import { useTitle } from '../../hooks/useTitle';
 import { publicActor as publicActorCardType } from "../../model/CardType";
-import { PictoExplorer } from '../../assets/Icons';
 
-import { useContext, useEffect, useState } from 'react';
-import { ApplicationContext } from '../../App';
-import HomeCard from '../dsfrComponents/HomeCard';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import HomeCard from '../dsfrComponents/HomeCard';
 export interface ExplorerTypeCard  {
     SVGLogo: ({...other}: {[x : string]: any; }) => JSX.Element,
     title: string,
