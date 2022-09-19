@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AnyCard, search } from '../../api/Api';
 import { useTitle } from '../../hooks/useTitle';
-import { all as allCardType } from '../../model/CardType';
+import { CardType, publicActorPersona, startupPersona } from '../../model/CardType';
 import { ApplicationContext } from '../../App';
 import { InitialState } from '../../utils/InitialState';
 import ResultCard from '../customComponents/ResultCard';
@@ -11,7 +11,7 @@ import ResultCardsPreview from '../customComponents/ResultCardsPreview';
 import { PitchThematicsKeywords } from '../customComponents/PitchThematicsKeywords';
 import { ArrowRight, FillMagnifying, Magnifying } from '../../assets/Icons';
 
-const ExplorePage: React.FC<{ alpha: boolean }> = ({ alpha }) => {
+const buildExplorePage: (cardsToDisplay:CardType[], personaUrlPart : string) => React.FC<{ alpha: boolean }> = (cardsToDisplay, personaUrlPart) => ({ alpha }) => {
 
     const { usedCorbeille, usedNextScrollTarget } = useContext(ApplicationContext)
     const [toggleInCorbeille, isInCorbeille] = usedCorbeille
@@ -38,7 +38,7 @@ const ExplorePage: React.FC<{ alpha: boolean }> = ({ alpha }) => {
                 //? Scroll
                 const element = document.getElementById('previews')
                 if (element) setNextScrollTarget({ behavior: "smooth", top: element.offsetTop - window.innerHeight * 0.20 })
-                navigate(ctrlPress ? `/explorer-alpha` : `/explorer/search`, { state: { search } })
+                navigate(ctrlPress ? `/explorer-alpha` : `/${personaUrlPart}/explorer/search`, { state: { search } })
             }).catch(e => {
                 setIsLoading(false);
                 console.log(e)
@@ -50,7 +50,7 @@ const ExplorePage: React.FC<{ alpha: boolean }> = ({ alpha }) => {
         }
     };
 
-    const previews = allCardType.filter(x => alpha || x.version === "beta").map(cardType => {
+    const previews = cardsToDisplay.filter(x => alpha || x.version === "beta").map(cardType => {
 
         if (!initialState) return null;
 
@@ -150,4 +150,6 @@ const ExplorePage: React.FC<{ alpha: boolean }> = ({ alpha }) => {
     )
 };
 
-export default ExplorePage;
+
+export const ExplorePageStartUp = buildExplorePage(startupPersona, "startup")
+export const ExplorePagePublicActor = buildExplorePage(publicActorPersona, "acteurs-publics")

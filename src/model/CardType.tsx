@@ -154,8 +154,8 @@ export const achatProg : CardType = {
     version: "beta"
 } as const
 
-export const startup = [aideInno, aideClient, startups, achatPrevi, investisseur, acheteurPublic] as const
-export const publicActor = [aideFin, sourcingSu, retex, achatProg]
-export const all = [...startup, ...publicActor] as const
+export const startupPersona : CardType[] = [aideInno, aideClient, startups, achatPrevi, investisseur, acheteurPublic]
+export const publicActorPersona : CardType[] = [aideFin, sourcingSu, retex, achatProg]
+export const all = [...startupPersona, ...publicActorPersona] as const
 export const byName = Object.fromEntries(all.map(x => [x.name, x]))
 export const dropdownValues = Object.fromEntries(all.map(x => [x.name, x.title]))

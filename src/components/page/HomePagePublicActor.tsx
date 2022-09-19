@@ -1,6 +1,6 @@
 import { PictoExplorer } from '../../assets/Icons';
 import { useTitle } from '../../hooks/useTitle';
-import { publicActor as publicActorCardType } from "../../model/CardType";
+import { publicActorPersona as publicActorCardType } from "../../model/CardType";
 
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -22,7 +22,7 @@ const HomePagePublicActor = () => {
         title: "Rechercher les leviers dans toutes les thématiques",
         color: "rgba(0, 0, 145, 1)",
         description: "Découvrez tous les leviers proposés par Mes Services Greentech : aides financières, sourcing, retour d'expériences, achats publics programmés",
-        searchLink: "explorer",
+        searchLink: "/acteurs-publics/explorer",
         version: "no",
         name: "explorer"
     };

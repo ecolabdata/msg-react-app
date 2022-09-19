@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useTitle } from '../../hooks/useTitle';
-import { startup as allCardType } from "../../model/CardType";
+import { startupPersona as allCardType } from "../../model/CardType";
 import { PictoExplorer } from '../../assets/Icons';
 
 import { useContext, useEffect, useState } from 'react';
@@ -24,7 +24,7 @@ const HomeStartup = () => {
         title: "Rechercher les leviers dans toutes les thématiques",
         color: "rgba(0, 0, 145, 1)",
         description: "Découvrez tous les leviers proposés par Mes Services Greentech : aides à l’innovation, aide pour vos clients, achats publics à venir, investisseurs, start-up greentech.",
-        searchLink: "explorer",
+        searchLink: "/startup/explorer",
         version: "no",
         name: "explorer"
     };

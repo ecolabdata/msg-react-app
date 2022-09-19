@@ -4,7 +4,6 @@ import './App.css';
 import HomePageStartup from './components/page/HomePageStartup';
 import HomePagePublicActor from './components/page/HomePagePublicActor';
 import Page404 from './components/page/Page404';
-import ExplorePage from './components/page/ExplorePage';
 import MySelectionPage from './components/page/MySelectionPage';
 import WasteBinPage from './components/page/WasteBinPage';
 import { AuthRequiredWall } from './components/page/AuthRequiredWall';
@@ -16,6 +15,7 @@ import { JwtAuthProvider } from './utils/jwt';
 import { all as allCardType } from './model/CardType';
 import { defaultUsedCorbeille, defaultUsedFavoris, useCorbeille, UsedCorbeille, UsedFavoris, useFavoris } from './utils/categoris';
 import BreadCumb from './components/dsfrComponents/BreadCumb';
+import { ExplorePagePublicActor, ExplorePageStartUp } from './components/page/ExplorePage';
 
 export const ApplicationContext = createContext<{
     usedFavoris: UsedFavoris,
@@ -57,9 +57,11 @@ const Router = () => {
                 <Route path="/" element={<HomePageStartup />} />
                 <Route path="/startup" element={<HomePageStartup />} />
                 <Route path="/acteurs-publics" element={<HomePagePublicActor />} />
-                <Route path="/explorer" element={<ExplorePage alpha={false} />} />
-                <Route path="/explorer/search" element={<ExplorePage alpha={false} />} />
-                <Route path="/explorer-alpha" element={<ExplorePage alpha={true} />} />
+                <Route path="/startup/explorer" element={<ExplorePageStartUp alpha={false} />} />
+                <Route path="/startup/explorer/search" element={<ExplorePageStartUp alpha={false} />} />
+                <Route path="/acteurs-publics/explorer" element={<ExplorePagePublicActor alpha={false} />} />
+                <Route path="/acteurs-publics/explorer/search" element={<ExplorePagePublicActor alpha={false} />} />
+                {/* <Route path="/explorer-alpha" element={<ExplorePage alpha={true} />} /> */}
 
                 {allCardType.map((cardType => <>
                     <Route path={cardType.searchLink} element={<cardType.SearchPage />} />
