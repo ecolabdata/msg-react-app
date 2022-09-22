@@ -1,10 +1,9 @@
-import { useNavigate } from 'react-router-dom';
-import { useTitle } from '../../hooks/useTitle';
-import { all as allCardType } from "../../model/CardType";
 import { PictoExplorer } from '../../assets/Icons';
+import { useTitle } from '../../hooks/useTitle';
+import { publicActorPersona as publicActorCardType } from "../../model/CardType";
 
-import { useContext, useEffect, useState } from 'react';
-import { ApplicationContext } from '../../App';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import HomeCard from '../dsfrComponents/HomeCard';
 export interface ExplorerTypeCard  {
     SVGLogo: ({...other}: {[x : string]: any; }) => JSX.Element,
@@ -16,14 +15,14 @@ export interface ExplorerTypeCard  {
     name: string
 };
 
-const Home = () => {
+const HomePagePublicActor = () => {
 
     const explorerCard:ExplorerTypeCard = {
         SVGLogo: PictoExplorer,
         title: "Rechercher les leviers dans toutes les thématiques",
         color: "rgba(0, 0, 145, 1)",
-        description: "Découvrez tous les leviers proposés par Mes Services Greentech : aides à l’innovation, aide pour vos clients, achats publics à venir, investisseurs, start-up greentech.",
-        searchLink: "explorer",
+        description: "Découvrez tous les leviers proposés par Mes Services Greentech : aides financières, sourcing, retour d'expériences, achats publics programmés",
+        searchLink: "/acteurs-publics/explorer",
         version: "no",
         name: "explorer"
     };
@@ -51,14 +50,13 @@ const Home = () => {
             
             <div className="container-title container max-w-headerSize mx-auto p-2 
                 flex flex-col items-center">
-               
+                <Link className="self-end text-xs" to="/startup">Vous n'êtes pas un acteur public mais une <b>startup</b>?</Link>               
                 <h1 className="mt-4 w-full font-bold text-3xl text-center 
                 md:max-w-[70%]
-                "> Start-up greentech, trouvez automatiquement des pistes pour booster votre développement !  </h1>
-                
+                "> Acteurs publics, sourcez des entreprises éco-innovantes et financez vos achats verts</h1>
                 <h2 className="mt-8 text-center w-[65%] leading-7 
                 lg:max-w-[62%]
-                "> A partir de la description de votre activité ou de votre solution, nous vous proposons des pistes de leviers autour des 5 axes suivants :</h2>
+                "> A partir de la description de votre besoin, nous vous proposons des pistes de leviers autour des axes suivants :</h2>
             </div>
             
             <div
@@ -66,7 +64,7 @@ const Home = () => {
                 style={{width: cardContainerWidth}}
             >
                 <HomeCard explorerCard={true} cardTypeData={explorerCard} />
-                {allCardType.map((card) =>
+                {publicActorCardType.map((card) =>
                     <HomeCard cardTypeData={card} />
                 )}
             </div>
@@ -74,5 +72,5 @@ const Home = () => {
     );
 };
 
-export default Home
+export default HomePagePublicActor
 

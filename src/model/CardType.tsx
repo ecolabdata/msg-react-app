@@ -1,11 +1,10 @@
 import React from 'react';
 import { CardTypeName as ApiName } from '../api/Api';
 import { PictoCalendar, PictoCityHall, PictoEnvironnement, PictoHealth, PictoMoney, PictoRocket } from '../assets/Icons';
-import { SearchPageAchatPrevi, SearchPageAcheteurPublic, SearchPageAidesClient, SearchPageAidesInno, SearchPageInvestisseur, SearchPageStartups } from '../components/page/SearchPage';
+import { SearchPageAchatPrevi, SearchPageAchatProg, SearchPageAcheteurPublic, SearchPageAidesClient, SearchPageAidesFin, SearchPageAidesInno, SearchPageInvestisseur, SearchPageRetex, SearchPageSourcingSu, SearchPageStartups } from '../components/page/SearchPage';
 import { DetailsStartup } from '../components/customComponents/DetailsStartup';
 import { DetailsAideClient, DetailsAideInno } from '../components/customComponents/DetailsAide';
 import { versions } from './CardVersions';
-
 
 export interface CardType {
     SVGLogo: ({ ...other }: { [x: string]: any; }) => JSX.Element,
@@ -20,13 +19,17 @@ export interface CardType {
     version: typeof versions[number]
 }
 
+/*
+    START-UP
+*/
+
 export const acheteurPublic : CardType = {
     SVGLogo: PictoCityHall,
     color: "#F95C5E",
     //title: "Organismes publics à démarcher",
-    // title: "Organismes publics ouverts à l’innovation",
-    title: "Clients publics à démarcher",
-    description: "Collectivités ou organismes publiques ouverts à l’innovation",
+    //title: "Organismes publics ouverts à l’innovation",
+    title: "Acteurs publics ouverts à l'innovation",
+    description: "Collectivités ou organismes publics ayant conclu des marchés avec des TPE/PME éco-innovantes",
     name: "acheteurs-publics",
     searchLink: "/acheteurs-publics",
     SearchPage: SearchPageAcheteurPublic,
@@ -38,7 +41,7 @@ export const achatPrevi : CardType = {
     SVGLogo: PictoCalendar,
     color: "#D8C635",
     title: "Achats publics à venir",
-    description: "Achats publics prévus ces trois prochaines années dans votre domaine.",
+    description: "Achats publics prévus ces trois prochaines années dans votre secteur.",
     name: "achats-previsionnels",
     searchLink: "/achats-previsionnels",
     apiName: "projets_achats",
@@ -50,7 +53,7 @@ export const investisseur : CardType = {
     SVGLogo: PictoMoney,
     color: "#68A532",
     title: "Investisseurs",
-    description: "Investisseurs privés adaptés à votre maturité pour votre  prochaine levée de fonds.",
+    description: "Investisseurs publics et privés adaptés à votre maturité pour votre prochaine levée de fonds.",
     name: "investisseurs",
     searchLink: "/investisseurs",
     apiName: "investisseurs",
@@ -61,7 +64,7 @@ export const investisseur : CardType = {
 export const aideClient : CardType = {
     SVGLogo: PictoHealth,
     color: "#A558A0",
-    title: "Aides aux clients",
+    title: "Aides pour vos clients",
     description: "Dispositifs incitatifs (état ou régions) qui aident vos clients à accéder à vos solutions",
     name: "aides-clients",
     searchLink: "/aides-clients",
@@ -97,6 +100,62 @@ export const startups : CardType = {
     version: "beta"
 } as const
 
-export const all = [aideInno, aideClient, startups, achatPrevi, investisseur, acheteurPublic] as const
+/*
+    PUBLIC ACTOR
+*/
+
+export const aideFin : CardType = {
+    SVGLogo: PictoMoney,
+    color: "#68A532",
+    title: "Aides financières",
+    description: "Trouvez des aides pour financer vos achats",
+    name: "aides-financieres",
+    searchLink: "/aides-financieres",
+    DetailsPage: DetailsAideClient,
+    SearchPage: SearchPageAidesFin,
+    apiName: "aides_clients",
+    version: "beta"
+} as const
+
+export const sourcingSu : CardType = {
+    SVGLogo: PictoRocket,
+    color: "#4EC8AE",
+    title: "Entreprises éco-innovantes",
+    description: "Sourcez des entreprises éco-innovantes qui répondent à vos besoins",
+    name: "sourcingSu",
+    searchLink: "/sourcing-startup",
+    DetailsPage: DetailsStartup,
+    SearchPage: SearchPageSourcingSu,
+    apiName: "startups",
+    version: "beta"
+} as const
+
+export const retex : CardType = {
+    SVGLogo: PictoCityHall,
+    color: "#F95C5E",
+    title: "Acteurs publics ouverts à l'innovation",
+    description: "Collectivités ou organismes publics ayant contractualisé avec des TPE/PME éco-innovantes",
+    name: "retex",
+    searchLink: "/retour-experience",
+    SearchPage: SearchPageRetex,
+    apiName: "collectivites",
+    version: "beta"
+} as const
+
+export const achatProg : CardType = {
+    SVGLogo: PictoCalendar,
+    color: "#D8C635",
+    title: "Achats publics programmés",
+    description: "Achats programmés à 3 ans par les collectivités et organismes publics",
+    name: "achats-programmes",
+    searchLink: "/achats-programmes",
+    apiName: "projets_achats",
+    SearchPage: SearchPageAchatProg,
+    version: "beta"
+} as const
+
+export const startupPersona : CardType[] = [aideInno, aideClient, startups, achatPrevi, investisseur, acheteurPublic]
+export const publicActorPersona : CardType[] = [aideFin, sourcingSu, retex, achatProg]
+export const all = [...startupPersona, ...publicActorPersona] as const
 export const byName = Object.fromEntries(all.map(x => [x.name, x]))
 export const dropdownValues = Object.fromEntries(all.map(x => [x.name, x.title]))
