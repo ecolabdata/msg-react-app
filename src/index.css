@@ -34,12 +34,11 @@ input:focus {
   outline: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-
 .card-animation {
   --h-before: 181px;
   --h-after: 224px;
   --m-after: 0px;
-  --m-before: calc(var(--h-after)/2 - var(--h-before)/2 + var(--m-after));
+  --m-before: calc(var(--h-after) / 2 - var(--h-before) / 2 + var(--m-after));
 
   transition-property: all;
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
@@ -72,7 +71,7 @@ input:focus {
   color: inherit;
 }
 
-.fr-pagination__link[aria-current=page] {
+.fr-pagination__link[aria-current='page'] {
   --hover: var(--background-active-blue-france-hover);
   --active: var(--background-active-blue-france-active);
   background-color: var(--background-active-blue-france);
@@ -80,5 +79,5 @@ input:focus {
 }
 
 .dangerouslySetInnerHTML li {
-  margin-left: 23px
+  margin-left: 23px;
 }

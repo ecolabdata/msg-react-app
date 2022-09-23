@@ -5,19 +5,21 @@ import { useQuery } from '../../hooks/useQuery';
 import { byName, CardType } from '../../model/CardType';
 import { ApplicationContext } from '../../App';
 
-function browseObject(obj: any,
-    onLeaf: (prefix: string[], key: string, value: any) => void, prefix: string[] = []) {
-    for (const [key, value] of Object.entries(obj)) {
-        if (value != null && typeof value === 'object') {
-            prefix.push(key)
-            browseObject(value, onLeaf, prefix);
-            prefix.pop()
-        } else {
-            onLeaf(prefix, key, value)
-        }
+function browseObject(
+  obj: any,
+  onLeaf: (prefix: string[], key: string, value: any) => void,
+  prefix: string[] = []
+) {
+  for (const [key, value] of Object.entries(obj)) {
+    if (value != null && typeof value === 'object') {
+      prefix.push(key);
+      browseObject(value, onLeaf, prefix);
+      prefix.pop();
+    } else {
+      onLeaf(prefix, key, value);
     }
+  }
 }
-
 
 // export const thematiqueToFieldsConf: Record<CardTypeName, Record<string, string | boolean>> = {
 //     "aides_innovation": {
@@ -54,70 +56,77 @@ function browseObject(obj: any,
 //         "secteurs": "Secteurs",
 //         "montant_min": "Investissement minimum (€)",
 //         "montant_max": "Investissement maximum (€)"
-//     }  
+//     }
 // };
 
-const DetailsJson : React.FC<{cardType:CardType}> = ({cardType}) => {
-    const query = useQuery();
-    const { usedFavoris, usedCorbeille } = useContext(ApplicationContext)
-    const [toggleFavori, isFavori, favoris] = usedFavoris
-    const [toggleInCorbeille, isInCorbeille, corbeille] = usedCorbeille
-    const location = useLocation();
-    const initialState = location.state as {cardData : AnyCard} | null;
-    useEffect(() => {
-        window.scrollTo(0,0)
-    })
-    const devMode = true;
-    const toDisplay: ReactElement[] = [];
-    const cardData : AnyCard = initialState?.cardData || JSON.parse(query.cardData)
-    if (!cardData) {
-        console.log("cardType mandatory getting", {cardData})
-        return null;
+const DetailsJson: React.FC<{ cardType: CardType }> = ({ cardType }) => {
+  const query = useQuery();
+  const { usedFavoris, usedCorbeille } = useContext(ApplicationContext);
+  const [toggleFavori, isFavori, favoris] = usedFavoris;
+  const [toggleInCorbeille, isInCorbeille, corbeille] = usedCorbeille;
+  const location = useLocation();
+  const initialState = location.state as { cardData: AnyCard } | null;
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
+  const devMode = true;
+  const toDisplay: ReactElement[] = [];
+  const cardData: AnyCard = initialState?.cardData || JSON.parse(query.cardData);
+  if (!cardData) {
+    console.log('cardType mandatory getting', { cardData });
+    return null;
+  }
+  // const fieldsConf = thematiqueToFieldsConf[cardType.apiName]
+  browseObject(cardData, (prefix, key, value) => {
+    const fullname = [...prefix, key].join('/');
+    if (value) {
+      // const humanReadableName = fieldsConf[fullname]
+      // if (humanReadableName) {
+      //     const devTitle = (devMode && humanReadableName) ? <span style={{ filter: "opacity(25%)" }}>({fullname})</span> : null
+      //     toDisplay.push(<div key={key} style={{ margin: "20px" }}>
+      //         <div style={{ margin: "20px 0px", color: cardType.color }}>{humanReadableName || fullname} {devTitle}</div>
+      //         <div style={{ margin: "20px 0px" }} dangerouslySetInnerHTML={{ __html: value + "" }}></div>
+      //         <div style={{ width: "200px", border: "0.5px solid rgba(206, 206, 206, 0.2)" }}></div>
+      //     </div>)
+      // } else if (devMode) {
+      toDisplay.push(
+        <div key={key} style={{ margin: '20px', filter: 'opacity(100%)' }}>
+          <div style={{ margin: '20px 0px', color: cardType.color }}>{fullname}</div>
+          <div
+            style={{ margin: '20px 0px' }}
+            dangerouslySetInnerHTML={{ __html: value + '' }}
+          ></div>
+          <div style={{ width: '200px', border: '0.5px solid rgba(206, 206, 206, 0.2)' }}></div>
+        </div>
+      );
+      // }
     }
-    // const fieldsConf = thematiqueToFieldsConf[cardType.apiName]
-    browseObject(cardData, (prefix, key, value) => {
-        const fullname = [...prefix, key].join("/")
-        if (value) {
-            // const humanReadableName = fieldsConf[fullname]
-            // if (humanReadableName) {
-            //     const devTitle = (devMode && humanReadableName) ? <span style={{ filter: "opacity(25%)" }}>({fullname})</span> : null
-            //     toDisplay.push(<div key={key} style={{ margin: "20px" }}>
-            //         <div style={{ margin: "20px 0px", color: cardType.color }}>{humanReadableName || fullname} {devTitle}</div>
-            //         <div style={{ margin: "20px 0px" }} dangerouslySetInnerHTML={{ __html: value + "" }}></div>
-            //         <div style={{ width: "200px", border: "0.5px solid rgba(206, 206, 206, 0.2)" }}></div>
-            //     </div>)
-            // } else if (devMode) {
-                toDisplay.push(<div key={key} style={{ margin: "20px", filter: "opacity(100%)" }}>
-                    <div style={{ margin: "20px 0px", color: cardType.color }}>{fullname}</div>
-                    <div style={{ margin: "20px 0px" }} dangerouslySetInnerHTML={{ __html: value + "" }}></div>
-                    <div style={{ width: "200px", border: "0.5px solid rgba(206, 206, 206, 0.2)" }}></div>
-                </div>)
-            // }
-        }
-    })
-    return <div>
-        <div style={{ display: "flex", flexWrap: "wrap" }}>
-            {toDisplay}
-            {/* <div style={{ width: "800px", border: `2px solid ${thematiqueUI.color}` }}>
+  });
+  return (
+    <div>
+      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        {toDisplay}
+        {/* <div style={{ width: "800px", border: `2px solid ${thematiqueUI.color}` }}>
             <SyntaxHighlighter language="javascript" style={style}>
                 {JSON.stringify(data, null, " ")}
             </SyntaxHighlighter>
         </div> */}
-        </div>
+      </div>
     </div>
-    // return (
-    //     <>
-    //         <div className='flex justify-around'>
-    //             <div className="contentContainer  w-1/2" >
+  );
+  // return (
+  //     <>
+  //         <div className='flex justify-around'>
+  //             <div className="contentContainer  w-1/2" >
 
-    //                 <pre> 
-    //                     {JSON.stringify(data, null, "  ")}
-    //                 </pre>
-                    
-    //             </div>
-    //         </div>
-    //     </>
-    // )
+  //                 <pre>
+  //                     {JSON.stringify(data, null, "  ")}
+  //                 </pre>
+
+  //             </div>
+  //         </div>
+  //     </>
+  // )
 };
 
 export default DetailsJson;
