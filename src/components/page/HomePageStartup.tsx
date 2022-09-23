@@ -74,6 +74,7 @@ const HomeStartup = () => {
       </div>
 
       <div
+        role="list"
         className="cardsContainer mx-auto flex flex-wrap justify-start"
         style={{ width: cardContainerWidth }}
       >

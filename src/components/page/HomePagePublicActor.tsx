@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { PictoExplorer } from '../../assets/Icons';
 import { useTitle } from '../../hooks/useTitle';
 import { publicActorPersona as publicActorCardType } from '../../model/CardType';
-import HomeCard from '../dsfrComponents/HomeCard';
 
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import HomeCard from '../dsfrComponents/HomeCard';
 export interface ExplorerTypeCard {
   SVGLogo: ({ ...other }: { [x: string]: any }) => JSX.Element;
   title: string;
@@ -67,13 +67,13 @@ const HomePagePublicActor = () => {
                 lg:max-w-[62%]
                 "
         >
-          {' '}
           A partir de la description de votre besoin, nous vous proposons des pistes de leviers
           autour des axes suivants :
         </h2>
       </div>
 
       <div
+        role="list"
         className="cardsContainer mx-auto flex flex-wrap justify-start"
         style={{ width: cardContainerWidth }}
       >
