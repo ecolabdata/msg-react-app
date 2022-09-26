@@ -20,7 +20,7 @@ const ResultCardsPreview: React.FC<CardsPreviewProps> = ({
 }) => {
   const { usedNextScrollTarget } = useContext(ApplicationContext);
   const [nextScrollTarget, setNextScrollTarget] = usedNextScrollTarget;
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLUListElement>(null);
 
   return (
     <div className="globalContainerCard flex flex-col justify-center md:ml-10">
@@ -52,9 +52,9 @@ const ResultCardsPreview: React.FC<CardsPreviewProps> = ({
         </div>
       </div>
 
-      <div className="fr-container" ref={ref} role="list">
+      <ul className="fr-container" ref={ref} role="list">
         <div className="fr-grid-row fr-grid-row--gutters">{children}</div>
-      </div>
+      </ul>
     </div>
   );
 };

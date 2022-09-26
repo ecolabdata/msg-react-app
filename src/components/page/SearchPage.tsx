@@ -186,13 +186,9 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
       </div>
 
       {cardsSlice.length > 0 ? (
-        <div
-          id="cardsContainer"
-          className="cardsContainer mt-10 mx-auto max-w-[80%] flex flex-wrap justify-evenly bg 
-            xl:mx-auto
-            ">
-          {cardsSlice}
-        </div>
+        <ul className="fr-container" id="cardsContainer" role="list">
+          <div className="fr-grid-row fr-grid-row--gutters"> {cardsSlice}</div>
+        </ul>
       ) : initialState ? (
         'Aucun résultat trouvé'
       ) : null}

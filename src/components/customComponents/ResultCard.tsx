@@ -89,9 +89,9 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType, isLoading, pageLi
     : '';
 
   return (
-    <div role="listitem" className="fr-col-xs-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
+    <li className="fr-col-xs-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
       <div className="fr-card fr-enlarge-link">
-        <div className="fr-card__body h-4/5">
+        <div className="fr-card__body">
           <div className="fr-card__content">
             <h4 className="fr-card__title">
               <Link
@@ -157,17 +157,17 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType, isLoading, pageLi
                 )
               )}
             </p>
+            <div className="fr-card__start">
+              <ul className="fr-tags-group">
+                <li>
+                  <p className="fr-badge fr-badge--green-emeraude">{toprow}</p>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-        <div className="fr-card__header h-1/5">
-          <ul className="fr-badges-group">
-            <li>
-              <p className="fr-badge fr-badge--green-emeraude">{toprow}</p>
-            </li>
-          </ul>
-        </div>
       </div>
-    </div>
+    </li>
   );
 };
 
