@@ -29,7 +29,6 @@ const buildExplorePage: (
     const [secteurs, setSecteurs] = useState<string[]>(initialState?.search.query.secteurs || []);
     const [motsclefs, setMotsclef] = useState<string[]>(initialState?.search.query.motsclefs || []);
     const [errorTxt, setErrorTxt] = useState('');
-    const userFromHomePage = location.state === null;
 
     const handleOnSubmitForm = (ctrlPress: boolean) => {
       if (description.length > 0) {
@@ -67,15 +66,13 @@ const buildExplorePage: (
         const results: AnyCard[] = initialState.search.cards[cardType.apiName];
         if (results.length === 0) return null;
         const cardSliceSize = Math.max(Math.floor((window.innerWidth - 60) / 330) * 2 - 1, 3);
-        console.log({ cardSliceSize });
-        //{name: `Voir les ${results.length - cardSliceSize } autres cartes`}
+
         return (
           <ResultCardsPreview
             key={key}
             cardType={cardType}
             initialState={initialState}
-            resultCount={results.length}
-          >
+            resultCount={results.length}>
             {results
               .filter((x) => !isInCorbeille(x))
               .slice(0, cardSliceSize)
@@ -94,13 +91,11 @@ const buildExplorePage: (
             items-center
             align-middle
             relative`}
-                style={{ color: cardType.color, opacity: isLoading ? 0 : 1 }}
-              >
+                style={{ color: cardType.color, opacity: isLoading ? 0 : 1 }}>
                 <NavLink
                   onClick={() => setNextScrollTarget({ top: 0 })}
                   to={cardType.searchLink}
-                  state={initialState}
-                >
+                  state={initialState}>
                   {`Voir les ${results.length - cardSliceSize} autres cartes`}
                 </NavLink>
               </div>
@@ -113,11 +108,10 @@ const buildExplorePage: (
       <>
         <h1
           className="font-bold my-2 mx-auto max-w-headerSize text-xl flex text-center justify-center items-center w-[90%]
-            md:my-8 md:text-[30px] leading-5"
-        >
+            md:my-8 md:text-[30px] leading-5">
           {' '}
-          <Magnifying width="31px" height="31px" className="mr-4" /> Formulaire de recherche en 3
-          étapes !{' '}
+          <Magnifying width="31px" height="31px" className="mr-4" aria-hidden={true} /> Formulaire
+          de recherche en 3 étapes !{' '}
         </h1>
 
         <form
@@ -127,8 +121,7 @@ const buildExplorePage: (
           }}
           id="keywordsForm"
           className="h-fit mx-auto max-w-headerSize
-            "
-        >
+            ">
           <PitchThematicsKeywords
             usedDescription={[description, setDescription]}
             usedMotsClef={[motsclefs, setMotsclef]}
@@ -140,8 +133,7 @@ const buildExplorePage: (
 
         <div
           className={`errorContainer ${errorTxt.length <= 0 && 'hidden'} 
-            h-12 flex justify-center items-center color`}
-        >
+            h-12 flex justify-center items-center color`}>
           <p style={{ color: 'hsla(0, 100%, 65%, 0.9)' }}>{errorTxt}</p>
         </div>
 
@@ -152,8 +144,7 @@ const buildExplorePage: (
               setDescription('');
               setSecteurs([]);
               setMotsclef([]);
-            }}
-          >
+            }}>
             {' '}
             réinitialiser{' '}
           </button>
@@ -165,11 +156,16 @@ const buildExplorePage: (
             }}
             form="keywordsForm"
             disabled={isLoading}
-            className="fr-btn fr-btn--lg fr-btn--primary capitalize"
-          >
+            className="fr-btn fr-btn--lg fr-btn--primary capitalize">
             <span className="mx-auto flex items-center">
               {!isLoading && (
-                <FillMagnifying fill="true" width="20px" height="20px" className="mr-2" />
+                <FillMagnifying
+                  fill="true"
+                  width="20px"
+                  height="20px"
+                  className="mr-2"
+                  aria-hidden={true}
+                />
               )}
 
               <span>{isLoading ? 'chargement...' : 'rechercher !'}</span>
