@@ -77,20 +77,11 @@ const buildExplorePage: (
               .filter((x) => !isInCorbeille(x))
               .slice(0, cardSliceSize)
               .map((x, i) => (
-                <div className="outer-card" key={i}>
-                  <div className="md:ml-6">
-                    <ResultCard pageList={false} cardData={x} cardType={cardType} />
-                  </div>
-                </div>
+                <ResultCard key={i} pageList={false} cardData={x} cardType={cardType} />
               ))}
             {results.length - cardSliceSize < 0 ? null : (
               <div
-                className={`cardContainer ml-6
-            rounded-r w-[330px] p-4 flex flex-col
-            justify-center
-            items-center
-            align-middle
-            relative`}
+                className={`fr-col-xs-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3 items-center align-middle relative`}
                 style={{ color: cardType.color, opacity: isLoading ? 0 : 1 }}>
                 <NavLink
                   onClick={() => setNextScrollTarget({ top: 0 })}

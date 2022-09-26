@@ -52,11 +52,8 @@ const ResultCardsPreview: React.FC<CardsPreviewProps> = ({
         </div>
       </div>
 
-      <div
-        className="cardScrollContainerX
-        -ml-2 flex flex-wrap justify-evenly"
-        ref={ref}>
-        {children}
+      <div className="fr-container" ref={ref} role="list">
+        <div className="fr-grid-row fr-grid-row--gutters">{children}</div>
       </div>
     </div>
   );
