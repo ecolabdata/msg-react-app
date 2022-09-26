@@ -1,3 +1,3 @@
-export const  logoutFunction = () => {
-    return localStorage.removeItem('user');
-}
+export const logoutFunction = () => {
+  return localStorage.removeItem('user');
+};

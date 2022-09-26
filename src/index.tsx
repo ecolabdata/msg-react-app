@@ -1,26 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import reportWebVitals from './reportWebVitals';
-import thunkMiddleware from 'redux-thunk';
-import { createStore, applyMiddleware } from 'redux';
-import {BrowserRouter} from 'react-router-dom';
-import Router from './App';
-import './index.css';
 import '@gouvfr/dsfr/dist/dsfr/dsfr.module';
 import '@gouvfr/dsfr/dist/dsfr/dsfr.nomodule';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import Router from './App';
 import gitInfo from './generatedGitInfo.json'; //If you have compilation problem here just run `npm run git-info`
+import './index.css';
+import reportWebVitals from './reportWebVitals';
 
-type GitInfo = typeof gitInfo
+type GitInfo = typeof gitInfo;
 declare global {
-    interface Window { gitInfo: GitInfo; }
+  interface Window {
+    gitInfo: GitInfo;
+  }
 }
-Object.assign(window, { gitInfo })
+Object.assign(window, { gitInfo });
 
 ReactDOM.render(
   <React.StrictMode>
-      <BrowserRouter>
-        <Router />
-      </BrowserRouter>
+    <BrowserRouter>
+      <Router />
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

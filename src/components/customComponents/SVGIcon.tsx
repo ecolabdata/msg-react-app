@@ -1,14 +1,9 @@
-
 interface SVGProps {
-    source: string;
+  source: string;
 }
 
-
-const SVGIcon : React.FC<SVGProps> = ({source}: SVGProps) => { 
-    return (
-            <img className="" src={source} alt=''/>
-    );
-
-}; 
+const SVGIcon: React.FC<SVGProps> = ({ source }: SVGProps) => {
+  return <img className="" src={source} alt="" />;
+};
 
 export default SVGIcon;

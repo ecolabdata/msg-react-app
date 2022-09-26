@@ -1,57 +1,67 @@
-import { ReactElement } from "react";
-import { Link } from "react-router-dom";
-import { Outlet } from "react-router-dom";
-import { JwtState, useJwtState } from "../../utils/jwt"
+import { ReactElement } from 'react';
+import { Outlet } from 'react-router-dom';
 import LogoMSG from '../../assets/msg-icon.svg';
+import { JwtState, useJwtState } from '../../utils/jwt';
 
-
-const template = (bigTitle: string, smallTitle: string) => <div className="flex flex-col items-center justify-center w-[800px]">
+const template = (bigTitle: string, smallTitle: string) => (
+  <div className="flex flex-col items-center justify-center w-[800px]">
     <div className="fr-header__brand fr-enlarge-link">
-        <div className="fr-header__service flex">
-            <img className="h-12 mt-1 mr-2" src={LogoMSG} alt="Icône d'indication, version beta " />
-            <p className="fr-header__service-title capitalize
+      <div className="fr-header__service flex">
+        <img className="h-12 mt-1 mr-2" src={LogoMSG} alt="Icône d'indication, version beta " />
+        <p
+          className="fr-header__service-title capitalize
                                      after:rounded-sm after:content-['beta'] after:ml-2 after:relative after:bottom-1 after:w-content after:h-content after:px-1 
-                                     after:text-center after:text-xs after:font-bold after:bg-beta">mes services<br /> greentech</p>
-        </div>
+                                     after:text-center after:text-xs after:font-bold after:bg-beta"
+        >
+          mes services
+          <br /> greentech
+        </p>
+      </div>
     </div>
-    <h1 className="fr-h3 mt-8 text-center font-thin">
-        {bigTitle}
-    </h1>
-    <p>
-        {smallTitle}
-    </p>
+    <h1 className="fr-h3 mt-8 text-center font-thin">{bigTitle}</h1>
+    <p>{smallTitle}</p>
     <a
-        href="https://airtable.com/shrBDPDWDKVqRnHhf"
-        target="_blank"
-        className="
+      href="https://airtable.com/shrBDPDWDKVqRnHhf"
+      target="_blank"
+      className="
                 fr-btn fr-btn--primary mt-8
-                hover:bg-claire-bf__hover flex justify-between" 
+                hover:bg-claire-bf__hover flex justify-between"
+      rel="noreferrer"
     >
-        <span>Je demande un accès</span>
+      <span>Je demande un accès</span>
     </a>
-</div>
+  </div>
+);
 
-const messages: Record<JwtState["name"], ReactElement | null> = {
-    notoken: template("La plateforme Mes Services Greentech est pour l’instant disponible en accès limité.", "Contactez-nous et recevez un accès anticipé !"),
-    badtoken: template("Le lien magique dont vous disposez est faux ou expiré.", "Contactez-nous pour recevoir un nouvel accès !"),
-    checking: <></>,
-    valid: null
-}
+const messages: Record<JwtState['name'], ReactElement | null> = {
+  notoken: template(
+    'La plateforme Mes Services Greentech est pour l’instant disponible en accès limité.',
+    'Contactez-nous et recevez un accès anticipé !'
+  ),
+  badtoken: template(
+    'Le lien magique dont vous disposez est faux ou expiré.',
+    'Contactez-nous pour recevoir un nouvel accès !'
+  ),
+  checking: <></>,
+  valid: null
+};
 
 export const AuthRequiredWall = () => {
-    const jwtState = useJwtState();
-    if (jwtState?.name === "valid") {
-        return <Outlet />
-    } else {
-        const message = jwtState ? messages[jwtState.name] : messages["notoken"]
-        return (
-            <>
-                <div className="
+  const jwtState = useJwtState();
+  if (jwtState?.name === 'valid') {
+    return <Outlet />;
+  } else {
+    const message = jwtState ? messages[jwtState.name] : messages['notoken'];
+    return (
+      <>
+        <div
+          className="
                     h-[100vh] p-2
-                    flex items-center justify-center">
-                    {message}
-                </div>
-            </>
-        );
-    }
-}
+                    flex items-center justify-center"
+        >
+          {message}
+        </div>
+      </>
+    );
+  }
+};
