@@ -15,9 +15,10 @@ const HomeCard: React.FC<CardTypeProps> = (props) => {
   return (
     <>
       <div
+        role="listitem"
         className={`fr-card ${
           isExplorerCard &&
-          'bg-blue-france-main text-blue-france before:bg-blue-france hover:bg-blue-france-main-hover'
+          'bg-blue-france-main text-black before:bg-blue-france hover:bg-blue-france-main-hover'
         }
                 ${!isExplorerCard && isAlpha ? alphaCardStyle : 'fr-enlarge-link'} }
                  m-[1em]
@@ -26,11 +27,11 @@ const HomeCard: React.FC<CardTypeProps> = (props) => {
       >
         <div className="fr-card__body">
           <div className="fr-card__content">
-            <h4 className="fr-card__title">
+            <h3 className="fr-card__title">
               {!isAlpha ? (
                 <a
                   href={searchLink}
-                  className={`${isExplorerCard && 'text-blue-france '}
+                  className={`${isExplorerCard && 'text-black '}
                                     text-lg`}
                 >
                   {title}
@@ -38,16 +39,16 @@ const HomeCard: React.FC<CardTypeProps> = (props) => {
               ) : (
                 <p className="text-lg">{title}</p>
               )}
-            </h4>
+            </h3>
             <p className="fr-card__desc text-base ">{description}</p>
           </div>
         </div>
         <div className="fr-card__header">
           <div className="fr-card__img  p-[2rem] pb-[0]">
             {!isExplorerCard ? (
-              <SVGLogo height="80" width="80" style={{ color: color }} />
+              <SVGLogo height="80" width="80" style={{ color: color }} aria-hidden="true" />
             ) : (
-              <SVGLogo width="80" height="80" />
+              <SVGLogo width="80" height="80" aria-hidden="true" />
             )}
           </div>
         </div>
