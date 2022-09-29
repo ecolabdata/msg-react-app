@@ -48,7 +48,6 @@ const Router = () => {
 
     const Authentified = () => <>
         <Routes>
-            <Route path="/" element={<Header decouvrir={true} />} />
             <Route path="*" element={<Header />} />
         </Routes>
         <main className={`h-full p-1 md:p-6 ${localStorage.scheme === 'dark' && 'bg-[#262626]'}`}>
