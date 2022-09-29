@@ -12,9 +12,6 @@ export interface CardsPreviewProps {
   children: React.ReactNode;
 }
 
-const getCardWidth = () =>
-  (document.getElementsByClassName('outer-card')[0] as HTMLElement | null)?.offsetWidth;
-
 const ResultCardsPreview: React.FC<CardsPreviewProps> = ({
   cardType,
   initialState,
@@ -30,7 +27,7 @@ const ResultCardsPreview: React.FC<CardsPreviewProps> = ({
       <div className="cardGeneralInformations flex flex-wrap">
         <div className="cardTitle p-2 flex-auto">
           <div className="flex items-center">
-            <cardType.SVGLogo style={{ color: cardType.color }} /> &nbsp;
+            <cardType.SVGLogo style={{ color: cardType.color }} aria-hidden={true} /> &nbsp;
             <h2 className="w-fit font-bold md:text-2xl">
               {cardType.title} <span className="bg-yellow md:text-lg">{`(${resultCount})`}</span>
             </h2>
@@ -47,8 +44,7 @@ const ResultCardsPreview: React.FC<CardsPreviewProps> = ({
             style={{ borderColor: cardType.color, color: cardType.color }}
             className="w-fit h-9 text-base font-bold 
                     addBorder border-2 p-1 rm-link-underline
-                    flex justify-center"
-          >
+                    flex justify-center">
             {' '}
             <span className="my-auto">Voir tout & filtrer</span> &nbsp;
             <ArrowRight className="my-auto" width="16" height="16" />{' '}
@@ -59,8 +55,7 @@ const ResultCardsPreview: React.FC<CardsPreviewProps> = ({
       <div
         className="cardScrollContainerX
         -ml-2 flex flex-wrap justify-evenly"
-        ref={ref}
-      >
+        ref={ref}>
         {children}
       </div>
     </div>
