@@ -56,22 +56,22 @@ const Footer: React.FC = () => {
                 </a>
               </li>
               <li className="fr-footer__bottom-item">
-                <a className="fr-footer__bottom-link" href="#">
+                <a className="fr-footer__bottom-link" href="/legal/accessibility">
                   Accessibilité
                 </a>
               </li>
               <li className="fr-footer__bottom-item">
-                <a className="fr-footer__bottom-link" href="#">
+                <a className="fr-footer__bottom-link" href="/legal/legal-notices">
                   Mentions légales
                 </a>
               </li>
               <li className="fr-footer__bottom-item">
-                <a className="fr-footer__bottom-link" href="#">
+                <a className="fr-footer__bottom-link" href="/legal/gdpr">
                   Données personnelles
                 </a>
               </li>
               <li className="fr-footer__bottom-item">
-                <a className="fr-footer__bottom-link" href="#">
+                <a className="fr-footer__bottom-link" href="/legal/cookies">
                   Gestion des cookies
                 </a>
               </li>
@@ -79,8 +79,7 @@ const Footer: React.FC = () => {
                 <button
                   className="fr-footer__bottom-link fr-fi-theme-fill fr-link--icon-left"
                   aria-controls="fr-theme-modal"
-                  data-fr-opened="fals"
-                >
+                  data-fr-opened="fals">
                   Paramètres d'affichage
                 </button>
               </li>
@@ -91,8 +90,7 @@ const Footer: React.FC = () => {
                 <a
                   href="https://github.com/etalab/licence-ouverte/blob/master/LO.md"
                   target="_blank"
-                  rel="noreferrer"
-                >
+                  rel="noreferrer">
                   licence etalab-2.0
                 </a>
               </p>
@@ -101,8 +99,7 @@ const Footer: React.FC = () => {
           <div className="git-version text-gray-600 text-xs">
             git version:{' '}
             <a
-              href={`https://github.com/ecolabdata/mes-services-greentech/commit/${window.gitInfo.gitCommitFullHash}`}
-            >
+              href={`https://github.com/ecolabdata/mes-services-greentech/commit/${window.gitInfo.gitCommitFullHash}`}>
               {window.gitInfo.gitCommitHash}
             </a>
           </div>
