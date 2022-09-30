@@ -76,8 +76,8 @@ const WasteBin = () => {
         </div>
       </div>
 
-      <ul className="fr-container" id="cardsContainer" role="list">
-        <div className="fr-grid-row fr-grid-row--gutters">
+      <div className="fr-container" id="cardsContainer">
+        <ul className="fr-grid-row fr-grid-row--gutters">
           {Object.values(corbeille)
             .filter(
               (x) => selectedCardTypeName === 'all' || selectedCardTypeName === x.cardTypeName
@@ -90,8 +90,8 @@ const WasteBin = () => {
                 key={card.id}
               />
             ))}
-        </div>
-      </ul>
+        </ul>
+      </div>
 
       <div className="cardsContainer mx-auto w-3/4 justify-center flex flex-wrap"></div>
 

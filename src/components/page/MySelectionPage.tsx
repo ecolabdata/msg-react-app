@@ -103,8 +103,8 @@ const MySelection = () => {
       </div>
 
       <div className="cardsContainer mx-auto w-3/4 justify-center flex flex-wrap">
-        <ul className="fr-container" id="cardsContainer" role="list">
-          <div className="fr-grid-row fr-grid-row--gutters">
+        <div className="fr-container" id="cardsContainer">
+          <ul className="fr-grid-row fr-grid-row--gutters">
             {Object.values(favoris)
               .filter(
                 (x) => selectedCardTypeName === 'all' || selectedCardTypeName === x.cardTypeName
@@ -117,8 +117,8 @@ const MySelection = () => {
                   key={card.id}
                 />
               ))}
-          </div>
-        </ul>
+          </ul>
+        </div>
       </div>
 
       {/* <Pagination currentPageNo={pageNo} baseUrl={cardType.searchLink + "/" + searchId} nbPage={nbPage}/> */}
