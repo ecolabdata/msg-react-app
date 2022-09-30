@@ -1,6 +1,5 @@
 import React, { useContext, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
-import { cardTypeNames } from '../../api/Api';
 import { ApplicationContext } from '../../App';
 import { ArrowRight } from '../../assets/Icons';
 import { CardType } from '../../model/CardType';

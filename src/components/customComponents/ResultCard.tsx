@@ -180,7 +180,7 @@ const DetailBadges = ({ contents, color }: { contents: ReactNode[]; color: strin
         <>
           {content && (
             <li className="mr-2 w-fit">
-              <p className={`fr-badge`} style={{ color: color }}>
+              <p className={`fr-badge`} style={{ color }}>
                 {content}
               </p>
             </li>
