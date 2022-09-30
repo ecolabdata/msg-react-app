@@ -41,11 +41,7 @@ const ResultCardsPreview: React.FC<CardsPreviewProps> = ({
             onClick={() => setNextScrollTarget({ top: 0 })}
             to={cardType.searchLink}
             state={initialState}
-            style={{ borderColor: cardType.color, color: cardType.color }}
-            className="w-fit h-9 text-base font-bold 
-                    addBorder border-2 p-1 rm-link-underline
-                    flex justify-center">
-            {' '}
+            className="w-fit h-9 text-base  text-dark-text-action p-1 rm-link-underline flex justify-center">
             <span className="my-auto">Voir tout & filtrer</span> &nbsp;
             <ArrowRight className="my-auto" width="16" height="16" />{' '}
           </NavLink>

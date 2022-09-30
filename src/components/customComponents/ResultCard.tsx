@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { ReactNode, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import slugify from 'slugify';
 import {
@@ -106,7 +106,7 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
                 </p>
               </Link>
             </h3>
-            <p className="fr-card__desc">
+            <div className="fr-card__desc">
               {applyCard(
                 cardData,
                 (ap) =>
@@ -130,12 +130,10 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
                       title={i["Présentation de la politique d'investissement"]}>
                       {i["Présentation de la politique d'investissement"].split(';').join(' | ')}
                     </div>
-                    <div
-                      className="truncate"
-                      style={{ color: cardType.color }}
-                      title={i['Type de financement']}>
-                      {i['Type de financement']}
-                    </div>
+                    <DetailBadges
+                      contents={i['Type de financement'].split(';')}
+                      color={cardType.color}
+                    />
                   </>
                 ),
                 (a) => (
@@ -146,7 +144,7 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
                         ? `Date de clôture: ${displayabeSubmissionDeadLine}`
                         : 'Aide permanente'}
                     </div>
-                    <div style={{ color: cardType.color }}>{a.aid_types.join(' | ')}</div>
+                    <DetailBadges contents={a.aid_types} color={cardType.color} />
                   </>
                 ),
                 (su) => (
@@ -156,7 +154,7 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
                   <></>
                 )
               )}
-            </p>
+            </div>
             <div className="fr-card__start">
               <ul className="fr-tags-group">
                 <li>
@@ -174,3 +172,21 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
 };
 
 export default ResultCard;
+
+const DetailBadges = ({ contents, color }: { contents: ReactNode[]; color: string }) => {
+  return (
+    <ul className="mt-2">
+      {contents.map((content) => (
+        <>
+          {content && (
+            <li className="mr-2 w-fit">
+              <p className={`fr-badge`} style={{ color: color }}>
+                {content}
+              </p>
+            </li>
+          )}
+        </>
+      ))}
+    </ul>
+  );
+};
