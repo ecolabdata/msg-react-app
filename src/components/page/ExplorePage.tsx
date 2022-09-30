@@ -80,7 +80,7 @@ const buildExplorePage: (
                 <ResultCard key={i} pageList={false} cardData={x} cardType={cardType} />
               ))}
             {results.length - cardSliceSize < 0 ? null : (
-              <div
+              <li
                 className={`fr-col-xs-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3 items-center align-middle relative`}
                 style={{ color: cardType.color, opacity: isLoading ? 0 : 1 }}>
                 <NavLink
@@ -89,7 +89,7 @@ const buildExplorePage: (
                   state={initialState}>
                   {`Voir les ${results.length - cardSliceSize} autres cartes`}
                 </NavLink>
-              </div>
+              </li>
             )}
           </ResultCardsPreview>
         );
