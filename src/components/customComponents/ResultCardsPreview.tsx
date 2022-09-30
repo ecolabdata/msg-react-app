@@ -1,5 +1,6 @@
 import React, { useContext, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
+import { cardTypeNames } from '../../api/Api';
 import { ApplicationContext } from '../../App';
 import { ArrowRight } from '../../assets/Icons';
 import { CardType } from '../../model/CardType';
@@ -41,6 +42,7 @@ const ResultCardsPreview: React.FC<CardsPreviewProps> = ({
             onClick={() => setNextScrollTarget({ top: 0 })}
             to={cardType.searchLink}
             state={initialState}
+            aria-label={`Voir tout et filtrer: ${cardType.title}`}
             className="w-fit h-9 text-base  text-dark-text-action p-1 rm-link-underline flex justify-center">
             <span className="my-auto">Voir tout & filtrer</span> &nbsp;
             <ArrowRight className="my-auto" width="16" height="16" />{' '}
