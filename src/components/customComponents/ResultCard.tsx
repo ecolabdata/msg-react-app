@@ -156,7 +156,7 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
               )}
             </div>
             <div className="fr-card__start">
-              <ul className="fr-tags-group">
+              <ul className="fr-tags-group" aria-hidden={true}>
                 <li>
                   <p className={`fr-badge`} style={{ color: cardType.color }}>
                     {toprow}
