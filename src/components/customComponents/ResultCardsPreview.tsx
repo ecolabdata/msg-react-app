@@ -23,8 +23,8 @@ const ResultCardsPreview: React.FC<CardsPreviewProps> = ({
   const ref = useRef<HTMLUListElement>(null);
 
   return (
-    <div className="globalContainerCard flex flex-col justify-center md:ml-10">
-      <div className="cardGeneralInformations flex flex-wrap">
+    <div className="globalContainerCard flex flex-col justify-center mb-8 mx-4 lg:mx-12">
+      <div className="cardGeneralInformations flex flex-wrap mb-4">
         <div className="cardTitle p-2 flex-auto">
           <div className="flex items-center">
             <cardType.SVGLogo style={{ color: cardType.color }} aria-hidden={true} /> &nbsp;
@@ -52,7 +52,7 @@ const ResultCardsPreview: React.FC<CardsPreviewProps> = ({
         </div>
       </div>
 
-      <ul className="fr-container" ref={ref} role="list">
+      <ul className="fr-container--fluid" ref={ref} role="list">
         <div className="fr-grid-row fr-grid-row--gutters">{children}</div>
       </ul>
     </div>

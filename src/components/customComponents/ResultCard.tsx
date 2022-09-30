@@ -1,5 +1,5 @@
-import { useContext, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import slugify from 'slugify';
 import {
   AnyCard,
@@ -11,7 +11,6 @@ import {
   isStartup
 } from '../../api/Api';
 import { ApplicationContext } from '../../App';
-import { ArrowRight } from '../../assets/Icons';
 import { CardType } from '../../model/CardType';
 
 interface CardProps {
@@ -21,7 +20,7 @@ interface CardProps {
   pageList: boolean;
 }
 
-const ResultCard: React.FC<CardProps> = ({ cardData, cardType, isLoading, pageList }) => {
+const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
   const { usedNextScrollTarget } = useContext(ApplicationContext);
 
   const [nextScrollTarget, setNextScrolTarget] = usedNextScrollTarget;
@@ -30,7 +29,6 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType, isLoading, pageLi
   let displayabeSubmissionDeadLine = '';
   if (isAide(cardData)) {
     displayableFinancers = cardData.financers?.join(' | ') || '';
-    const financersFontSize = 2 / displayableFinancers.length ** 0.3 + 'em';
     const d = cardData.submission_deadline ? new Date(cardData.submission_deadline) : null;
     displayabeSubmissionDeadLine =
       ('0' + d?.getUTCDate()).slice(-2) +
@@ -89,8 +87,8 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType, isLoading, pageLi
     : '';
 
   return (
-    <li className="fr-col-xs-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
-      <div className="fr-card fr-enlarge-link">
+    <li className="fr-col-xs-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3 w-full">
+      <div className="fr-card fr-enlarge-link w-full">
         <div className="fr-card__body">
           <div className="fr-card__content">
             <h4 className="fr-card__title">
@@ -160,7 +158,9 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType, isLoading, pageLi
             <div className="fr-card__start">
               <ul className="fr-tags-group">
                 <li>
-                  <p className="fr-badge fr-badge--green-emeraude">{toprow}</p>
+                  <p className={`fr-badge`} style={{ color: cardType.color }}>
+                    {toprow}
+                  </p>
                 </li>
               </ul>
             </div>
