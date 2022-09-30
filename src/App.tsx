@@ -61,7 +61,7 @@ const Router = () => {
         <Route path="*" element={<Header />} />
       </Routes>
       <main className={`h-full p-1 md:p-6 ${localStorage.scheme === 'dark' && 'bg-[#262626]'}`}>
-        {/* <BreadCumb /> */}
+        <BreadCumb />
         <Routes>
           <Route path="/" element={<HomePageStartup />} />
           <Route path="/startup" element={<HomePageStartup />} />

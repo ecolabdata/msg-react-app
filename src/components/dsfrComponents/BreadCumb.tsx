@@ -1,51 +1,38 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import formatSlugForBreadCumb from '../../utils/formatSlugForBreadcrumb';
 
 const BreadCumb: React.FC = () => {
   const [navHistory, setNavHistory] = useState<{ urlToRedirect: string; slugToDisplay: string }[]>(
     []
   );
-  const location = useLocation();
 
   const createSlugForBreadCumb = () => {
-    const pageLocationWithoutSpecialCharacters = window.location.pathname.replace(
-      /[^a-zA-Z]/g,
-      ' '
-    );
-    const pageLocationFirstLetterUppercase =
-      pageLocationWithoutSpecialCharacters.charAt(1).toUpperCase() +
-      pageLocationWithoutSpecialCharacters.slice(2);
-    const pathNameAlreadyPresentInNavigationHistory = navHistory.find(
-      (pageDataObject) => pageDataObject.slugToDisplay === pageLocationFirstLetterUppercase
-    );
-    const pageData = {
-      urlToRedirect: location.pathname,
-      slugToDisplay: pageLocationFirstLetterUppercase
-    };
+    const pageData = formatSlugForBreadCumb()
 
-    if (
-      pageLocationFirstLetterUppercase.length > 1 &&
-      pathNameAlreadyPresentInNavigationHistory === undefined
-    ) {
+    if (!pageData) return
+
+    const pathNameAlreadyPresentInNavigationHistory = navHistory.find(
+      (pageDataObject) => pageDataObject.slugToDisplay === pageData?.slugToDisplay
+    );
+
+    if (pageData && pathNameAlreadyPresentInNavigationHistory === undefined) {
       setNavHistory([...navHistory, pageData]);
     }
 
-    return pageLocationFirstLetterUppercase;
+    return pageData.slugToDisplay;
   };
 
-  //? Manage the return browser button layout ( need to refresh to get the right layout after a go back)
-  // window.addEventListener('popstate', event => {
 
-  //     setNavHistory(navHistory.splice(-3))
-  // });
+  useEffect(() => {
+    window.addEventListener('popstate', (event) => {
+      navHistory.pop();
+      setNavHistory(navHistory);
+    });
 
-  // useEffect(() => {
-
-  //     if (location.pathname !== "/" ) {
-  //         createSlugForBreadCumb();
-  //     }
-
-  // },[window.location.pathname, navHistory]);
+    if (window.location.pathname === '/') {
+      setNavHistory([]);
+    }
+  }, [window.location.pathname]);
 
   useEffect(() => {
     console.log('window.history A CHANGE :>> ', window.history);
@@ -62,11 +49,13 @@ const BreadCumb: React.FC = () => {
       </button>
       <div className="fr-collapse" id="breadcrumb-1">
         <ol className="fr-breadcrumb__list">
-          <li>
-            <a className="fr-breadcrumb__link" href="/">
-              Accueil
-            </a>
-          </li>
+          {navHistory.length > 0 && (
+            <li>
+              <a className="fr-breadcrumb__link" href="/">
+                Accueil
+              </a>
+            </li>
+          )}
 
           {navHistory.length > 1 &&
             navHistory.map((visitedPageDataObject, visitedPageDataObjectIndex) => {
