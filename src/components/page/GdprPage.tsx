@@ -12,7 +12,7 @@ export const GdprPage = () => {
       <h3 className="my-4 font-bold text-xl">
         Gestion des abonnements à la lettre d’information Greentech Innovation (newsletter)
       </h3>
-      <p>Finalités</p>
+      <h4 className="mt-2">Finalités</h4>
       <p>
         Le traitement a pour objet la gestion de l’envoi de la lettre d’information de Greentech
         Innovation. Il permet à greentech Innovation de :
@@ -21,13 +21,13 @@ export const GdprPage = () => {
         <li>gérer les abonnements ;</li>
         <li>élaborer des statistiques liées au service via un « pixel invisible ».</li>
       </ul>
-      <p>Base juridique de traitement (article 6 du RGPD)</p>
+      <h4 className="mt-2">Base juridique de traitement (article 6 du RGPD)</h4>
       <p>
         Ce traitement de données personnelles relève de la mission d’intérêt public dont le
         ministère est investi. Il concerne néanmoins uniquement les personnes qui souhaitent
         s’enregistrer pour recevoir la lettre d’information du ministère.
       </p>
-      <p>Données traitées</p>
+      <h4 className="mt-2">Données traitées</h4>
       <ul>
         <li>adresses de courrier électronique (e-mail) ;</li>
         <li>statistiques liées au service de newsletter.</li>
@@ -36,17 +36,17 @@ export const GdprPage = () => {
         Ces données sont issues de l’enregistrement, par la personne souhaitant recevoir la
         newsletter, de son e-mail dans le champ dédié du formulaire d’inscription à la newsletter.
       </p>
-      <p>Destinataires</p>
+      <h4 className="mt-2">Destinataires</h4>
       <p>
         Sont destinataires de ces données les agents habilités de la Direction de la communication
         ainsi que ses sous-traitants.
       </p>
-      <p>Durée de conservation</p>
+      <h4 className="mt-2">Durée de conservation</h4>
       <p>
         Le ministère conserve l’adresse e-mail tant que la personne concernée ne se désinscrit pas
         (via le lien de désinscription intégré dans chaque newsletter).
       </p>
-      <p>Vos droits</p>
+      <h4 className="mt-2">Vos droits</h4>
       <p>
         Vous pouvez accéder aux données vous concernant, les faire rectifier ou les faire effacer.
         Vous disposez également d’un droit à la limitation et d’opposition au traitement.{' '}
@@ -57,20 +57,20 @@ export const GdprPage = () => {
         </a>
       </p>
       <h3 className="my-4 font-bold text-xl">Formulaire de contact</h3>
-      <h4>Finalités</h4>
+      <h4 className="mt-2">Finalités</h4>
       <p>
         Le traitement a pour objet le recueil des demandes des usagers et leur routage vers le
         service instructeur compétent au sein du pôle ministériel dans le cadre du droit de saisine
         par voie électronique de l’administration.
       </p>
-      <p>Base juridique de traitement (article 6 du RGPD)</p>
+      <h4 className="mt-2">Base juridique de traitement (article 6 du RGPD)</h4>
       <p>
         Ce traitement de données personnelles relève de la mission d’intérêt public dont le
         ministère est investi.. Le traitement est en effet nécessaire au respect du Code des
         relations entre le public et l'administration (articles L112-8 à L112-10) auquel le
         ministère est soumis.
       </p>
-      <h4>Données traitées</h4>
+      <h4 className="mt-2">Données traitées</h4>
       <ul>
         <li>Nom, prénom du demandeur ;</li>
         <li>
@@ -80,14 +80,14 @@ export const GdprPage = () => {
         <li>coordonnées postales si la modalité de réponse sélectionnée est par voie postale ;</li>
         <li>contenu de la saisine.</li>
       </ul>
-      <h4>Destinataires</h4>
+      <h4 className="mt-2">Destinataires</h4>
       <p>
         Les services instructeurs de l’administration centrale du pôle ministériel sont les
         destinataires de ces données. Les données sont directement envoyées dans la boîte de
         réception de courrier électronique déclarée par le service compétent en fonction de la
         thématique choisie par le demandeur.
       </p>
-      <p>Durée de conservation</p>
+      <h4 className="mt-2">Durée de conservation</h4>
       <p>
         Les messages échangés sont conservés pendant leur durée de vie utile pour l'administration
         dans le cadre de la réglementation en matière d'archives.

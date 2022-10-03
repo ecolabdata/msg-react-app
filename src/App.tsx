@@ -7,6 +7,9 @@ import Page404 from './components/page/Page404';
 import MySelectionPage from './components/page/MySelectionPage';
 import WasteBinPage from './components/page/WasteBinPage';
 import LegalNotices from './components/page/LegalNoticesPage';
+import CookiePage from './components/page/CookiePage';
+import GdprPage from './components/page/GdprPage';
+import AccessibilityPage from './components/page/AccessibilityPage';
 import { AuthRequiredWall } from './components/page/AuthRequiredWall';
 import DetailsJson from './components/customComponents/DetailsJson';
 import Footer from './components/Footer';
@@ -24,9 +27,6 @@ import {
 } from './utils/categoris';
 import BreadCumb from './components/dsfrComponents/BreadCumb';
 import { ExplorePagePublicActor, ExplorePageStartUp } from './components/page/ExplorePage';
-import CookiePage from './components/page/CookiePage';
-import GdprPage from './components/page/GdprPage';
-import AccessibilityPage from './components/page/AccessibilityPage';
 
 export const ApplicationContext = createContext<{
   usedFavoris: UsedFavoris;
