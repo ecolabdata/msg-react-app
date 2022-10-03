@@ -58,7 +58,9 @@ const Header = ({ decouvrir }: HeaderProps) => {
                   <p className="fr-logo uppercase">
                     ministère <br />
                     de la transition <br />
-                    ecologique
+                    écologique <br />
+                    et de la cohésion <br />
+                    des territoires
                   </p>
                 </div>
                 <div className="fr-header__navbar">
@@ -71,8 +73,7 @@ const Header = ({ decouvrir }: HeaderProps) => {
                     aria-controls="modal-833"
                     aria-haspopup="menu"
                     title="Menu"
-                    id="fr-btn-menu-mobile"
-                  >
+                    id="fr-btn-menu-mobile">
                     Menu
                   </button>
                 </div>
@@ -81,8 +82,7 @@ const Header = ({ decouvrir }: HeaderProps) => {
                 <Link
                   className="flex"
                   to="/"
-                  title="Accueil - Mes services GreenTech - Ministère de la transition écologique"
-                >
+                  title="Accueil - Mes services GreenTech - Ministère de la transition écologique et de la cohésion des territoires">
                   <img
                     className="h-12 mt-1 mr-2"
                     src={LogoMSG}
@@ -91,8 +91,7 @@ const Header = ({ decouvrir }: HeaderProps) => {
                   <p
                     className="fr-header__service-title capitalize
                                      after:rounded-sm after:content-['beta'] after:ml-2 after:relative after:bottom-1 after:w-content after:h-content after:px-1 
-                                     after:text-center after:text-xs after:font-bold after:bg-beta"
-                  >
+                                     after:text-center after:text-xs after:font-bold after:bg-beta">
                     mes services
                     <br /> greentech
                   </p>
@@ -155,8 +154,7 @@ function DecouvrirButton() {
         setNextScrolTarget({ top: 0 });
         navigate('/explorer');
       }}
-      className=" fr-btn"
-    >
+      className=" fr-btn">
       Découvrir
     </button>
   );
