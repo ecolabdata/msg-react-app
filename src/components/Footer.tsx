@@ -58,22 +58,22 @@ const Footer: React.FC = () => {
                 </a>
               </li>
               <li className="fr-footer__bottom-item">
-                <a className="fr-footer__bottom-link" href="#">
+                <a className="fr-footer__bottom-link" href="/legal/accessibility">
                   Accessibilité
                 </a>
               </li>
               <li className="fr-footer__bottom-item">
-                <a className="fr-footer__bottom-link" href="#">
+                <a className="fr-footer__bottom-link" href="/legal/legal-notices">
                   Mentions légales
                 </a>
               </li>
               <li className="fr-footer__bottom-item">
-                <a className="fr-footer__bottom-link" href="#">
+                <a className="fr-footer__bottom-link" href="/legal/gdpr">
                   Données personnelles
                 </a>
               </li>
               <li className="fr-footer__bottom-item">
-                <a className="fr-footer__bottom-link" href="#">
+                <a className="fr-footer__bottom-link" href="/legal/cookies">
                   Gestion des cookies
                 </a>
               </li>
