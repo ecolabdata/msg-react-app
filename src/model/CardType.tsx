@@ -83,7 +83,7 @@ export const investisseur: CardType = {
 
 export const aideClient: CardType = {
   SVGLogo: PictoHealth,
-  color: '#A558A0',
+  color: '#CE70CC',
   title: 'Aides pour vos clients',
   description:
     'Dispositifs incitatifs (état ou régions) qui aident vos clients à accéder à vos solutions',

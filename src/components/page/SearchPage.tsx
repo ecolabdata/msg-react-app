@@ -32,7 +32,6 @@ type Props = {
 };
 
 const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
-  const { color } = cardType;
   const { usedCorbeille, usedNextScrollTarget } = useContext(ApplicationContext);
   const [toggleInCorbeille, isInCorbeille] = usedCorbeille;
   const [nextScrollTarget, setNextScrollTarget] = usedNextScrollTarget;
@@ -99,7 +98,7 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
   return (
     <>
       <div
-        className="headContainer  container mt-10 mx-auto max-w-headerSize
+        className="headContainer  container mt-10 mb-20 mx-auto max-w-headerSize
             xl:mx-auto
             ">
         <div className="cardTitleAndLogo mt-10 p-2 text-base">
@@ -147,9 +146,7 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
                 </h2>
               </div>
 
-              <div
-                className="inputsAndToggleContainer self-end flex items-end  justify-around w-full mt-2
-                            ">
+              <div className="inputsAndToggleContainer self-end flex items-end  justify-around w-full mt-2 mb-8 sm:mb-0">
                 <div
                   className="inputsContainer w-full mt-2 flex flex-col items-center justify-center   
                                 lg:h-fit lg:w-[85%] lg:flex-row">
@@ -186,12 +183,8 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
       </div>
 
       {cardsSlice.length > 0 ? (
-        <div
-          id="cardsContainer"
-          className="cardsContainer mt-10 mx-auto max-w-[80%] flex flex-wrap justify-evenly bg 
-            xl:mx-auto
-            ">
-          {cardsSlice}
+        <div className="fr-container max-w-full" id="cardsContainer">
+          <ul className="fr-grid-row fr-grid-row--gutters"> {cardsSlice}</ul>
         </div>
       ) : initialState ? (
         'Aucun résultat trouvé'
