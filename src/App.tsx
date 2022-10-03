@@ -106,7 +106,7 @@ const Router = () => {
             <Route path="legal-notices" element={<LegalNotices />} />
             <Route path="cookies" element={<CookiePage />} />
             <Route path="gdpr" element={<GdprPage />} />
-            <Route path="accesibility" element={<AccessibilityPage />} />
+            <Route path="accessibility" element={<AccessibilityPage />} />
           </Route>
           <Route path="*" element={<Page404 />} />
         </Routes>
