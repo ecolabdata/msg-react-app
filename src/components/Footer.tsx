@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { DonnezVotreAvis } from './../components/customComponents/DonnezVotreAvis';
 
 const Footer: React.FC = () => {
@@ -7,7 +8,7 @@ const Footer: React.FC = () => {
         <div className="fr-container dsfr-lg:relative">
           <div className="fr-footer__body">
             <div className="fr-footer__brand fr-enlarge-link">
-              <a href="/" title="Retour à l’accueil">
+              <Link to="/" title="Retour à l’accueil">
                 <p className="fr-logo uppercase">
                   ministère <br />
                   de la transition <br />
@@ -15,7 +16,7 @@ const Footer: React.FC = () => {
                   et de la cohésion <br />
                   des territoires
                 </p>
-              </a>
+              </Link>
             </div>
             <div className="fr-footer__content">
               <p className="fr-footer__content-desc">
@@ -53,29 +54,24 @@ const Footer: React.FC = () => {
           <div className="fr-footer__bottom">
             <ul className="fr-footer__bottom-list">
               <li className="fr-footer__bottom-item">
-                <a className="fr-footer__bottom-link" href="#">
+                <Link className="fr-footer__bottom-link" to="#">
                   Plan du site
-                </a>
+                </Link>
               </li>
               <li className="fr-footer__bottom-item">
-                <a className="fr-footer__bottom-link" href="/legal/accessibility">
-                  Accessibilité
-                </a>
-              </li>
-              <li className="fr-footer__bottom-item">
-                <a className="fr-footer__bottom-link" href="/legal/legal-notices">
+                <Link className="fr-footer__bottom-link" to="/legal/legal-notices">
                   Mentions légales
-                </a>
+                </Link>
               </li>
               <li className="fr-footer__bottom-item">
-                <a className="fr-footer__bottom-link" href="/legal/gdpr">
+                <Link className="fr-footer__bottom-link" to="/legal/gdpr">
                   Données personnelles
-                </a>
+                </Link>
               </li>
               <li className="fr-footer__bottom-item">
-                <a className="fr-footer__bottom-link" href="/legal/cookies">
+                <Link className="fr-footer__bottom-link" to="/legal/cookies">
                   Gestion des cookies
-                </a>
+                </Link>
               </li>
               <li className="fr-footer__bottom-item">
                 <button
@@ -87,6 +83,7 @@ const Footer: React.FC = () => {
               </li>
             </ul>
             <div className="fr-footer__bottom-copy">
+              <p>Accessibilité non conforme</p>
               <p>
                 Sauf mention contraire, tous les contenus de ce site sont sous{' '}
                 <a

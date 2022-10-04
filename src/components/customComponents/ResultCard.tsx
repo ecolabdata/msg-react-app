@@ -158,7 +158,9 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
             <div className="fr-card__start">
               <ul className="fr-tags-group" aria-hidden={true}>
                 <li>
-                  <p className={`fr-badge`} style={{ color: cardType.color }}>
+                  <p
+                    className={`fr-badge fr-badge--sm `}
+                    style={{ color: cardType.color, backgroundColor: cardType.backgroundColor }}>
                     {toprow}
                   </p>
                 </li>
@@ -180,7 +182,7 @@ const DetailBadges = ({ contents, color }: { contents: ReactNode[]; color: strin
         <>
           {content && (
             <li className="mr-2 w-fit">
-              <p className={`fr-badge`} style={{ color }}>
+              <p className={`fr-badge fr-badge--sm `} style={{ color }}>
                 {content}
               </p>
             </li>

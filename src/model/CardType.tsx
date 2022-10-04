@@ -27,6 +27,7 @@ import { versions } from './CardVersions';
 export interface CardType {
   SVGLogo: ({ ...other }: { [x: string]: any }) => JSX.Element;
   color: string;
+  backgroundColor?: string;
   title: string;
   description: string;
   name: string;
@@ -43,6 +44,7 @@ export interface CardType {
 
 export const acheteurPublic: CardType = {
   SVGLogo: PictoCityHall,
+  backgroundColor: '#2C202B',
   color: '#F95C5E',
   //title: "Organismes publics à démarcher",
   //title: "Organismes publics ouverts à l’innovation",
@@ -58,6 +60,7 @@ export const acheteurPublic: CardType = {
 
 export const achatPrevi: CardType = {
   SVGLogo: PictoCalendar,
+  backgroundColor: '#272419',
   color: '#D8C635',
   title: 'Achats publics à venir',
   description: 'Achats publics prévus ces trois prochaines années dans votre secteur.',
@@ -70,6 +73,7 @@ export const achatPrevi: CardType = {
 
 export const investisseur: CardType = {
   SVGLogo: PictoMoney,
+  backgroundColor: '#1E2719',
   color: '#68A532',
   title: 'Investisseurs',
   description:
@@ -83,6 +87,7 @@ export const investisseur: CardType = {
 
 export const aideClient: CardType = {
   SVGLogo: PictoHealth,
+  backgroundColor: '#2C202B',
   color: '#CE70CC',
   title: 'Aides pour vos clients',
   description:
@@ -97,6 +102,7 @@ export const aideClient: CardType = {
 
 export const aideInno: CardType = {
   SVGLogo: PictoEnvironnement,
+  backgroundColor: '#272747',
   color: '#8585F6',
   title: 'Aides à l’innovation',
   description: 'Aides publiques dédiées à votre développement (ADEME, Bpifrance...)',
@@ -110,6 +116,7 @@ export const aideInno: CardType = {
 
 export const startups: CardType = {
   SVGLogo: PictoRocket,
+  backgroundColor: '#1A2624',
   color: '#4EC8AE',
   title: 'Start-up greentech',
   description: 'Entreprises éco-innovantes qui vous ressemblent ou répondent à vos besoins',
@@ -127,6 +134,7 @@ export const startups: CardType = {
 
 export const aideFin: CardType = {
   SVGLogo: PictoMoney,
+  backgroundColor: '#1E2719',
   color: '#68A532',
   title: 'Aides financières',
   description: 'Trouvez des aides pour financer vos achats',
@@ -140,6 +148,7 @@ export const aideFin: CardType = {
 
 export const sourcingSu: CardType = {
   SVGLogo: PictoRocket,
+  backgroundColor: '#1A2624',
   color: '#4EC8AE',
   title: 'Entreprises éco-innovantes',
   description: 'Sourcez des entreprises éco-innovantes qui répondent à vos besoins',
@@ -153,6 +162,7 @@ export const sourcingSu: CardType = {
 
 export const retex: CardType = {
   SVGLogo: PictoCityHall,
+  backgroundColor: '#2C202B',
   color: '#F95C5E',
   title: "Acteurs publics ouverts à l'innovation",
   description:
@@ -166,6 +176,7 @@ export const retex: CardType = {
 
 export const achatProg: CardType = {
   SVGLogo: PictoCalendar,
+  backgroundColor: '#272419',
   color: '#D8C635',
   title: 'Achats publics programmés',
   description: 'Achats programmés à 3 ans par les collectivités et organismes publics',
