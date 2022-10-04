@@ -83,6 +83,7 @@ const Footer: React.FC = () => {
               </li>
             </ul>
             <div className="fr-footer__bottom-copy">
+              <p>Accessibilité non conforme</p>
               <p>
                 Sauf mention contraire, tous les contenus de ce site sont sous{' '}
                 <a
