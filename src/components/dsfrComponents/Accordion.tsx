@@ -1,11 +1,11 @@
 import { PropsWithChildren } from 'react';
 
-export interface AccordionProps extends PropsWithChildren {
+export interface AccordionProps {
   title: React.ReactNode;
   id: string;
 }
 
-export const Accordion: React.FC<AccordionProps> = ({ title, children, id }) => {
+export const Accordion: React.FC<PropsWithChildren<AccordionProps>> = ({ title, children, id }) => {
   return (
     <section className="fr-accordion">
       <h3 className="fr-accordion__title">
@@ -20,11 +20,11 @@ export const Accordion: React.FC<AccordionProps> = ({ title, children, id }) => 
   );
 };
 
-export interface AccordionGroupProps extends PropsWithChildren {
+export interface AccordionGroupProps {
   className?: string;
 }
 
-export const AccordionGroup: React.FC<AccordionGroupProps> = ({ children, className }) => {
+export const AccordionGroup: React.FC<PropsWithChildren<AccordionGroupProps>> = ({ children, className }) => {
   return <div className={`fr-accordions-group ${className}`}>{children}</div>;
 };
 
