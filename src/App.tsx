@@ -6,6 +6,10 @@ import HomePagePublicActor from './components/page/HomePagePublicActor';
 import Page404 from './components/page/Page404';
 import MySelectionPage from './components/page/MySelectionPage';
 import WasteBinPage from './components/page/WasteBinPage';
+import LegalNotices from './components/page/LegalNoticesPage';
+import CookiePage from './components/page/CookiePage';
+import GdprPage from './components/page/GdprPage';
+import AccessibilityPage from './components/page/AccessibilityPage';
 import { AuthRequiredWall } from './components/page/AuthRequiredWall';
 import DetailsJson from './components/customComponents/DetailsJson';
 import Footer from './components/Footer';
@@ -61,7 +65,7 @@ const Router = () => {
         <Route path="*" element={<Header />} />
       </Routes>
       <main className={`h-full p-1 md:p-6 ${localStorage.scheme === 'dark' && 'bg-[#262626]'}`}>
-        {/* <BreadCumb /> */}
+        <BreadCumb />
         <Routes>
           <Route path="/" element={<HomePageStartup />} />
           <Route path="/startup" element={<HomePageStartup />} />
@@ -97,6 +101,12 @@ const Router = () => {
           <Route path="/profile">
             <Route path="ma-selection" element={<MySelectionPage />} />
             <Route path="corbeille" element={<WasteBinPage />} />
+          </Route>
+          <Route path="/legal">
+            <Route path="legal-notices" element={<LegalNotices />} />
+            <Route path="cookies" element={<CookiePage />} />
+            <Route path="gdpr" element={<GdprPage />} />
+            <Route path="accessibility" element={<AccessibilityPage />} />
           </Route>
           <Route path="*" element={<Page404 />} />
         </Routes>

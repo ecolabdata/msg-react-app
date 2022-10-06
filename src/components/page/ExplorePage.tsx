@@ -68,39 +68,31 @@ const buildExplorePage: (
         const cardSliceSize = Math.max(Math.floor((window.innerWidth - 60) / 330) * 2 - 1, 3);
 
         return (
-          <ResultCardsPreview
-            key={key}
-            cardType={cardType}
-            initialState={initialState}
-            resultCount={results.length}>
-            {results
-              .filter((x) => !isInCorbeille(x))
-              .slice(0, cardSliceSize)
-              .map((x, i) => (
-                <div className="outer-card" key={i}>
-                  <div className="md:ml-6">
-                    <ResultCard pageList={false} cardData={x} cardType={cardType} />
-                  </div>
-                </div>
-              ))}
-            {results.length - cardSliceSize < 0 ? null : (
-              <div
-                className={`cardContainer ml-6
-            rounded-r w-[330px] p-4 flex flex-col
-            justify-center
-            items-center
-            align-middle
-            relative`}
-                style={{ color: cardType.color, opacity: isLoading ? 0 : 1 }}>
-                <NavLink
-                  onClick={() => setNextScrollTarget({ top: 0 })}
-                  to={cardType.searchLink}
-                  state={initialState}>
-                  {`Voir les ${results.length - cardSliceSize} autres cartes`}
-                </NavLink>
-              </div>
-            )}
-          </ResultCardsPreview>
+          <li key={key}>
+            <ResultCardsPreview
+              cardType={cardType}
+              initialState={initialState}
+              resultCount={results.length}>
+              {results
+                .filter((x) => !isInCorbeille(x))
+                .slice(0, cardSliceSize)
+                .map((x, i) => (
+                  <ResultCard key={i} pageList={false} cardData={x} cardType={cardType} />
+                ))}
+              {results.length - cardSliceSize < 0 ? null : (
+                <li
+                  className={`fr-col-xs-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3 items-center align-middle relative`}
+                  style={{ color: cardType.color, opacity: isLoading ? 0 : 1 }}>
+                  <NavLink
+                    onClick={() => setNextScrollTarget({ top: 0 })}
+                    to={cardType.searchLink}
+                    state={initialState}>
+                    {`Voir les ${results.length - cardSliceSize} autres cartes`}
+                  </NavLink>
+                </li>
+              )}
+            </ResultCardsPreview>
+          </li>
         );
       });
 
@@ -174,9 +166,9 @@ const buildExplorePage: (
         </div>
 
         {previews && !isLoading && (
-          <div id="previews" className="researwchResultContainer mt-4 ">
+          <ul id="previews" className="researwchResultContainer mt-4 ">
             {previews}
-          </div>
+          </ul>
         )}
 
         {isLoading && <div className="mx-auto">Chargement...</div>}

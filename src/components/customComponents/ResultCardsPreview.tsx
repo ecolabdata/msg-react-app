@@ -23,8 +23,8 @@ const ResultCardsPreview: React.FC<CardsPreviewProps> = ({
   const ref = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="globalContainerCard flex flex-col justify-center md:ml-10">
-      <div className="cardGeneralInformations flex flex-wrap">
+    <div className="globalContainerCard flex flex-col justify-center mb-8 mx-4 lg:mx-12">
+      <div className="cardGeneralInformations flex flex-wrap mb-4">
         <div className="cardTitle p-2 flex-auto">
           <div className="flex items-center">
             <cardType.SVGLogo style={{ color: cardType.color }} aria-hidden={true} /> &nbsp;
@@ -41,22 +41,16 @@ const ResultCardsPreview: React.FC<CardsPreviewProps> = ({
             onClick={() => setNextScrollTarget({ top: 0 })}
             to={cardType.searchLink}
             state={initialState}
-            style={{ borderColor: cardType.color, color: cardType.color }}
-            className="w-fit h-9 text-base font-bold 
-                    addBorder border-2 p-1 rm-link-underline
-                    flex justify-center">
-            {' '}
+            aria-label={`Voir tout et filtrer: ${cardType.title}`}
+            className="w-fit h-9 text-base  text-dark-text-action p-1 rm-link-underline flex justify-center">
             <span className="my-auto">Voir tout & filtrer</span> &nbsp;
             <ArrowRight className="my-auto" width="16" height="16" />{' '}
           </NavLink>
         </div>
       </div>
 
-      <div
-        className="cardScrollContainerX
-        -ml-2 flex flex-wrap justify-evenly"
-        ref={ref}>
-        {children}
+      <div className="fr-container--fluid" ref={ref}>
+        <ul className="fr-grid-row fr-grid-row--gutters">{children}</ul>
       </div>
     </div>
   );
