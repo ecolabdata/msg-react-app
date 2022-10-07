@@ -5,7 +5,7 @@ import { ApplicationContext } from '../App';
 import { useJwtPayload } from '../utils/jwt';
 import { pages, Route } from '../utils/pages';
 import MsgLogo from './customComponents/MsgLogo';
-import SkipLink from './dsfrComponents/SkipLink';
+import SkipLinks from './dsfrComponents/SkipLinks';
 
 interface HeaderProps {
   decouvrir?: boolean;
@@ -50,7 +50,7 @@ const Header = ({ decouvrir }: HeaderProps) => {
 
   return (
     <header role="banner" className="fr-header">
-      <SkipLink />
+      <SkipLinks />
       <div className="fr-header__body">
         <div className="fr-container ">
           <div className="fr-header__body-row">
