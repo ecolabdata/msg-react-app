@@ -1,24 +1,33 @@
 import { useLocation } from 'react-router-dom';
 import { all as allCardType } from '../model/CardType';
 
-const formatedSlugSerachPage = {
-  urlToRedirect: location.pathname,
-  slugToDisplay: 'Rechercher des leviers'
+const formatedSlugSerachPage = (urlToRedirect: string) => {
+  return {
+    urlToRedirect: urlToRedirect,
+    slugToDisplay: 'Rechercher des leviers'
+  };
 };
 
-const formatSlugForCardType = () => {
-  if (allCardType.map((card) => card.searchLink).includes(window.location.pathname)) {
-    const card = allCardType.find((card) => card.searchLink === window.location.pathname);
+const formatedSlugResultPage = (urlToRedirect: string) => {
+  return {
+    urlToRedirect: urlToRedirect,
+    slugToDisplay: 'Résultats de recherche'
+  };
+};
+
+const formatSlugForCardType = (pathname: string, urlToRedirect: string) => {
+  if (allCardType.map((card) => card.searchLink).includes(pathname)) {
+    const card = allCardType.find((card) => card.searchLink === pathname);
     if (card) {
       return {
-        urlToRedirect: location.pathname,
+        urlToRedirect: urlToRedirect,
         slugToDisplay: card.title
       };
     }
   }
 };
 
-const getGoodAttributForSlugInDetailsCard = (cardData: {
+export const getGoodAttributForSlugInDetailsCard = (cardData: {
   [x: string]: string;
   cardTypeName: string;
   nom: string;
@@ -26,7 +35,7 @@ const getGoodAttributForSlugInDetailsCard = (cardData: {
   description: string;
   Projet: string;
 }) => {
-  switch (cardData.cardTypeName) {
+  switch (cardData?.cardTypeName) {
     case 'acheteurs-publics':
       return cardData.nom;
     case 'aides-innovations':
@@ -42,7 +51,7 @@ const getGoodAttributForSlugInDetailsCard = (cardData: {
   }
 };
 
-const formatSlugForDetailsCards = () => {
+const formatSlugForDetailsCards = (urlToRedirect: string) => {
   const search = useLocation().search;
   const cardData = new URLSearchParams(search).get('cardData');
 
@@ -52,33 +61,36 @@ const formatSlugForDetailsCards = () => {
   if (!slug) return;
 
   return {
-    urlToRedirect: location.pathname,
+    urlToRedirect: urlToRedirect,
     slugToDisplay: slug
   };
 };
 
-const formatSlugForBreadCumb = () => {
-  const location = useLocation();
-
-  if (window.location.pathname === '/') {
+const formatSlugForBreadCumb = (pathname: string, urlToRedirect: string) => {
+  if (pathname === '/') {
     return;
   }
 
   let pageData: { urlToRedirect: string; slugToDisplay: string } | undefined;
 
-  const pageLocationWithoutSpecialCharacters = window.location.pathname.replace(/[^a-zA-Z]/g, ' ');
+  const pageLocationWithoutSpecialCharacters = pathname.replace(/[^a-zA-Z]/g, ' ');
+  console.log(pathname, pageLocationWithoutSpecialCharacters, pathname.includes('explorer/search'));
+  // Find if it's an result page
+  if (pathname.includes('explorer/search')) {
+    pageData = formatedSlugResultPage(urlToRedirect);
+  }
 
   // Find if it's an search page
   if (pageLocationWithoutSpecialCharacters.includes('explorer')) {
-    pageData = formatedSlugSerachPage;
+    pageData = formatedSlugSerachPage(urlToRedirect);
   }
 
   // Find type of card
-  pageData = !pageData ? formatSlugForCardType() : pageData;
+  pageData = !pageData ? formatSlugForCardType(pathname, urlToRedirect) : pageData;
 
   // Find name of a details card
   if (pageLocationWithoutSpecialCharacters.includes('details')) {
-    pageData = formatSlugForDetailsCards();
+    pageData = formatSlugForDetailsCards(urlToRedirect);
   }
 
   // Default (not in different cases)
@@ -88,7 +100,7 @@ const formatSlugForBreadCumb = () => {
       pageLocationWithoutSpecialCharacters.slice(2);
 
     pageData = {
-      urlToRedirect: location.pathname,
+      urlToRedirect: urlToRedirect,
       slugToDisplay: pageLocationFirstLetterUppercase
     };
   }
