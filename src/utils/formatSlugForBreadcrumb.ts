@@ -45,7 +45,7 @@ const getGoodAttributForSlugInDetailsCard = (cardData: {
   }
 };
 
-const formatSlugForDetailsCards = (query: { [k: string]: string; }, location: Location) => {
+const formatSlugForDetailsCards = (query: { [k: string]: string }, location: Location) => {
   const initialState = location.state as { cardData: AnyCard } | null;
   if (!initialState?.cardData && !query.cardData)
     throw new Error('Missing cardData to generate page');
@@ -60,8 +60,7 @@ const formatSlugForDetailsCards = (query: { [k: string]: string; }, location: Lo
   };
 };
 
-const formatSlugForBreadCumb = (query: { [k: string]: string; }, location: Location) => {
-
+const formatSlugForBreadCumb = (query: { [k: string]: string }, location: Location) => {
   if (window.location.pathname === '/') {
     return;
   }
