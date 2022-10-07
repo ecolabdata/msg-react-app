@@ -54,7 +54,7 @@ const buildExplorePage: (
             setErrorTxt('Une erreur serveur inconnue est survenue');
           });
       } else {
-        setErrorTxt("La description de l'entreprise est obligatoire");
+        setErrorTxt("Erreur: la description de l'entreprise est obligatoire");
       }
     };
 
@@ -115,19 +115,13 @@ const buildExplorePage: (
           className="h-fit mx-auto max-w-headerSize
             ">
           <PitchThematicsKeywords
-            usedDescription={[description, setDescription]}
+            usedDescription={[description, setDescription, errorTxt]}
             usedMotsClef={[motsclefs, setMotsclef]}
             usedSecteurs={[secteurs, setSecteurs]}
             usedInListPage={false}
             openPitchContainerFromStart={false}
           />
         </form>
-
-        <div
-          className={`errorContainer ${errorTxt.length <= 0 && 'hidden'} 
-            h-12 flex justify-center items-center color`}>
-          <p style={{ color: 'hsla(0, 100%, 65%, 0.9)' }}>{errorTxt}</p>
-        </div>
 
         <div className="buttonsContainer mx-auto max-w-headerSize flex justify-center flex-wrap">
           <button
