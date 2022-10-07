@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ApplicationContext } from '../App';
 import { useJwtPayload } from '../utils/jwt';
 import { pages, Route } from '../utils/pages';
-import LogoMSG from './../assets/msg-icon.svg';
+import MsgLogo from './customComponents/MsgLogo';
 
 interface HeaderProps {
   decouvrir?: boolean;
@@ -80,21 +80,10 @@ const Header = ({ decouvrir }: HeaderProps) => {
               </div>
               <div className="fr-header__service flex">
                 <Link
-                  className="flex"
+                  className="flex items-center"
                   to="/"
                   title="Accueil - Mes services GreenTech - Ministère de la transition écologique et de la cohésion des territoires">
-                  <img
-                    className="h-12 mt-1 mr-2"
-                    src={LogoMSG}
-                    alt="Icône d'indication, version beta "
-                  />
-                  <p
-                    className="fr-header__service-title capitalize
-                                     after:rounded-sm after:content-['beta'] after:ml-2 after:relative after:bottom-1 after:w-content after:h-content after:px-1 
-                                     after:text-center after:text-xs after:font-bold after:bg-beta">
-                    mes services
-                    <br /> greentech
-                  </p>
+                  <MsgLogo />
                 </Link>
               </div>
             </div>
