@@ -176,16 +176,15 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
         </div>
       </div>
       {isLoading && <ScreenReaderOnlyText content={'Chargement en cours'} aria-live="polite" />}
-      {!isLoading && cardsSlice.length && (
+      {!isLoading && cardsSlice.length ? (
         <ScreenReaderOnlyText
           content={`il y'a ${cardsSlice.length} résultats`}
           aria-live="polite"
         />
-      )}
+      ) : null}
       {!isLoading && cardsSlice && cardsSlice.length === 0 && initialState && (
         <ScreenReaderOnlyText content={`Aucun résultat trouvé`} aria-live="polite" />
       )}
-
       {cardsSlice.length > 0 ? (
         <div className="fr-container max-w-full" id="cardsContainer">
           <ul className="fr-grid-row fr-grid-row--gutters"> {cardsSlice}</ul>
