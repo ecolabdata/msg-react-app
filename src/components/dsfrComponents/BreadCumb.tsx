@@ -7,9 +7,9 @@ const BreadCumb: React.FC = () => {
   );
 
   const createSlugForBreadCumb = () => {
-    const pageData = formatSlugForBreadCumb()
+    const pageData = formatSlugForBreadCumb();
 
-    if (!pageData) return
+    if (!pageData) return;
 
     const pathNameAlreadyPresentInNavigationHistory = navHistory.find(
       (pageDataObject) => pageDataObject.slugToDisplay === pageData?.slugToDisplay
@@ -21,7 +21,6 @@ const BreadCumb: React.FC = () => {
 
     return pageData.slugToDisplay;
   };
-
 
   useEffect(() => {
     window.addEventListener('popstate', (event) => {

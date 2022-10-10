@@ -29,7 +29,8 @@ const ResultCardsPreview: React.FC<CardsPreviewProps> = ({
           <div className="flex items-center">
             <cardType.SVGLogo style={{ color: cardType.color }} aria-hidden={true} /> &nbsp;
             <h2 className="w-fit font-bold md:text-2xl">
-              {cardType.title} <span className="bg-yellow md:text-lg">{`(${resultCount} résultats)`}</span>
+              {cardType.title}{' '}
+              <span className="bg-yellow md:text-lg">{`(${resultCount} résultats)`}</span>
             </h2>
           </div>
 
@@ -42,7 +43,8 @@ const ResultCardsPreview: React.FC<CardsPreviewProps> = ({
             to={cardType.searchLink}
             state={initialState}
             aria-label={`Voir tout et filtrer: ${cardType.title}`}
-            className="w-fit h-9 text-base  text-dark-text-action p-1 rm-link-underline flex justify-center">
+            className="w-fit h-9 text-base  text-dark-text-action p-1 rm-link-underline flex justify-center"
+          >
             <span className="my-auto">Voir tout & filtrer</span> &nbsp;
             <ArrowRight className="my-auto" width="16" height="16" />{' '}
           </NavLink>
@@ -50,7 +52,9 @@ const ResultCardsPreview: React.FC<CardsPreviewProps> = ({
       </div>
 
       <div className="fr-container--fluid" ref={ref}>
-        <ul className="fr-grid-row fr-grid-row--gutters">{children}</ul>
+        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {children}
+        </ul>
       </div>
     </div>
   );

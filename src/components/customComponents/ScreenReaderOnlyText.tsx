@@ -14,7 +14,8 @@ export const ScreenReaderOnlyText: React.FC<ScreenReaderOnlyTextProps> = ({
         width: 1,
         height: 1,
         overflow: 'hidden'
-      }}>
+      }}
+    >
       {content}
     </span>
   );
