@@ -33,7 +33,7 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
         value={value}
         form={formId}
         className={classNames(
-          `cursor-text mt-2 w-full rounded-t-sm p-2 bg-background-inputs focus:border-1 focus:border-blue-500 focus:border-solid`,
+          `cursor-text mt-2 w-full rounded-t-sm p-2 bg-background-inputs focus:border-1 focus:border-white focus:border-solid`,
           !errorText ? 'addBorder-b border-3 border-white' : 'addBorder border-1 border-red-500',
           classNameProp
         )}
