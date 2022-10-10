@@ -24,7 +24,10 @@ export interface AccordionGroupProps {
   className?: string;
 }
 
-export const AccordionGroup: React.FC<PropsWithChildren<AccordionGroupProps>> = ({ children, className }) => {
+export const AccordionGroup: React.FC<PropsWithChildren<AccordionGroupProps>> = ({
+  children,
+  className
+}) => {
   return <div className={`fr-accordions-group ${className}`}>{children}</div>;
 };
 

@@ -75,7 +75,8 @@ const Header = ({ decouvrir }: HeaderProps) => {
                     aria-controls="modal-833"
                     aria-haspopup="menu"
                     title="Menu"
-                    id="fr-btn-menu-mobile">
+                    id="fr-btn-menu-mobile"
+                  >
                     Menu
                   </button>
                 </div>
@@ -84,7 +85,8 @@ const Header = ({ decouvrir }: HeaderProps) => {
                 <Link
                   className="flex items-center"
                   to="/"
-                  title="Accueil - Mes services GreenTech - Ministère de la transition écologique et de la cohésion des territoires">
+                  title="Accueil - Mes services GreenTech - Ministère de la transition écologique et de la cohésion des territoires"
+                >
                   <MsgLogo />
                 </Link>
               </div>
@@ -145,7 +147,8 @@ function DecouvrirButton() {
         setNextScrolTarget({ top: 0 });
         navigate('/explorer');
       }}
-      className=" fr-btn">
+      className=" fr-btn"
+    >
       Découvrir
     </button>
   );
