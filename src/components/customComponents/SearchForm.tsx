@@ -5,14 +5,14 @@ import { OverlappingTitle } from './OverlappingTitle';
 import SelectInputOptions from './SelectInputOptions';
 import TextAreaInput from './TextAreaInput';
 
-interface LeftSideFormProps {
+interface SearchFormProps {
   usedInListPage: boolean;
   usedDescription: [string, React.Dispatch<React.SetStateAction<string>>, string];
   usedSecteurs: [string[], React.Dispatch<React.SetStateAction<string[]>>];
   usedMotsClef: [string[], React.Dispatch<React.SetStateAction<string[]>>];
 }
 
-const LeftSideForm: React.FC<LeftSideFormProps> = ({
+const SearchForm: React.FC<SearchFormProps> = ({
   usedInListPage,
   usedSecteurs,
   usedMotsClef,
@@ -27,7 +27,7 @@ const LeftSideForm: React.FC<LeftSideFormProps> = ({
   return (
     <>
       <div
-        className={`leftSideForm ${
+        className={`SearchForm ${
           !usedInListPage ? 'bg-background-form  h-[83%] lg:w-1/2 xl:max-w-[588px] ' : ' lg:w-1/2'
         } 
                 mb-8 h-[75%] w-full flex justify-center rounded-md  
@@ -121,4 +121,4 @@ const LeftSideForm: React.FC<LeftSideFormProps> = ({
   );
 };
 
-export default LeftSideForm;
+export default SearchForm;

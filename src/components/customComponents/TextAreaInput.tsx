@@ -1,4 +1,4 @@
-import { classNames, generateNumber } from '../../utils/various';
+import { classNames, generateNumber } from '../../utils/utilityFunctions';
 
 interface TextAreaInputProps {
   value: string;
