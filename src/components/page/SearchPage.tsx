@@ -112,7 +112,7 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
               />
               &nbsp;
               {cardType.title} &nbsp;{' '}
-              <span className="bg-yellow md:text-3xl font-light">{`(${filteredCards.length})`}</span>
+              <span className="bg-yellow md:text-3xl font-light">{`(${filteredCards.length} résultats)`}</span>
             </div>
           </h2>
 
@@ -184,6 +184,8 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
 
       {cardsSlice.length > 0 ? (
         <div className="fr-container max-w-full" id="cardsContainer">
+          <span className="flex justify-end font-bold mb-4">{`(${filteredCards.length} résultats)`}</span>
+
           <ul className="fr-grid-row fr-grid-row--gutters"> {cardsSlice}</ul>
         </div>
       ) : initialState ? (
