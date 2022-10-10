@@ -29,7 +29,7 @@ const ResultCardsPreview: React.FC<CardsPreviewProps> = ({
           <div className="flex items-center">
             <cardType.SVGLogo style={{ color: cardType.color }} aria-hidden={true} /> &nbsp;
             <h2 className="w-fit font-bold md:text-2xl">
-              {cardType.title} <span className="bg-yellow md:text-lg">{`(${resultCount})`}</span>
+              {cardType.title} <span className="bg-yellow md:text-lg">{`(${resultCount} résultats)`}</span>
             </h2>
           </div>
 
