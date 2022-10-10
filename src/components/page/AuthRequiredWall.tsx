@@ -18,7 +18,8 @@ const template = (bigTitle: string, smallTitle: string) => (
       className="
                 fr-btn fr-btn--primary mt-8
                 hover:bg-claire-bf__hover flex justify-between"
-      rel="noreferrer">
+      rel="noreferrer"
+    >
       <span>Je demande un accès</span>
     </a>
   </div>
@@ -48,7 +49,8 @@ export const AuthRequiredWall = () => {
         <div
           className="
                     h-[100vh] p-2
-                    flex items-center justify-center">
+                    flex items-center justify-center"
+        >
           {message}
         </div>
       </>

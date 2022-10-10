@@ -43,7 +43,8 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
       />
       {errorText && (
         <div
-          className="h-12 w-full flex justify-center items-center color"
+          className={`errorContainer ${errorText.length <= 0 && 'hidden'} 
+        h-12 flex justify-center items-center color`}
           id={`${inputId}-error`}
           aria-live="polite">
           <p style={{ color: 'hsla(0, 100%, 65%, 0.9)' }}>{errorText}</p>
