@@ -10,6 +10,7 @@ import { InitialState } from '../../utils/InitialState';
 import { PitchThematicsKeywords } from '../customComponents/PitchThematicsKeywords';
 import ResultCard from '../customComponents/ResultCard';
 import ResultCardsPreview from '../customComponents/ResultCardsPreview';
+import ScreenReaderOnlyText from '../customComponents/ScreenReaderOnlyText';
 
 const buildExplorePage: (
   cardsToDisplay: CardType[],
@@ -54,7 +55,7 @@ const buildExplorePage: (
             setErrorTxt('Une erreur serveur inconnue est survenue');
           });
       } else {
-        setErrorTxt("La description de l'entreprise est obligatoire");
+        setErrorTxt("Erreur: la description de l'entreprise est obligatoire");
       }
     };
 
@@ -72,8 +73,7 @@ const buildExplorePage: (
             <ResultCardsPreview
               cardType={cardType}
               initialState={initialState}
-              resultCount={results.length}
-            >
+              resultCount={results.length}>
               {results
                 .filter((x) => !isInCorbeille(x))
                 .slice(0, cardSliceSize)
@@ -89,8 +89,7 @@ const buildExplorePage: (
       <>
         <h1
           className="font-bold my-2 mx-auto max-w-headerSize text-xl flex text-center justify-center items-center w-[90%]
-            md:my-8 md:text-[30px] leading-5"
-        >
+            md:my-8 md:text-[30px] leading-5">
           {' '}
           <Magnifying width="31px" height="31px" className="mr-4" aria-hidden={true} /> Formulaire
           de recherche en 3 étapes !{' '}
@@ -103,23 +102,15 @@ const buildExplorePage: (
           }}
           id="keywordsForm"
           className="h-fit mx-auto max-w-headerSize
-            "
-        >
+            ">
           <PitchThematicsKeywords
-            usedDescription={[description, setDescription]}
+            usedDescription={[description, setDescription, errorTxt]}
             usedMotsClef={[motsclefs, setMotsclef]}
             usedSecteurs={[secteurs, setSecteurs]}
             usedInListPage={false}
             openPitchContainerFromStart={false}
           />
         </form>
-
-        <div
-          className={`errorContainer ${errorTxt.length <= 0 && 'hidden'} 
-            h-12 flex justify-center items-center color`}
-        >
-          <p style={{ color: 'hsla(0, 100%, 65%, 0.9)' }}>{errorTxt}</p>
-        </div>
 
         <div className="buttonsContainer mx-auto max-w-headerSize flex justify-center flex-wrap">
           <button
@@ -128,8 +119,7 @@ const buildExplorePage: (
               setDescription('');
               setSecteurs([]);
               setMotsclef([]);
-            }}
-          >
+            }}>
             {' '}
             réinitialiser{' '}
           </button>
@@ -141,8 +131,7 @@ const buildExplorePage: (
             }}
             form="keywordsForm"
             disabled={isLoading}
-            className="fr-btn fr-btn--lg fr-btn--primary capitalize"
-          >
+            className="fr-btn fr-btn--lg fr-btn--primary capitalize">
             <span className="mx-auto flex items-center">
               {!isLoading && (
                 <FillMagnifying
@@ -163,6 +152,14 @@ const buildExplorePage: (
           <ul id="previews" className="researwchResultContainer mt-4 ">
             {previews}
           </ul>
+        )}
+        {isLoading && <ScreenReaderOnlyText content={'Chargement en cours'} aria-live="polite" />}
+
+        {!isLoading && previews.length && (
+          <ScreenReaderOnlyText
+            content={`il y'a ${previews.length} catégories de résultats`}
+            aria-live="polite"
+          />
         )}
 
         {isLoading && <div className="mx-auto">Chargement...</div>}
