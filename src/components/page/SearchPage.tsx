@@ -24,6 +24,7 @@ import { NoRequestFilter } from '../customComponents/filter/NoRequestFilter';
 import { RequestFilter } from '../customComponents/filter/RequestFIlter';
 import { PitchThematicsKeywords } from '../customComponents/PitchThematicsKeywords';
 import ResultCard from '../customComponents/ResultCard';
+import ScreenReaderOnlyText from '../customComponents/ScreenReaderOnlyText';
 import Pagination from '../dsfrComponents/Pagination';
 
 type Props = {
@@ -174,6 +175,16 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
           </div>
         </div>
       </div>
+      {isLoading && <ScreenReaderOnlyText content={'Chargement en cours'} aria-live="polite" />}
+      {!isLoading && cardsSlice.length && (
+        <ScreenReaderOnlyText
+          content={`il y'a ${cardsSlice.length} résultats`}
+          aria-live="polite"
+        />
+      )}
+      {!isLoading && cardsSlice && cardsSlice.length === 0 && initialState && (
+        <ScreenReaderOnlyText content={`Aucun résultat trouvé`} aria-live="polite" />
+      )}
 
       {cardsSlice.length > 0 ? (
         <div className="fr-container max-w-full" id="cardsContainer">

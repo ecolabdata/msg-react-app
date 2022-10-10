@@ -10,6 +10,7 @@ import { InitialState } from '../../utils/InitialState';
 import { PitchThematicsKeywords } from '../customComponents/PitchThematicsKeywords';
 import ResultCard from '../customComponents/ResultCard';
 import ResultCardsPreview from '../customComponents/ResultCardsPreview';
+import ScreenReaderOnlyText from '../customComponents/ScreenReaderOnlyText';
 
 const buildExplorePage: (
   cardsToDisplay: CardType[],
@@ -163,6 +164,14 @@ const buildExplorePage: (
           <ul id="previews" className="researwchResultContainer mt-4 ">
             {previews}
           </ul>
+        )}
+        {isLoading && <ScreenReaderOnlyText content={'Chargement en cours'} aria-live="polite" />}
+
+        {!isLoading && previews.length && (
+          <ScreenReaderOnlyText
+            content={`il y'a ${previews.length} catégories de résultats`}
+            aria-live="polite"
+          />
         )}
 
         {isLoading && <div className="mx-auto">Chargement...</div>}
