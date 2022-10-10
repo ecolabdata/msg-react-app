@@ -3,10 +3,11 @@ import { classNames, generateNumber } from '../../utils/various';
 interface TextAreaInputProps {
   value: string;
   label: string;
-  errorText: string;
   onValueChange: (value: string) => void;
   formId: string;
+  errorText?: string;
   required?: boolean;
+  className?: string;
 }
 
 const TextAreaInput: React.FC<TextAreaInputProps> = ({
@@ -15,7 +16,8 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
   value,
   errorText = '',
   required = false,
-  onValueChange
+  onValueChange,
+  className: classNameProp = ''
 }) => {
   const id = generateNumber(1, 1000);
   const inputId = `${formId}-${id}`;
@@ -29,10 +31,11 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
         id={inputId}
         onChange={(e) => onValueChange(e.target.value)}
         value={value}
-        form="keywordsForm"
+        form={formId}
         className={classNames(
-          'mt-2 w-full rounded-t-sm  p-2 bg-background-inputs lg:min-h-[212px]',
-          !errorText ? 'addBorder-b border-3 border-white' : 'addBorder border-1 border-red-500'
+          `cursor-text mt-2 w-full rounded-t-sm p-2 bg-background-inputs focus:border-1 focus:border-blue-500 focus:border-solid`,
+          !errorText ? 'addBorder-b border-3 border-white' : 'addBorder border-1 border-red-500',
+          classNameProp
         )}
         aria-invalid={!!errorText}
         aria-required={required}
