@@ -196,7 +196,7 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
         <div className="fr-container max-w-full" id="cardsContainer">
           <span className="flex justify-end font-bold mb-4">{`(${filteredCards.length} résultats)`}</span>
 
-          <ul className="fr-grid-row fr-grid-row--gutters"> {cardsSlice}</ul>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"> {cardsSlice}</ul>
         </div>
       ) : initialState ? (
         'Aucun résultat trouvé'
