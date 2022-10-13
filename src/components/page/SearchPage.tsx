@@ -21,8 +21,10 @@ import { InitialState } from '../../utils/InitialState';
 import { AideRequestFilter } from '../customComponents/filter/AideRequestFilter';
 import { InvestisseurRequestFilter } from '../customComponents/filter/InvestisseurRequestFilter';
 import { NoRequestFilter } from '../customComponents/filter/NoRequestFilter';
+import { ProjetAchatRequestFilter } from '../customComponents/filter/ProjetAchatRequestFilter';
 import { RequestFilter } from '../customComponents/filter/RequestFIlter';
 import { PitchThematicsKeywords } from '../customComponents/PitchThematicsKeywords';
+
 import ResultCard from '../customComponents/ResultCard';
 import Pagination from '../dsfrComponents/Pagination';
 
@@ -247,7 +249,7 @@ export const SearchPageAcheteurPublic = () => (
 export const SearchPageAchatPrevi = () => (
   <SearchPage
     cardType={achatPrevi}
-    requestFilterBuilder={(initState) => new NoRequestFilter(initState as any, achatPrevi)}
+    requestFilterBuilder={(initState) => new ProjetAchatRequestFilter(initState as any, achatPrevi)}
   />
 );
 
@@ -273,6 +275,7 @@ export const SearchPageRetex = () => (
 export const SearchPageAchatProg = () => (
   <SearchPage
     cardType={achatProg}
-    requestFilterBuilder={(initState) => new NoRequestFilter(initState as any, achatProg)}
+    requestFilterBuilder={(initState) => new ProjetAchatRequestFilter(initState as any, achatProg)}
   />
 );
+
