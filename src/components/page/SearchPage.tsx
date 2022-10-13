@@ -9,6 +9,7 @@ import { InitialState } from '../../utils/InitialState';
 import { AideRequestFilter } from '../customComponents/filter/AideRequestFilter';
 import { InvestisseurRequestFilter } from '../customComponents/filter/InvestisseurRequestFilter';
 import { NoRequestFilter } from '../customComponents/filter/NoRequestFilter';
+import { ProjetAchatRequestFilter } from '../customComponents/filter/ProjetAchatRequestFilter';
 import { RequestFilter, } from '../customComponents/filter/RequestFIlter';
 import ResultCard from '../customComponents/ResultCard';
 import Pagination from '../dsfrComponents/Pagination';
@@ -176,11 +177,11 @@ export const SearchPageAidesInno = () => <SearchPage cardType={aideInno} request
 export const SearchPageInvestisseur = () => <SearchPage cardType={investisseur} requestFilterBuilder={initState => new InvestisseurRequestFilter(initState as any, investisseur)} />
 export const SearchPageStartups = () => <SearchPage cardType={startups} requestFilterBuilder={initState => new NoRequestFilter(initState as any, startups)} />
 export const SearchPageAcheteurPublic = () => <SearchPage cardType={acheteurPublic} requestFilterBuilder={initState => new NoRequestFilter(initState as any, acheteurPublic)} />
-export const SearchPageAchatPrevi = () => <SearchPage cardType={achatPrevi} requestFilterBuilder={initState => new NoRequestFilter(initState as any, achatPrevi)} />
+export const SearchPageAchatPrevi = () => <SearchPage cardType={achatPrevi} requestFilterBuilder={initState => new ProjetAchatRequestFilter(initState as any, achatPrevi)} />
 
 /*Persona: Acteur public*/
 export const SearchPageAidesFin = () => <SearchPage cardType={aideFin} requestFilterBuilder={initState => new AideRequestFilter(initState as any, aideFin)} />
 export const SearchPageSourcingSu= () => <SearchPage cardType={sourcingSu} requestFilterBuilder={initState => new NoRequestFilter(initState as any, sourcingSu)} />
 export const SearchPageRetex = () => <SearchPage cardType={retex} requestFilterBuilder={initState => new NoRequestFilter(initState as any, retex)} />
-export const SearchPageAchatProg= () => <SearchPage cardType={achatProg} requestFilterBuilder={initState => new NoRequestFilter(initState as any, achatProg)} />
+export const SearchPageAchatProg= () => <SearchPage cardType={achatProg} requestFilterBuilder={initState => new ProjetAchatRequestFilter(initState as any, achatProg)} />
 
