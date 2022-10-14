@@ -23,7 +23,8 @@ const Select: React.FC<SelectProps> = ({
     <div
       className={`
             ${classes}
-            fr-select-group`}>
+            fr-select-group`}
+    >
       <label className="fr-label" htmlFor={`select-${label}`}>
         {label}
       </label>
@@ -32,7 +33,8 @@ const Select: React.FC<SelectProps> = ({
           value=""
           selected={selected === ''}
           disabled={!defaultOption}
-          hidden={!defaultOption}>
+          hidden={!defaultOption}
+        >
           {defaultOption || 'Selectionnez une option'}
         </option>
         {optionsData.map((option) => (

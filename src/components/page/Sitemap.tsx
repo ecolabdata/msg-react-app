@@ -1,53 +1,32 @@
 import { useEffect, useState } from 'react';
-import reactRouterToArray from 'react-router-to-array';
-import { search } from '../../api/Api';
-import routes from '../../model/routes';
 import { Link } from 'react-router-dom';
-import formatSlugForBreadCumb, {
-  getGoodAttributForSlugInDetailsCard
-} from '../../utils/formatSlugForBreadcrumb';
+import reactRouterToArray from 'react-router-to-array';
+import routes from '../../model/routes';
+import formatSlugForBreadCumb from '../../utils/formatSlugForBreadcrumb';
+
+type FormatedRoute =
+  | {
+      urlToRedirect: string;
+      slugToDisplay: string;
+    }
+  | undefined;
 
 const Sitemap = () => {
-  const [allCards, setAllCards] = useState<any>();
-  const [allRoutes, setAllRoutes] = useState<any>();
+  const [allRoutes, setAllRoutes] = useState<string[]>();
 
   useEffect(() => {
-    search({
-      description: '',
-      secteurs: [],
-      motsclefs: []
-    }).then((res) => setAllCards(res.cards));
-
     setAllRoutes(reactRouterToArray(routes));
   }, []);
 
-  if (!allRoutes || !allCards) {
+  if (!allRoutes) {
     return <p>Chargement ...</p>;
   }
 
-  const cardsDetailsData = Object.values(allCards)
-    .flat()
-    .map((card: any) => {
-      if (!card.slug) {
-        return undefined;
-      }
-
-      const linkTo = `/${card.cardTypeName}/details/${card.slug}?cardData=${encodeURIComponent(
-        JSON.stringify(card)
-      )}`;
-
-      return {
-        slugToDisplay: getGoodAttributForSlugInDetailsCard(card),
-        urlToRedirect: linkTo
-      };
-    })
-    .filter(Boolean);
-
-  const titou = allRoutes.map((route: string) => {
-    return formatSlugForBreadCumb(route, route);
-  });
-
-  const allRoutesAndCards = [...titou, ...cardsDetailsData];
+  const allFormatedRoutes = allRoutes
+    .filter((route: string) => !route.includes('/search'))
+    .map((route: string) => {
+      return formatSlugForBreadCumb(route, route);
+    });
 
   const keys = allRoutes.map((str: string) => {
     const middle = str.slice(str.indexOf('/') + 1, str.lastIndexOf('/'));
@@ -62,9 +41,9 @@ const Sitemap = () => {
     .filter(Boolean)
     .filter((route: string) => !route.includes('/'));
 
-  const toto = filteredArray.map((bla: string) => {
-    const filterInRoutes = allRoutesAndCards.filter((route: any) =>
-      route?.urlToRedirect?.includes(bla)
+  const allRoutesFiltered = filteredArray.map((stringRoute: string) => {
+    const filterInRoutes = allFormatedRoutes.filter((route: FormatedRoute) =>
+      route?.urlToRedirect?.includes(stringRoute)
     );
 
     return filterInRoutes;
@@ -74,47 +53,34 @@ const Sitemap = () => {
     <>
       <h1 className="mt-4 w-full font-bold text-3xl text-center">Plan du site</h1>
       <ul>
-        {toto.map((routes: any[], index: number) => {
+        <li key={'/'}>
+          {' '}
+          <Link className="self-end text-md" to={'/'}>
+            Accueil
+          </Link>
+        </li>
+
+        {allRoutesFiltered.map((routes: FormatedRoute[], key: number) => {
           return (
-            <li className="fr-highlight mb-6" key={index}>
+            <li key={key}>
               {typeof routes !== 'string' &&
-                routes.map((route: any, index: number) => {
+                routes.map((route: FormatedRoute, index: number) => {
+                  if (!route) return;
+
                   if (index === 0) {
                     return (
                       <li key={route.urlToRedirect}>
-                        {' '}
                         <Link className="self-end text-md" to={route.urlToRedirect}>
-                          {route === '/' ? 'Accueil' : route.slugToDisplay}
-
-                          {/* <p className="text-xs">{route.urlToRedirect}</p> */}
-                        </Link>
-                      </li>
-                    );
-                  }
-
-                  console.log(
-                    'route.urlToRedirect.includes("/details")',
-                    route.urlToRedirect.includes('/details')
-                  );
-
-                  if (route.urlToRedirect.includes('/details')) {
-                    return (
-                      <li key={route.urlToRedirect} className="ml-8">
-                        <Link className="self-end text-md" to={route.urlToRedirect}>
-                          {route === '/' ? 'Accueil' : route.slugToDisplay}
-
-                          {/* <p className="text-xs">{route.urlToRedirect}</p> */}
+                          {route.slugToDisplay}
                         </Link>
                       </li>
                     );
                   }
 
                   return (
-                    <li key={route} className="ml-4">
+                    <li key={route.urlToRedirect} className="ml-4">
                       <Link className="self-end text-md" to={route.urlToRedirect}>
-                        {route === '/' ? 'Accueil' : route.slugToDisplay}
-
-                        {/* <p className="text-xs">{route.urlToRedirect}</p> */}
+                        {route.urlToRedirect === '/' ? 'Accueil' : route.slugToDisplay}
                       </Link>
                     </li>
                   );

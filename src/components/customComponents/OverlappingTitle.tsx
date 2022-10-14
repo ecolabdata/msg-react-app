@@ -8,11 +8,13 @@ export const OverlappingTitle: React.FC<{
       <div
         className={`titleContainer ${
           !usedInListPage && 'absolute h-0 -top-5 left-4 overflow-visible'
-        }`}>
+        }`}
+      >
         <div className="flex w-fit">
           <h2
             className="text-xl italic text-dark-text-action font-[Spectral] flex items-baseline
-                  md:text-3xl">
+                  md:text-3xl"
+          >
             {number} <span className="mx-2 elipsis"></span> {txt}
           </h2>
         </div>
