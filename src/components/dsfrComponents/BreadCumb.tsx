@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useQuery } from '../../hooks/useQuery';
 import formatSlugForBreadCumb from '../../utils/formatSlugForBreadcrumb';
 
 const BreadCumb: React.FC = () => {
   const [navHistory, setNavHistory] = useState<{ urlToRedirect: string; slugToDisplay: string }[]>(
     []
   );
+  const query = useQuery();
+  const location = useLocation();
 
   const createSlugForBreadCumb = () => {
-    const pageData = formatSlugForBreadCumb();
+    const pageData = formatSlugForBreadCumb(query, location);
 
     if (!pageData) return;
 

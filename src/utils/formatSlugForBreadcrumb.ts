@@ -1,5 +1,8 @@
 import { useLocation } from 'react-router-dom';
+import { AnyCard } from '../api/Api';
+import { useQuery } from '../hooks/useQuery';
 import { all as allCardType } from '../model/CardType';
+import { Location } from 'react-router-dom';
 
 const formatedSlugSerachPage = {
   urlToRedirect: location.pathname,
@@ -42,11 +45,11 @@ const getGoodAttributForSlugInDetailsCard = (cardData: {
   }
 };
 
-const formatSlugForDetailsCards = () => {
-  const search = useLocation().search;
-  const cardData = new URLSearchParams(search).get('cardData');
-
-  const cardDataObject = cardData && JSON.parse(cardData);
+const formatSlugForDetailsCards = (query: { [k: string]: string; }, location: Location) => {
+  const initialState = location.state as { cardData: AnyCard } | null;
+  if (!initialState?.cardData && !query.cardData)
+    throw new Error('Missing cardData to generate page');
+  const cardDataObject = initialState?.cardData || JSON.parse(query.cardData);
 
   const slug = getGoodAttributForSlugInDetailsCard(cardDataObject);
   if (!slug) return;
@@ -57,8 +60,7 @@ const formatSlugForDetailsCards = () => {
   };
 };
 
-const formatSlugForBreadCumb = () => {
-  const location = useLocation();
+const formatSlugForBreadCumb = (query: { [k: string]: string; }, location: Location) => {
 
   if (window.location.pathname === '/') {
     return;
@@ -78,7 +80,7 @@ const formatSlugForBreadCumb = () => {
 
   // Find name of a details card
   if (pageLocationWithoutSpecialCharacters.includes('details')) {
-    pageData = formatSlugForDetailsCards();
+    pageData = formatSlugForDetailsCards(query, location);
   }
 
   // Default (not in different cases)
