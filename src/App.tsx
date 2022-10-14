@@ -1,22 +1,10 @@
 import { createContext, Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
+
 import './App.css';
-import HomePageStartup from './components/page/HomePageStartup';
-import HomePagePublicActor from './components/page/HomePagePublicActor';
-import Page404 from './components/page/Page404';
-import MySelectionPage from './components/page/MySelectionPage';
-import WasteBinPage from './components/page/WasteBinPage';
-import LegalNotices from './components/page/LegalNoticesPage';
-import CookiePage from './components/page/CookiePage';
-import GdprPage from './components/page/GdprPage';
-import AccessibilityPage from './components/page/AccessibilityPage';
 import { AuthRequiredWall } from './components/page/AuthRequiredWall';
-import DetailsJson from './components/customComponents/DetailsJson';
-import Footer from './components/Footer';
-import Header from './components/Header';
 import { useTrackPage } from './hooks/useTrackPage';
-import { JwtAuthProvider } from './utils/jwt';
-import { all as allCardType } from './model/CardType';
+import routes from './model/routes';
 import {
   defaultUsedCorbeille,
   defaultUsedFavoris,
@@ -25,8 +13,7 @@ import {
   UsedFavoris,
   useFavoris
 } from './utils/categoris';
-import BreadCumb from './components/dsfrComponents/BreadCumb';
-import { ExplorePagePublicActor, ExplorePageStartUp } from './components/page/ExplorePage';
+import { JwtAuthProvider } from './utils/jwt';
 
 export const ApplicationContext = createContext<{
   usedFavoris: UsedFavoris;
@@ -59,63 +46,7 @@ const Router = () => {
     return <></>;
   };
 
-  const Authentified = () => (
-    <>
-      <Routes>
-        <Route path="*" element={<Header />} />
-      </Routes>
-      <main className={`h-full p-1 md:p-6 ${localStorage.scheme === 'dark' && 'bg-[#262626]'}`}>
-        <BreadCumb />
-        <div id="main-content">
-          <Routes>
-            <Route path="/" element={<HomePageStartup />} />
-            <Route path="/startup" element={<HomePageStartup />} />
-            <Route path="/acteurs-publics" element={<HomePagePublicActor />} />
-            <Route path="/startup/explorer" element={<ExplorePageStartUp alpha={false} />} />
-            <Route path="/startup/explorer/search" element={<ExplorePageStartUp alpha={false} />} />
-            <Route
-              path="/acteurs-publics/explorer"
-              element={<ExplorePagePublicActor alpha={false} />}
-            />
-            <Route
-              path="/acteurs-publics/explorer/search"
-              element={<ExplorePagePublicActor alpha={false} />}
-            />
-            {/* <Route path="/explorer-alpha" element={<ExplorePage alpha={true} />} /> */}
-
-            {allCardType.map((cardType) => (
-              <>
-                <Route path={cardType.searchLink} element={<cardType.SearchPage />} />
-                <Route path={cardType.searchLink + '/search'} element={<cardType.SearchPage />} />
-                <Route
-                  path={`/${cardType.name}/details/:slug`}
-                  element={
-                    cardType.DetailsPage ? (
-                      <cardType.DetailsPage />
-                    ) : (
-                      <DetailsJson cardType={cardType} />
-                    )
-                  }
-                />
-              </>
-            ))}
-            <Route path="/profile">
-              <Route path="ma-selection" element={<MySelectionPage />} />
-              <Route path="corbeille" element={<WasteBinPage />} />
-            </Route>
-            <Route path="/legal">
-              <Route path="legal-notices" element={<LegalNotices />} />
-              <Route path="cookies" element={<CookiePage />} />
-              <Route path="gdpr" element={<GdprPage />} />
-              <Route path="accessibility" element={<AccessibilityPage />} />
-            </Route>
-            <Route path="*" element={<Page404 />} />
-          </Routes>
-        </div>
-      </main>
-      <Footer />
-    </>
-  );
+  const Authentified = () => <>{routes}</>;
 
   return (
     <>

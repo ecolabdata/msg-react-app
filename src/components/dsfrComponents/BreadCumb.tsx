@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import formatSlugForBreadCumb from '../../utils/formatSlugForBreadcrumb';
 
 const BreadCumb: React.FC = () => {
@@ -7,7 +8,9 @@ const BreadCumb: React.FC = () => {
   );
 
   const createSlugForBreadCumb = () => {
-    const pageData = formatSlugForBreadCumb();
+    const location = useLocation();
+
+    const pageData = formatSlugForBreadCumb(window.location.pathname, location.pathname);
 
     if (!pageData) return;
 
