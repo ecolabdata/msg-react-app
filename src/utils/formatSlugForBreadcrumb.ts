@@ -16,6 +16,7 @@ const formatedSlugResultPage = (urlToRedirect: string) => {
 };
 
 const formatSlugForCardType = (pathname: string, urlToRedirect: string) => {
+  console.log('allCardType', allCardType);
   if (allCardType.map((card) => card.searchLink).includes(pathname)) {
     const card = allCardType.find((card) => card.searchLink === pathname);
     if (card) {
