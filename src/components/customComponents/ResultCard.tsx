@@ -88,10 +88,10 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
     : '';
 
   return (
-    <li className="fr-col-xs-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3 w-full">
-      <div className="fr-card fr-enlarge-link w-full">
-        <div className="fr-card__body">
-          <div className="fr-card__content">
+    <li className="h-full">
+      <div className="fr-card fr-enlarge-link w-full h-full">
+        <div className="fr-card__body ">
+          <div className="fr-card__content !pt-4 !px-6 !pb-16 ">
             <h3 className="fr-card__title">
               <Link
                 onClick={() => {
@@ -99,7 +99,8 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
                 }}
                 to={linkTo}
                 state={{ cardData }}
-                className="rm-link-underline">
+                className="rm-link-underline"
+              >
                 <p className="clamp mt-2 font-bold text-lg" title={name}>
                   <ScreenReaderOnlyText content={toprow} />
                   {name}
@@ -127,13 +128,11 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
                     </div>
                     <div
                       className="h-[3em] truncate"
-                      title={i["Présentation de la politique d'investissement"]}>
+                      title={i["Présentation de la politique d'investissement"]}
+                    >
                       {i["Présentation de la politique d'investissement"].split(';').join(' | ')}
                     </div>
-                    <DetailBadges
-                      contents={i['Type de financement'].split(';')}
-                      color={cardType.color}
-                    />
+                    <DetailBadges contents={i['Type de financement'].split(';')} />
                   </>
                 ),
                 (a) => (
@@ -144,7 +143,7 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
                         ? `Date de clôture: ${displayabeSubmissionDeadLine}`
                         : 'Aide permanente'}
                     </div>
-                    <DetailBadges contents={a.aid_types} color={cardType.color} />
+                    <DetailBadges contents={a.aid_types} />
                   </>
                 ),
                 (su) => (
@@ -160,7 +159,8 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
                 <li>
                   <p
                     className={`fr-badge fr-badge--sm `}
-                    style={{ color: cardType.color, backgroundColor: cardType.backgroundColor }}>
+                    style={{ color: cardType.color, backgroundColor: cardType.backgroundColor }}
+                  >
                     {toprow}
                   </p>
                 </li>
@@ -175,20 +175,19 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
 
 export default ResultCard;
 
-const DetailBadges = ({ contents, color }: { contents: ReactNode[]; color: string }) => {
+const DetailBadges = ({ contents }: { contents: ReactNode[] }) => {
   return (
-    <ul className="mt-2">
-      {contents.map((content) => (
+    <p className={`text-white font-bold uppercase text-xs mt-2`}>
+      {contents.map((content, index) => (
         <>
           {content && (
-            <li className="mr-2 w-fit">
-              <p className={`fr-badge fr-badge--sm `} style={{ color }}>
-                {content}
-              </p>
-            </li>
+            <>
+              <span>{content}</span>
+              {index !== contents.length - 1 && <span className="mx-1 "> | </span>}
+            </>
           )}
         </>
       ))}
-    </ul>
+    </p>
   );
 };

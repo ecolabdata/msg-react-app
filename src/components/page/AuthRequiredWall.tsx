@@ -1,21 +1,13 @@
 import { ReactElement } from 'react';
 import { Outlet } from 'react-router-dom';
-import LogoMSG from '../../assets/msg-icon.svg';
 import { JwtState, useJwtState } from '../../utils/jwt';
+import MsgLogo from '../customComponents/MsgLogo';
 
 const template = (bigTitle: string, smallTitle: string) => (
   <div className="flex flex-col items-center justify-center w-[800px]">
     <div className="fr-header__brand fr-enlarge-link">
-      <div className="fr-header__service flex">
-        <img className="h-12 mt-1 mr-2" src={LogoMSG} alt="Icône d'indication, version beta " />
-        <p
-          className="fr-header__service-title capitalize
-                                     after:rounded-sm after:content-['beta'] after:ml-2 after:relative after:bottom-1 after:w-content after:h-content after:px-1 
-                                     after:text-center after:text-xs after:font-bold after:bg-beta"
-        >
-          mes services
-          <br /> greentech
-        </p>
+      <div className="fr-header__service flex items-center">
+        <MsgLogo />
       </div>
     </div>
     <h1 className="fr-h3 mt-8 text-center font-thin">{bigTitle}</h1>

@@ -1,12 +1,14 @@
-interface ScreenReaderOnlyTextProps {
+interface ScreenReaderOnlyTextProps extends React.HTMLAttributes<HTMLElement> {
   content: string;
 }
 
 export const ScreenReaderOnlyText: React.FC<ScreenReaderOnlyTextProps> = ({
-  content
+  content,
+  ...props
 }: ScreenReaderOnlyTextProps) => {
   return (
     <span
+      {...props}
       style={{
         position: 'absolute',
         left: -10000,
@@ -14,7 +16,8 @@ export const ScreenReaderOnlyText: React.FC<ScreenReaderOnlyTextProps> = ({
         width: 1,
         height: 1,
         overflow: 'hidden'
-      }}>
+      }}
+    >
       {content}
     </span>
   );

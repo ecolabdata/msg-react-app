@@ -66,50 +66,52 @@ const Router = () => {
       </Routes>
       <main className={`h-full p-1 md:p-6 ${localStorage.scheme === 'dark' && 'bg-[#262626]'}`}>
         <BreadCumb />
-        <Routes>
-          <Route path="/" element={<HomePageStartup />} />
-          <Route path="/startup" element={<HomePageStartup />} />
-          <Route path="/acteurs-publics" element={<HomePagePublicActor />} />
-          <Route path="/startup/explorer" element={<ExplorePageStartUp alpha={false} />} />
-          <Route path="/startup/explorer/search" element={<ExplorePageStartUp alpha={false} />} />
-          <Route
-            path="/acteurs-publics/explorer"
-            element={<ExplorePagePublicActor alpha={false} />}
-          />
-          <Route
-            path="/acteurs-publics/explorer/search"
-            element={<ExplorePagePublicActor alpha={false} />}
-          />
-          {/* <Route path="/explorer-alpha" element={<ExplorePage alpha={true} />} /> */}
+        <div id="main-content">
+          <Routes>
+            <Route path="/" element={<HomePageStartup />} />
+            <Route path="/startup" element={<HomePageStartup />} />
+            <Route path="/acteurs-publics" element={<HomePagePublicActor />} />
+            <Route path="/startup/explorer" element={<ExplorePageStartUp alpha={false} />} />
+            <Route path="/startup/explorer/search" element={<ExplorePageStartUp alpha={false} />} />
+            <Route
+              path="/acteurs-publics/explorer"
+              element={<ExplorePagePublicActor alpha={false} />}
+            />
+            <Route
+              path="/acteurs-publics/explorer/search"
+              element={<ExplorePagePublicActor alpha={false} />}
+            />
+            {/* <Route path="/explorer-alpha" element={<ExplorePage alpha={true} />} /> */}
 
-          {allCardType.map((cardType) => (
-            <>
-              <Route path={cardType.searchLink} element={<cardType.SearchPage />} />
-              <Route path={cardType.searchLink + '/search'} element={<cardType.SearchPage />} />
-              <Route
-                path={`/${cardType.name}/details/:slug`}
-                element={
-                  cardType.DetailsPage ? (
-                    <cardType.DetailsPage />
-                  ) : (
-                    <DetailsJson cardType={cardType} />
-                  )
-                }
-              />
-            </>
-          ))}
-          <Route path="/profile">
-            <Route path="ma-selection" element={<MySelectionPage />} />
-            <Route path="corbeille" element={<WasteBinPage />} />
-          </Route>
-          <Route path="/legal">
-            <Route path="legal-notices" element={<LegalNotices />} />
-            <Route path="cookies" element={<CookiePage />} />
-            <Route path="gdpr" element={<GdprPage />} />
-            <Route path="accessibility" element={<AccessibilityPage />} />
-          </Route>
-          <Route path="*" element={<Page404 />} />
-        </Routes>
+            {allCardType.map((cardType) => (
+              <>
+                <Route path={cardType.searchLink} element={<cardType.SearchPage />} />
+                <Route path={cardType.searchLink + '/search'} element={<cardType.SearchPage />} />
+                <Route
+                  path={`/${cardType.name}/details/:slug`}
+                  element={
+                    cardType.DetailsPage ? (
+                      <cardType.DetailsPage />
+                    ) : (
+                      <DetailsJson cardType={cardType} />
+                    )
+                  }
+                />
+              </>
+            ))}
+            <Route path="/profile">
+              <Route path="ma-selection" element={<MySelectionPage />} />
+              <Route path="corbeille" element={<WasteBinPage />} />
+            </Route>
+            <Route path="/legal">
+              <Route path="legal-notices" element={<LegalNotices />} />
+              <Route path="cookies" element={<CookiePage />} />
+              <Route path="gdpr" element={<GdprPage />} />
+              <Route path="accessibility" element={<AccessibilityPage />} />
+            </Route>
+            <Route path="*" element={<Page404 />} />
+          </Routes>
+        </div>
       </main>
       <Footer />
     </>

@@ -19,7 +19,8 @@ export const GdprPage = () => {
         <AccordionGroup>
           <Accordion
             id="accordion_suscription"
-            title="Gestion des abonnements à la lettre d’information Greentech Innovation (newsletter)">
+            title="Gestion des abonnements à la lettre d’information Greentech Innovation (newsletter)"
+          >
             <h4 className="mt-2">Finalités</h4>
             <p>
               Le traitement a pour objet la gestion de l’envoi de la lettre d’information de

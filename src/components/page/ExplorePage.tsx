@@ -10,6 +10,7 @@ import { InitialState } from '../../utils/InitialState';
 import { PitchThematicsKeywords } from '../customComponents/PitchThematicsKeywords';
 import ResultCard from '../customComponents/ResultCard';
 import ResultCardsPreview from '../customComponents/ResultCardsPreview';
+import ScreenReaderOnlyText from '../customComponents/ScreenReaderOnlyText';
 
 const buildExplorePage: (
   cardsToDisplay: CardType[],
@@ -54,7 +55,7 @@ const buildExplorePage: (
             setErrorTxt('Une erreur serveur inconnue est survenue');
           });
       } else {
-        setErrorTxt("La description de l'entreprise est obligatoire");
+        setErrorTxt("Erreur: la description de l'entreprise est obligatoire");
       }
     };
 
@@ -79,18 +80,6 @@ const buildExplorePage: (
                 .map((x, i) => (
                   <ResultCard key={i} pageList={false} cardData={x} cardType={cardType} />
                 ))}
-              {results.length - cardSliceSize < 0 ? null : (
-                <li
-                  className={`fr-col-xs-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3 items-center align-middle relative`}
-                  style={{ color: cardType.color, opacity: isLoading ? 0 : 1 }}>
-                  <NavLink
-                    onClick={() => setNextScrollTarget({ top: 0 })}
-                    to={cardType.searchLink}
-                    state={initialState}>
-                    {`Voir les ${results.length - cardSliceSize} autres cartes`}
-                  </NavLink>
-                </li>
-              )}
             </ResultCardsPreview>
           </li>
         );
@@ -120,14 +109,9 @@ const buildExplorePage: (
             usedSecteurs={[secteurs, setSecteurs]}
             usedInListPage={false}
             openPitchContainerFromStart={false}
+            usedErrorTextDescription={[errorTxt, setErrorTxt]}
           />
         </form>
-
-        <div
-          className={`errorContainer ${errorTxt.length <= 0 && 'hidden'} 
-            h-12 flex justify-center items-center color`}>
-          <p style={{ color: 'hsla(0, 100%, 65%, 0.9)' }}>{errorTxt}</p>
-        </div>
 
         <div className="buttonsContainer mx-auto max-w-headerSize flex justify-center flex-wrap">
           <button
@@ -169,6 +153,14 @@ const buildExplorePage: (
           <ul id="previews" className="researwchResultContainer mt-4 ">
             {previews}
           </ul>
+        )}
+        {isLoading && <ScreenReaderOnlyText content={'Chargement en cours'} aria-live="polite" />}
+
+        {!isLoading && previews.length && (
+          <ScreenReaderOnlyText
+            content={`il y'a ${previews.length} catégories de résultats`}
+            aria-live="polite"
+          />
         )}
 
         {isLoading && <div className="mx-auto">Chargement...</div>}

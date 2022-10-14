@@ -4,7 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ApplicationContext } from '../App';
 import { useJwtPayload } from '../utils/jwt';
 import { pages, Route } from '../utils/pages';
-import LogoMSG from './../assets/msg-icon.svg';
+import MsgLogo from './customComponents/MsgLogo';
+import SkipLinks from './dsfrComponents/SkipLinks';
 
 interface HeaderProps {
   decouvrir?: boolean;
@@ -49,6 +50,7 @@ const Header = ({ decouvrir }: HeaderProps) => {
 
   return (
     <header role="banner" className="fr-header">
+      <SkipLinks />
       <div className="fr-header__body">
         <div className="fr-container ">
           <div className="fr-header__body-row">
@@ -73,28 +75,19 @@ const Header = ({ decouvrir }: HeaderProps) => {
                     aria-controls="modal-833"
                     aria-haspopup="menu"
                     title="Menu"
-                    id="fr-btn-menu-mobile">
+                    id="fr-btn-menu-mobile"
+                  >
                     Menu
                   </button>
                 </div>
               </div>
               <div className="fr-header__service flex">
                 <Link
-                  className="flex"
+                  className="flex items-center"
                   to="/"
-                  title="Accueil - Mes services GreenTech - Ministère de la transition écologique et de la cohésion des territoires">
-                  <img
-                    className="h-12 mt-1 mr-2"
-                    src={LogoMSG}
-                    alt="Icône d'indication, version beta "
-                  />
-                  <p
-                    className="fr-header__service-title capitalize
-                                     after:rounded-sm after:content-['beta'] after:ml-2 after:relative after:bottom-1 after:w-content after:h-content after:px-1 
-                                     after:text-center after:text-xs after:font-bold after:bg-beta">
-                    mes services
-                    <br /> greentech
-                  </p>
+                  title="Accueil - Mes services GreenTech - Ministère de la transition écologique et de la cohésion des territoires"
+                >
+                  <MsgLogo />
                 </Link>
               </div>
             </div>
@@ -154,7 +147,8 @@ function DecouvrirButton() {
         setNextScrolTarget({ top: 0 });
         navigate('/explorer');
       }}
-      className=" fr-btn">
+      className=" fr-btn"
+    >
       Découvrir
     </button>
   );

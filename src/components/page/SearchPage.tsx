@@ -26,6 +26,7 @@ import { RequestFilter } from '../customComponents/filter/RequestFIlter';
 import { PitchThematicsKeywords } from '../customComponents/PitchThematicsKeywords';
 
 import ResultCard from '../customComponents/ResultCard';
+import ScreenReaderOnlyText from '../customComponents/ScreenReaderOnlyText';
 import Pagination from '../dsfrComponents/Pagination';
 
 type Props = {
@@ -38,7 +39,6 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
   const [toggleInCorbeille, isInCorbeille] = usedCorbeille;
   const [nextScrollTarget, setNextScrollTarget] = usedNextScrollTarget;
   const location = useLocation();
-  console.log({ state: location.state });
   const requestFilter = requestFilterBuilder(location.state);
   const initialState = location.state as
     | (InitialState & { page?: number; montantMin: number })
@@ -53,7 +53,7 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
   const [description, setDescription] = useState(initialQuery?.description || '');
   const [secteurs, setSecteurs] = useState<string[]>(initialQuery?.secteurs || []);
   const [motsclefs, setMotsclef] = useState<string[]>(initialQuery?.motsclefs || []);
-  const [errorTxt, setErrorTxt] = useState(<></>);
+  const [errorTxt, setErrorTxt] = useState('');
   const pageChunkSize = 20;
 
   const filteredCards: JSX.Element[] | undefined = requestFilter.cards.map((card) => (
@@ -74,7 +74,7 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
 
     if (description.length > 0) {
       setIsLoading(true);
-      setErrorTxt(<></>);
+      setErrorTxt('');
       requestFilter.search(description, motsclefs, secteurs).then((search) => {
         setIsLoading(false);
         const element = document.getElementById('cardsContainer');
@@ -89,11 +89,7 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
         });
       });
     } else {
-      setErrorTxt(
-        <p style={{ color: 'hsla(0, 100%, 65%, 0.9)' }}>
-          La description de l'entreprise est obligatoire
-        </p>
-      );
+      setErrorTxt("Erreur: la description de l'entreprise est obligatoire");
     }
   };
 
@@ -114,7 +110,7 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
               />
               &nbsp;
               {cardType.title} &nbsp;{' '}
-              <span className="bg-yellow md:text-3xl font-light">{`(${filteredCards.length})`}</span>
+              <span className="bg-yellow md:text-3xl font-light">{`(${filteredCards.length} résultats)`}</span>
             </div>
           </h2>
 
@@ -131,6 +127,7 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
                 usedDescription={[description, setDescription]}
                 usedMotsClef={[motsclefs, setMotsclef]}
                 usedSecteurs={[secteurs, setSecteurs]}
+                usedErrorTextDescription={[errorTxt, setErrorTxt]}
                 usedInListPage={true}
                 openPitchContainerFromStart={!initialQuery}
               />
@@ -158,8 +155,6 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
             </div>
           </form>
 
-          <div className="h-12 w-full flex justify-center items-center color">{errorTxt}</div>
-
           <div className="researchButtonsContainer mt-4 w-full flex justify-center">
             <button
               type="button"
@@ -183,10 +178,24 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
           </div>
         </div>
       </div>
-
+      {isLoading && <ScreenReaderOnlyText content={'Chargement en cours'} aria-live="polite" />}
+      {!isLoading && cardsSlice.length ? (
+        <ScreenReaderOnlyText
+          content={`il y'a ${cardsSlice.length} résultats`}
+          aria-live="polite"
+        />
+      ) : null}
+      {!isLoading && cardsSlice && cardsSlice.length === 0 && initialState && (
+        <ScreenReaderOnlyText content={`Aucun résultat trouvé`} aria-live="polite" />
+      )}
       {cardsSlice.length > 0 ? (
         <div className="fr-container max-w-full" id="cardsContainer">
-          <ul className="fr-grid-row fr-grid-row--gutters"> {cardsSlice}</ul>
+          <span className="flex justify-end font-bold mb-4">{`(${filteredCards.length} résultats)`}</span>
+
+          <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {' '}
+            {cardsSlice}
+          </ul>
         </div>
       ) : initialState ? (
         'Aucun résultat trouvé'

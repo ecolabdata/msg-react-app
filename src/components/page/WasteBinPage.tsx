@@ -21,15 +21,15 @@ const WasteBin = () => {
         <div className="cardTitle  my-10 ml-4 text-base flex justify-between items-center">
           <h2
             className="w-fit font-bold text-xl
-                    lg:text-4xl">
+                    lg:text-4xl"
+          >
             <div className="flex items-center">
               Ma Corbeille{' '}
               <span
                 className="mt-1 mx-2 text-sm
                             font-extralight
-                            lg:text-xl">{`(${
-                Object.keys(corbeille).length
-              })`}</span>
+                            lg:text-xl"
+              >{`(${Object.keys(corbeille).length})`}</span>
             </div>
           </h2>
 
@@ -41,7 +41,8 @@ const WasteBin = () => {
                   onClick={() => setAreYouSure(true)}
                   className="fr-btn fr-btn--sm fr-btn--primary mr-2 h-[40px]
                                     md:h-[40%]
-                                    ">
+                                    "
+                >
                   Tout restaurer
                 </button>
               </div>
@@ -54,7 +55,8 @@ const WasteBin = () => {
                   }}
                   className="fr-btn fr-btn--sm fr-btn--primary mr-2 h-[40px]
                                 md:h-[40%]
-                                px-14">
+                                px-14"
+                >
                   Oui
                 </button>
               </div>
@@ -77,7 +79,7 @@ const WasteBin = () => {
       </div>
 
       <div className="fr-container" id="cardsContainer">
-        <ul className="fr-grid-row fr-grid-row--gutters">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {Object.values(corbeille)
             .filter(
               (x) => selectedCardTypeName === 'all' || selectedCardTypeName === x.cardTypeName
