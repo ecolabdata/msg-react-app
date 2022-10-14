@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Chevron from './../../assets/icons/chevronWhite.svg';
 import OptionItem from './OptionItem';
+import { useOutsideAlerter } from '../../hooks/useOutsideAlerter';
 
 interface SelectInputOptionsProps {
   optionsData: string[];
@@ -18,7 +19,7 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({
 
   const buttonRef = useRef<HTMLButtonElement>(null);
   const firstInputRef = useRef<HTMLInputElement>(null);
-
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const focusField = () => {
     buttonRef?.current?.focus();
   };
@@ -36,8 +37,12 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({
     }
   };
 
+  useOutsideAlerter(wrapperRef, () => {
+    setDisplaySelect(false);
+  });
+
   return (
-    <div className="relative">
+    <div className="relative" ref={wrapperRef}>
       <label className="fr-label" htmlFor="select-container">
         Thématique du projet
       </label>
