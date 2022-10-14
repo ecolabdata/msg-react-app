@@ -96,8 +96,7 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
       <div
         className="headContainer  container mt-10 mb-20 mx-auto max-w-headerSize
             xl:mx-auto
-            "
-      >
+            ">
         <div className="cardTitleAndLogo mt-10 p-2 text-base">
           <h2 className="w-fit font-bold text-2xl md:text-4xl">
             <div className="flex items-center ">
@@ -120,13 +119,13 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
           <form
             onSubmit={(event) => handleOnSubmitForm(event)}
             id="keywordsForm"
-            className="h-fit w-full"
-          >
+            className="h-fit w-full">
             <div className="researchContainer m-auto flex justify-around flex-wrap">
               <PitchThematicsKeywords
-                usedDescription={[description, setDescription, errorTxt]}
+                usedDescription={[description, setDescription]}
                 usedMotsClef={[motsclefs, setMotsclef]}
                 usedSecteurs={[secteurs, setSecteurs]}
+                usedErrorTextDescription={[errorTxt, setErrorTxt]}
                 usedInListPage={true}
                 openPitchContainerFromStart={!initialQuery}
               />
@@ -134,13 +133,11 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
 
             <div
               className="specifyResearchContainer mt-2 min-h-[160px] max-w-headerSize w-full flex flex-col items-center justify-center  bg-research-precision-container
-                        lg:mt-2 lg:justify-center"
-            >
+                        lg:mt-2 lg:justify-center">
               <div className="specifyAndLogoContainer w-full ">
                 <h2
                   style={{ color: cardType.color }}
-                  className={`mt-4 bold text-xl flex justify-center items-center`}
-                >
+                  className={`mt-4 bold text-xl flex justify-center items-center`}>
                   <Filtrer className="mr-6" width="20" height="20" />
                   Préciser la recherche
                 </h2>
@@ -149,8 +146,7 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
               <div className="inputsAndToggleContainer self-end flex items-end  justify-around w-full mt-2 mb-8 sm:mb-0">
                 <div
                   className="inputsContainer w-full mt-2 flex flex-col items-center justify-center   
-                                lg:h-fit lg:w-[85%] lg:flex-row"
-                >
+                                lg:h-fit lg:w-[85%] lg:flex-row">
                   <requestFilter.Component />
                 </div>
               </div>
@@ -162,8 +158,7 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
               type="button"
               disabled={isLoading}
               className="mx-3 fr-btn fr-btn--sm underline fr-btn--tertiary-no-outline   
-                        "
-            >
+                        ">
               {' '}
               <span className={`mx-auto`}>Réinitialiser</span>{' '}
             </button>
@@ -172,8 +167,7 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
               form="keywordsForm"
               disabled={isLoading}
               className="mx-3 fr-btn fr-btn--sm fr-btn--primary 
-                        "
-            >
+                        ">
               {' '}
               <span className={`mx-auto`}>
                 {isLoading ? 'Chargement...' : 'Valider et rechercher'}
@@ -196,7 +190,10 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
         <div className="fr-container max-w-full" id="cardsContainer">
           <span className="flex justify-end font-bold mb-4">{`(${filteredCards.length} résultats)`}</span>
 
-          <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"> {cardsSlice}</ul>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {' '}
+            {cardsSlice}
+          </ul>
         </div>
       ) : initialState ? (
         'Aucun résultat trouvé'

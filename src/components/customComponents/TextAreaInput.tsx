@@ -1,4 +1,5 @@
-import { classNames, generateNumber } from '../../utils/utilityFunctions';
+import { generateNumber } from '../../utils/utilityFunctions';
+import classNames from 'classnames';
 
 interface TextAreaInputProps {
   value: string;
@@ -34,7 +35,8 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
         form={formId}
         className={classNames(
           `cursor-text mt-2 w-full rounded-t-sm p-2 bg-background-inputs focus:border-1 focus:border-white focus:border-solid`,
-          !errorText ? 'addBorder-b border-3 border-white' : 'addBorder border-1 border-red-500',
+          { 'addBorder-b border-3 border-white': !errorText },
+          { 'addBorder border-1 border-red-500': errorText },
           classNameProp
         )}
         aria-invalid={!!errorText}

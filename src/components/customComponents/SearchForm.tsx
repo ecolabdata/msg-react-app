@@ -7,18 +7,21 @@ import TextAreaInput from './TextAreaInput';
 
 interface SearchFormProps {
   usedInListPage: boolean;
-  usedDescription: [string, React.Dispatch<React.SetStateAction<string>>, string];
+  usedDescription: [string, React.Dispatch<React.SetStateAction<string>>];
   usedSecteurs: [string[], React.Dispatch<React.SetStateAction<string[]>>];
   usedMotsClef: [string[], React.Dispatch<React.SetStateAction<string[]>>];
+  usedErrorTextDescription: [string, React.Dispatch<React.SetStateAction<string>>];
 }
 
 const SearchForm: React.FC<SearchFormProps> = ({
   usedInListPage,
   usedSecteurs,
   usedMotsClef,
-  usedDescription
+  usedDescription,
+  usedErrorTextDescription
 }) => {
-  const [description, setDescription, descriptionError] = usedDescription;
+  const [description, setDescription] = usedDescription;
+  const [descriptionError, setDescriptionError] = usedErrorTextDescription;
   const [keywords, setKeywords] = useState('');
   const [secteurs, setSecteurs] = usedSecteurs;
   const [motsclefs, setMotsclef] = usedMotsClef;
