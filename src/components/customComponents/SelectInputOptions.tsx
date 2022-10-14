@@ -1,12 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Chevron from './../../assets/icons/chevronWhite.svg';
+import OptionItem from './OptionItem';
 
-interface SelectProps {
-  optionsData: string[];
-  label: string;
-  classes: string;
-  onChange?: React.ChangeEventHandler<HTMLSelectElement>;
-}
 interface SelectInputOptionsProps {
   optionsData: string[];
   secteurs: string[];
@@ -21,26 +16,49 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({
   const [displaySelect, setDisplaySelect] = useState(false);
   const secteursSet = new Set(secteurs);
 
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const firstInputRef = useRef<HTMLInputElement>(null);
+
+  const focusField = () => {
+    buttonRef?.current?.focus();
+  };
+
+  useEffect(() => {
+    if (firstInputRef.current) {
+      firstInputRef?.current?.focus();
+    }
+  }, [firstInputRef.current]);
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
+    if (e.key === 'Escape') {
+      setDisplaySelect(false);
+      focusField();
+    }
+  };
+
   return (
     <div className="relative">
-      <label className="fr-label" htmlFor="select">
+      <label className="fr-label" htmlFor="select-container">
         Thématique du projet
       </label>
       <button
-        type="button"
+        aria-multiselectable={true}
+        aria-label="Thématique du projet"
+        aria-expanded={displaySelect}
+        ref={buttonRef}
+        onKeyDown={handleKeyDown}
+        role="combobox"
         className="mt-2 w-full max-h-10 addBorder-b border-3 border-b-white p-2 flex bg-input-background"
         onClick={() => {
           setDisplaySelect(!displaySelect);
-        }}
-      >
+        }}>
         <p className="flex-1 truncate text-left max-w-full">
           {secteurs.length <= 0 ? 'Sélectionnez une option' : secteurs.join(', ')}
         </p>
         <span
           className={`${
             localStorage.scheme === 'dark' ? 'bg-dark-text-action' : 'bg-blue-france'
-          } w-6 h-6 rounded-full text-white font-bold`}
-        >
+          } w-6 h-6 rounded-full text-white font-bold`}>
           {' '}
           {secteurs.length}{' '}
         </span>
@@ -54,28 +72,17 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({
       {displaySelect && (
         <>
           <ul className="z-10 absolute w-full max-h-[320px] overflow-auto flex flex-col bg-background-inputs  shadow-slate-400 shadow-sm">
-            {optionsData.map((option) => {
+            {optionsData.map((option, index) => {
               return (
-                <li className="flex content-center items-center" key={option}>
-                  <input
-                    className="appearance-on addBorder border text-black border-black  mx-4"
-                    id={option}
-                    type="checkbox"
-                    value={option}
-                    onChange={(e) => {
-                      if (e.target.checked) {
-                        secteursSet.add(option);
-                      } else {
-                        secteursSet.delete(option);
-                      }
-                      setSecteurs(Array.from(secteursSet));
-                    }}
-                    checked={secteursSet.has(option)}
-                  />
-                  <label className="capitalize h-12 flex items-center" htmlFor={option}>
-                    {option}
-                  </label>
-                </li>
+                <OptionItem
+                  key={option}
+                  option={option}
+                  secteursSet={secteursSet}
+                  setSecteurs={setSecteurs}
+                  ref={index === 0 ? firstInputRef : null}
+                  setDisplaySelect={setDisplaySelect}
+                  focusField={focusField}
+                />
               );
             })}
           </ul>
