@@ -34,7 +34,6 @@ const HomePagePublicActor = () => {
   );
   const handleResize = () => {
     const width = Math.floor((Math.min(window.innerWidth, 1920) - 60) / cardWidth) * cardWidth;
-    console.log('Resize called', width);
     if (width < cardWidth) {
       setCardContainerWidth('auto');
     } else {
