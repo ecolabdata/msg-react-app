@@ -104,11 +104,12 @@ const buildExplorePage: (
           className="h-fit mx-auto max-w-headerSize
             ">
           <PitchThematicsKeywords
-            usedDescription={[description, setDescription, errorTxt]}
+            usedDescription={[description, setDescription]}
             usedMotsClef={[motsclefs, setMotsclef]}
             usedSecteurs={[secteurs, setSecteurs]}
             usedInListPage={false}
             openPitchContainerFromStart={false}
+            usedErrorTextDescription={[errorTxt, setErrorTxt]}
           />
         </form>
 

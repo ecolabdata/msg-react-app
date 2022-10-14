@@ -2,15 +2,17 @@ import { useState } from 'react';
 import SearchForm from './SearchForm';
 
 type PitchThematicsKeywordsParams = {
-  usedDescription: [string, React.Dispatch<React.SetStateAction<string>>, string];
+  usedDescription: [string, React.Dispatch<React.SetStateAction<string>>];
   usedSecteurs: [string[], React.Dispatch<React.SetStateAction<string[]>>];
   usedMotsClef: [string[], React.Dispatch<React.SetStateAction<string[]>>];
+  usedErrorTextDescription: [string, React.Dispatch<React.SetStateAction<string>>];
   usedInListPage: boolean;
   openPitchContainerFromStart: boolean | null;
 };
 
 export const PitchThematicsKeywords: React.FC<PitchThematicsKeywordsParams> = ({
   usedDescription,
+  usedErrorTextDescription,
   usedSecteurs,
   usedMotsClef,
   usedInListPage,
@@ -52,6 +54,7 @@ export const PitchThematicsKeywords: React.FC<PitchThematicsKeywordsParams> = ({
             usedDescription={usedDescription}
             usedSecteurs={usedSecteurs}
             usedMotsClef={usedMotsClef}
+            usedErrorTextDescription={usedErrorTextDescription}
           />
         </>
       )}
@@ -74,6 +77,7 @@ export const PitchThematicsKeywords: React.FC<PitchThematicsKeywordsParams> = ({
             usedDescription={usedDescription}
             usedSecteurs={usedSecteurs}
             usedMotsClef={usedMotsClef}
+            usedErrorTextDescription={usedErrorTextDescription}
           />{' '}
         </>
       )}
