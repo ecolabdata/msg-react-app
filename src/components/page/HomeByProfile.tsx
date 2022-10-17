@@ -17,8 +17,8 @@ const HomeByProfile: React.FC<HomeByProfileProps> = ({ profile }) => {
         className="container-title container max-w-headerSize mx-auto p-2 
                 flex flex-col items-center">
         <h1
-          className="mt-4 w-full font-bold text-3xl text-center 
-                md:max-w-[70%]
+          className="mt-4 w-full font-bold text-4xl text-center 
+                md:max-w-[60%]
                 ">
           {contentByProfile[profile].mainContent.title}
         </h1>
@@ -132,8 +132,21 @@ const contentByProfile = {
     secondaryContent: {
       title:
         'Vous souhaitez que votre entreprise éco-innovante soit visible dans Mes Services Greentech ?',
-      description:
-        'Très bonne idée ! Pour accentuer votre visibilité auprès des acheteurs publics et de l’écosystème Greentech Innovation, enregistrer vos recherches et recevoir des alertes, remplissez ce formulaire d’inscription ! (Sous réserve de validation par nos équipes)',
+      description: (
+        <>
+          Très bonne idée ! Pour accentuer votre visibilité auprès des acheteurs publics et de
+          l’écosystème Greentech Innovation, enregistrer vos recherches et recevoir des alertes,
+          remplissez
+          <a
+            className="text-base my-8 text-dark-text-action p-1 rm-link-underline"
+            href="https://airtable.com/shrY73vlVka9j2cg8"
+            target="_blank"
+            rel="noreferrer">
+            ce formulaire d’inscription
+          </a>
+          ! (Sous réserve de validation par nos équipes)
+        </>
+      ),
       extraLink: 'Vous n’êtes pas une entreprise ? Aller sur la version acheteur public',
       extraUrl: '/acteurs-publics'
     }

@@ -21,13 +21,14 @@ const LinksCard: React.FC<LinksCardProps> = ({ title, description, links }) => {
             <p>{description}</p>
             <ul className="flex flex-col items-end">
               {links.map(({ url, name }) => (
-                <li key={name} className="mt-4">
-                  <Link
+                <li key={name} className="mt-2">
+                  <a
                     className="fr-link rm-link-underline"
-                    to={{ pathname: url }}
-                    target="_blank">
+                    target="_blank"
+                    href={url}
+                    rel="noreferrer">
                     {name}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
