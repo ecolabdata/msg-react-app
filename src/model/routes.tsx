@@ -7,6 +7,7 @@ import AccessibilityPage from '../components/page/AccessibilityPage';
 import CookiePage from '../components/page/CookiePage';
 import { ExplorePagePublicActor, ExplorePageStartUp } from '../components/page/ExplorePage';
 import GdprPage from '../components/page/GdprPage';
+import Home from '../components/page/Home';
 import HomeByProfile from '../components/page/HomeByProfile';
 import LegalNotices from '../components/page/LegalNoticesPage';
 import MySelectionPage from '../components/page/MySelectionPage';
@@ -25,7 +26,7 @@ export const routes = (
       <BreadCumb />
       <div id="main-content">
         <Routes>
-          <Route path="/" element={<HomeByProfile profile="startup" />} />
+          <Route path="/" element={<Home />} />
           <Route path="/startup" element={<HomeByProfile profile="startup" />} />
           <Route path="/acteurs-publics" element={<HomeByProfile profile="publicActor" />} />
           <Route path="/startup/explorer" element={<ExplorePageStartUp alpha={false} />} />
