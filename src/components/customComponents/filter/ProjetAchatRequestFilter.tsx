@@ -12,7 +12,9 @@ export class ProjetAchatRequestFilter implements RequestFilter {
   ) {
     if (initialState?.search.cards) {
       const initialQuery = initialState?.search.query as Query;
-      this.allCards = initialState.search.cards.projets_achats.filter(pa => pa.status == "active");
+      this.allCards = initialState.search.cards.projets_achats.filter(
+        (pa) => pa.status == 'active'
+      );
     }
   }
 

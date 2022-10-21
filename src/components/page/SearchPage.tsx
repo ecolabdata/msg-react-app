@@ -294,4 +294,3 @@ export const SearchPageAchatProg = () => (
     requestFilterBuilder={(initState) => new ProjetAchatRequestFilter(initState as any, achatProg)}
   />
 );
-
