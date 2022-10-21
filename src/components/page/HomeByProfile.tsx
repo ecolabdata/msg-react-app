@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useTitle } from '../../hooks/useTitle';
 import { startupPersona as allCardType } from '../../model/CardType';
+import CtaBloc from '../customComponents/CtaBloc';
 import LinksCard from '../customComponents/LinksCard';
 import HomeCard from '../dsfrComponents/HomeCard';
 
@@ -9,37 +10,51 @@ interface HomeByProfileProps {
 }
 
 const HomeByProfile: React.FC<HomeByProfileProps> = ({ profile }) => {
-  useTitle(contentByProfile[profile].pageTitle);
+  const pageContent = homePageContent[profile];
+
+  useTitle(pageContent.pageTitle);
 
   return (
     <>
-      <div
-        className="container-title container max-w-headerSize mx-auto p-2 
+      <section>
+        <div
+          className="container-title container max-w-headerSize mx-auto p-2 
                 flex flex-col items-center">
-        <h1
-          className="mt-4 w-full font-bold text-4xl text-center 
+          <h1
+            className="mt-4 w-full font-bold text-4xl text-center 
                 md:max-w-[60%]
                 ">
-          {contentByProfile[profile].mainContent.title}
-        </h1>
-        <h2
-          className="mt-8 text-center w-[65%] leading-7 
+            {pageContent.mainContent.title}
+          </h1>
+          <h2
+            className="mt-8 text-center w-[65%] leading-7 
                 lg:max-w-[62%]
                 ">
-          {' '}
-          {contentByProfile[profile].mainContent.description}
-        </h2>
-      </div>
+            {' '}
+            {pageContent.mainContent.description}
+          </h2>
+        </div>
 
-      <div role="list" className="cardsContainer mx-auto flex flex-wrap justify-center">
-        {allCardType
-          .filter((card) => contentByProfile[profile].cardNames.includes(card.name))
-          .map((card, index) => (
-            <HomeCard cardTypeData={card} key={index} />
+        <ul className="cardsContainer mx-auto flex flex-wrap justify-center">
+          {allCardType
+            .filter((card) => pageContent.cardNames.includes(card.name))
+            .map((card, index) => (
+              <li key={index}>
+                <HomeCard cardTypeData={card} />
+              </li>
+            ))}
+        </ul>
+      </section>
+      {pageContent.ctaBlocs?.length && (
+        <div className="container flex flex-col my-8 mx-auto justify-center max-w-headerSize md:max-w-[80%]  md:flex-row">
+          {pageContent.ctaBlocs.map(({ title, description, links, cta }) => (
+            <section key={title} className="w-[50%] max-w-[700px] p-16">
+              <CtaBloc title={title} description={description} links={links} cta={cta} />
+            </section>
           ))}
-      </div>
-
-      <div
+        </div>
+      )}
+      <section
         className="container-title container max-w-headerSize my-8 mx-auto p-2 
               flex flex-col items-center">
         <h2 className="my-8 w-full font-bold text-3xl text-center md:max-w-[70%]">
@@ -47,39 +62,39 @@ const HomeByProfile: React.FC<HomeByProfileProps> = ({ profile }) => {
         </h2>
         <div className="fr-container">
           <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-            {contentByProfile[profile].suggestions.map(({ title, description, links }) => (
+            {pageContent.suggestions.map(({ title, description, links }) => (
               <li key={title}>
                 <LinksCard title={title} description={description} links={links} />
               </li>
             ))}
           </ul>
         </div>
-      </div>
+      </section>
       {profile === 'startup' && (
-        <div
+        <section
           className="container-title container max-w-headerSize my-8 mx-auto p-2 
               flex flex-col items-center">
           {' '}
           <h2 className="my-8 w-full font-bold text-3xl text-center md:max-w-[70%]">
-            {contentByProfile[profile].secondaryContent.title}
+            {pageContent.secondaryContent.title}
           </h2>
-          {contentByProfile[profile].secondaryContent.description && (
+          {pageContent.secondaryContent.description && (
             <p
               className="text-center w-[65%] leading-7 
                 lg:max-w-[62%]
                 ">
-              {contentByProfile[profile].secondaryContent.description}
+              {pageContent.secondaryContent.description}
             </p>
           )}
-        </div>
+        </section>
       )}
       <div
         className="container-title container max-w-headerSize my-8 mx-auto p-2 
               flex flex-col items-center">
         <Link
           className="w-fit h-9 text-base my-8 text-dark-text-action p-1 rm-link-underline flex justify-center text-xl"
-          to={contentByProfile[profile].secondaryContent.extraUrl}>
-          {contentByProfile[profile].secondaryContent.extraLink}
+          to={pageContent.secondaryContent.extraUrl}>
+          {pageContent.secondaryContent.extraLink}
         </Link>
       </div>
     </>
@@ -88,7 +103,7 @@ const HomeByProfile: React.FC<HomeByProfileProps> = ({ profile }) => {
 
 export default HomeByProfile;
 
-const contentByProfile = {
+const homePageContent = {
   startup: {
     pageTitle: 'Accueil startups',
     cardNames: ['achats-previsionnels', 'acheteurs-publics'],
@@ -97,6 +112,39 @@ const contentByProfile = {
       description:
         'A partir de la description de votre activité ou de votre solution, nous vous proposons des pistes de leviers autour des 5 axes suivants :'
     },
+    ctaBlocs: [
+      {
+        title: 'Parlez la même langue que les acheteurs publics !',
+        description:
+          'Téléchargez notre template d’argumentaire innovation qui vous permettra de valoriser votre solution auprès des acheteurs publics !',
+
+        cta: {
+          name: "télécharger le template d'argumentaire",
+          url: 'link-to-download',
+          icon: 'download'
+        },
+        links: [
+          {
+            name: 'Voir le guide pratique des achats innovants',
+            url: 'https://www.economie.gouv.fr/files/2020-08/guide-pratique-achat-public-innovant.pdf'
+          },
+          {
+            name: "Evaluer son caractère innovant grâce à l'échelle TRL",
+            url: 'https://www.entreprises.gouv.fr/files/files/directions_services/politique-et-enjeux/innovation/tc2015/technologies-cles-2015-annexes.pdf'
+          }
+        ]
+      },
+      {
+        title: "Recevez la Green'Actu !",
+        description:
+          'Recevez chaque mois les actualités, les nouveaux podcast, les offres d’emplois et les événements de Greentech Innovation et de son écosystème.',
+        cta: {
+          name: "M'inscrire à la Green'Actu",
+          url: 'https://email.developpement-durable.gouv.fr/users/subscribe/js_id/5sie/id/2',
+          icon: 'sendMail'
+        }
+      }
+    ],
     suggestions: [
       {
         title: 'Investisseurs',
@@ -159,6 +207,7 @@ const contentByProfile = {
       description:
         'A partir de la description de votre besoin, nous vous proposons des solutions adaptées'
     },
+    ctaBlocs: [],
     suggestions: [
       {
         title: 'Communauté',
@@ -202,8 +251,7 @@ const contentByProfile = {
       }
     ],
     secondaryContent: {
-      title:
-        'Vous souhaitez que votre entreprise éco-innovante soit visible dans Mes Services Greentech ?',
+      title: null,
       description: null,
       extraLink: 'Vous n’êtes pas un acheteur public ? Aller sur la version entreprise',
       extraUrl: '/startup'
