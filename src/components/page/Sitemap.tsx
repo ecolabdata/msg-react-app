@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Location } from 'react-router-dom';
 import reactRouterToArray from 'react-router-to-array';
+import { useQuery } from '../../hooks/useQuery';
 import routes from '../../model/routes';
 import formatSlugForBreadCumb from '../../utils/formatSlugForBreadcrumb';
 
@@ -14,6 +15,8 @@ type FormatedRoute =
 const Sitemap = () => {
   const [allRoutes, setAllRoutes] = useState<string[]>();
 
+  const query = useQuery();
+
   useEffect(() => {
     setAllRoutes(reactRouterToArray(routes));
   }, []);
@@ -25,7 +28,7 @@ const Sitemap = () => {
   const allFormatedRoutes = allRoutes
     .filter((route: string) => !route.includes('/search'))
     .map((route: string) => {
-      return formatSlugForBreadCumb(route, route);
+      return formatSlugForBreadCumb(query, { pathname: route } as Location, route);
     });
 
   const keys = allRoutes.map((str: string) => {

@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useQuery } from '../../hooks/useQuery';
 import formatSlugForBreadCumb from '../../utils/formatSlugForBreadcrumb';
 
 const BreadCumb: React.FC = () => {
   const [navHistory, setNavHistory] = useState<{ urlToRedirect: string; slugToDisplay: string }[]>(
     []
   );
+  const query = useQuery();
+  const location = useLocation();
 
   const createSlugForBreadCumb = () => {
-    const location = useLocation();
-
-    const pageData = formatSlugForBreadCumb(window.location.pathname, location.pathname);
+    const pageData = formatSlugForBreadCumb(query, location, location.pathname);
 
     if (!pageData) return;
 
@@ -44,13 +45,12 @@ const BreadCumb: React.FC = () => {
     <nav
       role="navigation"
       className="fr-breadcrumb !max-w-headerSize mx-auto"
-      aria-label="vous êtes ici :"
-    >
+      aria-label="vous êtes ici :">
       <button className="fr-breadcrumb__button" aria-expanded="false" aria-controls="breadcrumb-1">
         Voir le fil d’Ariane
       </button>
       <div className="fr-collapse" id="breadcrumb-1">
-        <ol className="fr-breadcrumb__list">
+        <ol className="fr-breadcrumb__list truncate w-80">
           {navHistory.length > 0 && (
             <li>
               <a className="fr-breadcrumb__link" href="/">

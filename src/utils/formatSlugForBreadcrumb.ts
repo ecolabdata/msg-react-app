@@ -1,4 +1,5 @@
-import { useLocation } from 'react-router-dom';
+import { Location } from 'react-router-dom';
+import { AnyCard } from '../api/Api';
 import { all as allCardType } from '../model/CardType';
 
 const formatedSlugSerachPage = (urlToRedirect: string) => {
@@ -16,7 +17,6 @@ const formatedSlugResultPage = (urlToRedirect: string) => {
 };
 
 const formatSlugForCardType = (pathname: string, urlToRedirect: string) => {
-  console.log('allCardType', allCardType);
   if (allCardType.map((card) => card.searchLink).includes(pathname)) {
     const card = allCardType.find((card) => card.searchLink === pathname);
     if (card) {
@@ -52,11 +52,15 @@ export const getGoodAttributForSlugInDetailsCard = (cardData: {
   }
 };
 
-const formatSlugForDetailsCards = (urlToRedirect: string) => {
-  const search = useLocation().search;
-  const cardData = new URLSearchParams(search).get('cardData');
-
-  const cardDataObject = cardData && JSON.parse(cardData);
+const formatSlugForDetailsCards = (
+  query: { [k: string]: string },
+  location: Location,
+  urlToRedirect: string
+) => {
+  const initialState = location.state as { cardData: AnyCard } | null;
+  if (!initialState?.cardData && !query.cardData)
+    throw new Error('Missing cardData to generate page');
+  const cardDataObject = initialState?.cardData || JSON.parse(query.cardData);
 
   const slug = getGoodAttributForSlugInDetailsCard(cardDataObject);
   if (!slug) return;
@@ -67,17 +71,21 @@ const formatSlugForDetailsCards = (urlToRedirect: string) => {
   };
 };
 
-const formatSlugForBreadCumb = (pathname: string, urlToRedirect: string) => {
-  if (pathname === '/') {
+const formatSlugForBreadCumb = (
+  query: { [k: string]: string },
+  location: Location,
+  urlToRedirect: string
+) => {
+  if (location.pathname === '/') {
     return;
   }
 
   let pageData: { urlToRedirect: string; slugToDisplay: string } | undefined;
 
-  const pageLocationWithoutSpecialCharacters = pathname.replace(/[^a-zA-Z]/g, ' ');
-  console.log(pathname, pageLocationWithoutSpecialCharacters, pathname.includes('explorer/search'));
+  const pageLocationWithoutSpecialCharacters = location.pathname.replace(/[^a-zA-Z]/g, ' ');
+
   // Find if it's an result page
-  if (pathname.includes('explorer/search')) {
+  if (location.pathname.includes('explorer/search')) {
     pageData = formatedSlugResultPage(urlToRedirect);
   }
 
@@ -87,11 +95,11 @@ const formatSlugForBreadCumb = (pathname: string, urlToRedirect: string) => {
   }
 
   // Find type of card
-  pageData = !pageData ? formatSlugForCardType(pathname, urlToRedirect) : pageData;
+  pageData = !pageData ? formatSlugForCardType(location.pathname, urlToRedirect) : pageData;
 
   // Find name of a details card
   if (pageLocationWithoutSpecialCharacters.includes('details')) {
-    pageData = formatSlugForDetailsCards(urlToRedirect);
+    pageData = formatSlugForDetailsCards(query, location, urlToRedirect);
   }
 
   // Default (not in different cases)
