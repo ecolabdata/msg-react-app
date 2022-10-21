@@ -22,7 +22,11 @@ const CtaBloc: React.FC<CtaBlocProps> = ({ title, description, cta, links }) => 
       {iconMapping[cta.icon as 'sendMail' | 'download']}
       <h2 className="mt-2 mb-4 w-full font-bold text-3xl">{title}</h2>
       <p className="">{description}</p>
-      <a className="my-8 fr-btn fr-btn--sm fr-btn--primary" href={cta.url}>
+      <a
+        className="my-8 fr-btn fr-btn--sm fr-btn--primary"
+        target="_blank"
+        href={cta.url}
+        rel="noreferrer">
         {cta.name}
       </a>
       {links && (

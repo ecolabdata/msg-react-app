@@ -120,7 +120,7 @@ const homePageContent = {
 
         cta: {
           name: "télécharger le template d'argumentaire",
-          url: 'link-to-download',
+          url: 'https://docs.google.com/document/d/1tFbq0duIZauZPTekjfJXFPylT96LHmNL/edit',
           icon: 'download'
         },
         links: [
@@ -150,8 +150,14 @@ const homePageContent = {
         title: 'Investisseurs',
         description: 'Consultez le catalogue de notre partenaire',
         links: [
-          { name: 'Le Pexe', url: 'https://ecoentreprises-france.fr/' },
-          { name: 'Investisseurs en France', url: '#' }
+          {
+            name: 'Le Pexe',
+            url: 'https://annuaire.investisseurs.ecoentreprises-france.fr/annuaire/1101206'
+          },
+          {
+            name: 'Investisseurs en France',
+            url: 'https://prairie-manchego-f09.notion.site/850-investisseurs-en-France-0d144a68e5a44dd391c1c019a2f1ae33'
+          }
         ]
       },
       {
@@ -160,8 +166,11 @@ const homePageContent = {
         links: [
           { name: 'Aides Territoires', url: 'https://aides-territoires.beta.gouv.fr/' },
           { name: 'Mission Transition', url: 'http://mission-transition.beta.gouv.fr/' },
-          { name: 'Bpifrance', url: 'https://www.bpifrance.fr/' },
-          { name: 'Ademe', url: 'https://www.ademe.fr/' }
+          { name: 'Bpifrance', url: 'https://www.bpifrance.fr/nos-solutions/financement' },
+          {
+            name: 'Ademe',
+            url: "https://librairie.ademe.fr/urbanisme-et-batiment/5208-aides-financieres-en-2022-les-9791029719127.html#:~:text=En%20savoir%20plus-,MaPrimeRenov'%2C%20%C3%A9co%2Dpr%C3%AAt%20%C3%A0%20taux%20z%C3%A9ro%2C%20Certificats%20d,%2C%20les%20%C3%A9nergies%20renouvelables..."
+          }
         ]
       },
       {
@@ -172,8 +181,11 @@ const homePageContent = {
             name: 'Place',
             url: 'https://www.marches-publics.gouv.fr/?page=Entreprise.AccueilEntreprise'
           },
-          { name: 'Maximilien', url: 'https://www.maximilien.fr/' },
-          { name: 'Ugap', url: 'https://www.ugap.fr/' }
+          { name: 'Maximilien', url: 'https://www.boamp.fr/pages/recherche/?sort=dateparution' },
+          {
+            name: 'Ugap',
+            url: 'https://www.ugap.fr/programme-dappels-doffres-previsionnel-2019-2020_4524522.html'
+          }
         ]
       }
     ],
@@ -246,6 +258,16 @@ const homePageContent = {
           {
             name: "Le marché de l'inclusion",
             url: 'https://lemarche.inclusion.beta.gouv.fr/#'
+          }
+        ]
+      },
+      {
+        title: 'Label Ville durable innovante',
+        description: 'Informations sur le label porté par le Cerema et Efficacity',
+        links: [
+          {
+            name: 'Label VDI',
+            url: 'https://www.label-vdi.fr/detail-label'
           }
         ]
       }
