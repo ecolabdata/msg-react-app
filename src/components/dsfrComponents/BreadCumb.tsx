@@ -11,7 +11,7 @@ const BreadCumb: React.FC = () => {
   const location = useLocation();
 
   const createSlugForBreadCumb = () => {
-    const pageData = formatSlugForBreadCumb(query, location);
+    const pageData = formatSlugForBreadCumb(query, location, location.pathname);
 
     if (!pageData) return;
 
@@ -51,7 +51,7 @@ const BreadCumb: React.FC = () => {
         Voir le fil d’Ariane
       </button>
       <div className="fr-collapse" id="breadcrumb-1">
-        <ol className="fr-breadcrumb__list">
+        <ol className="fr-breadcrumb__list truncate w-80">
           {navHistory.length > 0 && (
             <li>
               <a className="fr-breadcrumb__link" href="/">

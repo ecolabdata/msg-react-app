@@ -73,7 +73,8 @@ const buildExplorePage: (
             <ResultCardsPreview
               cardType={cardType}
               initialState={initialState}
-              resultCount={results.length}>
+              resultCount={results.length}
+            >
               {results
                 .filter((x) => !isInCorbeille(x))
                 .slice(0, cardSliceSize)
@@ -89,7 +90,8 @@ const buildExplorePage: (
       <>
         <h1
           className="font-bold my-2 mx-auto max-w-headerSize text-xl flex text-center justify-center items-center w-[90%]
-            md:my-8 md:text-[30px] leading-5">
+            md:my-8 md:text-[30px] leading-5"
+        >
           {' '}
           <Magnifying width="31px" height="31px" className="mr-4" aria-hidden={true} /> Formulaire
           de recherche en 3 étapes !{' '}
@@ -102,7 +104,8 @@ const buildExplorePage: (
           }}
           id="keywordsForm"
           className="h-fit mx-auto max-w-headerSize
-            ">
+            "
+        >
           <PitchThematicsKeywords
             usedDescription={[description, setDescription]}
             usedMotsClef={[motsclefs, setMotsclef]}
@@ -120,7 +123,8 @@ const buildExplorePage: (
               setDescription('');
               setSecteurs([]);
               setMotsclef([]);
-            }}>
+            }}
+          >
             {' '}
             réinitialiser{' '}
           </button>
@@ -132,7 +136,8 @@ const buildExplorePage: (
             }}
             form="keywordsForm"
             disabled={isLoading}
-            className="fr-btn fr-btn--lg fr-btn--primary capitalize">
+            className="fr-btn fr-btn--lg fr-btn--primary capitalize"
+          >
             <span className="mx-auto flex items-center">
               {!isLoading && (
                 <FillMagnifying
