@@ -28,7 +28,7 @@ const formatSlugForCardType = (pathname: string, urlToRedirect: string) => {
   }
 };
 
-const getGoodAttributForSlugInDetailsCard = (cardData: {
+export const getGoodAttributForSlugInDetailsCard = (cardData: {
   [x: string]: string;
   cardTypeName: string;
   nom: string;
@@ -36,7 +36,7 @@ const getGoodAttributForSlugInDetailsCard = (cardData: {
   description: string;
   Projet: string;
 }) => {
-  switch (cardData.cardTypeName) {
+  switch (cardData?.cardTypeName) {
     case 'acheteurs-publics':
       return cardData.nom;
     case 'aides-innovations':
