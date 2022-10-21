@@ -26,7 +26,8 @@ const LinksCard: React.FC<LinksCardProps> = ({ title, description, links }) => {
                     className="fr-link rm-link-underline"
                     target="_blank"
                     href={url}
-                    rel="noreferrer">
+                    rel="noreferrer"
+                  >
                     {name}
                   </a>
                 </li>

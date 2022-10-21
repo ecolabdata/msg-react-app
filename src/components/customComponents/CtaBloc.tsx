@@ -26,7 +26,8 @@ const CtaBloc: React.FC<CtaBlocProps> = ({ title, description, cta, links }) => 
         className="my-8 fr-btn fr-btn--sm fr-btn--primary"
         target="_blank"
         href={cta.url}
-        rel="noreferrer">
+        rel="noreferrer"
+      >
         {cta.name}
       </a>
       {links && (
@@ -38,7 +39,8 @@ const CtaBloc: React.FC<CtaBlocProps> = ({ title, description, cta, links }) => 
                   className="fr-link rm-link-underline"
                   target="_blank"
                   href={url}
-                  rel="noreferrer">
+                  rel="noreferrer"
+                >
                   {name}
                 </a>
               </li>

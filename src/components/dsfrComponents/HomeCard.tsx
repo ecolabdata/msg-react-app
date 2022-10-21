@@ -30,7 +30,8 @@ const HomeCard: React.FC<CardTypeProps> = (props) => {
                 ${!isExplorerCard && isAlpha ? alphaCardStyle : 'fr-enlarge-link'} }
                  m-[1em]
                 `}
-      style={{ width: isExplorerCard ? 'calc(361px * 2 + 2em)' : 361 }}>
+      style={{ width: isExplorerCard ? 'calc(361px * 2 + 2em)' : 361 }}
+    >
       <div className="fr-card__body">
         <div className="fr-card__content">
           <h3 className="fr-card__title">
@@ -38,7 +39,8 @@ const HomeCard: React.FC<CardTypeProps> = (props) => {
               <a
                 href={searchLink}
                 className={`${isExplorerCard && 'text-black '}
-                                    text-lg`}>
+                                    text-lg`}
+              >
                 {title}
               </a>
             ) : (

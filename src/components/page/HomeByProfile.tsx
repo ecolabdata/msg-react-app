@@ -45,7 +45,7 @@ const HomeByProfile: React.FC<HomeByProfileProps> = ({ profile }) => {
             ))}
         </ul>
       </section>
-      {pageContent.ctaBlocs?.length && (
+      {!!pageContent.ctaBlocs?.length && (
         <div className="container flex flex-col my-8 mx-auto justify-center max-w-headerSize md:max-w-[80%]  md:flex-row">
           {pageContent.ctaBlocs.map(({ title, description, links, cta }) => (
             <section key={title} className="w-[50%] max-w-[700px] p-16">

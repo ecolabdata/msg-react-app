@@ -8,17 +8,20 @@ const Home: React.FC = () => {
     <>
       <div
         className="container-title container max-w-headerSize mx-auto p-2 mb-8
-                flex flex-col items-center">
+                flex flex-col items-center"
+      >
         <h1
           className="mt-4 w-full text-3xl text-center 
                 md:max-w-[70%]
-                ">
+                "
+        >
           Bienvenue sur Mes Services Greentech !
         </h1>
         <h2
           className="mt-8 text-center w-[65%] leading-7 
                 lg:max-w-[62%] font-bold
-                ">
+                "
+        >
           Afin de vous orienter vers les meilleurs leviers, choisissez votre profil :
         </h2>
       </div>
@@ -57,7 +60,8 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ title, description, badge, ty
           <h3 className="fr-card__title">
             <Link
               to={type === 'startup' ? '/startup' : '/acteurs-publics'}
-              className="rm-link-underline">
+              className="rm-link-underline"
+            >
               <p className="clamp mt-2 font-bold text-lg">{title}</p>
             </Link>
           </h3>
