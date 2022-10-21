@@ -26,6 +26,7 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 'off',
     'no-undef': 'off',
     'no-empty-pattern': 'off',
-    '@typescript-eslint/ban-types': 'off'
+    '@typescript-eslint/ban-types': 'off',
+    'react/display-name': 'off'
   }
 };
