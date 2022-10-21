@@ -7,7 +7,8 @@
   <link rel="apple-touch-icon" href="%PUBLIC_URL%/msg-icon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
-  <meta name="description" content="Site proposé par le ministère de la transition écologique et de la cohésion des territoires pour booster les startups greentech" />
+  <meta name="description"
+    content="Site proposé par le ministère de la transition écologique et de la cohésion des territoires pour booster les startups greentech" />
   <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -38,15 +39,38 @@
     var _paq = window._paq = window._paq || [];
     /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
     (function () {
-      var u = "//matomo.greentechinnovation.fr/";
-      _paq.push(['setTrackerUrl', u + 'matomo.php']);
+      // var u = "//matomo.greentechinnovation.fr/";
+      // _paq.push(['setTrackerUrl', u + 'matomo.php']);
+      // if (['messervices.greentechinnovation.fr', 'msg.greentechinnovation.fr'].includes(window.location.hostname)) {
+      //   _paq.push(['setSiteId', '2']);
+      //   console.log({ setSiteId: '2' })
+      // } else {
+      //   _paq.push(['setSiteId', '1']);
+      //   console.log({ setSiteId: '1' })
+      // }
+
+      var u = "//audience-sites.din.developpement-durable.gouv.fr/";
+      _paq.push(['setTrackerUrl', u + 'piwik.php']);
       if (['messervices.greentechinnovation.fr', 'msg.greentechinnovation.fr'].includes(window.location.hostname)) {
-        _paq.push(['setSiteId', '2']);
-        console.log({ setSiteId: '2' })
+        // URL alpha => "Internet Alpha Mes Services Greentech" avec Id Matomo : 1509
+        // https://messervices.greentechinnovation.fr/
+
+        // URL beta => "Internet Beta Mes Services Greentech" avec Id Matomo : 1510
+        // https://msg.greentechinnovation.fr/
+        _paq.push(['setSiteId', '1509']);
+        console.log({ setSiteId: '1509' })
       } else {
-        _paq.push(['setSiteId', '1']);
-        console.log({ setSiteId: '1' })
+        // URL de recette => "Internet Recette Mes Services Greentech" avec Id Matomo : 1508
+        // https://next.msg.greentechinnovation.fr/
+        _paq.push(['setSiteId', '1508']);
+        console.log({ setSiteId: '1508' })
       }
+
+      // Pour les URL de prod à venir, merci de bien vouloir faire une demande lorsque votre plateforme sera déployée en production.
+
+
+
+
 
       var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
       g.async = true; g.src = u + 'matomo.js'; s.parentNode.insertBefore(g, s);
