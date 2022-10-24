@@ -4,7 +4,6 @@ import SearchForm from './SearchForm';
 type PitchThematicsKeywordsParams = {
   usedDescription: [string, React.Dispatch<React.SetStateAction<string>>];
   usedSecteurs: [string[], React.Dispatch<React.SetStateAction<string[]>>];
-  usedMotsClef: [string[], React.Dispatch<React.SetStateAction<string[]>>];
   usedErrorTextDescription: [string, React.Dispatch<React.SetStateAction<string>>];
   usedInListPage: boolean;
   openPitchContainerFromStart: boolean | null;
@@ -14,7 +13,6 @@ export const PitchThematicsKeywords: React.FC<PitchThematicsKeywordsParams> = ({
   usedDescription,
   usedErrorTextDescription,
   usedSecteurs,
-  usedMotsClef,
   usedInListPage,
   openPitchContainerFromStart
 }) => {
@@ -33,8 +31,7 @@ export const PitchThematicsKeywords: React.FC<PitchThematicsKeywordsParams> = ({
             : 'lg:h-[408px]'
         }
          relative container min-w-full flex flex-col items-end         
-         transition-all duration-700`}
-    >
+         transition-all duration-700`}>
       {/* PAGE : ListAidesxxx ---- Open Formular Style  */}
 
       {usedInListPage && openPitchContainer && (
@@ -45,8 +42,7 @@ export const PitchThematicsKeywords: React.FC<PitchThematicsKeywordsParams> = ({
               onClick={() => {
                 setOpenPitchContainer(!openPitchContainer);
               }}
-              className="text-dark-text-action absolute top-0 right-10 m-2 w-[7%] flex justify-around items-center"
-            >
+              className="text-dark-text-action absolute top-0 right-10 m-2 w-[7%] flex justify-around items-center">
               <span className="underline">Fermer</span>
               <span className="rotate-45 block ml-2 text-3xl">+</span>
             </button>
@@ -55,7 +51,6 @@ export const PitchThematicsKeywords: React.FC<PitchThematicsKeywordsParams> = ({
             usedInListPage={usedInListPage}
             usedDescription={usedDescription}
             usedSecteurs={usedSecteurs}
-            usedMotsClef={usedMotsClef}
             usedErrorTextDescription={usedErrorTextDescription}
           />
         </>
@@ -66,8 +61,7 @@ export const PitchThematicsKeywords: React.FC<PitchThematicsKeywordsParams> = ({
         <button
           type="button"
           onClick={() => setOpenPitchContainer(!openPitchContainer)}
-          className="w-full text-dark-text-action flex justify-center items-center"
-        >
+          className="w-full text-dark-text-action flex justify-center items-center">
           Modifier la recherche <span className="ml-2">+</span>
         </button>
       )}
@@ -79,7 +73,6 @@ export const PitchThematicsKeywords: React.FC<PitchThematicsKeywordsParams> = ({
             usedInListPage={usedInListPage}
             usedDescription={usedDescription}
             usedSecteurs={usedSecteurs}
-            usedMotsClef={usedMotsClef}
             usedErrorTextDescription={usedErrorTextDescription}
           />{' '}
         </>

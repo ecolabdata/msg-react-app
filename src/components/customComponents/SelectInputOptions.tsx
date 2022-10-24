@@ -51,6 +51,7 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({
         aria-label="Thématique du projet"
         aria-expanded={displaySelect}
         ref={buttonRef}
+        type="button"
         onKeyDown={handleKeyDown}
         role="combobox"
         className="mt-2 w-full max-h-10 addBorder-b border-3 border-b-white p-2 flex bg-input-background"
