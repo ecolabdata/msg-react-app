@@ -160,24 +160,22 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
             </fieldset>
           </form>
 
-          <div className="researchButtonsContainer mt-4 w-full flex justify-center">
-            <button
-              type="button"
-              disabled={isLoading}
-              onClick={handleResetFilters}
-              className="mx-3 fr-btn fr-btn--sm underline fr-btn--tertiary-no-outline">
-              Réinitialiser
-            </button>
-
+          <div className="researchButtonsContainer mt-4 w-full flex flex-col items-center justify-center">
             <button
               form="keywordsForm"
               disabled={isLoading}
               className="mx-3 fr-btn fr-btn--sm fr-btn--primary 
                         ">
-              {' '}
               <span className={`mx-auto`}>
                 {isLoading ? 'Chargement...' : 'Valider et rechercher'}
-              </span>{' '}
+              </span>
+            </button>
+            <button
+              type="button"
+              disabled={isLoading}
+              onClick={handleResetFilters}
+              className="mt-4 fr-btn--tertiary-no-outline">
+              Réinitialiser
             </button>
           </div>
         </div>
