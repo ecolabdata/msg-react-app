@@ -19,7 +19,6 @@ const markets: Record<string, number> = {
 export class StartupRequestFilter implements RequestFilter {
   market = '';
   zone = '';
-  hasEcologicalConcern = true;
   allCards: AnyCard[] = [];
   cardType: CardType;
 
@@ -38,6 +37,11 @@ export class StartupRequestFilter implements RequestFilter {
 
   get cards() {
     return this.allCards;
+  }
+
+  reset() {
+    this.market = '';
+    this.zone = '';
   }
 
   search(description: string, secteurs: string[]) {

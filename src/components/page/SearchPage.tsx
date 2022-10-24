@@ -73,6 +73,12 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
     setIsAdvancedSearchOpen(!isAdvancedSearchOpen);
   };
 
+  const handleResetFilters = () => {
+    setDescription('');
+    setSecteurs([]);
+    requestFilter?.reset?.();
+  };
+
   const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -156,10 +162,9 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
             <button
               type="button"
               disabled={isLoading}
-              className="mx-3 fr-btn fr-btn--sm underline fr-btn--tertiary-no-outline   
-                        ">
-              {' '}
-              <span className={`mx-auto`}>Réinitialiser</span>{' '}
+              onClick={handleResetFilters}
+              className="mx-3 fr-btn fr-btn--sm underline fr-btn--tertiary-no-outline">
+              Réinitialiser
             </button>
 
             <button

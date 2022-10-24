@@ -53,6 +53,12 @@ export class ForecastedBuyRequestFilter implements RequestFilter {
     });
   }
 
+  reset() {
+    this.publicationDate = '';
+    this.zone = '';
+    this.hasEcologicalConcern = true;
+  }
+
   Component = ({}) => {
     const { cardType } = this;
     const [publicationDate, setPublicationDate] = useState(this.publicationDate);

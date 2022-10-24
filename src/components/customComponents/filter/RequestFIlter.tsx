@@ -6,4 +6,6 @@ export interface RequestFilter {
   get cards(): AnyCard[];
 
   Component({}: {}): JSX.Element;
+
+  reset?: () => void;
 }
