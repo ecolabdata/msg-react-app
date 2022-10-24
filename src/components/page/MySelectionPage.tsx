@@ -59,15 +59,15 @@ const MySelection = () => {
         <div className="cardTitle  my-10 ml-4 text-base flex justify-between items-center">
           <h2
             className="w-fit font-bold text-xl
-                    lg:text-4xl">
+                    lg:text-4xl"
+          >
             <div className="flex items-center">
               Ma sélection{' '}
               <span
                 className="mt-1 mx-2 text-sm
                             font-extralight
-                            lg:text-xl">{`(${
-                Object.keys(favoris).length
-              })`}</span>
+                            lg:text-xl"
+              >{`(${Object.keys(favoris).length})`}</span>
             </div>
           </h2>
 
@@ -76,7 +76,8 @@ const MySelection = () => {
               className="fr-btn fr-btn--sm fr-btn--primary fr-fi-download-line fr-btn--icon-left mr-2 h-[40px]
                         md:h-[40%]
                         "
-              onClick={() => download(Object.values(favoris))}>
+              onClick={() => download(Object.values(favoris))}
+            >
               Télécharger (WIP)
             </button>
 

@@ -8,13 +8,15 @@ interface SelectInputOptionsProps {
   secteurs: string[];
   className?: string;
   setSecteurs: React.Dispatch<React.SetStateAction<string[]>>;
+  color?: string;
 }
 
 const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({
   optionsData,
   secteurs,
   setSecteurs,
-  className
+  className,
+  color
 }) => {
   const [displaySelect, setDisplaySelect] = useState(false);
   const secteursSet = new Set(secteurs);
@@ -56,7 +58,7 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({
         type="button"
         onKeyDown={handleKeyDown}
         role="combobox"
-        className="mt-2 w-full h-10 addBorder-b border-3 border-b-white p-2 flex bg-input-background"
+        className={`mt-2 w-full h-10 addBorder-b border-3 border-[${color}] p-2 flex bg-input-background`}
         onClick={() => {
           setDisplaySelect(!displaySelect);
         }}>

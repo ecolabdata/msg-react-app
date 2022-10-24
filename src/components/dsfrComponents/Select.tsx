@@ -30,12 +30,14 @@ const Select: React.FC<SelectProps> = ({
         className={`fr-select ${selectClassName}`}
         onChange={onChange}
         style={style}
-        id={`select-${label}`}>
+        id={`select-${label}`}
+      >
         <option
           value=""
           selected={selected === ''}
           disabled={!defaultOption}
-          hidden={!defaultOption}>
+          hidden={!defaultOption}
+        >
           {defaultOption || 'Selectionnez une option'}
         </option>
         {optionsData.map((option) => (

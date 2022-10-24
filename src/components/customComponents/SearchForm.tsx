@@ -8,13 +8,15 @@ interface SearchFormProps {
   usedDescription: [string, React.Dispatch<React.SetStateAction<string>>];
   usedSecteurs: [string[], React.Dispatch<React.SetStateAction<string[]>>];
   usedErrorTextDescription: [string, React.Dispatch<React.SetStateAction<string>>];
+  color?: string;
 }
 
 const SearchForm: React.FC<SearchFormProps> = ({
   usedInListPage,
   usedSecteurs,
   usedDescription,
-  usedErrorTextDescription
+  usedErrorTextDescription,
+  color
 }) => {
   const [description, setDescription] = usedDescription;
   const [descriptionError, setDescriptionError] = usedErrorTextDescription;
@@ -34,6 +36,7 @@ const SearchForm: React.FC<SearchFormProps> = ({
           label="Décrivez votre projet en quelques lignes."
           formId="keywordsForm"
           required
+          color={color}
         />
       </SearchFieldWrapper>
       <SearchFieldWrapper
@@ -45,6 +48,7 @@ const SearchForm: React.FC<SearchFormProps> = ({
           optionsData={thematicsValues}
           secteurs={secteurs}
           setSecteurs={setSecteurs}
+          color={color}
         />
       </SearchFieldWrapper>
     </div>

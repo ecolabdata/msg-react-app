@@ -140,6 +140,7 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
                 usedSecteurs={[secteurs, setSecteurs]}
                 usedErrorTextDescription={[errorTxt, setErrorTxt]}
                 usedInListPage={true}
+                color={cardType.color}
               />
             </fieldset>
             <fieldset className="flex flex-col mt-4">
