@@ -92,7 +92,6 @@ export class ForecastedBuyRequestFilter implements RequestFilter {
           checked={hasEcologicalConcern}
           color={cardType.color}
           onChange={(e) => {
-            console.log(this.hasEcologicalConcern);
             this.hasEcologicalConcern = !this.hasEcologicalConcern;
             setHasEcologicalConcern(!hasEcologicalConcern);
           }}

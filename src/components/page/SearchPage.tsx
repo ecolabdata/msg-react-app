@@ -2,7 +2,6 @@ import { useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AidesQuery } from '../../api/Api';
 import { ApplicationContext } from '../../App';
-import { Filtrer } from '../../assets/Icons';
 import { useTitle } from '../../hooks/useTitle';
 import {
   achatPrevi,
@@ -37,8 +36,7 @@ type Props = {
 };
 
 const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
-  const { usedCorbeille, usedNextScrollTarget } = useContext(ApplicationContext);
-  const [toggleInCorbeille, isInCorbeille] = usedCorbeille;
+  const { usedNextScrollTarget } = useContext(ApplicationContext);
   const [nextScrollTarget, setNextScrollTarget] = usedNextScrollTarget;
   const location = useLocation();
   const requestFilter = requestFilterBuilder(location.state);
@@ -52,6 +50,7 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
   useTitle(`Recherche détaillé ${cardType.title}`);
 
   const [isLoading, setIsLoading] = useState(false);
+  const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
   const [description, setDescription] = useState(initialQuery?.description || '');
   const [secteurs, setSecteurs] = useState<string[]>(initialQuery?.secteurs || []);
   const [errorTxt, setErrorTxt] = useState('');
@@ -69,6 +68,10 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
 
   const nbPage = Math.ceil(filteredCards.length / pageChunkSize);
   const cardsSlice = filteredCards.slice((pageNo - 1) * pageChunkSize, pageNo * pageChunkSize);
+
+  const handleToggleAdvancedSearch = () => {
+    setIsAdvancedSearchOpen(!isAdvancedSearchOpen);
+  };
 
   const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -123,15 +126,30 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
             onSubmit={(event) => handleOnSubmitForm(event)}
             id="keywordsForm"
             className="researchContainer m-auto flex flex-col justify-around flex-wrap h-fit w-full">
-            <SearchForm
-              usedDescription={[description, setDescription]}
-              usedSecteurs={[secteurs, setSecteurs]}
-              usedErrorTextDescription={[errorTxt, setErrorTxt]}
-              usedInListPage={true}
-            />
-            <div className="flex flex-col md:flex-row mt-4 items-center">
-              <requestFilter.Component />
-            </div>
+            <fieldset>
+              <legend className="hidden">Champs de formulaire principaux</legend>
+              <SearchForm
+                usedDescription={[description, setDescription]}
+                usedSecteurs={[secteurs, setSecteurs]}
+                usedErrorTextDescription={[errorTxt, setErrorTxt]}
+                usedInListPage={true}
+              />
+            </fieldset>
+            <fieldset className="flex flex-col mt-4">
+              <legend className="hidden">Champs de recherche avancée</legend>
+              <button
+                aria-pressed={isAdvancedSearchOpen}
+                type="button"
+                className="ml-auto"
+                onClick={handleToggleAdvancedSearch}>
+                Recherche avancée
+              </button>
+              {isAdvancedSearchOpen && (
+                <div className="flex flex-col md:flex-row items-center">
+                  <requestFilter.Component />
+                </div>
+              )}
+            </fieldset>
           </form>
 
           <div className="researchButtonsContainer mt-4 w-full flex justify-center">
