@@ -118,7 +118,7 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
           <p className="mt-2 text-base">{cardType.description}</p>
         </div>
 
-        <div className="flex flex-col items-center w-full">
+        <div className="flex flex-col items-center w-full px-4 md:px-0">
           <form
             onSubmit={(event) => handleOnSubmitForm(event)}
             id="keywordsForm"
@@ -129,7 +129,7 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
               usedErrorTextDescription={[errorTxt, setErrorTxt]}
               usedInListPage={true}
             />
-            <div className="flex flex-col md:flex-row">
+            <div className="flex flex-col md:flex-row ">
               <requestFilter.Component />
             </div>
           </form>

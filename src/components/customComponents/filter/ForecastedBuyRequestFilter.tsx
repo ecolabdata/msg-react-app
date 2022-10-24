@@ -62,7 +62,7 @@ export class ForecastedBuyRequestFilter implements RequestFilter {
     return (
       <>
         <Select
-          classes=" w-[93%] lg:mx-2 lg:max-w-[202px]"
+          classes=" w-full lg:max-w-[202px] mr-8"
           label="Date de publication"
           color={cardType.color}
           defaultOption={'Toutes'}
@@ -74,7 +74,7 @@ export class ForecastedBuyRequestFilter implements RequestFilter {
           selected={publicationDate}
         />
         <Select
-          classes=" w-[93%] lg:mx-2 lg:max-w-[202px]"
+          classes=" w-full lg:max-w-[202px] mr-8"
           label="Zone"
           color={cardType.color}
           defaultOption={'Toutes'}
@@ -85,19 +85,16 @@ export class ForecastedBuyRequestFilter implements RequestFilter {
           }}
           selected={zone}
         />
-
-        <div className="toggleButtonsContainer w-[93%] flex flex-col grow lg:h-full lg:flex lg:flex-col lg:items-center lg:justify-center">
-          <ToggleButton
-            label={'Considération environnementale'}
-            checked={hasEcologicalConcern}
-            color={cardType.color}
-            onChange={(e) => {
-              console.log(this.hasEcologicalConcern);
-              this.hasEcologicalConcern = !this.hasEcologicalConcern;
-              setHasEcologicalConcern(!hasEcologicalConcern);
-            }}
-          />
-        </div>
+        <ToggleButton
+          label={'Considération environnementale'}
+          checked={hasEcologicalConcern}
+          color={cardType.color}
+          onChange={(e) => {
+            console.log(this.hasEcologicalConcern);
+            this.hasEcologicalConcern = !this.hasEcologicalConcern;
+            setHasEcologicalConcern(!hasEcologicalConcern);
+          }}
+        />
       </>
     );
   };

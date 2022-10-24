@@ -24,7 +24,7 @@ const SearchForm: React.FC<SearchFormProps> = ({
   const thematicsValues = Object.values(ThematicsEnum);
 
   return (
-    <div className="flex flex-col md:flex-row">
+    <div className="flex flex-col md:flex-row ">
       <SearchFieldWrapper label="Votre recherche" usedInListPage={usedInListPage} step={1}>
         <TextAreaInput
           value={description}

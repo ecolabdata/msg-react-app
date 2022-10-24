@@ -15,7 +15,7 @@ const SearchFieldWrapper: React.FC<PropsWithChildren<SearchFieldWrapperProps>> =
 }) => {
   return (
     <div
-      className={`projectContainer md:w-[50%] p-4 m-2 bg-research-precision-container ${
+      className={`projectContainer md:w-[50%] p-4 my-2 mr-0 md:first:mr-2 md:last:ml-2 bg-research-precision-container ${
         usedInListPage ? 'mt-8' : 'items-center w-full -- lg:h-full'
       }
           flex flex-col justify-center lg:mt-0`}>
