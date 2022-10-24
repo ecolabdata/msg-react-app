@@ -83,7 +83,7 @@ export function applyCard<T>(
 }
 
 function handleResp(
-  query: Query | InvestisseurQuery | AidesClientQuery | AidesInnoQuery,
+  query: Query | InvestisseurQuery | AidesClientQuery | AidesInnoQuery | ForecastedBuyQuery,
   resp: ApiResponse
 ) {
   const cards = {
@@ -221,3 +221,22 @@ export const searchAidesInno = (query: AidesInnoQuery) =>
 
 export const searchStartups = (query: Query) =>
   buildFetchRequest({}).then((resp) => handleResp(query, resp));
+
+/* Achats prévisionnels */
+export interface Buy extends Omit<Query, 'type' | 'motsclefs'> {
+  publicationDate: string;
+  zone: string;
+  hasEcologicalConcern: boolean;
+}
+
+export type ForecastedBuyQuery = Buy;
+
+export const searchForecastedBuy = (query: ForecastedBuyQuery) => {
+  return buildFetchRequest({
+    descriptionSU: query.description,
+    secteurs: query.secteurs,
+    hasEcologicalConcern: query.hasEcologicalConcern,
+    publicationDate: query.publicationDate,
+    zone: query.zone
+  }).then((resp) => handleResp(query, resp));
+};

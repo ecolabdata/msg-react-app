@@ -31,7 +31,8 @@ export const PitchThematicsKeywords: React.FC<PitchThematicsKeywordsParams> = ({
             : 'lg:h-[408px]'
         }
          relative container min-w-full flex flex-col items-end         
-         transition-all duration-700`}>
+         transition-all duration-700`}
+    >
       {/* PAGE : ListAidesxxx ---- Open Formular Style  */}
 
       {usedInListPage && openPitchContainer && (
@@ -42,7 +43,8 @@ export const PitchThematicsKeywords: React.FC<PitchThematicsKeywordsParams> = ({
               onClick={() => {
                 setOpenPitchContainer(!openPitchContainer);
               }}
-              className="text-dark-text-action absolute top-0 right-10 m-2 w-[7%] flex justify-around items-center">
+              className="text-dark-text-action absolute top-0 right-10 m-2 w-[7%] flex justify-around items-center"
+            >
               <span className="underline">Fermer</span>
               <span className="rotate-45 block ml-2 text-3xl">+</span>
             </button>
@@ -61,7 +63,8 @@ export const PitchThematicsKeywords: React.FC<PitchThematicsKeywordsParams> = ({
         <button
           type="button"
           onClick={() => setOpenPitchContainer(!openPitchContainer)}
-          className="w-full text-dark-text-action flex justify-center items-center">
+          className="w-full text-dark-text-action flex justify-center items-center"
+        >
           Modifier la recherche <span className="ml-2">+</span>
         </button>
       )}

@@ -19,6 +19,7 @@ import {
 } from '../../model/CardType';
 import { InitialState } from '../../utils/InitialState';
 import { AideRequestFilter } from '../customComponents/filter/AideRequestFilter';
+import { ForecastedBuyRequestFilter } from '../customComponents/filter/ForecastedBuyRequestFilter';
 import { InvestisseurRequestFilter } from '../customComponents/filter/InvestisseurRequestFilter';
 import { NoRequestFilter } from '../customComponents/filter/NoRequestFilter';
 import { ProjetAchatRequestFilter } from '../customComponents/filter/ProjetAchatRequestFilter';
@@ -256,7 +257,9 @@ export const SearchPageAcheteurPublic = () => (
 export const SearchPageAchatPrevi = () => (
   <SearchPage
     cardType={achatPrevi}
-    requestFilterBuilder={(initState) => new ProjetAchatRequestFilter(initState as any, achatPrevi)}
+    requestFilterBuilder={(initState) =>
+      new ForecastedBuyRequestFilter(initState as any, achatPrevi)
+    }
   />
 );
 
