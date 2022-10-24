@@ -6,13 +6,15 @@ import { useOutsideAlerter } from '../../hooks/useOutsideAlerter';
 interface SelectInputOptionsProps {
   optionsData: string[];
   secteurs: string[];
+  className?: string;
   setSecteurs: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({
   optionsData,
   secteurs,
-  setSecteurs
+  setSecteurs,
+  className
 }) => {
   const [displaySelect, setDisplaySelect] = useState(false);
   const secteursSet = new Set(secteurs);
@@ -42,7 +44,7 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({
   });
 
   return (
-    <div className="relative" ref={wrapperRef}>
+    <div className={`relative ${className}`} ref={wrapperRef}>
       <label className="fr-label" htmlFor="select-container">
         Thématique du projet
       </label>

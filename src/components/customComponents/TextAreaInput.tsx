@@ -25,7 +25,7 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
 
   return (
     <>
-      <label htmlFor={inputId} className="text-base">
+      <label htmlFor={inputId} className="text-base fr-label">
         {label} {required && <span aria-hidden={true}>(obligatoire)</span>}
       </label>
       <textarea

@@ -1,6 +1,4 @@
-import { useState } from 'react';
 import { ThematicsEnum } from '../../model/ThematicsEnum';
-import { OverlappingTitle } from './OverlappingTitle';
 import SearchFieldWrapper from './SearchFieldWrapper';
 import SelectInputOptions from './SelectInputOptions';
 import TextAreaInput from './TextAreaInput';
@@ -24,8 +22,11 @@ const SearchForm: React.FC<SearchFormProps> = ({
   const thematicsValues = Object.values(ThematicsEnum);
 
   return (
-    <div className="flex flex-col md:flex-row ">
-      <SearchFieldWrapper label="Votre recherche" usedInListPage={usedInListPage} step={1}>
+    <div className="flex flex-col md:flex-row h-full">
+      <SearchFieldWrapper
+        label="Votre recherche"
+        usedInListPage={usedInListPage}
+        className="w-full md:w-[55%]">
         <TextAreaInput
           value={description}
           onValueChange={setDescription}
@@ -35,8 +36,12 @@ const SearchForm: React.FC<SearchFormProps> = ({
           required
         />
       </SearchFieldWrapper>
-      <SearchFieldWrapper label="La thématique" usedInListPage={usedInListPage} step={2}>
+      <SearchFieldWrapper
+        label="La thématique"
+        usedInListPage={usedInListPage}
+        className="w-full md:w-[45%]">
         <SelectInputOptions
+          className="mb-auto"
           optionsData={thematicsValues}
           secteurs={secteurs}
           setSecteurs={setSecteurs}
