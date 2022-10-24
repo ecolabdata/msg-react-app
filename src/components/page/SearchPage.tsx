@@ -129,7 +129,7 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
               usedErrorTextDescription={[errorTxt, setErrorTxt]}
               usedInListPage={true}
             />
-            <div className="flex flex-col md:flex-row ">
+            <div className="flex flex-col md:flex-row mt-4 items-center">
               <requestFilter.Component />
             </div>
           </form>

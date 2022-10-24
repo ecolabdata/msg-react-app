@@ -57,7 +57,8 @@ export class StartupRequestFilter implements RequestFilter {
     return (
       <>
         <Select
-          classes=" w-[93%] lg:mx-2 lg:max-w-[202px]"
+          classes=" w-full lg:max-w-[202px] md:mr-8"
+          selectClassName="bg-research-precision-container"
           label="Marchés"
           color={cardType.color}
           defaultOption={'Tous'}
@@ -69,7 +70,8 @@ export class StartupRequestFilter implements RequestFilter {
           selected={market}
         />
         <Select
-          classes=" w-[93%] lg:mx-2 lg:max-w-[202px]"
+          classes=" w-full lg:max-w-[202px] md:mr-8"
+          selectClassName="bg-research-precision-container"
           label="Zone"
           color={cardType.color}
           defaultOption={'Toutes'}

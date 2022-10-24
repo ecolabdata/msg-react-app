@@ -62,7 +62,8 @@ export class ForecastedBuyRequestFilter implements RequestFilter {
     return (
       <>
         <Select
-          classes=" w-full lg:max-w-[202px] mr-8"
+          classes=" w-full lg:max-w-[202px] md:mr-8"
+          selectClassName="bg-research-precision-container"
           label="Date de publication"
           color={cardType.color}
           defaultOption={'Toutes'}
@@ -74,7 +75,8 @@ export class ForecastedBuyRequestFilter implements RequestFilter {
           selected={publicationDate}
         />
         <Select
-          classes=" w-full lg:max-w-[202px] mr-8"
+          classes=" w-full lg:max-w-[202px] md:mr-8"
+          selectClassName="bg-research-precision-container"
           label="Zone"
           color={cardType.color}
           defaultOption={'Toutes'}

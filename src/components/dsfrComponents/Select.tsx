@@ -2,6 +2,7 @@ interface SelectProps {
   optionsData: string[];
   label: string;
   classes: string;
+  selectClassName?: string;
   onChange?: React.ChangeEventHandler<HTMLSelectElement>;
   color?: string;
   defaultOption?: string;
@@ -15,26 +16,26 @@ const Select: React.FC<SelectProps> = ({
   onChange,
   color,
   defaultOption,
-  selected
+  selected,
+  selectClassName
 }) => {
   let style = {};
   if (color) style = { boxShadow: `inset 0 -2px 0 0 ${color}` };
   return (
-    <div
-      className={`
-            ${classes}
-            fr-select-group`}
-    >
+    <div className={`${classes}`}>
       <label className="fr-label" htmlFor={`select-${label}`}>
         {label}
       </label>
-      <select className="fr-select" onChange={onChange} style={style} id={`select-${label}`}>
+      <select
+        className={`fr-select ${selectClassName}`}
+        onChange={onChange}
+        style={style}
+        id={`select-${label}`}>
         <option
           value=""
           selected={selected === ''}
           disabled={!defaultOption}
-          hidden={!defaultOption}
-        >
+          hidden={!defaultOption}>
           {defaultOption || 'Selectionnez une option'}
         </option>
         {optionsData.map((option) => (
