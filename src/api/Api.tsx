@@ -89,7 +89,8 @@ function handleResp(
     | AidesClientQuery
     | AidesInnoQuery
     | ForecastedBuyQuery
-    | StartupQuery,
+    | StartupQuery
+    | PublicBuyQuery,
   resp: ApiResponse
 ) {
   const cards = {
@@ -234,7 +235,7 @@ export interface Buy extends Omit<Query, 'type' | 'motsclefs'> {
 
 export type ForecastedBuyQuery = Buy;
 
-export const searchForecastedBuy = (query: ForecastedBuyQuery) => {
+export const searchForecastedBuys = (query: ForecastedBuyQuery) => {
   return buildFetchRequest({
     descriptionSU: query.description,
     secteurs: query.secteurs,
@@ -258,5 +259,22 @@ export const searchStartups = (query: StartupQuery) => {
     secteurs: query.secteurs,
     market: query.market,
     zone: query.zone
+  }).then((resp) => handleResp(query, resp));
+};
+
+/* Acheteurs publics */
+export interface PublicBuy extends Omit<Query, 'type' | 'motsclefs'> {
+  entity: string;
+  certification: string;
+}
+
+export type PublicBuyQuery = PublicBuy;
+
+export const searchPublicBuys = (query: PublicBuyQuery) => {
+  return buildFetchRequest({
+    descriptionSU: query.description,
+    secteurs: query.secteurs,
+    entity: query.entity,
+    certification: query.certification
   }).then((resp) => handleResp(query, resp));
 };

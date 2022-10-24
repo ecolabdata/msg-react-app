@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AnyCard, ForecastedBuyQuery, searchForecastedBuy } from '../../../api/Api';
+import { AnyCard, ForecastedBuyQuery, searchForecastedBuys } from '../../../api/Api';
 import { CardType } from '../../../model/CardType';
 import { InitialState } from '../../../utils/InitialState';
 import Select from '../../dsfrComponents/Select';
@@ -44,7 +44,7 @@ export class ForecastedBuyRequestFilter implements RequestFilter {
   }
 
   search(description: string, secteurs: string[]) {
-    return searchForecastedBuy({
+    return searchForecastedBuys({
       description,
       secteurs,
       hasEcologicalConcern: this.hasEcologicalConcern,

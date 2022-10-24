@@ -22,6 +22,7 @@ import { ForecastedBuyRequestFilter } from '../customComponents/filter/Forecaste
 import { InvestisseurRequestFilter } from '../customComponents/filter/InvestisseurRequestFilter';
 import { NoRequestFilter } from '../customComponents/filter/NoRequestFilter';
 import { ProjetAchatRequestFilter } from '../customComponents/filter/ProjetAchatRequestFilter';
+import { PublicBuyRequestFilter } from '../customComponents/filter/PublicBuyRequestFilter';
 import { RequestFilter } from '../customComponents/filter/RequestFIlter';
 import { StartupRequestFilter } from '../customComponents/filter/StartupRequestFilter';
 
@@ -254,7 +255,9 @@ export const SearchPageStartups = () => (
 export const SearchPageAcheteurPublic = () => (
   <SearchPage
     cardType={acheteurPublic}
-    requestFilterBuilder={(initState) => new NoRequestFilter(initState as any, acheteurPublic)}
+    requestFilterBuilder={(initState) =>
+      new PublicBuyRequestFilter(initState as any, acheteurPublic)
+    }
   />
 );
 export const SearchPageAchatPrevi = () => (
