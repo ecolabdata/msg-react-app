@@ -83,7 +83,13 @@ export function applyCard<T>(
 }
 
 function handleResp(
-  query: Query | InvestisseurQuery | AidesClientQuery | AidesInnoQuery | ForecastedBuyQuery,
+  query:
+    | Query
+    | InvestisseurQuery
+    | AidesClientQuery
+    | AidesInnoQuery
+    | ForecastedBuyQuery
+    | StartupQuery,
   resp: ApiResponse
 ) {
   const cards = {
@@ -219,9 +225,6 @@ export const searchAidesInno = (query: AidesInnoQuery) =>
     fichier_aides_inno: 'corpusinno.pkl'
   }).then((resp) => handleResp(query, resp));
 
-export const searchStartups = (query: Query) =>
-  buildFetchRequest({}).then((resp) => handleResp(query, resp));
-
 /* Achats prévisionnels */
 export interface Buy extends Omit<Query, 'type' | 'motsclefs'> {
   publicationDate: string;
@@ -237,6 +240,23 @@ export const searchForecastedBuy = (query: ForecastedBuyQuery) => {
     secteurs: query.secteurs,
     hasEcologicalConcern: query.hasEcologicalConcern,
     publicationDate: query.publicationDate,
+    zone: query.zone
+  }).then((resp) => handleResp(query, resp));
+};
+
+/* Start ups */
+export interface IStartup extends Omit<Query, 'type' | 'motsclefs'> {
+  market: string;
+  zone: string;
+}
+
+export type StartupQuery = IStartup;
+
+export const searchStartups = (query: StartupQuery) => {
+  return buildFetchRequest({
+    descriptionSU: query.description,
+    secteurs: query.secteurs,
+    market: query.market,
     zone: query.zone
   }).then((resp) => handleResp(query, resp));
 };

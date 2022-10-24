@@ -24,6 +24,7 @@ import { InvestisseurRequestFilter } from '../customComponents/filter/Investisse
 import { NoRequestFilter } from '../customComponents/filter/NoRequestFilter';
 import { ProjetAchatRequestFilter } from '../customComponents/filter/ProjetAchatRequestFilter';
 import { RequestFilter } from '../customComponents/filter/RequestFIlter';
+import { StartupRequestFilter } from '../customComponents/filter/StartupRequestFilter';
 import { PitchThematicsKeywords } from '../customComponents/PitchThematicsKeywords';
 
 import ResultCard from '../customComponents/ResultCard';
@@ -245,7 +246,7 @@ export const SearchPageInvestisseur = () => (
 export const SearchPageStartups = () => (
   <SearchPage
     cardType={startups}
-    requestFilterBuilder={(initState) => new NoRequestFilter(initState as any, startups)}
+    requestFilterBuilder={(initState) => new StartupRequestFilter(initState as any, startups)}
   />
 );
 export const SearchPageAcheteurPublic = () => (
