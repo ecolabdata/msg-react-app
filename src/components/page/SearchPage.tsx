@@ -25,10 +25,10 @@ import { NoRequestFilter } from '../customComponents/filter/NoRequestFilter';
 import { ProjetAchatRequestFilter } from '../customComponents/filter/ProjetAchatRequestFilter';
 import { RequestFilter } from '../customComponents/filter/RequestFIlter';
 import { StartupRequestFilter } from '../customComponents/filter/StartupRequestFilter';
-import { PitchThematicsKeywords } from '../customComponents/PitchThematicsKeywords';
 
 import ResultCard from '../customComponents/ResultCard';
 import ScreenReaderOnlyText from '../customComponents/ScreenReaderOnlyText';
+import SearchForm from '../customComponents/SearchForm';
 import Pagination from '../dsfrComponents/Pagination';
 
 type Props = {
@@ -122,36 +122,15 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
           <form
             onSubmit={(event) => handleOnSubmitForm(event)}
             id="keywordsForm"
-            className="h-fit w-full">
-            <div className="researchContainer m-auto flex justify-around flex-wrap">
-              <PitchThematicsKeywords
-                usedDescription={[description, setDescription]}
-                usedSecteurs={[secteurs, setSecteurs]}
-                usedErrorTextDescription={[errorTxt, setErrorTxt]}
-                usedInListPage={true}
-                openPitchContainerFromStart={!initialQuery}
-              />
-            </div>
-
-            <div
-              className="specifyResearchContainer mt-2 min-h-[160px] max-w-headerSize w-full flex flex-col items-center justify-center  bg-research-precision-container
-                        lg:mt-2 lg:justify-center">
-              <div className="specifyAndLogoContainer w-full ">
-                <h2
-                  style={{ color: cardType.color }}
-                  className={`mt-4 bold text-xl flex justify-center items-center`}>
-                  <Filtrer className="mr-6" width="20" height="20" />
-                  Préciser la recherche
-                </h2>
-              </div>
-
-              <div className="inputsAndToggleContainer self-end flex items-end  justify-around w-full mt-2 mb-8 sm:mb-0">
-                <div
-                  className="inputsContainer w-full mt-2 flex flex-col items-center justify-center   
-                                lg:h-fit lg:w-[85%] lg:flex-row">
-                  <requestFilter.Component />
-                </div>
-              </div>
+            className="researchContainer m-auto flex flex-col justify-around flex-wrap h-fit w-full">
+            <SearchForm
+              usedDescription={[description, setDescription]}
+              usedSecteurs={[secteurs, setSecteurs]}
+              usedErrorTextDescription={[errorTxt, setErrorTxt]}
+              usedInListPage={true}
+            />
+            <div className="flex flex-col md:flex-row">
+              <requestFilter.Component />
             </div>
           </form>
 
