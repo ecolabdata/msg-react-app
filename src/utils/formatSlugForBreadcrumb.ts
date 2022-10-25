@@ -1,27 +1,34 @@
-import { useLocation } from 'react-router-dom';
-import { AnyCard } from '../api/Api';
-import { useQuery } from '../hooks/useQuery';
-import { all as allCardType } from '../model/CardType';
 import { Location } from 'react-router-dom';
+import { AnyCard } from '../api/Api';
+import { all as allCardType } from '../model/CardType';
 
-const formatedSlugSerachPage = {
-  urlToRedirect: location.pathname,
-  slugToDisplay: 'Rechercher des leviers'
+const formatedSlugSerachPage = (urlToRedirect: string) => {
+  return {
+    urlToRedirect: urlToRedirect,
+    slugToDisplay: 'Rechercher des leviers'
+  };
 };
 
-const formatSlugForCardType = () => {
-  if (allCardType.map((card) => card.searchLink).includes(window.location.pathname)) {
-    const card = allCardType.find((card) => card.searchLink === window.location.pathname);
+const formatedSlugResultPage = (urlToRedirect: string) => {
+  return {
+    urlToRedirect: urlToRedirect,
+    slugToDisplay: 'Résultats de recherche'
+  };
+};
+
+const formatSlugForCardType = (pathname: string, urlToRedirect: string) => {
+  if (allCardType.map((card) => card.searchLink).includes(pathname)) {
+    const card = allCardType.find((card) => card.searchLink === pathname);
     if (card) {
       return {
-        urlToRedirect: location.pathname,
+        urlToRedirect: urlToRedirect,
         slugToDisplay: card.title
       };
     }
   }
 };
 
-const getGoodAttributForSlugInDetailsCard = (cardData: {
+export const getGoodAttributForSlugInDetailsCard = (cardData: {
   [x: string]: string;
   cardTypeName: string;
   nom: string;
@@ -29,7 +36,7 @@ const getGoodAttributForSlugInDetailsCard = (cardData: {
   description: string;
   Projet: string;
 }) => {
-  switch (cardData.cardTypeName) {
+  switch (cardData?.cardTypeName) {
     case 'acheteurs-publics':
       return cardData.nom;
     case 'aides-innovations':
@@ -45,7 +52,11 @@ const getGoodAttributForSlugInDetailsCard = (cardData: {
   }
 };
 
-const formatSlugForDetailsCards = (query: { [k: string]: string; }, location: Location) => {
+const formatSlugForDetailsCards = (
+  query: { [k: string]: string },
+  location: Location,
+  urlToRedirect: string
+) => {
   const initialState = location.state as { cardData: AnyCard } | null;
   if (!initialState?.cardData && !query.cardData)
     throw new Error('Missing cardData to generate page');
@@ -55,32 +66,40 @@ const formatSlugForDetailsCards = (query: { [k: string]: string; }, location: Lo
   if (!slug) return;
 
   return {
-    urlToRedirect: location.pathname,
+    urlToRedirect: urlToRedirect,
     slugToDisplay: slug
   };
 };
 
-const formatSlugForBreadCumb = (query: { [k: string]: string; }, location: Location) => {
-
-  if (window.location.pathname === '/') {
+const formatSlugForBreadCumb = (
+  query: { [k: string]: string },
+  location: Location,
+  urlToRedirect: string
+) => {
+  if (location.pathname === '/') {
     return;
   }
 
   let pageData: { urlToRedirect: string; slugToDisplay: string } | undefined;
 
-  const pageLocationWithoutSpecialCharacters = window.location.pathname.replace(/[^a-zA-Z]/g, ' ');
+  const pageLocationWithoutSpecialCharacters = location.pathname.replace(/[^a-zA-Z]/g, ' ');
+
+  // Find if it's an result page
+  if (location.pathname.includes('explorer/search')) {
+    pageData = formatedSlugResultPage(urlToRedirect);
+  }
 
   // Find if it's an search page
   if (pageLocationWithoutSpecialCharacters.includes('explorer')) {
-    pageData = formatedSlugSerachPage;
+    pageData = formatedSlugSerachPage(urlToRedirect);
   }
 
   // Find type of card
-  pageData = !pageData ? formatSlugForCardType() : pageData;
+  pageData = !pageData ? formatSlugForCardType(location.pathname, urlToRedirect) : pageData;
 
   // Find name of a details card
   if (pageLocationWithoutSpecialCharacters.includes('details')) {
-    pageData = formatSlugForDetailsCards(query, location);
+    pageData = formatSlugForDetailsCards(query, location, urlToRedirect);
   }
 
   // Default (not in different cases)
@@ -90,7 +109,7 @@ const formatSlugForBreadCumb = (query: { [k: string]: string; }, location: Locat
       pageLocationWithoutSpecialCharacters.slice(2);
 
     pageData = {
-      urlToRedirect: location.pathname,
+      urlToRedirect: urlToRedirect,
       slugToDisplay: pageLocationFirstLetterUppercase
     };
   }

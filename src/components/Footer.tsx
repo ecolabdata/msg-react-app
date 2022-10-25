@@ -54,7 +54,7 @@ const Footer: React.FC = () => {
           <div className="fr-footer__bottom">
             <ul className="fr-footer__bottom-list">
               <li className="fr-footer__bottom-item">
-                <Link className="fr-footer__bottom-link" to="#">
+                <Link className="fr-footer__bottom-link" to="/plan-du-site">
                   Plan du site
                 </Link>
               </li>
