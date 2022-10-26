@@ -39,19 +39,16 @@
     var _paq = window._paq = window._paq || [];
     /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
     (function () {
-      // var u = "//matomo.greentechinnovation.fr/";
-      // _paq.push(['setTrackerUrl', u + 'matomo.php']);
-      // if (['messervices.greentechinnovation.fr', 'msg.greentechinnovation.fr'].includes(window.location.hostname)) {
-      //   _paq.push(['setSiteId', '2']);
-      //   console.log({ setSiteId: '2' })
-      // } else {
-      //   _paq.push(['setSiteId', '1']);
-      //   console.log({ setSiteId: '1' })
-      // }
+
 
       var u = "//audience-sites.din.developpement-durable.gouv.fr/";
       _paq.push(['setTrackerUrl', u + 'piwik.php']);
       if (['messervices.greentechinnovation.fr', 'msg.greentechinnovation.fr'].includes(window.location.hostname)) {
+        // URL de recette => "Internet Recette Mes Services Greentech" avec Id Matomo : 1508
+        // https://next.msg.greentechinnovation.fr/
+        _paq.push(['setSiteId', '1508']);
+        console.log({ setSiteId: '1508' })
+      } else {
         // URL alpha => "Internet Alpha Mes Services Greentech" avec Id Matomo : 1509
         // https://messervices.greentechinnovation.fr/
 
@@ -59,11 +56,6 @@
         // https://msg.greentechinnovation.fr/
         _paq.push(['setSiteId', '1509']);
         console.log({ setSiteId: '1509' })
-      } else {
-        // URL de recette => "Internet Recette Mes Services Greentech" avec Id Matomo : 1508
-        // https://next.msg.greentechinnovation.fr/
-        _paq.push(['setSiteId', '1508']);
-        console.log({ setSiteId: '1508' })
       }
 
       // Pour les URL de prod à venir, merci de bien vouloir faire une demande lorsque votre plateforme sera déployée en production.
@@ -73,7 +65,7 @@
 
 
       var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
-      g.async = true; g.src = u + 'matomo.js'; s.parentNode.insertBefore(g, s);
+      g.async = true; g.src = u + 'piwik.js'; s.parentNode.insertBefore(g, s);
     })();
   </script>
   <title>Mes Services Greentech</title>
