@@ -1,5 +1,6 @@
 import { generateNumber } from '../../utils/utilityFunctions';
 import classNames from 'classnames';
+import { useEffect, useRef, useState } from 'react';
 
 interface TextAreaInputProps {
   value: string;
@@ -25,14 +26,42 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
   const id = generateNumber(1, 1000);
   const inputId = `${formId}-${id}`;
 
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
+  const [text, setText] = useState('');
+  const [textAreaHeight, setTextAreaHeight] = useState('auto');
+  const [parentHeight, setParentHeight] = useState('auto');
+
+  useEffect(() => {
+    if (textAreaRef.current) {
+      setParentHeight(`${textAreaRef.current?.scrollHeight + 10}px`);
+      setTextAreaHeight(`${textAreaRef.current?.scrollHeight + 10}px`);
+    }
+  }, [text]);
+
+  const onChangeHandler = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setTextAreaHeight('auto');
+    if (textAreaRef.current) {
+      setParentHeight(`${textAreaRef.current?.scrollHeight + 10}px`);
+    }
+    setText(event.target.value);
+    onValueChange && onValueChange(event.target.value);
+  };
+
   return (
-    <>
+    <div
+      style={{
+        minHeight: parentHeight
+      }}>
       <label htmlFor={inputId} className="text-base fr-label">
         {label} {required && <span aria-hidden={true}>(obligatoire)</span>}
       </label>
       <textarea
         id={inputId}
-        onChange={(e) => onValueChange(e.target.value)}
+        ref={textAreaRef}
+        onChange={onChangeHandler}
+        style={{
+          height: textAreaHeight
+        }}
         value={value}
         form={formId}
         className={classNames(
@@ -54,7 +83,7 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
           <p style={{ color: 'hsla(0, 100%, 65%, 0.9)' }}>{errorText}</p>
         </div>
       )}
-    </>
+    </div>
   );
 };
 export default TextAreaInput;
