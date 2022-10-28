@@ -60,14 +60,15 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
         ref={textAreaRef}
         onChange={onChangeHandler}
         style={{
-          height: textAreaHeight
+          height: textAreaHeight,
+          borderColor: errorText ? 'red' : color
         }}
         value={value}
         form={formId}
         className={classNames(
           `cursor-text mt-2 w-full rounded-t-sm p-2 bg-background-inputs focus:border-1 focus:border-white focus:border-solid`,
-          { [`addBorder-b border-3 border-[${color}]`]: !errorText },
-          { 'addBorder border-1 border-red-500': errorText },
+          { [`addBorder-b border-3`]: !errorText },
+          { 'addBorder border-1': errorText },
           classNameProp
         )}
         aria-invalid={!!errorText}

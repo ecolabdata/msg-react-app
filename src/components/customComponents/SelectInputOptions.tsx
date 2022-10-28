@@ -58,19 +58,18 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({
         type="button"
         onKeyDown={handleKeyDown}
         role="combobox"
-        className={`mt-2 w-full h-10 addBorder-b border-3 border-[${color}] p-2 flex bg-input-background`}
+        style={{ borderColor: color }}
+        className={`mt-2 w-full h-10 addBorder-b border-3 p-2 flex bg-input-background`}
         onClick={() => {
           setDisplaySelect(!displaySelect);
-        }}
-      >
-        <p className="flex-1 truncate text-left max-w-full">
+        }}>
+        <p className="flex-1 overflow-hidden text-left max-w-full h-full">
           {secteurs.length <= 0 ? 'Sélectionnez une option' : secteurs.join(', ')}
         </p>
         <span
           className={`${
             localStorage.scheme === 'dark' ? 'bg-dark-text-action' : 'bg-blue-france'
-          } w-6 h-6 rounded-full text-white font-bold`}
-        >
+          } w-6 h-6 rounded-full text-white font-bold`}>
           {' '}
           {secteurs.length}{' '}
         </span>
