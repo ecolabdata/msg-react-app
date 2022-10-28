@@ -1,4 +1,4 @@
-import { generateNumber } from '../../utils/utilityFunctions';
+import { generateNumber, tailwindColorUtility } from '../../utils/utilityFunctions';
 import classNames from 'classnames';
 import { useEffect, useRef, useState } from 'react';
 
@@ -39,7 +39,7 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
     }
   }, [text]);
 
-  const onChangeHandler = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setTextAreaHeight('auto');
     if (textAreaRef.current && textAreaRef.current?.scrollHeight > MIN_HEIGHT) {
       setParentHeight(`${textAreaRef.current?.scrollHeight + 10}px`);
@@ -48,29 +48,29 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
     onValueChange && onValueChange(event.target.value);
   };
 
+  const borderColor = color && tailwindColorUtility.border[color];
+
   return (
     <div
       style={{
         minHeight: parentHeight
-      }}
-    >
+      }}>
       <label htmlFor={inputId} className="text-base fr-label">
         {label} {required && <span aria-hidden={true}>(obligatoire)</span>}
       </label>
       <textarea
         id={inputId}
         ref={textAreaRef}
-        onChange={onChangeHandler}
+        onChange={handleChange}
         style={{
-          height: textAreaHeight,
-          borderColor: errorText ? 'red' : color
+          height: textAreaHeight
         }}
         value={value}
         form={formId}
         className={classNames(
-          `cursor-text mt-2 w-full rounded-t-sm p-2 bg-background-inputs focus:border-1 focus:border-white focus:border-solid`,
+          `cursor-text mt-2 w-full rounded-t-sm p-2 bg-background-inputs ${borderColor}`,
           { [`addBorder-b border-3`]: !errorText },
-          { 'addBorder border-1': errorText },
+          { 'addBorder border-1 border-red-500': errorText },
           classNameProp
         )}
         aria-invalid={!!errorText}
@@ -82,8 +82,7 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
           className={`errorContainer ${errorText.length <= 0 && 'hidden'} 
         h-12 flex justify-center items-center color`}
           id={`${inputId}-error`}
-          aria-live="polite"
-        >
+          aria-live="polite">
           <p style={{ color: 'hsla(0, 100%, 65%, 0.9)' }}>{errorText}</p>
         </div>
       )}

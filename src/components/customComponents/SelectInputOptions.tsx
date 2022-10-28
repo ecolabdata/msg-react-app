@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import Chevron from './../../assets/icons/chevronWhite.svg';
 import OptionItem from './OptionItem';
 import { useOutsideAlerter } from '../../hooks/useOutsideAlerter';
+import { tailwindColorUtility } from '../../utils/utilityFunctions';
 
 interface SelectInputOptionsProps {
   optionsData: string[];
@@ -45,6 +46,8 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({
     setDisplaySelect(false);
   });
 
+  const borderColor = color && tailwindColorUtility.border[color];
+
   return (
     <div className={`relative ${className}`} ref={wrapperRef}>
       <label className="fr-label" htmlFor="select-container">
@@ -58,20 +61,17 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({
         type="button"
         onKeyDown={handleKeyDown}
         role="combobox"
-        style={{ borderColor: color }}
-        className={`mt-2 w-full h-10 min-h-[50px] addBorder-b border-3 p-2 pt-3 flex bg-input-background`}
+        className={`mt-2 w-full h-10 min-h-[50px] addBorder-b border-3 ${borderColor} p-2 pt-3 flex bg-input-background`}
         onClick={() => {
           setDisplaySelect(!displaySelect);
-        }}
-      >
+        }}>
         <p className="flex-1 overflow-hidden text-left max-w-full h-full">
           {secteurs.length <= 0 ? 'Sélectionnez une option' : secteurs.join(', ')}
         </p>
         <span
           className={`${
             localStorage.scheme === 'dark' ? 'bg-dark-text-action' : 'bg-blue-france'
-          } w-6 h-6 rounded-full text-white font-bold`}
-        >
+          } w-6 h-6 rounded-full text-white font-bold`}>
           {' '}
           {secteurs.length}{' '}
         </span>

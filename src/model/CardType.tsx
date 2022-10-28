@@ -22,9 +22,11 @@ import {
 } from '../components/page/SearchPage';
 import { versions } from './CardVersions';
 
+export type CardColors = '#D8C635' | '#68A532' | '#CE70CC' | '#8585F6' | '#4EC8AE' | '#F95C5E';
+
 export interface CardType {
   SVGLogo: ({ ...other }: { [x: string]: any }) => JSX.Element;
-  color: string;
+  color: CardColors;
   backgroundColor?: string;
   title: string;
   description: string;
