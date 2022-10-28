@@ -7,17 +7,7 @@ export const ScreenReaderOnlyText: React.FC<ScreenReaderOnlyTextProps> = ({
   ...props
 }: ScreenReaderOnlyTextProps) => {
   return (
-    <span
-      {...props}
-      style={{
-        position: 'absolute',
-        left: -10000,
-        top: 'auto',
-        width: 1,
-        height: 1,
-        overflow: 'hidden'
-      }}
-    >
+    <span className="sr-only" {...props}>
       {content}
     </span>
   );

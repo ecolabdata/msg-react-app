@@ -28,7 +28,8 @@ const SearchForm: React.FC<SearchFormProps> = ({
       <SearchFieldWrapper
         label="Votre recherche"
         usedInListPage={usedInListPage}
-        className="w-full md:w-[55%]">
+        className="w-full md:w-[55%]"
+      >
         <TextAreaInput
           value={description}
           onValueChange={setDescription}
@@ -42,7 +43,8 @@ const SearchForm: React.FC<SearchFormProps> = ({
       <SearchFieldWrapper
         label="La thématique"
         usedInListPage={usedInListPage}
-        className="w-full md:w-[45%]">
+        className="w-full md:w-[45%]"
+      >
         <SelectInputOptions
           className="mb-auto"
           optionsData={thematicsValues}

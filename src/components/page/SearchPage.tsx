@@ -109,7 +109,8 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
       <div
         className="headContainer  container mt-10 mb-20 mx-auto max-w-headerSize
             xl:mx-auto
-            ">
+            "
+      >
         <div className="cardTitleAndLogo mt-10 p-2 text-base">
           <h2 className="w-fit font-bold text-2xl md:text-4xl">
             <div className="flex items-center ">
@@ -132,7 +133,8 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
           <form
             onSubmit={(event) => handleOnSubmitForm(event)}
             id="keywordsForm"
-            className="researchContainer m-auto flex flex-col justify-around flex-wrap h-fit w-full">
+            className="researchContainer m-auto flex flex-col justify-around flex-wrap h-fit w-full"
+          >
             <fieldset>
               <legend className="hidden">Champs de formulaire principaux</legend>
               <SearchForm
@@ -144,12 +146,13 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
               />
             </fieldset>
             <fieldset className="flex flex-col mt-4">
-              <legend className="hidden">Champs de recherche avancée</legend>
+              <legend className="sr-only">Champs de recherche avancée</legend>
               <button
                 aria-pressed={isAdvancedSearchOpen}
                 type="button"
                 className="ml-auto"
-                onClick={handleToggleAdvancedSearch}>
+                onClick={handleToggleAdvancedSearch}
+              >
                 Recherche avancée
               </button>
               {isAdvancedSearchOpen && (
@@ -165,7 +168,8 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
               form="keywordsForm"
               disabled={isLoading}
               className="mx-3 fr-btn fr-btn--sm fr-btn--primary 
-                        ">
+                        "
+            >
               <span className={`mx-auto`}>
                 {isLoading ? 'Chargement...' : 'Valider et rechercher'}
               </span>
@@ -174,7 +178,8 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
               type="button"
               disabled={isLoading}
               onClick={handleResetFilters}
-              className="mt-4 fr-btn--tertiary-no-outline">
+              className="mt-4 fr-btn--tertiary-no-outline"
+            >
               Réinitialiser
             </button>
           </div>
