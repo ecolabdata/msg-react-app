@@ -71,7 +71,7 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({
         <span
           className={`${
             localStorage.scheme === 'dark' ? 'bg-dark-text-action' : 'bg-blue-france'
-          } w-6 h-6 rounded-full text-white font-bold`}>
+          } w-6 h-6 rounded-full  text-black font-bold`}>
           {' '}
           {secteurs.length}{' '}
         </span>
