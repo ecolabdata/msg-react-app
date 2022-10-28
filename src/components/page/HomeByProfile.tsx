@@ -93,6 +93,7 @@ const HomeByProfile: React.FC<HomeByProfileProps> = ({ profile }) => {
               flex flex-col items-center">
         <Link
           className="w-fit h-9 text-base my-8 text-dark-text-action p-1 rm-link-underline flex justify-center text-xl"
+          onClick={() => window.scrollTo(0, 0)}
           to={pageContent.secondaryContent.extraUrl}>
           {pageContent.secondaryContent.extraLink}
         </Link>
@@ -225,6 +226,14 @@ const homePageContent = {
         title: 'Communauté',
         description: 'Rejoignez Rapidd, la communauté des achats durables',
         links: [{ name: 'Rapidd', url: 'https://rapidd.developpement-durable.gouv.fr/' }]
+      },
+      {
+        title: 'Aide',
+        description:
+          'Obtenez un accompagnement pour intégrer des considérations environnementales dans vos  achats.',
+        links: [
+          { name: 'Le guichet vert', url: 'https://gipmaximilien.limesurvey.net/353211?lang=fr%20' }
+        ]
       },
       {
         title: 'Financements',
