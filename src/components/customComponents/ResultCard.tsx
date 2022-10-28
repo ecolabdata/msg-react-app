@@ -1,6 +1,5 @@
 import { ReactNode, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import slugify from 'slugify';
 import {
   AnyCard,
   applyCard,
@@ -48,16 +47,6 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
       '/' +
       d?.getUTCFullYear();
   }
-  const cardSlug = applyCard(
-    cardData,
-    (ap) => ap.nom,
-    (pa) => pa.label,
-    (i) => i['Nom du fonds'],
-    (a) => a.slug,
-    (su) => su['Start-up'],
-    () => 'unknown-slug'
-  );
-  const slug = slugify(cardSlug);
   const name = applyCard(
     cardData,
     (ap) => ap.nom,
@@ -67,14 +56,6 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
     (su) => su['Start-up'],
     () => 'No title'
   );
-  let linkTo = `/${cardType.name}/details/${slug}?cardData=${encodeURIComponent(
-    JSON.stringify(cardData)
-  )}`;
-
-  if (linkTo.length > 8192) {
-    linkTo = `/${cardType.name}/details/${slug}`;
-  }
-
   const toprow = isAide(cardData)
     ? displayableFinancers
     : isStartup(cardData)
@@ -97,7 +78,7 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
                 onClick={() => {
                   setNextScrolTarget({ top: 0 });
                 }}
-                to={linkTo}
+                to={`/${cardType.name}/details/${cardData.id}`}
                 state={{ cardData }}
                 className="rm-link-underline"
               >

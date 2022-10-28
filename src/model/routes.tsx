@@ -46,7 +46,7 @@ export const routes = (
               <Route path={cardType.searchLink} element={<cardType.SearchPage />} />
               <Route path={cardType.searchLink + '/search'} element={<cardType.SearchPage />} />
               <Route
-                path={`/${cardType.name}/details/:slug`}
+                path={`/${cardType.name}/details/:id`}
                 element={
                   cardType.DetailsPage ? (
                     <cardType.DetailsPage />

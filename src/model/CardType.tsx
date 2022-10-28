@@ -20,7 +20,7 @@ import {
   SearchPageSourcingSu,
   SearchPageStartups
 } from '../components/page/SearchPage';
-import { DetailsStartup } from '../components/customComponents/DetailsStartup';
+import { Details } from '../components/customComponents/details/Details';
 import { DetailsAideClient, DetailsAideInno } from '../components/customComponents/DetailsAide';
 import { versions } from './CardVersions';
 
@@ -42,6 +42,18 @@ export interface CardType {
     START-UP
 */
 
+export type CardTypeNameFromModel =
+  | 'acheteurs-publics'
+  | 'achats-previsionnels'
+  | 'aides-clients'
+  | 'aides-innovations'
+  | 'aides-financieres'
+  | 'achats-programmes'
+  | 'investisseurs'
+  | 'startups'
+  | 'sourcingSu'
+  | 'retex';
+
 export const acheteurPublic: CardType = {
   SVGLogo: PictoCityHall,
   backgroundColor: '#2C202B',
@@ -54,6 +66,7 @@ export const acheteurPublic: CardType = {
   name: 'acheteurs-publics',
   searchLink: '/acheteurs-publics',
   SearchPage: SearchPageAcheteurPublic,
+  DetailsPage: Details,
   apiName: 'collectivites',
   version: 'beta'
 } as const;
@@ -68,6 +81,7 @@ export const achatPrevi: CardType = {
   searchLink: '/achats-previsionnels',
   apiName: 'projets_achats',
   SearchPage: SearchPageAchatPrevi,
+  DetailsPage: Details,
   version: 'beta'
 } as const;
 
@@ -122,7 +136,7 @@ export const startups: CardType = {
   description: 'Entreprises éco-innovantes qui vous ressemblent ou répondent à vos besoins',
   name: 'startups',
   searchLink: '/startups',
-  DetailsPage: DetailsStartup,
+  DetailsPage: Details,
   SearchPage: SearchPageStartups,
   apiName: 'startups',
   version: 'beta'
@@ -154,7 +168,7 @@ export const sourcingSu: CardType = {
   description: 'Sourcez des entreprises éco-innovantes qui répondent à vos besoins',
   name: 'sourcingSu',
   searchLink: '/sourcing-startup',
-  DetailsPage: DetailsStartup,
+  DetailsPage: Details,
   SearchPage: SearchPageSourcingSu,
   apiName: 'startups',
   version: 'beta'
