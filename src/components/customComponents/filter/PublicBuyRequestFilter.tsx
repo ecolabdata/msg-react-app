@@ -63,9 +63,9 @@ export class PublicBuyRequestFilter implements RequestFilter {
         <Select
           classes=" w-full lg:max-w-[202px] md:mr-8"
           selectClassName="bg-research-precision-container"
-          label="Date de publication"
+          label="Labels obtenus"
           color={cardType.color}
-          defaultOption={'Toutes'}
+          defaultOption={'Tous'}
           optionsData={Object.keys(certifications)}
           onChange={(e) => {
             this.certification = e.currentTarget.value;

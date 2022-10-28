@@ -24,15 +24,16 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
   color
 }) => {
   const id = generateNumber(1, 1000);
+  const MIN_HEIGHT = 50;
   const inputId = `${formId}-${id}`;
 
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const [text, setText] = useState('');
-  const [textAreaHeight, setTextAreaHeight] = useState('auto');
-  const [parentHeight, setParentHeight] = useState('auto');
+  const [textAreaHeight, setTextAreaHeight] = useState(`${MIN_HEIGHT}px`);
+  const [parentHeight, setParentHeight] = useState(`${MIN_HEIGHT}px`);
 
   useEffect(() => {
-    if (textAreaRef.current) {
+    if (textAreaRef.current && textAreaRef.current?.scrollHeight > MIN_HEIGHT) {
       setParentHeight(`${textAreaRef.current?.scrollHeight + 10}px`);
       setTextAreaHeight(`${textAreaRef.current?.scrollHeight + 10}px`);
     }
@@ -40,7 +41,7 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
 
   const onChangeHandler = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setTextAreaHeight('auto');
-    if (textAreaRef.current) {
+    if (textAreaRef.current && textAreaRef.current?.scrollHeight > MIN_HEIGHT) {
       setParentHeight(`${textAreaRef.current?.scrollHeight + 10}px`);
     }
     setText(event.target.value);
@@ -51,7 +52,8 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
     <div
       style={{
         minHeight: parentHeight
-      }}>
+      }}
+    >
       <label htmlFor={inputId} className="text-base fr-label">
         {label} {required && <span aria-hidden={true}>(obligatoire)</span>}
       </label>
@@ -80,7 +82,8 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
           className={`errorContainer ${errorText.length <= 0 && 'hidden'} 
         h-12 flex justify-center items-center color`}
           id={`${inputId}-error`}
-          aria-live="polite">
+          aria-live="polite"
+        >
           <p style={{ color: 'hsla(0, 100%, 65%, 0.9)' }}>{errorText}</p>
         </div>
       )}
