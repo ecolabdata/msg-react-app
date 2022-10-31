@@ -24,11 +24,9 @@ const ContactArea: React.FC<ContactAreaProps> = ({ card, className }) => {
             </button>
           )}
           {showContact && (
-            <div className="flex flex-col">
+            <div className="flex flex-col px-8 my-4">
               {Object.entries(cta.contact).map(([k, v]) => (
-                <p key={k}>
-                  {k}:{v}
-                </p>
+                <p key={k}>{v}</p>
               ))}
             </div>
           )}

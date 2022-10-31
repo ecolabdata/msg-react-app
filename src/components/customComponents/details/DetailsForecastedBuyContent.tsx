@@ -1,7 +1,7 @@
 import { ProjetAchat } from '../../../api/Api';
 import { getDaysBetweenDates, yesNotoBoolean } from '../../../utils/utilityFunctions';
 import ContactArea from './ContactArea';
-import InformationItem from './InformationItem';
+import { InformationItem, InformationItemsWrapper } from './InformationItem';
 
 interface DetailsForecastedBuyContentProps {
   card: ProjetAchat;
@@ -14,7 +14,10 @@ const DetailsForecastedBuyContent: React.FC<DetailsForecastedBuyContentProps> = 
     socialConsiderationsConcerned,
     environmentalConsiderationsConcerned,
     publicationTargetDate,
-    CPVPrimary
+    CPVPrimary,
+    description,
+    marketMaxDuration,
+    purchasingCategory
   } = card;
 
   const considerations = getConsiderations({
@@ -26,29 +29,59 @@ const DetailsForecastedBuyContent: React.FC<DetailsForecastedBuyContentProps> = 
   return (
     <>
       <div className="flex flex-col sm:flex-row">
-        <div className="w-full sm:w-[30%]">
-          {status && <InformationItem label={'Status'} contents={status} showDivider={false} />}
-          {departments && (
-            <InformationItem
-              label={'Périmètre géographique'}
-              contents={departments.map((d) => d.department)}
-            />
-          )}
-          {!!(considerations.length > 0) && (
-            <InformationItem label={'Considérations spéciales'} contents={considerations} />
-          )}
-        </div>
-        <div className="w-full sm:w-[30%]">
-          {publicationTargetDate && (
-            <InformationItem
-              label={'Date limite'}
-              contents={getDateText(days)}
-              showDivider={false}
-            />
-          )}
-          {CPVPrimary && <InformationItem label={'Code CPV'} contents={CPVPrimary?.toString()} />}
-        </div>
-        <ContactArea className="w-full sm:w-[40%]" card={card} />
+        <section className="w-full sm:w-[70%]">
+          <InformationItemsWrapper>
+            <>
+              {status && <InformationItem label={'Status'} contents={status} showDivider={false} />}
+              {departments && (
+                <InformationItem
+                  label={'Périmètre géographique'}
+                  contents={departments.map((d) => d.department)}
+                />
+              )}
+              {!!(considerations.length > 0) && (
+                <InformationItem label={'Considérations spéciales'} contents={considerations} />
+              )}
+            </>
+            <>
+              {publicationTargetDate && (
+                <InformationItem
+                  label={'Date limite'}
+                  contents={getDateText(days)}
+                  showDivider={false}
+                />
+              )}
+              {CPVPrimary && (
+                <InformationItem label={'Code CPV'} contents={CPVPrimary?.toString()} />
+              )}
+            </>
+          </InformationItemsWrapper>
+          <InformationItem
+            showDivider={false}
+            label={'Description du projet'}
+            contents={description}
+          />
+          <InformationItemsWrapper>
+            <>
+              {marketMaxDuration && (
+                <InformationItem
+                  label={'Durée de la prestation'}
+                  contents={marketMaxDuration.toString()}
+                />
+              )}
+            </>
+            <>
+              {purchasingCategory && (
+                <InformationItem
+                  className="mt-4"
+                  label={"Catégorie d'achat"}
+                  contents={purchasingCategory}
+                />
+              )}
+            </>
+          </InformationItemsWrapper>
+        </section>
+        <ContactArea className="w-full sm:w-[30%]" card={card} />
       </div>
     </>
   );

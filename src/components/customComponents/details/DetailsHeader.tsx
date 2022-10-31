@@ -44,7 +44,7 @@ const normalizeHeaderProps = (card: AnyCard) => {
   if (isProjetAchat(card)) {
     return {
       title: card.label,
-      subtitle: card.departments?.join('|'),
+      subtitle: card.departments?.map((d) => d.department).join('|'),
       cardType: achatPrevi
     };
   }
