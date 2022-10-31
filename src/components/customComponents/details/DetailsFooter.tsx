@@ -1,12 +1,17 @@
 import { AnyCard, isAcheteurPublic, isProjetAchat, isStartup } from '../../../api/Api';
-import { acheteurPublic, startups, achatPrevi } from '../../../model/CardType';
 
 interface DetailsFooterProps {
   card: AnyCard;
 }
 
 const DetailsFooter: React.FC<DetailsFooterProps> = ({ card }) => {
-  console.log(card);
+  const handleCopy = (textToCopy: string) => {
+    if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(textToCopy);
+    } else {
+      return Promise.reject('The Clipboard API is not available.');
+    }
+  };
   const sources = getSources(card);
 
   return (
@@ -21,9 +26,11 @@ const DetailsFooter: React.FC<DetailsFooterProps> = ({ card }) => {
           ))}
         </span>
       </p>
-      <div className="mt-8">
+      <div className="my-8">
         <p>Partager la page</p>
-        <button className="fr-btn fr-btn--tertiary fr-fi-checkbox-circle-line fr-btn--icon-left">
+        <button
+          className="fr-btn fr-btn--tertiary-no-outline fr-fi-checkbox-circle-line fr-btn--icon-left mt-8"
+          onClick={() => handleCopy(window.location.href)}>
           Copier le lien
         </button>
       </div>
