@@ -1,18 +1,8 @@
 /* eslint-disable no-constant-condition */
-import { CSSProperties, useContext, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { AnyCard, isAcheteurPublic, isProjetAchat, isStartup, Startup } from '../../../api/Api';
-import { ApplicationContext } from '../../../App';
-import { useQuery } from '../../../hooks/useQuery';
-import {
-  CardType,
-  startups,
-  achatPrevi,
-  acheteurPublic,
-  CardTypeNameFromModel
-} from '../../../model/CardType';
-import Label from '../../dsfrComponents/Label';
-import ArrowDark from './../../assets/icons/arrow-dark-action.svg';
+import { AnyCard, isAcheteurPublic, isProjetAchat, isStartup } from '../../../api/Api';
+
+import { startups, achatPrevi, acheteurPublic } from '../../../model/CardType';
 import DetailsFooter from './DetailsFooter';
 import DetailsHeader from './DetailsHeader';
 import DetailsPublicBuyerContent from './DetailsPublicBuyerContent';
@@ -39,16 +29,14 @@ const normalizeHeaderProps = (card: AnyCard) => {
     return {
       title: card.nom,
       subtitle: '',
-      tag: 'ils ont travaillé avec des startups',
-      color: acheteurPublic.color
+      cardType: acheteurPublic
     };
   }
   if (isStartup(card)) {
     return {
       title: card['Start-up'],
       subtitle: card.Thématique,
-      tag: startups.name,
-      color: startups.color
+      cardType: startups
     };
   }
 
@@ -56,13 +44,11 @@ const normalizeHeaderProps = (card: AnyCard) => {
     return {
       title: card.label,
       subtitle: card.departments?.join('|'),
-      tag: achatPrevi.name,
-      color: achatPrevi.color
+      cardType: achatPrevi
     };
   }
   return {
     title: '',
-    subtitle: '',
-    tag: ''
+    subtitle: ''
   };
 };

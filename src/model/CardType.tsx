@@ -20,8 +20,6 @@ import {
   SearchPageSourcingSu,
   SearchPageStartups
 } from '../components/page/SearchPage';
-import { Details } from '../components/customComponents/details/Details';
-import { DetailsAideClient, DetailsAideInno } from '../components/customComponents/DetailsAide';
 import { versions } from './CardVersions';
 
 export interface CardType {
@@ -33,7 +31,6 @@ export interface CardType {
   name: string;
   searchLink: string;
   apiName: ApiName;
-  DetailsPage?: React.FC<{}>;
   SearchPage: React.FC;
   version: typeof versions[number];
 }
@@ -66,7 +63,6 @@ export const acheteurPublic: CardType = {
   name: 'acheteurs-publics',
   searchLink: '/acheteurs-publics',
   SearchPage: SearchPageAcheteurPublic,
-  DetailsPage: Details,
   apiName: 'collectivites',
   version: 'beta'
 } as const;
@@ -81,7 +77,6 @@ export const achatPrevi: CardType = {
   searchLink: '/achats-previsionnels',
   apiName: 'projets_achats',
   SearchPage: SearchPageAchatPrevi,
-  DetailsPage: Details,
   version: 'beta'
 } as const;
 
@@ -108,7 +103,6 @@ export const aideClient: CardType = {
     'Dispositifs incitatifs (état ou régions) qui aident vos clients à accéder à vos solutions',
   name: 'aides-clients',
   searchLink: '/aides-clients',
-  DetailsPage: DetailsAideClient,
   SearchPage: SearchPageAidesClient,
   apiName: 'aides_clients',
   version: 'beta'
@@ -122,7 +116,6 @@ export const aideInno: CardType = {
   description: 'Aides publiques dédiées à votre développement (ADEME, Bpifrance...)',
   name: 'aides-innovations',
   searchLink: '/aides-innovations',
-  DetailsPage: DetailsAideInno,
   SearchPage: SearchPageAidesInno,
   apiName: 'aides_innovation',
   version: 'beta'
@@ -136,7 +129,6 @@ export const startups: CardType = {
   description: 'Entreprises éco-innovantes qui vous ressemblent ou répondent à vos besoins',
   name: 'startups',
   searchLink: '/startups',
-  DetailsPage: Details,
   SearchPage: SearchPageStartups,
   apiName: 'startups',
   version: 'beta'
@@ -154,7 +146,6 @@ export const aideFin: CardType = {
   description: 'Trouvez des aides pour financer vos achats',
   name: 'aides-financieres',
   searchLink: '/aides-financieres',
-  DetailsPage: DetailsAideClient,
   SearchPage: SearchPageAidesFin,
   apiName: 'aides_clients',
   version: 'beta'
@@ -168,7 +159,6 @@ export const sourcingSu: CardType = {
   description: 'Sourcez des entreprises éco-innovantes qui répondent à vos besoins',
   name: 'sourcingSu',
   searchLink: '/sourcing-startup',
-  DetailsPage: Details,
   SearchPage: SearchPageSourcingSu,
   apiName: 'startups',
   version: 'beta'

@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import { Details } from '../components/customComponents/details/Details';
 import DetailsJson from '../components/customComponents/DetailsJson';
 import BreadCumb from '../components/dsfrComponents/BreadCumb';
 import Footer from '../components/Footer';
@@ -45,16 +46,7 @@ export const routes = (
             <>
               <Route path={cardType.searchLink} element={<cardType.SearchPage />} />
               <Route path={cardType.searchLink + '/search'} element={<cardType.SearchPage />} />
-              <Route
-                path={`/${cardType.name}/details/:id`}
-                element={
-                  cardType.DetailsPage ? (
-                    <cardType.DetailsPage />
-                  ) : (
-                    <DetailsJson cardType={cardType} />
-                  )
-                }
-              />
+              <Route path={`/${cardType.name}/details/:id`} element={<Details />} />
             </>
           ))}
           <Route path="/profile">
