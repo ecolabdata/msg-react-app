@@ -14,8 +14,8 @@ export const InformationItem: React.FC<InformationItemProps> = ({
   className
 }) => {
   return (
-    <div className={`flex flex-col mb-4 ${className}`}>
-      {showDivider && <div className="h-0.5 w-[10%] bg-gray-700 my-4" />}
+    <div className={`flex flex-col mb-8 ${className}`}>
+      {showDivider && <div className="h-0.5 w-[10%] bg-gray-700 my-6" />}
       <h2 className="text-2xl mb-2">{label}</h2>
       {Array.isArray(contents) ? (
         <div className="flex flex-col sm:flex-row flex-wrap">
