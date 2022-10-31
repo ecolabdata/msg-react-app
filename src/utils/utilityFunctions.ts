@@ -33,3 +33,14 @@ export const tailwindColorUtility: Record<string, Record<string, string>> = {
     lightBackground: 'bg-[#2D0405]'
   }
 };
+
+export const yesNotoBoolean = (value: string) => {
+  if (!value) return false;
+  const lowerValue = value.toLowerCase();
+  if (lowerValue === 'yes' || lowerValue === 'oui') return true;
+  return false;
+};
+
+export function getDaysBetweenDates(first: Date, second: Date) {
+  return Math.round((second.getTime() - first.getTime()) / (1000 * 60 * 60 * 24));
+}

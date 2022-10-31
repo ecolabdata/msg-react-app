@@ -17,10 +17,12 @@ export const Details: React.FC = () => {
   return (
     <div className="globalContainer flex flex-col justify-around">
       <DetailsHeader card={card} />
-      {isStartup(card) && <DetailsStartupContent card={card} />}
-      {isAcheteurPublic(card) && <DetailsPublicBuyerContent card={card} />}
-      {isProjetAchat(card) && <DetailsForecastedBuyContent card={card} />}
-      <DetailsFooter title="titlefooter" />
+      <div className="mx-[9%] mt-16">
+        {isStartup(card) && <DetailsStartupContent card={card} />}
+        {isAcheteurPublic(card) && <DetailsPublicBuyerContent card={card} />}
+        {isProjetAchat(card) && <DetailsForecastedBuyContent card={card} />}
+        <DetailsFooter title="titlefooter" />
+      </div>
     </div>
   );
 };
