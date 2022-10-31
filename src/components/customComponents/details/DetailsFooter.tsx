@@ -20,7 +20,7 @@ const DetailsFooter: React.FC<DetailsFooterProps> = ({ card }) => {
         Sources de la donnée :{' '}
         <span>
           {sources?.map(({ url, label }) => (
-            <a key={label} className="fr-link" href={url}>
+            <a key={label} className="mr-2" href={url}>
               {label}
             </a>
           ))}

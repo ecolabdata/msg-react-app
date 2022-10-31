@@ -18,13 +18,13 @@ export const InformationItem: React.FC<InformationItemProps> = ({
       {showDivider && <div className="h-0.5 w-[10%] bg-gray-700 my-6" />}
       <h2 className="text-2xl mb-2">{label}</h2>
       {Array.isArray(contents) ? (
-        <div className="flex flex-col sm:flex-row flex-wrap">
+        <ul className="flex flex-col sm:flex-row flex-wrap">
           {contents.map((c) => (
-            <div className="bg-gray-700 w-fit h-fit px-2 mt-2 sm:mt-0 rounded-xl mr-2 mb-2" key={c}>
-              {c}
-            </div>
+            <li key={c}>
+              <p className="fr-tag">{c}</p>
+            </li>
           ))}
-        </div>
+        </ul>
       ) : (
         <p>{contents}</p>
       )}
