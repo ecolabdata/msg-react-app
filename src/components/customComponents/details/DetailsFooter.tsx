@@ -30,7 +30,8 @@ const DetailsFooter: React.FC<DetailsFooterProps> = ({ card }) => {
         <p>Partager la page</p>
         <button
           className="fr-btn fr-btn--tertiary-no-outline fr-fi-checkbox-circle-line fr-btn--icon-left mt-8"
-          onClick={() => handleCopy(window.location.href)}>
+          onClick={() => handleCopy(window.location.href)}
+        >
           Copier le lien
         </button>
       </div>

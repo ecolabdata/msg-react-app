@@ -19,7 +19,8 @@ const ContactArea: React.FC<ContactAreaProps> = ({ card, className }) => {
           {!showContact && (
             <button
               onClick={() => setShowContact(true)}
-              className="fr-btn fr-btn--primary w-fit px-4 h-3 py-2 hover:bg-claire-bf__hover mt-6  ">
+              className="fr-btn fr-btn--primary w-fit px-4 h-3 py-2 hover:bg-claire-bf__hover mt-6  "
+            >
               {cta?.label}
             </button>
           )}
@@ -36,7 +37,8 @@ const ContactArea: React.FC<ContactAreaProps> = ({ card, className }) => {
           href={cta?.url}
           className="fr-btn fr-btn--primary w-fit px-4 h-3 py-2 hover:bg-claire-bf__hover mt-6  "
           target="_blank"
-          rel="noreferrer">
+          rel="noreferrer"
+        >
           {cta?.label}
         </a>
       )}
