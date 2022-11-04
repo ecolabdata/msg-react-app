@@ -1,5 +1,6 @@
 import { ReactNode, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import slugify from 'slugify';
 import {
   AnyCard,
   applyCard,
@@ -68,6 +69,26 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
     ? cardData.purchasingEntity.label
     : '';
 
+  //TODO: When an endpoint by id exist. All this should be removed to link card to `/${cardType.name}/details/${cardData.id}`
+  const cardSlug = applyCard(
+    cardData,
+    (ap) => ap.nom,
+    (pa) => pa.label,
+    (i) => i['Nom du fonds'],
+    (a) => a.slug,
+    (su) => su['Start-up'],
+    () => 'unknown-slug'
+  );
+  const slug = slugify(cardSlug);
+
+  let linkTo = `/${cardType.name}/details/${slug}?cardData=${encodeURIComponent(
+    JSON.stringify(cardData)
+  )}`;
+
+  if (linkTo.length > 8192) {
+    linkTo = `/${cardType.name}/details/${slug}`;
+  }
+
   return (
     <li className="h-full">
       <div className="fr-card fr-enlarge-link w-full h-full">
@@ -78,10 +99,9 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
                 onClick={() => {
                   setNextScrolTarget({ top: 0 });
                 }}
-                to={`/${cardType.name}/details/${cardData.id}`}
+                to={linkTo}
                 state={{ cardData }}
-                className="rm-link-underline"
-              >
+                className="rm-link-underline">
                 <p className="clamp mt-2 font-bold text-lg" title={name}>
                   <ScreenReaderOnlyText content={toprow} />
                   {name}
@@ -109,8 +129,7 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
                     </div>
                     <div
                       className="h-[3em] truncate"
-                      title={i["Présentation de la politique d'investissement"]}
-                    >
+                      title={i["Présentation de la politique d'investissement"]}>
                       {i["Présentation de la politique d'investissement"].split(';').join(' | ')}
                     </div>
                     <DetailBadges contents={i['Type de financement'].split(';')} />
@@ -140,8 +159,7 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
                 <li>
                   <p
                     className={`fr-badge fr-badge--sm `}
-                    style={{ color: cardType.color, backgroundColor: cardType.backgroundColor }}
-                  >
+                    style={{ color: cardType.color, backgroundColor: cardType.backgroundColor }}>
                     {toprow}
                   </p>
                 </li>

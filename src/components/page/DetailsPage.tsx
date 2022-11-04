@@ -4,13 +4,16 @@ import DetailsFooter from '../customComponents/details/DetailsFooter';
 import DetailsHeader from '../customComponents/details/DetailsHeader';
 import PublicBuyerContent from '../customComponents/details/DetailsPublicBuyerContent';
 import GenericDetails from '../customComponents/details/DetailsGenericContent';
+import { useQuery } from '../../hooks/useQuery';
 
 export const Details: React.FC = () => {
   const location = useLocation();
-  const data = location.state as { cardData: AnyCard } | null;
-  if (!data) return <p>No data</p>;
+  const query = useQuery();
+  const initialState = location.state as { cardData: AnyCard } | null;
+  const card: AnyCard = initialState?.cardData || JSON.parse(query.cardData);
 
-  const { cardData: card } = data;
+  if (!card) return <p>No data</p>;
+
   return (
     <div className="globalContainer flex flex-col justify-around">
       <DetailsHeader card={card} />
