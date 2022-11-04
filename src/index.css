@@ -1,4 +1,11 @@
 @import '~@gouvfr/dsfr/dist/dsfr/dsfr.min.css';
+@import '~@gouvfr/dsfr/dist/utility/icons/icons-buildings/icons-buildings.min.css';
+@import '~@gouvfr/dsfr/dist/utility/icons/icons-system/icons-system.min.css';
+@import '~@gouvfr/dsfr/dist/utility/icons/icons-business/icons-business.min.css';
+@import '~@gouvfr/dsfr/dist/utility/icons/icons-media/icons-media.min.css';
+@import '~@gouvfr/dsfr/dist/utility/icons/icons-document/icons-document.min.css';
+@import '~@gouvfr/dsfr/dist/utility/icons/icons-communication/icons-communication.min.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

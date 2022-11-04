@@ -19,17 +19,20 @@ const HomeByProfile: React.FC<HomeByProfileProps> = ({ profile }) => {
       <section>
         <div
           className="container-title container max-w-headerSize mx-auto p-2 
-                flex flex-col items-center">
+                flex flex-col items-center"
+        >
           <h1
             className="mt-4 w-full font-bold text-4xl text-center 
                 md:max-w-[60%]
-                ">
+                "
+          >
             {pageContent.mainContent.title}
           </h1>
           <h2
             className="mt-8 text-center w-[65%] leading-7 
                 lg:max-w-[62%]
-                ">
+                "
+          >
             {' '}
             {pageContent.mainContent.description}
           </h2>
@@ -56,7 +59,8 @@ const HomeByProfile: React.FC<HomeByProfileProps> = ({ profile }) => {
       )}
       <section
         className="container-title container max-w-headerSize my-8 mx-auto p-2 
-              flex flex-col items-center">
+              flex flex-col items-center"
+      >
         <h2 className="my-8 w-full font-bold text-3xl text-center md:max-w-[70%]">
           Cela peut aussi vous intéresser
         </h2>
@@ -73,7 +77,8 @@ const HomeByProfile: React.FC<HomeByProfileProps> = ({ profile }) => {
       {profile === 'startup' && (
         <section
           className="container-title container max-w-headerSize my-8 mx-auto p-2 
-              flex flex-col items-center">
+              flex flex-col items-center"
+        >
           {' '}
           <h2 className="my-8 w-full font-bold text-3xl text-center md:max-w-[70%]">
             {pageContent.secondaryContent.title}
@@ -82,7 +87,8 @@ const HomeByProfile: React.FC<HomeByProfileProps> = ({ profile }) => {
             <p
               className="text-center w-[65%] leading-7 
                 lg:max-w-[62%]
-                ">
+                "
+            >
               {pageContent.secondaryContent.description}
             </p>
           )}
@@ -90,11 +96,13 @@ const HomeByProfile: React.FC<HomeByProfileProps> = ({ profile }) => {
       )}
       <div
         className="container-title container max-w-headerSize my-8 mx-auto p-2 
-              flex flex-col items-center">
+              flex flex-col items-center"
+      >
         <Link
           className="w-fit h-9 text-base my-8 text-dark-text-action p-1 rm-link-underline flex justify-center text-xl"
           onClick={() => window.scrollTo(0, 0)}
-          to={pageContent.secondaryContent.extraUrl}>
+          to={pageContent.secondaryContent.extraUrl}
+        >
           {pageContent.secondaryContent.extraLink}
         </Link>
       </div>
@@ -202,7 +210,8 @@ const homePageContent = {
             className="text-base my-8 text-dark-text-action p-1 rm-link-underline"
             href="https://airtable.com/shrY73vlVka9j2cg8"
             target="_blank"
-            rel="noreferrer">
+            rel="noreferrer"
+          >
             ce formulaire d’inscription
           </a>
           ! (Sous réserve de validation par nos équipes)
