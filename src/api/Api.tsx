@@ -271,7 +271,7 @@ export const searchPublicBuys = (query: PublicBuyQuery) => {
   return buildFetchRequest({
     descriptionSU: query.description,
     secteurs: query.secteurs,
-    entity: query.entity,
-    certification: query.certification
+    fichier_decp: 'decp_score.csv',
+    nb_acheteur: 10
   }).then((resp) => handleResp(query, resp));
 };
