@@ -166,7 +166,7 @@ function buildFetchRequest(params: any) {
 export type Query = {
   description: string;
   secteurs: string[];
-  motsclefs: string[];
+  motsclefs?: string[];
 };
 
 export const search = (query: Query) =>
@@ -238,10 +238,8 @@ export type ForecastedBuyQuery = Buy;
 export const searchForecastedBuys = (query: ForecastedBuyQuery) => {
   return buildFetchRequest({
     descriptionSU: query.description,
-    secteurs: query.secteurs,
-    hasEcologicalConcern: query.hasEcologicalConcern,
-    publicationDate: query.publicationDate,
-    zone: query.zone
+    nb_projetsachat: 10,
+    secteurs: query.secteurs
   }).then((resp) => handleResp(query, resp));
 };
 

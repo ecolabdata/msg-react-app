@@ -1,20 +1,23 @@
 import { useState } from 'react';
-import { AnyCard, ForecastedBuyQuery, searchForecastedBuys } from '../../../api/Api';
+import { AnyCard, ForecastedBuyQuery, ProjetAchat, searchForecastedBuys } from '../../../api/Api';
 import { CardType } from '../../../model/CardType';
 import { InitialState } from '../../../utils/InitialState';
+import { yesNotoBoolean } from '../../../utils/utilityFunctions';
 import Select from '../../dsfrComponents/Select';
 import ToggleButton from '../../dsfrComponents/ToggleButton';
 import { RequestFilter } from './RequestFIlter';
 
 const zones: Record<string, number> = {
-  zone1: 1,
-  zone2: 2
+  92: 1,
+  93: 2
 };
 
-const publicationDates: Record<string, number> = {
-  'Moins de 6 mois': 0,
-  '6 mois et plus ': 1,
-  publié: 2
+type PublicationDates = 'publié' | 'Moins de 6 mois' | '6 mois et plus';
+
+const publicationDates: Record<PublicationDates, number> = {
+  publié: 0,
+  'Moins de 6 mois': 6,
+  '6 mois et plus': 7
 };
 
 export class ForecastedBuyRequestFilter implements RequestFilter {
@@ -36,6 +39,8 @@ export class ForecastedBuyRequestFilter implements RequestFilter {
       this.hasEcologicalConcern = initialQuery ? initialQuery.hasEcologicalConcern : true;
       this.zone = initialQuery?.zone || '';
       this.publicationDate = initialQuery?.publicationDate || '';
+
+      this.allCards = this.filter(initialState.search.cards.projets_achats);
     }
   }
 
@@ -51,6 +56,40 @@ export class ForecastedBuyRequestFilter implements RequestFilter {
       publicationDate: this.publicationDate,
       zone: this.zone
     });
+  }
+
+  filter(cards: ProjetAchat[]) {
+    const { hasEcologicalConcern, publicationDate, zone } = this;
+    const filteredCards = cards.filter((card) => {
+      let ecologicalFlag = true;
+      let publicationDateFlag = true;
+      let zoneFlag = true;
+      const isZoneFilterActivated = Object.keys(zones).includes(zone);
+      const isPublicationDateFilterActivated =
+        Object.keys(publicationDates).includes(publicationDate);
+
+      if (hasEcologicalConcern) {
+        ecologicalFlag = yesNotoBoolean(card.environmentalConsiderationsConcerned);
+      }
+
+      if (isZoneFilterActivated) {
+        const cardDepartments = card.departments.map((d) => d.department);
+        zoneFlag = cardDepartments.some((d) => Object.keys(zones).includes(d));
+      }
+
+      if (isPublicationDateFilterActivated) {
+        const deadline = new Date(card.publicationTargetDate);
+        const NOW = new Date();
+        if ((publicationDate as PublicationDates) === 'publié') {
+          publicationDateFlag = deadline < NOW;
+        } else {
+          const sixMonthLater = new Date(NOW.setMonth(NOW.getMonth() + 6));
+          publicationDateFlag = deadline < sixMonthLater;
+        }
+      }
+      return ecologicalFlag && zoneFlag && publicationDateFlag;
+    });
+    return filteredCards;
   }
 
   reset() {
