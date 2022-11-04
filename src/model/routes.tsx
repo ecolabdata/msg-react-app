@@ -1,6 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { Details } from '../components/customComponents/details/Details';
-import DetailsJson from '../components/customComponents/DetailsJson';
+import { Details } from '../components/page/DetailsPage';
 import BreadCumb from '../components/dsfrComponents/BreadCumb';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
