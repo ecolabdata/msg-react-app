@@ -255,8 +255,7 @@ export const searchStartups = (query: StartupQuery) => {
   return buildFetchRequest({
     descriptionSU: query.description,
     secteurs: query.secteurs,
-    market: query.market,
-    zone: query.zone
+    nb_Startups: 10
   }).then((resp) => handleResp(query, resp));
 };
 

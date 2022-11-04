@@ -1,13 +1,24 @@
 import { useState } from 'react';
-import { AnyCard, searchStartups, StartupQuery } from '../../../api/Api';
+import { AnyCard, searchStartups, Startup, StartupQuery } from '../../../api/Api';
 import { CardType } from '../../../model/CardType';
 import { InitialState } from '../../../utils/InitialState';
 import Select from '../../dsfrComponents/Select';
 import { RequestFilter } from './RequestFIlter';
 
-const zones: Record<string, number> = {
-  zone1: 1,
-  zone2: 2
+const zones: Record<string, string> = {
+  'Auvergne-Rhône-Alpes': 'Auvergne-Rhône-Alpes',
+  'Bourgogne-Franche-Comté': 'Bourgogne-Franche-Comté',
+  Bretagne: 'Bretagne',
+  Corse: 'Corse',
+  'Centre-Val de Loire': 'Centre-Val de Loire',
+  'Grand Est': 'Grand Est',
+  'Hauts-de-France': 'Hauts-de-France',
+  'Île-de-France': 'Île-de-France',
+  'Nouvelle-Aquitaine': 'Nouvelle-Aquitaine',
+  Normandie: 'Normandie',
+  Occitanie: 'Occitanie',
+  "Provence-Alpes-Côte d'Azur": "Provence-Alpes-Côte d'Azur",
+  'Pays de la Loire': 'Pays de la Loire'
 };
 
 const markets: Record<string, number> = {
@@ -32,6 +43,7 @@ export class StartupRequestFilter implements RequestFilter {
       this.allCards = initialState.search.cards[cardType.apiName];
       this.zone = initialQuery?.zone || '';
       this.market = initialQuery?.market || '';
+      this.allCards = this.filter(initialState.search.cards.startups);
     }
   }
 
@@ -51,6 +63,26 @@ export class StartupRequestFilter implements RequestFilter {
       market: this.market,
       zone: this.zone
     });
+  }
+
+  filter(cards: Startup[]) {
+    let zoneFlag = true;
+    let marketFlag = true;
+    const { market, zone } = this;
+    const filteredCards = cards.filter((card) => {
+      const isZoneFilterActivated = Object.keys(zones).includes(zone);
+      const isMarketFilterActivated = Object.keys(markets).includes(market);
+
+      if (isZoneFilterActivated) {
+        zoneFlag = card.Région === zone;
+      }
+      if (isMarketFilterActivated) {
+        marketFlag = card.Marché === market;
+      }
+
+      return zoneFlag && marketFlag;
+    });
+    return filteredCards;
   }
 
   Component = ({}) => {
