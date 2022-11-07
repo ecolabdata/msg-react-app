@@ -1,6 +1,5 @@
-import { PublicBuyFilters } from '../../../hooks/useAdvancedFilters';
+import { certifications, entities, PublicBuyFilters } from '../../../hooks/useAdvancedFilters';
 import { CardType } from '../../../model/CardType';
-import { certifications, entities } from '../../../utils/utilityFunctions';
 import Select from '../../dsfrComponents/Select';
 
 interface PublicBuyAdvancedFiltersProps {

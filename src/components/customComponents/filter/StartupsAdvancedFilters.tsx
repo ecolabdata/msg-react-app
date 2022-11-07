@@ -1,6 +1,5 @@
-import { StartupFilters } from '../../../hooks/useAdvancedFilters';
+import { markets, StartupFilters, zones } from '../../../hooks/useAdvancedFilters';
 import { CardType } from '../../../model/CardType';
-import { markets, zones } from '../../../utils/utilityFunctions';
 import Select from '../../dsfrComponents/Select';
 
 interface StartupsAdvancedFiltersProps {

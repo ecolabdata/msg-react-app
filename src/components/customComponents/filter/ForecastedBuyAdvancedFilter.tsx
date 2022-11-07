@@ -1,6 +1,5 @@
-import { ForecastedBuyFilters } from '../../../hooks/useAdvancedFilters';
+import { ForecastedBuyFilters, publicationDates, zones } from '../../../hooks/useAdvancedFilters';
 import { CardType } from '../../../model/CardType';
-import { publicationDates, zones } from '../../../utils/utilityFunctions';
 import Select from '../../dsfrComponents/Select';
 import ToggleButton from '../../dsfrComponents/ToggleButton';
 
