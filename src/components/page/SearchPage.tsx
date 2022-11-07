@@ -1,6 +1,15 @@
+import { type } from 'os';
 import { useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { AidesQuery, ProjetAchat, searchForecastedBuys } from '../../api/Api';
+import {
+  AidesQuery,
+  isProjetAchat,
+  ProjetAchat,
+  Search,
+  searchForecastedBuys,
+  searchStartups,
+  Startup
+} from '../../api/Api';
 import { ApplicationContext } from '../../App';
 import { useTitle } from '../../hooks/useTitle';
 import {
@@ -27,6 +36,7 @@ import { ProjetAchatRequestFilter } from '../customComponents/filter/ProjetAchat
 import { PublicBuyRequestFilter } from '../customComponents/filter/PublicBuyRequestFilter';
 import { RequestFilter } from '../customComponents/filter/RequestFIlter';
 import { StartupRequestFilter } from '../customComponents/filter/StartupRequestFilter';
+import StartupsAdvancedFilters from '../customComponents/filter/StartupsAdvancedFilters';
 
 import ResultCard from '../customComponents/ResultCard';
 import ScreenReaderOnlyText from '../customComponents/ScreenReaderOnlyText';
@@ -46,7 +56,19 @@ const publicationDates: Record<PublicationDates, number> = {
   '6 mois et plus': 7
 };
 
+const markets: Record<string, number> = {
+  'B to C': 0,
+  'B to B': 1,
+  'B to A': 2
+};
+
 const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
+  const {
+    initialValues,
+    searchByType2: searchByType,
+    filter
+  } = getFiltersProperties(cardType.name);
+
   const { usedNextScrollTarget } = useContext(ApplicationContext);
   const [nextScrollTarget, setNextScrollTarget] = usedNextScrollTarget;
   const location = useLocation();
@@ -67,11 +89,7 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
   const [errorTxt, setErrorTxt] = useState('');
   const pageChunkSize = 20;
   const [cards, setCards] = useState([]);
-  const [filters, setFilters] = useState({
-    publicationDate: '',
-    zone: '',
-    hasEcologicalConcern: true
-  });
+  const [filters, setFilters] = useState(initialValues);
 
   const filteredCards: JSX.Element[] | undefined = cards.map((card, i) => (
     <ResultCard
@@ -93,11 +111,7 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
   const handleResetFilters = () => {
     setDescription('');
     setSecteurs([]);
-    setFilters({
-      publicationDate: '',
-      zone: '',
-      hasEcologicalConcern: true
-    });
+    setFilters(initialValues);
   };
 
   const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
@@ -107,18 +121,10 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
       setIsLoading(true);
       setErrorTxt('');
       console.log({ filters });
-      searchForecastedBuys({
-        description,
-        secteurs,
-        ...(filters as {
-          publicationDate: string;
-          zone: string;
-          hasEcologicalConcern: boolean;
-        })
-      }).then((search) => {
+      searchByType({ description, secteurs, type: cardType.name, filters }).then((search: any) => {
         setIsLoading(false);
         console.log(search);
-        const filteredCards = handleFilter(search?.cards?.projets_achats, filters);
+        const filteredCards = filter(search, filters);
         setCards(filteredCards as any);
         const element = document.getElementById('cardsContainer');
         if (element)
@@ -190,7 +196,13 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
               </button>
               {isAdvancedSearchOpen && (
                 <div className="flex flex-col md:flex-row items-center">
-                  <AdvancedSearch filters={filters} setFilters={setFilters} />
+                  {cardType.name === 'achats-previsionnels' && (
+                    <AdvancedSearch filters={filters} setFilters={setFilters} />
+                  )}
+                  {cardType.name === 'startups' && (
+                    <StartupsAdvancedFilters filters={filters} setFilters={setFilters} />
+                  )}
+
                   {/* <requestFilter.Component /> */}
                 </div>
               )}
@@ -330,10 +342,110 @@ export const SearchPageAchatProg = () => (
   />
 );
 
-const handleFilter = (
-  cards: ProjetAchat[],
-  filters: { publicationDate: string; zone: string; hasEcologicalConcern: boolean }
-) => {
+const getInitialFilters = (type: any) => {
+  console.log(type);
+  if (type === 'achats-previsionnels') {
+    return {
+      publicationDate: '',
+      zone: '',
+      hasEcologicalConcern: true
+    };
+  }
+
+  if (type === 'startups') {
+    return {
+      market: '',
+      zone: ''
+    };
+  }
+  return {};
+};
+
+type SearchParams = { description: string; secteurs: string[]; filters: any };
+
+// const searchByType = ({ description, secteurs, filters, type }: SearchParams) => {
+//   console.log(type);
+//   if (type === 'achats-previsionnels') {
+//     return searchForecastedBuys({
+//       description,
+//       secteurs,
+//       ...(filters as {
+//         publicationDate: string;
+//         zone: string;
+//         hasEcologicalConcern: boolean;
+//       })
+//     });
+//   }
+
+//   if (type === 'startups') {
+//     return searchStartups({
+//       description,
+//       secteurs,
+//       ...(filters as {
+//         market: string;
+//         zone: string;
+//       })
+//     });
+//   } else {
+//     return searchStartups({
+//       description,
+//       secteurs,
+//       ...(filters as {
+//         market: string;
+//         zone: string;
+//       })
+//     });
+//   }
+// };
+
+type FilterProperties = {
+  initialValues: any;
+  searchByType2: any;
+  filter: any;
+};
+
+const getFiltersProperties = (type: any): FilterProperties => {
+  if (type === 'achats-previsionnels') {
+    return {
+      initialValues: {
+        publicationDate: '',
+        zone: '',
+        hasEcologicalConcern: true
+      },
+      searchByType2: ({ description, secteurs, filters }: SearchParams) =>
+        searchForecastedBuys({
+          description,
+          secteurs,
+          ...(filters as {
+            publicationDate: string;
+            zone: string;
+            hasEcologicalConcern: boolean;
+          })
+        }),
+      filter: handleFilter
+    };
+  } else {
+    return {
+      initialValues: {
+        market: '',
+        zone: ''
+      },
+      searchByType2: ({ description, secteurs, filters }: SearchParams) =>
+        searchStartups({
+          description,
+          secteurs,
+          ...(filters as {
+            market: string;
+            zone: string;
+          })
+        }),
+      filter: startUpFilter
+    };
+  }
+};
+
+const handleFilter = (search: Search, filters: any) => {
+  const cards: ProjetAchat[] = search.cards?.projets_achats;
   const { hasEcologicalConcern, publicationDate, zone } = filters;
   const filteredCards = cards.filter((card) => {
     let ecologicalFlag = true;
@@ -366,6 +478,28 @@ const handleFilter = (
       }
     }
     return ecologicalFlag && zoneFlag && publicationDateFlag;
+  });
+  return filteredCards;
+};
+
+const startUpFilter = (search: Search, filters: any) => {
+  const cards = search.cards?.startups;
+
+  let zoneFlag = true;
+  let marketFlag = true;
+  const { market, zone } = filters;
+  const filteredCards = cards.filter((card) => {
+    const isZoneFilterActivated = Object.keys(zones).includes(zone);
+    const isMarketFilterActivated = Object.keys(markets).includes(market);
+
+    if (isZoneFilterActivated) {
+      zoneFlag = card.Région === zone;
+    }
+    if (isMarketFilterActivated) {
+      marketFlag = card.Marché === market;
+    }
+
+    return zoneFlag && marketFlag;
   });
   return filteredCards;
 };

@@ -5,10 +5,8 @@ import Select from '../../dsfrComponents/Select';
 import ToggleButton from '../../dsfrComponents/ToggleButton';
 
 interface AdvancedSearchProps {
-  setFilters?: Dispatch<
-    SetStateAction<{ publicationDate: string; zone: string; hasEcologicalConcern: boolean }>
-  >;
-  filters: { publicationDate: string; zone: string; hasEcologicalConcern: boolean };
+  setFilters?: Dispatch<SetStateAction<any>>;
+  filters: any;
 }
 
 type PublicationDates = 'publié' | 'Moins de 6 mois' | '6 mois et plus';
