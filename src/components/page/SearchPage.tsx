@@ -1,6 +1,6 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { AidesQuery } from '../../api/Api';
+import { AidesQuery, ProjetAchat, searchForecastedBuys } from '../../api/Api';
 import { ApplicationContext } from '../../App';
 import { useTitle } from '../../hooks/useTitle';
 import {
@@ -17,6 +17,8 @@ import {
   startups
 } from '../../model/CardType';
 import { InitialState } from '../../utils/InitialState';
+import { zones, yesNotoBoolean, departmentsByRegion } from '../../utils/utilityFunctions';
+import AdvancedSearch from '../customComponents/filter/AdvancedFilter';
 import { AideRequestFilter } from '../customComponents/filter/AideRequestFilter';
 import { ForecastedBuyRequestFilter } from '../customComponents/filter/ForecastedBuyRequestFilter';
 import { InvestisseurRequestFilter } from '../customComponents/filter/InvestisseurRequestFilter';
@@ -34,6 +36,14 @@ import Pagination from '../dsfrComponents/Pagination';
 type Props = {
   cardType: CardType;
   requestFilterBuilder: (initialState: unknown) => RequestFilter;
+};
+
+type PublicationDates = 'publié' | 'Moins de 6 mois' | '6 mois et plus';
+
+const publicationDates: Record<PublicationDates, number> = {
+  publié: 0,
+  'Moins de 6 mois': 6,
+  '6 mois et plus': 7
 };
 
 const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
@@ -56,14 +66,20 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
   const [secteurs, setSecteurs] = useState<string[]>(initialQuery?.secteurs || []);
   const [errorTxt, setErrorTxt] = useState('');
   const pageChunkSize = 20;
+  const [cards, setCards] = useState([]);
+  const [filters, setFilters] = useState({
+    publicationDate: '',
+    zone: '',
+    hasEcologicalConcern: true
+  });
 
-  const filteredCards: JSX.Element[] | undefined = requestFilter.cards.map((card) => (
+  const filteredCards: JSX.Element[] | undefined = cards.map((card, i) => (
     <ResultCard
       isLoading={isLoading}
       cardType={cardType}
       cardData={card}
       pageList={false}
-      key={card.id}
+      key={i}
     />
   ));
 
@@ -77,7 +93,11 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
   const handleResetFilters = () => {
     setDescription('');
     setSecteurs([]);
-    requestFilter?.reset?.();
+    setFilters({
+      publicationDate: '',
+      zone: '',
+      hasEcologicalConcern: true
+    });
   };
 
   const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
@@ -86,8 +106,20 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
     if (description.length > 0) {
       setIsLoading(true);
       setErrorTxt('');
-      requestFilter.search(description, [], secteurs).then((search) => {
+      console.log({ filters });
+      searchForecastedBuys({
+        description,
+        secteurs,
+        ...(filters as {
+          publicationDate: string;
+          zone: string;
+          hasEcologicalConcern: boolean;
+        })
+      }).then((search) => {
         setIsLoading(false);
+        console.log(search);
+        const filteredCards = handleFilter(search?.cards?.projets_achats, filters);
+        setCards(filteredCards as any);
         const element = document.getElementById('cardsContainer');
         if (element)
           setNextScrollTarget({
@@ -104,13 +136,16 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
     }
   };
 
+  useEffect(() => {
+    console.log({ filters, cards });
+  }, [filters, cards]);
+
   return (
     <>
       <div
         className="headContainer  container mt-10 mb-20 mx-auto max-w-headerSize
             xl:mx-auto
-            "
-      >
+            ">
         <div className="cardTitleAndLogo mt-10 p-2 text-base">
           <h2 className="w-fit font-bold text-2xl md:text-4xl">
             <div className="flex items-center ">
@@ -133,8 +168,7 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
           <form
             onSubmit={(event) => handleOnSubmitForm(event)}
             id="keywordsForm"
-            className="researchContainer m-auto flex flex-col justify-around flex-wrap h-fit w-full"
-          >
+            className="researchContainer m-auto flex flex-col justify-around flex-wrap h-fit w-full">
             <fieldset>
               <legend className="hidden">Champs de formulaire principaux</legend>
               <SearchForm
@@ -151,13 +185,13 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
                 aria-pressed={isAdvancedSearchOpen}
                 type="button"
                 className="ml-auto underline"
-                onClick={handleToggleAdvancedSearch}
-              >
+                onClick={handleToggleAdvancedSearch}>
                 Recherche avancée
               </button>
               {isAdvancedSearchOpen && (
                 <div className="flex flex-col md:flex-row items-center">
-                  <requestFilter.Component />
+                  <AdvancedSearch filters={filters} setFilters={setFilters} />
+                  {/* <requestFilter.Component /> */}
                 </div>
               )}
             </fieldset>
@@ -167,8 +201,7 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
             <button
               form="keywordsForm"
               disabled={isLoading}
-              className="mx-3 fr-btn fr-btn--primary  fr-btn--lg"
-            >
+              className="mx-3 fr-btn fr-btn--primary  fr-btn--lg">
               <span className={`mx-auto`}>
                 {isLoading ? 'Chargement...' : 'Valider et rechercher'}
               </span>
@@ -177,8 +210,7 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
               type="button"
               disabled={isLoading}
               onClick={handleResetFilters}
-              className="mt-4 underline"
-            >
+              className="mt-4 underline">
               Réinitialiser
             </button>
           </div>
@@ -297,3 +329,43 @@ export const SearchPageAchatProg = () => (
     requestFilterBuilder={(initState) => new ProjetAchatRequestFilter(initState as any, achatProg)}
   />
 );
+
+const handleFilter = (
+  cards: ProjetAchat[],
+  filters: { publicationDate: string; zone: string; hasEcologicalConcern: boolean }
+) => {
+  const { hasEcologicalConcern, publicationDate, zone } = filters;
+  const filteredCards = cards.filter((card) => {
+    let ecologicalFlag = true;
+    let publicationDateFlag = true;
+    let zoneFlag = true;
+
+    const isZoneFilterActivated = Object.keys(zones).includes(zone);
+    const isPublicationDateFilterActivated =
+      Object.keys(publicationDates).includes(publicationDate);
+
+    if (hasEcologicalConcern) {
+      ecologicalFlag = yesNotoBoolean(card.environmentalConsiderationsConcerned);
+    }
+
+    if (isZoneFilterActivated) {
+      const departmentsForZone = zone && departmentsByRegion[zone].map((d) => d.toString());
+
+      const cardDepartments = card.departments.map((d) => d.department);
+      zoneFlag = cardDepartments.some((d) => departmentsForZone?.includes(d));
+    }
+
+    if (isPublicationDateFilterActivated) {
+      const deadline = new Date(card.publicationTargetDate);
+      const NOW = new Date();
+      if ((publicationDate as PublicationDates) === 'publié') {
+        publicationDateFlag = deadline < NOW;
+      } else {
+        const sixMonthLater = new Date(NOW.setMonth(NOW.getMonth() + 6));
+        publicationDateFlag = deadline < sixMonthLater;
+      }
+    }
+    return ecologicalFlag && zoneFlag && publicationDateFlag;
+  });
+  return filteredCards;
+};

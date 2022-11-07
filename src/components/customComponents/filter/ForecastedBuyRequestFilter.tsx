@@ -21,6 +21,7 @@ export class ForecastedBuyRequestFilter implements RequestFilter {
   hasEcologicalConcern = true;
   allCards: AnyCard[] = [];
   cardType: CardType;
+  isReseted?: boolean;
 
   constructor(
     initialState: (InitialState & { page?: number; montantMin: number }) | null,
@@ -28,6 +29,7 @@ export class ForecastedBuyRequestFilter implements RequestFilter {
   ) {
     this.cardType = cardType;
 
+    console.log(this.zone, this.isReseted, initialState);
     if (initialState?.search.cards) {
       const initialQuery = initialState?.search.query as ForecastedBuyQuery | null;
       this.allCards = initialState.search.cards[cardType.apiName];
@@ -91,7 +93,8 @@ export class ForecastedBuyRequestFilter implements RequestFilter {
   }
 
   reset() {
-    this.publicationDate = '';
+    console.log('reset');
+    this.publicationDate = 'aeazeazeazeazeaz';
     this.zone = '';
     this.hasEcologicalConcern = true;
   }
