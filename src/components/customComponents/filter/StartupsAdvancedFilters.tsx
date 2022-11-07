@@ -1,32 +1,19 @@
-import { Dispatch, SetStateAction, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { zones } from '../../../utils/utilityFunctions';
+import { StartupFilters } from '../../../hooks/useAdvancedFilters';
+import { CardType } from '../../../model/CardType';
+import { markets, zones } from '../../../utils/utilityFunctions';
 import Select from '../../dsfrComponents/Select';
-import ToggleButton from '../../dsfrComponents/ToggleButton';
 
 interface StartupsAdvancedFiltersProps {
-  setFilters?: Dispatch<SetStateAction<any>>;
-  filters: any;
+  setFilters: (filterName: string, filterValue: string | boolean) => void;
+  filters: StartupFilters;
+  cardType: CardType;
 }
 
-const markets: Record<string, number> = {
-  'B to C': 0,
-  'B to B': 1,
-  'B to A': 2
-};
-
 const StartupsAdvancedFilters: React.FC<StartupsAdvancedFiltersProps> = ({
+  cardType,
   filters,
   setFilters
 }) => {
-  const updateFilters = (filterName: any, filterValue: any) => {
-    setFilters &&
-      setFilters({ ...filters, [filterName]: filterValue } as {
-        market: string;
-        zone: string;
-      });
-  };
-
   return (
     <>
       <Select
@@ -34,9 +21,10 @@ const StartupsAdvancedFilters: React.FC<StartupsAdvancedFiltersProps> = ({
         selectClassName="bg-research-precision-container"
         label="Marchés"
         defaultOption={'Tous'}
+        color={cardType.color}
         optionsData={Object.keys(markets)}
         onChange={(e) => {
-          updateFilters('market', e.currentTarget.value);
+          setFilters('market', e.currentTarget.value);
         }}
         selected={filters.market}
       />
@@ -45,9 +33,10 @@ const StartupsAdvancedFilters: React.FC<StartupsAdvancedFiltersProps> = ({
         selectClassName="bg-research-precision-container"
         label="Zone"
         defaultOption={'Toutes'}
+        color={cardType.color}
         optionsData={Object.keys(zones)}
         onChange={(e) => {
-          updateFilters('zone', e.currentTarget.value);
+          setFilters('zone', e.currentTarget.value);
         }}
         selected={filters.zone}
       />

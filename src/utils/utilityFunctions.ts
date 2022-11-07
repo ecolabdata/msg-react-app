@@ -45,29 +45,6 @@ export function getDaysBetweenDates(first: Date, second: Date) {
   return Math.round((second.getTime() - first.getTime()) / (1000 * 60 * 60 * 24));
 }
 
-export const zones: Record<string, string> = {
-  'Auvergne-Rhône-Alpes': 'Auvergne-Rhône-Alpes',
-  'Bourgogne-Franche-Comté': 'Bourgogne-Franche-Comté',
-  Bretagne: 'Bretagne',
-  Corse: 'Corse',
-  'Centre-Val de Loire': 'Centre-Val de Loire',
-  'Grand Est': 'Grand Est',
-  'Hauts-de-France': 'Hauts-de-France',
-  'Île-de-France': 'Île-de-France',
-  'Nouvelle-Aquitaine': 'Nouvelle-Aquitaine',
-  Normandie: 'Normandie',
-  Occitanie: 'Occitanie',
-  "Provence-Alpes-Côte d'Azur": "Provence-Alpes-Côte d'Azur",
-  'Pays de la Loire': 'Pays de la Loire',
-  Guadeloupe: 'Guadeloupe',
-  Guyane: 'Guyane',
-  'La Réunion': 'La Réunion',
-  Martinique: 'Martinique',
-  Mayotte: 'Mayotte'
-};
-
-export type Regions = keyof typeof zones;
-
 export const departmentsByRegion: Record<string, string[] | number[]> = {
   'Auvergne-Rhône-Alpes': [1, 3, 7, 15, 26, 38, 42, 43, 63, 69, 73, 74],
   'Bourgogne-Franche-Comté': [21, 25, 39, 58, 70, 71, 89, 90],

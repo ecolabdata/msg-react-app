@@ -1,16 +1,13 @@
-import { type } from 'os';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import {
-  AidesQuery,
-  isProjetAchat,
-  ProjetAchat,
-  Search,
-  searchForecastedBuys,
-  searchStartups,
-  Startup
-} from '../../api/Api';
+import { AidesQuery, AnyCard, Search } from '../../api/Api';
 import { ApplicationContext } from '../../App';
+import {
+  ForecastedBuyFilters,
+  PublicBuyFilters,
+  StartupFilters,
+  useAdvancedFilters
+} from '../../hooks/useAdvancedFilters';
 import { useTitle } from '../../hooks/useTitle';
 import {
   achatPrevi,
@@ -26,16 +23,8 @@ import {
   startups
 } from '../../model/CardType';
 import { InitialState } from '../../utils/InitialState';
-import { zones, yesNotoBoolean, departmentsByRegion } from '../../utils/utilityFunctions';
-import AdvancedSearch from '../customComponents/filter/AdvancedFilter';
-import { AideRequestFilter } from '../customComponents/filter/AideRequestFilter';
-import { ForecastedBuyRequestFilter } from '../customComponents/filter/ForecastedBuyRequestFilter';
-import { InvestisseurRequestFilter } from '../customComponents/filter/InvestisseurRequestFilter';
-import { NoRequestFilter } from '../customComponents/filter/NoRequestFilter';
-import { ProjetAchatRequestFilter } from '../customComponents/filter/ProjetAchatRequestFilter';
-import { PublicBuyRequestFilter } from '../customComponents/filter/PublicBuyRequestFilter';
-import { RequestFilter } from '../customComponents/filter/RequestFIlter';
-import { StartupRequestFilter } from '../customComponents/filter/StartupRequestFilter';
+import ForecastedBuyAdvancedFilter from '../customComponents/filter/ForecastedBuyAdvancedFilter';
+import PublicBuyAdvancedFilters from '../customComponents/filter/PublicBuyAdvancedFilters';
 import StartupsAdvancedFilters from '../customComponents/filter/StartupsAdvancedFilters';
 
 import ResultCard from '../customComponents/ResultCard';
@@ -45,34 +34,14 @@ import Pagination from '../dsfrComponents/Pagination';
 
 type Props = {
   cardType: CardType;
-  requestFilterBuilder: (initialState: unknown) => RequestFilter;
 };
 
-type PublicationDates = 'publié' | 'Moins de 6 mois' | '6 mois et plus';
-
-const publicationDates: Record<PublicationDates, number> = {
-  publié: 0,
-  'Moins de 6 mois': 6,
-  '6 mois et plus': 7
-};
-
-const markets: Record<string, number> = {
-  'B to C': 0,
-  'B to B': 1,
-  'B to A': 2
-};
-
-const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
-  const {
-    initialValues,
-    searchByType2: searchByType,
-    filter
-  } = getFiltersProperties(cardType.name);
+const SearchPage: React.FC<Props> = ({ cardType }) => {
+  const { initialValues, searchByType, handleFilter: filter } = useAdvancedFilters(cardType.name);
 
   const { usedNextScrollTarget } = useContext(ApplicationContext);
   const [nextScrollTarget, setNextScrollTarget] = usedNextScrollTarget;
   const location = useLocation();
-  const requestFilter = requestFilterBuilder(location.state);
   const initialState = location.state as
     | (InitialState & { page?: number; montantMin: number })
     | null;
@@ -88,7 +57,7 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
   const [secteurs, setSecteurs] = useState<string[]>(initialQuery?.secteurs || []);
   const [errorTxt, setErrorTxt] = useState('');
   const pageChunkSize = 20;
-  const [cards, setCards] = useState([]);
+  const [cards, setCards] = useState<AnyCard[]>([]);
   const [filters, setFilters] = useState(initialValues);
 
   const filteredCards: JSX.Element[] | undefined = cards.map((card, i) => (
@@ -114,18 +83,20 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
     setFilters(initialValues);
   };
 
+  const handleUpdateFilter = (filterName: string, filterValue: string | boolean) => {
+    setFilters({ ...filters, [filterName]: filterValue });
+  };
+
   const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (description.length > 0) {
       setIsLoading(true);
       setErrorTxt('');
-      console.log({ filters });
-      searchByType({ description, secteurs, type: cardType.name, filters }).then((search: any) => {
+      searchByType({ description, secteurs, filters: filters }).then((search) => {
         setIsLoading(false);
-        console.log(search);
-        const filteredCards = filter(search, filters);
-        setCards(filteredCards as any);
+        const filteredCards = filter(search as Search, filters as any);
+        setCards(filteredCards);
         const element = document.getElementById('cardsContainer');
         if (element)
           setNextScrollTarget({
@@ -141,10 +112,6 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
       setErrorTxt("Erreur: la description de l'entreprise est obligatoire");
     }
   };
-
-  useEffect(() => {
-    console.log({ filters, cards });
-  }, [filters, cards]);
 
   return (
     <>
@@ -197,13 +164,26 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
               {isAdvancedSearchOpen && (
                 <div className="flex flex-col md:flex-row items-center">
                   {cardType.name === 'achats-previsionnels' && (
-                    <AdvancedSearch filters={filters} setFilters={setFilters} />
+                    <ForecastedBuyAdvancedFilter
+                      cardType={cardType}
+                      filters={filters as ForecastedBuyFilters}
+                      setFilters={handleUpdateFilter}
+                    />
                   )}
                   {cardType.name === 'startups' && (
-                    <StartupsAdvancedFilters filters={filters} setFilters={setFilters} />
+                    <StartupsAdvancedFilters
+                      cardType={cardType}
+                      filters={filters as StartupFilters}
+                      setFilters={handleUpdateFilter}
+                    />
                   )}
-
-                  {/* <requestFilter.Component /> */}
+                  {cardType.name === 'acheteurs-publics' && (
+                    <PublicBuyAdvancedFilters
+                      cardType={cardType}
+                      filters={filters as PublicBuyFilters}
+                      setFilters={handleUpdateFilter}
+                    />
+                  )}
                 </div>
               )}
             </fieldset>
@@ -273,233 +253,15 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
 };
 
 /*Persona: Startup*/
-export const SearchPageAidesClient = () => (
-  <SearchPage
-    cardType={aideClient}
-    requestFilterBuilder={(initState) => new AideRequestFilter(initState as any, aideClient)}
-  />
-);
-export const SearchPageAidesInno = () => (
-  <SearchPage
-    cardType={aideInno}
-    requestFilterBuilder={(initState) => new AideRequestFilter(initState as any, aideInno)}
-  />
-);
-export const SearchPageInvestisseur = () => (
-  <SearchPage
-    cardType={investisseur}
-    requestFilterBuilder={(initState) =>
-      new InvestisseurRequestFilter(initState as any, investisseur)
-    }
-  />
-);
-export const SearchPageStartups = () => (
-  <SearchPage
-    cardType={startups}
-    requestFilterBuilder={(initState) => new StartupRequestFilter(initState as any, startups)}
-  />
-);
-export const SearchPageAcheteurPublic = () => (
-  <SearchPage
-    cardType={acheteurPublic}
-    requestFilterBuilder={(initState) =>
-      new PublicBuyRequestFilter(initState as any, acheteurPublic)
-    }
-  />
-);
-export const SearchPageAchatPrevi = () => (
-  <SearchPage
-    cardType={achatPrevi}
-    requestFilterBuilder={(initState) =>
-      new ForecastedBuyRequestFilter(initState as any, achatPrevi)
-    }
-  />
-);
+export const SearchPageAidesClient = () => <SearchPage cardType={aideClient} />;
+export const SearchPageAidesInno = () => <SearchPage cardType={aideInno} />;
+export const SearchPageInvestisseur = () => <SearchPage cardType={investisseur} />;
+export const SearchPageStartups = () => <SearchPage cardType={startups} />;
+export const SearchPageAcheteurPublic = () => <SearchPage cardType={acheteurPublic} />;
+export const SearchPageAchatPrevi = () => <SearchPage cardType={achatPrevi} />;
 
 /*Persona: Acteur public*/
-export const SearchPageAidesFin = () => (
-  <SearchPage
-    cardType={aideFin}
-    requestFilterBuilder={(initState) => new AideRequestFilter(initState as any, aideFin)}
-  />
-);
-export const SearchPageSourcingSu = () => (
-  <SearchPage
-    cardType={sourcingSu}
-    requestFilterBuilder={(initState) => new NoRequestFilter(initState as any, sourcingSu)}
-  />
-);
-export const SearchPageRetex = () => (
-  <SearchPage
-    cardType={retex}
-    requestFilterBuilder={(initState) => new NoRequestFilter(initState as any, retex)}
-  />
-);
-export const SearchPageAchatProg = () => (
-  <SearchPage
-    cardType={achatProg}
-    requestFilterBuilder={(initState) => new ProjetAchatRequestFilter(initState as any, achatProg)}
-  />
-);
-
-const getInitialFilters = (type: any) => {
-  console.log(type);
-  if (type === 'achats-previsionnels') {
-    return {
-      publicationDate: '',
-      zone: '',
-      hasEcologicalConcern: true
-    };
-  }
-
-  if (type === 'startups') {
-    return {
-      market: '',
-      zone: ''
-    };
-  }
-  return {};
-};
-
-type SearchParams = { description: string; secteurs: string[]; filters: any };
-
-// const searchByType = ({ description, secteurs, filters, type }: SearchParams) => {
-//   console.log(type);
-//   if (type === 'achats-previsionnels') {
-//     return searchForecastedBuys({
-//       description,
-//       secteurs,
-//       ...(filters as {
-//         publicationDate: string;
-//         zone: string;
-//         hasEcologicalConcern: boolean;
-//       })
-//     });
-//   }
-
-//   if (type === 'startups') {
-//     return searchStartups({
-//       description,
-//       secteurs,
-//       ...(filters as {
-//         market: string;
-//         zone: string;
-//       })
-//     });
-//   } else {
-//     return searchStartups({
-//       description,
-//       secteurs,
-//       ...(filters as {
-//         market: string;
-//         zone: string;
-//       })
-//     });
-//   }
-// };
-
-type FilterProperties = {
-  initialValues: any;
-  searchByType2: any;
-  filter: any;
-};
-
-const getFiltersProperties = (type: any): FilterProperties => {
-  if (type === 'achats-previsionnels') {
-    return {
-      initialValues: {
-        publicationDate: '',
-        zone: '',
-        hasEcologicalConcern: true
-      },
-      searchByType2: ({ description, secteurs, filters }: SearchParams) =>
-        searchForecastedBuys({
-          description,
-          secteurs,
-          ...(filters as {
-            publicationDate: string;
-            zone: string;
-            hasEcologicalConcern: boolean;
-          })
-        }),
-      filter: handleFilter
-    };
-  } else {
-    return {
-      initialValues: {
-        market: '',
-        zone: ''
-      },
-      searchByType2: ({ description, secteurs, filters }: SearchParams) =>
-        searchStartups({
-          description,
-          secteurs,
-          ...(filters as {
-            market: string;
-            zone: string;
-          })
-        }),
-      filter: startUpFilter
-    };
-  }
-};
-
-const handleFilter = (search: Search, filters: any) => {
-  const cards: ProjetAchat[] = search.cards?.projets_achats;
-  const { hasEcologicalConcern, publicationDate, zone } = filters;
-  const filteredCards = cards.filter((card) => {
-    let ecologicalFlag = true;
-    let publicationDateFlag = true;
-    let zoneFlag = true;
-
-    const isZoneFilterActivated = Object.keys(zones).includes(zone);
-    const isPublicationDateFilterActivated =
-      Object.keys(publicationDates).includes(publicationDate);
-
-    if (hasEcologicalConcern) {
-      ecologicalFlag = yesNotoBoolean(card.environmentalConsiderationsConcerned);
-    }
-
-    if (isZoneFilterActivated) {
-      const departmentsForZone = zone && departmentsByRegion[zone].map((d) => d.toString());
-
-      const cardDepartments = card.departments.map((d) => d.department);
-      zoneFlag = cardDepartments.some((d) => departmentsForZone?.includes(d));
-    }
-
-    if (isPublicationDateFilterActivated) {
-      const deadline = new Date(card.publicationTargetDate);
-      const NOW = new Date();
-      if ((publicationDate as PublicationDates) === 'publié') {
-        publicationDateFlag = deadline < NOW;
-      } else {
-        const sixMonthLater = new Date(NOW.setMonth(NOW.getMonth() + 6));
-        publicationDateFlag = deadline < sixMonthLater;
-      }
-    }
-    return ecologicalFlag && zoneFlag && publicationDateFlag;
-  });
-  return filteredCards;
-};
-
-const startUpFilter = (search: Search, filters: any) => {
-  const cards = search.cards?.startups;
-
-  let zoneFlag = true;
-  let marketFlag = true;
-  const { market, zone } = filters;
-  const filteredCards = cards.filter((card) => {
-    const isZoneFilterActivated = Object.keys(zones).includes(zone);
-    const isMarketFilterActivated = Object.keys(markets).includes(market);
-
-    if (isZoneFilterActivated) {
-      zoneFlag = card.Région === zone;
-    }
-    if (isMarketFilterActivated) {
-      marketFlag = card.Marché === market;
-    }
-
-    return zoneFlag && marketFlag;
-  });
-  return filteredCards;
-};
+export const SearchPageAidesFin = () => <SearchPage cardType={aideFin} />;
+export const SearchPageSourcingSu = () => <SearchPage cardType={sourcingSu} />;
+export const SearchPageRetex = () => <SearchPage cardType={retex} />;
+export const SearchPageAchatProg = () => <SearchPage cardType={achatProg} />;
