@@ -2,15 +2,10 @@ import { useState } from 'react';
 import { AnyCard, ForecastedBuyQuery, ProjetAchat, searchForecastedBuys } from '../../../api/Api';
 import { CardType } from '../../../model/CardType';
 import { InitialState } from '../../../utils/InitialState';
-import { yesNotoBoolean } from '../../../utils/utilityFunctions';
+import { departmentsByRegion, yesNotoBoolean, zones } from '../../../utils/utilityFunctions';
 import Select from '../../dsfrComponents/Select';
 import ToggleButton from '../../dsfrComponents/ToggleButton';
 import { RequestFilter } from './RequestFIlter';
-
-const zones: Record<string, number> = {
-  92: 1,
-  93: 2
-};
 
 type PublicationDates = 'publié' | 'Moins de 6 mois' | '6 mois et plus';
 
@@ -32,10 +27,10 @@ export class ForecastedBuyRequestFilter implements RequestFilter {
     cardType: CardType
   ) {
     this.cardType = cardType;
+
     if (initialState?.search.cards) {
       const initialQuery = initialState?.search.query as ForecastedBuyQuery | null;
       this.allCards = initialState.search.cards[cardType.apiName];
-
       this.hasEcologicalConcern = initialQuery ? initialQuery.hasEcologicalConcern : true;
       this.zone = initialQuery?.zone || '';
       this.publicationDate = initialQuery?.publicationDate || '';
@@ -64,6 +59,7 @@ export class ForecastedBuyRequestFilter implements RequestFilter {
       let ecologicalFlag = true;
       let publicationDateFlag = true;
       let zoneFlag = true;
+
       const isZoneFilterActivated = Object.keys(zones).includes(zone);
       const isPublicationDateFilterActivated =
         Object.keys(publicationDates).includes(publicationDate);
@@ -73,8 +69,10 @@ export class ForecastedBuyRequestFilter implements RequestFilter {
       }
 
       if (isZoneFilterActivated) {
+        const departmentsForZone = zone && departmentsByRegion[zone].map((d) => d.toString());
+
         const cardDepartments = card.departments.map((d) => d.department);
-        zoneFlag = cardDepartments.some((d) => Object.keys(zones).includes(d));
+        zoneFlag = cardDepartments.some((d) => departmentsForZone?.includes(d));
       }
 
       if (isPublicationDateFilterActivated) {

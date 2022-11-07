@@ -48,7 +48,7 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
     onValueChange && onValueChange(event.target.value);
   };
 
-  const borderColor = color && tailwindColorUtility.border[color];
+  const borderColor = color && tailwindColorUtility[color].border;
 
   return (
     <div

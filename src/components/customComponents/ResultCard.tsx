@@ -101,7 +101,8 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
                 }}
                 to={linkTo}
                 state={{ cardData }}
-                className="rm-link-underline">
+                className="rm-link-underline"
+              >
                 <p className="clamp mt-2 font-bold text-lg" title={name}>
                   <ScreenReaderOnlyText content={toprow} />
                   {name}
@@ -129,7 +130,8 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
                     </div>
                     <div
                       className="h-[3em] truncate"
-                      title={i["Présentation de la politique d'investissement"]}>
+                      title={i["Présentation de la politique d'investissement"]}
+                    >
                       {i["Présentation de la politique d'investissement"].split(';').join(' | ')}
                     </div>
                     <DetailBadges contents={i['Type de financement'].split(';')} />
@@ -159,7 +161,8 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
                 <li>
                   <p
                     className={`fr-badge fr-badge--sm `}
-                    style={{ color: cardType.color, backgroundColor: cardType.backgroundColor }}>
+                    style={{ color: cardType.color, backgroundColor: cardType.backgroundColor }}
+                  >
                     {toprow}
                   </p>
                 </li>

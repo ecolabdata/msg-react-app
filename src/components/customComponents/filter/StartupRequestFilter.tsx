@@ -2,24 +2,9 @@ import { useState } from 'react';
 import { AnyCard, searchStartups, Startup, StartupQuery } from '../../../api/Api';
 import { CardType } from '../../../model/CardType';
 import { InitialState } from '../../../utils/InitialState';
+import { zones } from '../../../utils/utilityFunctions';
 import Select from '../../dsfrComponents/Select';
 import { RequestFilter } from './RequestFIlter';
-
-const zones: Record<string, string> = {
-  'Auvergne-Rhône-Alpes': 'Auvergne-Rhône-Alpes',
-  'Bourgogne-Franche-Comté': 'Bourgogne-Franche-Comté',
-  Bretagne: 'Bretagne',
-  Corse: 'Corse',
-  'Centre-Val de Loire': 'Centre-Val de Loire',
-  'Grand Est': 'Grand Est',
-  'Hauts-de-France': 'Hauts-de-France',
-  'Île-de-France': 'Île-de-France',
-  'Nouvelle-Aquitaine': 'Nouvelle-Aquitaine',
-  Normandie: 'Normandie',
-  Occitanie: 'Occitanie',
-  "Provence-Alpes-Côte d'Azur": "Provence-Alpes-Côte d'Azur",
-  'Pays de la Loire': 'Pays de la Loire'
-};
 
 const markets: Record<string, number> = {
   'B to C': 0,

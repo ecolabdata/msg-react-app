@@ -46,7 +46,7 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({
     setDisplaySelect(false);
   });
 
-  const borderColor = color && tailwindColorUtility.border[color];
+  const borderColor = color && tailwindColorUtility[color].border;
 
   return (
     <div className={`relative ${className}`} ref={wrapperRef}>
