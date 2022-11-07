@@ -2,17 +2,22 @@ import { useEffect, useRef, useState } from 'react';
 import Chevron from './../../assets/icons/chevronWhite.svg';
 import OptionItem from './OptionItem';
 import { useOutsideAlerter } from '../../hooks/useOutsideAlerter';
+import { tailwindColorUtility } from '../../utils/utilityFunctions';
 
 interface SelectInputOptionsProps {
   optionsData: string[];
   secteurs: string[];
+  className?: string;
   setSecteurs: React.Dispatch<React.SetStateAction<string[]>>;
+  color?: string;
 }
 
 const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({
   optionsData,
   secteurs,
-  setSecteurs
+  setSecteurs,
+  className,
+  color
 }) => {
   const [displaySelect, setDisplaySelect] = useState(false);
   const secteursSet = new Set(secteurs);
@@ -41,8 +46,10 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({
     setDisplaySelect(false);
   });
 
+  const borderColor = color && tailwindColorUtility[color].border;
+
   return (
-    <div className="relative" ref={wrapperRef}>
+    <div className={`relative ${className}`} ref={wrapperRef}>
       <label className="fr-label" htmlFor="select-container">
         Thématique du projet
       </label>
@@ -51,21 +58,20 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({
         aria-label="Thématique du projet"
         aria-expanded={displaySelect}
         ref={buttonRef}
+        type="button"
         onKeyDown={handleKeyDown}
         role="combobox"
-        className="mt-2 w-full max-h-10 addBorder-b border-3 border-b-white p-2 flex bg-input-background"
+        className={`mt-2 w-full h-10 min-h-[50px] addBorder-b border-3 ${borderColor} p-2 pt-3 flex bg-input-background`}
         onClick={() => {
           setDisplaySelect(!displaySelect);
-        }}
-      >
-        <p className="flex-1 truncate text-left max-w-full">
+        }}>
+        <p className="flex-1 overflow-hidden text-left max-w-full h-full">
           {secteurs.length <= 0 ? 'Sélectionnez une option' : secteurs.join(', ')}
         </p>
         <span
           className={`${
             localStorage.scheme === 'dark' ? 'bg-dark-text-action' : 'bg-blue-france'
-          } w-6 h-6 rounded-full text-white font-bold`}
-        >
+          } w-6 h-6 rounded-full  text-black font-bold`}>
           {' '}
           {secteurs.length}{' '}
         </span>

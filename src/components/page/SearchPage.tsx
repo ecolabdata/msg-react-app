@@ -2,7 +2,6 @@ import { useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AidesQuery } from '../../api/Api';
 import { ApplicationContext } from '../../App';
-import { Filtrer } from '../../assets/Icons';
 import { useTitle } from '../../hooks/useTitle';
 import {
   achatPrevi,
@@ -19,14 +18,17 @@ import {
 } from '../../model/CardType';
 import { InitialState } from '../../utils/InitialState';
 import { AideRequestFilter } from '../customComponents/filter/AideRequestFilter';
+import { ForecastedBuyRequestFilter } from '../customComponents/filter/ForecastedBuyRequestFilter';
 import { InvestisseurRequestFilter } from '../customComponents/filter/InvestisseurRequestFilter';
 import { NoRequestFilter } from '../customComponents/filter/NoRequestFilter';
 import { ProjetAchatRequestFilter } from '../customComponents/filter/ProjetAchatRequestFilter';
+import { PublicBuyRequestFilter } from '../customComponents/filter/PublicBuyRequestFilter';
 import { RequestFilter } from '../customComponents/filter/RequestFIlter';
-import { PitchThematicsKeywords } from '../customComponents/PitchThematicsKeywords';
+import { StartupRequestFilter } from '../customComponents/filter/StartupRequestFilter';
 
 import ResultCard from '../customComponents/ResultCard';
 import ScreenReaderOnlyText from '../customComponents/ScreenReaderOnlyText';
+import SearchForm from '../customComponents/SearchForm';
 import Pagination from '../dsfrComponents/Pagination';
 
 type Props = {
@@ -35,8 +37,7 @@ type Props = {
 };
 
 const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
-  const { usedCorbeille, usedNextScrollTarget } = useContext(ApplicationContext);
-  const [toggleInCorbeille, isInCorbeille] = usedCorbeille;
+  const { usedNextScrollTarget } = useContext(ApplicationContext);
   const [nextScrollTarget, setNextScrollTarget] = usedNextScrollTarget;
   const location = useLocation();
   const requestFilter = requestFilterBuilder(location.state);
@@ -50,9 +51,9 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
   useTitle(`Recherche détaillé ${cardType.title}`);
 
   const [isLoading, setIsLoading] = useState(false);
+  const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
   const [description, setDescription] = useState(initialQuery?.description || '');
   const [secteurs, setSecteurs] = useState<string[]>(initialQuery?.secteurs || []);
-  const [motsclefs, setMotsclef] = useState<string[]>(initialQuery?.motsclefs || []);
   const [errorTxt, setErrorTxt] = useState('');
   const pageChunkSize = 20;
 
@@ -69,13 +70,23 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
   const nbPage = Math.ceil(filteredCards.length / pageChunkSize);
   const cardsSlice = filteredCards.slice((pageNo - 1) * pageChunkSize, pageNo * pageChunkSize);
 
+  const handleToggleAdvancedSearch = () => {
+    setIsAdvancedSearchOpen(!isAdvancedSearchOpen);
+  };
+
+  const handleResetFilters = () => {
+    setDescription('');
+    setSecteurs([]);
+    requestFilter?.reset?.();
+  };
+
   const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (description.length > 0) {
       setIsLoading(true);
       setErrorTxt('');
-      requestFilter.search(description, motsclefs, secteurs).then((search) => {
+      requestFilter.search(description, [], secteurs).then((search) => {
         setIsLoading(false);
         const element = document.getElementById('cardsContainer');
         if (element)
@@ -118,69 +129,57 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
           <p className="mt-2 text-base">{cardType.description}</p>
         </div>
 
-        <div className="flex flex-col items-center w-full">
+        <div className="flex flex-col items-center w-full px-4 md:px-0">
           <form
             onSubmit={(event) => handleOnSubmitForm(event)}
             id="keywordsForm"
-            className="h-fit w-full"
+            className="researchContainer m-auto flex flex-col justify-around flex-wrap h-fit w-full"
           >
-            <div className="researchContainer m-auto flex justify-around flex-wrap">
-              <PitchThematicsKeywords
+            <fieldset>
+              <legend className="hidden">Champs de formulaire principaux</legend>
+              <SearchForm
                 usedDescription={[description, setDescription]}
-                usedMotsClef={[motsclefs, setMotsclef]}
                 usedSecteurs={[secteurs, setSecteurs]}
                 usedErrorTextDescription={[errorTxt, setErrorTxt]}
                 usedInListPage={true}
-                openPitchContainerFromStart={!initialQuery}
+                color={cardType.color}
               />
-            </div>
-
-            <div
-              className="specifyResearchContainer mt-2 min-h-[160px] max-w-headerSize w-full flex flex-col items-center justify-center  bg-research-precision-container
-                        lg:mt-2 lg:justify-center"
-            >
-              <div className="specifyAndLogoContainer w-full ">
-                <h2
-                  style={{ color: cardType.color }}
-                  className={`mt-4 bold text-xl flex justify-center items-center`}
-                >
-                  <Filtrer className="mr-6" width="20" height="20" />
-                  Préciser la recherche
-                </h2>
-              </div>
-
-              <div className="inputsAndToggleContainer self-end flex items-end  justify-around w-full mt-2 mb-8 sm:mb-0">
-                <div
-                  className="inputsContainer w-full mt-2 flex flex-col items-center justify-center   
-                                lg:h-fit lg:w-[85%] lg:flex-row"
-                >
+            </fieldset>
+            <fieldset className="flex flex-col mt-4">
+              <legend className="sr-only">Champs de recherche avancée</legend>
+              <button
+                aria-pressed={isAdvancedSearchOpen}
+                type="button"
+                className="ml-auto underline"
+                onClick={handleToggleAdvancedSearch}
+              >
+                Recherche avancée
+              </button>
+              {isAdvancedSearchOpen && (
+                <div className="flex flex-col md:flex-row items-center">
                   <requestFilter.Component />
                 </div>
-              </div>
-            </div>
+              )}
+            </fieldset>
           </form>
 
-          <div className="researchButtonsContainer mt-4 w-full flex justify-center">
-            <button
-              type="button"
-              disabled={isLoading}
-              className="mx-3 fr-btn fr-btn--sm underline fr-btn--tertiary-no-outline   
-                        "
-            >
-              {' '}
-              <span className={`mx-auto`}>Réinitialiser</span>{' '}
-            </button>
-
+          <div className="researchButtonsContainer mt-8 w-full flex flex-col items-center justify-center">
             <button
               form="keywordsForm"
               disabled={isLoading}
-              className="mx-3 fr-btn fr-btn--sm fr-btn--primary 
-                        "
+              className="mx-3 fr-btn fr-btn--primary  fr-btn--lg"
             >
-              {' '}
               <span className={`mx-auto`}>
                 {isLoading ? 'Chargement...' : 'Valider et rechercher'}
-              </span>{' '}
+              </span>
+            </button>
+            <button
+              type="button"
+              disabled={isLoading}
+              onClick={handleResetFilters}
+              className="mt-4 underline"
+            >
+              Réinitialiser
             </button>
           </div>
         </div>
@@ -253,19 +252,23 @@ export const SearchPageInvestisseur = () => (
 export const SearchPageStartups = () => (
   <SearchPage
     cardType={startups}
-    requestFilterBuilder={(initState) => new NoRequestFilter(initState as any, startups)}
+    requestFilterBuilder={(initState) => new StartupRequestFilter(initState as any, startups)}
   />
 );
 export const SearchPageAcheteurPublic = () => (
   <SearchPage
     cardType={acheteurPublic}
-    requestFilterBuilder={(initState) => new NoRequestFilter(initState as any, acheteurPublic)}
+    requestFilterBuilder={(initState) =>
+      new PublicBuyRequestFilter(initState as any, acheteurPublic)
+    }
   />
 );
 export const SearchPageAchatPrevi = () => (
   <SearchPage
     cardType={achatPrevi}
-    requestFilterBuilder={(initState) => new ProjetAchatRequestFilter(initState as any, achatPrevi)}
+    requestFilterBuilder={(initState) =>
+      new ForecastedBuyRequestFilter(initState as any, achatPrevi)
+    }
   />
 );
 

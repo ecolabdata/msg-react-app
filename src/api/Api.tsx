@@ -83,7 +83,14 @@ export function applyCard<T>(
 }
 
 function handleResp(
-  query: Query | InvestisseurQuery | AidesClientQuery | AidesInnoQuery,
+  query:
+    | Query
+    | InvestisseurQuery
+    | AidesClientQuery
+    | AidesInnoQuery
+    | ForecastedBuyQuery
+    | StartupQuery
+    | PublicBuyQuery,
   resp: ApiResponse
 ) {
   const cards = {
@@ -159,7 +166,7 @@ function buildFetchRequest(params: any) {
 export type Query = {
   description: string;
   secteurs: string[];
-  motsclefs: string[];
+  motsclefs?: string[];
 };
 
 export const search = (query: Query) =>
@@ -219,5 +226,52 @@ export const searchAidesInno = (query: AidesInnoQuery) =>
     fichier_aides_inno: 'corpusinno.pkl'
   }).then((resp) => handleResp(query, resp));
 
-export const searchStartups = (query: Query) =>
-  buildFetchRequest({}).then((resp) => handleResp(query, resp));
+/* Achats prévisionnels */
+export interface Buy extends Omit<Query, 'type' | 'motsclefs'> {
+  publicationDate: string;
+  zone: string;
+  hasEcologicalConcern: boolean;
+}
+
+export type ForecastedBuyQuery = Buy;
+
+export const searchForecastedBuys = (query: ForecastedBuyQuery) => {
+  return buildFetchRequest({
+    descriptionSU: query.description,
+    nb_projetsachat: 10,
+    secteurs: query.secteurs
+  }).then((resp) => handleResp(query, resp));
+};
+
+/* Start ups */
+export interface IStartup extends Omit<Query, 'type' | 'motsclefs'> {
+  market: string;
+  zone: string;
+}
+
+export type StartupQuery = IStartup;
+
+export const searchStartups = (query: StartupQuery) => {
+  return buildFetchRequest({
+    descriptionSU: query.description,
+    secteurs: query.secteurs,
+    nb_Startups: 10
+  }).then((resp) => handleResp(query, resp));
+};
+
+/* Acheteurs publics */
+export interface PublicBuy extends Omit<Query, 'type' | 'motsclefs'> {
+  entity: string;
+  certification: string;
+}
+
+export type PublicBuyQuery = PublicBuy;
+
+export const searchPublicBuys = (query: PublicBuyQuery) => {
+  return buildFetchRequest({
+    descriptionSU: query.description,
+    secteurs: query.secteurs,
+    fichier_decp: 'decp_score.csv',
+    nb_acheteur: 10
+  }).then((resp) => handleResp(query, resp));
+};

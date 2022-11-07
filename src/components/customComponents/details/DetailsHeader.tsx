@@ -22,7 +22,8 @@ const DetailsHeader: React.FC<DetailsHeaderProps> = ({ card }) => {
       <section className={`pt-8 px-[10%] min-h-[200px] mx-[-24px] ${backgroundColor}`}>
         <p
           className={`fr-badge fr-badge--sm `}
-          style={{ color: cardType?.color, backgroundColor: cardType?.backgroundColor }}>
+          style={{ color: cardType?.color, backgroundColor: cardType?.backgroundColor }}
+        >
           {cardType?.name}
         </p>
         <h1 className="my-4 w-full font-bold text-4xl">{title}</h1>
@@ -31,7 +32,8 @@ const DetailsHeader: React.FC<DetailsHeaderProps> = ({ card }) => {
       <Link
         to={'..'}
         className="mx-[10%] mt-8 fr-link fr-fi-arrow-left-line fr-link--icon-left w-fit"
-        onClick={handleGoBack}>
+        onClick={handleGoBack}
+      >
         Revenir en arrière
       </Link>
     </>
