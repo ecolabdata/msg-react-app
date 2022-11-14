@@ -53,7 +53,6 @@ export function isAcheteurPublic(x: AnyCard): x is Collectivite {
   return x.cardTypeName === acheteurPublic.name;
 }
 export function isProjetAchat(x: AnyCard): x is ProjetAchat {
-  console.log({ x });
   return x.cardTypeName === achatPrevi.name;
 }
 export function isInvestisseur(x: AnyCard): x is Investisseur {
