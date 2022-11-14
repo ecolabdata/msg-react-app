@@ -84,7 +84,7 @@ export type FilterDefinition = {
   label: string;
   defaultOption: string;
   options?: string[];
-  filterId: keyof AnyFilters;
+  id: keyof AnyFilters;
   type: 'select' | 'toggle';
 };
 
@@ -93,7 +93,7 @@ type FilterProperties = {
   searchByType: (searchParams: SearchParams) => Promise<{
     query: Buy | Query | InvestisseurQuery | AidesQuery | IStartup | PublicBuy;
   }>;
-  filtersContent: FilterDefinition[];
+  filters: FilterDefinition[];
   handleFilter:
     | ((search: Search, filters: StartupFilters) => Startup[])
     | ((search: Search, filters: ForecastedBuyFilters) => ProjetAchat[])
@@ -117,25 +117,25 @@ export const useAdvancedFilters = (type: string): FilterProperties => {
           ...(filters as ForecastedBuyFilters)
         }),
       handleFilter: forecastedBuyFilters,
-      filtersContent: [
+      filters: [
         {
           label: 'Date de publication',
           defaultOption: 'Toutes',
           options: Object.keys(publicationDates),
-          filterId: 'publicationDate' as keyof AnyFilters,
+          id: 'publicationDate' as keyof AnyFilters,
           type: 'select'
         },
         {
           label: 'Zone',
           defaultOption: 'Toutes',
           options: Object.keys(zones),
-          filterId: 'zone' as keyof AnyFilters,
+          id: 'zone' as keyof AnyFilters,
           type: 'select'
         },
         {
           label: 'Considération environnementale',
           defaultOption: 'Toutes',
-          filterId: 'hasEcologicalConcern' as keyof AnyFilters,
+          id: 'hasEcologicalConcern' as keyof AnyFilters,
           type: 'toggle'
         }
       ]
@@ -153,19 +153,19 @@ export const useAdvancedFilters = (type: string): FilterProperties => {
           ...(filters as StartupFilters)
         }),
       handleFilter: startUpFilter,
-      filtersContent: [
+      filters: [
         {
           label: 'Marchés',
           defaultOption: 'Tous',
           options: Object.keys(markets),
-          filterId: 'market' as keyof AnyFilters,
+          id: 'market' as keyof AnyFilters,
           type: 'select'
         },
         {
           label: 'Zone',
           defaultOption: 'Toutes',
           options: Object.keys(zones),
-          filterId: 'zone' as keyof AnyFilters,
+          id: 'zone' as keyof AnyFilters,
           type: 'select'
         }
       ]
@@ -183,19 +183,19 @@ export const useAdvancedFilters = (type: string): FilterProperties => {
           ...(filters as PublicBuyFilters)
         }),
       handleFilter: publicBuyFilter,
-      filtersContent: [
+      filters: [
         {
           label: 'Labels obtenus',
           defaultOption: 'Tous',
           options: Object.keys(certifications),
-          filterId: 'certification' as keyof AnyFilters,
+          id: 'certification' as keyof AnyFilters,
           type: 'select'
         },
         {
           label: 'Entité',
           defaultOption: 'Toutes',
           options: Object.keys(entities),
-          filterId: 'entity' as keyof AnyFilters,
+          id: 'entity' as keyof AnyFilters,
           type: 'select'
         }
       ]

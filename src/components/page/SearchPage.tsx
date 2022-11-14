@@ -30,12 +30,7 @@ type Props = {
 };
 
 const SearchPage: React.FC<Props> = ({ cardType }) => {
-  const {
-    initialValues,
-    searchByType,
-    handleFilter: filter,
-    filtersContent
-  } = useAdvancedFilters(cardType.name);
+  const { initialValues, searchByType, handleFilter, filters } = useAdvancedFilters(cardType.name);
 
   const { usedNextScrollTarget } = useContext(ApplicationContext);
   const [nextScrollTarget, setNextScrollTarget] = usedNextScrollTarget;
@@ -56,7 +51,7 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
   const [errorTxt, setErrorTxt] = useState('');
   const pageChunkSize = 20;
   const [cards, setCards] = useState<AnyCard[]>([]);
-  const [filters, setFilters] = useState(initialValues);
+  const [filtersValues, setFiltersValues] = useState(initialValues);
 
   const filteredCards: JSX.Element[] | undefined = cards.map((card, i) => (
     <ResultCard
@@ -78,11 +73,11 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
   const handleResetFilters = () => {
     setDescription('');
     setSecteurs([]);
-    setFilters(initialValues);
+    setFiltersValues(initialValues);
   };
 
   const handleUpdateFilter = (filterName: string, filterValue: string | boolean) => {
-    setFilters({ ...filters, [filterName]: filterValue });
+    setFiltersValues({ ...filtersValues, [filterName]: filterValue });
   };
 
   const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
@@ -91,9 +86,9 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
     if (description.length > 0) {
       setIsLoading(true);
       setErrorTxt('');
-      searchByType({ description, secteurs, filters: filters }).then((search) => {
+      searchByType({ description, secteurs, filters: filtersValues }).then((search) => {
         setIsLoading(false);
-        const filteredCards = filter(search as Search, filters as any);
+        const filteredCards = handleFilter(search as Search, filtersValues as any);
         setCards(filteredCards);
         const element = document.getElementById('cardsContainer');
         if (element)
@@ -160,14 +155,12 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
                 Recherche avancée
               </button>
               {isAdvancedSearchOpen && (
-                <div className="flex flex-col md:flex-row items-center">
-                  <AdvancedFilters
-                    cardType={cardType}
-                    filtersContent={filtersContent}
-                    setFilters={handleUpdateFilter}
-                    filtersValues={filters}
-                  />
-                </div>
+                <AdvancedFilters
+                  cardType={cardType}
+                  filtersContent={filters}
+                  setFilters={handleUpdateFilter}
+                  filtersValues={filtersValues}
+                />
               )}
             </fieldset>
           </form>

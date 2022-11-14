@@ -17,10 +17,11 @@ const AdvancedFilters: React.FC<AdvancedFiltersProps> = ({
   setFilters
 }) => {
   return (
-    <>
-      {filtersContent.map(({ label, defaultOption, options, filterId, type }) =>
+    <div className="flex flex-col md:flex-row items-center">
+      {filtersContent.map(({ label, defaultOption, options, id, type }) =>
         type === 'select' ? (
           <Select
+            key={id}
             classes=" w-full lg:max-w-[202px] md:mr-8"
             selectClassName="bg-research-precision-container"
             label={label}
@@ -28,22 +29,23 @@ const AdvancedFilters: React.FC<AdvancedFiltersProps> = ({
             defaultOption={defaultOption}
             optionsData={options ?? []}
             onChange={(e) => {
-              setFilters(filterId, e.currentTarget.value);
+              setFilters(id, e.currentTarget.value);
             }}
-            selected={filtersValues[filterId]}
+            selected={filtersValues[id]}
           />
         ) : (
           <ToggleButton
+            key={id}
             label={label}
-            checked={filtersValues[filterId]}
+            checked={filtersValues[id]}
             color={cardType.color}
             onChange={() => {
-              setFilters(filterId, !filtersValues[filterId]);
+              setFilters(id, !filtersValues[id]);
             }}
           />
         )
       )}
-    </>
+    </div>
   );
 };
 
