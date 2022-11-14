@@ -26,9 +26,11 @@ import {
   entityFilter,
   environnementalFilter,
   marketFilter,
-  publicationDateFilter
+  publicationDateFilter,
+  departmentsByRegion,
+  Regions
 } from './constants';
-import { yesNotoBoolean, departmentsByRegion } from '../../../utils/utilityFunctions';
+import { yesNotoBoolean } from '../../../utils/utilityFunctions';
 
 export type StartupFilters = {
   market: string;
@@ -123,7 +125,8 @@ const handleForecastedBuyFilter = (search: Search, filters: ForecastedBuyFilters
     }
 
     if (isZoneFilterActivated) {
-      const departmentsForZone = zone && departmentsByRegion[zone].map((d) => d.toString());
+      const departmentsForZone =
+        zone && departmentsByRegion[zone as Regions].map((d) => d.toString());
 
       const cardDepartments = card.departments.map((d) => d.department);
       zoneFlag = cardDepartments.some((d) => departmentsForZone?.includes(d));
