@@ -169,7 +169,7 @@ const homePageContent = {
           { name: 'Bpifrance', url: 'https://www.bpifrance.fr/nos-solutions/financement' },
           {
             name: 'Ademe',
-            url: "https://librairie.ademe.fr/urbanisme-et-batiment/5208-aides-financieres-en-2022-les-9791029719127.html#:~:text=En%20savoir%20plus-,MaPrimeRenov'%2C%20%C3%A9co%2Dpr%C3%AAt%20%C3%A0%20taux%20z%C3%A9ro%2C%20Certificats%20d,%2C%20les%20%C3%A9nergies%20renouvelables..."
+            url: "https://www.ademe.fr/nos-missions/financement"
           }
         ]
       },
@@ -183,7 +183,7 @@ const homePageContent = {
           },
           { name: 'Maximilien', url: 'https://www.boamp.fr/pages/recherche/?sort=dateparution' },
           {
-            name: 'Ugap',
+            name: 'Ugap prévisionnel 2022/2023',
             url: 'https://www.ugap.fr/programme-dappels-doffres-previsionnel-2019-2020_4524522.html'
           }
         ]
