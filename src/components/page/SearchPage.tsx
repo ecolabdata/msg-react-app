@@ -1,7 +1,8 @@
 import { useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { AidesQuery } from '../../api/Api';
+import { AidesQuery, AnyCard, Search } from '../../api/Api';
 import { ApplicationContext } from '../../App';
+import { useAdvancedFilters } from '../customComponents/filter/filters';
 import { useTitle } from '../../hooks/useTitle';
 import {
   achatPrevi,
@@ -17,14 +18,7 @@ import {
   startups
 } from '../../model/CardType';
 import { InitialState } from '../../utils/InitialState';
-import { AideRequestFilter } from '../customComponents/filter/AideRequestFilter';
-import { ForecastedBuyRequestFilter } from '../customComponents/filter/ForecastedBuyRequestFilter';
-import { InvestisseurRequestFilter } from '../customComponents/filter/InvestisseurRequestFilter';
-import { NoRequestFilter } from '../customComponents/filter/NoRequestFilter';
-import { ProjetAchatRequestFilter } from '../customComponents/filter/ProjetAchatRequestFilter';
-import { PublicBuyRequestFilter } from '../customComponents/filter/PublicBuyRequestFilter';
-import { RequestFilter } from '../customComponents/filter/RequestFIlter';
-import { StartupRequestFilter } from '../customComponents/filter/StartupRequestFilter';
+import AdvancedFilters from '../customComponents/filter/AdvancedFilters';
 
 import ResultCard from '../customComponents/ResultCard';
 import ScreenReaderOnlyText from '../customComponents/ScreenReaderOnlyText';
@@ -33,14 +27,14 @@ import Pagination from '../dsfrComponents/Pagination';
 
 type Props = {
   cardType: CardType;
-  requestFilterBuilder: (initialState: unknown) => RequestFilter;
 };
 
-const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
+const SearchPage: React.FC<Props> = ({ cardType }) => {
+  const { initialValues, searchByType, handleFilter, filters } = useAdvancedFilters(cardType.name);
+
   const { usedNextScrollTarget } = useContext(ApplicationContext);
   const [nextScrollTarget, setNextScrollTarget] = usedNextScrollTarget;
   const location = useLocation();
-  const requestFilter = requestFilterBuilder(location.state);
   const initialState = location.state as
     | (InitialState & { page?: number; montantMin: number })
     | null;
@@ -56,14 +50,16 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
   const [secteurs, setSecteurs] = useState<string[]>(initialQuery?.secteurs || []);
   const [errorTxt, setErrorTxt] = useState('');
   const pageChunkSize = 20;
+  const [cards, setCards] = useState<AnyCard[]>([]);
+  const [filtersValues, setFiltersValues] = useState(initialValues);
 
-  const filteredCards: JSX.Element[] | undefined = requestFilter.cards.map((card) => (
+  const filteredCards: JSX.Element[] | undefined = cards.map((card, i) => (
     <ResultCard
       isLoading={isLoading}
       cardType={cardType}
       cardData={card}
       pageList={false}
-      key={card.id}
+      key={i}
     />
   ));
 
@@ -77,7 +73,11 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
   const handleResetFilters = () => {
     setDescription('');
     setSecteurs([]);
-    requestFilter?.reset?.();
+    setFiltersValues(initialValues);
+  };
+
+  const handleUpdateFilter = (filterName: string, filterValue: string | boolean) => {
+    setFiltersValues({ ...filtersValues, [filterName]: filterValue });
   };
 
   const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
@@ -86,8 +86,10 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
     if (description.length > 0) {
       setIsLoading(true);
       setErrorTxt('');
-      requestFilter.search(description, [], secteurs).then((search) => {
+      searchByType({ description, secteurs, filters: filtersValues }).then((search) => {
         setIsLoading(false);
+        const filteredCards = handleFilter(search as Search, filtersValues as any);
+        setCards(filteredCards);
         const element = document.getElementById('cardsContainer');
         if (element)
           setNextScrollTarget({
@@ -109,8 +111,7 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
       <div
         className="headContainer  container mt-10 mb-20 mx-auto max-w-headerSize
             xl:mx-auto
-            "
-      >
+            ">
         <div className="cardTitleAndLogo mt-10 p-2 text-base">
           <h2 className="w-fit font-bold text-2xl md:text-4xl">
             <div className="flex items-center ">
@@ -133,8 +134,7 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
           <form
             onSubmit={(event) => handleOnSubmitForm(event)}
             id="keywordsForm"
-            className="researchContainer m-auto flex flex-col justify-around flex-wrap h-fit w-full"
-          >
+            className="researchContainer m-auto flex flex-col justify-around flex-wrap h-fit w-full">
             <fieldset>
               <legend className="hidden">Champs de formulaire principaux</legend>
               <SearchForm
@@ -151,14 +151,16 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
                 aria-pressed={isAdvancedSearchOpen}
                 type="button"
                 className="ml-auto underline"
-                onClick={handleToggleAdvancedSearch}
-              >
+                onClick={handleToggleAdvancedSearch}>
                 Recherche avancée
               </button>
               {isAdvancedSearchOpen && (
-                <div className="flex flex-col md:flex-row items-center">
-                  <requestFilter.Component />
-                </div>
+                <AdvancedFilters
+                  cardType={cardType}
+                  filters={filters}
+                  setFilters={handleUpdateFilter}
+                  values={filtersValues}
+                />
               )}
             </fieldset>
           </form>
@@ -167,8 +169,7 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
             <button
               form="keywordsForm"
               disabled={isLoading}
-              className="mx-3 fr-btn fr-btn--primary  fr-btn--lg"
-            >
+              className="mx-3 fr-btn fr-btn--primary  fr-btn--lg">
               <span className={`mx-auto`}>
                 {isLoading ? 'Chargement...' : 'Valider et rechercher'}
               </span>
@@ -177,8 +178,7 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
               type="button"
               disabled={isLoading}
               onClick={handleResetFilters}
-              className="mt-4 underline"
-            >
+              className="mt-4 underline">
               Réinitialiser
             </button>
           </div>
@@ -229,71 +229,15 @@ const SearchPage: React.FC<Props> = ({ cardType, requestFilterBuilder }) => {
 };
 
 /*Persona: Startup*/
-export const SearchPageAidesClient = () => (
-  <SearchPage
-    cardType={aideClient}
-    requestFilterBuilder={(initState) => new AideRequestFilter(initState as any, aideClient)}
-  />
-);
-export const SearchPageAidesInno = () => (
-  <SearchPage
-    cardType={aideInno}
-    requestFilterBuilder={(initState) => new AideRequestFilter(initState as any, aideInno)}
-  />
-);
-export const SearchPageInvestisseur = () => (
-  <SearchPage
-    cardType={investisseur}
-    requestFilterBuilder={(initState) =>
-      new InvestisseurRequestFilter(initState as any, investisseur)
-    }
-  />
-);
-export const SearchPageStartups = () => (
-  <SearchPage
-    cardType={startups}
-    requestFilterBuilder={(initState) => new StartupRequestFilter(initState as any, startups)}
-  />
-);
-export const SearchPageAcheteurPublic = () => (
-  <SearchPage
-    cardType={acheteurPublic}
-    requestFilterBuilder={(initState) =>
-      new PublicBuyRequestFilter(initState as any, acheteurPublic)
-    }
-  />
-);
-export const SearchPageAchatPrevi = () => (
-  <SearchPage
-    cardType={achatPrevi}
-    requestFilterBuilder={(initState) =>
-      new ForecastedBuyRequestFilter(initState as any, achatPrevi)
-    }
-  />
-);
+export const SearchPageAidesClient = () => <SearchPage cardType={aideClient} />;
+export const SearchPageAidesInno = () => <SearchPage cardType={aideInno} />;
+export const SearchPageInvestisseur = () => <SearchPage cardType={investisseur} />;
+export const SearchPageStartups = () => <SearchPage cardType={startups} />;
+export const SearchPageAcheteurPublic = () => <SearchPage cardType={acheteurPublic} />;
+export const SearchPageAchatPrevi = () => <SearchPage cardType={achatPrevi} />;
 
 /*Persona: Acteur public*/
-export const SearchPageAidesFin = () => (
-  <SearchPage
-    cardType={aideFin}
-    requestFilterBuilder={(initState) => new AideRequestFilter(initState as any, aideFin)}
-  />
-);
-export const SearchPageSourcingSu = () => (
-  <SearchPage
-    cardType={sourcingSu}
-    requestFilterBuilder={(initState) => new NoRequestFilter(initState as any, sourcingSu)}
-  />
-);
-export const SearchPageRetex = () => (
-  <SearchPage
-    cardType={retex}
-    requestFilterBuilder={(initState) => new NoRequestFilter(initState as any, retex)}
-  />
-);
-export const SearchPageAchatProg = () => (
-  <SearchPage
-    cardType={achatProg}
-    requestFilterBuilder={(initState) => new ProjetAchatRequestFilter(initState as any, achatProg)}
-  />
-);
+export const SearchPageAidesFin = () => <SearchPage cardType={aideFin} />;
+export const SearchPageSourcingSu = () => <SearchPage cardType={sourcingSu} />;
+export const SearchPageRetex = () => <SearchPage cardType={retex} />;
+export const SearchPageAchatProg = () => <SearchPage cardType={achatProg} />;

@@ -64,14 +64,16 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({
         className={`mt-2 w-full h-10 min-h-[50px] addBorder-b border-3 ${borderColor} p-2 pt-3 flex bg-input-background`}
         onClick={() => {
           setDisplaySelect(!displaySelect);
-        }}>
+        }}
+      >
         <p className="flex-1 overflow-hidden text-left max-w-full h-full">
           {secteurs.length <= 0 ? 'Sélectionnez une option' : secteurs.join(', ')}
         </p>
         <span
           className={`${
             localStorage.scheme === 'dark' ? 'bg-dark-text-action' : 'bg-blue-france'
-          } w-6 h-6 rounded-full  text-black font-bold`}>
+          } w-6 h-6 rounded-full  text-black font-bold`}
+        >
           {' '}
           {secteurs.length}{' '}
         </span>

@@ -54,7 +54,8 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
     <div
       style={{
         minHeight: parentHeight
-      }}>
+      }}
+    >
       <label htmlFor={inputId} className="text-base fr-label">
         {label} {required && <span aria-hidden={true}>(obligatoire)</span>}
       </label>
@@ -82,7 +83,8 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
           className={`errorContainer ${errorText.length <= 0 && 'hidden'} 
         h-12 flex justify-center items-center color`}
           id={`${inputId}-error`}
-          aria-live="polite">
+          aria-live="polite"
+        >
           <p style={{ color: 'hsla(0, 100%, 65%, 0.9)' }}>{errorText}</p>
         </div>
       )}
