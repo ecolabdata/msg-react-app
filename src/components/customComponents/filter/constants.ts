@@ -1,3 +1,5 @@
+import { AnyFilters } from './filters';
+
 export const zones: Record<string, string> = {
   'Auvergne-Rhône-Alpes': 'Auvergne-Rhône-Alpes',
   'Bourgogne-Franche-Comté': 'Bourgogne-Franche-Comté',
@@ -43,4 +45,64 @@ export const entities: Record<string, string> = {
 export const certifications: Record<string, string> = {
   'Ville durable et innovante': 'Ville durable et innovante',
   'Climat air énergie': 'Climat air énergie'
+};
+
+export type FilterDefinition = {
+  label: string;
+  defaultOption: string;
+  options?: string[];
+  id: keyof AnyFilters;
+  type: 'select' | 'toggle';
+  initialValue: string | boolean;
+};
+
+export const publicationDateFilter: FilterDefinition = {
+  label: 'Date de publication',
+  defaultOption: 'Toutes',
+  options: Object.keys(publicationDates),
+  id: 'publicationDate' as keyof AnyFilters,
+  type: 'select',
+  initialValue: ''
+};
+export const zoneFilter: FilterDefinition = {
+  label: 'Zone',
+  defaultOption: 'Toutes',
+  options: Object.keys(zones),
+  id: 'zone' as keyof AnyFilters,
+  type: 'select',
+  initialValue: ''
+};
+export const environnementalFilter: FilterDefinition = {
+  label: 'Considération environnementale',
+  defaultOption: 'Toutes',
+  id: 'hasEcologicalConcern' as keyof AnyFilters,
+  type: 'toggle',
+  initialValue: true
+};
+
+export const marketFilter: FilterDefinition = {
+  label: 'Marchés',
+  defaultOption: 'Tous',
+  options: Object.keys(markets),
+  id: 'market' as keyof AnyFilters,
+  type: 'select',
+  initialValue: ''
+};
+
+export const certificationFilter: FilterDefinition = {
+  label: 'Labels obtenus',
+  defaultOption: 'Tous',
+  options: Object.keys(certifications),
+  id: 'certification' as keyof AnyFilters,
+  type: 'select',
+  initialValue: ''
+};
+
+export const entityFilter: FilterDefinition = {
+  label: 'Entité',
+  defaultOption: 'Toutes',
+  options: Object.keys(entities),
+  id: 'entity' as keyof AnyFilters,
+  type: 'select',
+  initialValue: ''
 };

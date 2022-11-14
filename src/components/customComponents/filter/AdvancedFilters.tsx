@@ -1,7 +1,8 @@
-import { AnyFilters, FilterDefinition } from '../../../hooks/useAdvancedFilters';
+import { AnyFilters } from './filters';
 import { CardType } from '../../../model/CardType';
 import Select from '../../dsfrComponents/Select';
 import ToggleButton from '../../dsfrComponents/ToggleButton';
+import { FilterDefinition } from './constants';
 
 interface AdvancedFiltersProps {
   values: AnyFilters;

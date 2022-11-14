@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AidesQuery, AnyCard, Search } from '../../api/Api';
 import { ApplicationContext } from '../../App';
-import { useAdvancedFilters } from '../../hooks/useAdvancedFilters';
+import { useAdvancedFilters } from '../customComponents/filter/filters';
 import { useTitle } from '../../hooks/useTitle';
 import {
   achatPrevi,

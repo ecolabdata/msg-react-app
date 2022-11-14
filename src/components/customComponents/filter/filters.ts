@@ -12,16 +12,23 @@ import {
   searchForecastedBuys,
   searchPublicBuys,
   searchStartups
-} from '../api/Api';
+} from '../../../api/Api';
 import {
   publicationDates,
   zones,
   markets,
   certifications,
   entities,
-  PublicationDates
-} from '../components/customComponents/filter/constants';
-import { yesNotoBoolean, departmentsByRegion } from '../utils/utilityFunctions';
+  PublicationDates,
+  FilterDefinition,
+  zoneFilter,
+  certificationFilter,
+  entityFilter,
+  environnementalFilter,
+  marketFilter,
+  publicationDateFilter
+} from './constants';
+import { yesNotoBoolean, departmentsByRegion } from '../../../utils/utilityFunctions';
 
 export type StartupFilters = {
   market: string;
@@ -41,14 +48,6 @@ export type PublicBuyFilters = {
 
 export type AnyFilters = StartupFilters | ForecastedBuyFilters | PublicBuyFilters;
 
-export type FilterDefinition = {
-  label: string;
-  defaultOption: string;
-  options?: string[];
-  id: keyof AnyFilters;
-  type: 'select' | 'toggle';
-};
-
 type FilterProperties = {
   initialValues: AnyFilters;
   searchByType: (searchParams: SearchParams) => Promise<{
@@ -64,107 +63,50 @@ type FilterProperties = {
 type SearchParams = { description: string; secteurs: string[]; filters: AnyFilters };
 
 export const useAdvancedFilters = (type: string): FilterProperties => {
+  const forecastedBuyFilters = [publicationDateFilter, zoneFilter, environnementalFilter];
+  const startupFilters = [marketFilter, zoneFilter];
+  const publicBuyFilters = [certificationFilter, entityFilter];
+
   if (type === 'achats-previsionnels') {
     return {
-      initialValues: {
-        publicationDate: '',
-        zone: '',
-        hasEcologicalConcern: true
-      },
+      initialValues: getInitialValues(forecastedBuyFilters),
       searchByType: ({ description, secteurs, filters }: SearchParams) =>
         searchForecastedBuys({
           description,
           secteurs,
           ...(filters as ForecastedBuyFilters)
         }),
-      handleFilter: forecastedBuyFilters,
-      filters: [
-        {
-          label: 'Date de publication',
-          defaultOption: 'Toutes',
-          options: Object.keys(publicationDates),
-          id: 'publicationDate' as keyof AnyFilters,
-          type: 'select'
-        },
-        {
-          label: 'Zone',
-          defaultOption: 'Toutes',
-          options: Object.keys(zones),
-          id: 'zone' as keyof AnyFilters,
-          type: 'select'
-        },
-        {
-          label: 'Considération environnementale',
-          defaultOption: 'Toutes',
-          id: 'hasEcologicalConcern' as keyof AnyFilters,
-          type: 'toggle'
-        }
-      ]
+      handleFilter: handleForecastedBuyFilter,
+      filters: forecastedBuyFilters
     };
   } else if (type === 'startups') {
     return {
-      initialValues: {
-        market: '',
-        zone: ''
-      },
+      initialValues: getInitialValues(startupFilters),
       searchByType: ({ description, secteurs, filters: filters }: SearchParams) =>
         searchStartups({
           description,
           secteurs,
           ...(filters as StartupFilters)
         }),
-      handleFilter: startUpFilter,
-      filters: [
-        {
-          label: 'Marchés',
-          defaultOption: 'Tous',
-          options: Object.keys(markets),
-          id: 'market' as keyof AnyFilters,
-          type: 'select'
-        },
-        {
-          label: 'Zone',
-          defaultOption: 'Toutes',
-          options: Object.keys(zones),
-          id: 'zone' as keyof AnyFilters,
-          type: 'select'
-        }
-      ]
+      handleFilter: handleStartUpFilter,
+      filters: startupFilters
     };
   } else {
     return {
-      initialValues: {
-        certification: '',
-        entity: ''
-      },
+      initialValues: getInitialValues(publicBuyFilters),
       searchByType: ({ description, secteurs, filters }: SearchParams) =>
         searchPublicBuys({
           description,
           secteurs,
           ...(filters as PublicBuyFilters)
         }),
-      handleFilter: publicBuyFilter,
-      filters: [
-        {
-          label: 'Labels obtenus',
-          defaultOption: 'Tous',
-          options: Object.keys(certifications),
-          id: 'certification' as keyof AnyFilters,
-          type: 'select'
-        },
-        {
-          label: 'Entité',
-          defaultOption: 'Toutes',
-          options: Object.keys(entities),
-          id: 'entity' as keyof AnyFilters,
-          type: 'select'
-        }
-      ]
+      handleFilter: handlePublicBuyFilter,
+      filters: publicBuyFilters
     };
   }
 };
 
-const forecastedBuyFilters = (search: Search, filters: ForecastedBuyFilters) => {
+const handleForecastedBuyFilter = (search: Search, filters: ForecastedBuyFilters) => {
   const cards: ProjetAchat[] = search.cards?.projets_achats;
   const { hasEcologicalConcern, publicationDate, zone } = filters;
   const filteredCards = cards.filter((card) => {
@@ -202,7 +144,7 @@ const forecastedBuyFilters = (search: Search, filters: ForecastedBuyFilters) => 
   return filteredCards;
 };
 
-const startUpFilter = (search: Search, filters: StartupFilters) => {
+const handleStartUpFilter = (search: Search, filters: StartupFilters) => {
   const cards = search.cards?.startups;
 
   let zoneFlag = true;
@@ -225,7 +167,7 @@ const startUpFilter = (search: Search, filters: StartupFilters) => {
   return filteredCards;
 };
 
-const publicBuyFilter = (search: Search, filters: PublicBuyFilters) => {
+const handlePublicBuyFilter = (search: Search, filters: PublicBuyFilters) => {
   const cards = search.cards?.collectivites;
 
   let certificationFlag = true;
@@ -246,4 +188,10 @@ const publicBuyFilter = (search: Search, filters: PublicBuyFilters) => {
     return certificationFlag && entityFlag;
   });
   return filteredCards;
+};
+
+const getInitialValues = (filters: FilterDefinition[]) => {
+  return filters.reduce((acc, cur) => {
+    return { ...acc, [cur.id]: cur.initialValue };
+  }, {} as AnyFilters);
 };
