@@ -157,9 +157,9 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
               {isAdvancedSearchOpen && (
                 <AdvancedFilters
                   cardType={cardType}
-                  filtersContent={filters}
+                  filters={filters}
                   setFilters={handleUpdateFilter}
-                  filtersValues={filtersValues}
+                  values={filtersValues}
                 />
               )}
             </fieldset>

@@ -4,21 +4,21 @@ import Select from '../../dsfrComponents/Select';
 import ToggleButton from '../../dsfrComponents/ToggleButton';
 
 interface AdvancedFiltersProps {
-  filtersValues: AnyFilters;
+  values: AnyFilters;
   cardType: CardType;
-  filtersContent: FilterDefinition[];
+  filters: FilterDefinition[];
   setFilters: (filterName: string, filterValue: string | boolean) => void;
 }
 
 const AdvancedFilters: React.FC<AdvancedFiltersProps> = ({
   cardType,
-  filtersContent,
-  filtersValues,
+  filters,
+  values,
   setFilters
 }) => {
   return (
     <div className="flex flex-col md:flex-row items-center">
-      {filtersContent.map(({ label, defaultOption, options, id, type }) =>
+      {filters.map(({ label, defaultOption, options, id, type }) =>
         type === 'select' ? (
           <Select
             key={id}
@@ -31,16 +31,16 @@ const AdvancedFilters: React.FC<AdvancedFiltersProps> = ({
             onChange={(e) => {
               setFilters(id, e.currentTarget.value);
             }}
-            selected={filtersValues[id]}
+            selected={values[id]}
           />
         ) : (
           <ToggleButton
             key={id}
             label={label}
-            checked={filtersValues[id]}
+            checked={values[id]}
             color={cardType.color}
             onChange={() => {
-              setFilters(id, !filtersValues[id]);
+              setFilters(id, !values[id]);
             }}
           />
         )
