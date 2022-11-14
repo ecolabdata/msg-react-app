@@ -80,11 +80,20 @@ export type PublicBuyFilters = {
 
 export type AnyFilters = StartupFilters | ForecastedBuyFilters | PublicBuyFilters;
 
+export type FilterDefinition = {
+  label: string;
+  defaultOption: string;
+  options?: string[];
+  filterId: keyof AnyFilters;
+  type: 'select' | 'toggle';
+};
+
 type FilterProperties = {
   initialValues: AnyFilters;
   searchByType: (searchParams: SearchParams) => Promise<{
     query: Buy | Query | InvestisseurQuery | AidesQuery | IStartup | PublicBuy;
   }>;
+  filtersContent: FilterDefinition[];
   handleFilter:
     | ((search: Search, filters: StartupFilters) => Startup[])
     | ((search: Search, filters: ForecastedBuyFilters) => ProjetAchat[])
@@ -107,7 +116,29 @@ export const useAdvancedFilters = (type: string): FilterProperties => {
           secteurs,
           ...(filters as ForecastedBuyFilters)
         }),
-      handleFilter: forecastedBuyFilters
+      handleFilter: forecastedBuyFilters,
+      filtersContent: [
+        {
+          label: 'Date de publication',
+          defaultOption: 'Toutes',
+          options: Object.keys(publicationDates),
+          filterId: 'publicationDate' as keyof AnyFilters,
+          type: 'select'
+        },
+        {
+          label: 'Zone',
+          defaultOption: 'Toutes',
+          options: Object.keys(zones),
+          filterId: 'zone' as keyof AnyFilters,
+          type: 'select'
+        },
+        {
+          label: 'Considération environnementale',
+          defaultOption: 'Toutes',
+          filterId: 'hasEcologicalConcern' as keyof AnyFilters,
+          type: 'toggle'
+        }
+      ]
     };
   } else if (type === 'startups') {
     return {
@@ -121,7 +152,23 @@ export const useAdvancedFilters = (type: string): FilterProperties => {
           secteurs,
           ...(filters as StartupFilters)
         }),
-      handleFilter: startUpFilter
+      handleFilter: startUpFilter,
+      filtersContent: [
+        {
+          label: 'Marchés',
+          defaultOption: 'Tous',
+          options: Object.keys(markets),
+          filterId: 'market' as keyof AnyFilters,
+          type: 'select'
+        },
+        {
+          label: 'Zone',
+          defaultOption: 'Toutes',
+          options: Object.keys(zones),
+          filterId: 'zone' as keyof AnyFilters,
+          type: 'select'
+        }
+      ]
     };
   } else {
     return {
@@ -135,7 +182,23 @@ export const useAdvancedFilters = (type: string): FilterProperties => {
           secteurs,
           ...(filters as PublicBuyFilters)
         }),
-      handleFilter: publicBuyFilter
+      handleFilter: publicBuyFilter,
+      filtersContent: [
+        {
+          label: 'Labels obtenus',
+          defaultOption: 'Tous',
+          options: Object.keys(certifications),
+          filterId: 'certification' as keyof AnyFilters,
+          type: 'select'
+        },
+        {
+          label: 'Entité',
+          defaultOption: 'Toutes',
+          options: Object.keys(entities),
+          filterId: 'entity' as keyof AnyFilters,
+          type: 'select'
+        }
+      ]
     };
   }
 };

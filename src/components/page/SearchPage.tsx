@@ -2,12 +2,7 @@ import { useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AidesQuery, AnyCard, Search } from '../../api/Api';
 import { ApplicationContext } from '../../App';
-import {
-  ForecastedBuyFilters,
-  PublicBuyFilters,
-  StartupFilters,
-  useAdvancedFilters
-} from '../../hooks/useAdvancedFilters';
+import { useAdvancedFilters } from '../../hooks/useAdvancedFilters';
 import { useTitle } from '../../hooks/useTitle';
 import {
   achatPrevi,
@@ -23,9 +18,7 @@ import {
   startups
 } from '../../model/CardType';
 import { InitialState } from '../../utils/InitialState';
-import ForecastedBuyAdvancedFilter from '../customComponents/filter/ForecastedBuyAdvancedFilter';
-import PublicBuyAdvancedFilters from '../customComponents/filter/PublicBuyAdvancedFilters';
-import StartupsAdvancedFilters from '../customComponents/filter/StartupsAdvancedFilters';
+import AdvancedFilters from '../customComponents/filter/AdvancedFilters';
 
 import ResultCard from '../customComponents/ResultCard';
 import ScreenReaderOnlyText from '../customComponents/ScreenReaderOnlyText';
@@ -37,7 +30,12 @@ type Props = {
 };
 
 const SearchPage: React.FC<Props> = ({ cardType }) => {
-  const { initialValues, searchByType, handleFilter: filter } = useAdvancedFilters(cardType.name);
+  const {
+    initialValues,
+    searchByType,
+    handleFilter: filter,
+    filtersContent
+  } = useAdvancedFilters(cardType.name);
 
   const { usedNextScrollTarget } = useContext(ApplicationContext);
   const [nextScrollTarget, setNextScrollTarget] = usedNextScrollTarget;
@@ -118,8 +116,7 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
       <div
         className="headContainer  container mt-10 mb-20 mx-auto max-w-headerSize
             xl:mx-auto
-            "
-      >
+            ">
         <div className="cardTitleAndLogo mt-10 p-2 text-base">
           <h2 className="w-fit font-bold text-2xl md:text-4xl">
             <div className="flex items-center ">
@@ -142,8 +139,7 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
           <form
             onSubmit={(event) => handleOnSubmitForm(event)}
             id="keywordsForm"
-            className="researchContainer m-auto flex flex-col justify-around flex-wrap h-fit w-full"
-          >
+            className="researchContainer m-auto flex flex-col justify-around flex-wrap h-fit w-full">
             <fieldset>
               <legend className="hidden">Champs de formulaire principaux</legend>
               <SearchForm
@@ -160,33 +156,17 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
                 aria-pressed={isAdvancedSearchOpen}
                 type="button"
                 className="ml-auto underline"
-                onClick={handleToggleAdvancedSearch}
-              >
+                onClick={handleToggleAdvancedSearch}>
                 Recherche avancée
               </button>
               {isAdvancedSearchOpen && (
                 <div className="flex flex-col md:flex-row items-center">
-                  {cardType.name === 'achats-previsionnels' && (
-                    <ForecastedBuyAdvancedFilter
-                      cardType={cardType}
-                      filters={filters as ForecastedBuyFilters}
-                      setFilters={handleUpdateFilter}
-                    />
-                  )}
-                  {cardType.name === 'startups' && (
-                    <StartupsAdvancedFilters
-                      cardType={cardType}
-                      filters={filters as StartupFilters}
-                      setFilters={handleUpdateFilter}
-                    />
-                  )}
-                  {cardType.name === 'acheteurs-publics' && (
-                    <PublicBuyAdvancedFilters
-                      cardType={cardType}
-                      filters={filters as PublicBuyFilters}
-                      setFilters={handleUpdateFilter}
-                    />
-                  )}
+                  <AdvancedFilters
+                    cardType={cardType}
+                    filtersContent={filtersContent}
+                    setFilters={handleUpdateFilter}
+                    filtersValues={filters}
+                  />
                 </div>
               )}
             </fieldset>
@@ -196,8 +176,7 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
             <button
               form="keywordsForm"
               disabled={isLoading}
-              className="mx-3 fr-btn fr-btn--primary  fr-btn--lg"
-            >
+              className="mx-3 fr-btn fr-btn--primary  fr-btn--lg">
               <span className={`mx-auto`}>
                 {isLoading ? 'Chargement...' : 'Valider et rechercher'}
               </span>
@@ -206,8 +185,7 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
               type="button"
               disabled={isLoading}
               onClick={handleResetFilters}
-              className="mt-4 underline"
-            >
+              className="mt-4 underline">
               Réinitialiser
             </button>
           </div>
