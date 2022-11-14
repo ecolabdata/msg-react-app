@@ -169,7 +169,7 @@ const homePageContent = {
           { name: 'Bpifrance', url: 'https://www.bpifrance.fr/nos-solutions/financement' },
           {
             name: 'Ademe',
-            url: "https://www.ademe.fr/nos-missions/financement"
+            url: 'https://www.ademe.fr/nos-missions/financement'
           }
         ]
       },
