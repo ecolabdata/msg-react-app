@@ -19,20 +19,17 @@ const HomeByProfile: React.FC<HomeByProfileProps> = ({ profile }) => {
       <section>
         <div
           className="container-title container max-w-headerSize mx-auto p-2 
-                flex flex-col items-center"
-        >
+                flex flex-col items-center">
           <h1
             className="mt-4 w-full font-bold text-4xl text-center 
                 md:max-w-[60%]
-                "
-          >
+                ">
             {pageContent.mainContent.title}
           </h1>
           <h2
             className="mt-8 text-center w-[65%] leading-7 
                 lg:max-w-[62%]
-                "
-          >
+                ">
             {' '}
             {pageContent.mainContent.description}
           </h2>
@@ -59,8 +56,7 @@ const HomeByProfile: React.FC<HomeByProfileProps> = ({ profile }) => {
       )}
       <section
         className="container-title container max-w-headerSize my-8 mx-auto p-2 
-              flex flex-col items-center"
-      >
+              flex flex-col items-center">
         <h2 className="my-8 w-full font-bold text-3xl text-center md:max-w-[70%]">
           Cela peut aussi vous intéresser
         </h2>
@@ -77,8 +73,7 @@ const HomeByProfile: React.FC<HomeByProfileProps> = ({ profile }) => {
       {profile === 'startup' && (
         <section
           className="container-title container max-w-headerSize my-8 mx-auto p-2 
-              flex flex-col items-center"
-        >
+              flex flex-col items-center">
           {' '}
           <h2 className="my-8 w-full font-bold text-3xl text-center md:max-w-[70%]">
             {pageContent.secondaryContent.title}
@@ -87,8 +82,7 @@ const HomeByProfile: React.FC<HomeByProfileProps> = ({ profile }) => {
             <p
               className="text-center w-[65%] leading-7 
                 lg:max-w-[62%]
-                "
-            >
+                ">
               {pageContent.secondaryContent.description}
             </p>
           )}
@@ -96,13 +90,10 @@ const HomeByProfile: React.FC<HomeByProfileProps> = ({ profile }) => {
       )}
       <div
         className="container-title container max-w-headerSize my-8 mx-auto p-2 
-              flex flex-col items-center"
-      >
+              flex flex-col items-center">
         <Link
           className="w-fit h-9 text-base my-8 text-dark-text-action p-1 rm-link-underline flex justify-center text-xl"
-          onClick={() => window.scrollTo(0, 0)}
-          to={pageContent.secondaryContent.extraUrl}
-        >
+          to={pageContent.secondaryContent.extraUrl}>
           {pageContent.secondaryContent.extraLink}
         </Link>
       </div>
@@ -129,7 +120,7 @@ const homePageContent = {
 
         cta: {
           name: "télécharger le template d'argumentaire",
-          url: 'https://docs.google.com/document/d/1tFbq0duIZauZPTekjfJXFPylT96LHmNL/edit',
+          url: 'https://drive.google.com/uc?export=download&id=1tFbq0duIZauZPTekjfJXFPylT96LHmNL',
           icon: 'download'
         },
         links: [
@@ -178,7 +169,7 @@ const homePageContent = {
           { name: 'Bpifrance', url: 'https://www.bpifrance.fr/nos-solutions/financement' },
           {
             name: 'Ademe',
-            url: "https://librairie.ademe.fr/urbanisme-et-batiment/5208-aides-financieres-en-2022-les-9791029719127.html#:~:text=En%20savoir%20plus-,MaPrimeRenov'%2C%20%C3%A9co%2Dpr%C3%AAt%20%C3%A0%20taux%20z%C3%A9ro%2C%20Certificats%20d,%2C%20les%20%C3%A9nergies%20renouvelables..."
+            url: 'https://www.ademe.fr/nos-missions/financement'
           }
         ]
       },
@@ -192,7 +183,7 @@ const homePageContent = {
           },
           { name: 'Maximilien', url: 'https://www.boamp.fr/pages/recherche/?sort=dateparution' },
           {
-            name: 'Ugap',
+            name: 'Ugap prévisionnel 2022/2023',
             url: 'https://www.ugap.fr/programme-dappels-doffres-previsionnel-2019-2020_4524522.html'
           }
         ]
@@ -210,8 +201,7 @@ const homePageContent = {
             className="text-base my-8 text-dark-text-action p-1 rm-link-underline"
             href="https://airtable.com/shrY73vlVka9j2cg8"
             target="_blank"
-            rel="noreferrer"
-          >
+            rel="noreferrer">
             ce formulaire d’inscription
           </a>
           ! (Sous réserve de validation par nos équipes)
@@ -235,14 +225,6 @@ const homePageContent = {
         title: 'Communauté',
         description: 'Rejoignez Rapidd, la communauté des achats durables',
         links: [{ name: 'Rapidd', url: 'https://rapidd.developpement-durable.gouv.fr/' }]
-      },
-      {
-        title: 'Aide',
-        description:
-          'Obtenez un accompagnement pour intégrer des considérations environnementales dans vos  achats.',
-        links: [
-          { name: 'Le guichet vert', url: 'https://gipmaximilien.limesurvey.net/353211?lang=fr%20' }
-        ]
       },
       {
         title: 'Financements',
