@@ -25,7 +25,7 @@ import { versions } from './CardVersions';
 export type CardColors = '#D8C635' | '#68A532' | '#CE70CC' | '#8585F6' | '#4EC8AE' | '#F95C5E';
 
 export interface CardType {
-  SVGLogo: ({ ...other }: { [x: string]: any }) => JSX.Element;
+  SVGLogo: ({ ...other }: { [x: string]: unknown }) => JSX.Element;
   color: CardColors;
   backgroundColor?: string;
   title: string;
@@ -57,11 +57,8 @@ export const acheteurPublic: CardType = {
   SVGLogo: PictoCityHall,
   backgroundColor: '#2C202B',
   color: '#F95C5E',
-  //title: "Organismes publics à démarcher",
-  //title: "Organismes publics ouverts à l’innovation",
-  title: "Acteurs publics ouverts à l'innovation",
-  description:
-    'Collectivités ou organismes publics ayant conclu des marchés avec des TPE/PME éco-innovantes',
+  title: 'Ils ont travaillé avec des start-up',
+  description: 'Collectivités ou organismes publics ouverts à l’innovation',
   name: 'acheteurs-publics',
   searchLink: '/acheteurs-publics',
   SearchPage: SearchPageAcheteurPublic,
@@ -170,9 +167,8 @@ export const retex: CardType = {
   SVGLogo: PictoCityHall,
   backgroundColor: '#2C202B',
   color: '#F95C5E',
-  title: "Acteurs publics ouverts à l'innovation",
-  description:
-    'Collectivités ou organismes publics ayant contractualisé avec des TPE/PME éco-innovantes',
+  title: 'Ils ont travaillé avec des start-up',
+  description: 'Collectivités ou organismes publics ouverts à l’innovation',
   name: 'retex',
   searchLink: '/retour-experience',
   SearchPage: SearchPageRetex,

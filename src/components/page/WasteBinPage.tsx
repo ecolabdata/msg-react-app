@@ -6,7 +6,7 @@ import DropDown from '../dsfrComponents/DropDown';
 
 const WasteBin = () => {
   const { usedCorbeille } = useContext(ApplicationContext);
-  const [idc1, idc2, corbeille, setCorbeille] = usedCorbeille;
+  const [, , corbeille, setCorbeille] = usedCorbeille;
   const [selectedCardTypeName, setSelectedCardTypeName] = useState('all');
   const [areYouSure, setAreYouSure] = useState(false);
   const handleOnSubmit = () => {
@@ -65,11 +65,11 @@ const WasteBin = () => {
         </div>
 
         <div className="researchContainer my-10 ml-4 p-6 flex flex-col  bg-research-precision-container">
-          <p className=" bold text-xl text-center text-blue-france-main">Filtrer </p>
+          <p className=" bold text-xl text-center text-blue-france-main-525">Filtrer </p>
 
           <form onSubmit={() => handleOnSubmit()} className="inputsContainer flex">
             <DropDown
-              borderColor="blue-france-main"
+              borderColor="blue-france-main-525"
               title="Type de piste"
               usedState={[selectedCardTypeName, setSelectedCardTypeName]}
               values={{ all: 'Toutes', ...dropdownValues }}

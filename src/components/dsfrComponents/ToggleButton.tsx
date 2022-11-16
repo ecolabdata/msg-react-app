@@ -1,5 +1,3 @@
-import { KeyboardEventHandler } from 'react';
-
 interface ToggleButtonProps {
   label: string;
   checked: boolean;

@@ -176,7 +176,7 @@ const handlePublicBuyFilter = (search: Search, filters: PublicBuyFilters) => {
   let certificationFlag = true;
   let entityFlag = true;
   const { certification, entity } = filters;
-  const filteredCards = cards.filter((card) => {
+  const filteredCards = cards.filter(() => {
     const isCertificationFilterActivated = Object.keys(certifications).includes(certification);
     const isEntityFilterActivated = Object.keys(entities).includes(entity);
 

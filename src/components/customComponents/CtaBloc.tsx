@@ -14,8 +14,8 @@ interface CtaBlocProps {
 
 const CtaBloc: React.FC<CtaBlocProps> = ({ title, description, cta, links }) => {
   const iconMapping = {
-    sendMail: <PictoSendMail />,
-    download: <PictoDownload />
+    sendMail: <PictoSendMail aria-hidden="true" />,
+    download: <PictoDownload aria-hidden="true" />
   };
   return (
     <div>
