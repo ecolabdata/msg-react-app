@@ -1,6 +1,6 @@
 /* eslint-disable react/display-name */
 import { useContext, useState } from 'react';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AnyCard, search } from '../../api/Api';
 import { ApplicationContext } from '../../App';
 import { FillMagnifying, Magnifying } from '../../assets/Icons';
@@ -19,8 +19,8 @@ const buildExplorePage: (
   (cardsToDisplay, personaUrlPart) =>
   ({ alpha }) => {
     const { usedCorbeille, usedNextScrollTarget } = useContext(ApplicationContext);
-    const [toggleInCorbeille, isInCorbeille] = usedCorbeille;
-    const [nextScrollTarget, setNextScrollTarget] = usedNextScrollTarget;
+    const [, isInCorbeille] = usedCorbeille;
+    const [, setNextScrollTarget] = usedNextScrollTarget;
     const navigate = useNavigate();
     const location = useLocation();
     useTitle(`Explorer `);

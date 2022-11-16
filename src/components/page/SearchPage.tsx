@@ -2,7 +2,12 @@ import { useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AidesQuery, AnyCard, Search } from '../../api/Api';
 import { ApplicationContext } from '../../App';
-import { useAdvancedFilters } from '../customComponents/filter/filters';
+import {
+  ForecastedBuyFilters,
+  PublicBuyFilters,
+  StartupFilters,
+  useAdvancedFilters
+} from '../customComponents/filter/filters';
 import { useTitle } from '../../hooks/useTitle';
 import {
   achatPrevi,
@@ -33,7 +38,7 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
   const { initialValues, searchByType, handleFilter, filters } = useAdvancedFilters(cardType.name);
 
   const { usedNextScrollTarget } = useContext(ApplicationContext);
-  const [nextScrollTarget, setNextScrollTarget] = usedNextScrollTarget;
+  const [, setNextScrollTarget] = usedNextScrollTarget;
   const location = useLocation();
   const initialState = location.state as
     | (InitialState & { page?: number; montantMin: number })
@@ -109,10 +114,11 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
   return (
     <>
       <div
-        className="headContainer  container mt-10 mb-20 mx-auto max-w-headerSize
+        className="headContainer  container mb-20 mx-auto max-w-headerSize
             xl:mx-auto
-            ">
-        <div className="cardTitleAndLogo mt-10 p-2 text-base">
+            "
+      >
+        <div className="cardTitleAndLogo p-2 text-base">
           <h2 className="w-fit font-bold text-2xl md:text-4xl">
             <div className="flex items-center ">
               <cardType.SVGLogo
@@ -123,7 +129,7 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
               />
               &nbsp;
               {cardType.title} &nbsp;{' '}
-              <span className="bg-yellow md:text-3xl font-light">{`(${filteredCards.length} résultats)`}</span>
+              <span className="md:text-3xl font-light">{`(${filteredCards.length} résultats)`}</span>
             </div>
           </h2>
 
@@ -134,7 +140,8 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
           <form
             onSubmit={(event) => handleOnSubmitForm(event)}
             id="keywordsForm"
-            className="researchContainer m-auto flex flex-col justify-around flex-wrap h-fit w-full">
+            className="researchContainer m-auto flex flex-col justify-around flex-wrap h-fit w-full"
+          >
             <fieldset>
               <legend className="hidden">Champs de formulaire principaux</legend>
               <SearchForm
@@ -151,7 +158,8 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
                 aria-pressed={isAdvancedSearchOpen}
                 type="button"
                 className="ml-auto underline"
-                onClick={handleToggleAdvancedSearch}>
+                onClick={handleToggleAdvancedSearch}
+              >
                 Recherche avancée
               </button>
               {isAdvancedSearchOpen && (
@@ -169,7 +177,8 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
             <button
               form="keywordsForm"
               disabled={isLoading}
-              className="mx-3 fr-btn fr-btn--primary  fr-btn--lg">
+              className="mx-3 fr-btn fr-btn--primary  fr-btn--lg"
+            >
               <span className={`mx-auto`}>
                 {isLoading ? 'Chargement...' : 'Valider et rechercher'}
               </span>
@@ -178,7 +187,8 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
               type="button"
               disabled={isLoading}
               onClick={handleResetFilters}
-              className="mt-4 underline">
+              className="mt-4 underline"
+            >
               Réinitialiser
             </button>
           </div>
@@ -207,7 +217,7 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
         'Aucun résultat trouvé'
       ) : null}
 
-      {initialState && (
+      {initialState && nbPage > 1 && (
         <Pagination
           isLoading={isLoading && nbPage > 0}
           onClick={() => {

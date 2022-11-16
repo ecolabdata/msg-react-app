@@ -19,7 +19,7 @@ const SearchForm: React.FC<SearchFormProps> = ({
   color
 }) => {
   const [description, setDescription] = usedDescription;
-  const [descriptionError, setDescriptionError] = usedErrorTextDescription;
+  const [descriptionError] = usedErrorTextDescription;
   const [secteurs, setSecteurs] = usedSecteurs;
   const thematicsValues = Object.values(ThematicsEnum);
 

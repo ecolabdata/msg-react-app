@@ -6,7 +6,7 @@ interface CardTypeProps {
 }
 
 export interface ExplorerTypeCard {
-  SVGLogo: ({ ...other }: { [x: string]: any }) => JSX.Element;
+  SVGLogo: ({ ...other }: { [x: string]: unknown }) => JSX.Element;
   title: string;
   color: string;
   description: string;
@@ -17,23 +17,23 @@ export interface ExplorerTypeCard {
 
 const HomeCard: React.FC<CardTypeProps> = (props) => {
   const isExplorerCard = props.explorerCard ?? false;
-  const { SVGLogo, title, description, color, searchLink, version, name } = props.cardTypeData;
+  const { SVGLogo, title, description, color, searchLink, version } = props.cardTypeData;
   const isAlpha = version === 'alpha';
   const alphaCardStyle =
     "after:text-sm after:px-4 after:py-1 after:rounded-2xl after:absolute after:bottom-2 after:right-2 after:content-['Bientôt'] ";
   return (
-    <div
-      className={`fr-card h-full ${
+    <li
+      className={`fr-card self-stretch justify-center ${
         isExplorerCard &&
-        'bg-blue-france-main text-black before:bg-blue-france hover:bg-blue-france-main-hover'
-      }
+        'bg-blue-france-main-525 text-black before:bg-blue-france-sun-113 hover:bg-blue-france-main-525-hover'
+      } 
                 ${!isExplorerCard && isAlpha ? alphaCardStyle : 'fr-enlarge-link'} }
                  m-[1em]
                 `}
-      style={{ width: isExplorerCard ? 'calc(361px * 2 + 2em)' : 361 }}
+      style={{ width: isExplorerCard ? 'calc(361px * 2 + 2em)' : 320 }}
     >
-      <div className="fr-card__body">
-        <div className="fr-card__content">
+      <div className="fr-card__body flex-none">
+        <div className="fr-card__content p-4 !pb-14 !h-auto">
           <h3 className="fr-card__title">
             {!isAlpha ? (
               <a
@@ -47,11 +47,11 @@ const HomeCard: React.FC<CardTypeProps> = (props) => {
               <p className="text-lg">{title}</p>
             )}
           </h3>
-          <p className="fr-card__desc text-base ">{description}</p>
+          <p className="fr-card__desc text-base text-grey-625-active">{description}</p>
         </div>
       </div>
       <div className="fr-card__header">
-        <div className="fr-card__img  p-[2rem] pb-[0]">
+        <div className="fr-card__img p-4 pb-0">
           {!isExplorerCard ? (
             <SVGLogo height="80" width="80" style={{ color: color }} aria-hidden="true" />
           ) : (
@@ -59,7 +59,7 @@ const HomeCard: React.FC<CardTypeProps> = (props) => {
           )}
         </div>
       </div>
-    </div>
+    </li>
   );
 };
 

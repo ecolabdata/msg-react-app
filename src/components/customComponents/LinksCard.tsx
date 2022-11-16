@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-
 type LinkContent = {
   url: string;
   name: string;

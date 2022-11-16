@@ -24,7 +24,7 @@ interface CardProps {
 const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
   const { usedNextScrollTarget } = useContext(ApplicationContext);
 
-  const [nextScrollTarget, setNextScrolTarget] = usedNextScrollTarget;
+  const [, setNextScrolTarget] = usedNextScrollTarget;
 
   let displayableFinancers = '';
   let displayabeSubmissionDeadLine = '';
@@ -120,7 +120,7 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
                       {ap.Startups.split(',').join(', ')}
                     </div>
                   ) : null,
-                (pa) => (
+                () => (
                   <div>Date visée de publication: {targetDate}</div>
                 ),
                 (i) => (
