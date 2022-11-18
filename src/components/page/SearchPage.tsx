@@ -38,6 +38,7 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
     | (InitialState & { page?: number; montantMin: number })
     | null;
   const initialQuery = initialState?.search.query as AidesQuery | null;
+  const initialSearchResults = initialState?.results || [];
 
   const pageNo = initialState?.page || 1;
   const navigate = useNavigate();
@@ -49,7 +50,7 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
   const [secteurs, setSecteurs] = useState<string[]>(initialQuery?.secteurs || []);
   const [errorTxt, setErrorTxt] = useState('');
   const pageChunkSize = 20;
-  const [cards, setCards] = useState<AnyCard[]>([]);
+  const [cards, setCards] = useState<AnyCard[]>(initialSearchResults);
   const [filtersValues, setFiltersValues] = useState(initialValues);
 
   const nbPage = Math.ceil(cards.length / pageChunkSize);
@@ -84,7 +85,7 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
         setCards(filteredCards);
         return navigate(cardType.searchLink, {
           replace: true,
-          state: { search }
+          state: { search, results: filteredCards }
         });
       });
     } else {
