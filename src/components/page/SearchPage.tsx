@@ -2,12 +2,7 @@ import { useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AidesQuery, AnyCard, Search } from '../../api/Api';
 import { ApplicationContext } from '../../App';
-import {
-  ForecastedBuyFilters,
-  PublicBuyFilters,
-  StartupFilters,
-  useAdvancedFilters
-} from '../customComponents/filter/filters';
+import { useAdvancedFilters } from '../customComponents/filter/filters';
 import { useTitle } from '../../hooks/useTitle';
 import {
   achatPrevi,
@@ -25,10 +20,9 @@ import {
 import { InitialState } from '../../utils/InitialState';
 import AdvancedFilters from '../customComponents/filter/AdvancedFilters';
 
-import ResultCard from '../customComponents/ResultCard';
-import ScreenReaderOnlyText from '../customComponents/ScreenReaderOnlyText';
 import SearchForm from '../customComponents/SearchForm';
 import Pagination from '../dsfrComponents/Pagination';
+import SearchResults from '../customComponents/SearchResults';
 
 type Props = {
   cardType: CardType;
@@ -58,18 +52,8 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
   const [cards, setCards] = useState<AnyCard[]>([]);
   const [filtersValues, setFiltersValues] = useState(initialValues);
 
-  const filteredCards: JSX.Element[] | undefined = cards.map((card, i) => (
-    <ResultCard
-      isLoading={isLoading}
-      cardType={cardType}
-      cardData={card}
-      pageList={false}
-      key={i}
-    />
-  ));
-
-  const nbPage = Math.ceil(filteredCards.length / pageChunkSize);
-  const cardsSlice = filteredCards.slice((pageNo - 1) * pageChunkSize, pageNo * pageChunkSize);
+  const nbPage = Math.ceil(cards.length / pageChunkSize);
+  const cardsSlice = cards.slice((pageNo - 1) * pageChunkSize, pageNo * pageChunkSize);
 
   const handleToggleAdvancedSearch = () => {
     setIsAdvancedSearchOpen(!isAdvancedSearchOpen);
@@ -129,7 +113,7 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
               />
               &nbsp;
               {cardType.title} &nbsp;{' '}
-              <span className="md:text-3xl font-light">{`(${filteredCards.length} résultats)`}</span>
+              <span className="bg-yellow md:text-3xl font-light">{`(${cards.length} résultats)`}</span>
             </div>
           </h2>
 
@@ -193,45 +177,25 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
           </div>
         </div>
       </div>
-      {isLoading && <ScreenReaderOnlyText content={'Chargement en cours'} aria-live="polite" />}
-      {!isLoading && cardsSlice.length ? (
-        <ScreenReaderOnlyText
-          content={`il y'a ${cardsSlice.length} résultats`}
-          aria-live="polite"
-        />
-      ) : null}
-      {!isLoading && cardsSlice && cardsSlice.length === 0 && initialState && (
-        <ScreenReaderOnlyText content={`Aucun résultat trouvé`} aria-live="polite" />
-      )}
-      {cardsSlice.length > 0 ? (
-        <div className="fr-container max-w-full" id="cardsContainer">
-          <span className="flex justify-end font-bold mb-4">{`(${filteredCards.length} résultats)`}</span>
-
-          <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {' '}
-            {cardsSlice}
-          </ul>
-        </div>
-      ) : initialState ? (
-        'Aucun résultat trouvé'
-      ) : null}
-
-      {initialState && nbPage > 1 && (
-        <Pagination
-          isLoading={isLoading && nbPage > 0}
-          onClick={() => {
-            const element = document.getElementById('cardsContainer');
-            if (element)
-              setNextScrollTarget({
-                behavior: 'smooth',
-                top: element.offsetTop - window.innerHeight * 0.2
-              });
-          }}
-          currentPageNo={pageNo}
-          baseUrl={cardType.searchLink}
-          nbPage={nbPage}
-          initialState={initialState}
-        />
+      {initialState && (
+        <>
+          <SearchResults cards={cardsSlice} cardType={cardType} isLoading={isLoading} />
+          <Pagination
+            isLoading={isLoading && nbPage > 0}
+            onClick={() => {
+              const element = document.getElementById('cardsContainer');
+              if (element)
+                setNextScrollTarget({
+                  behavior: 'smooth',
+                  top: element.offsetTop - window.innerHeight * 0.2
+                });
+            }}
+            currentPageNo={pageNo}
+            baseUrl={cardType.searchLink}
+            nbPage={nbPage}
+            initialState={initialState}
+          />
+        </>
       )}
     </>
   );
