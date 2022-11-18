@@ -143,7 +143,7 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
             className="researchContainer m-auto flex flex-col justify-around flex-wrap h-fit w-full"
           >
             <fieldset>
-              <legend className="hidden">Champs de formulaire principaux</legend>
+              <legend className="sr-only">Champs de formulaire principaux</legend>
               <SearchForm
                 usedDescription={[description, setDescription]}
                 usedSecteurs={[secteurs, setSecteurs]}
@@ -152,8 +152,7 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
                 color={cardType.color}
               />
             </fieldset>
-            <fieldset className="flex flex-col mt-4">
-              <legend className="sr-only">Champs de recherche avancée</legend>
+            <div className="flex flex-col mt-4">
               <button
                 aria-pressed={isAdvancedSearchOpen}
                 type="button"
@@ -170,7 +169,7 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
                   values={filtersValues}
                 />
               )}
-            </fieldset>
+            </div>
           </form>
 
           <div className="researchButtonsContainer mt-8 w-full flex flex-col items-center justify-center">
