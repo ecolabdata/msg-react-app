@@ -13,7 +13,7 @@ type Props = {
 };
 
 const SearchResults: React.FC<Props> = ({ cards, isLoading, cardType }) => {
-  const ref = useRef<HTMLUListElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
   const { usedNextScrollTarget } = useContext(ApplicationContext);
   const [, setNextScrollTarget] = usedNextScrollTarget;
 
@@ -41,12 +41,12 @@ const SearchResults: React.FC<Props> = ({ cards, isLoading, cardType }) => {
         <ScreenReaderOnlyText content={`Aucun résultat trouvé`} aria-live="polite" />
       )}
       {cards.length > 0 ? (
-        <div className="fr-container max-w-full" id="cardsContainer">
-          <span className="flex justify-end font-bold mb-4">{`(${cards.length} résultats)`}</span>
-          <ul
-            tabIndex={0}
-            ref={ref}
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div tabIndex={0} ref={ref} className="fr-container max-w-full" id="cardsContainer">
+          <span
+            className="flex justify-end font-bold mb-4"
+            aria-hidden={true}>{`(${cards.length} résultats)`}</span>
+          <ScreenReaderOnlyText content={`il y'a ${cards.length} résultats`} />
+          <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {cards.map((card, i) => (
               <ResultCard
                 isLoading={isLoading}
