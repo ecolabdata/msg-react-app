@@ -1,13 +1,8 @@
-import { useContext, useState } from 'react';
+import { useContext, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AidesQuery, AnyCard, Search } from '../../api/Api';
 import { ApplicationContext } from '../../App';
-import {
-  ForecastedBuyFilters,
-  PublicBuyFilters,
-  StartupFilters,
-  useAdvancedFilters
-} from '../customComponents/filter/filters';
+import { useAdvancedFilters } from '../customComponents/filter/filters';
 import { useTitle } from '../../hooks/useTitle';
 import {
   achatPrevi,
@@ -25,10 +20,9 @@ import {
 import { InitialState } from '../../utils/InitialState';
 import AdvancedFilters from '../customComponents/filter/AdvancedFilters';
 
-import ResultCard from '../customComponents/ResultCard';
-import ScreenReaderOnlyText from '../customComponents/ScreenReaderOnlyText';
 import SearchForm from '../customComponents/SearchForm';
 import Pagination from '../dsfrComponents/Pagination';
+import SearchResults from '../customComponents/SearchResults';
 
 type Props = {
   cardType: CardType;
@@ -44,6 +38,7 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
     | (InitialState & { page?: number; montantMin: number })
     | null;
   const initialQuery = initialState?.search.query as AidesQuery | null;
+  const initialSearchResults = initialState?.results || [];
 
   const pageNo = initialState?.page || 1;
   const navigate = useNavigate();
@@ -55,21 +50,14 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
   const [secteurs, setSecteurs] = useState<string[]>(initialQuery?.secteurs || []);
   const [errorTxt, setErrorTxt] = useState('');
   const pageChunkSize = 20;
-  const [cards, setCards] = useState<AnyCard[]>([]);
+  const [cards, setCards] = useState<AnyCard[]>(initialSearchResults);
   const [filtersValues, setFiltersValues] = useState(initialValues);
 
-  const filteredCards: JSX.Element[] | undefined = cards.map((card, i) => (
-    <ResultCard
-      isLoading={isLoading}
-      cardType={cardType}
-      cardData={card}
-      pageList={false}
-      key={i}
-    />
-  ));
-
-  const nbPage = Math.ceil(filteredCards.length / pageChunkSize);
-  const cardsSlice = filteredCards.slice((pageNo - 1) * pageChunkSize, pageNo * pageChunkSize);
+  const nbPage = Math.ceil(cards.length / pageChunkSize);
+  const cardsSlice = useMemo(
+    () => cards.slice((pageNo - 1) * pageChunkSize, pageNo * pageChunkSize),
+    [cards, pageChunkSize, pageNo]
+  );
 
   const handleToggleAdvancedSearch = () => {
     setIsAdvancedSearchOpen(!isAdvancedSearchOpen);
@@ -95,15 +83,9 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
         setIsLoading(false);
         const filteredCards = handleFilter(search as Search, filtersValues as any);
         setCards(filteredCards);
-        const element = document.getElementById('cardsContainer');
-        if (element)
-          setNextScrollTarget({
-            behavior: 'smooth',
-            top: element.offsetTop - window.innerHeight * 0.2
-          });
         return navigate(cardType.searchLink, {
           replace: true,
-          state: { search }
+          state: { search, results: filteredCards }
         });
       });
     } else {
@@ -116,8 +98,7 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
       <div
         className="headContainer  container mb-20 mx-auto max-w-headerSize
             xl:mx-auto
-            "
-      >
+            ">
         <div className="cardTitleAndLogo p-2 text-base">
           <h2 className="w-fit font-bold text-2xl md:text-4xl">
             <div className="flex items-center ">
@@ -129,7 +110,7 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
               />
               &nbsp;
               {cardType.title} &nbsp;{' '}
-              <span className="md:text-3xl font-light">{`(${filteredCards.length} résultats)`}</span>
+              <span className="bg-yellow md:text-3xl font-light">{`(${cards.length} résultats)`}</span>
             </div>
           </h2>
 
@@ -140,8 +121,7 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
           <form
             onSubmit={(event) => handleOnSubmitForm(event)}
             id="keywordsForm"
-            className="researchContainer m-auto flex flex-col justify-around flex-wrap h-fit w-full"
-          >
+            className="researchContainer m-auto flex flex-col justify-around flex-wrap h-fit w-full">
             <fieldset>
               <legend className="sr-only">Champs de formulaire principaux</legend>
               <SearchForm
@@ -157,8 +137,7 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
                 aria-pressed={isAdvancedSearchOpen}
                 type="button"
                 className="ml-auto underline"
-                onClick={handleToggleAdvancedSearch}
-              >
+                onClick={handleToggleAdvancedSearch}>
                 Recherche avancée
               </button>
               {isAdvancedSearchOpen && (
@@ -176,8 +155,7 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
             <button
               form="keywordsForm"
               disabled={isLoading}
-              className="mx-3 fr-btn fr-btn--primary  fr-btn--lg"
-            >
+              className="mx-3 fr-btn fr-btn--primary  fr-btn--lg">
               <span className={`mx-auto`}>
                 {isLoading ? 'Chargement...' : 'Valider et rechercher'}
               </span>
@@ -186,52 +164,31 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
               type="button"
               disabled={isLoading}
               onClick={handleResetFilters}
-              className="mt-4 underline"
-            >
+              className="mt-4 underline">
               Réinitialiser
             </button>
           </div>
         </div>
       </div>
-      {isLoading && <ScreenReaderOnlyText content={'Chargement en cours'} aria-live="polite" />}
-      {!isLoading && cardsSlice.length ? (
-        <ScreenReaderOnlyText
-          content={`il y'a ${cardsSlice.length} résultats`}
-          aria-live="polite"
-        />
-      ) : null}
-      {!isLoading && cardsSlice && cardsSlice.length === 0 && initialState && (
-        <ScreenReaderOnlyText content={`Aucun résultat trouvé`} aria-live="polite" />
-      )}
-      {cardsSlice.length > 0 ? (
-        <div className="fr-container max-w-full" id="cardsContainer">
-          <span className="flex justify-end font-bold mb-4">{`(${filteredCards.length} résultats)`}</span>
-
-          <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {' '}
-            {cardsSlice}
-          </ul>
-        </div>
-      ) : initialState ? (
-        'Aucun résultat trouvé'
-      ) : null}
-
-      {initialState && nbPage > 1 && (
-        <Pagination
-          isLoading={isLoading && nbPage > 0}
-          onClick={() => {
-            const element = document.getElementById('cardsContainer');
-            if (element)
-              setNextScrollTarget({
-                behavior: 'smooth',
-                top: element.offsetTop - window.innerHeight * 0.2
-              });
-          }}
-          currentPageNo={pageNo}
-          baseUrl={cardType.searchLink}
-          nbPage={nbPage}
-          initialState={initialState}
-        />
+      {initialState && (
+        <>
+          <SearchResults cards={cardsSlice} cardType={cardType} isLoading={isLoading} />
+          <Pagination
+            isLoading={isLoading && nbPage > 0}
+            onClick={() => {
+              const element = document.getElementById('cardsContainer');
+              if (element)
+                setNextScrollTarget({
+                  behavior: 'smooth',
+                  top: element.offsetTop - window.innerHeight * 0.2
+                });
+            }}
+            currentPageNo={pageNo}
+            baseUrl={cardType.searchLink}
+            nbPage={nbPage}
+            initialState={initialState}
+          />
+        </>
       )}
     </>
   );
