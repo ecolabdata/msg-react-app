@@ -136,7 +136,7 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
             id="keywordsForm"
             className="researchContainer m-auto flex flex-col justify-around flex-wrap h-fit w-full">
             <fieldset>
-              <legend className="hidden">Champs de formulaire principaux</legend>
+              <legend className="sr-only">Champs de formulaire principaux</legend>
               <SearchForm
                 usedDescription={[description, setDescription]}
                 usedSecteurs={[secteurs, setSecteurs]}
