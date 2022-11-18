@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { AnyCard } from '../../api/Api';
 import { CardType } from '../../model/CardType';
 
@@ -11,6 +12,16 @@ type Props = {
 };
 
 const SearchResults: React.FC<Props> = ({ cards, isLoading, cardType }) => {
+  const ref = useRef<HTMLUListElement>(null);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (ref?.current) {
+        ref.current.focus();
+      }
+    }, 2000);
+  }, [isLoading]);
+
   return (
     <>
       {isLoading && <ScreenReaderOnlyText content={'Chargement en cours'} aria-live="polite" />}
@@ -23,8 +34,10 @@ const SearchResults: React.FC<Props> = ({ cards, isLoading, cardType }) => {
       {cards.length > 0 ? (
         <div className="fr-container max-w-full" id="cardsContainer">
           <span className="flex justify-end font-bold mb-4">{`(${cards.length} résultats)`}</span>
-
-          <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <ul
+            tabIndex={0}
+            ref={ref}
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {cards.map((card, i) => (
               <ResultCard
                 isLoading={isLoading}
