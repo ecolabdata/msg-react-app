@@ -1,5 +1,6 @@
-import { Search } from '../api/Api';
+import { AnyCard, Search } from '../api/Api';
 
 export type InitialState = {
   search: Search;
+  results: AnyCard[];
 };

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import useCheckMobileScreen from '../../hooks/useCheckMobileScreen';
 import { useQuery } from '../../hooks/useQuery';
 import formatSlugForBreadCumb from '../../utils/formatSlugForBreadcrumb';
 
@@ -9,6 +10,8 @@ const BreadCumb: React.FC = () => {
   );
   const query = useQuery();
   const location = useLocation();
+
+  const isMobile = useCheckMobileScreen();
 
   const createSlugForBreadCumb = () => {
     const pageData = formatSlugForBreadCumb(query, location, location.pathname);
@@ -27,7 +30,7 @@ const BreadCumb: React.FC = () => {
   };
 
   useEffect(() => {
-    window.addEventListener('popstate', (event) => {
+    window.addEventListener('popstate', () => {
       navHistory.pop();
       setNavHistory(navHistory);
     });
@@ -37,19 +40,21 @@ const BreadCumb: React.FC = () => {
     }
   }, [window.location.pathname]);
 
-  useEffect(() => {
-    console.log('window.history A CHANGE :>> ', window.history);
-  }, [window.history]);
-
   return (
     <nav
       role="navigation"
-      className="fr-breadcrumb !max-w-headerSize mx-auto"
+      className="fr-breadcrumb  h-full   container-title container max-w-headerSize mx-auto  !mb-0 mt-4 "
       aria-label="vous êtes ici :"
     >
-      <button className="fr-breadcrumb__button" aria-expanded="false" aria-controls="breadcrumb-1">
-        Voir le fil d’Ariane
-      </button>
+      {isMobile && navHistory.length > 0 && (
+        <button
+          className="fr-breadcrumb__button"
+          aria-expanded="false"
+          aria-controls="breadcrumb-1"
+        >
+          Voir le fil d’Ariane
+        </button>
+      )}
       <div className="fr-collapse" id="breadcrumb-1">
         <ol className="fr-breadcrumb__list truncate w-80">
           {navHistory.length > 0 && (
@@ -63,10 +68,6 @@ const BreadCumb: React.FC = () => {
           {navHistory.length > 1 &&
             navHistory.map((visitedPageDataObject, visitedPageDataObjectIndex) => {
               if (visitedPageDataObjectIndex < navHistory.length - 1) {
-                console.log(
-                  'visitedPageDataObject.urlToRedirect :>> ',
-                  visitedPageDataObject.urlToRedirect
-                );
                 return (
                   <li key={visitedPageDataObject.slugToDisplay}>
                     <a className="fr-breadcrumb__link" href={visitedPageDataObject.urlToRedirect}>

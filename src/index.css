@@ -1,4 +1,11 @@
 @import '~@gouvfr/dsfr/dist/dsfr/dsfr.min.css';
+@import '~@gouvfr/dsfr/dist/utility/icons/icons-buildings/icons-buildings.min.css';
+@import '~@gouvfr/dsfr/dist/utility/icons/icons-system/icons-system.min.css';
+@import '~@gouvfr/dsfr/dist/utility/icons/icons-business/icons-business.min.css';
+@import '~@gouvfr/dsfr/dist/utility/icons/icons-media/icons-media.min.css';
+@import '~@gouvfr/dsfr/dist/utility/icons/icons-document/icons-document.min.css';
+@import '~@gouvfr/dsfr/dist/utility/icons/icons-communication/icons-communication.min.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -29,9 +36,18 @@
   min-height: calc(var(--nb-lines) * var(--line-height));
 }
 
+select:focus-visible,
 textarea:focus,
 input:focus {
-  outline: 1px solid rgba(255, 255, 255, 0.2);
+  outline: 1px solid #0a76f6;
+}
+
+select:focus-visible,
+button:focus-visible,
+a:focus-visible,
+textarea:focus-visible,
+input:focus-visible {
+  outline: 2px solid #0a76f6;
 }
 
 .card-animation {

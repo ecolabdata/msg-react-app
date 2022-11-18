@@ -20,20 +20,19 @@ import {
   SearchPageSourcingSu,
   SearchPageStartups
 } from '../components/page/SearchPage';
-import { DetailsStartup } from '../components/customComponents/DetailsStartup';
-import { DetailsAideClient, DetailsAideInno } from '../components/customComponents/DetailsAide';
 import { versions } from './CardVersions';
 
+export type CardColors = '#D8C635' | '#68A532' | '#CE70CC' | '#8585F6' | '#4EC8AE' | '#F95C5E';
+
 export interface CardType {
-  SVGLogo: ({ ...other }: { [x: string]: any }) => JSX.Element;
-  color: string;
+  SVGLogo: ({ ...other }: { [x: string]: unknown }) => JSX.Element;
+  color: CardColors;
   backgroundColor?: string;
   title: string;
   description: string;
   name: string;
   searchLink: string;
   apiName: ApiName;
-  DetailsPage?: React.FC<{}>;
   SearchPage: React.FC;
   version: typeof versions[number];
 }
@@ -42,15 +41,24 @@ export interface CardType {
     START-UP
 */
 
+export type CardTypeNameFromModel =
+  | 'acheteurs-publics'
+  | 'achats-previsionnels'
+  | 'aides-clients'
+  | 'aides-innovations'
+  | 'aides-financieres'
+  | 'achats-programmes'
+  | 'investisseurs'
+  | 'startups'
+  | 'sourcingSu'
+  | 'retex';
+
 export const acheteurPublic: CardType = {
   SVGLogo: PictoCityHall,
   backgroundColor: '#2C202B',
   color: '#F95C5E',
-  //title: "Organismes publics à démarcher",
-  //title: "Organismes publics ouverts à l’innovation",
-  title: "Acteurs publics ouverts à l'innovation",
-  description:
-    'Collectivités ou organismes publics ayant conclu des marchés avec des TPE/PME éco-innovantes',
+  title: 'Ils ont travaillé avec des start-up',
+  description: 'Collectivités ou organismes publics ouverts à l’innovation',
   name: 'acheteurs-publics',
   searchLink: '/acheteurs-publics',
   SearchPage: SearchPageAcheteurPublic,
@@ -94,7 +102,6 @@ export const aideClient: CardType = {
     'Dispositifs incitatifs (état ou régions) qui aident vos clients à accéder à vos solutions',
   name: 'aides-clients',
   searchLink: '/aides-clients',
-  DetailsPage: DetailsAideClient,
   SearchPage: SearchPageAidesClient,
   apiName: 'aides_clients',
   version: 'beta'
@@ -108,7 +115,6 @@ export const aideInno: CardType = {
   description: 'Aides publiques dédiées à votre développement (ADEME, Bpifrance...)',
   name: 'aides-innovations',
   searchLink: '/aides-innovations',
-  DetailsPage: DetailsAideInno,
   SearchPage: SearchPageAidesInno,
   apiName: 'aides_innovation',
   version: 'beta'
@@ -122,7 +128,6 @@ export const startups: CardType = {
   description: 'Entreprises éco-innovantes qui vous ressemblent ou répondent à vos besoins',
   name: 'startups',
   searchLink: '/startups',
-  DetailsPage: DetailsStartup,
   SearchPage: SearchPageStartups,
   apiName: 'startups',
   version: 'beta'
@@ -140,7 +145,6 @@ export const aideFin: CardType = {
   description: 'Trouvez des aides pour financer vos achats',
   name: 'aides-financieres',
   searchLink: '/aides-financieres',
-  DetailsPage: DetailsAideClient,
   SearchPage: SearchPageAidesFin,
   apiName: 'aides_clients',
   version: 'beta'
@@ -154,7 +158,6 @@ export const sourcingSu: CardType = {
   description: 'Sourcez des entreprises éco-innovantes qui répondent à vos besoins',
   name: 'sourcingSu',
   searchLink: '/sourcing-startup',
-  DetailsPage: DetailsStartup,
   SearchPage: SearchPageSourcingSu,
   apiName: 'startups',
   version: 'beta'
@@ -164,9 +167,8 @@ export const retex: CardType = {
   SVGLogo: PictoCityHall,
   backgroundColor: '#2C202B',
   color: '#F95C5E',
-  title: "Acteurs publics ouverts à l'innovation",
-  description:
-    'Collectivités ou organismes publics ayant contractualisé avec des TPE/PME éco-innovantes',
+  title: 'Ils ont travaillé avec des start-up',
+  description: 'Collectivités ou organismes publics ouverts à l’innovation',
   name: 'retex',
   searchLink: '/retour-experience',
   SearchPage: SearchPageRetex,

@@ -12,11 +12,18 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({ label, checked, color, onCh
   } as React.CSSProperties;
   const inputStyle = checked ? { backgroundColor: color } : {};
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+    }
+  };
+
   return (
     <>
       <div className="fr-toggle h-10" style={style}>
         <input
           className=""
+          onKeyDown={handleKeyDown}
           onChange={onChange}
           checked={checked}
           type="checkbox"

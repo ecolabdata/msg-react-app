@@ -24,7 +24,7 @@ interface CardProps {
 const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
   const { usedNextScrollTarget } = useContext(ApplicationContext);
 
-  const [nextScrollTarget, setNextScrolTarget] = usedNextScrollTarget;
+  const [, setNextScrolTarget] = usedNextScrollTarget;
 
   let displayableFinancers = '';
   let displayabeSubmissionDeadLine = '';
@@ -48,16 +48,6 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
       '/' +
       d?.getUTCFullYear();
   }
-  const cardSlug = applyCard(
-    cardData,
-    (ap) => ap.nom,
-    (pa) => pa.label,
-    (i) => i['Nom du fonds'],
-    (a) => a.slug,
-    (su) => su['Start-up'],
-    () => 'unknown-slug'
-  );
-  const slug = slugify(cardSlug);
   const name = applyCard(
     cardData,
     (ap) => ap.nom,
@@ -67,14 +57,6 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
     (su) => su['Start-up'],
     () => 'No title'
   );
-  let linkTo = `/${cardType.name}/details/${slug}?cardData=${encodeURIComponent(
-    JSON.stringify(cardData)
-  )}`;
-
-  if (linkTo.length > 8192) {
-    linkTo = `/${cardType.name}/details/${slug}`;
-  }
-
   const toprow = isAide(cardData)
     ? displayableFinancers
     : isStartup(cardData)
@@ -86,6 +68,26 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
     : isProjetAchat(cardData)
     ? cardData.purchasingEntity.label
     : '';
+
+  //TODO: When an endpoint by id exist. All this should be removed to link card to `/${cardType.name}/details/${cardData.id}`
+  const cardSlug = applyCard(
+    cardData,
+    (ap) => ap.nom,
+    (pa) => pa.label,
+    (i) => i['Nom du fonds'],
+    (a) => a.slug,
+    (su) => su['Start-up'],
+    () => 'unknown-slug'
+  );
+  const slug = slugify(cardSlug);
+
+  let linkTo = `/${cardType.name}/details/${slug}?cardData=${encodeURIComponent(
+    JSON.stringify(cardData)
+  )}`;
+
+  if (linkTo.length > 8192) {
+    linkTo = `/${cardType.name}/details/${slug}`;
+  }
 
   return (
     <li className="h-full">
@@ -118,7 +120,7 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
                       {ap.Startups.split(',').join(', ')}
                     </div>
                   ) : null,
-                (pa) => (
+                () => (
                   <div>Date visée de publication: {targetDate}</div>
                 ),
                 (i) => (

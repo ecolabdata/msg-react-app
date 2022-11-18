@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
 import { useTitle } from '../../hooks/useTitle';
+import ProfileCard from '../customComponents/ProfileCard';
 
 const Home: React.FC = () => {
   useTitle('Accueil');
@@ -25,7 +25,7 @@ const Home: React.FC = () => {
           Afin de vous orienter vers les meilleurs leviers, choisissez votre profil :
         </h2>
       </div>
-      <div className="flex flex-col md:flex-row justify-center mb-16">
+      <ul className="flex flex-col md:flex-row justify-center mb-16">
         <ProfileCard
           title="Je représente une entreprise éco-innovante"
           description="Trouvez des leviers dans la recherche d’aides, d’investisseurs, d’acteurs publics ouverts à l’innovation, et d’accès à la commande publique"
@@ -38,43 +38,9 @@ const Home: React.FC = () => {
           badge="Acheteur public"
           type="publicActor"
         />
-      </div>
+      </ul>
     </>
   );
 };
 
 export default Home;
-
-interface ProfileCardProps {
-  title: string;
-  description: string;
-  badge: string;
-  type: 'startup' | 'publicActor';
-}
-
-const ProfileCard: React.FC<ProfileCardProps> = ({ title, description, badge, type }) => {
-  return (
-    <div className="fr-card fr-enlarge-link w-full max-w-[300px] m-2">
-      <div className="fr-card__body ">
-        <div className="fr-card__content !pt-4 !px-6 !pb-16 ">
-          <h3 className="fr-card__title">
-            <Link
-              to={type === 'startup' ? '/startup' : '/acteurs-publics'}
-              className="rm-link-underline"
-            >
-              <p className="clamp mt-2 font-bold text-lg">{title}</p>
-            </Link>
-          </h3>
-          <div className="fr-card__desc">{description}</div>
-          <div className="fr-card__start">
-            <ul className="fr-tags-group" aria-hidden={true}>
-              <li>
-                <p className={`fr-badge fr-badge--sm `}>{badge} </p>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};

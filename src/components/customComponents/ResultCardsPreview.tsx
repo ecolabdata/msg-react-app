@@ -19,7 +19,7 @@ const ResultCardsPreview: React.FC<CardsPreviewProps> = ({
   resultCount
 }) => {
   const { usedNextScrollTarget } = useContext(ApplicationContext);
-  const [nextScrollTarget, setNextScrollTarget] = usedNextScrollTarget;
+  const [, setNextScrollTarget] = usedNextScrollTarget;
   const ref = useRef<HTMLDivElement>(null);
 
   return (

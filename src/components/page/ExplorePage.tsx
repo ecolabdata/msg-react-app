@@ -1,16 +1,16 @@
 /* eslint-disable react/display-name */
 import { useContext, useState } from 'react';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AnyCard, search } from '../../api/Api';
 import { ApplicationContext } from '../../App';
 import { FillMagnifying, Magnifying } from '../../assets/Icons';
 import { useTitle } from '../../hooks/useTitle';
 import { CardType, publicActorPersona, startupPersona } from '../../model/CardType';
 import { InitialState } from '../../utils/InitialState';
-import { PitchThematicsKeywords } from '../customComponents/PitchThematicsKeywords';
 import ResultCard from '../customComponents/ResultCard';
 import ResultCardsPreview from '../customComponents/ResultCardsPreview';
 import ScreenReaderOnlyText from '../customComponents/ScreenReaderOnlyText';
+import SearchForm from '../customComponents/SearchForm';
 
 const buildExplorePage: (
   cardsToDisplay: CardType[],
@@ -19,8 +19,8 @@ const buildExplorePage: (
   (cardsToDisplay, personaUrlPart) =>
   ({ alpha }) => {
     const { usedCorbeille, usedNextScrollTarget } = useContext(ApplicationContext);
-    const [toggleInCorbeille, isInCorbeille] = usedCorbeille;
-    const [nextScrollTarget, setNextScrollTarget] = usedNextScrollTarget;
+    const [, isInCorbeille] = usedCorbeille;
+    const [, setNextScrollTarget] = usedNextScrollTarget;
     const navigate = useNavigate();
     const location = useLocation();
     useTitle(`Explorer `);
@@ -28,14 +28,13 @@ const buildExplorePage: (
     const [isLoading, setIsLoading] = useState(false);
     const [description, setDescription] = useState(initialState?.search.query.description || '');
     const [secteurs, setSecteurs] = useState<string[]>(initialState?.search.query.secteurs || []);
-    const [motsclefs, setMotsclef] = useState<string[]>(initialState?.search.query.motsclefs || []);
     const [errorTxt, setErrorTxt] = useState('');
 
     const handleOnSubmitForm = (ctrlPress: boolean) => {
       if (description.length > 0) {
         setIsLoading(true);
         setErrorTxt('');
-        search({ description, motsclefs, secteurs })
+        search({ description, motsclefs: [], secteurs })
           .then((search) => {
             setIsLoading(false);
             //? Scroll
@@ -106,12 +105,10 @@ const buildExplorePage: (
           className="h-fit mx-auto max-w-headerSize
             "
         >
-          <PitchThematicsKeywords
-            usedDescription={[description, setDescription]}
-            usedMotsClef={[motsclefs, setMotsclef]}
-            usedSecteurs={[secteurs, setSecteurs]}
+          <SearchForm
             usedInListPage={false}
-            openPitchContainerFromStart={false}
+            usedDescription={[description, setDescription]}
+            usedSecteurs={[secteurs, setSecteurs]}
             usedErrorTextDescription={[errorTxt, setErrorTxt]}
           />
         </form>
@@ -122,7 +119,6 @@ const buildExplorePage: (
             onClick={() => {
               setDescription('');
               setSecteurs([]);
-              setMotsclef([]);
             }}
           >
             {' '}

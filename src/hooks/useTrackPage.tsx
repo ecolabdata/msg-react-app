@@ -17,11 +17,7 @@ export const useTrackPage = () => {
     //Should not be tracked
     url.searchParams.delete('cardData');
     url.searchParams.delete('jwt');
-    console.log('Matomo tracking page called', {
-      _paq,
-      referrer: document.referrer,
-      url: url.href
-    });
+
     _paq.push(['setReferrerUrl', document.referrer]);
     _paq.push(['setCustomUrl', url.href]);
     console.log({ useLocationChange: payload });
