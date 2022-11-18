@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AidesQuery, AnyCard, Search } from '../../api/Api';
 import { ApplicationContext } from '../../App';
@@ -53,7 +53,10 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
   const [filtersValues, setFiltersValues] = useState(initialValues);
 
   const nbPage = Math.ceil(cards.length / pageChunkSize);
-  const cardsSlice = cards.slice((pageNo - 1) * pageChunkSize, pageNo * pageChunkSize);
+  const cardsSlice = useMemo(
+    () => cards.slice((pageNo - 1) * pageChunkSize, pageNo * pageChunkSize),
+    [cards, pageChunkSize, pageNo]
+  );
 
   const handleToggleAdvancedSearch = () => {
     setIsAdvancedSearchOpen(!isAdvancedSearchOpen);
@@ -100,8 +103,7 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
       <div
         className="headContainer  container mb-20 mx-auto max-w-headerSize
             xl:mx-auto
-            "
-      >
+            ">
         <div className="cardTitleAndLogo p-2 text-base">
           <h2 className="w-fit font-bold text-2xl md:text-4xl">
             <div className="flex items-center ">
@@ -124,8 +126,7 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
           <form
             onSubmit={(event) => handleOnSubmitForm(event)}
             id="keywordsForm"
-            className="researchContainer m-auto flex flex-col justify-around flex-wrap h-fit w-full"
-          >
+            className="researchContainer m-auto flex flex-col justify-around flex-wrap h-fit w-full">
             <fieldset>
               <legend className="sr-only">Champs de formulaire principaux</legend>
               <SearchForm
@@ -141,8 +142,7 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
                 aria-pressed={isAdvancedSearchOpen}
                 type="button"
                 className="ml-auto underline"
-                onClick={handleToggleAdvancedSearch}
-              >
+                onClick={handleToggleAdvancedSearch}>
                 Recherche avancée
               </button>
               {isAdvancedSearchOpen && (
@@ -160,8 +160,7 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
             <button
               form="keywordsForm"
               disabled={isLoading}
-              className="mx-3 fr-btn fr-btn--primary  fr-btn--lg"
-            >
+              className="mx-3 fr-btn fr-btn--primary  fr-btn--lg">
               <span className={`mx-auto`}>
                 {isLoading ? 'Chargement...' : 'Valider et rechercher'}
               </span>
@@ -170,8 +169,7 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
               type="button"
               disabled={isLoading}
               onClick={handleResetFilters}
-              className="mt-4 underline"
-            >
+              className="mt-4 underline">
               Réinitialiser
             </button>
           </div>
