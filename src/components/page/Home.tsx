@@ -1,9 +1,6 @@
-import { useTitle } from '../../hooks/useTitle';
 import ProfileCard from '../customComponents/ProfileCard';
 
 const Home: React.FC = () => {
-  useTitle('Accueil');
-
   return (
     <>
       <div

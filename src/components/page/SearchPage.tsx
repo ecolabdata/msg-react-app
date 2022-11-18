@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { AidesQuery, AnyCard, Search } from '../../api/Api';
 import { ApplicationContext } from '../../App';
 import { useAdvancedFilters } from '../customComponents/filter/filters';
-import { useTitle } from '../../hooks/useTitle';
 import {
   achatPrevi,
   achatProg,
@@ -42,7 +41,6 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
 
   const pageNo = initialState?.page || 1;
   const navigate = useNavigate();
-  useTitle(`Recherche détaillé ${cardType.title}`);
 
   const [isLoading, setIsLoading] = useState(false);
   const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);

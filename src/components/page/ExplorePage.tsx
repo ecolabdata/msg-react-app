@@ -4,7 +4,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { AnyCard, search } from '../../api/Api';
 import { ApplicationContext } from '../../App';
 import { FillMagnifying, Magnifying } from '../../assets/Icons';
-import { useTitle } from '../../hooks/useTitle';
 import { CardType, publicActorPersona, startupPersona } from '../../model/CardType';
 import { InitialState } from '../../utils/InitialState';
 import ResultCard from '../customComponents/ResultCard';
@@ -23,7 +22,6 @@ const buildExplorePage: (
     const [, setNextScrollTarget] = usedNextScrollTarget;
     const navigate = useNavigate();
     const location = useLocation();
-    useTitle(`Explorer `);
     const initialState = location.state as InitialState | null;
     const [isLoading, setIsLoading] = useState(false);
     const [description, setDescription] = useState(initialState?.search.query.description || '');

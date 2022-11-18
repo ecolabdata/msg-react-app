@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { useTitle } from '../../hooks/useTitle';
 import { startupPersona as allCardType } from '../../model/CardType';
 import CtaBloc from '../customComponents/CtaBloc';
 import LinksCard from '../customComponents/LinksCard';
@@ -12,8 +11,6 @@ interface HomeByProfileProps {
 
 const HomeByProfile: React.FC<HomeByProfileProps> = ({ profile }) => {
   const pageContent = homePageContent[profile];
-
-  useTitle(pageContent.pageTitle);
 
   return (
     <>
