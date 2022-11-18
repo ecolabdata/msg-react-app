@@ -1,5 +1,6 @@
-import { useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { AnyCard } from '../../api/Api';
+import { ApplicationContext } from '../../App';
 import { CardType } from '../../model/CardType';
 
 import ResultCard from './ResultCard';
@@ -13,13 +14,21 @@ type Props = {
 
 const SearchResults: React.FC<Props> = ({ cards, isLoading, cardType }) => {
   const ref = useRef<HTMLUListElement>(null);
+  const { usedNextScrollTarget } = useContext(ApplicationContext);
+  const [, setNextScrollTarget] = usedNextScrollTarget;
 
   useEffect(() => {
     setTimeout(() => {
       if (ref?.current) {
         ref.current.focus();
+        const element = document.getElementById('cardsContainer');
+        if (element)
+          setNextScrollTarget({
+            behavior: 'smooth',
+            top: element.offsetTop - window.innerHeight * 0.2
+          });
       }
-    }, 2000);
+    }, 1000);
   }, [isLoading]);
 
   return (

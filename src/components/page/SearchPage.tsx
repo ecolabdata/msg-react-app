@@ -82,12 +82,6 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
         setIsLoading(false);
         const filteredCards = handleFilter(search as Search, filtersValues as any);
         setCards(filteredCards);
-        const element = document.getElementById('cardsContainer');
-        if (element)
-          setNextScrollTarget({
-            behavior: 'smooth',
-            top: element.offsetTop - window.innerHeight * 0.2
-          });
         return navigate(cardType.searchLink, {
           replace: true,
           state: { search }
