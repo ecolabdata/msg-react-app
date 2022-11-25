@@ -22,20 +22,26 @@ export const routes = (
       <BreadCumb />
     </div>
     <main
-      className={`h-full p-1 md:pb-6 ${localStorage.scheme === 'dark' && 'bg-grey-50 text-white'}`}
-    >
+      className={`h-full p-1 md:pb-6 ${localStorage.scheme === 'dark' && 'bg-grey-50 text-white'}`}>
       <div id="main-content">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/startup" element={<HomeByProfile profile="startup" />} />
           <Route path="/acteurs-publics" element={<HomeByProfile profile="publicActor" />} />
-          {allCardType.map((cardType) => (
-            <>
-              <Route path={cardType.searchLink} element={<cardType.SearchPage />} />
-              <Route path={cardType.searchLink + '/search'} element={<cardType.SearchPage />} />
-              <Route path={`/${cardType.name}/details/:id`} element={<Details />} />
-            </>
-          ))}
+          {allCardType
+            .filter((cardType) =>
+              ['acheteurs-publics', 'startups', 'achats-previsionnels'].includes(cardType.name)
+            )
+            .map((cardType) => {
+              console.log(cardType);
+              return (
+                <>
+                  <Route path={cardType.searchLink} element={<cardType.SearchPage />} />
+                  <Route path={cardType.searchLink + '/search'} element={<cardType.SearchPage />} />
+                  <Route path={`/${cardType.name}/details/:id`} element={<Details />} />
+                </>
+              );
+            })}
           <Route path="/legal">
             <Route path="legal-notices" element={<LegalNotices />} />
             <Route path="cookies" element={<CookiePage />} />
