@@ -19,12 +19,15 @@ const Footer: React.FC = () => {
             </div>
             <div className="fr-footer__content">
               <p className="fr-footer__content-desc font-bold text-sm text-white">
-                Mes services Greentech est en version beta. L’outil vous propose automatiquement des
-                pistes pour booster votre développement ! Merci de nous aider à améliorer
-                l’expérience en répondant à ce{' '}
-                <a className="font-bold text-blue-france-625" href="#">
-                  formulaire.
-                </a>
+                Mes services Greentech est en version beta. L’outil vous propose des leviers pour
+                booster votre développement ! Pour nous faire part de vos remarques ou nous aider à
+                améliorer l’expérience merci de répondre{' '}
+                <a
+                  className="font-bold text-blue-france-625"
+                  href="https://airtable.com/shrwwE4lA2GFxK0T4">
+                  à cette courte enquête
+                </a>{' '}
+                (3 minutes).
               </p>
               <ul className="fr-footer__content-list">
                 <li className="fr-footer__content-item">
