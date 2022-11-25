@@ -21,11 +21,11 @@ const Footer: React.FC = () => {
               <p className="fr-footer__content-desc font-bold text-sm text-white">
                 Mes services Greentech est en version beta. L’outil vous propose des leviers pour
                 booster votre développement ! Pour nous faire part de vos remarques ou nous aider à
-                améliorer l’expérience merci de répondre{' '}
+                améliorer l’expérience merci de répondre à cette{' '}
                 <a
                   className="font-bold text-blue-france-625"
                   href="https://airtable.com/shrwwE4lA2GFxK0T4">
-                  à cette courte enquête
+                  courte enquête
                 </a>{' '}
                 (3 minutes).
               </p>
