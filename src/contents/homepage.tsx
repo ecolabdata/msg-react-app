@@ -4,8 +4,7 @@ const homePageContent = {
     cardNames: ['achats-previsionnels', 'acheteurs-publics'],
     mainContent: {
       title: 'Start-up greentech, trouvez des leviers pour booster votre développement ! ',
-      description:
-        'A partir de la description de votre activité ou de votre solution, nous vous proposons des pistes de leviers autour des 5 axes suivants :'
+      description: 'Trouvez des pistes pour accéder plus facilement à la commande publique !'
     },
     ctaBlocs: [
       {
@@ -96,8 +95,7 @@ const homePageContent = {
             className="text-base my-8 text-blue-france-625 p-1 link-underline"
             href="https://airtable.com/shrY73vlVka9j2cg8"
             target="_blank"
-            rel="noreferrer"
-          >
+            rel="noreferrer">
             ce formulaire d’inscription
           </a>
           ! (Sous réserve de validation par nos équipes)
