@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import AccessibilityPage from '../components/page/AccessibilityPage';
 import CookiePage from '../components/page/CookiePage';
+import { SearchPage } from '../components/page/SearchPage';
 import { Details } from '../components/page/DetailsPage';
 import GdprPage from '../components/page/GdprPage';
 import Home from '../components/page/Home';
@@ -32,16 +33,16 @@ export const routes = (
             .filter((cardType) =>
               ['acheteurs-publics', 'startups', 'achats-previsionnels'].includes(cardType.name)
             )
-            .map((cardType) => {
-              console.log(cardType);
-              return (
-                <>
-                  <Route path={cardType.searchLink} element={<cardType.SearchPage />} />
-                  <Route path={cardType.searchLink + '/search'} element={<cardType.SearchPage />} />
-                  <Route path={`/${cardType.name}/details/:id`} element={<Details />} />
-                </>
-              );
-            })}
+            .map((cardType) => (
+              <>
+                <Route path={cardType.searchLink} element={<SearchPage cardType={cardType} />} />
+                <Route
+                  path={cardType.searchLink + '/search'}
+                  element={<SearchPage cardType={cardType} />}
+                />
+                <Route path={`/${cardType.name}/details/:id`} element={<Details />} />
+              </>
+            ))}
           <Route path="/legal">
             <Route path="legal-notices" element={<LegalNotices />} />
             <Route path="cookies" element={<CookiePage />} />

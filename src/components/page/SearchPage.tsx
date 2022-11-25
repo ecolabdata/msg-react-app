@@ -4,19 +4,7 @@ import { AidesQuery, AnyCard, Search } from '../../api/Api';
 import { ApplicationContext } from '../../App';
 import { useAdvancedFilters } from '../customComponents/filter/filters';
 import { useTitle } from '../../hooks/useTitle';
-import {
-  achatPrevi,
-  achatProg,
-  acheteurPublic,
-  aideClient,
-  aideFin,
-  aideInno,
-  CardType,
-  investisseur,
-  retex,
-  sourcingSu,
-  startups
-} from '../../model/CardType';
+import { CardType } from '../../model/CardType';
 import { InitialState } from '../../utils/InitialState';
 import AdvancedFilters from '../customComponents/filter/AdvancedFilters';
 
@@ -28,7 +16,7 @@ type Props = {
   cardType: CardType;
 };
 
-const SearchPage: React.FC<Props> = ({ cardType }) => {
+export const SearchPage: React.FC<Props> = ({ cardType }) => {
   const { initialValues, searchByType, handleFilter, filters } = useAdvancedFilters(cardType.name);
 
   const { usedNextScrollTarget } = useContext(ApplicationContext);
@@ -194,16 +182,16 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
   );
 };
 
-/*Persona: Startup*/
-export const SearchPageAidesClient = () => <SearchPage cardType={aideClient} />;
-export const SearchPageAidesInno = () => <SearchPage cardType={aideInno} />;
-export const SearchPageInvestisseur = () => <SearchPage cardType={investisseur} />;
-export const SearchPageStartups = () => <SearchPage cardType={startups} />;
-export const SearchPageAcheteurPublic = () => <SearchPage cardType={acheteurPublic} />;
-export const SearchPageAchatPrevi = () => <SearchPage cardType={achatPrevi} />;
+// /*Persona: Startup*/
+// export const SearchPageAidesClient = () => <SearchPage cardType={aideClient} />;
+// export const SearchPageAidesInno = () => <SearchPage cardType={aideInno} />;
+// export const SearchPageInvestisseur = () => <SearchPage cardType={investisseur} />;
+// export const SearchPageStartups = () => <SearchPage cardType={startups} />;
+// export const SearchPageAcheteurPublic = () => <SearchPage cardType={acheteurPublic} />;
+// export const SearchPageAchatPrevi = () => <SearchPage cardType={achatPrevi} />;
 
-/*Persona: Acteur public*/
-export const SearchPageAidesFin = () => <SearchPage cardType={aideFin} />;
-export const SearchPageSourcingSu = () => <SearchPage cardType={sourcingSu} />;
-export const SearchPageRetex = () => <SearchPage cardType={retex} />;
-export const SearchPageAchatProg = () => <SearchPage cardType={achatProg} />;
+// /*Persona: Acteur public*/
+// export const SearchPageAidesFin = () => <SearchPage cardType={aideFin} />;
+// export const SearchPageSourcingSu = () => <SearchPage cardType={sourcingSu} />;
+// export const SearchPageRetex = () => <SearchPage cardType={retex} />;
+// export const SearchPageAchatProg = () => <SearchPage cardType={achatProg} />;
