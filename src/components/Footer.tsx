@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { DonnezVotreAvis } from './../components/customComponents/DonnezVotreAvis';
 
 const Footer: React.FC = () => {
   return (
@@ -31,32 +30,28 @@ const Footer: React.FC = () => {
                 <li className="fr-footer__content-item">
                   <a
                     className="fr-footer__content-link text-grey-625-active font-normal text-sm"
-                    href="https://legifrance.gouv.fr"
-                  >
+                    href="https://legifrance.gouv.fr">
                     legifrance.gouv.fr
                   </a>
                 </li>
                 <li className="fr-footer__content-item">
                   <a
                     className="fr-footer__content-link text-grey-625-active font-normal text-sm"
-                    href="https://gouvernement.fr"
-                  >
+                    href="https://gouvernement.fr">
                     gouvernement.fr
                   </a>
                 </li>
                 <li className="fr-footer__content-item">
                   <a
                     className="fr-footer__content-link text-grey-625-active font-normal text-sm"
-                    href="https://service-public.fr"
-                  >
+                    href="https://service-public.fr">
                     service-public.fr
                   </a>
                 </li>
                 <li className="fr-footer__content-item">
                   <a
                     className="fr-footer__content-link text-grey-625-active font-normal text-sm"
-                    href="https://data.gouv.fr"
-                  >
+                    href="https://data.gouv.fr">
                     data.gouv.fr
                   </a>
                 </li>
@@ -73,32 +68,28 @@ const Footer: React.FC = () => {
               <li className="fr-footer__bottom-item">
                 <Link
                   className="fr-footer__bottom-link text-grey-625 font-bold text-xs text-grey-625 font-bold text-xs"
-                  to="/plan-du-site"
-                >
+                  to="/plan-du-site">
                   Plan du site
                 </Link>
               </li>
               <li className="fr-footer__bottom-item">
                 <Link
                   className="fr-footer__bottom-link text-grey-625 font-bold text-xs"
-                  to="/legal/legal-notices"
-                >
+                  to="/legal/legal-notices">
                   Mentions légales
                 </Link>
               </li>
               <li className="fr-footer__bottom-item">
                 <Link
                   className="fr-footer__bottom-link text-grey-625 font-bold text-xs"
-                  to="/legal/gdpr"
-                >
+                  to="/legal/gdpr">
                   Données personnelles
                 </Link>
               </li>
               <li className="fr-footer__bottom-item">
                 <Link
                   className="fr-footer__bottom-link text-grey-625 font-bold text-xs"
-                  to="/legal/cookies"
-                >
+                  to="/legal/cookies">
                   Gestion des cookies
                 </Link>
               </li>
@@ -119,15 +110,12 @@ const Footer: React.FC = () => {
                 <a
                   href="https://github.com/etalab/licence-ouverte/blob/master/LO.md"
                   target="_blank"
-                  rel="noreferrer"
-                >
+                  rel="noreferrer">
                   licence etalab-2.0
                 </a>
               </p>
             </div>
           </div>
-
-          <DonnezVotreAvis />
         </div>
       </footer>
     </>
