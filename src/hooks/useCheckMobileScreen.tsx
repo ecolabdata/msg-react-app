@@ -13,7 +13,7 @@ const useCheckMobileScreen = () => {
     };
   }, []);
 
-  return width <= 768;
+  return width <= 992;
 };
 
 export default useCheckMobileScreen;
