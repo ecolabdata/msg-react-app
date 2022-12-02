@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { AidesQuery, AnyCard, Search } from '../../api/Api';
 import { ApplicationContext } from '../../App';
 import { useAdvancedFilters } from '../customComponents/filter/filters';
-import { useTitle } from '../../hooks/useTitle';
 import { CardType } from '../../model/CardType';
 import { InitialState } from '../../utils/InitialState';
 import AdvancedFilters from '../customComponents/filter/AdvancedFilters';
@@ -30,7 +29,6 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
 
   const pageNo = initialState?.page || 1;
   const navigate = useNavigate();
-  useTitle(`Recherche détaillé ${cardType.title}`);
 
   const [isLoading, setIsLoading] = useState(false);
   const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
@@ -86,7 +84,8 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
       <div
         className="headContainer  container mb-20 mx-auto max-w-headerSize
             xl:mx-auto
-            ">
+            "
+      >
         <div className="cardTitleAndLogo p-2 text-base">
           <h2 className="w-fit font-bold text-2xl md:text-4xl">
             <div className="flex items-center ">
@@ -109,7 +108,8 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
           <form
             onSubmit={(event) => handleOnSubmitForm(event)}
             id="keywordsForm"
-            className="researchContainer m-auto flex flex-col justify-around flex-wrap h-fit w-full">
+            className="researchContainer m-auto flex flex-col justify-around flex-wrap h-fit w-full"
+          >
             <fieldset>
               <legend className="sr-only">Champs de formulaire principaux</legend>
               <SearchForm
@@ -125,7 +125,8 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
                 aria-pressed={isAdvancedSearchOpen}
                 type="button"
                 className="ml-auto underline"
-                onClick={handleToggleAdvancedSearch}>
+                onClick={handleToggleAdvancedSearch}
+              >
                 Recherche avancée
               </button>
               {isAdvancedSearchOpen && (
@@ -143,7 +144,8 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
             <button
               form="keywordsForm"
               disabled={isLoading}
-              className="mx-3 fr-btn fr-btn--primary  fr-btn--lg">
+              className="mx-3 fr-btn fr-btn--primary  fr-btn--lg"
+            >
               <span className={`mx-auto`}>
                 {isLoading ? 'Chargement...' : 'Valider et rechercher'}
               </span>
@@ -152,7 +154,8 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
               type="button"
               disabled={isLoading}
               onClick={handleResetFilters}
-              className="mt-4 underline">
+              className="mt-4 underline"
+            >
               Réinitialiser
             </button>
           </div>
@@ -181,17 +184,3 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
     </>
   );
 };
-
-// /*Persona: Startup*/
-// export const SearchPageAidesClient = () => <SearchPage cardType={aideClient} />;
-// export const SearchPageAidesInno = () => <SearchPage cardType={aideInno} />;
-// export const SearchPageInvestisseur = () => <SearchPage cardType={investisseur} />;
-// export const SearchPageStartups = () => <SearchPage cardType={startups} />;
-// export const SearchPageAcheteurPublic = () => <SearchPage cardType={acheteurPublic} />;
-// export const SearchPageAchatPrevi = () => <SearchPage cardType={achatPrevi} />;
-
-// /*Persona: Acteur public*/
-// export const SearchPageAidesFin = () => <SearchPage cardType={aideFin} />;
-// export const SearchPageSourcingSu = () => <SearchPage cardType={sourcingSu} />;
-// export const SearchPageRetex = () => <SearchPage cardType={retex} />;
-// export const SearchPageAchatProg = () => <SearchPage cardType={achatProg} />;

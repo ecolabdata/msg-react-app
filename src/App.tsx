@@ -5,6 +5,7 @@ import './App.css';
 import { AuthRequiredWall } from './components/page/AuthRequiredWall';
 import { useTrackPage } from './hooks/useTrackPage';
 import routes from './model/routes';
+import AccessibleNavigation from './utils/AccessibleNavigation';
 import {
   defaultUsedCorbeille,
   defaultUsedFavoris,
@@ -51,6 +52,7 @@ const Router = () => {
   return (
     <>
       <ApplicationContext.Provider value={{ usedFavoris, usedCorbeille, usedNextScrollTarget }}>
+        <AccessibleNavigation />
         <JwtAuthProvider>
           <TrackPage />
           <Routes>
