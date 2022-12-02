@@ -9,7 +9,8 @@ import {
   departmentsByRegion,
   Regions,
   deadlines,
-  helpTypes
+  helpTypes,
+  fundingTypes
 } from './constants';
 import { yesNotoBoolean } from '../../../utils/utilityFunctions';
 import {
@@ -23,14 +24,12 @@ import {
 export const handleForecastedBuyFilter = (search: Search, filters: ForecastedBuyFilters) => {
   const cards: ProjetAchat[] = search.cards?.projets_achats;
   const { hasEcologicalConcern, publicationDate, zone } = filters;
+  const isZoneFilterActivated = Object.keys(zones).includes(zone);
+  const isPublicationDateFilterActivated = Object.keys(publicationDates).includes(publicationDate);
   const filteredCards = cards.filter((card) => {
     let ecologicalFlag = true;
     let publicationDateFlag = true;
     let zoneFlag = true;
-
-    const isZoneFilterActivated = Object.keys(zones).includes(zone);
-    const isPublicationDateFilterActivated =
-      Object.keys(publicationDates).includes(publicationDate);
 
     if (hasEcologicalConcern) {
       ecologicalFlag = yesNotoBoolean(card.environmentalConsiderationsConcerned);
@@ -74,14 +73,12 @@ export const handleCustomerHelpFilter = (search: Search, filters: HelpFilters) =
 export const handleHelpsFilter = (cards: Aide[], filters: HelpFilters) => {
   const { deadline, helpType, isPermanentHelp } = filters;
 
-  let deadlineFlag = true;
-  let helpTypeFlag = true;
-  let isPermanentHelpFlag = true;
-
+  const isDeadlineFilterActivated = Object.keys(deadlines).includes(deadline);
+  const isHelpTypeFilterActivated = Object.keys(helpTypes).includes(helpType);
   const filteredCards = cards.filter((card) => {
-    const isDeadlineFilterActivated = Object.keys(deadlines).includes(deadline);
-    const isHelpTypeFilterActivated = Object.keys(helpTypes).includes(helpType);
-
+    let deadlineFlag = true;
+    let helpTypeFlag = true;
+    let isPermanentHelpFlag = true;
     if (isDeadlineFilterActivated) {
       if (card.submission_deadline) {
         const monthsDelay = deadlines[deadline];
@@ -107,19 +104,30 @@ export const handleHelpsFilter = (cards: Aide[], filters: HelpFilters) => {
 
 export const handleInvestorFilter = (search: Search, filters: InvestorFilters) => {
   const cards = search.cards?.investisseurs;
+  const { fundingType } = filters;
+  const isFundingTypeFilterActivated = Object.keys(fundingTypes).includes(fundingType);
 
-  return cards;
+  const filteredCards = cards.filter((card) => {
+    let fundingTypeFlag = true;
+    if (isFundingTypeFilterActivated) {
+      const cardFundingTypes = card['Type de financement'].split(';').map((t) => t.trim());
+      fundingTypeFlag = cardFundingTypes.includes(fundingType);
+    }
+    return fundingTypeFlag;
+  });
+
+  return filteredCards;
 };
 
 export const handleStartUpFilter = (search: Search, filters: StartupFilters) => {
   const cards = search.cards?.startups;
 
-  let zoneFlag = true;
-  let marketFlag = true;
   const { market, zone } = filters;
+  const isZoneFilterActivated = Object.keys(zones).includes(zone);
+  const isMarketFilterActivated = Object.keys(markets).includes(market);
   const filteredCards = cards.filter((card) => {
-    const isZoneFilterActivated = Object.keys(zones).includes(zone);
-    const isMarketFilterActivated = Object.keys(markets).includes(market);
+    let zoneFlag = true;
+    let marketFlag = true;
 
     if (isZoneFilterActivated) {
       zoneFlag = card.Région === zone;
@@ -137,12 +145,12 @@ export const handleStartUpFilter = (search: Search, filters: StartupFilters) => 
 export const handlePublicBuyFilter = (search: Search, filters: PublicBuyFilters) => {
   const cards = search.cards?.collectivites;
 
-  let certificationFlag = true;
-  let entityFlag = true;
   const { certification, entity } = filters;
+  const isCertificationFilterActivated = Object.keys(certifications).includes(certification);
+  const isEntityFilterActivated = Object.keys(entities).includes(entity);
   const filteredCards = cards.filter(() => {
-    const isCertificationFilterActivated = Object.keys(certifications).includes(certification);
-    const isEntityFilterActivated = Object.keys(entities).includes(entity);
+    let certificationFlag = true;
+    let entityFlag = true;
 
     //TODO: when known filter on relevant card keys to implement filter
     if (isCertificationFilterActivated) {

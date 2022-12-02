@@ -50,7 +50,7 @@ export const helpTypes: Record<string, string> = {
   'Ingénierie Juridique / administrative': 'Ingénierie Juridique / administrative'
 };
 
-export const fundingType: Record<string, string> = {
+export const fundingTypes: Record<string, string> = {
   'Capital croissance': 'Capital croissance',
   'Capital développement (développement/croissance)':
     'Capital développement (développement/croissance)',
@@ -122,7 +122,7 @@ export type FilterDefinition = {
   options?: string[];
   id: keyof AnyFilters;
   type: 'select' | 'toggle' | 'inputNumber';
-  initialValue: string | boolean;
+  initialValue: string | boolean | number;
 };
 
 export const publicationDateFilter: FilterDefinition = {
@@ -211,14 +211,14 @@ export const companyIncomeFilter: FilterDefinition = {
   label: "Votre chiffre d'affaires (en K€)",
   id: 'companyIncome' as keyof AnyFilters,
   type: 'inputNumber',
-  initialValue: ''
+  initialValue: 0
 };
 
 export const fundingTypeFilter: FilterDefinition = {
   label: 'Type de financement',
   defaultOption: 'Toutes',
-  options: Object.keys(fundingType),
+  options: Object.keys(fundingTypes),
   id: 'fundingType' as keyof AnyFilters,
   type: 'select',
-  initialValue: ''
+  initialValue: 0
 };

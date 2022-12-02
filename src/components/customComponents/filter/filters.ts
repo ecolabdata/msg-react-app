@@ -32,7 +32,6 @@ import {
   deadlineFilter,
   permanentHelpFilter,
   minimumAmountFilter,
-  companyIncomeFilter,
   fundingTypeFilter
 } from './constants';
 import { CardTypeNameFromModel } from '../../../model/CardType';
@@ -70,7 +69,6 @@ export type HelpFilters = {
 export type InvestorFilters = {
   minimumAmount: number;
   zone: string;
-  companyIncome: number;
   fundingType: string;
 };
 
@@ -111,7 +109,7 @@ export const useAdvancedFilters = (type: CardTypeNameFromModel): FilterPropertie
   const startupFilters = [marketFilter, zoneFilter];
   const publicBuyFilters = [certificationFilter, entityFilter];
   const helpFilters = [helpTypeFilter, deadlineFilter, permanentHelpFilter];
-  const investorFilters = [minimumAmountFilter, companyIncomeFilter, fundingTypeFilter];
+  const investorFilters = [minimumAmountFilter, fundingTypeFilter];
 
   switch (type) {
     case 'achats-previsionnels':
