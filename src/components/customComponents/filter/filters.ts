@@ -11,7 +11,9 @@ import {
   Search,
   searchForecastedBuys,
   searchPublicBuys,
-  searchStartups
+  searchStartups,
+  searchAidesInno,
+  Aide
 } from '../../../api/Api';
 import {
   publicationDates,
@@ -31,6 +33,7 @@ import {
   Regions
 } from './constants';
 import { yesNotoBoolean } from '../../../utils/utilityFunctions';
+import { CardTypeNameFromModel } from '../../../model/CardType';
 
 export type StartupFilters = {
   market: string;
@@ -48,7 +51,17 @@ export type PublicBuyFilters = {
   entity: string;
 };
 
-export type AnyFilters = StartupFilters | ForecastedBuyFilters | PublicBuyFilters;
+export type InnovationHelpFilters = {
+  displayAidePermanente: boolean;
+  aid_type: string;
+  echeance: string;
+};
+
+export type AnyFilters =
+  | StartupFilters
+  | ForecastedBuyFilters
+  | PublicBuyFilters
+  | InnovationHelpFilters;
 
 type FilterProperties = {
   initialValues: AnyFilters;
@@ -59,15 +72,17 @@ type FilterProperties = {
   handleFilter:
     | ((search: Search, filters: StartupFilters) => Startup[])
     | ((search: Search, filters: ForecastedBuyFilters) => ProjetAchat[])
-    | ((search: Search, filters: PublicBuyFilters) => Collectivite[]);
+    | ((search: Search, filters: PublicBuyFilters) => Collectivite[])
+    | ((search: Search, filters: InnovationHelpFilters) => Aide[]);
 };
 
 type SearchParams = { description: string; secteurs: string[]; filters: AnyFilters };
 
-export const useAdvancedFilters = (type: string): FilterProperties => {
+export const useAdvancedFilters = (type: CardTypeNameFromModel): FilterProperties => {
   const forecastedBuyFilters = [publicationDateFilter, zoneFilter, environnementalFilter];
   const startupFilters = [marketFilter, zoneFilter];
   const publicBuyFilters = [certificationFilter, entityFilter];
+  const innovationHelpFilters: FilterDefinition[] = [zoneFilter];
 
   if (type === 'achats-previsionnels') {
     return {
@@ -92,6 +107,18 @@ export const useAdvancedFilters = (type: string): FilterProperties => {
         }),
       handleFilter: handleStartUpFilter,
       filters: startupFilters
+    };
+  } else if (type === 'aides-innovations') {
+    return {
+      initialValues: getInitialValues(startupFilters),
+      searchByType: ({ description, secteurs, filters: filters }: SearchParams) =>
+        searchAidesInno({
+          description,
+          secteurs,
+          ...(filters as InnovationHelpFilters)
+        }),
+      handleFilter: handleInnovationHelpsFilter,
+      filters: innovationHelpFilters
     };
   } else {
     return {
@@ -145,6 +172,12 @@ const handleForecastedBuyFilter = (search: Search, filters: ForecastedBuyFilters
     return ecologicalFlag && zoneFlag && publicationDateFlag;
   });
   return filteredCards;
+};
+
+const handleInnovationHelpsFilter = (search: Search, filters: InnovationHelpFilters) => {
+  const cards = search.cards?.aides_innovation;
+
+  return cards;
 };
 
 const handleStartUpFilter = (search: Search, filters: StartupFilters) => {

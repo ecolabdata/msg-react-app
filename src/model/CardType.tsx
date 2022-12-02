@@ -18,7 +18,7 @@ export interface CardType {
   backgroundColor?: string;
   title: string;
   description: string;
-  name: string;
+  name: CardTypeNameFromModel;
   searchLink: string;
   apiName: ApiName;
   version: typeof versions[number];
