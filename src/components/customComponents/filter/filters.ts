@@ -21,12 +21,6 @@ import {
   Investisseur
 } from '../../../api/Api';
 import {
-  publicationDates,
-  zones,
-  markets,
-  certifications,
-  entities,
-  PublicationDates,
   FilterDefinition,
   zoneFilter,
   certificationFilter,
@@ -34,17 +28,22 @@ import {
   environnementalFilter,
   marketFilter,
   publicationDateFilter,
-  departmentsByRegion,
-  Regions,
   helpTypeFilter,
   deadlineFilter,
   permanentHelpFilter,
   minimumAmountFilter,
-  deadlines,
-  helpTypes
+  companyIncomeFilter,
+  fundingTypeFilter
 } from './constants';
-import { yesNotoBoolean } from '../../../utils/utilityFunctions';
 import { CardTypeNameFromModel } from '../../../model/CardType';
+import {
+  handleForecastedBuyFilter,
+  handleStartUpFilter,
+  handlePublicBuyFilter,
+  handleInnovationHelpFilter,
+  handleCustomerHelpFilter,
+  handleInvestorFilter
+} from './filterHandlers';
 
 export type StartupFilters = {
   market: string;
@@ -71,6 +70,8 @@ export type HelpFilters = {
 export type InvestorFilters = {
   minimumAmount: number;
   zone: string;
+  companyIncome: number;
+  fundingType: string;
 };
 
 export type AnyFilters =
@@ -109,9 +110,8 @@ export const useAdvancedFilters = (type: CardTypeNameFromModel): FilterPropertie
   const forecastedBuyFilters = [publicationDateFilter, zoneFilter, environnementalFilter];
   const startupFilters = [marketFilter, zoneFilter];
   const publicBuyFilters = [certificationFilter, entityFilter];
-  const HelpFilters = [helpTypeFilter, deadlineFilter, permanentHelpFilter];
-  const customerHelpFilters = [helpTypeFilter, deadlineFilter, permanentHelpFilter];
-  const investorFilters = [minimumAmountFilter, zoneFilter];
+  const helpFilters = [helpTypeFilter, deadlineFilter, permanentHelpFilter];
+  const investorFilters = [minimumAmountFilter, companyIncomeFilter, fundingTypeFilter];
 
   switch (type) {
     case 'achats-previsionnels':
@@ -152,7 +152,7 @@ export const useAdvancedFilters = (type: CardTypeNameFromModel): FilterPropertie
       };
     case 'aides-innovations':
       return {
-        initialValues: getInitialValues(HelpFilters),
+        initialValues: getInitialValues(helpFilters),
         searchByType: ({ description, secteurs, filters: filters }: SearchParams) => {
           const { deadline, isPermanentHelp, helpType } = filters as HelpFilters;
           return searchAidesInno({
@@ -164,11 +164,11 @@ export const useAdvancedFilters = (type: CardTypeNameFromModel): FilterPropertie
           });
         },
         handleFilter: handleInnovationHelpFilter,
-        filters: HelpFilters
+        filters: helpFilters
       };
     case 'aides-clients':
       return {
-        initialValues: getInitialValues(customerHelpFilters),
+        initialValues: getInitialValues(helpFilters),
         searchByType: ({ description, secteurs, filters }: SearchParams) => {
           const { deadline, isPermanentHelp, helpType } = filters as HelpFilters;
           return searchAidesClient({
@@ -180,7 +180,7 @@ export const useAdvancedFilters = (type: CardTypeNameFromModel): FilterPropertie
           });
         },
         handleFilter: handleCustomerHelpFilter,
-        filters: customerHelpFilters
+        filters: helpFilters
       };
     case 'investisseurs':
     default:
@@ -200,143 +200,6 @@ export const useAdvancedFilters = (type: CardTypeNameFromModel): FilterPropertie
         filters: investorFilters
       };
   }
-};
-
-const handleForecastedBuyFilter = (search: Search, filters: ForecastedBuyFilters) => {
-  const cards: ProjetAchat[] = search.cards?.projets_achats;
-  const { hasEcologicalConcern, publicationDate, zone } = filters;
-  const filteredCards = cards.filter((card) => {
-    let ecologicalFlag = true;
-    let publicationDateFlag = true;
-    let zoneFlag = true;
-
-    const isZoneFilterActivated = Object.keys(zones).includes(zone);
-    const isPublicationDateFilterActivated =
-      Object.keys(publicationDates).includes(publicationDate);
-
-    if (hasEcologicalConcern) {
-      ecologicalFlag = yesNotoBoolean(card.environmentalConsiderationsConcerned);
-    }
-
-    if (isZoneFilterActivated) {
-      const departmentsForZone =
-        zone && departmentsByRegion[zone as Regions].map((d) => d.toString());
-
-      const cardDepartments = card.departments.map((d) => d.department);
-      zoneFlag = cardDepartments.some((d) => departmentsForZone?.includes(d));
-    }
-
-    if (isPublicationDateFilterActivated) {
-      const deadline = new Date(card.publicationTargetDate);
-      const NOW = new Date();
-      if ((publicationDate as PublicationDates) === 'publié') {
-        publicationDateFlag = deadline < NOW;
-      } else {
-        const sixMonthLater = new Date(NOW.setMonth(NOW.getMonth() + 6));
-        publicationDateFlag = deadline < sixMonthLater;
-      }
-    }
-    return ecologicalFlag && zoneFlag && publicationDateFlag;
-  });
-  return filteredCards;
-};
-
-const handleInnovationHelpFilter = (search: Search, filters: HelpFilters) => {
-  const cards = search.cards?.aides_innovation;
-
-  return handleHelpsFilter(cards, filters);
-};
-
-const handleCustomerHelpFilter = (search: Search, filters: HelpFilters) => {
-  const cards = search.cards?.aides_clients;
-
-  return handleHelpsFilter(cards, filters);
-};
-
-const handleHelpsFilter = (cards: Aide[], filters: HelpFilters) => {
-  const { deadline, helpType, isPermanentHelp } = filters;
-
-  let deadlineFlag = true;
-  let helpTypeFlag = true;
-  let isPermanentHelpFlag = true;
-
-  const filteredCards = cards.filter((card) => {
-    const isDeadlineFilterActivated = Object.keys(deadlines).includes(deadline);
-    const isHelpTypeFilterActivated = Object.keys(helpTypes).includes(helpType);
-
-    if (isDeadlineFilterActivated) {
-      if (card.submission_deadline) {
-        const monthsDelay = deadlines[deadline];
-        const targetedDeadline = new Date();
-        targetedDeadline.setMonth(targetedDeadline.getMonth() + monthsDelay);
-        const cardDeadline = new Date(card.submission_deadline);
-        deadlineFlag = cardDeadline < targetedDeadline;
-      } else {
-        deadlineFlag = isPermanentHelp;
-      }
-    }
-    if (!isPermanentHelp) {
-      isPermanentHelpFlag = !!card.submission_deadline;
-    }
-    if (isHelpTypeFilterActivated) {
-      helpTypeFlag = card.aid_types.includes(helpType);
-    }
-
-    return deadlineFlag && isPermanentHelpFlag && helpTypeFlag;
-  });
-  return filteredCards;
-};
-
-const handleInvestorFilter = (search: Search, filters: InvestorFilters) => {
-  const cards = search.cards?.investisseurs;
-
-  return cards;
-};
-
-const handleStartUpFilter = (search: Search, filters: StartupFilters) => {
-  const cards = search.cards?.startups;
-
-  let zoneFlag = true;
-  let marketFlag = true;
-  const { market, zone } = filters;
-  const filteredCards = cards.filter((card) => {
-    const isZoneFilterActivated = Object.keys(zones).includes(zone);
-    const isMarketFilterActivated = Object.keys(markets).includes(market);
-
-    if (isZoneFilterActivated) {
-      zoneFlag = card.Région === zone;
-    }
-    if (isMarketFilterActivated) {
-      const cardMarkets = card.Marché.split(',');
-      marketFlag = cardMarkets.includes(market);
-    }
-
-    return zoneFlag && marketFlag;
-  });
-  return filteredCards;
-};
-
-const handlePublicBuyFilter = (search: Search, filters: PublicBuyFilters) => {
-  const cards = search.cards?.collectivites;
-
-  let certificationFlag = true;
-  let entityFlag = true;
-  const { certification, entity } = filters;
-  const filteredCards = cards.filter(() => {
-    const isCertificationFilterActivated = Object.keys(certifications).includes(certification);
-    const isEntityFilterActivated = Object.keys(entities).includes(entity);
-
-    //TODO: when known filter on relevant card keys to implement filter
-    if (isCertificationFilterActivated) {
-      certificationFlag = false;
-    }
-    if (isEntityFilterActivated) {
-      entityFlag = false;
-    }
-
-    return certificationFlag && entityFlag;
-  });
-  return filteredCards;
 };
 
 const getInitialValues = (filters: FilterDefinition[]) => {

@@ -50,6 +50,18 @@ export const helpTypes: Record<string, string> = {
   'Ingénierie Juridique / administrative': 'Ingénierie Juridique / administrative'
 };
 
+export const fundingType: Record<string, string> = {
+  'Capital croissance': 'Capital croissance',
+  'Capital développement (développement/croissance)':
+    'Capital développement (développement/croissance)',
+  'Capital risque (innovation/création)': 'Capital risque (innovation/création)',
+  'Capital transmission (consolidation/transmission)':
+    'Capital transmission (consolidation/transmission)',
+  'Capital transmission': 'Capital transmission',
+  Infrastructure: 'Infrastructure',
+  'Dette privée': 'Dette privée'
+};
+
 export const entities: Record<string, string> = {
   etat: 'etat',
   'collectivités territoriales': 'collectivités territoriales',
@@ -192,5 +204,21 @@ export const minimumAmountFilter: FilterDefinition = {
   label: 'Montant (en K€)',
   id: 'minimumAmount' as keyof AnyFilters,
   type: 'inputNumber',
+  initialValue: ''
+};
+
+export const companyIncomeFilter: FilterDefinition = {
+  label: "Votre chiffre d'affaires (en K€)",
+  id: 'companyIncome' as keyof AnyFilters,
+  type: 'inputNumber',
+  initialValue: ''
+};
+
+export const fundingTypeFilter: FilterDefinition = {
+  label: 'Type de financement',
+  defaultOption: 'Toutes',
+  options: Object.keys(fundingType),
+  id: 'fundingType' as keyof AnyFilters,
+  type: 'select',
   initialValue: ''
 };
