@@ -34,6 +34,22 @@ export const markets: Record<string, number> = {
   'B to A': 2
 };
 
+export const deadline: Record<string, number> = {
+  "Moins d'1 mois": 0,
+  'Moins de 3 mois': 1,
+  'Moins de 6 mois': 2
+};
+
+export const helpType: Record<string, string> = {
+  Subvention: 'Subvention',
+  Prêt: 'Prêt',
+  'Avance récupérable': 'Avance récupérable',
+  'Autre aide financière': 'Autre aide financière',
+  'Ingénierie technique': 'Ingénierie technique',
+  'Ingénierie financière': 'Ingénierie financière',
+  'Ingénierie juridique / administrative': 'Ingénierie juridique / administrative'
+};
+
 export const entities: Record<string, string> = {
   etat: 'etat',
   'collectivités territoriales': 'collectivités territoriales',
@@ -90,10 +106,10 @@ export const zones: Record<Regions, Regions> = {
 
 export type FilterDefinition = {
   label: string;
-  defaultOption: string;
+  defaultOption?: string;
   options?: string[];
   id: keyof AnyFilters;
-  type: 'select' | 'toggle';
+  type: 'select' | 'toggle' | 'numberInput';
   initialValue: string | boolean;
 };
 
@@ -115,7 +131,6 @@ export const zoneFilter: FilterDefinition = {
 };
 export const environnementalFilter: FilterDefinition = {
   label: 'Considération environnementale',
-  defaultOption: 'Toutes',
   id: 'hasEcologicalConcern' as keyof AnyFilters,
   type: 'toggle',
   initialValue: true
@@ -145,5 +160,37 @@ export const entityFilter: FilterDefinition = {
   options: Object.keys(entities),
   id: 'entity' as keyof AnyFilters,
   type: 'select',
+  initialValue: ''
+};
+
+export const deadlineFilter: FilterDefinition = {
+  label: 'Echéance',
+  defaultOption: 'Toutes',
+  options: Object.keys(deadline),
+  id: 'deadline' as keyof AnyFilters,
+  type: 'select',
+  initialValue: ''
+};
+
+export const helpTypeFilter: FilterDefinition = {
+  label: "Nature de l'aide",
+  defaultOption: 'Toutes',
+  options: Object.keys(helpType),
+  id: 'helpType' as keyof AnyFilters,
+  type: 'select',
+  initialValue: ''
+};
+
+export const permanentHelpFilter: FilterDefinition = {
+  label: 'Afficher les aides permanentes',
+  id: 'isPermanentHelp' as keyof AnyFilters,
+  type: 'toggle',
+  initialValue: true
+};
+
+export const minimumAmountFilter: FilterDefinition = {
+  label: 'Montant',
+  id: 'isPermanentHelp' as keyof AnyFilters,
+  type: 'numberInput',
   initialValue: ''
 };

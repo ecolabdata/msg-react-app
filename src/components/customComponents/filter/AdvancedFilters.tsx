@@ -36,7 +36,7 @@ const AdvancedFilters: React.FC<AdvancedFiltersProps> = ({
             }}
             selected={values[id]}
           />
-        ) : (
+        ) : type === 'toggle' ? (
           <ToggleButton
             key={id}
             label={label}
@@ -46,6 +46,8 @@ const AdvancedFilters: React.FC<AdvancedFiltersProps> = ({
               setFilters(id, !values[id]);
             }}
           />
+        ) : (
+          <div>display numberInput </div>
         )
       )}
     </fieldset>

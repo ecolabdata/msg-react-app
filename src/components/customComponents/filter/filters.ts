@@ -13,7 +13,12 @@ import {
   searchPublicBuys,
   searchStartups,
   searchAidesInno,
-  Aide
+  Aide,
+  searchAidesClient,
+  AidesClientQuery,
+  AidesInnoQuery,
+  searchInvestisseur,
+  Investisseur
 } from '../../../api/Api';
 import {
   publicationDates,
@@ -30,7 +35,11 @@ import {
   marketFilter,
   publicationDateFilter,
   departmentsByRegion,
-  Regions
+  Regions,
+  helpTypeFilter,
+  deadlineFilter,
+  permanentHelpFilter,
+  minimumAmountFilter
 } from './constants';
 import { yesNotoBoolean } from '../../../utils/utilityFunctions';
 import { CardTypeNameFromModel } from '../../../model/CardType';
@@ -52,28 +61,52 @@ export type PublicBuyFilters = {
 };
 
 export type InnovationHelpFilters = {
-  displayAidePermanente: boolean;
-  aid_type: string;
-  echeance: string;
+  isPermanentHelp: boolean;
+  helpType: string;
+  deadline: string;
+};
+
+export type CustomerHelpFilters = {
+  isPermanentHelp: boolean;
+  helpType: string;
+  deadline: string;
+};
+
+export type InvestorFilters = {
+  montantMin: number;
+  zone: string;
 };
 
 export type AnyFilters =
   | StartupFilters
   | ForecastedBuyFilters
   | PublicBuyFilters
-  | InnovationHelpFilters;
+  | InnovationHelpFilters
+  | InvestorFilters
+  | CustomerHelpFilters;
 
 type FilterProperties = {
   initialValues: AnyFilters;
   searchByType: (searchParams: SearchParams) => Promise<{
-    query: Buy | Query | InvestisseurQuery | AidesQuery | IStartup | PublicBuy;
+    query:
+      | Buy
+      | Query
+      | InvestisseurQuery
+      | AidesQuery
+      | IStartup
+      | PublicBuy
+      | AidesClientQuery
+      | AidesInnoQuery
+      | InvestisseurQuery;
   }>;
   filters: FilterDefinition[];
   handleFilter:
     | ((search: Search, filters: StartupFilters) => Startup[])
     | ((search: Search, filters: ForecastedBuyFilters) => ProjetAchat[])
     | ((search: Search, filters: PublicBuyFilters) => Collectivite[])
-    | ((search: Search, filters: InnovationHelpFilters) => Aide[]);
+    | ((search: Search, filters: InnovationHelpFilters) => Aide[])
+    | ((search: Search, filters: CustomerHelpFilters) => Aide[])
+    | ((search: Search, filters: InvestorFilters) => Investisseur[]);
 };
 
 type SearchParams = { description: string; secteurs: string[]; filters: AnyFilters };
@@ -82,56 +115,93 @@ export const useAdvancedFilters = (type: CardTypeNameFromModel): FilterPropertie
   const forecastedBuyFilters = [publicationDateFilter, zoneFilter, environnementalFilter];
   const startupFilters = [marketFilter, zoneFilter];
   const publicBuyFilters = [certificationFilter, entityFilter];
-  const innovationHelpFilters: FilterDefinition[] = [zoneFilter];
+  const innovationHelpFilters = [helpTypeFilter, deadlineFilter, permanentHelpFilter];
+  const customerHelpFilters = [helpTypeFilter, deadlineFilter, permanentHelpFilter];
+  const investorFilters = [minimumAmountFilter, zoneFilter];
 
-  if (type === 'achats-previsionnels') {
-    return {
-      initialValues: getInitialValues(forecastedBuyFilters),
-      searchByType: ({ description, secteurs, filters }: SearchParams) =>
-        searchForecastedBuys({
-          description,
-          secteurs,
-          ...(filters as ForecastedBuyFilters)
-        }),
-      handleFilter: handleForecastedBuyFilter,
-      filters: forecastedBuyFilters
-    };
-  } else if (type === 'startups') {
-    return {
-      initialValues: getInitialValues(startupFilters),
-      searchByType: ({ description, secteurs, filters: filters }: SearchParams) =>
-        searchStartups({
-          description,
-          secteurs,
-          ...(filters as StartupFilters)
-        }),
-      handleFilter: handleStartUpFilter,
-      filters: startupFilters
-    };
-  } else if (type === 'aides-innovations') {
-    return {
-      initialValues: getInitialValues(startupFilters),
-      searchByType: ({ description, secteurs, filters: filters }: SearchParams) =>
-        searchAidesInno({
-          description,
-          secteurs,
-          ...(filters as InnovationHelpFilters)
-        }),
-      handleFilter: handleInnovationHelpsFilter,
-      filters: innovationHelpFilters
-    };
-  } else {
-    return {
-      initialValues: getInitialValues(publicBuyFilters),
-      searchByType: ({ description, secteurs, filters }: SearchParams) =>
-        searchPublicBuys({
-          description,
-          secteurs,
-          ...(filters as PublicBuyFilters)
-        }),
-      handleFilter: handlePublicBuyFilter,
-      filters: publicBuyFilters
-    };
+  switch (type) {
+    case 'achats-previsionnels':
+      return {
+        initialValues: getInitialValues(forecastedBuyFilters),
+        searchByType: ({ description, secteurs, filters }: SearchParams) =>
+          searchForecastedBuys({
+            description,
+            secteurs,
+            ...(filters as ForecastedBuyFilters)
+          }),
+        handleFilter: handleForecastedBuyFilter,
+        filters: forecastedBuyFilters
+      };
+    case 'startups':
+      return {
+        initialValues: getInitialValues(startupFilters),
+        searchByType: ({ description, secteurs, filters: filters }: SearchParams) =>
+          searchStartups({
+            description,
+            secteurs,
+            ...(filters as StartupFilters)
+          }),
+        handleFilter: handleStartUpFilter,
+        filters: startupFilters
+      };
+    case 'acheteurs-publics':
+      return {
+        initialValues: getInitialValues(publicBuyFilters),
+        searchByType: ({ description, secteurs, filters }: SearchParams) =>
+          searchPublicBuys({
+            description,
+            secteurs,
+            ...(filters as PublicBuyFilters)
+          }),
+        handleFilter: handlePublicBuyFilter,
+        filters: publicBuyFilters
+      };
+    case 'aides-innovations':
+      return {
+        initialValues: getInitialValues(innovationHelpFilters),
+        searchByType: ({ description, secteurs, filters: filters }: SearchParams) => {
+          const { deadline, isPermanentHelp, helpType } = filters as InnovationHelpFilters;
+          return searchAidesInno({
+            description,
+            secteurs,
+            aid_type: helpType,
+            echeance: deadline,
+            displayAidePermanente: isPermanentHelp
+          });
+        },
+        handleFilter: handleInnovationHelpFilter,
+        filters: innovationHelpFilters
+      };
+    case 'aides-clients':
+      return {
+        initialValues: getInitialValues(customerHelpFilters),
+        searchByType: ({ description, secteurs, filters }: SearchParams) => {
+          const { deadline, isPermanentHelp, helpType } = filters as CustomerHelpFilters;
+          return searchAidesClient({
+            description,
+            secteurs,
+            aid_type: helpType,
+            echeance: deadline,
+            displayAidePermanente: isPermanentHelp
+          });
+        },
+        handleFilter: handleCustomerHelpFilter,
+        filters: customerHelpFilters
+      };
+    case 'investisseurs':
+    default:
+      return {
+        initialValues: getInitialValues(investorFilters),
+        searchByType: ({ description, secteurs, filters }: SearchParams) =>
+          searchInvestisseur({
+            description,
+            secteurs,
+            type: 'investisseur',
+            ...(filters as InvestorFilters)
+          }),
+        handleFilter: handleInvestorFilter,
+        filters: investorFilters
+      };
   }
 };
 
@@ -174,8 +244,20 @@ const handleForecastedBuyFilter = (search: Search, filters: ForecastedBuyFilters
   return filteredCards;
 };
 
-const handleInnovationHelpsFilter = (search: Search, filters: InnovationHelpFilters) => {
+const handleInnovationHelpFilter = (search: Search, filters: InnovationHelpFilters) => {
   const cards = search.cards?.aides_innovation;
+
+  return cards;
+};
+
+const handleCustomerHelpFilter = (search: Search, filters: CustomerHelpFilters) => {
+  const cards = search.cards?.aides_clients;
+
+  return cards;
+};
+
+const handleInvestorFilter = (search: Search, filters: InvestorFilters) => {
+  const cards = search.cards?.investisseurs;
 
   return cards;
 };
