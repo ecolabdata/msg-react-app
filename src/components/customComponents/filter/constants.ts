@@ -109,7 +109,7 @@ export type FilterDefinition = {
   defaultOption?: string;
   options?: string[];
   id: keyof AnyFilters;
-  type: 'select' | 'toggle' | 'numberInput';
+  type: 'select' | 'toggle' | 'inputNumber';
   initialValue: string | boolean;
 };
 
@@ -189,8 +189,8 @@ export const permanentHelpFilter: FilterDefinition = {
 };
 
 export const minimumAmountFilter: FilterDefinition = {
-  label: 'Montant',
-  id: 'isPermanentHelp' as keyof AnyFilters,
-  type: 'numberInput',
+  label: 'Montant (en K€)',
+  id: 'minimumAmount' as keyof AnyFilters,
+  type: 'inputNumber',
   initialValue: ''
 };

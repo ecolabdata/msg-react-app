@@ -73,7 +73,7 @@ export type CustomerHelpFilters = {
 };
 
 export type InvestorFilters = {
-  montantMin: number;
+  minimumAmount: number;
   zone: string;
 };
 
@@ -192,13 +192,16 @@ export const useAdvancedFilters = (type: CardTypeNameFromModel): FilterPropertie
     default:
       return {
         initialValues: getInitialValues(investorFilters),
-        searchByType: ({ description, secteurs, filters }: SearchParams) =>
-          searchInvestisseur({
+        searchByType: ({ description, secteurs, filters }: SearchParams) => {
+          const { minimumAmount } = filters as InvestorFilters;
+          return searchInvestisseur({
             description,
             secteurs,
             type: 'investisseur',
-            ...(filters as InvestorFilters)
-          }),
+            ...(filters as InvestorFilters),
+            montantMin: minimumAmount
+          });
+        },
         handleFilter: handleInvestorFilter,
         filters: investorFilters
       };

@@ -3,6 +3,7 @@ import { CardType } from '../../../model/CardType';
 import Select from '../../dsfrComponents/Select';
 import ToggleButton from '../../dsfrComponents/ToggleButton';
 import { FilterDefinition } from './constants';
+import InputNumber from '../InputNumber';
 
 interface AdvancedFiltersProps {
   values: AnyFilters;
@@ -47,7 +48,14 @@ const AdvancedFilters: React.FC<AdvancedFiltersProps> = ({
             }}
           />
         ) : (
-          <div>display numberInput </div>
+          <InputNumber
+            label={label}
+            color={cardType.color}
+            value={values[id]}
+            onChange={(e) => {
+              setFilters(id, e.currentTarget.value);
+            }}
+          />
         )
       )}
     </fieldset>
