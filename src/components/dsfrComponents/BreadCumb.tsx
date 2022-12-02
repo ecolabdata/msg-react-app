@@ -44,12 +44,14 @@ const BreadCumb: React.FC = () => {
     <nav
       role="navigation"
       className="fr-breadcrumb  h-full   container-title container max-w-headerSize mx-auto  !mb-0 mt-8 "
-      aria-label="vous êtes ici :">
+      aria-label="vous êtes ici :"
+    >
       {isMobile && navHistory.length > 0 && (
         <button
           className="fr-breadcrumb__button"
           aria-expanded="false"
-          aria-controls="breadcrumb-1">
+          aria-controls="breadcrumb-1"
+        >
           Voir le fil d’Ariane
         </button>
       )}

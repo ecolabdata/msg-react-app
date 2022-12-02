@@ -97,7 +97,8 @@ const homePageContent = {
             className="text-base my-8 text-blue-france-625 p-1 link-underline"
             href="https://airtable.com/shrY73vlVka9j2cg8"
             target="_blank"
-            rel="noreferrer">
+            rel="noreferrer"
+          >
             ce formulaire d’inscription
           </a>
           ! (Sous réserve de validation par nos équipes)

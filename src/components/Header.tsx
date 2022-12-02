@@ -38,7 +38,8 @@ const Header = () => {
                   <Link
                     className="flex items-center"
                     to="/"
-                    title="Accueil - Mes services GreenTech - Ministère de la transition écologique et de la cohésion des territoires">
+                    title="Accueil - Mes services GreenTech - Ministère de la transition écologique et de la cohésion des territoires"
+                  >
                     <MsgLogo />
                   </Link>
                 </div>
@@ -55,7 +56,8 @@ const Header = () => {
                     aria-haspopup="menu"
                     aria-expanded={isBurgerMenuOpen}
                     title="Menu de navigation principal"
-                    id="fr-btn-menu-mobile">
+                    id="fr-btn-menu-mobile"
+                  >
                     Menu de navigation principal
                   </button>
                 </div>
