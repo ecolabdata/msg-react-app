@@ -53,9 +53,10 @@ const Header = () => {
                     data-fr-opened={isBurgerMenuOpen}
                     aria-controls="header-navigation"
                     aria-haspopup="menu"
-                    title="Menu"
+                    aria-expanded={isBurgerMenuOpen}
+                    title="Menu de navigation principal"
                     id="fr-btn-menu-mobile">
-                    Menu
+                    Menu de navigation principal
                   </button>
                 </div>
               )}
@@ -85,10 +86,7 @@ const Header = () => {
           </div>
         </div>
       </header>
-      <NavigationMenu
-        isBurgerMenuOpen={isBurgerMenuOpen}
-        closeBurgerMenu={() => setIsBurgerMenuOpen(false)}
-      />
+      <NavigationMenu isBurgerMenuOpen={isBurgerMenuOpen} />
     </>
   );
 };

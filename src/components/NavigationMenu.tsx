@@ -4,10 +4,9 @@ import useCheckMobileScreen from '../hooks/useCheckMobileScreen';
 
 interface NavigationMenuProps {
   isBurgerMenuOpen: boolean;
-  closeBurgerMenu: () => void;
 }
 
-const NavigationMenu: React.FC<NavigationMenuProps> = ({ isBurgerMenuOpen, closeBurgerMenu }) => {
+const NavigationMenu: React.FC<NavigationMenuProps> = ({ isBurgerMenuOpen }) => {
   const { pathname } = useLocation();
   const isMobile = useCheckMobileScreen();
 
@@ -19,7 +18,7 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({ isBurgerMenuOpen, close
             <div className="fr-header shadow-header bg-grey-75">
               <div className="fr-header__body">
                 <div className="fr-container ">
-                  <div className="fr-header__body-row flex">
+                  <div className="flex">
                     <nav
                       className="fr-nav md:self-start md:w-full flex-1"
                       id="header-navigation"
@@ -45,14 +44,6 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({ isBurgerMenuOpen, close
                         </li>
                       </ul>
                     </nav>
-                    {isMobile && isBurgerMenuOpen && (
-                      <button
-                        onClick={closeBurgerMenu}
-                        className="fr-btn fr-btn--tertiary fr-btn--tertiary-no-outline fr-icon-close-line mb-auto"
-                        title="Fermer le menu de navigation">
-                        Fermer le menu de navigation
-                      </button>
-                    )}
                   </div>
                 </div>
               </div>
