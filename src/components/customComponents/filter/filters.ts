@@ -39,7 +39,9 @@ import {
   helpTypeFilter,
   deadlineFilter,
   permanentHelpFilter,
-  minimumAmountFilter
+  minimumAmountFilter,
+  deadlines,
+  helpTypes
 } from './constants';
 import { yesNotoBoolean } from '../../../utils/utilityFunctions';
 import { CardTypeNameFromModel } from '../../../model/CardType';
@@ -60,13 +62,7 @@ export type PublicBuyFilters = {
   entity: string;
 };
 
-export type InnovationHelpFilters = {
-  isPermanentHelp: boolean;
-  helpType: string;
-  deadline: string;
-};
-
-export type CustomerHelpFilters = {
+export type HelpFilters = {
   isPermanentHelp: boolean;
   helpType: string;
   deadline: string;
@@ -81,9 +77,8 @@ export type AnyFilters =
   | StartupFilters
   | ForecastedBuyFilters
   | PublicBuyFilters
-  | InnovationHelpFilters
-  | InvestorFilters
-  | CustomerHelpFilters;
+  | HelpFilters
+  | InvestorFilters;
 
 type FilterProperties = {
   initialValues: AnyFilters;
@@ -104,8 +99,7 @@ type FilterProperties = {
     | ((search: Search, filters: StartupFilters) => Startup[])
     | ((search: Search, filters: ForecastedBuyFilters) => ProjetAchat[])
     | ((search: Search, filters: PublicBuyFilters) => Collectivite[])
-    | ((search: Search, filters: InnovationHelpFilters) => Aide[])
-    | ((search: Search, filters: CustomerHelpFilters) => Aide[])
+    | ((search: Search, filters: HelpFilters) => Aide[])
     | ((search: Search, filters: InvestorFilters) => Investisseur[]);
 };
 
@@ -115,7 +109,7 @@ export const useAdvancedFilters = (type: CardTypeNameFromModel): FilterPropertie
   const forecastedBuyFilters = [publicationDateFilter, zoneFilter, environnementalFilter];
   const startupFilters = [marketFilter, zoneFilter];
   const publicBuyFilters = [certificationFilter, entityFilter];
-  const innovationHelpFilters = [helpTypeFilter, deadlineFilter, permanentHelpFilter];
+  const HelpFilters = [helpTypeFilter, deadlineFilter, permanentHelpFilter];
   const customerHelpFilters = [helpTypeFilter, deadlineFilter, permanentHelpFilter];
   const investorFilters = [minimumAmountFilter, zoneFilter];
 
@@ -158,9 +152,9 @@ export const useAdvancedFilters = (type: CardTypeNameFromModel): FilterPropertie
       };
     case 'aides-innovations':
       return {
-        initialValues: getInitialValues(innovationHelpFilters),
+        initialValues: getInitialValues(HelpFilters),
         searchByType: ({ description, secteurs, filters: filters }: SearchParams) => {
-          const { deadline, isPermanentHelp, helpType } = filters as InnovationHelpFilters;
+          const { deadline, isPermanentHelp, helpType } = filters as HelpFilters;
           return searchAidesInno({
             description,
             secteurs,
@@ -170,13 +164,13 @@ export const useAdvancedFilters = (type: CardTypeNameFromModel): FilterPropertie
           });
         },
         handleFilter: handleInnovationHelpFilter,
-        filters: innovationHelpFilters
+        filters: HelpFilters
       };
     case 'aides-clients':
       return {
         initialValues: getInitialValues(customerHelpFilters),
         searchByType: ({ description, secteurs, filters }: SearchParams) => {
-          const { deadline, isPermanentHelp, helpType } = filters as CustomerHelpFilters;
+          const { deadline, isPermanentHelp, helpType } = filters as HelpFilters;
           return searchAidesClient({
             description,
             secteurs,
@@ -247,16 +241,50 @@ const handleForecastedBuyFilter = (search: Search, filters: ForecastedBuyFilters
   return filteredCards;
 };
 
-const handleInnovationHelpFilter = (search: Search, filters: InnovationHelpFilters) => {
+const handleInnovationHelpFilter = (search: Search, filters: HelpFilters) => {
   const cards = search.cards?.aides_innovation;
 
-  return cards;
+  return handleHelpsFilter(cards, filters);
 };
 
-const handleCustomerHelpFilter = (search: Search, filters: CustomerHelpFilters) => {
+const handleCustomerHelpFilter = (search: Search, filters: HelpFilters) => {
   const cards = search.cards?.aides_clients;
 
-  return cards;
+  return handleHelpsFilter(cards, filters);
+};
+
+const handleHelpsFilter = (cards: Aide[], filters: HelpFilters) => {
+  const { deadline, helpType, isPermanentHelp } = filters;
+
+  let deadlineFlag = true;
+  let helpTypeFlag = true;
+  let isPermanentHelpFlag = true;
+
+  const filteredCards = cards.filter((card) => {
+    const isDeadlineFilterActivated = Object.keys(deadlines).includes(deadline);
+    const isHelpTypeFilterActivated = Object.keys(helpTypes).includes(helpType);
+
+    if (isDeadlineFilterActivated) {
+      if (card.submission_deadline) {
+        const monthsDelay = deadlines[deadline];
+        const targetedDeadline = new Date();
+        targetedDeadline.setMonth(targetedDeadline.getMonth() + monthsDelay);
+        const cardDeadline = new Date(card.submission_deadline);
+        deadlineFlag = cardDeadline < targetedDeadline;
+      } else {
+        deadlineFlag = isPermanentHelp;
+      }
+    }
+    if (!isPermanentHelp) {
+      isPermanentHelpFlag = !!card.submission_deadline;
+    }
+    if (isHelpTypeFilterActivated) {
+      helpTypeFlag = card.aid_types.includes(helpType);
+    }
+
+    return deadlineFlag && isPermanentHelpFlag && helpTypeFlag;
+  });
+  return filteredCards;
 };
 
 const handleInvestorFilter = (search: Search, filters: InvestorFilters) => {

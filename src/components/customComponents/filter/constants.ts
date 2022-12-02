@@ -34,20 +34,20 @@ export const markets: Record<string, number> = {
   'B to A': 2
 };
 
-export const deadline: Record<string, number> = {
+export const deadlines: Record<string, number> = {
   "Moins d'1 mois": 0,
-  'Moins de 3 mois': 1,
-  'Moins de 6 mois': 2
+  'Moins de 3 mois': 3,
+  'Moins de 6 mois': 6
 };
 
-export const helpType: Record<string, string> = {
+export const helpTypes: Record<string, string> = {
   Subvention: 'Subvention',
   Prêt: 'Prêt',
   'Avance récupérable': 'Avance récupérable',
   'Autre aide financière': 'Autre aide financière',
   'Ingénierie technique': 'Ingénierie technique',
   'Ingénierie financière': 'Ingénierie financière',
-  'Ingénierie juridique / administrative': 'Ingénierie juridique / administrative'
+  'Ingénierie Juridique / administrative': 'Ingénierie Juridique / administrative'
 };
 
 export const entities: Record<string, string> = {
@@ -166,7 +166,7 @@ export const entityFilter: FilterDefinition = {
 export const deadlineFilter: FilterDefinition = {
   label: 'Echéance',
   defaultOption: 'Toutes',
-  options: Object.keys(deadline),
+  options: Object.keys(deadlines),
   id: 'deadline' as keyof AnyFilters,
   type: 'select',
   initialValue: ''
@@ -175,7 +175,7 @@ export const deadlineFilter: FilterDefinition = {
 export const helpTypeFilter: FilterDefinition = {
   label: "Nature de l'aide",
   defaultOption: 'Toutes',
-  options: Object.keys(helpType),
+  options: Object.keys(helpTypes),
   id: 'helpType' as keyof AnyFilters,
   type: 'select',
   initialValue: ''
