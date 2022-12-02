@@ -19,20 +19,16 @@ export const routes = (
       <Route path="/" element={<Home />} />
       <Route path="/startup" element={<HomeByProfile profile="startup" />} />
       <Route path="/acteurs-publics" element={<HomeByProfile profile="publicActor" />} />
-      {allCardType
-        .filter((cardType) =>
-          ['acheteurs-publics', 'startups', 'achats-previsionnels'].includes(cardType.name)
-        )
-        .map((cardType) => (
-          <>
-            <Route path={cardType.searchLink} element={<SearchPage cardType={cardType} />} />
-            <Route
-              path={cardType.searchLink + '/search'}
-              element={<SearchPage cardType={cardType} />}
-            />
-            <Route path={`/${cardType.name}/details/:id`} element={<Details />} />
-          </>
-        ))}
+      {allCardType.map((cardType) => (
+        <>
+          <Route path={cardType.searchLink} element={<SearchPage cardType={cardType} />} />
+          <Route
+            path={cardType.searchLink + '/search'}
+            element={<SearchPage cardType={cardType} />}
+          />
+          <Route path={`/${cardType.name}/details/:id`} element={<Details />} />
+        </>
+      ))}
       <Route path="/legal">
         <Route path="legal-notices" element={<LegalNotices />} />
         <Route path="cookies" element={<CookiePage />} />

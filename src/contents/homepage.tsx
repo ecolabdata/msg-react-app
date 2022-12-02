@@ -1,7 +1,9 @@
+import { publicActorPersona, startupPersona } from '../model/CardType';
+
 const homePageContent = {
   startup: {
     pageTitle: 'Accueil startups',
-    cardNames: ['achats-previsionnels', 'acheteurs-publics'],
+    cards: startupPersona,
     mainContent: {
       title: 'Start-up greentech, trouvez des leviers pour booster votre développement ! ',
       description: 'Trouvez des pistes pour accéder plus facilement à la commande publique !'
@@ -107,7 +109,7 @@ const homePageContent = {
   },
   publicActor: {
     pageTitle: 'Accueil acheteur public',
-    cardNames: ['startups', 'acheteurs-publics'],
+    cards: publicActorPersona,
     mainContent: {
       title: 'Acteurs publics, sourcez des entreprises éco-innovantes !',
       description:
