@@ -13,7 +13,8 @@ export const PageLayout = () => {
       <main
         className={`h-full p-1 md:pb-6 ${
           localStorage.scheme === 'dark' && 'bg-grey-50 text-white'
-        }`}>
+        }`}
+      >
         <div id="main-content">
           <Outlet />
         </div>

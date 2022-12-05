@@ -1,7 +1,9 @@
+import { publicActorPersona, startupPersona } from '../model/CardType';
+
 const homePageContent = {
   startup: {
     pageTitle: 'Accueil startups',
-    cardNames: ['achats-previsionnels', 'acheteurs-publics'],
+    cards: startupPersona,
     mainContent: {
       title: 'Start-up greentech, trouvez des leviers pour booster votre développement ! ',
       description: 'Trouvez des pistes pour accéder plus facilement à la commande publique !'
@@ -95,7 +97,8 @@ const homePageContent = {
             className="text-base my-8 text-blue-france-625 p-1 link-underline"
             href="https://airtable.com/shrY73vlVka9j2cg8"
             target="_blank"
-            rel="noreferrer">
+            rel="noreferrer"
+          >
             ce formulaire d’inscription
           </a>
           ! (Sous réserve de validation par nos équipes)
@@ -107,7 +110,7 @@ const homePageContent = {
   },
   publicActor: {
     pageTitle: 'Accueil acheteur public',
-    cardNames: ['startups', 'acheteurs-publics'],
+    cards: publicActorPersona,
     mainContent: {
       title: 'Acteurs publics, sourcez des entreprises éco-innovantes !',
       description:

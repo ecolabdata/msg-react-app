@@ -194,9 +194,9 @@ export interface InvestisseurQuery extends Omit<Query, 'type'> {
 export const searchInvestisseur = (query: InvestisseurQuery) =>
   buildFetchRequest({
     fichier_investisseurs: 'out_PEXE.json',
-    montant_min: query.montantMin * 1000,
+    montant_min: query.montantMin * 1000 || 0,
     secteurs: query.secteurs,
-    keywords: query.motsclefs
+    keywords: query.motsclefs || []
   }).then((resp) => handleResp(query, resp));
 
 export interface AidesQuery extends Omit<Query, 'type'> {
@@ -214,7 +214,7 @@ export const searchAidesClient = (query: AidesClientQuery) =>
     descriptionSU: query.description,
     nb_aides: 100,
     secteurs: query.secteurs,
-    keywords: query.motsclefs
+    keywords: query.motsclefs || []
   }).then((resp) => handleResp(query, resp));
 
 /* Aides Inno */

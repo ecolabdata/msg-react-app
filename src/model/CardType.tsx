@@ -18,7 +18,7 @@ export interface CardType {
   backgroundColor?: string;
   title: string;
   description: string;
-  name: string;
+  name: CardTypeNameFromModel;
   searchLink: string;
   apiName: ApiName;
   version: typeof versions[number];
@@ -169,12 +169,11 @@ export const achatProg: CardType = {
 export const startupPersona: CardType[] = [
   aideInno,
   aideClient,
-  startups,
   achatPrevi,
   investisseur,
   acheteurPublic
 ];
-export const publicActorPersona: CardType[] = [aideFin, sourcingSu, retex, achatProg];
+export const publicActorPersona: CardType[] = [startups, acheteurPublic];
 export const all = [...startupPersona, ...publicActorPersona] as const;
 export const byName = Object.fromEntries(all.map((x) => [x.name, x]));
 export const dropdownValues = Object.fromEntries(all.map((x) => [x.name, x.title]));
