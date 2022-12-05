@@ -71,7 +71,7 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
         className={classNames(
           `cursor-text mt-2 w-full rounded-t-sm p-2 bg-background-inputs ${borderColor}`,
           { [`addBorder-b border-3`]: !errorText },
-          { 'addBorder border-1 border-red-500': errorText },
+          { 'addBorder border-2 border-red-marianne-625-hover': errorText },
           classNameProp
         )}
         aria-invalid={!!errorText}
@@ -85,7 +85,7 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
           id={`${inputId}-error`}
           aria-live="polite"
         >
-          <p style={{ color: 'hsla(0, 100%, 65%, 0.9)' }}>{errorText}</p>
+          <p className="text-red-marianne-625-hover">{errorText}</p>
         </div>
       )}
     </div>
