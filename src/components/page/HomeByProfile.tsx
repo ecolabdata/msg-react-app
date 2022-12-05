@@ -39,7 +39,7 @@ const HomeByProfile: React.FC<HomeByProfileProps> = ({ profile }) => {
       {!!pageContent.ctaBlocs?.length && (
         <div className="container flex flex-col my-8 mx-auto justify-center max-w-headerSize md:max-w-4/5  md:flex-row">
           {pageContent.ctaBlocs.map(({ title, description, links, cta }) => (
-            <section key={title} className="w-1/2 max-w-2xl p-16">
+            <section key={title} className="w-full mb:w-1/2 max-w-2xl p-8 mb:p-16">
               <CtaBloc title={title} description={description} links={links} cta={cta} />
             </section>
           ))}
