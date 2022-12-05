@@ -11,7 +11,6 @@ interface HomeByProfileProps {
 
 const HomeByProfile: React.FC<HomeByProfileProps> = ({ profile }) => {
   const pageContent = homePageContent[profile];
-  console.log(allCardType);
   return (
     <>
       <section>

@@ -241,5 +241,5 @@ export const fundingTypeFilter: FilterDefinition = {
   options: Object.keys(fundingTypes),
   id: 'fundingType' as keyof AnyFilters,
   type: 'select',
-  initialValue: 0
+  initialValue: ''
 };
