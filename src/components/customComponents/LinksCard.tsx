@@ -1,3 +1,6 @@
+import ExternalLink from './ExternalLink';
+import ScreenReaderOnlyText from './ScreenReaderOnlyText';
+
 type LinkContent = {
   url: string;
   name: string;
@@ -20,14 +23,7 @@ const LinksCard: React.FC<LinksCardProps> = ({ title, description, links }) => {
             <ul className="flex flex-col items-end">
               {links.map(({ url, name }) => (
                 <li key={name} className="mt-2">
-                  <a
-                    className="fr-link rm-link-underline"
-                    target="_blank"
-                    href={url}
-                    rel="noreferrer"
-                  >
-                    {name}
-                  </a>
+                  <ExternalLink href={url} content={name} className="fr-link rm-link-underline" />
                 </li>
               ))}
             </ul>

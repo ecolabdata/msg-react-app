@@ -1,4 +1,6 @@
 import { PictoDownload, PictoSendMail } from '../../assets/Icons';
+import ExternalLink from './ExternalLink';
+import ScreenReaderOnlyText from './ScreenReaderOnlyText';
 
 type LinkContent = {
   url: string | undefined;
@@ -22,27 +24,22 @@ const CtaBloc: React.FC<CtaBlocProps> = ({ title, description, cta, links }) => 
       {iconMapping[cta.icon as 'sendMail' | 'download']}
       <h2 className="mt-2 mb-4 w-full font-bold text-3xl">{title}</h2>
       <p className="">{description}</p>
-      <a
-        className="my-8 fr-btn fr-btn--sm fr-btn--primary"
-        target="_blank"
-        href={cta.url}
-        rel="noreferrer"
-      >
-        {cta.name}
-      </a>
+      {cta.url && (
+        <ExternalLink
+          href={cta.url}
+          content={cta.name}
+          className="my-8 fr-btn fr-btn--sm fr-btn--primary"
+        />
+      )}
+
       {links && (
         <div>
           <ul className="flex flex-col items-start">
             {links.map(({ url, name }) => (
               <li key={name} className="mt-2">
-                <a
-                  className="fr-link rm-link-underline"
-                  target="_blank"
-                  href={url}
-                  rel="noreferrer"
-                >
-                  {name}
-                </a>
+                {url && (
+                  <ExternalLink href={url} content={name} className="fr-link rm-link-underline" />
+                )}
               </li>
             ))}
           </ul>

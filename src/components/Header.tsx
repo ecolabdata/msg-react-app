@@ -38,7 +38,10 @@ const Header = () => {
                   <Link
                     className="flex items-center"
                     to="/"
-                    title="Accueil - Mes services GreenTech - Ministère de la transition écologique et de la cohésion des territoires"
+                    title="Accueil - Mes services
+GreenTech - L'aimant à leviers dédié à l'écosystème greentech |
+Ministère de la transition écologique et de la cohésion des
+territoires"
                   >
                     <MsgLogo />
                   </Link>
