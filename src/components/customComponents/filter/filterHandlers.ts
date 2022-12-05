@@ -7,10 +7,11 @@ import {
   entities,
   PublicationDates,
   departmentsByRegion,
-  Regions,
+  Region,
   deadlines,
   helpTypes,
-  fundingTypes
+  fundingTypes,
+  zonesSynonymes
 } from './constants';
 import { yesNotoBoolean } from '../../../utils/utilityFunctions';
 import {
@@ -37,7 +38,7 @@ export const handleForecastedBuyFilter = (search: Search, filters: ForecastedBuy
 
     if (isZoneFilterActivated) {
       const departmentsForZone =
-        zone && departmentsByRegion[zone as Regions].map((d) => d.toString());
+        zone && departmentsByRegion[zone as Region].map((d) => d.toString());
 
       const cardDepartments = card.departments.map((d) => d.department);
       zoneFlag = cardDepartments.some((d) => departmentsForZone?.includes(d));
@@ -104,18 +105,35 @@ export const handleHelpsFilter = (cards: Aide[], filters: HelpFilters) => {
 
 export const handleInvestorFilter = (search: Search, filters: InvestorFilters) => {
   const cards = search.cards?.investisseurs;
-  const { fundingType } = filters;
+  const { fundingType, zone } = filters;
   const isFundingTypeFilterActivated = Object.keys(fundingTypes).includes(fundingType);
+  const isZoneFilterActivated = Object.keys(zones).includes(zone);
 
   const filteredCards = cards.filter((card) => {
     let fundingTypeFlag = true;
+    let zoneFlag = true;
     if (isFundingTypeFilterActivated) {
       const cardFundingTypes = card['Type de financement'].split(';').map((t) => t.trim());
       fundingTypeFlag = cardFundingTypes.includes(fundingType);
     }
-    return fundingTypeFlag;
-  });
 
+    if (isZoneFilterActivated) {
+      const cardZones = card['Zone géographqiue ciblée'].split(';');
+      if (cardZones.includes('France entière') || cardZones.includes('')) {
+        zoneFlag = true;
+      } else {
+        const hasCardZonesSelectedFilter = cardZones.some((z) => {
+          let cardZone = z.trim();
+          cardZone = cardZone.startsWith('-') ? cardZone.substring(1) : cardZone;
+          const selectedZoneSynonymes = zonesSynonymes[zone as Region];
+          return selectedZoneSynonymes.includes(cardZone);
+        });
+
+        zoneFlag = hasCardZonesSelectedFilter;
+      }
+    }
+    return fundingTypeFlag && zoneFlag;
+  });
   return filteredCards;
 };
 
@@ -130,7 +148,7 @@ export const handleStartUpFilter = (search: Search, filters: StartupFilters) => 
     let marketFlag = true;
 
     if (isZoneFilterActivated) {
-      zoneFlag = card.Région === zone;
+      zoneFlag = zonesSynonymes[zone as Region].includes(card.Région);
     }
     if (isMarketFilterActivated) {
       const cardMarkets = card.Marché.split(',');

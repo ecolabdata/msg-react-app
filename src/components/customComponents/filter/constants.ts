@@ -1,6 +1,6 @@
 import { AnyFilters } from './filters';
 
-export type Regions =
+export type Region =
   | 'Auvergne-Rhône-Alpes'
   | 'Bourgogne-Franche-Comté'
   | 'Bretagne'
@@ -74,7 +74,7 @@ export const certifications: Record<string, string> = {
   'Climat air énergie': 'Climat air énergie'
 };
 
-export const departmentsByRegion: Record<Regions, string[] | number[]> = {
+export const departmentsByRegion: Record<Region, string[] | number[]> = {
   'Auvergne-Rhône-Alpes': [1, 3, 7, 15, 26, 38, 42, 43, 63, 69, 73, 74],
   'Bourgogne-Franche-Comté': [21, 25, 39, 58, 70, 71, 89, 90],
   Bretagne: [22, 29, 35, 56],
@@ -95,7 +95,7 @@ export const departmentsByRegion: Record<Regions, string[] | number[]> = {
   "Provence-Alpes-Côte d'Azur": [4, 5, 6, 13, 83, 84]
 };
 
-export const zones: Record<Regions, Regions> = {
+export const zones: Record<Region, Region> = {
   'Auvergne-Rhône-Alpes': 'Auvergne-Rhône-Alpes',
   'Bourgogne-Franche-Comté': 'Bourgogne-Franche-Comté',
   Bretagne: 'Bretagne',
@@ -114,6 +114,27 @@ export const zones: Record<Regions, Regions> = {
   'La Réunion': 'La Réunion',
   Martinique: 'Martinique',
   Mayotte: 'Mayotte'
+};
+
+export const zonesSynonymes: Record<Region, string[]> = {
+  'Auvergne-Rhône-Alpes': ['Auvergne-Rhône-Alpes', 'Auvergne Rhône Alpes'],
+  'Bourgogne-Franche-Comté': ['Bourgogne-Franche-Comté', 'Bourgogne Franche Comté'],
+  Bretagne: ['Bretagne'],
+  Corse: ['Corse'],
+  'Centre-Val de Loire': ['Centre-Val de Loire', 'Centre Val de Loire'],
+  'Grand Est': ['Grand Est'],
+  'Hauts-de-France': ['Hauts-de-France', 'Hauts de France'],
+  'Ile-de-France': ['Ile-de-France', 'Île-de-France', 'Île de France', 'Ile de France'],
+  'Nouvelle Aquitaine': ['Nouvelle Aquitaine', 'Nouvelle-Aquitaine'],
+  Normandie: ['Normandie'],
+  Occitanie: ['Occitanie'],
+  "Provence-Alpes-Côte d'Azur": ["Provence-Alpes-Côte d'Azur", "Provence Alpes Côte d'Azur"],
+  'Pays de la Loire': ['Pays de la Loire'],
+  Guadeloupe: ['Guadeloupe'],
+  Guyane: ['Guyane'],
+  'La Réunion': ['La Réunion'],
+  Martinique: ['Martinique'],
+  Mayotte: ['Mayotte']
 };
 
 export type FilterDefinition = {

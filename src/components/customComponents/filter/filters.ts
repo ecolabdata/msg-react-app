@@ -109,7 +109,7 @@ export const useAdvancedFilters = (type: CardTypeNameFromModel): FilterPropertie
   const startupFilters = [marketFilter, zoneFilter];
   const publicBuyFilters = [certificationFilter, entityFilter];
   const helpFilters = [helpTypeFilter, deadlineFilter, permanentHelpFilter];
-  const investorFilters = [minimumAmountFilter, fundingTypeFilter];
+  const investorFilters = [minimumAmountFilter, zoneFilter, fundingTypeFilter];
 
   switch (type) {
     case 'achats-previsionnels':
