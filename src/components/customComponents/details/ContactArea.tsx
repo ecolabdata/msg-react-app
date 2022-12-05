@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { AnyCard, isAcheteurPublic, isProjetAchat, isStartup } from '../../../api/Api';
+import ExternalLink from '../ExternalLink';
 
 interface ContactAreaProps {
   card: AnyCard;
@@ -33,19 +34,20 @@ const ContactArea: React.FC<ContactAreaProps> = ({ card, className }) => {
           )}
         </>
       ) : (
-        <a
-          href={cta?.url}
-          className="fr-btn fr-btn--primary w-fit px-4 h-3 py-2 hover:bg-claire-bf__hover mt-6  "
-          target="_blank"
-          rel="noreferrer"
-        >
-          {cta?.label}
-        </a>
+        cta && (
+          <ExternalLink
+            href={cta.url}
+            content={cta.label}
+            className="fr-btn fr-btn--primary w-fit px-4 h-3 py-2 hover:bg-claire-bf__hover mt-6"
+          />
+        )
       )}
       {link && (
-        <a className="fr-link rm-link-underline mt-2" target="_blank" href={link} rel="noreferrer">
-          Voir le site internet
-        </a>
+        <ExternalLink
+          href={link}
+          content="Voir le site internet"
+          className="fr-link rm-link-underline mt-2"
+        />
       )}
     </section>
   );

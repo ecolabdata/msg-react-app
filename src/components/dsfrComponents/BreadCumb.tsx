@@ -43,7 +43,7 @@ const BreadCumb: React.FC = () => {
   return (
     <nav
       role="navigation"
-      className="fr-breadcrumb  h-full   container-title container max-w-headerSize mx-auto  !mb-0 mt-8 "
+      className="fr-breadcrumb  h-full fr-container max-w-headerSize mx-auto  !mb-0 mt-8 "
       aria-label="vous êtes ici :"
     >
       {isMobile && navHistory.length > 0 && (

@@ -1,4 +1,4 @@
-import { ReactNode, useContext } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import slugify from 'slugify';
 import {
@@ -12,6 +12,7 @@ import {
 } from '../../api/Api';
 import { ApplicationContext } from '../../App';
 import { CardType } from '../../model/CardType';
+import ResultCardDescription from './ResultCardDescription';
 import ScreenReaderOnlyText from './ScreenReaderOnlyText';
 
 interface CardProps {
@@ -27,27 +28,10 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
   const [, setNextScrolTarget] = usedNextScrollTarget;
 
   let displayableFinancers = '';
-  let displayabeSubmissionDeadLine = '';
   if (isAide(cardData)) {
     displayableFinancers = cardData.financers?.join(' | ') || '';
-    const d = cardData.submission_deadline ? new Date(cardData.submission_deadline) : null;
-    displayabeSubmissionDeadLine =
-      ('0' + d?.getUTCDate()).slice(-2) +
-      '/' +
-      ('0' + ((d?.getUTCMonth() || 0) + 1)).slice(-2) +
-      '/' +
-      d?.getUTCFullYear();
   }
-  let targetDate = '';
-  if (isProjetAchat(cardData)) {
-    const d = new Date(cardData.publicationTargetDate);
-    targetDate =
-      ('0' + d?.getUTCDate()).slice(-2) +
-      '/' +
-      ('0' + ((d?.getUTCMonth() || 0) + 1)).slice(-2) +
-      '/' +
-      d?.getUTCFullYear();
-  }
+
   const name = applyCard(
     cardData,
     (ap) => ap.nom,
@@ -110,51 +94,7 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
               </Link>
             </h3>
             <div className="fr-card__desc">
-              {applyCard(
-                cardData,
-                (ap) =>
-                  ap.Startups != '0' ? (
-                    <div>
-                      Ils ont travaillés avec:
-                      <br />
-                      {ap.Startups.split(',').join(', ')}
-                    </div>
-                  ) : null,
-                () => (
-                  <div>Date visée de publication: {targetDate}</div>
-                ),
-                (i) => (
-                  <>
-                    <div>
-                      {i['Ticket min en K€']}K€ - {i['Ticket max en K€']}K€
-                    </div>
-                    <div
-                      className="h-[3em] truncate"
-                      title={i["Présentation de la politique d'investissement"]}
-                    >
-                      {i["Présentation de la politique d'investissement"].split(';').join(' | ')}
-                    </div>
-                    <DetailBadges contents={i['Type de financement'].split(';')} />
-                  </>
-                ),
-                (a) => (
-                  <>
-                    <div data-org-value={a.submission_deadline}>
-                      {' '}
-                      {a.submission_deadline
-                        ? `Date de clôture: ${displayabeSubmissionDeadLine}`
-                        : 'Aide permanente'}
-                    </div>
-                    <DetailBadges contents={a.aid_types} />
-                  </>
-                ),
-                (su) => (
-                  <div>{su['Pitch']}</div>
-                ),
-                () => (
-                  <></>
-                )
-              )}
+              <ResultCardDescription cardData={cardData} />
             </div>
             <div className="fr-card__start">
               <ul className="fr-tags-group" aria-hidden={true}>
@@ -176,20 +116,3 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
 };
 
 export default ResultCard;
-
-const DetailBadges = ({ contents }: { contents: ReactNode[] }) => {
-  return (
-    <p className={`text-white font-bold uppercase text-xs mt-2`}>
-      {contents.map((content, index) => (
-        <>
-          {content && (
-            <>
-              <span>{content}</span>
-              {index !== contents.length - 1 && <span className="mx-1 "> | </span>}
-            </>
-          )}
-        </>
-      ))}
-    </p>
-  );
-};

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import ExternalLink from './customComponents/ExternalLink';
 
 const Footer: React.FC = () => {
   return (
@@ -7,7 +8,10 @@ const Footer: React.FC = () => {
         <div className="fr-container dsfr-lg:relative">
           <div className="fr-footer__body">
             <div className="fr-footer__brand fr-enlarge-link">
-              <Link to="/" title="Retour à l’accueil">
+              <Link
+                to="/"
+                title="Ministère de la transition écologique et de la cohésion des territoires - Retour à l’accueil"
+              >
                 <p className="fr-logo uppercase">
                   ministère <br />
                   de la transition <br />
@@ -119,13 +123,10 @@ const Footer: React.FC = () => {
             <div className="fr-footer__bottom-copy text-grey-625 font-bold text-xs mb-4">
               <p>
                 Sauf mention contraire, tous les contenus de ce site sont sous{' '}
-                <a
+                <ExternalLink
                   href="https://github.com/etalab/licence-ouverte/blob/master/LO.md"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  licence etalab-2.0
-                </a>
+                  content="licence etalab-2.0"
+                />
               </p>
             </div>
           </div>

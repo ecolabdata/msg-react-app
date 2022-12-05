@@ -1,4 +1,5 @@
 import { publicActorPersona, startupPersona } from '../model/CardType';
+import ExternalLink from '../components/customComponents/ExternalLink';
 
 const homePageContent = {
   startup: {
@@ -93,14 +94,11 @@ const homePageContent = {
           Très bonne idée ! Pour accentuer votre visibilité auprès des acheteurs publics et de
           l’écosystème Greentech Innovation, enregistrer vos recherches et recevoir des alertes,
           remplissez
-          <a
-            className="text-base my-8 text-blue-france-625 p-1 link-underline"
+          <ExternalLink
             href="https://airtable.com/shrY73vlVka9j2cg8"
-            target="_blank"
-            rel="noreferrer"
-          >
-            ce formulaire d’inscription
-          </a>
+            content="ce formulaire d’inscription"
+            className="text-base my-8 text-blue-france-625 p-1 link-underline"
+          />
           ! (Sous réserve de validation par nos équipes)
         </>
       ),

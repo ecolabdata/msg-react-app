@@ -42,7 +42,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint src --fix",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
-    "clean": "npm run lint:fix && npm run format"
+    "clean": "npm run lint:fix && npm run format",
+    "tailwind-config-viewer": "tailwind-config-viewer -o"
   },
   "eslintConfig": {
     "extends": [

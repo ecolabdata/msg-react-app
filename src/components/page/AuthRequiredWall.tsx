@@ -1,6 +1,7 @@
 import { ReactElement } from 'react';
 import { Outlet } from 'react-router-dom';
 import { JwtState, useJwtState } from '../../utils/jwt';
+import ExternalLink from '../customComponents/ExternalLink';
 import MsgLogo from '../customComponents/MsgLogo';
 
 const template = (bigTitle: string, smallTitle: string) => (
@@ -12,16 +13,14 @@ const template = (bigTitle: string, smallTitle: string) => (
     </div>
     <h1 className="fr-h3 mt-8 text-center font-thin">{bigTitle}</h1>
     <p>{smallTitle}</p>
-    <a
+
+    <ExternalLink
       href="https://airtable.com/shrBDPDWDKVqRnHhf"
-      target="_blank"
+      content="Je demande un accès"
       className="
                 fr-btn fr-btn--primary mt-8
                 hover:bg-claire-bf__hover flex justify-between"
-      rel="noreferrer"
-    >
-      <span>Je demande un accès</span>
-    </a>
+    />
   </div>
 );
 

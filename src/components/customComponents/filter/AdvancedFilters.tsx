@@ -20,7 +20,7 @@ const AdvancedFilters: React.FC<AdvancedFiltersProps> = ({
 }) => {
   return (
     <fieldset className="flex flex-col md:flex-row items-center">
-      <legend className="sr-only">Champs de recherche avancée</legend>
+      <legend className="sr-only">Champs supplémentaires pour votre projet</legend>
 
       {filters.map(({ label, defaultOption, options, id, type }) =>
         type === 'select' ? (
