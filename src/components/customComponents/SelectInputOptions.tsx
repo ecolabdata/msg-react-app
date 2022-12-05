@@ -80,7 +80,7 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({
         <img
           className={`${displaySelect ? 'rotate-90' : ''} h-5 w-5 m-0.5`}
           src={Chevron}
-          alt="Chevron"
+          aria-hidden="true"
         />
       </button>
 

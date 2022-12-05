@@ -1,6 +1,5 @@
 import { PictoDownload, PictoSendMail } from '../../assets/Icons';
 import ExternalLink from './ExternalLink';
-import ScreenReaderOnlyText from './ScreenReaderOnlyText';
 
 type LinkContent = {
   url: string | undefined;

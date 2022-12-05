@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import ExternalLink from './customComponents/ExternalLink';
-import ScreenReaderOnlyText from './customComponents/ScreenReaderOnlyText';
 
 const Footer: React.FC = () => {
   return (

@@ -1,5 +1,4 @@
 import ExternalLink from './ExternalLink';
-import ScreenReaderOnlyText from './ScreenReaderOnlyText';
 
 type LinkContent = {
   url: string;

@@ -75,6 +75,7 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
         });
       });
     } else {
+      document?.getElementById('keywordsForm-Décrivez votre projet en quelques lignes.')?.focus();
       setErrorTxt("Erreur: la description de l'entreprise est obligatoire");
     }
   };
@@ -111,7 +112,7 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
             className="researchContainer m-auto flex flex-col justify-around flex-wrap h-fit w-full"
           >
             <fieldset>
-              <legend className="sr-only">Champs de formulaire principaux</legend>
+              <legend className="sr-only">Votre projet</legend>
               <SearchForm
                 usedDescription={[description, setDescription]}
                 usedSecteurs={[secteurs, setSecteurs]}
@@ -122,7 +123,7 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
             </fieldset>
             <div className="flex flex-col mt-4">
               <button
-                aria-pressed={isAdvancedSearchOpen}
+                aria-expanded={isAdvancedSearchOpen}
                 type="button"
                 className="ml-auto underline"
                 onClick={handleToggleAdvancedSearch}

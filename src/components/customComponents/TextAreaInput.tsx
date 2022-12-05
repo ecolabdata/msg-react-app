@@ -1,6 +1,6 @@
-import { generateNumber, tailwindColorUtility } from '../../utils/utilityFunctions';
 import classNames from 'classnames';
 import { useEffect, useRef, useState } from 'react';
+import { tailwindColorUtility } from '../../utils/utilityFunctions';
 
 interface TextAreaInputProps {
   value: string;
@@ -23,9 +23,8 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
   className: classNameProp = '',
   color
 }) => {
-  const id = generateNumber(1, 1000);
   const MIN_HEIGHT = 50;
-  const inputId = `${formId}-${id}`;
+  const inputId = `${formId}-${label}`;
 
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const [text, setText] = useState('');

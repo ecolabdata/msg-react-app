@@ -20,7 +20,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ title, description, badge, ty
               <span className="clamp mt-2 font-bold text-xl">{title}</span>
             </Link>
           </h3>
-          <div className="fr-card__desc text-grey-625-active text-sm">{description}</div>
+          <p className="fr-card__desc text-grey-625-active text-sm">{description}</p>
           <div className="fr-card__start">
             <ul className="fr-tags-group" aria-hidden={true}>
               <li>

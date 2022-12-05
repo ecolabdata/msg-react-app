@@ -1,4 +1,3 @@
-import React from 'react';
 import { CardTypeName as ApiName } from '../api/Api';
 import {
   PictoCalendar,
