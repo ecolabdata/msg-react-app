@@ -11,6 +11,7 @@ export const PageLayout = () => {
         <BreadCumb />
       </div>
       <main
+        role="main"
         className={`h-full p-1 md:pb-6 ${
           localStorage.scheme === 'dark' && 'bg-grey-50 text-white'
         }`}
