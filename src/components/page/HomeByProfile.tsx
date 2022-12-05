@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { publicActorPersona as allCardType } from '../../model/CardType';
 import CtaBloc from '../customComponents/CtaBloc';
 import LinksCard from '../customComponents/LinksCard';
 import HomeCard from '../dsfrComponents/HomeCard';
@@ -31,7 +30,7 @@ const HomeByProfile: React.FC<HomeByProfileProps> = ({ profile }) => {
           </h2>
         </div>
 
-        <ul className="cardsContainer mx-auto flex flex-wrap justify-center lg:w-1/2">
+        <ul className="cardsContainer mx-auto flex flex-wrap justify-center lg:max-w-1/2">
           {pageContent.cards.map((card, index) => (
             <HomeCard cardTypeData={card} key={index} />
           ))}
