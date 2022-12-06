@@ -9,9 +9,10 @@ type Tab = {
 interface TabsProps {
   label: string;
   tabs: Tab[];
+  className?: string;
 }
 
-export const Tabs: React.FC<TabsProps> = ({ label, tabs }) => {
+export const Tabs: React.FC<TabsProps> = ({ label, tabs, className }) => {
   const [tabSelected, setTabSelected] = React.useState(tabs[0].id);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -20,7 +21,7 @@ export const Tabs: React.FC<TabsProps> = ({ label, tabs }) => {
   };
 
   return (
-    <div className="fr-tabs">
+    <div className={`fr-tabs ${className}`}>
       <ul className="fr-tabs__list" role="tablist" aria-label={label}>
         {tabs.map(({ id, Button }) => (
           <TabButton key={id} id={id} handleClick={handleClick} isSelected={tabSelected === id}>
