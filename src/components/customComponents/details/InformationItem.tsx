@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { TagsList } from '../TagsList';
 
 interface InformationItemProps {
   label: string;
@@ -17,17 +18,7 @@ export const InformationItem: React.FC<InformationItemProps> = ({
     <div className={`flex flex-col mb-8 ${className}`}>
       {showDivider && <div className="h-0.5 w-[10%] bg-gray-700 my-6" />}
       <h2 className="text-2xl mb-2">{label}</h2>
-      {Array.isArray(contents) ? (
-        <ul className="flex flex-col sm:flex-row flex-wrap">
-          {contents.map((c) => (
-            <li key={c}>
-              <p className="fr-tag">{c}</p>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>{contents}</p>
-      )}
+      {Array.isArray(contents) ? <TagsList tags={contents} /> : <p>{contents}</p>}
     </div>
   );
 };
