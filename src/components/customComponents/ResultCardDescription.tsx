@@ -32,11 +32,14 @@ const ResultCardDescription: FC<ResultCardDescriptionProps> = ({ cardData }) => 
   return applyCard(
     cardData,
     (ap) =>
-      ap.Startups != '0' ? (
+      ap.labelled_startups?.length > 0 ? (
         <p>
           Ils ont travaillés avec:
           <br />
-          {ap.Startups.split(',').join(', ')}
+          {ap.labelled_startups
+            .map((startup) => startup.nom)
+            .filter(Boolean)
+            .join(', ')}
         </p>
       ) : null,
     () => <p>Date visée de publication: {targetDate}</p>,

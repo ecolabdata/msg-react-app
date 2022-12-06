@@ -34,7 +34,7 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
 
   const name = applyCard(
     cardData,
-    (ap) => ap.nom,
+    (ap) => ap.public_actor_nom,
     (pa) => pa.label,
     (i) => i['Nom du fonds'],
     (a) => a.name,
@@ -56,7 +56,7 @@ const ResultCard: React.FC<CardProps> = ({ cardData, cardType }) => {
   //TODO: When an endpoint by id exist. All this should be removed to link card to `/${cardType.name}/details/${cardData.id}`
   const cardSlug = applyCard(
     cardData,
-    (ap) => ap.nom,
+    (ap) => ap.public_actor_nom,
     (pa) => pa.label,
     (i) => i['Nom du fonds'],
     (a) => a.slug,
