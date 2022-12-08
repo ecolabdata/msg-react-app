@@ -12,11 +12,13 @@ import Sitemap from '../components/page/Sitemap';
 import { all as allCardType } from './CardType';
 
 import PageLayout from '../components/page/PageLayout';
+import TestApiV2 from '../components/TestApiV2';
 
 export const routes = (
   <Routes>
     <Route element={<PageLayout />}>
       <Route path="/" element={<Home />} />
+      <Route path="/test-apiv2" element={<TestApiV2/>} />
       <Route path="/startup" element={<HomeByProfile profile="startup" />} />
       <Route path="/acteurs-publics" element={<HomeByProfile profile="publicActor" />} />
       {allCardType.map((cardType) => (
