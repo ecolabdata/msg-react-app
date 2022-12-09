@@ -10,6 +10,7 @@ import AdvancedFilters from '../customComponents/filter/AdvancedFilters';
 import SearchForm from '../customComponents/SearchForm';
 import Pagination from '../dsfrComponents/Pagination';
 import SearchResults from '../customComponents/SearchResults';
+import { mockedPublicBuyer } from '../../api/mockedPublicBuyer';
 
 type Props = {
   cardType: CardType;
@@ -164,7 +165,11 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
       </div>
       {initialState && (
         <>
-          <SearchResults cards={cardsSlice} cardType={cardType} isLoading={isLoading} />
+          <SearchResults
+            cards={cardType.name === 'acheteurs-publics' ? [mockedPublicBuyer] : cardsSlice}
+            cardType={cardType}
+            isLoading={isLoading}
+          />
           <Pagination
             isLoading={isLoading && nbPage > 0}
             onClick={() => {

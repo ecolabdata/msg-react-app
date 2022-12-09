@@ -12,7 +12,8 @@ export const TabPanel: React.FC<PropsWithChildren<TabPanelProps>> = ({ id, label
       className="fr-tabs__panel fr-tabs__panel--selected"
       role="tabpanel"
       aria-labelledby={labelId}
-      tabIndex={0}>
+      tabIndex={0}
+    >
       {children}
     </div>
   );

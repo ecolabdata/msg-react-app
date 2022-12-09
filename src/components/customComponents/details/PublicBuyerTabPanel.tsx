@@ -84,7 +84,8 @@ const CPVCard: React.FC<CPVCardProps> = ({ content }) => {
             <ul className="fr-tags-group" aria-hidden={true}>
               <li>
                 <p
-                  className={`fr-badge fr-badge--sm bg-red-marianne-625-lightBackground text-red-marianne-625`}>
+                  className={`fr-badge fr-badge--sm bg-red-marianne-625-lightBackground text-red-marianne-625`}
+                >
                   Code CPV: {codeCPV}
                 </p>
               </li>
