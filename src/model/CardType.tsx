@@ -1,4 +1,7 @@
-import { CardTypeName as ApiName } from '../api/Api';
+import ResultCard from 'components/customComponents/ResultCard';
+import SearchResults from 'components/customComponents/SearchResults';
+import { SearchPage } from 'components/page/SearchPage';
+import { CardTypeName as ApiName, isAide } from '../api/Api';
 import {
   PictoCalendar,
   PictoCityHall,
@@ -86,8 +89,40 @@ export const aideClient: CardType = {
   name: 'aides-clients',
   searchLink: '/aides-clients',
   apiName: 'aides_clients',
-  version: 'beta'
+  version: 'beta',
 } as const;
+
+const name = applyCard(
+  cardData,
+  (ap) => ap.public_actor_nom,
+  (pa) => pa.label,
+  (i) => i['Nom du fonds'],
+  (su) => su['Start-up'],
+  () => 'No title'
+);
+const toprow =
+  : isStartup(cardData)
+  ? cardData['Thématique']
+  : isInvestisseur(cardData)
+  ? cardData['Vous êtes']
+  : isAcheteurPublic(cardData)
+  ? 'Ville / Région'
+  : isProjetAchat(cardData)
+  ? cardData.purchasingEntity.label
+  : '';
+
+//TODO: When an endpoint by id exist. All this should be removed to link card to `/${cardType.name}/details/${cardData.id}`
+const cardSlug = applyCard(
+  cardData,
+  (ap) => ap.public_actor_nom,
+  (pa) => pa.label,
+  (i) => i['Nom du fonds'],
+  (a) => a.slug,
+  (su) => su['Start-up'],
+  () => 'unknown-slug'
+);
+const slug = slugify(cardSlug);
+
 
 export const aideInno: CardType = {
   SVGLogo: PictoEnvironnement,

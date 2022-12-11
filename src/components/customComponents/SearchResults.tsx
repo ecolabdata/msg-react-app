@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from 'react';
+import { Children, PropsWithChildren, useContext, useEffect, useRef } from 'react';
 import { AnyCard } from '../../api/Api';
 import { ApplicationContext } from '../../App';
 import { CardType } from '../../model/CardType';
@@ -9,10 +9,9 @@ import ScreenReaderOnlyText from './ScreenReaderOnlyText';
 type Props = {
   cards: AnyCard[];
   isLoading: boolean;
-  cardType: CardType;
 };
 
-const SearchResults: React.FC<Props> = ({ cards, isLoading, cardType }) => {
+const SearchResults: React.FC<PropsWithChildren<Props>> = ({ cards, isLoading, children }) => {
   const ref = useRef<HTMLDivElement>(null);
   const { usedNextScrollTarget } = useContext(ApplicationContext);
   const [, setNextScrollTarget] = usedNextScrollTarget;
@@ -48,20 +47,13 @@ const SearchResults: React.FC<Props> = ({ cards, isLoading, cardType }) => {
           >{`(${cards.length} résultats)`}</span>
           <ScreenReaderOnlyText content={`il y'a ${cards.length} résultats`} />
           <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {cards.map((card, i) => (
-              <ResultCard
-                isLoading={isLoading}
-                cardType={cardType}
-                cardData={card}
-                pageList={false}
-                key={i}
-              />
-            ))}
+            {children}
           </ul>
         </div>
       ) : (
         'Aucun résultat trouvé'
-      )}
+      )
+      }
     </>
   );
 };

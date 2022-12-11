@@ -2,7 +2,7 @@ import { useContext, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AidesQuery, AnyCard, Search } from '../../api/Api';
 import { ApplicationContext } from '../../App';
-import { useAdvancedFilters } from '../customComponents/filter/filters';
+import { FilterProperties, useAdvancedFilters } from '../customComponents/filter/filters';
 import { CardType } from '../../model/CardType';
 import { InitialState } from '../../utils/InitialState';
 import AdvancedFilters from '../customComponents/filter/AdvancedFilters';
@@ -14,11 +14,12 @@ import { mockedPublicBuyer } from '../../api/mockedPublicBuyer';
 
 type Props = {
   cardType: CardType;
+  children?: (isLoading : boolean, cardSlice : AnyCard[]) => React.ReactNode,
+  usedAdvancedFilter: FilterProperties
 };
 
-export const SearchPage: React.FC<Props> = ({ cardType }) => {
-  const { initialValues, searchByType, handleFilter, filters } = useAdvancedFilters(cardType.name);
-
+export const SearchPage: React.FC<Props> = ({ cardType, children, usedAdvancedFilter }) => {
+  const { initialValues, searchByType, handleFilter, filters } = usedAdvancedFilter
   const { usedNextScrollTarget } = useContext(ApplicationContext);
   const [, setNextScrollTarget] = usedNextScrollTarget;
   const location = useLocation();
@@ -165,11 +166,7 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
       </div>
       {initialState && (
         <>
-          <SearchResults
-            cards={cardType.name === 'acheteurs-publics' ? [mockedPublicBuyer] : cardsSlice}
-            cardType={cardType}
-            isLoading={isLoading}
-          />
+          {children && children(isLoading, cardsSlice)}
           <Pagination
             isLoading={isLoading && nbPage > 0}
             onClick={() => {

@@ -79,7 +79,7 @@ export type AnyFilters =
   | HelpFilters
   | InvestorFilters;
 
-type FilterProperties = {
+export type FilterProperties = {
   initialValues: AnyFilters;
   searchByType: (searchParams: SearchParams) => Promise<{
     query:
@@ -104,7 +104,7 @@ type FilterProperties = {
 
 type SearchParams = { description: string; secteurs: string[]; filters: AnyFilters };
 
-export const useAdvancedFilters = (type: CardTypeNameFromModel): FilterProperties => {
+export function useAdvancedFilters(type: CardTypeNameFromModel): FilterProperties {
   const forecastedBuyFilters = [publicationDateFilter, zoneFilter, environnementalFilter];
   const startupFilters = [marketFilter, zoneFilter];
   const publicBuyFilters = [certificationFilter, entityFilter];
@@ -200,7 +200,7 @@ export const useAdvancedFilters = (type: CardTypeNameFromModel): FilterPropertie
   }
 };
 
-const getInitialValues = (filters: FilterDefinition[]) => {
+function getInitialValues(filters: FilterDefinition[]) {
   return filters.reduce((acc, cur) => {
     return { ...acc, [cur.id]: cur.initialValue };
   }, {} as AnyFilters);

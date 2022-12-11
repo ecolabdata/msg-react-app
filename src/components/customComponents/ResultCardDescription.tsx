@@ -7,16 +7,6 @@ interface ResultCardDescriptionProps {
 }
 
 const ResultCardDescription: FC<ResultCardDescriptionProps> = ({ cardData }) => {
-  let displayabeSubmissionDeadLine = '';
-  if (isAide(cardData)) {
-    const d = cardData.submission_deadline ? new Date(cardData.submission_deadline) : null;
-    displayabeSubmissionDeadLine =
-      ('0' + d?.getUTCDate()).slice(-2) +
-      '/' +
-      ('0' + ((d?.getUTCMonth() || 0) + 1)).slice(-2) +
-      '/' +
-      d?.getUTCFullYear();
-  }
 
   let targetDate = '';
   if (isProjetAchat(cardData)) {
