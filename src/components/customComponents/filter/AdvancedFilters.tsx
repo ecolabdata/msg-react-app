@@ -3,6 +3,7 @@ import { CardType } from '../../../model/CardType';
 import Select from '../../dsfrComponents/Select';
 import ToggleButton from '../../dsfrComponents/ToggleButton';
 import { FilterDefinition } from './constants';
+import InputNumber from '../InputNumber';
 
 interface AdvancedFiltersProps {
   values: AnyFilters;
@@ -19,7 +20,7 @@ const AdvancedFilters: React.FC<AdvancedFiltersProps> = ({
 }) => {
   return (
     <fieldset className="flex flex-col md:flex-row items-center">
-      <legend className="sr-only">Champs de recherche avancée</legend>
+      <legend className="sr-only">Champs supplémentaires pour votre projet</legend>
 
       {filters.map(({ label, defaultOption, options, id, type }) =>
         type === 'select' ? (
@@ -36,7 +37,7 @@ const AdvancedFilters: React.FC<AdvancedFiltersProps> = ({
             }}
             selected={values[id]}
           />
-        ) : (
+        ) : type === 'toggle' ? (
           <ToggleButton
             key={id}
             label={label}
@@ -44,6 +45,15 @@ const AdvancedFilters: React.FC<AdvancedFiltersProps> = ({
             color={cardType.color}
             onChange={() => {
               setFilters(id, !values[id]);
+            }}
+          />
+        ) : (
+          <InputNumber
+            label={label}
+            color={cardType.color}
+            value={values[id]}
+            onChange={(e) => {
+              setFilters(id, e.currentTarget.value);
             }}
           />
         )

@@ -3,19 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { AidesQuery, AnyCard, Search } from '../../api/Api';
 import { ApplicationContext } from '../../App';
 import { useAdvancedFilters } from '../customComponents/filter/filters';
-import {
-  achatPrevi,
-  achatProg,
-  acheteurPublic,
-  aideClient,
-  aideFin,
-  aideInno,
-  CardType,
-  investisseur,
-  retex,
-  sourcingSu,
-  startups
-} from '../../model/CardType';
+import { CardType } from '../../model/CardType';
 import { InitialState } from '../../utils/InitialState';
 import AdvancedFilters from '../customComponents/filter/AdvancedFilters';
 
@@ -27,7 +15,7 @@ type Props = {
   cardType: CardType;
 };
 
-const SearchPage: React.FC<Props> = ({ cardType }) => {
+export const SearchPage: React.FC<Props> = ({ cardType }) => {
   const { initialValues, searchByType, handleFilter, filters } = useAdvancedFilters(cardType.name);
 
   const { usedNextScrollTarget } = useContext(ApplicationContext);
@@ -87,18 +75,19 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
         });
       });
     } else {
+      document?.getElementById('keywordsForm-Décrivez votre projet en quelques lignes.')?.focus();
       setErrorTxt("Erreur: la description de l'entreprise est obligatoire");
     }
   };
 
   return (
-    <>
+    <div className="md:mx-16 md:mt-8">
       <div
         className="headContainer  container mb-20 mx-auto max-w-headerSize
             xl:mx-auto
             ">
         <div className="cardTitleAndLogo p-2 text-base">
-          <h2 className="w-fit font-bold text-2xl md:text-4xl">
+          <h2 className="w-fit font-bold text-2xl md:text-4xl md:flex md:items-center ">
             <div className="flex items-center ">
               <cardType.SVGLogo
                 width="80"
@@ -108,8 +97,8 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
               />
               &nbsp;
               {cardType.title} &nbsp;{' '}
-              <span className="bg-yellow md:text-3xl font-light">{`(${cards.length} résultats)`}</span>
             </div>
+            <span className="bg-yellow md:text-3xl font-light">{`(${cards.length} résultats)`}</span>
           </h2>
 
           <p className="mt-2 text-base">{cardType.description}</p>
@@ -121,32 +110,35 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
             id="keywordsForm"
             className="researchContainer m-auto flex flex-col justify-around flex-wrap h-fit w-full">
             <fieldset>
-              <legend className="sr-only">Champs de formulaire principaux</legend>
+              <legend className="sr-only">Votre projet</legend>
               <SearchForm
                 usedDescription={[description, setDescription]}
                 usedSecteurs={[secteurs, setSecteurs]}
                 usedErrorTextDescription={[errorTxt, setErrorTxt]}
                 usedInListPage={true}
                 color={cardType.color}
+                showThematicField={cardType.name !== 'acheteurs-publics'}
               />
             </fieldset>
-            <div className="flex flex-col mt-4">
-              <button
-                aria-pressed={isAdvancedSearchOpen}
-                type="button"
-                className="ml-auto underline"
-                onClick={handleToggleAdvancedSearch}>
-                Recherche avancée
-              </button>
-              {isAdvancedSearchOpen && (
-                <AdvancedFilters
-                  cardType={cardType}
-                  filters={filters}
-                  setFilters={handleUpdateFilter}
-                  values={filtersValues}
-                />
-              )}
-            </div>
+            {filters?.length > 0 && (
+              <div className="flex flex-col mt-4">
+                <button
+                  aria-expanded={isAdvancedSearchOpen}
+                  type="button"
+                  className="ml-auto underline"
+                  onClick={handleToggleAdvancedSearch}>
+                  Recherche avancée
+                </button>
+                {isAdvancedSearchOpen && (
+                  <AdvancedFilters
+                    cardType={cardType}
+                    filters={filters}
+                    setFilters={handleUpdateFilter}
+                    values={filtersValues}
+                  />
+                )}
+              </div>
+            )}
           </form>
 
           <div className="researchButtonsContainer mt-8 w-full flex flex-col items-center justify-center">
@@ -188,20 +180,6 @@ const SearchPage: React.FC<Props> = ({ cardType }) => {
           />
         </>
       )}
-    </>
+    </div>
   );
 };
-
-/*Persona: Startup*/
-export const SearchPageAidesClient = () => <SearchPage cardType={aideClient} />;
-export const SearchPageAidesInno = () => <SearchPage cardType={aideInno} />;
-export const SearchPageInvestisseur = () => <SearchPage cardType={investisseur} />;
-export const SearchPageStartups = () => <SearchPage cardType={startups} />;
-export const SearchPageAcheteurPublic = () => <SearchPage cardType={acheteurPublic} />;
-export const SearchPageAchatPrevi = () => <SearchPage cardType={achatPrevi} />;
-
-/*Persona: Acteur public*/
-export const SearchPageAidesFin = () => <SearchPage cardType={aideFin} />;
-export const SearchPageSourcingSu = () => <SearchPage cardType={sourcingSu} />;
-export const SearchPageRetex = () => <SearchPage cardType={retex} />;
-export const SearchPageAchatProg = () => <SearchPage cardType={achatProg} />;

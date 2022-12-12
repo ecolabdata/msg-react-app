@@ -1,6 +1,6 @@
 import { AnyFilters } from './filters';
 
-export type Regions =
+export type Region =
   | 'Auvergne-Rhône-Alpes'
   | 'Bourgogne-Franche-Comté'
   | 'Bretagne'
@@ -34,6 +34,34 @@ export const markets: Record<string, number> = {
   'B to A': 2
 };
 
+export const deadlines: Record<string, number> = {
+  "Moins d'1 mois": 0,
+  'Moins de 3 mois': 3,
+  'Moins de 6 mois': 6
+};
+
+export const helpTypes: Record<string, string> = {
+  Subvention: 'Subvention',
+  Prêt: 'Prêt',
+  'Avance récupérable': 'Avance récupérable',
+  'Autre aide financière': 'Autre aide financière',
+  'Ingénierie technique': 'Ingénierie technique',
+  'Ingénierie financière': 'Ingénierie financière',
+  'Ingénierie Juridique / administrative': 'Ingénierie Juridique / administrative'
+};
+
+export const fundingTypes: Record<string, string> = {
+  'Capital croissance': 'Capital croissance',
+  'Capital développement (développement/croissance)':
+    'Capital développement (développement/croissance)',
+  'Capital risque (innovation/création)': 'Capital risque (innovation/création)',
+  'Capital transmission (consolidation/transmission)':
+    'Capital transmission (consolidation/transmission)',
+  'Capital transmission': 'Capital transmission',
+  Infrastructure: 'Infrastructure',
+  'Dette privée': 'Dette privée'
+};
+
 export const entities: Record<string, string> = {
   etat: 'etat',
   'collectivités territoriales': 'collectivités territoriales',
@@ -46,7 +74,7 @@ export const certifications: Record<string, string> = {
   'Climat air énergie': 'Climat air énergie'
 };
 
-export const departmentsByRegion: Record<Regions, string[] | number[]> = {
+export const departmentsByRegion: Record<Region, string[] | number[]> = {
   'Auvergne-Rhône-Alpes': [1, 3, 7, 15, 26, 38, 42, 43, 63, 69, 73, 74],
   'Bourgogne-Franche-Comté': [21, 25, 39, 58, 70, 71, 89, 90],
   Bretagne: [22, 29, 35, 56],
@@ -67,7 +95,7 @@ export const departmentsByRegion: Record<Regions, string[] | number[]> = {
   "Provence-Alpes-Côte d'Azur": [4, 5, 6, 13, 83, 84]
 };
 
-export const zones: Record<Regions, Regions> = {
+export const zones: Record<Region, Region> = {
   'Auvergne-Rhône-Alpes': 'Auvergne-Rhône-Alpes',
   'Bourgogne-Franche-Comté': 'Bourgogne-Franche-Comté',
   Bretagne: 'Bretagne',
@@ -88,13 +116,34 @@ export const zones: Record<Regions, Regions> = {
   Mayotte: 'Mayotte'
 };
 
+export const zonesSynonymes: Record<Region, string[]> = {
+  'Auvergne-Rhône-Alpes': ['Auvergne-Rhône-Alpes', 'Auvergne Rhône Alpes'],
+  'Bourgogne-Franche-Comté': ['Bourgogne-Franche-Comté', 'Bourgogne Franche Comté'],
+  Bretagne: ['Bretagne'],
+  Corse: ['Corse'],
+  'Centre-Val de Loire': ['Centre-Val de Loire', 'Centre Val de Loire'],
+  'Grand Est': ['Grand Est'],
+  'Hauts-de-France': ['Hauts-de-France', 'Hauts de France'],
+  'Ile-de-France': ['Ile-de-France', 'Île-de-France', 'Île de France', 'Ile de France'],
+  'Nouvelle Aquitaine': ['Nouvelle Aquitaine', 'Nouvelle-Aquitaine'],
+  Normandie: ['Normandie'],
+  Occitanie: ['Occitanie'],
+  "Provence-Alpes-Côte d'Azur": ["Provence-Alpes-Côte d'Azur", "Provence Alpes Côte d'Azur"],
+  'Pays de la Loire': ['Pays de la Loire'],
+  Guadeloupe: ['Guadeloupe'],
+  Guyane: ['Guyane'],
+  'La Réunion': ['La Réunion'],
+  Martinique: ['Martinique'],
+  Mayotte: ['Mayotte']
+};
+
 export type FilterDefinition = {
   label: string;
-  defaultOption: string;
+  defaultOption?: string;
   options?: string[];
   id: keyof AnyFilters;
-  type: 'select' | 'toggle';
-  initialValue: string | boolean;
+  type: 'select' | 'toggle' | 'inputNumber';
+  initialValue: string | boolean | number;
 };
 
 export const publicationDateFilter: FilterDefinition = {
@@ -115,7 +164,6 @@ export const zoneFilter: FilterDefinition = {
 };
 export const environnementalFilter: FilterDefinition = {
   label: 'Considération environnementale',
-  defaultOption: 'Toutes',
   id: 'hasEcologicalConcern' as keyof AnyFilters,
   type: 'toggle',
   initialValue: true
@@ -144,6 +192,54 @@ export const entityFilter: FilterDefinition = {
   defaultOption: 'Toutes',
   options: Object.keys(entities),
   id: 'entity' as keyof AnyFilters,
+  type: 'select',
+  initialValue: ''
+};
+
+export const deadlineFilter: FilterDefinition = {
+  label: 'Echéance',
+  defaultOption: 'Toutes',
+  options: Object.keys(deadlines),
+  id: 'deadline' as keyof AnyFilters,
+  type: 'select',
+  initialValue: ''
+};
+
+export const helpTypeFilter: FilterDefinition = {
+  label: "Nature de l'aide",
+  defaultOption: 'Toutes',
+  options: Object.keys(helpTypes),
+  id: 'helpType' as keyof AnyFilters,
+  type: 'select',
+  initialValue: ''
+};
+
+export const permanentHelpFilter: FilterDefinition = {
+  label: 'Afficher les aides permanentes',
+  id: 'isPermanentHelp' as keyof AnyFilters,
+  type: 'toggle',
+  initialValue: true
+};
+
+export const minimumAmountFilter: FilterDefinition = {
+  label: 'Montant (en K€)',
+  id: 'minimumAmount' as keyof AnyFilters,
+  type: 'inputNumber',
+  initialValue: ''
+};
+
+export const companyIncomeFilter: FilterDefinition = {
+  label: "Votre chiffre d'affaires (en K€)",
+  id: 'companyIncome' as keyof AnyFilters,
+  type: 'inputNumber',
+  initialValue: 0
+};
+
+export const fundingTypeFilter: FilterDefinition = {
+  label: 'Type de financement',
+  defaultOption: 'Toutes',
+  options: Object.keys(fundingTypes),
+  id: 'fundingType' as keyof AnyFilters,
   type: 'select',
   initialValue: ''
 };

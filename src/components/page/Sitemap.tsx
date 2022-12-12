@@ -5,7 +5,7 @@ import { useQuery } from '../../hooks/useQuery';
 import routes from '../../model/routes';
 import formatSlugForBreadCumb from '../../utils/formatSlugForBreadcrumb';
 
-type FormatedRoute =
+export type FormatedRoute =
   | {
       urlToRedirect: string;
       slugToDisplay: string;
@@ -53,8 +53,8 @@ const Sitemap = () => {
   });
 
   return (
-    <>
-      <h1 className="mt-4 w-full font-bold text-3xl text-center">Plan du site</h1>
+    <div className="fr-container">
+      <h1 className="my-8 w-full font-bold text-3xl text-center">Plan du site</h1>
       <ul>
         <li key={'/'}>
           {' '}
@@ -63,9 +63,22 @@ const Sitemap = () => {
           </Link>
         </li>
 
-        {allRoutesFiltered.map((routes: FormatedRoute[], key: number) => {
+        {allRoutesFiltered.map((routes: FormatedRoute[]) => {
+          console.log('routes', routes)
+          if (!routes[0]) return;
+
+          if (routes.length === 1) {
+            return (
+              <li key={routes[0].urlToRedirect}>
+                <Link className="self-end text-md" to={routes[0].urlToRedirect}>
+                  {routes[0].slugToDisplay}
+                </Link>
+              </li>
+            );
+          }
+
           return (
-            <li key={key}>
+            <ul key={routes[0].urlToRedirect}>
               {typeof routes !== 'string' &&
                 routes.map((route: FormatedRoute, index: number) => {
                   if (!route) return;
@@ -79,7 +92,6 @@ const Sitemap = () => {
                       </li>
                     );
                   }
-
                   return (
                     <li key={route.urlToRedirect} className="ml-4">
                       <Link className="self-end text-md" to={route.urlToRedirect}>
@@ -88,11 +100,11 @@ const Sitemap = () => {
                     </li>
                   );
                 })}
-            </li>
+            </ul>
           );
         })}
       </ul>
-    </>
+    </div>
   );
 };
 

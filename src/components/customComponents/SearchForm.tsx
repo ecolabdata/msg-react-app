@@ -9,6 +9,7 @@ interface SearchFormProps {
   usedSecteurs: [string[], React.Dispatch<React.SetStateAction<string[]>>];
   usedErrorTextDescription: [string, React.Dispatch<React.SetStateAction<string>>];
   color?: string;
+  showThematicField?: boolean;
 }
 
 const SearchForm: React.FC<SearchFormProps> = ({
@@ -16,6 +17,7 @@ const SearchForm: React.FC<SearchFormProps> = ({
   usedSecteurs,
   usedDescription,
   usedErrorTextDescription,
+  showThematicField = true,
   color
 }) => {
   const [description, setDescription] = usedDescription;
@@ -28,8 +30,7 @@ const SearchForm: React.FC<SearchFormProps> = ({
       <SearchFieldWrapper
         label="Votre recherche"
         usedInListPage={usedInListPage}
-        className="w-full md:w-[55%]"
-      >
+        className={`w-full ${showThematicField && 'md:w-[55%]'}`}>
         <TextAreaInput
           value={description}
           onValueChange={setDescription}
@@ -40,19 +41,20 @@ const SearchForm: React.FC<SearchFormProps> = ({
           color={color}
         />
       </SearchFieldWrapper>
-      <SearchFieldWrapper
-        label="La thématique"
-        usedInListPage={usedInListPage}
-        className="w-full md:w-[45%]"
-      >
-        <SelectInputOptions
-          className="mb-auto"
-          optionsData={thematicsValues}
-          secteurs={secteurs}
-          setSecteurs={setSecteurs}
-          color={color}
-        />
-      </SearchFieldWrapper>
+      {showThematicField && (
+        <SearchFieldWrapper
+          label="La thématique"
+          usedInListPage={usedInListPage}
+          className="w-full md:w-[45%]">
+          <SelectInputOptions
+            className="mb-auto"
+            optionsData={thematicsValues}
+            secteurs={secteurs}
+            setSecteurs={setSecteurs}
+            color={color}
+          />
+        </SearchFieldWrapper>
+      )}
     </div>
   );
 };

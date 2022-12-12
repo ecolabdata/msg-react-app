@@ -1,6 +1,6 @@
-import { generateNumber, tailwindColorUtility } from '../../utils/utilityFunctions';
 import classNames from 'classnames';
 import { useEffect, useRef, useState } from 'react';
+import { tailwindColorUtility } from '../../utils/utilityFunctions';
 
 interface TextAreaInputProps {
   value: string;
@@ -23,9 +23,8 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
   className: classNameProp = '',
   color
 }) => {
-  const id = generateNumber(1, 1000);
   const MIN_HEIGHT = 50;
-  const inputId = `${formId}-${id}`;
+  const inputId = `${formId}-${label}`;
 
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const [text, setText] = useState('');
@@ -71,7 +70,7 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
         className={classNames(
           `cursor-text mt-2 w-full rounded-t-sm p-2 bg-background-inputs ${borderColor}`,
           { [`addBorder-b border-3`]: !errorText },
-          { 'addBorder border-1 border-red-500': errorText },
+          { 'addBorder border-2 border-red-marianne-625-hover': errorText },
           classNameProp
         )}
         aria-invalid={!!errorText}
@@ -85,7 +84,7 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
           id={`${inputId}-error`}
           aria-live="polite"
         >
-          <p style={{ color: 'hsla(0, 100%, 65%, 0.9)' }}>{errorText}</p>
+          <p className="text-red-marianne-625-hover">{errorText}</p>
         </div>
       )}
     </div>

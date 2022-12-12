@@ -1,11 +1,13 @@
+import { publicActorPersona, startupPersona } from '../model/CardType';
+import ExternalLink from '../components/customComponents/ExternalLink';
+
 const homePageContent = {
   startup: {
     pageTitle: 'Accueil startups',
-    cardNames: ['achats-previsionnels', 'acheteurs-publics'],
+    cards: startupPersona,
     mainContent: {
       title: 'Start-up greentech, trouvez des leviers pour booster votre développement ! ',
-      description:
-        'A partir de la description de votre activité ou de votre solution, nous vous proposons des pistes de leviers autour des 5 axes suivants :'
+      description: 'Trouvez des pistes pour accéder plus facilement à la commande publique !'
     },
     ctaBlocs: [
       {
@@ -41,20 +43,6 @@ const homePageContent = {
       }
     ],
     suggestions: [
-      {
-        title: 'Investisseurs',
-        description: 'Consultez le catalogue de notre partenaire',
-        links: [
-          {
-            name: 'Le Pexe',
-            url: 'https://annuaire.investisseurs.ecoentreprises-france.fr/annuaire/1101206'
-          },
-          {
-            name: 'Investisseurs en France',
-            url: 'https://prairie-manchego-f09.notion.site/850-investisseurs-en-France-0d144a68e5a44dd391c1c019a2f1ae33'
-          }
-        ]
-      },
       {
         title: 'Aides financières',
         description: 'Trouvez des aides à l’innovation ou pour vos clients',
@@ -92,14 +80,11 @@ const homePageContent = {
           Très bonne idée ! Pour accentuer votre visibilité auprès des acheteurs publics et de
           l’écosystème Greentech Innovation, enregistrer vos recherches et recevoir des alertes,
           remplissez
-          <a
-            className="text-base my-8 text-blue-france-625 p-1 link-underline"
+          <ExternalLink
             href="https://airtable.com/shrY73vlVka9j2cg8"
-            target="_blank"
-            rel="noreferrer"
-          >
-            ce formulaire d’inscription
-          </a>
+            content="ce formulaire d’inscription"
+            className="text-base my-8 text-blue-france-625 p-1 link-underline"
+          />
           ! (Sous réserve de validation par nos équipes)
         </>
       ),
@@ -109,7 +94,7 @@ const homePageContent = {
   },
   publicActor: {
     pageTitle: 'Accueil acheteur public',
-    cardNames: ['startups', 'acheteurs-publics'],
+    cards: publicActorPersona,
     mainContent: {
       title: 'Acteurs publics, sourcez des entreprises éco-innovantes !',
       description:

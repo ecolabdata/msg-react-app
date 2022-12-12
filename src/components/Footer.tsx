@@ -1,14 +1,16 @@
 import { Link } from 'react-router-dom';
-import { DonnezVotreAvis } from './../components/customComponents/DonnezVotreAvis';
+import ExternalLink from './customComponents/ExternalLink';
 
 const Footer: React.FC = () => {
   return (
     <>
-      <footer className="fr-footer relative" role="contentinfo" id="footer">
+      <footer className="fr-footer relative mt-8" role="contentinfo" id="footer">
         <div className="fr-container dsfr-lg:relative">
           <div className="fr-footer__body">
             <div className="fr-footer__brand fr-enlarge-link">
-              <Link to="/" title="Retour à l’accueil">
+              <Link
+                to="/"
+                title="Ministère de la transition écologique et de la cohésion des territoires - Retour à l’accueil">
                 <p className="fr-logo uppercase">
                   ministère <br />
                   de la transition <br />
@@ -20,45 +22,51 @@ const Footer: React.FC = () => {
             </div>
             <div className="fr-footer__content">
               <p className="fr-footer__content-desc font-bold text-sm text-white">
-                Mes services Greentech est en version beta. L’outil vous propose automatiquement des
-                pistes pour booster votre développement ! Merci de nous aider à améliorer
-                l’expérience en répondant à ce{' '}
-                <a className="font-bold text-blue-france-625" href="#">
-                  formulaire.
-                </a>
+                Mes services Greentech est en version beta. L’outil vous propose des leviers pour
+                booster votre développement ! Pour nous faire part de vos remarques ou nous aider à
+                améliorer l’expérience merci de répondre à cette{' '}
+                <ExternalLink
+                  className="font-bold text-blue-france-625 mr-1"
+                  href="https://airtable.com/shrwwE4lA2GFxK0T4"
+                  content="courte enquête"
+                />
+                (3 minutes).
               </p>
               <ul className="fr-footer__content-list">
                 <li className="fr-footer__content-item">
-                  <a
+                  <ExternalLink
                     className="fr-footer__content-link text-grey-625-active font-normal text-sm"
-                    href="https://legifrance.gouv.fr"
-                  >
-                    legifrance.gouv.fr
-                  </a>
+                    href="https://www.ecologie.gouv.fr/"
+                    content="ecologie.gouv.fr"
+                  />
                 </li>
                 <li className="fr-footer__content-item">
-                  <a
+                  <ExternalLink
+                    className="fr-footer__content-link text-grey-625-active font-normal text-sm"
+                    href="https://www.economie.gouv.fr/"
+                    content="economie.gouv.fr"
+                  />
+                </li>
+                <li className="fr-footer__content-item">
+                  <ExternalLink
                     className="fr-footer__content-link text-grey-625-active font-normal text-sm"
                     href="https://gouvernement.fr"
-                  >
-                    gouvernement.fr
-                  </a>
+                    content="gouvernement.fr"
+                  />
                 </li>
                 <li className="fr-footer__content-item">
-                  <a
+                  <ExternalLink
                     className="fr-footer__content-link text-grey-625-active font-normal text-sm"
                     href="https://service-public.fr"
-                  >
-                    service-public.fr
-                  </a>
+                    content="service-public.fr"
+                  />
                 </li>
                 <li className="fr-footer__content-item">
-                  <a
+                  <ExternalLink
                     className="fr-footer__content-link text-grey-625-active font-normal text-sm"
                     href="https://data.gouv.fr"
-                  >
-                    data.gouv.fr
-                  </a>
+                    content="data.gouv.fr"
+                  />
                 </li>
               </ul>
             </div>
@@ -73,32 +81,28 @@ const Footer: React.FC = () => {
               <li className="fr-footer__bottom-item">
                 <Link
                   className="fr-footer__bottom-link text-grey-625 font-bold text-xs text-grey-625 font-bold text-xs"
-                  to="/plan-du-site"
-                >
+                  to="/plan-du-site">
                   Plan du site
                 </Link>
               </li>
               <li className="fr-footer__bottom-item">
                 <Link
                   className="fr-footer__bottom-link text-grey-625 font-bold text-xs"
-                  to="/legal/legal-notices"
-                >
+                  to="/legal/legal-notices">
                   Mentions légales
                 </Link>
               </li>
               <li className="fr-footer__bottom-item">
                 <Link
                   className="fr-footer__bottom-link text-grey-625 font-bold text-xs"
-                  to="/legal/gdpr"
-                >
+                  to="/legal/gdpr">
                   Données personnelles
                 </Link>
               </li>
               <li className="fr-footer__bottom-item">
                 <Link
                   className="fr-footer__bottom-link text-grey-625 font-bold text-xs"
-                  to="/legal/cookies"
-                >
+                  to="/legal/cookies">
                   Gestion des cookies
                 </Link>
               </li>
@@ -116,18 +120,13 @@ const Footer: React.FC = () => {
             <div className="fr-footer__bottom-copy text-grey-625 font-bold text-xs mb-4">
               <p>
                 Sauf mention contraire, tous les contenus de ce site sont sous{' '}
-                <a
+                <ExternalLink
                   href="https://github.com/etalab/licence-ouverte/blob/master/LO.md"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  licence etalab-2.0
-                </a>
+                  content="licence etalab-2.0"
+                />
               </p>
             </div>
           </div>
-
-          <DonnezVotreAvis />
         </div>
       </footer>
     </>

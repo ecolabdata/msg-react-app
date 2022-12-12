@@ -25,13 +25,13 @@ const Home: React.FC = () => {
       <ul className="flex flex-col md:flex-row justify-center mb-16">
         <ProfileCard
           title="Je représente une entreprise éco-innovante"
-          description="Trouvez des leviers dans la recherche d’aides, d’investisseurs, d’acteurs publics ouverts à l’innovation, et d’accès à la commande publique"
+          description="Accédez à nos fiches acheteurs, aux achats publics programmés, au centre de ressource et téléchargez un argumentaire BtoA."
           badge="Entreprise"
           type="startup"
         />
         <ProfileCard
           title="Je suis acheteur public"
-          description="Trouvez des aides financières pour financer vos achats responsables, sourcez des entreprises pour vos projets d’achats et ayez une visibilité sur les achats ou projets d’achats des autres acteurs publics."
+          description="Sourcez des entreprises et fournisseurs pour vos projets d’achats durables et innovants. Pilotez vos achats durables en consultant nos fiches acheteurs et le centre de ressource."
           badge="Acheteur public"
           type="publicActor"
         />

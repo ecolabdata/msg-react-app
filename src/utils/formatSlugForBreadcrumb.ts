@@ -1,5 +1,6 @@
 import { Location } from 'react-router-dom';
 import { AnyCard } from '../api/Api';
+import { FormatedRoute } from '../components/page/Sitemap';
 import { all as allCardType } from '../model/CardType';
 
 const formatedSlugSerachPage = (urlToRedirect: string) => {
@@ -13,6 +14,51 @@ const formatedSlugResultPage = (urlToRedirect: string) => {
   return {
     urlToRedirect: urlToRedirect,
     slugToDisplay: 'Résultats de recherche'
+  };
+};
+
+const formatedSlugLegalPage = (urlToRedirect: string) => {
+
+  const slug = { urlToRedirect };
+
+  if (urlToRedirect === '/legal') {
+    return {
+      ...slug,
+      slugToDisplay: 'Pages légales'
+    };
+  }
+
+  if (urlToRedirect.includes('legal-notices')) {
+    return {
+      ...slug,
+      slugToDisplay: 'Mentions légales'
+    };
+  }
+
+  if (urlToRedirect.includes('cookies')) {
+    return {
+      ...slug,
+      slugToDisplay: 'Gestion des cookies'
+    };
+  }
+
+  if (urlToRedirect.includes('gdpr')) {
+    return {
+      ...slug,
+      slugToDisplay: 'Données personnelles'
+    };
+  }
+
+  if (urlToRedirect.includes('accessibility')) {
+    return {
+      ...slug,
+      slugToDisplay: 'Accessibilité'
+    };
+  }
+
+  return {
+    ...slug,
+    slugToDisplay: 'Légal'
   };
 };
 
@@ -80,7 +126,7 @@ const formatSlugForBreadCumb = (
     return;
   }
 
-  let pageData: { urlToRedirect: string; slugToDisplay: string } | undefined;
+  let pageData: FormatedRoute | undefined;
 
   const pageLocationWithoutSpecialCharacters = location.pathname.replace(/[^a-zA-Z]/g, ' ');
 
@@ -92,6 +138,11 @@ const formatSlugForBreadCumb = (
   // Find if it's an search page
   if (pageLocationWithoutSpecialCharacters.includes('explorer')) {
     pageData = formatedSlugSerachPage(urlToRedirect);
+  }
+
+  // Find if it's an legal page
+  if (pageLocationWithoutSpecialCharacters.includes('legal')) {
+    pageData = formatedSlugLegalPage(urlToRedirect);
   }
 
   // Find type of card

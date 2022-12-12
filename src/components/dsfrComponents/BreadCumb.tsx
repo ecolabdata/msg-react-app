@@ -3,11 +3,10 @@ import { useLocation } from 'react-router-dom';
 import useCheckMobileScreen from '../../hooks/useCheckMobileScreen';
 import { useQuery } from '../../hooks/useQuery';
 import formatSlugForBreadCumb from '../../utils/formatSlugForBreadcrumb';
+import { FormatedRoute } from '../page/Sitemap';
 
 const BreadCumb: React.FC = () => {
-  const [navHistory, setNavHistory] = useState<{ urlToRedirect: string; slugToDisplay: string }[]>(
-    []
-  );
+  const [navHistory, setNavHistory] = useState<FormatedRoute[]>([]);
   const query = useQuery();
   const location = useLocation();
 
@@ -19,7 +18,7 @@ const BreadCumb: React.FC = () => {
     if (!pageData) return;
 
     const pathNameAlreadyPresentInNavigationHistory = navHistory.find(
-      (pageDataObject) => pageDataObject.slugToDisplay === pageData?.slugToDisplay
+      (pageDataObject) => pageDataObject?.slugToDisplay === pageData?.slugToDisplay
     );
 
     if (pageData && pathNameAlreadyPresentInNavigationHistory === undefined) {
@@ -43,7 +42,7 @@ const BreadCumb: React.FC = () => {
   return (
     <nav
       role="navigation"
-      className="fr-breadcrumb  h-full   container-title container max-w-headerSize mx-auto  !mb-0 mt-4 "
+      className="fr-breadcrumb  h-full fr-container max-w-headerSize mx-auto  !mb-0 mt-8 "
       aria-label="vous êtes ici :"
     >
       {isMobile && navHistory.length > 0 && (
@@ -67,6 +66,7 @@ const BreadCumb: React.FC = () => {
 
           {navHistory.length > 1 &&
             navHistory.map((visitedPageDataObject, visitedPageDataObjectIndex) => {
+              if (!visitedPageDataObject) return;
               if (visitedPageDataObjectIndex < navHistory.length - 1) {
                 return (
                   <li key={visitedPageDataObject.slugToDisplay}>
