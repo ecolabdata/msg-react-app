@@ -44,20 +44,6 @@ const homePageContent = {
     ],
     suggestions: [
       {
-        title: 'Investisseurs',
-        description: 'Consultez le catalogue de notre partenaire',
-        links: [
-          {
-            name: 'Le Pexe',
-            url: 'https://annuaire.investisseurs.ecoentreprises-france.fr/annuaire/1101206'
-          },
-          {
-            name: 'Investisseurs en France',
-            url: 'https://prairie-manchego-f09.notion.site/850-investisseurs-en-France-0d144a68e5a44dd391c1c019a2f1ae33'
-          }
-        ]
-      },
-      {
         title: 'Aides financières',
         description: 'Trouvez des aides à l’innovation ou pour vos clients',
         links: [
