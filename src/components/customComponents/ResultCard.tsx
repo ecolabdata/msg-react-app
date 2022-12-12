@@ -6,15 +6,23 @@ import { CardType } from '../../model/CardType';
 import ScreenReaderOnlyText from './ScreenReaderOnlyText';
 
 interface CardProps {
-  name: string
-  toprow: string
-  linkData : AnyCard | {},
-  slug: string
-  cardType: CardType
-  isLoading?: boolean
+  name: string;
+  toprow: string;
+  linkData: AnyCard | {};
+  slug: string;
+  cardType: CardType;
+  isLoading?: boolean;
 }
 
-const ResultCard: React.FC<PropsWithChildren<CardProps>> = ({ cardType, name, toprow, linkData, slug, children, isLoading }) => {
+const ResultCard: React.FC<PropsWithChildren<CardProps>> = ({
+  cardType,
+  name,
+  toprow,
+  linkData,
+  slug,
+  children,
+  isLoading
+}) => {
   const { usedNextScrollTarget } = useContext(ApplicationContext);
 
   const [, setNextScrolTarget] = usedNextScrollTarget;
@@ -23,7 +31,7 @@ const ResultCard: React.FC<PropsWithChildren<CardProps>> = ({ cardType, name, to
   let linkTo = `/${cardType.name}/details/${slug}?cardData=${encodeURIComponent(
     JSON.stringify(linkData)
   )}`;
-  
+
   if (linkTo.length > 8192) {
     linkTo = `/${cardType.name}/details/${slug}`;
   }
@@ -39,25 +47,21 @@ const ResultCard: React.FC<PropsWithChildren<CardProps>> = ({ cardType, name, to
                   setNextScrolTarget({ top: 0 });
                 }}
                 to={linkTo}
-                state={{cardData: linkData}}
-                className="rm-link-underline"
-              >
+                state={{ cardData: linkData }}
+                className="rm-link-underline">
                 <p className="clamp mt-2 font-bold text-lg" title={name}>
                   <ScreenReaderOnlyText content={toprow} />
                   {name}
                 </p>
               </Link>
             </h3>
-            <div className="fr-card__desc">
-              {children}
-            </div>
+            <div className="fr-card__desc">{children}</div>
             <div className="fr-card__start">
               <ul className="fr-tags-group" aria-hidden={true}>
                 <li>
                   <p
                     className={`fr-badge fr-badge--sm `}
-                    style={{ color: cardType.color, backgroundColor: cardType.backgroundColor }}
-                  >
+                    style={{ color: cardType.color, backgroundColor: cardType.backgroundColor }}>
                     {toprow}
                   </p>
                 </li>

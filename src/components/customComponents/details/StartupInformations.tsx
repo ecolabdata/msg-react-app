@@ -1,4 +1,5 @@
 import { Startup } from '../../../api/Api';
+import { getGreenTechData } from '../../../utils/utilityFunctions';
 import { InformationItem, InformationItemsWrapper } from './InformationItem';
 
 interface StartupInformationsProps {
@@ -7,6 +8,10 @@ interface StartupInformationsProps {
 }
 
 export const StartupInformations: React.FC<StartupInformationsProps> = ({ card, className }) => {
+  const greenTechData = getGreenTechData(card);
+
+  if (!greenTechData) return <></>;
+
   const {
     Pitch: pitch,
     'Références publiques': publicCustomers,
@@ -15,7 +20,7 @@ export const StartupInformations: React.FC<StartupInformationsProps> = ({ card, 
     Marché: markets,
     "L'entreprise": companyDescription,
     'Enjeux ODD': oddStakes
-  } = card;
+  } = greenTechData;
 
   return (
     <section className={className}>

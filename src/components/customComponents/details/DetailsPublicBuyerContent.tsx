@@ -38,7 +38,8 @@ const DetailsPublicBuyer: React.FC<DetailsPublicBuyerContentProps> = ({ card }) 
             <a
               href="https://www.economie.gouv.fr/daj/oecp-recensement-economique-commande-publique"
               target="_blank"
-              rel="noreferrer">
+              rel="noreferrer"
+            >
               DECP
             </a>
           </span>
