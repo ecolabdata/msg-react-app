@@ -50,28 +50,19 @@ const DetailsPublicBuyer: React.FC<DetailsPublicBuyerContentProps> = ({ card }) 
       </div>
       <div className=" my-8 w-full flex flex-col items-center my-16 ">
         <h3 className="text-4xl mb-8">Quelques chiffres</h3>
-        <div className="flex flex-wrap w-full justify-around">
-          <InformationCard
-            title={marketContents?.length || 0}
-            subtitle="Marchés passés"
-            description="description a rajouter"
-          />
-          <InformationCard
-            title={buyContents?.length || 0}
-            subtitle="Achats programmés"
-            description="description a rajouter"
-          />
+        <div className="flex flex-wrap w-full justify-center">
+          <InformationCard title={marketContents?.length || 0} subtitle="Marchés passés" />
+          <InformationCard title={buyContents?.length || 0} subtitle="Achats programmés" />
           <InformationCard
             title={getAverageMarketDealAmount(marketContents as unknown as Decp[])}
             subtitle="Montant moyen en euros"
-            description="description a rajouter"
           />
         </div>
       </div>
       <div className=" my-8 w-full flex flex-col items-center my-16">
-        <h3 className="text-4xl mb-8">Détails des marchés passés et à venir</h3>
+        <h3 className="text-4xl  mb-16">Détails des marchés passés et à venir</h3>
 
-        <Tabs tabs={tabs} label="détail acheteur public" className="2xl:max-w-4/5" />
+        <Tabs tabs={tabs} label="détail acheteur public" className="2xl w-full" />
       </div>
     </div>
   );

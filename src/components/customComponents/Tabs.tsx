@@ -30,7 +30,7 @@ export const Tabs: React.FC<TabsProps> = ({ label, tabs, className }) => {
         ))}
       </ul>
       {tabs.map(({ id, Panel }) => (
-        <TabPanel key={id} id={id}>
+        <TabPanel key={id} id={id} isSelected={tabSelected === id}>
           {Panel}
         </TabPanel>
       ))}
@@ -40,17 +40,21 @@ export const Tabs: React.FC<TabsProps> = ({ label, tabs, className }) => {
 
 interface TabPanelProps {
   id: string;
+  isSelected: boolean;
 }
 
-export const TabPanel: React.FC<PropsWithChildren<TabPanelProps>> = ({ id, children }) => {
+export const TabPanel: React.FC<PropsWithChildren<TabPanelProps>> = ({
+  id,
+  children,
+  isSelected
+}) => {
   return (
     <div
       id={`${id}-panel`}
-      className="fr-tabs__panel fr-tabs__panel--selected"
+      className={`fr-tabs__panel fr-tabs__panel--selected  ${!isSelected && 'hidden'}`}
       role="tabpanel"
       aria-labelledby={id}
-      tabIndex={0}
-    >
+      tabIndex={0}>
       {children}
     </div>
   );
@@ -77,8 +81,7 @@ export const TabButton: React.FC<PropsWithChildren<TabButtonProps>> = ({
         tabIndex={isSelected ? 0 : -1}
         role="tab"
         aria-selected={isSelected ? true : false}
-        aria-controls={`${id}-panel`}
-      >
+        aria-controls={`${id}-panel`}>
         {children}
       </button>
     </li>
