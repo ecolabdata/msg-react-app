@@ -1,6 +1,7 @@
 import { PropsWithChildren } from 'react';
 import { Link, LinkProps, useLocation } from 'react-router-dom';
 import useCheckMobileScreen from '../hooks/useCheckMobileScreen';
+import ExternalLink from './customComponents/ExternalLink';
 
 interface NavigationMenuProps {
   isBurgerMenuOpen: boolean;
@@ -32,12 +33,11 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({ isBurgerMenuOpen }) => 
                       <NavigationLink to="/acteurs-publics">Acheteurs</NavigationLink>
                     </li>
                     <li className="fr-nav__item">
-                      <a
+                      <ExternalLink
                         className="fr-nav__link"
                         href="mailto:greentechinnovation@developpement-durable.gouv.fr"
-                        target="_self">
-                        Contact
-                      </a>
+                        content="Contact"
+                      />
                     </li>
                   </ul>
                 </nav>
