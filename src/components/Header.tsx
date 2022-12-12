@@ -46,25 +46,25 @@ territoires"
                     <MsgLogo />
                   </Link>
                 </div>
+                {pathname !== '/' && (
+                  <div className="fr-header__navbar">
+                    <button
+                      onClick={() => {
+                        setIsBurgerMenuOpen(!isBurgerMenuOpen);
+                      }}
+                      className="fr-btn--menu fr-btn"
+                      data-fr-opened={isBurgerMenuOpen}
+                      aria-controls="header-navigation"
+                      aria-haspopup="menu"
+                      aria-expanded={isBurgerMenuOpen}
+                      title="Menu de navigation principal"
+                      id="fr-btn-menu-mobile"
+                    >
+                      Menu de navigation principal
+                    </button>
+                  </div>
+                )}
               </div>
-              {pathname !== '/' && (
-                <div className="fr-header__navbar">
-                  <button
-                    onClick={() => {
-                      setIsBurgerMenuOpen(!isBurgerMenuOpen);
-                    }}
-                    className="fr-btn--menu fr-btn"
-                    data-fr-opened={isBurgerMenuOpen}
-                    aria-controls="header-navigation"
-                    aria-haspopup="menu"
-                    aria-expanded={isBurgerMenuOpen}
-                    title="Menu de navigation principal"
-                    id="fr-btn-menu-mobile"
-                  >
-                    Menu de navigation principal
-                  </button>
-                </div>
-              )}
 
               {screenWidth >= 1024 && (
                 <div className="fr-header__tools flex justify-end">

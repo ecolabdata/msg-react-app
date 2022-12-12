@@ -20,6 +20,11 @@ const Pagination: React.FC<PaginationProps> = ({
   const generatedPageNos = Array(nbPage)
     .fill(1)
     .map((x, idx) => x + idx);
+
+  if (generatedPageNos.length === 1) {
+    return <></>;
+  }
+
   return (
     <nav
       role="navigation"
