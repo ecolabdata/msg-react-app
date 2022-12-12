@@ -33,7 +33,7 @@ export const PublicBuyerPanelContent: React.FC<PublicBuyerPanelContentProps> = (
     <>
       {contents?.length ? (
         <div className="fr-container--fluid">
-          <ul className="grid grid-cols-2 gap-3">
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {contents.map((decpItem) => (
               <li key={decpItem.id}>
                 <CPVCard content={decpItem} />
@@ -84,8 +84,7 @@ const CPVCard: React.FC<CPVCardProps> = ({ content }) => {
             <ul className="fr-tags-group" aria-hidden={true}>
               <li>
                 <p
-                  className={`fr-badge fr-badge--sm bg-red-marianne-625-lightBackground text-red-marianne-625`}
-                >
+                  className={`fr-badge fr-badge--sm bg-red-marianne-625-lightBackground text-red-marianne-625`}>
                   Code CPV: {codeCPV}
                 </p>
               </li>
