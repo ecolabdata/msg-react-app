@@ -23,8 +23,6 @@ import {
 import {
   FilterDefinition,
   zoneFilter,
-  certificationFilter,
-  entityFilter,
   environnementalFilter,
   marketFilter,
   publicationDateFilter,
@@ -107,7 +105,7 @@ type SearchParams = { description: string; secteurs: string[]; filters: AnyFilte
 export const useAdvancedFilters = (type: CardTypeNameFromModel): FilterProperties => {
   const forecastedBuyFilters = [publicationDateFilter, zoneFilter, environnementalFilter];
   const startupFilters = [marketFilter, zoneFilter];
-  const publicBuyFilters = [certificationFilter, entityFilter];
+  const publicBuyFilters: FilterDefinition[] = [];
   const helpFilters = [helpTypeFilter, deadlineFilter, permanentHelpFilter];
   const investorFilters = [minimumAmountFilter, zoneFilter, fundingTypeFilter];
 

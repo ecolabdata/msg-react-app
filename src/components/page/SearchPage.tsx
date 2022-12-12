@@ -117,25 +117,28 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
                 usedErrorTextDescription={[errorTxt, setErrorTxt]}
                 usedInListPage={true}
                 color={cardType.color}
+                showThematicField={cardType.name !== 'acheteurs-publics'}
               />
             </fieldset>
-            <div className="flex flex-col mt-4">
-              <button
-                aria-expanded={isAdvancedSearchOpen}
-                type="button"
-                className="ml-auto underline"
-                onClick={handleToggleAdvancedSearch}>
-                Recherche avancée
-              </button>
-              {isAdvancedSearchOpen && (
-                <AdvancedFilters
-                  cardType={cardType}
-                  filters={filters}
-                  setFilters={handleUpdateFilter}
-                  values={filtersValues}
-                />
-              )}
-            </div>
+            {filters?.length > 0 && (
+              <div className="flex flex-col mt-4">
+                <button
+                  aria-expanded={isAdvancedSearchOpen}
+                  type="button"
+                  className="ml-auto underline"
+                  onClick={handleToggleAdvancedSearch}>
+                  Recherche avancée
+                </button>
+                {isAdvancedSearchOpen && (
+                  <AdvancedFilters
+                    cardType={cardType}
+                    filters={filters}
+                    setFilters={handleUpdateFilter}
+                    values={filtersValues}
+                  />
+                )}
+              </div>
+            )}
           </form>
 
           <div className="researchButtonsContainer mt-8 w-full flex flex-col items-center justify-center">
