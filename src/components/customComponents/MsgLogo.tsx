@@ -9,7 +9,7 @@ const MsgLogo: React.FC = () => {
           mes services greentech
           <span className="fr-badge fr-badge--sm fr-badge--green-emeraude">BÊTA</span>
         </p>
-        <p>L’aimant à leviers dédié à l’écosystème greentech</p>
+        <p>Ressources dédiées à l'écosystème greentech</p>
       </div>
     </>
   );

@@ -1,6 +1,7 @@
 import { PropsWithChildren } from 'react';
 import { Link, LinkProps, useLocation } from 'react-router-dom';
 import useCheckMobileScreen from '../hooks/useCheckMobileScreen';
+import ExternalLink from './customComponents/ExternalLink';
 
 interface NavigationMenuProps {
   isBurgerMenuOpen: boolean;
@@ -20,26 +21,23 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({ isBurgerMenuOpen }) => 
                   className="fr-nav md:self-start md:w-full flex-1"
                   id="header-navigation"
                   role="navigation"
-                  aria-label="Menu principal"
-                >
+                  aria-label="Menu principal">
                   <ul className="fr-nav__list">
                     <li className="fr-nav__item">
                       <NavigationLink to="/">Accueil</NavigationLink>
                     </li>
                     <li className="fr-nav__item">
-                      <NavigationLink to="/achats-previsionnels">Entreprises</NavigationLink>
+                      <NavigationLink to="/startup">Entreprises</NavigationLink>
                     </li>
                     <li className="fr-nav__item">
-                      <NavigationLink to="/startups">Acheteurs</NavigationLink>
+                      <NavigationLink to="/acteurs-publics">Acheteurs</NavigationLink>
                     </li>
                     <li className="fr-nav__item">
-                      <a
+                      <ExternalLink
                         className="fr-nav__link"
                         href="mailto:greentechinnovation@developpement-durable.gouv.fr"
-                        target="_self"
-                      >
-                        Contact
-                      </a>
+                        content="Contact"
+                      />
                     </li>
                   </ul>
                 </nav>
@@ -62,8 +60,7 @@ const NavigationLink: React.FC<PropsWithChildren<LinkProps>> = ({ to, children }
       className="fr-nav__link"
       to={to}
       target="_self"
-      {...(pathname === to && { 'aria-current': 'page' })}
-    >
+      {...(pathname === to && { 'aria-current': 'page' })}>
       {children}
     </Link>
   );
