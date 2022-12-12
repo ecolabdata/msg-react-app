@@ -53,12 +53,12 @@ const ResultCardDescription: FC<ResultCardDescriptionProps> = ({ cardData }) => 
     ),
     (a) => (
       <>
-        <div data-org-value={a.submission_deadline}>
+        <p data-org-value={a.submission_deadline}>
           {' '}
           {a.submission_deadline
             ? `Date de clôture: ${displayabeSubmissionDeadLine}`
             : 'Aide permanente'}
-        </div>
+        </p>
         <DetailBadges contents={a.aid_types} />
       </>
     ),

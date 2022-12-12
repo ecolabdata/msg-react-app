@@ -88,7 +88,7 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
             "
       >
         <div className="cardTitleAndLogo p-2 text-base">
-          <h2 className="w-fit font-bold text-2xl md:text-4xl">
+          <h2 className="w-fit font-bold text-2xl md:text-4xl md:flex md:items-center ">
             <div className="flex items-center ">
               <cardType.SVGLogo
                 width="80"
@@ -98,8 +98,8 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
               />
               &nbsp;
               {cardType.title} &nbsp;{' '}
-              <span className="bg-yellow md:text-3xl font-light">{`(${cards.length} résultats)`}</span>
             </div>
+            <span className="bg-yellow md:text-3xl font-light">{`(${cards.length} résultats)`}</span>
           </h2>
 
           <p className="mt-2 text-base">{cardType.description}</p>

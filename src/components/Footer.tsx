@@ -4,7 +4,7 @@ import ExternalLink from './customComponents/ExternalLink';
 const Footer: React.FC = () => {
   return (
     <>
-      <footer className="fr-footer relative" role="contentinfo" id="footer">
+      <footer className="fr-footer relative mt-8" role="contentinfo" id="footer">
         <div className="fr-container dsfr-lg:relative">
           <div className="fr-footer__body">
             <div className="fr-footer__brand fr-enlarge-link">
@@ -26,12 +26,11 @@ const Footer: React.FC = () => {
                 Mes services Greentech est en version beta. L’outil vous propose des leviers pour
                 booster votre développement ! Pour nous faire part de vos remarques ou nous aider à
                 améliorer l’expérience merci de répondre à cette{' '}
-                <a
-                  className="font-bold text-blue-france-625"
+                <ExternalLink
+                  className="font-bold text-blue-france-625 mr-1"
                   href="https://airtable.com/shrwwE4lA2GFxK0T4"
-                >
-                  courte enquête
-                </a>{' '}
+                  content="courte enquête"
+                />
                 (3 minutes).
               </p>
               <ul className="fr-footer__content-list">

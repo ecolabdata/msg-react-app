@@ -5,7 +5,7 @@ import { useQuery } from '../../hooks/useQuery';
 import routes from '../../model/routes';
 import formatSlugForBreadCumb from '../../utils/formatSlugForBreadcrumb';
 
-type FormatedRoute =
+export type FormatedRoute =
   | {
       urlToRedirect: string;
       slugToDisplay: string;
@@ -64,6 +64,7 @@ const Sitemap = () => {
         </li>
 
         {allRoutesFiltered.map((routes: FormatedRoute[]) => {
+          console.log('routes', routes)
           if (!routes[0]) return;
 
           if (routes.length === 1) {
