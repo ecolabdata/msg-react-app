@@ -10,8 +10,7 @@ const Footer: React.FC = () => {
             <div className="fr-footer__brand fr-enlarge-link">
               <Link
                 to="/"
-                title="Ministère de la transition écologique et de la cohésion des territoires - Retour à l’accueil"
-              >
+                title="Ministère de la transition écologique et de la cohésion des territoires - Retour à l’accueil">
                 <p className="fr-logo uppercase">
                   ministère <br />
                   de la transition <br />
@@ -35,36 +34,39 @@ const Footer: React.FC = () => {
               </p>
               <ul className="fr-footer__content-list">
                 <li className="fr-footer__content-item">
-                  <a
+                  <ExternalLink
                     className="fr-footer__content-link text-grey-625-active font-normal text-sm"
-                    href="https://legifrance.gouv.fr"
-                  >
-                    legifrance.gouv.fr
-                  </a>
+                    href="https://www.ecologie.gouv.fr/"
+                    content="ecologie.gouv.fr"
+                  />
                 </li>
                 <li className="fr-footer__content-item">
-                  <a
+                  <ExternalLink
+                    className="fr-footer__content-link text-grey-625-active font-normal text-sm"
+                    href="https://www.economie.gouv.fr/"
+                    content="economie.gouv.fr"
+                  />
+                </li>
+                <li className="fr-footer__content-item">
+                  <ExternalLink
                     className="fr-footer__content-link text-grey-625-active font-normal text-sm"
                     href="https://gouvernement.fr"
-                  >
-                    gouvernement.fr
-                  </a>
+                    content="gouvernement.fr"
+                  />
                 </li>
                 <li className="fr-footer__content-item">
-                  <a
+                  <ExternalLink
                     className="fr-footer__content-link text-grey-625-active font-normal text-sm"
                     href="https://service-public.fr"
-                  >
-                    service-public.fr
-                  </a>
+                    content="service-public.fr"
+                  />
                 </li>
                 <li className="fr-footer__content-item">
-                  <a
+                  <ExternalLink
                     className="fr-footer__content-link text-grey-625-active font-normal text-sm"
                     href="https://data.gouv.fr"
-                  >
-                    data.gouv.fr
-                  </a>
+                    content="data.gouv.fr"
+                  />
                 </li>
               </ul>
             </div>
@@ -79,32 +81,28 @@ const Footer: React.FC = () => {
               <li className="fr-footer__bottom-item">
                 <Link
                   className="fr-footer__bottom-link text-grey-625 font-bold text-xs text-grey-625 font-bold text-xs"
-                  to="/plan-du-site"
-                >
+                  to="/plan-du-site">
                   Plan du site
                 </Link>
               </li>
               <li className="fr-footer__bottom-item">
                 <Link
                   className="fr-footer__bottom-link text-grey-625 font-bold text-xs"
-                  to="/legal/legal-notices"
-                >
+                  to="/legal/legal-notices">
                   Mentions légales
                 </Link>
               </li>
               <li className="fr-footer__bottom-item">
                 <Link
                   className="fr-footer__bottom-link text-grey-625 font-bold text-xs"
-                  to="/legal/gdpr"
-                >
+                  to="/legal/gdpr">
                   Données personnelles
                 </Link>
               </li>
               <li className="fr-footer__bottom-item">
                 <Link
                   className="fr-footer__bottom-link text-grey-625 font-bold text-xs"
-                  to="/legal/cookies"
-                >
+                  to="/legal/cookies">
                   Gestion des cookies
                 </Link>
               </li>
