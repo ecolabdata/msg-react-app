@@ -92,38 +92,6 @@ export const aideClient: CardType = {
   version: 'beta',
 } as const;
 
-const name = applyCard(
-  cardData,
-  (ap) => ap.public_actor_nom,
-  (pa) => pa.label,
-  (i) => i['Nom du fonds'],
-  (su) => su['Start-up'],
-  () => 'No title'
-);
-const toprow =
-  : isStartup(cardData)
-  ? cardData['Thématique']
-  : isInvestisseur(cardData)
-  ? cardData['Vous êtes']
-  : isAcheteurPublic(cardData)
-  ? 'Ville / Région'
-  : isProjetAchat(cardData)
-  ? cardData.purchasingEntity.label
-  : '';
-
-//TODO: When an endpoint by id exist. All this should be removed to link card to `/${cardType.name}/details/${cardData.id}`
-const cardSlug = applyCard(
-  cardData,
-  (ap) => ap.public_actor_nom,
-  (pa) => pa.label,
-  (i) => i['Nom du fonds'],
-  (a) => a.slug,
-  (su) => su['Start-up'],
-  () => 'unknown-slug'
-);
-const slug = slugify(cardSlug);
-
-
 export const aideInno: CardType = {
   SVGLogo: PictoEnvironnement,
   backgroundColor: '#272747',

@@ -17,5 +17,5 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "public/dsfr"]
+  "include": ["src", "public/dsfr", "src/components/page/search/ProjetAchatSearchPage.tsx"]
 }

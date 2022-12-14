@@ -1,24 +1,14 @@
-import { Children, PropsWithChildren, useContext } from 'react';
+import { AnyCard } from 'api/Api';
+import { PropsWithChildren, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import slugify from 'slugify';
-import {
-  AnyCard,
-  applyCard,
-  isAcheteurPublic,
-  isAide,
-  isInvestisseur,
-  isProjetAchat,
-  isStartup
-} from '../../api/Api';
 import { ApplicationContext } from '../../App';
 import { CardType } from '../../model/CardType';
-import ResultCardDescription from './ResultCardDescription';
 import ScreenReaderOnlyText from './ScreenReaderOnlyText';
 
 interface CardProps {
   name: string
   toprow: string
-  linkData : any,
+  linkData : AnyCard,
   slug: string
   cardType: CardType
   isLoading?: boolean
@@ -29,6 +19,7 @@ const ResultCard: React.FC<PropsWithChildren<CardProps>> = ({ cardType, name, to
 
   const [, setNextScrolTarget] = usedNextScrollTarget;
 
+  //TODO: When an endpoint by id exist. All this should be removed to link card to `/${cardType.name}/details/${cardData.id}`
   let linkTo = `/${cardType.name}/details/${slug}?cardData=${encodeURIComponent(
     JSON.stringify(linkData)
   )}`;
