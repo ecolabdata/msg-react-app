@@ -13,7 +13,7 @@ export const ActeurPublicSearchPage = () => {
 }
 
 interface ActeurPublicResultCardProps {
-    isLoading: boolean,
+    isLoading?: boolean,
     ap: Collectivite,
 }
 

@@ -12,7 +12,7 @@ export const StartupSearchPage = () => {
 }
 
 interface StartupResultCardProps {
-    isLoading: boolean,
+    isLoading?: boolean,
     su: Startup,
 }
 

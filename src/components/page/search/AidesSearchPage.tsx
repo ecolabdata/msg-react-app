@@ -19,7 +19,7 @@ export const AideClientSearchPage = () => {
 }
 
 interface AideResultCardProps {
-    isLoading: boolean,
+    isLoading?: boolean,
     aide: Aide,
     cardType: CardType
 }

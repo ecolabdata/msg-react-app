@@ -13,7 +13,7 @@ export const ProjetAchatSearchPage = () => {
 }
 
 interface ProjetAchatResultCardProps {
-    isLoading: boolean,
+    isLoading?: boolean,
     pa: ProjetAchat,
 }
 

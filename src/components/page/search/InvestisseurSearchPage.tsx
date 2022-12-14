@@ -13,7 +13,7 @@ export const InvestisseurSearchPage = () => {
 }
 
 interface InvestisseurResultCardProps {
-    isLoading: boolean,
+    isLoading?: boolean,
     invest: Investisseur,
 }
 
