@@ -8,17 +8,16 @@ import { SearchPage } from "../SearchPage"
 
 export const ProjetAchatSearchPage = () => {
     return <SearchPage usedAdvancedFilter={useAdvancedFilters(achatPrevi.name)} cardType={achatPrevi}>
-        {(card, i, isLoading) => <ProjetAchatResultCard cardType={achatPrevi} key={i} isLoading={isLoading} su={card as ProjetAchat} />}
+        {(card, i, isLoading) => <ProjetAchatResultCard key={i} isLoading={isLoading} pa={card as ProjetAchat} />}
     </SearchPage>
 }
 
 interface ProjetAchatResultCardProps {
     isLoading: boolean,
     pa: ProjetAchat,
-    cardType: CardType
 }
 
-export const ProjetAchatResultCard: React.FC<ProjetAchatResultCardProps> = ({ isLoading, pa, cardType }) => {
+export const ProjetAchatResultCard: React.FC<ProjetAchatResultCardProps> = ({ isLoading, pa }) => {
     const slug = slugify(pa.label);
     const d = new Date(pa.publicationTargetDate);
     const targetDate =
@@ -27,7 +26,7 @@ export const ProjetAchatResultCard: React.FC<ProjetAchatResultCardProps> = ({ is
       ('0' + ((d?.getUTCMonth() || 0) + 1)).slice(-2) +
       '/' +
       d?.getUTCFullYear();
-    return <ResultCard cardType={cardType} name={pa.label} toprow={pa.purchasingEntity.label} linkData={pa} slug={slug} isLoading={isLoading}>
+    return <ResultCard cardType={achatPrevi} name={pa.label} toprow={pa.purchasingEntity.label} linkData={pa} slug={slug} isLoading={isLoading}>
          <p>Date visée de publication: {targetDate}</p>
     </ResultCard >
 }

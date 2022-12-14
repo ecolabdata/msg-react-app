@@ -1,19 +1,18 @@
 import { Aide } from "api/Api"
 import DetailBadges from "components/customComponents/DetailBadges"
-import { FilterProperties, useAdvancedFilters } from "components/customComponents/filter/filters"
+import { useAdvancedFilters } from "components/customComponents/filter/filters"
 import ResultCard from "components/customComponents/ResultCard"
-import SearchResults from "components/customComponents/SearchResults"
 import { aideClient, aideInno, CardType } from "model/CardType"
 import slugify from "slugify"
 import { SearchPage } from "../SearchPage"
 
-const AideInnoSearchPage = () => {
+export const AideInnoSearchPage = () => {
     return <SearchPage usedAdvancedFilter={useAdvancedFilters(aideInno.name)} cardType={aideInno}>
         {(card, i, isLoading) => <AideResultCard cardType={aideInno} key={i} isLoading={isLoading} aide={card as Aide} />}
     </SearchPage>
 }
 
-const AideClientSearchPage = () => {
+export const AideClientSearchPage = () => {
     return <SearchPage usedAdvancedFilter={useAdvancedFilters(aideClient.name)} cardType={aideClient}>
         {(card, i, isLoading) => <AideResultCard cardType={aideClient} key={i} isLoading={isLoading} aide={card as Aide} />}
     </SearchPage>
@@ -25,7 +24,7 @@ interface AideResultCardProps {
     cardType: CardType
 }
 
-const AideResultCard: React.FC<AideResultCardProps> = ({ isLoading, aide, cardType }) => {
+export const AideResultCard: React.FC<AideResultCardProps> = ({ isLoading, aide, cardType }) => {
     const displayableFinancers = aide.financers?.join(' | ') || '';
     const slug = slugify(aide['slug']);
     let displayabeSubmissionDeadLine = '';

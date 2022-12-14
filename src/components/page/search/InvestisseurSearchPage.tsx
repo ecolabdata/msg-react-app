@@ -8,19 +8,18 @@ import { SearchPage } from "../SearchPage"
 
 export const InvestisseurSearchPage = () => {
     return <SearchPage usedAdvancedFilter={useAdvancedFilters(investisseur.name)} cardType={investisseur}>
-        {(card, i, isLoading) => <InvestisseurResultCard cardType={investisseur} key={i} isLoading={isLoading} invest={card as Investisseur} />}
+        {(card, i, isLoading) => <InvestisseurResultCard key={i} isLoading={isLoading} invest={card as Investisseur} />}
     </SearchPage>
 }
 
 interface InvestisseurResultCardProps {
     isLoading: boolean,
     invest: Investisseur,
-    cardType: CardType
 }
 
-export const InvestisseurResultCard: React.FC<InvestisseurResultCardProps> = ({ isLoading, invest, cardType }) => {
+export const InvestisseurResultCard: React.FC<InvestisseurResultCardProps> = ({ isLoading, invest }) => {
     const slug = slugify(invest['Nom du fonds']);
-    return <ResultCard cardType={cardType} name={invest['Nom du fonds']} toprow={invest['Vous êtes']} linkData={invest} slug={slug} isLoading={isLoading}>
+    return <ResultCard cardType={investisseur} name={invest['Nom du fonds']} toprow={invest['Vous êtes']} linkData={invest} slug={slug} isLoading={isLoading}>
         <p>
             {invest['Ticket min en K€']}K€ - {invest['Ticket max en K€']}K€
         </p>

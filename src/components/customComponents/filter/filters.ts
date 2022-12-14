@@ -198,10 +198,10 @@ export function useAdvancedFilters(type: CardTypeNameFromModel): FilterPropertie
         filters: investorFilters
       };
   }
-};
+}
 
 function getInitialValues(filters: FilterDefinition[]) {
   return filters.reduce((acc, cur) => {
     return { ...acc, [cur.id]: cur.initialValue };
   }, {} as AnyFilters);
-};
+}
