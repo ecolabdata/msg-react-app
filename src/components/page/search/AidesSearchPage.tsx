@@ -5,35 +5,24 @@ import ResultCard from "components/customComponents/ResultCard"
 import SearchResults from "components/customComponents/SearchResults"
 import { aideClient, aideInno, CardType } from "model/CardType"
 import slugify from "slugify"
-import { SearchPage } from "./SearchPage"
+import { SearchPage } from "../SearchPage"
 
 const AideInnoSearchPage = () => {
-    return <AideSearchPage usedAdvancedFilter={useAdvancedFilters(aideInno.name)} cardType={aideInno} />
+    return <SearchPage usedAdvancedFilter={useAdvancedFilters(aideInno.name)} cardType={aideInno}>
+        {(card, i, isLoading) => <AideResultCard cardType={aideInno} key={i} isLoading={isLoading} aide={card as Aide} />}
+    </SearchPage>
 }
 
 const AideClientSearchPage = () => {
-    return <AideSearchPage usedAdvancedFilter={useAdvancedFilters(aideClient.name)} cardType={aideClient} />
-}
-
-interface AideSearchPageProps {
-    usedAdvancedFilter: FilterProperties,
-    cardType: CardType
-}
-
-const AideSearchPage: React.FC<AideSearchPageProps> = ({ usedAdvancedFilter, cardType }) => {
-    return <SearchPage cardType={cardType} usedAdvancedFilter={usedAdvancedFilter} >
-        {
-            (isLoading, cardSlice) => <SearchResults cards={cardSlice} isLoading={isLoading}>
-                {cardSlice.map((card, i) => <AideResultCard cardType={cardType} key={i} isLoading={isLoading} aide={card as Aide} />)}
-            </SearchResults>
-        }
-    </SearchPage >
+    return <SearchPage usedAdvancedFilter={useAdvancedFilters(aideClient.name)} cardType={aideClient}>
+        {(card, i, isLoading) => <AideResultCard cardType={aideClient} key={i} isLoading={isLoading} aide={card as Aide} />}
+    </SearchPage>
 }
 
 interface AideResultCardProps {
     isLoading: boolean,
     aide: Aide,
-    cardType : CardType
+    cardType: CardType
 }
 
 const AideResultCard: React.FC<AideResultCardProps> = ({ isLoading, aide, cardType }) => {
@@ -47,7 +36,6 @@ const AideResultCard: React.FC<AideResultCardProps> = ({ isLoading, aide, cardTy
         ('0' + ((d?.getUTCMonth() || 0) + 1)).slice(-2) +
         '/' +
         d?.getUTCFullYear();
-
     return <ResultCard
         cardType={cardType} name={aide.name} toprow={displayableFinancers} linkData={aide} slug={slug} isLoading={isLoading}>
         <div data-org-value={aide.submission_deadline}>
