@@ -41,7 +41,8 @@ const Header = () => {
                     title="Accueil - Mes services
 GreenTech - Ressources dédiées à l'écosystème greentech |
 Ministère de la transition écologique et de la cohésion des
-territoires">
+territoires"
+                  >
                     <MsgLogo />
                   </Link>
                 </div>
@@ -57,7 +58,8 @@ territoires">
                       aria-haspopup="menu"
                       aria-expanded={isBurgerMenuOpen}
                       title="Menu de navigation principal"
-                      id="fr-btn-menu-mobile">
+                      id="fr-btn-menu-mobile"
+                    >
                       Menu de navigation principal
                     </button>
                   </div>
