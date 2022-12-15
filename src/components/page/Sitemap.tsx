@@ -64,7 +64,7 @@ const Sitemap = () => {
         </li>
 
         {allRoutesFiltered.map((routes: FormatedRoute[]) => {
-          console.log('routes', routes)
+          console.log('routes', routes);
           if (!routes[0]) return;
 
           if (routes.length === 1) {
