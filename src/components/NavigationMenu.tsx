@@ -21,7 +21,8 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({ isBurgerMenuOpen }) => 
                   className="fr-nav md:self-start md:w-full flex-1"
                   id="header-navigation"
                   role="navigation"
-                  aria-label="Menu principal">
+                  aria-label="Menu principal"
+                >
                   <ul className="fr-nav__list">
                     <li className="fr-nav__item">
                       <NavigationLink to="/">Accueil</NavigationLink>
@@ -60,7 +61,8 @@ const NavigationLink: React.FC<PropsWithChildren<LinkProps>> = ({ to, children }
       className="fr-nav__link"
       to={to}
       target="_self"
-      {...(pathname === to && { 'aria-current': 'page' })}>
+      {...(pathname === to && { 'aria-current': 'page' })}
+    >
       {children}
     </Link>
   );

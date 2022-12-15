@@ -18,7 +18,6 @@ const formatedSlugResultPage = (urlToRedirect: string) => {
 };
 
 const formatedSlugLegalPage = (urlToRedirect: string) => {
-
   const slug = { urlToRedirect };
 
   if (urlToRedirect === '/legal') {
