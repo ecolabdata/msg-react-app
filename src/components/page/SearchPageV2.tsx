@@ -2,47 +2,45 @@ import { useContext, useEffect, useMemo, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { AidesQuery, AnyCard, Search } from '../../api/Api';
 import { ApplicationContext } from '../../App';
-import { useAdvancedFilters } from '../customComponents/filter/filters';
+import { FilterProperties, useAdvancedFilters } from '../customComponents/filter/filters';
 import { CardType } from '../../model/CardType';
-import { InitialState } from '../../utils/InitialState';
 import AdvancedFilters from '../customComponents/filter/AdvancedFilters';
 
 import SearchForm from '../customComponents/SearchForm';
 import Pagination from '../dsfrComponents/Pagination';
-import SearchResults from '../customComponents/SearchResultsV2';
-
+import SearchResults from '../customComponents/SearchResults';
+import { mockedPublicBuyer } from '../../api/mockedPublicBuyer';
+import { Hit, Resp } from 'api2/Api';
 
 type Props = {
   cardType: CardType;
+  children: (hit: Hit, i: number, isLoading: boolean) => React.ReactNode,
+  usedAdvancedFilter: FilterProperties
 };
 
-export const SearchPage: React.FC<Props> = ({ cardType }) => {
-  let { q } = useParams();
-  const { initialValues, searchByType, handleFilter, filters } = useAdvancedFilters(cardType.name);
-
+export const SearchPage: React.FC<Props> = ({ cardType, children, usedAdvancedFilter }) => {
+  const { initialValues, searchByType, handleFilter, filters } = usedAdvancedFilter
   const { usedNextScrollTarget } = useContext(ApplicationContext);
   const [, setNextScrollTarget] = usedNextScrollTarget;
-  const location = useLocation();
-  const initialState = location.state as
-    | (InitialState & { page?: number; montantMin: number })
-    | null;
-
-  const pageNo = initialState?.page || 1;
   const navigate = useNavigate();
+  const loc = useLocation();
+  const q = new URLSearchParams(loc.search).get('q')
 
   const [isLoading, setIsLoading] = useState(false);
   const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
-  const [description, setDescription] = useState(q || "");
+  const [description, setDescription] = useState(q || '');
+  const [secteurs, setSecteurs] = useState<string[]>([]);
   const [errorTxt, setErrorTxt] = useState('');
   const pageChunkSize = 20;
-  const [resp, setResp] = useState<any | null>(null);
+  const [resp, setResp] = useState<Resp | null>(null);
   const [filtersValues, setFiltersValues] = useState(initialValues);
 
-  const nbPage = resp && Math.ceil(resp.total.value / pageChunkSize) || 0;
-
-
+  console.log(resp)
+  const nbPage = resp ? Math.ceil(resp.total.value / pageChunkSize) : 0;
   const handleResetFilters = () => {
     setDescription('');
+    setSecteurs([]);
+    setFiltersValues(initialValues);
   };
 
   const handleUpdateFilter = (filterName: string, filterValue: string | boolean) => {
@@ -51,7 +49,8 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
 
   useEffect(() => {
     if (description.length > 0) {
-      fetch('https://api-v2.msg.greentechinnovation.fr/acteur_public/search?' + new URLSearchParams({
+      console.log("Fetching data")
+      fetch('http://localhost:5000/acteur_public/search?' + new URLSearchParams({
         q: description,
       }))
         .then((resp) => resp.json())
@@ -62,35 +61,19 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
     } else {
       setResp(null)
     }
-  }, [description]);
+  }, []);
 
   const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (description.length > 0) {
       setIsLoading(true);
       setErrorTxt('');
-      navigate({
-        search: `?q=${description}`
-      })
+      navigate({search: `?q=${description}`})
     } else {
       document?.getElementById('keywordsForm-Décrivez votre projet en quelques lignes.')?.focus();
       setErrorTxt("Erreur: la description de l'entreprise est obligatoire");
     }
-  }
-  //     searchByType({ description, secteurs, filters: filtersValues }).then((search) => {
-  //       setIsLoading(false);
-  //       const filteredCards = handleFilter(search as Search, filtersValues as any);
-  //       setCards(filteredCards);
-  //       return navigate(cardType.searchLink, {
-  //         replace: true,
-  //         state: { search, results: filteredCards }
-  //       });
-  //     });
-  //   } else {
-  //     document?.getElementById('keywordsForm-Décrivez votre projet en quelques lignes.')?.focus();
-  //     setErrorTxt("Erreur: la description de l'entreprise est obligatoire");
-  //   }
-  // };
+  };
 
   return (
     <>
@@ -110,7 +93,7 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
               />
               &nbsp;
               {cardType.title} &nbsp;{' '}
-              <span className="bg-yellow md:text-3xl font-light">{`(${resp.hits.length} résultats)`}</span>
+              <span className="bg-yellow md:text-3xl font-light">{`(${resp?.total.value || 0} résultats)`}</span>
             </div>
           </h2>
 
@@ -127,13 +110,21 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
               <legend className="sr-only">Votre projet</legend>
               <SearchForm
                 usedDescription={[description, setDescription]}
-                usedSecteurs={null}
+                usedSecteurs={[secteurs, setSecteurs]}
                 usedErrorTextDescription={[errorTxt, setErrorTxt]}
                 usedInListPage={true}
                 color={cardType.color}
               />
             </fieldset>
             <div className="flex flex-col mt-4">
+              <button
+                aria-expanded={isAdvancedSearchOpen}
+                type="button"
+                className="ml-auto underline"
+                onClick={() => console.log("TODO")}
+              >
+                Recherche avancée
+              </button>
               {isAdvancedSearchOpen && (
                 <AdvancedFilters
                   cardType={cardType}
@@ -166,9 +157,11 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
           </div>
         </div>
       </div>
-      {initialState && (
+      {(
         <>
-          <SearchResults resp={cardsSlice} cardType={cardType} isLoading={isLoading} />
+          <SearchResults hitCount={resp?.total.value || 0} isLoading={isLoading}>
+            {resp?.hits.map((hit, i) => children(hit, i, isLoading))}
+          </SearchResults>
           <Pagination
             isLoading={isLoading && nbPage > 0}
             onClick={() => {
@@ -179,10 +172,9 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
                   top: element.offsetTop - window.innerHeight * 0.2
                 });
             }}
-            currentPageNo={pageNo}
+            currentPageNo={1}
             baseUrl={cardType.searchLink}
             nbPage={nbPage}
-            initialState={initialState}
           />
         </>
       )}

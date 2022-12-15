@@ -14,7 +14,7 @@ import { mockedPublicBuyer } from '../../api/mockedPublicBuyer';
 
 type Props = {
   cardType: CardType;
-  children: (card : AnyCard, i : number, isLoading : boolean) => React.ReactNode,
+  children: (card: AnyCard, i: number, isLoading: boolean) => React.ReactNode,
   usedAdvancedFilter: FilterProperties
 };
 
@@ -166,7 +166,7 @@ export const SearchPage: React.FC<Props> = ({ cardType, children, usedAdvancedFi
       </div>
       {initialState && (
         <>
-          <SearchResults cards={cardsSlice} isLoading={isLoading}>
+          <SearchResults hitCount={cards.length} isLoading={isLoading}>
             {cardsSlice.map((card, i) => children(card, i, isLoading))}
           </SearchResults>
           <Pagination

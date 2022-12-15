@@ -17,7 +17,7 @@ import { AideClientSearchPage, AideInnoSearchPage } from 'components/page/search
 import { InvestisseurSearchPage } from 'components/page/search/InvestisseurSearchPage';
 import { StartupSearchPage } from 'components/page/search/StartupSearchPage';
 import { ProjetAchatSearchPage } from 'components/page/search/ProjetAchatSearchPage';
-import { ActeurPublicSearchPage } from 'components/page/search/ActeurPublicSearchPage';
+import { ActeurPublicSearchPage } from 'components/page/search/ActeurPublicSearchPageV2';
 
 export const routes = (
   <Routes>

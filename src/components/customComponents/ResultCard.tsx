@@ -8,7 +8,7 @@ import ScreenReaderOnlyText from './ScreenReaderOnlyText';
 interface CardProps {
   name: string
   toprow: string
-  linkData : AnyCard,
+  linkData : AnyCard | {},
   slug: string
   cardType: CardType
   isLoading?: boolean
