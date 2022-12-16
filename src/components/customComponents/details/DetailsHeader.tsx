@@ -1,14 +1,22 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { AnyCard, isAcheteurPublic, isProjetAchat, isStartup } from '../../../api/Api';
-import { achatPrevi, acheteurPublic, startups } from '../../../model/CardType';
+import {
+  AnyCard,
+  isAcheteurPublic,
+  isAide,
+  isInvestisseur,
+  isProjetAchat,
+  isStartup
+} from '../../../api/Api';
+import { CardType } from '../../../model/CardType';
 import { tailwindColorUtility } from '../../../utils/utilityFunctions';
 
 interface DetailsHeaderProps {
   card: AnyCard;
+  cardType: CardType;
 }
 
-const DetailsHeader: React.FC<DetailsHeaderProps> = ({ card }) => {
-  const { subtitle, title, cardType } = normalizeHeaderProps(card);
+const DetailsHeader: React.FC<DetailsHeaderProps> = ({ card, cardType }) => {
+  const { subtitle, title } = normalizeHeaderProps(card);
   const backgroundColor = cardType?.color && tailwindColorUtility[cardType?.color].lightBackground;
   const navigate = useNavigate();
 
@@ -22,8 +30,7 @@ const DetailsHeader: React.FC<DetailsHeaderProps> = ({ card }) => {
       <section className={`pt-8 px-[10%] min-h-[200px] ${backgroundColor}`}>
         <p
           className={`fr-badge fr-badge--sm `}
-          style={{ color: cardType?.color, backgroundColor: cardType?.backgroundColor }}
-        >
+          style={{ color: cardType?.color, backgroundColor: cardType?.backgroundColor }}>
           {cardType?.name}
         </p>
         <h1 className="my-4 w-full font-bold text-4xl">{title}</h1>
@@ -32,8 +39,7 @@ const DetailsHeader: React.FC<DetailsHeaderProps> = ({ card }) => {
       <Link
         to={'..'}
         className="mx-[10%] mt-8 fr-link fr-fi-arrow-left-line fr-link--icon-left w-fit"
-        onClick={handleGoBack}
-      >
+        onClick={handleGoBack}>
         Revenir en arrière
       </Link>
     </>
@@ -43,26 +49,38 @@ const DetailsHeader: React.FC<DetailsHeaderProps> = ({ card }) => {
 export default DetailsHeader;
 
 const normalizeHeaderProps = (card: AnyCard) => {
+  if (isInvestisseur(card)) {
+    return {
+      title: card['Nom du fonds'],
+      subtitle: card['Type de financement']
+    };
+  }
+
+  if (isAide(card)) {
+    console.log(card);
+    return {
+      title: card.name,
+      subtitle: card.financers
+    };
+  }
+
   if (isAcheteurPublic(card)) {
     return {
       title: card.public_actor_nom,
-      subtitle: '',
-      cardType: acheteurPublic
+      subtitle: ''
     };
   }
   if (isStartup(card)) {
     return {
       title: card['Start-up'],
-      subtitle: card.Thématique,
-      cardType: startups
+      subtitle: card.Thématique
     };
   }
 
   if (isProjetAchat(card)) {
     return {
       title: card.label,
-      subtitle: card.departments?.map((d) => d.department).join('|'),
-      cardType: achatPrevi
+      subtitle: card.departments?.map((d) => d.department).join('|')
     };
   }
   return {

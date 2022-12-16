@@ -10,17 +10,17 @@ export const tailwindColorUtility: Record<string, Record<string, string>> = {
   '#68A532': {
     border: 'border-[#68A532]',
     backgroundColor: 'bg-[#68A532]',
-    lightBackground: 'bg-[#68A532]'
+    lightBackground: 'bg-[#1E2719]'
   },
   '#CE70CC': {
     border: 'border-[#CE70CC]',
     backgroundColor: 'bg-[#CE70CC]',
-    lightBackground: 'bg-[#CE70CC]'
+    lightBackground: 'bg-[#2C202B]'
   },
   '#8585F6': {
     border: 'border-[#8585F6]',
     backgroundColor: 'bg-[#8585F6]',
-    lightBackground: 'bg-[#8585F6]'
+    lightBackground: 'bg-[#272747]'
   },
   '#4EC8AE': {
     border: 'border-[#4EC8AE]',
