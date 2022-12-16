@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AnyCard, isAcheteurPublic, isProjetAchat, isStartup } from '../../../api/Api';
+import { AnyCard, isAcheteurPublic, isAide, isProjetAchat, isStartup } from '../../../api/Api';
 import ExternalLink from '../ExternalLink';
 
 interface ContactAreaProps {
@@ -8,7 +8,7 @@ interface ContactAreaProps {
 }
 
 const ContactArea: React.FC<ContactAreaProps> = ({ card, className }) => {
-  const { title, content, cta, link } = normalizeContactInformations(card);
+  const { title, content, cta, link, secondaryCta } = normalizeContactInformations(card);
   const [showContact, setShowContact] = useState(false);
 
   return (
@@ -20,8 +20,7 @@ const ContactArea: React.FC<ContactAreaProps> = ({ card, className }) => {
           {!showContact && (
             <button
               onClick={() => setShowContact(true)}
-              className="fr-btn fr-btn--primary w-fit px-4 h-3 py-2 hover:bg-claire-bf__hover mt-6  "
-            >
+              className="fr-btn fr-btn--primary w-fit px-4 h-3 py-2 hover:bg-claire-bf__hover mt-6  ">
               {cta?.label}
             </button>
           )}
@@ -38,7 +37,7 @@ const ContactArea: React.FC<ContactAreaProps> = ({ card, className }) => {
           <ExternalLink
             href={cta.url}
             content={cta.label}
-            className="fr-btn fr-btn--primary w-fit px-4 h-3 py-2 hover:bg-claire-bf__hover mt-6"
+            className="fr-btn fr-btn--primary w-fit  px-4 h-3 py-2 hover:bg-claire-bf__hover mt-6"
           />
         )
       )}
@@ -49,6 +48,13 @@ const ContactArea: React.FC<ContactAreaProps> = ({ card, className }) => {
           className="fr-link rm-link-underline mt-2"
         />
       )}
+      {secondaryCta && secondaryCta.url && (
+        <ExternalLink
+          href={secondaryCta.url}
+          content={secondaryCta.label}
+          className="fr-btn fr-btn--secondary w-fit px-4 h-fit py-2 hover:bg-claire-bf__hover mt-6"
+        />
+      )}
     </section>
   );
 };
@@ -56,6 +62,22 @@ const ContactArea: React.FC<ContactAreaProps> = ({ card, className }) => {
 export default ContactArea;
 
 const normalizeContactInformations = (card: AnyCard) => {
+  if (isAide(card)) {
+    console.log(card.application_url);
+    return {
+      title: 'Contact',
+      content: 'Relais locaux',
+      cta: {
+        label: "Lien vers l'aide originale",
+        url: card.origin_url
+      },
+      secondaryCta: {
+        label: 'Lien vers la démarche en ligne',
+        url: card.application_url
+      }
+    };
+  }
+
   if (isAcheteurPublic(card)) {
     return {
       title: 'Contact',

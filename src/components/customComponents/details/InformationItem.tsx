@@ -6,19 +6,25 @@ interface InformationItemProps {
   contents: string | string[];
   showDivider?: boolean;
   className?: string;
+  isHtml?: boolean;
 }
 
 export const InformationItem: React.FC<InformationItemProps> = ({
   label,
   contents,
   showDivider = true,
-  className
+  className,
+  isHtml
 }) => {
   return (
     <div className={`flex flex-col mb-8 ${className}`}>
       {showDivider && <div className="h-0.5 w-[10%] bg-gray-700 my-6" />}
       <h2 className="text-2xl mb-2">{label}</h2>
-      {Array.isArray(contents) ? <TagsList tags={contents} /> : <p>{contents}</p>}
+      {Array.isArray(contents) ? (
+        <TagsList tags={contents} />
+      ) : (
+        <>{isHtml ? <p dangerouslySetInnerHTML={{ __html: contents }} /> : <p>{contents}</p>}</>
+      )}
     </div>
   );
 };

@@ -1,10 +1,11 @@
-import { isProjetAchat, isStartup, ProjetAchat, Startup } from '../../../api/Api';
+import { Aide, isAide, isProjetAchat, isStartup, ProjetAchat, Startup } from '../../../api/Api';
 import ContactArea from './ContactArea';
 import { ForecastedBuyInformations } from './ForecastedBuyInformations';
+import HelpPage from './HelpPageContent';
 import { StartupInformations } from './StartupInformations';
 
 interface DetailsGenericContentProps {
-  card: Startup | ProjetAchat;
+  card: Startup | ProjetAchat | Aide;
 }
 
 const DetailsGenericContent: React.FC<DetailsGenericContentProps> = ({ card }) => {
@@ -15,6 +16,7 @@ const DetailsGenericContent: React.FC<DetailsGenericContentProps> = ({ card }) =
         {isProjetAchat(card) && (
           <ForecastedBuyInformations className="w-full sm:w-[70%]" card={card} />
         )}
+        {isAide(card) && <HelpPage className="w-full sm:w-[70%]" card={card} />}
         <ContactArea className="w-full sm:w-[30%] ml-4" card={card} />
       </div>
     </>
