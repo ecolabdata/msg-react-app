@@ -52,14 +52,15 @@ const normalizeHeaderProps = (card: AnyCard) => {
   if (isInvestisseur(card)) {
     return {
       title: card['Nom du fonds'],
-      subtitle: ''
+      subtitle: card['Type de financement']
     };
   }
 
   if (isAide(card)) {
+    console.log(card);
     return {
       title: card.name,
-      subtitle: ''
+      subtitle: card.financers
     };
   }
 
