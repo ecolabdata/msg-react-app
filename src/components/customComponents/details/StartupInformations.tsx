@@ -28,15 +28,13 @@ export const StartupInformations: React.FC<StartupInformationsProps> = ({ card, 
         <>
           {pitch && <InformationItem showDivider={false} label={'Pitch'} contents={pitch} />}
           {publicCustomers && (
-            <InformationItem label={'Clients publics'} contents={publicCustomers.split(',')} />
+            <InformationItem label={'Clients publics'} contents={publicCustomers} />
           )}
-          {helpers && (
-            <InformationItem label={'Soutiens et supports'} contents={helpers.split(',')} />
-          )}
+          {helpers && <InformationItem label={'Soutiens et supports'} contents={helpers} />}
         </>
         <>
           {zone && <InformationItem showDivider={false} label={'Région'} contents={zone} />}
-          {markets && <InformationItem label={'Marchés'} contents={markets.split(',')} />}
+          {markets && <InformationItem label={'Marchés'} contents={markets} />}
           {!!(oddStakes.length > 0) && (
             <InformationItem label={'Enjeux ODD'} contents={oddStakes} />
           )}

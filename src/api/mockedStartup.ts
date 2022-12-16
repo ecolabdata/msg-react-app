@@ -1,4 +1,5 @@
 export const mockedStartup = {
+  cardTypeName: 'startups',
   NOM: 'Gouach',
   SIREN: 844405274,
   SOLUTIONS: {
@@ -12,10 +13,12 @@ export const mockedStartup = {
         'Site internet': 'https://gouach.com/index.html',
         Mail: 'contact@gouach.com',
         LinkedIn: 'https://www.linkedin.com/company/gouach-power/about/',
-        Marché: "['B to A', 'B to B']",
-        Soutiens: "['Région Nouvelle-Aquitaine']",
-        'Enjeux ODD':
-          "[\"7 - Energie propre et d'un coût abordable\", '11 - Villes et communautés durables']",
+        Marché: ['B to A', 'B to B'],
+        Soutiens: ['Région Nouvelle-Aquitaine'],
+        'Enjeux ODD': [
+          "7 - Energie propre et d'un coût abordable",
+          '11 - Villes et communautés durables'
+        ],
         'Références publiques': '-1',
         'Références privées': '-1',
         'Référencée UGAP': '-1',
