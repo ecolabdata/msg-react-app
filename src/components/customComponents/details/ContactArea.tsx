@@ -1,5 +1,12 @@
 import { useState } from 'react';
-import { AnyCard, isAcheteurPublic, isAide, isProjetAchat, isStartup } from '../../../api/Api';
+import {
+  AnyCard,
+  isAcheteurPublic,
+  isAide,
+  isInvestisseur,
+  isProjetAchat,
+  isStartup
+} from '../../../api/Api';
 import ExternalLink from '../ExternalLink';
 
 interface ContactAreaProps {
@@ -62,8 +69,26 @@ const ContactArea: React.FC<ContactAreaProps> = ({ card, className }) => {
 export default ContactArea;
 
 const normalizeContactInformations = (card: AnyCard) => {
+  if (isInvestisseur(card)) {
+    return {
+      title: 'Contact et détails',
+      content: `${card.Prenom} ${card.Nom}`,
+      cta: {
+        label: 'Voir la fiche et le contact',
+        icon: 'mail',
+        contact: {
+          phone: card.TELEPHONE_FIXE,
+          mail: card.Email
+        }
+      },
+      secondaryCta: {
+        label: 'Voir le porfolio complet',
+        url: card.Site_Web
+      }
+    };
+  }
+
   if (isAide(card)) {
-    console.log(card.application_url);
     return {
       title: 'Contact',
       content: 'Relais locaux',

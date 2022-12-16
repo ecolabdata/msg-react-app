@@ -1,5 +1,12 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { AnyCard, isAcheteurPublic, isAide, isProjetAchat, isStartup } from '../../../api/Api';
+import {
+  AnyCard,
+  isAcheteurPublic,
+  isAide,
+  isInvestisseur,
+  isProjetAchat,
+  isStartup
+} from '../../../api/Api';
 import { CardType } from '../../../model/CardType';
 import { tailwindColorUtility } from '../../../utils/utilityFunctions';
 
@@ -42,6 +49,13 @@ const DetailsHeader: React.FC<DetailsHeaderProps> = ({ card, cardType }) => {
 export default DetailsHeader;
 
 const normalizeHeaderProps = (card: AnyCard) => {
+  if (isInvestisseur(card)) {
+    return {
+      title: card['Nom du fonds'],
+      subtitle: ''
+    };
+  }
+
   if (isAide(card)) {
     return {
       title: card.name,

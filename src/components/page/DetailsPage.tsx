@@ -1,5 +1,12 @@
 import { useLocation } from 'react-router-dom';
-import { AnyCard, isAcheteurPublic, isStartup, isProjetAchat, isAide } from '../../api/Api';
+import {
+  AnyCard,
+  isAcheteurPublic,
+  isStartup,
+  isProjetAchat,
+  isAide,
+  isInvestisseur
+} from '../../api/Api';
 import DetailsFooter from '../customComponents/details/DetailsFooter';
 import DetailsHeader from '../customComponents/details/DetailsHeader';
 import PublicBuyerContent from '../customComponents/details/DetailsPublicBuyerContent';
@@ -24,7 +31,9 @@ export const Details: React.FC<DetailsProps> = ({ cardType }) => {
       <DetailsHeader card={card} cardType={cardType} />
       <div className="mx-[9%] mt-16">
         {isAcheteurPublic(card) && <PublicBuyerContent card={card} />}
-        {(isStartup(card) || isProjetAchat(card) || isAide(card)) && <GenericDetails card={card} />}
+        {(isStartup(card) || isProjetAchat(card) || isAide(card) || isInvestisseur(card)) && (
+          <GenericDetails card={card} />
+        )}
         <DetailsFooter card={card} />
       </div>
     </div>
