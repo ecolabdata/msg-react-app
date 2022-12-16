@@ -10,8 +10,8 @@ import {
 } from '../../../api/Api';
 import ContactArea from './ContactArea';
 import { ForecastedBuyInformations } from './ForecastedBuyInformations';
-import HelpPage from './HelpPageContent';
-import InvestorInformation from './InvestorInformation';
+import HelpPage from './HelpInformations';
+import InvestorInformation from './InvestorInformations';
 import { StartupInformations } from './StartupInformations';
 
 interface DetailsGenericContentProps {
