@@ -30,8 +30,7 @@ const DetailsFooter: React.FC<DetailsFooterProps> = ({ card }) => {
         <p>Partager la page</p>
         <button
           className="fr-btn fr-btn--tertiary-no-outline fr-fi-checkbox-circle-line fr-btn--icon-left mt-8"
-          onClick={() => handleCopy(window.location.href)}
-        >
+          onClick={() => handleCopy(window.location.href)}>
           Copier le lien
         </button>
       </div>
@@ -44,14 +43,20 @@ export default DetailsFooter;
 const getSources = (card: AnyCard) => {
   if (isAcheteurPublic(card)) {
     return [
-      { label: 'DECP', url: '' },
-      { label: 'OECP', url: '' },
-      { label: 'catalogue Greentech Innovation', url: '' }
+      {
+        label: 'DECP',
+        url: 'https://www.data.gouv.fr/fr/datasets/donnees-essentielles-de-la-commande-publique-fichiers-consolides/'
+      },
+      {
+        label: 'OECP',
+        url: 'https://www.economie.gouv.fr/daj/oecp-recensement-economique-commande-publique'
+      },
+      { label: 'catalogue Greentech Innovation', url: 'https://greentechinnovation.fr/' }
     ];
   }
   if (isStartup(card)) {
     return [
-      { label: 'Annuaire Greentech Innovation', url: '' },
+      { label: 'Annuaire Greentech Innovation', url: 'https://greentechinnovation.fr/' },
       { label: 'Lauréats Solar Impulse', url: '' },
       { label: 'Ecolabel Européen', url: '' },
       { label: 'French Tech Green20', url: '' }

@@ -45,7 +45,7 @@ export default DetailsHeader;
 const normalizeHeaderProps = (card: AnyCard) => {
   if (isAcheteurPublic(card)) {
     return {
-      title: card.nom,
+      title: card.public_actor_nom,
       subtitle: '',
       cardType: acheteurPublic
     };

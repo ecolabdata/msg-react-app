@@ -1,8 +1,14 @@
+import { applyCard } from 'api/Api';
 import { useContext, useState } from 'react';
 import { ApplicationContext } from '../../App';
-import { byName, dropdownValues } from '../../model/CardType';
+import { aideClient, aideInno, byName, dropdownValues } from '../../model/CardType';
 import ResultCard from '../customComponents/ResultCard';
 import DropDown from '../dsfrComponents/DropDown';
+import { ActeurPublicResultCard } from './search/ActeurPublicSearchPage';
+import { AideResultCard } from './search/AidesSearchPage';
+import { InvestisseurResultCard } from './search/InvestisseurSearchPage';
+import { ProjetAchatResultCard } from './search/ProjetAchatSearchPage';
+import { StartupResultCard } from './search/StartupSearchPage';
 
 const WasteBin = () => {
   const { usedCorbeille } = useContext(ApplicationContext);
@@ -84,13 +90,15 @@ const WasteBin = () => {
             .filter(
               (x) => selectedCardTypeName === 'all' || selectedCardTypeName === x.cardTypeName
             )
-            .map((card) => (
-              <ResultCard
-                pageList={true}
-                cardType={byName[card.cardTypeName]}
-                cardData={card}
-                key={card.id}
-              />
+            .map((card) => applyCard(card,
+              (ap) => <ActeurPublicResultCard ap={ap} />,
+              (pa) => <ProjetAchatResultCard pa={pa}/>,
+              (i) => <InvestisseurResultCard invest={i}/>,
+              (a) => a.cardTypeName == aideInno.name
+                ? <AideResultCard aide={a} cardType={aideInno} />
+                : <AideResultCard aide={a} cardType={aideClient} />,
+              (su) => <StartupResultCard su={su}/>,
+              () => <></>
             ))}
         </ul>
       </div>

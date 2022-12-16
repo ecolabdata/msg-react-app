@@ -4,7 +4,7 @@ interface PaginationProps {
   baseUrl: string;
   currentPageNo: number;
   nbPage: number;
-  initialState: InitialState;
+  initialState?: InitialState;
   onClick?: React.MouseEventHandler<HTMLAnchorElement> | undefined;
   isLoading?: boolean;
 }
