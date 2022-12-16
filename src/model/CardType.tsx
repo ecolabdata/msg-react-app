@@ -1,4 +1,7 @@
-import { CardTypeName as ApiName } from '../api/Api';
+import ResultCard from 'components/customComponents/ResultCard';
+import SearchResults from 'components/customComponents/SearchResults';
+import { SearchPage } from 'components/page/SearchPage';
+import { CardTypeName as ApiName, isAide } from '../api/Api';
 import {
   PictoCalendar,
   PictoCityHall,
@@ -86,7 +89,7 @@ export const aideClient: CardType = {
   name: 'aides-clients',
   searchLink: '/aides-clients',
   apiName: 'aides_clients',
-  version: 'beta'
+  version: 'beta',
 } as const;
 
 export const aideInno: CardType = {
