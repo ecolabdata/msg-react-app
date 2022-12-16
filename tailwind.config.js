@@ -113,6 +113,17 @@ module.exports = {
           }
         },
 
+        // Startup
+        'green-menthe-moon': {
+          652: {
+            DEFAULT: '#4EC8AE',
+            hover: '#4EC8AE',
+            active: '#4EC8AE',
+            lightBackground: '#1A2624',
+            text: '#4EC8AE'
+          }
+        },
+
         // Achats public à venir
         'green-tilleul-verveine': {
           100: {
