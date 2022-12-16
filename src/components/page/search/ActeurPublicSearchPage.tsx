@@ -18,19 +18,14 @@ interface ActeurPublicResultCardProps {
 }
 
 export const ActeurPublicResultCard: React.FC<ActeurPublicResultCardProps> = ({ isLoading, ap }) => {
-    const slug = slugify(ap.public_actor_nom);
-    return <ResultCard cardType={acheteurPublic} name={ap.public_actor_nom} toprow={'Ville / Région'} linkData={ap} slug={slug} isLoading={isLoading}>
-        {
-            ap.labelled_startups?.length > 0 ? (
-                <p>
-                    Ils ont travaillés avec:
-                    <br />
-                    {ap.labelled_startups
-                        .map((startup) => startup.nom)
-                        .filter(Boolean)
-                        .join(', ')}
-                </p>
-            ) : null
-        }
+    const slug = slugify(ap.nom);
+    return <ResultCard cardType={acheteurPublic} name={ap.nom} toprow={'Ville / Région'} linkData={ap} slug={slug} isLoading={isLoading}>
+      {ap.Startups != '0' ? (
+        <p>
+          Ils ont travaillés avec:
+          <br />
+          {ap.Startups.split(',').join(', ')}
+        </p>
+      ) : null}
     </ResultCard >
 }
