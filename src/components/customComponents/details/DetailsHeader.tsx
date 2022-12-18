@@ -7,8 +7,8 @@ import {
   isProjetAchat,
   isStartup
 } from '../../../api/Api';
-import { CardType } from '../../../model/CardType';
-import { tailwindColorUtility } from '../../../utils/utilityFunctions';
+import { CardType, startups } from '../../../model/CardType';
+import { getGreenTechData, tailwindColorUtility } from '../../../utils/utilityFunctions';
 
 interface DetailsHeaderProps {
   card: AnyCard;
@@ -72,8 +72,9 @@ const normalizeHeaderProps = (card: AnyCard) => {
   }
   if (isStartup(card)) {
     return {
-      title: card['Start-up'],
-      subtitle: card.Thématique
+      title: card['NOM'],
+      subtitle: getGreenTechData(card)?.Thématique,
+      cardType: startups
     };
   }
 

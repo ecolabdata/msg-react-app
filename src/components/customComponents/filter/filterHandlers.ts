@@ -147,15 +147,18 @@ export const handleStartUpFilter = (search: Search, filters: StartupFilters) => 
     let zoneFlag = true;
     let marketFlag = true;
 
-    if (isZoneFilterActivated) {
-      zoneFlag = zonesSynonymes[zone as Region].includes(card.Région);
+    const greenTechDetails = card?.SOLUTIONS && card?.SOLUTIONS['GreenTech Innovation'];
+    if (greenTechDetails && greenTechDetails[0]) {
+      if (isZoneFilterActivated) {
+        zoneFlag = zonesSynonymes[zone as Region].includes(greenTechDetails[0].Région);
+      }
+      if (isMarketFilterActivated) {
+        const cardMarkets = greenTechDetails[0].Marché.split(',');
+        marketFlag = cardMarkets.includes(market);
+      }
+      return zoneFlag && marketFlag;
     }
-    if (isMarketFilterActivated) {
-      const cardMarkets = card.Marché.split(',');
-      marketFlag = cardMarkets.includes(market);
-    }
-
-    return zoneFlag && marketFlag;
+    return false;
   });
   return filteredCards;
 };

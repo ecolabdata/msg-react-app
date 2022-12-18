@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { getGreenTechData } from 'utils/utilityFunctions';
 import {
   AnyCard,
   isAcheteurPublic,
@@ -115,19 +116,20 @@ const normalizeContactInformations = (card: AnyCard) => {
     };
   }
   if (isStartup(card)) {
+    const greenTechData = getGreenTechData(card);
+
     return {
       title: 'Contact et détails',
-      content: card['Start-up'],
+      content: card['NOM'],
       cta: {
         label: 'Voir le contact',
         icon: 'mail',
         contact: {
-          mail: card.Mail,
-          linkedIn: card.LinkedIn,
-          phone: card.Téléphone
+          mail: greenTechData?.Mail,
+          linkedIn: greenTechData?.LinkedIn
         }
       },
-      link: card['Site internet']
+      link: greenTechData && greenTechData['Site internet']
     };
   }
 

@@ -11,15 +11,16 @@ import SearchForm from '../customComponents/SearchForm';
 import Pagination from '../dsfrComponents/Pagination';
 import SearchResults from '../customComponents/SearchResults';
 import { mockedPublicBuyer } from '../../api/mockedPublicBuyer';
+import { mockedStartup } from '../../api2/mockedStartup';
 
 type Props = {
   cardType: CardType;
-  children: (card: AnyCard, i: number, isLoading: boolean) => React.ReactNode,
-  usedAdvancedFilter: FilterProperties
+  children: (card: AnyCard, i: number, isLoading: boolean) => React.ReactNode;
+  usedAdvancedFilter: FilterProperties;
 };
 
 export const SearchPage: React.FC<Props> = ({ cardType, children, usedAdvancedFilter }) => {
-  const { initialValues, searchByType, handleFilter, filters } = usedAdvancedFilter
+  const { initialValues, searchByType, handleFilter, filters } = usedAdvancedFilter;
   const { usedNextScrollTarget } = useContext(ApplicationContext);
   const [, setNextScrollTarget] = usedNextScrollTarget;
   const location = useLocation();
@@ -87,8 +88,7 @@ export const SearchPage: React.FC<Props> = ({ cardType, children, usedAdvancedFi
       <div
         className="headContainer  container mb-20 mx-auto max-w-headerSize
             xl:mx-auto
-            "
-      >
+            ">
         <div className="cardTitleAndLogo p-2 text-base">
           <h2 className="w-fit font-bold text-2xl md:text-4xl md:flex md:items-center ">
             <div className="flex items-center ">
@@ -111,8 +111,7 @@ export const SearchPage: React.FC<Props> = ({ cardType, children, usedAdvancedFi
           <form
             onSubmit={(event) => handleOnSubmitForm(event)}
             id="keywordsForm"
-            className="researchContainer m-auto flex flex-col justify-around flex-wrap h-fit w-full"
-          >
+            className="researchContainer m-auto flex flex-col justify-around flex-wrap h-fit w-full">
             <fieldset>
               <legend className="sr-only">Votre projet</legend>
               <SearchForm
@@ -130,8 +129,7 @@ export const SearchPage: React.FC<Props> = ({ cardType, children, usedAdvancedFi
                   aria-expanded={isAdvancedSearchOpen}
                   type="button"
                   className="ml-auto underline"
-                  onClick={handleToggleAdvancedSearch}
-                >
+                  onClick={handleToggleAdvancedSearch}>
                   Recherche avancée
                 </button>
                 {isAdvancedSearchOpen && (
@@ -150,8 +148,7 @@ export const SearchPage: React.FC<Props> = ({ cardType, children, usedAdvancedFi
             <button
               form="keywordsForm"
               disabled={isLoading}
-              className="mx-3 fr-btn fr-btn--primary  fr-btn--lg"
-            >
+              className="mx-3 fr-btn fr-btn--primary  fr-btn--lg">
               <span className={`mx-auto`}>
                 {isLoading ? 'Chargement...' : 'Valider et rechercher'}
               </span>
@@ -160,8 +157,7 @@ export const SearchPage: React.FC<Props> = ({ cardType, children, usedAdvancedFi
               type="button"
               disabled={isLoading}
               onClick={handleResetFilters}
-              className="mt-4 underline"
-            >
+              className="mt-4 underline">
               Réinitialiser
             </button>
           </div>
@@ -170,7 +166,9 @@ export const SearchPage: React.FC<Props> = ({ cardType, children, usedAdvancedFi
       {initialState && (
         <>
           <SearchResults hitCount={cards.length} isLoading={isLoading}>
-            {cardsSlice.map((card, i) => children(card, i, isLoading))}
+            {cardsSlice.map((card, i) => {
+              return children(card as AnyCard, i, isLoading);
+            })}
           </SearchResults>
           <Pagination
             isLoading={isLoading && nbPage > 0}
