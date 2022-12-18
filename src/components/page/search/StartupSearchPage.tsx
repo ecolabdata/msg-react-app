@@ -1,14 +1,14 @@
 import { Startup } from 'api/Api';
 import { useAdvancedFilters } from 'components/customComponents/filter/filters';
 import ResultCard from 'components/customComponents/ResultCard';
-import { startups } from 'model/CardType';
+import { CardType, startups } from 'model/CardType';
 import slugify from 'slugify';
 import { getGreenTechData } from 'utils/utilityFunctions';
 import { SearchPage } from '../SearchPage';
 
-export const StartupSearchPage = () => {
+export const StartupSearchPage : React.FC<{cardType: CardType}> = ({cardType}) => {
   return (
-    <SearchPage usedAdvancedFilter={useAdvancedFilters(startups.name)} cardType={startups}>
+    <SearchPage usedAdvancedFilter={useAdvancedFilters(cardType.name)} cardType={cardType}>
       {(card, i, isLoading) => (
         <StartupResultCard key={i} isLoading={isLoading} su={card as Startup} />
       )}

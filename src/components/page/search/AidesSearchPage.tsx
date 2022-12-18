@@ -6,15 +6,9 @@ import { aideClient, aideInno, CardType } from "model/CardType"
 import slugify from "slugify"
 import { SearchPage } from "../SearchPage"
 
-export const AideInnoSearchPage = () => {
-    return <SearchPage usedAdvancedFilter={useAdvancedFilters(aideInno.name)} cardType={aideInno}>
-        {(card, i, isLoading) => <AideResultCard cardType={aideInno} key={i} isLoading={isLoading} aide={card as Aide} />}
-    </SearchPage>
-}
-
-export const AideClientSearchPage = () => {
-    return <SearchPage usedAdvancedFilter={useAdvancedFilters(aideClient.name)} cardType={aideClient}>
-        {(card, i, isLoading) => <AideResultCard cardType={aideClient} key={i} isLoading={isLoading} aide={card as Aide} />}
+export const AideSearchPage : React.FC<{cardType: CardType}> = ({cardType}) => {
+    return <SearchPage usedAdvancedFilter={useAdvancedFilters(cardType.name)} cardType={cardType}>
+        {(card, i, isLoading) => <AideResultCard cardType={cardType} key={i} isLoading={isLoading} aide={card as Aide} />}
     </SearchPage>
 }
 

@@ -1,31 +1,42 @@
-import { Collectivite } from "api/Api"
-import DetailBadges from "components/customComponents/DetailBadges"
+import { HitPublicBuyer } from "api2/Api"
 import { useAdvancedFilters } from "components/customComponents/filter/filters"
 import ResultCard from "components/customComponents/ResultCard"
 import { acheteurPublic, CardType } from "model/CardType"
 import slugify from "slugify"
-import { SearchPage } from "../SearchPage"
+import { SearchPage } from "../SearchPageV2"
 
-export const ActeurPublicSearchPage = () => {
-    return <SearchPage usedAdvancedFilter={useAdvancedFilters(acheteurPublic.name)} cardType={acheteurPublic}>
-        {(card, i, isLoading) => <ActeurPublicResultCard key={i} isLoading={isLoading} ap={card as Collectivite} />}
+export const ActeurPublicSearchPage : React.FC<{cardType: CardType}> = ({cardType}) => {
+    
+    return <SearchPage usedAdvancedFilter={useAdvancedFilters(cardType.name)} cardType={cardType}>
+        {(hit, i, isLoading) => <ActeurPublicResultCard key={i} isLoading={isLoading} ap={hit} />}
     </SearchPage>
 }
 
 interface ActeurPublicResultCardProps {
     isLoading?: boolean,
-    ap: Collectivite,
+    ap: HitPublicBuyer,
 }
 
 export const ActeurPublicResultCard: React.FC<ActeurPublicResultCardProps> = ({ isLoading, ap }) => {
-    const slug = slugify(ap.nom);
-    return <ResultCard cardType={acheteurPublic} name={ap.nom} toprow={'Ville / Région'} linkData={ap} slug={slug} isLoading={isLoading}>
-      {ap.Startups != '0' ? (
-        <p>
-          Ils ont travaillés avec:
-          <br />
-          {ap.Startups.split(',').join(', ')}
-        </p>
-      ) : null}
+    const slug = slugify(ap.fields.public_actor_nom[0]);
+
+    const nomHtml = ap.fields["public_actor_nom"][0]
+    const glHtml = Object.keys(ap.highlight).map(fieldname => <div key={fieldname} >
+        {(ap as any).highlight[fieldname].length} {fieldname} contiennent des mots de votre recherche
+        {/* <div className="brightness-75">{fieldname} :</div> */}
+        {/* <p style={{ width: "50%" }} dangerouslySetInnerHTML={{ __html: replaceHlTxt((ap as any).highlight[fieldname]) }}></p> */}
+    </div>)
+
+    return <ResultCard cardType={acheteurPublic} name={ap.fields.public_actor_nom[0]} toprow={'Ville / Région'} linkData={{}} slug={slug} isLoading={isLoading}>
+        <div>{ap._score}</div>
+        <div>{glHtml}</div>
     </ResultCard >
+}
+
+const openingTag = "@msg-highlighted-field@"
+const closingTag = '@/msg-highlighted-field@'
+
+function replaceHlTxt(txt : string) {
+    console.log({txt})
+    return txt.replaceAll("@msg-highlighted-field@", '<b style="color: green">').replaceAll('@/msg-highlighted-field@', '</b>')
 }

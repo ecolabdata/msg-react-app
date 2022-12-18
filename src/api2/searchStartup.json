@@ -1,0 +1,181 @@
+{
+    "max_score": 5.5700035,
+    "hits": [
+        {
+            "_index": "startup_generated20221218_050106",
+            "_id": "6tybI4UBjAQWTvUjdCt5",
+            "_version": 1,
+            "_score": 5.5700035,
+            "fields": {
+                "NOM": [
+                    "Energie Solaire SA"
+                ]
+            },
+            "highlight": {
+                "NOM": [
+                    "Energie @msg-highlighted-field@Solaire@/msg-highlighted-field@ SA"
+                ]
+            }
+        },
+        {
+            "_index": "startup_generated20221218_050106",
+            "_id": "vtybI4UBjAQWTvUjdS5F",
+            "_version": 1,
+            "_score": 5.5465164,
+            "fields": {
+                "NOM": [
+                    "Sirea"
+                ]
+            },
+            "highlight": {
+                "SOLUTIONS.GreenTech Innovation.L'entreprise": [
+                    "SIREA développe des stations de recharges de véhicules électriques grâce à l’énergie @msg-highlighted-field@solaire@/msg-highlighted-field@.",
+                    "SIREA développe des stations de recharges de véhicules électriques grâce à l’énergie @msg-highlighted-field@solaire@/msg-highlighted-field@."
+                ]
+            }
+        },
+        {
+            "_index": "startup_generated20221218_050106",
+            "_id": "R9ybI4UBjAQWTvUjdC3d",
+            "_version": 1,
+            "_score": 4.586019,
+            "fields": {
+                "NOM": [
+                    "Lumi'in"
+                ]
+            },
+            "highlight": {
+                "SOLUTIONS.GreenTech Innovation.Pitch": [
+                    "Lampadaires @msg-highlighted-field@solaires@/msg-highlighted-field@ autonomes"
+                ]
+            }
+        },
+        {
+            "_index": "startup_generated20221218_050106",
+            "_id": "m9ybI4UBjAQWTvUjdS9F",
+            "_version": 1,
+            "_score": 4.377117,
+            "fields": {
+                "NOM": [
+                    "upOwa"
+                ]
+            },
+            "highlight": {
+                "SOLUTIONS.GreenTech Innovation.L'entreprise": [
+                    "UpOwa apporte de l’électricité en Afrique avec la technologie @msg-highlighted-field@solaire@/msg-highlighted-field@ et un système innovant de Pay-As-You-Go pour les plus démunis."
+                ]
+            }
+        },
+        {
+            "_index": "startup_generated20221218_050106",
+            "_id": "4dybI4UBjAQWTvUjdCt5",
+            "_version": 1,
+            "_score": 4.060558,
+            "fields": {
+                "NOM": [
+                    "Elum"
+                ]
+            },
+            "highlight": {
+                "SOLUTIONS.GreenTech Innovation.L'entreprise": [
+                    "Elum développe un logiciel de supervision et gestion d'énergie pour des systèmes @msg-highlighted-field@Solaire@/msg-highlighted-field@ et batterie dans le but de réduire la facture énergétique pour les bâtiments industriels et télécom."
+                ]
+            }
+        },
+        {
+            "_index": "startup_generated20221218_050106",
+            "_id": "ZdybI4UBjAQWTvUjdCp4",
+            "_version": 1,
+            "_score": 3.8276205,
+            "fields": {
+                "NOM": [
+                    "ALTO Solution"
+                ]
+            },
+            "highlight": {
+                "SOLUTIONS.GreenTech Innovation.Pitch": [
+                    "Créateurs de solutions de rupture pour l'énergie @msg-highlighted-field@solaire@/msg-highlighted-field@"
+                ],
+                "SOLUTIONS.GreenTech Innovation.L'entreprise": [
+                    "Pour se faire, nous avons mis au point une technologie de rupture pour l'énergie @msg-highlighted-field@solaire@/msg-highlighted-field@ à concentration : Sol.CT"
+                ]
+            }
+        },
+        {
+            "_index": "startup_generated20221218_050106",
+            "_id": "7tybI4UBjAQWTvUjdC3d",
+            "_version": 1,
+            "_score": 3.8276205,
+            "fields": {
+                "NOM": [
+                    "OuiSol"
+                ]
+            },
+            "highlight": {
+                "SOLUTIONS.GreenTech Innovation.Pitch": [
+                    "Un projet @msg-highlighted-field@solaire@/msg-highlighted-field@ simplifié, optimisé, transparent"
+                ]
+            }
+        },
+        {
+            "_index": "startup_generated20221218_050106",
+            "_id": "2tybI4UBjAQWTvUjdCzd",
+            "_version": 1,
+            "_score": 3.5353007,
+            "_ignored": [
+                "SOLUTIONS.GreenTech Innovation.L'entreprise.keyword"
+            ],
+            "fields": {
+                "NOM": [
+                    "In sun we trust"
+                ]
+            },
+            "highlight": {
+                "SOLUTIONS.GreenTech Innovation.Pitch": [
+                    "Accompagner les particuliers qui veulent se mettre à l’énergie @msg-highlighted-field@solaire@/msg-highlighted-field@"
+                ],
+                "SOLUTIONS.GreenTech Innovation.L'entreprise": [
+                    "In Sun We Trust facilite le passage à l'énergie @msg-highlighted-field@solaire@/msg-highlighted-field@ en accompagnant ses utilisateurs dans leurs projets photovoltaïques. D'abord en leur fournissant une estimation précise de la rentabilité attendue via un outil en ligne. Ensuite, en les mettant en relation avec des installateurs compétents et compétitifs, rigoureusement sélectionnés et signataires d’une charte qualité."
+                ]
+            }
+        },
+        {
+            "_index": "startup_generated20221218_050106",
+            "_id": "FtybI4UBjAQWTvUjdS9F",
+            "_version": 1,
+            "_score": 3.5353007,
+            "_ignored": [
+                "SOLUTIONS.GreenTech Innovation.L'entreprise.keyword"
+            ],
+            "fields": {
+                "NOM": [
+                    "SunChain"
+                ]
+            },
+            "highlight": {
+                "SOLUTIONS.GreenTech Innovation.Pitch": [
+                    "Quand la blockchain renouvelle le potentiel de l'énergie @msg-highlighted-field@solaire@/msg-highlighted-field@"
+                ]
+            }
+        },
+        {
+            "_index": "startup_generated20221218_050106",
+            "_id": "ltybI4UBjAQWTvUjdCzd",
+            "_version": 1,
+            "_score": 2.3729863,
+            "_ignored": [
+                "SOLUTIONS.GreenTech Innovation.L'entreprise.keyword"
+            ],
+            "fields": {
+                "NOM": [
+                    "Hello watt"
+                ]
+            },
+            "highlight": {
+                "SOLUTIONS.GreenTech Innovation.L'entreprise": [
+                    "Cette plateforme web permet de reprendre le contrôle de sa consommation d’énergie via plusieurs services : comparateur, achats groupés, autoconsommation @msg-highlighted-field@solaire@/msg-highlighted-field@, rénovation énergétique et une web-app pour suivre et maîtriser sa consommation. Hello Watt existe depuis 2017, compte plus de 200 000 utilisateurs sur l’ensemble du territoire français, et est constituée d’une équipe de plus de 160\npersonnes.\nLa startup, qui a une progression fulgurante, s’impose sur le marché sans levée de fonds et grâce à un programme R&D ambitieux."
+                ]
+            }
+        }
+    ]
+}

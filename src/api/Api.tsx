@@ -10,7 +10,7 @@ import {
   startups
 } from '../model/CardType';
 import mockApiResponse from './mock_api_resp.json';
-import { Startup as StartupV2, Collectivite as CollectiviteV2 } from 'api2/Api'
+import { StartupV2 as StartupV2, CollectiviteV2 as CollectiviteV2 } from 'api2/Api'
 
 export const buildId = (obj: any) => sha1(canonicalize(obj)).slice(0, 8);
 

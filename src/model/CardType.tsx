@@ -131,6 +131,7 @@ export const aideFin: CardType = {
   description: 'Trouvez des aides pour financer vos achats',
   name: 'aides-financieres',
   searchLink: '/aides-financieres',
+
   apiName: 'aides_clients',
   version: 'beta'
 } as const;
@@ -143,6 +144,7 @@ export const sourcingSu: CardType = {
   description: 'Sourcez des entreprises éco-innovantes qui répondent à vos besoins',
   name: 'sourcingSu',
   searchLink: '/sourcing-startup',
+  
   apiName: 'startups',
   useApiV2: true,
   version: 'beta'

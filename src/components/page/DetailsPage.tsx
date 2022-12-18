@@ -12,7 +12,7 @@ import DetailsHeader from '../customComponents/details/DetailsHeader';
 import PublicBuyerContent from '../customComponents/details/DetailsPublicBuyerContent';
 import GenericDetails from '../customComponents/details/DetailsGenericContent';
 import { useQuery } from '../../hooks/useQuery';
-import { CardType } from '../../model/CardType';
+import { CardType, startupPersona, startups } from '../../model/CardType';
 
 type DetailsProps = {
   cardType: CardType;
@@ -23,6 +23,9 @@ export const Details: React.FC<DetailsProps> = ({ cardType }) => {
   const query = useQuery();
   const initialState = location.state as { cardData: AnyCard } | null;
   const card: AnyCard = initialState?.cardData || JSON.parse(query.cardData);
+  if (cardType.useApiV2) {
+      
+  }
 
   if (!card) return <p>No data</p>;
 

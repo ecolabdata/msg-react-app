@@ -6,8 +6,8 @@ import { achatPrevi, CardType } from "model/CardType"
 import slugify from "slugify"
 import { SearchPage } from "../SearchPage"
 
-export const ProjetAchatSearchPage = () => {
-    return <SearchPage usedAdvancedFilter={useAdvancedFilters(achatPrevi.name)} cardType={achatPrevi}>
+export const ProjetAchatSearchPage : React.FC<{cardType: CardType}> = ({cardType}) => {
+    return <SearchPage usedAdvancedFilter={useAdvancedFilters(cardType.name)} cardType={cardType}>
         {(card, i, isLoading) => <ProjetAchatResultCard key={i} isLoading={isLoading} pa={card as ProjetAchat} />}
     </SearchPage>
 }

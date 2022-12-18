@@ -9,14 +9,14 @@ export type SearchPublicBuyer = typeof searchPublicBuyer
 export type HitPublicBuyer = SearchPublicBuyer["hits"][number]
 //    Details
 export type PublicBuyer = typeof mockedPublicBuyer
-export type Collectivite = PublicBuyer
+export type CollectiviteV2 = PublicBuyer
 
 //Startup
 //    Search
 export type SearchStartup = typeof searchStartup
 export type HitStartup = SearchStartup["hits"][number]
 //    Details
-export type Startup = typeof mockedStartup
+export type StartupV2 = typeof mockedStartup
 
 const getBaseUrl = () => "http://api-v2.msg.greentechinnovation.fr/"
 
@@ -32,6 +32,5 @@ export const Api = {
     })).then((resp) => resp.json()).then(x => x as SearchStartup),
     getStartup: (nom : string) => fetch(`${getBaseUrl()}/startup?` + new URLSearchParams({
         nom: nom,
-    })).then((resp) => resp.json()).then(x => x as Startup)
-
+    })).then((resp) => resp.json()).then(x => x as StartupV2)
 }
