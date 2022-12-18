@@ -1,15 +1,16 @@
-import { HitPublicBuyer } from "api2/Api"
+import { Api, HitPublicBuyer } from "api2/Api"
 import { useAdvancedFilters } from "components/customComponents/filter/filters"
 import ResultCard from "components/customComponents/ResultCard"
 import { acheteurPublic, CardType } from "model/CardType"
 import slugify from "slugify"
-import { SearchPage } from "../SearchPageV2"
+import { buildSearchPageV2 } from "../SearchPageV2"
+
+const SearchPageV2 = buildSearchPageV2(Api.searchActeurPublic)
 
 export const ActeurPublicSearchPage : React.FC<{cardType: CardType}> = ({cardType}) => {
-    
-    return <SearchPage usedAdvancedFilter={useAdvancedFilters(cardType.name)} cardType={cardType}>
+    return <SearchPageV2 usedAdvancedFilter={useAdvancedFilters(cardType.name)} cardType={cardType}>
         {(hit, i, isLoading) => <ActeurPublicResultCard key={i} isLoading={isLoading} ap={hit} />}
-    </SearchPage>
+    </SearchPageV2>
 }
 
 interface ActeurPublicResultCardProps {

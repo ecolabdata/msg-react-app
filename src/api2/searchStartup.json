@@ -1,4 +1,8 @@
 {
+    "total": {
+        "value": 10,
+        "relation": "eq"
+    },
     "max_score": 5.5700035,
     "hits": [
         {
