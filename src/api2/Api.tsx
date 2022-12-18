@@ -1,4 +1,20 @@
-import respExample from 'api2/resp.json'
+import searchPublicBuyer from 'api2/searchPublicBuyer.json'
+import { mockedPublicBuyer } from './mockedPublicBuyer'
+import { mockedStartup } from './mockedStartup'
 
-export type Resp = typeof respExample
-export type Hit = Resp["hits"][number]
+//Public Buyers
+//    Search
+export type RespPublicBuyer = typeof searchPublicBuyer
+export type HitPublicBuyer = RespPublicBuyer["hits"][number]
+//    Details
+export type PublicBuyer = typeof mockedPublicBuyer
+export type Collectivite = PublicBuyer
+
+//Startup
+//    Search
+// TODO
+//    Details
+export type Startup = typeof mockedStartup
+
+
+
