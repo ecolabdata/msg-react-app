@@ -57,20 +57,6 @@ export const routes = (
       {buildSearchRoute(retex, ActeurPublicSearchPage)}
       {buildSearchRoute(achatPrevi, ProjetAchatSearchPage)}
       {buildSearchRoute(achatProg, ProjetAchatSearchPage)}
-      {/* <Route path={aideClient.searchLink} element={<AideSearchPage cardType={aideClient} />} />
-      <Route path={aideClient.searchLink + '/search'} element={<AideSearchPage cardType={aideClient} />} />
-      <Route path={aideClient.searchLink} element={<AideSearchPage  />} />
-      <Route path={aideClient.searchLink + '/search'} element={<AideSearchPage />} />
-      <Route path={aideInno.searchLink} element={<AideInnoSearchPage />} />
-      <Route path={aideInno.searchLink + '/search'} element={<AideInnoSearchPage />} />
-      <Route path={investisseur.searchLink} element={<InvestisseurSearchPage />} />
-      <Route path={investisseur.searchLink + '/search'} element={<InvestisseurSearchPage />} />
-      <Route path={startups.searchLink} element={<StartupSearchPage />} />
-      <Route path={startups.searchLink + '/search'} element={<StartupSearchPage />} />
-      <Route path={achatPrevi.searchLink} element={<ProjetAchatSearchPage />} />
-      <Route path={achatPrevi.searchLink + '/search'} element={<ProjetAchatSearchPage />} />
-      <Route path={acheteurPublic.searchLink} element={<ActeurPublicSearchPage />} />
-      <Route path={acheteurPublic.searchLink + '/search'} element={<ActeurPublicSearchPage />} /> */}
       {allCardType.map((cardType, i) => (
         <Route
           key={i}

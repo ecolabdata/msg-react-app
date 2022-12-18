@@ -13,7 +13,7 @@ export const StartupSearchPage : React.FC<{cardType: CardType}> = ({cardType}) =
   return (
     <SearchPageV2 usedAdvancedFilter={useAdvancedFilters(cardType.name)} cardType={cardType}>
       {(hit, i, isLoading) => (
-        <StartupResultCard key={i} isLoading={isLoading} hit={hit} />
+        <StartupResultCard cardType={cardType} key={i} isLoading={isLoading} hit={hit} />
       )}
     </SearchPageV2>
   );
@@ -22,14 +22,15 @@ export const StartupSearchPage : React.FC<{cardType: CardType}> = ({cardType}) =
 interface StartupResultCardProps {
   isLoading?: boolean;
   hit: HitStartup;
+  cardType: CardType;
 }
 
-export const StartupResultCard: React.FC<StartupResultCardProps> = ({ isLoading, hit }) => {
+export const StartupResultCard: React.FC<StartupResultCardProps> = ({ isLoading, hit, cardType }) => {
   const NOM =hit.fields.NOM[0]
   const slug = slugify(NOM);
   return (
     <ResultCard
-      cardType={startups}
+      cardType={cardType}
       name={NOM}
       toprow={'test'}//getGreenTechData(su)?.Thématique ?? ''}
       linkData={{}}

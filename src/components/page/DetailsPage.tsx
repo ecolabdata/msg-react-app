@@ -1,18 +1,15 @@
 import { useLocation } from 'react-router-dom';
 import {
   AnyCard,
-  isAcheteurPublic,
-  isStartup,
-  isProjetAchat,
-  isAide,
-  isInvestisseur
+  isAcheteurPublic, isAide,
+  isInvestisseur, isProjetAchat, isStartup
 } from '../../api/Api';
+import { useQuery } from '../../hooks/useQuery';
+import { CardType } from '../../model/CardType';
 import DetailsFooter from '../customComponents/details/DetailsFooter';
+import GenericDetails from '../customComponents/details/DetailsGenericContent';
 import DetailsHeader from '../customComponents/details/DetailsHeader';
 import PublicBuyerContent from '../customComponents/details/DetailsPublicBuyerContent';
-import GenericDetails from '../customComponents/details/DetailsGenericContent';
-import { useQuery } from '../../hooks/useQuery';
-import { CardType, startupPersona, startups } from '../../model/CardType';
 
 type DetailsProps = {
   cardType: CardType;
