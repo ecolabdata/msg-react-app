@@ -1,11 +1,13 @@
-import { useLocation } from 'react-router-dom';
+import { Api } from 'api2/Api';
+import { useState } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
 import {
   AnyCard,
   isAcheteurPublic, isAide,
   isInvestisseur, isProjetAchat, isStartup
 } from '../../api/Api';
 import { useQuery } from '../../hooks/useQuery';
-import { CardType } from '../../model/CardType';
+import { acheteurPublic, CardType, startups } from '../../model/CardType';
 import DetailsFooter from '../customComponents/details/DetailsFooter';
 import GenericDetails from '../customComponents/details/DetailsGenericContent';
 import DetailsHeader from '../customComponents/details/DetailsHeader';
@@ -16,12 +18,25 @@ type DetailsProps = {
 };
 
 export const Details: React.FC<DetailsProps> = ({ cardType }) => {
+  let { id } = useParams();
   const location = useLocation();
   const query = useQuery();
   const initialState = location.state as { cardData: AnyCard } | null;
-  const card: AnyCard = initialState?.cardData || JSON.parse(query.cardData);
-  if (cardType.useApiV2) {
-      
+  const [card, setCard] = useState<AnyCard>(initialState?.cardData || JSON.parse(query.cardData))
+  if (cardType.useApiV2 && id) {
+    if (cardType.apiName == acheteurPublic.apiName) {
+      console.log({query: id})
+      Api.getActeurPublic(id).then(x => {
+        console.log({resp: x})
+        setCard(x)
+      })
+    } else if (cardType.apiName == startups.apiName) {
+      console.log({query: id})
+      Api.getStartup(id).then(x => {
+        console.log({resp: x})
+        setCard(x)
+      })
+    }
   }
 
   if (!card) return <p>No data</p>;

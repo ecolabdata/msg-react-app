@@ -1,6 +1,4 @@
 export const mockedPublicBuyer = {
-  id: '123456789',
-  cardTypeName: 'acheteurs-publics',
   public_actor_id: '13002220500012',
   public_actor_nom:
     "Ministère de l’Économie, des Finances et de la Souveraineté Industrielle et Numérique - Direction des Achats de l'Etat ",
