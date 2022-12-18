@@ -10,6 +10,7 @@ import {
   startups
 } from '../model/CardType';
 import mockApiResponse from './mock_api_resp.json';
+import { Startup as StartupV2, Collectivite as CollectiviteV2 } from 'api2/Api'
 
 export const buildId = (obj: any) => sha1(canonicalize(obj)).slice(0, 8);
 
@@ -35,13 +36,13 @@ export type Aide = Omit<
 > &
   GeneratedData;
 
-export type Collectivite = typeof mockApiResponse.cards.collectivites[number] & GeneratedData; //Deduced from DECP
+export type Collectivite = CollectiviteV2 & GeneratedData;
 
-export type ProjetAchat = typeof mockApiResponse.cards.projets_achats[number] & GeneratedData; //deduced from DECP
+export type ProjetAchat = typeof mockApiResponse.cards.projets_achats[number] & GeneratedData;
 
-export type Investisseur = typeof mockApiResponse.cards.investisseurs[number] & GeneratedData; //From GI file
+export type Investisseur = typeof mockApiResponse.cards.investisseurs[number] & GeneratedData;
 
-export type Startup = typeof mockApiResponse.cards.startups[number] & GeneratedData; //From GI file
+export type Startup = StartupV2 & GeneratedData;
 
 export type AnyCard = Aide | ProjetAchat | Collectivite | Investisseur | Startup;
 
@@ -88,45 +89,30 @@ function handleResp(
     | InvestisseurQuery
     | AidesClientQuery
     | AidesInnoQuery
-    | ForecastedBuyQuery
-    | StartupQuery
-    | PublicBuyQuery,
+    | ForecastedBuyQuery,
   resp: ApiResponse
 ) {
   const cards = {
-    collectivites: !resp.cards.collectivites
-      ? []
-      : resp.cards.collectivites.map((x) => {
-          return { ...x, id: buildId(x), cardTypeName: acheteurPublic.name };
-        }),
     projets_achats: resp.cards.projets_achats.map((x) => {
       return { ...x, id: buildId(x), cardTypeName: achatPrevi.name };
     }),
     investisseurs: !resp.cards.investisseurs
       ? []
       : resp.cards.investisseurs.map((x) => {
-          return { ...x, id: buildId(x), cardTypeName: investisseur.name };
-        }),
+        return { ...x, id: buildId(x), cardTypeName: investisseur.name };
+      }),
     aides_clients: !resp.cards.aides_clients
       ? []
       : resp.cards.aides_clients.map((x) => {
-          return { ...x, id: buildId(x), cardTypeName: aideClient.name };
-        }),
+        return { ...x, id: buildId(x), cardTypeName: aideClient.name };
+      }),
     aides_innovation: !resp.cards.aides_innovation
       ? []
       : resp.cards.aides_innovation.map((x) => {
-          return { ...x, id: buildId(x), cardTypeName: aideInno.name };
-        }),
-    startups: !resp.cards.startups
-      ? []
-      : resp.cards.startups.map((x) => {
-          return { ...x, id: buildId(x), cardTypeName: startups.name };
-        })
+        return { ...x, id: buildId(x), cardTypeName: aideInno.name };
+      })
   };
-  const cardsById = Object.fromEntries(
-    allCardType.flatMap((x): AnyCard[] => cards[x.apiName]).map((x) => [x.id, x])
-  );
-  return { query, cardsById, cards };
+  return { query, cards };
 }
 
 function buildFetchRequest(params: any) {
