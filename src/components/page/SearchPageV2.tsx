@@ -1,20 +1,18 @@
-import { useContext, useEffect, useMemo, useState } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { AidesQuery, AnyCard, Search } from '../../api/Api';
+import { useContext, useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ApplicationContext } from '../../App';
-import { FilterProperties, useAdvancedFilters } from '../customComponents/filter/filters';
 import { CardType } from '../../model/CardType';
 import AdvancedFilters from '../customComponents/filter/AdvancedFilters';
+import { FilterProperties } from '../customComponents/filter/filters';
 
+import { Api, HitPublicBuyer, SearchPublicBuyer } from 'api2/Api';
 import SearchForm from '../customComponents/SearchForm';
-import Pagination from '../dsfrComponents/Pagination';
 import SearchResults from '../customComponents/SearchResults';
-import { mockedPublicBuyer } from '../../api/mockedPublicBuyer';
-import { Hit, Resp } from 'api2/Api';
+import Pagination from '../dsfrComponents/Pagination';
 
 type Props = {
   cardType: CardType;
-  children: (hit: Hit, i: number, isLoading: boolean) => React.ReactNode,
+  children: (hit: HitPublicBuyer, i: number, isLoading: boolean) => React.ReactNode,
   usedAdvancedFilter: FilterProperties
 };
 
@@ -32,7 +30,7 @@ export const SearchPage: React.FC<Props> = ({ cardType, children, usedAdvancedFi
   const [secteurs, setSecteurs] = useState<string[]>([]);
   const [errorTxt, setErrorTxt] = useState('');
   const pageChunkSize = 20;
-  const [resp, setResp] = useState<Resp | null>(null);
+  const [resp, setResp] = useState<SearchPublicBuyer | null>(null);
   const [filtersValues, setFiltersValues] = useState(initialValues);
 
   console.log(resp)
@@ -50,17 +48,15 @@ export const SearchPage: React.FC<Props> = ({ cardType, children, usedAdvancedFi
   useEffect(() => {
     if (description.length > 0) {
       console.log("Fetching data")
-      fetch('http://localhost:5000/acteur_public/search?' + new URLSearchParams({
-        q: description,
-      }))
-        .then((resp) => resp.json())
-        .then((json) => {
-          setResp(json)
-          setIsLoading(false);
-        })
+      Api.searchActeurPublic(description)
+      .then((json) => {
+        setResp(json)
+        setIsLoading(false);
+    })
     } else {
       setResp(null)
     }
+  
   }, []);
 
   const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
