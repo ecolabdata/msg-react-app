@@ -23,6 +23,7 @@ export interface CardType {
   name: CardTypeNameFromModel;
   searchLink: string;
   apiName: ApiName;
+  useApiV2?: boolean;
   version: typeof versions[number];
 }
 
@@ -51,6 +52,7 @@ export const acheteurPublic: CardType = {
   name: 'acheteurs-publics',
   searchLink: '/acheteurs-publics',
   apiName: 'collectivites',
+  useApiV2: true,
   version: 'beta'
 } as const;
 
@@ -113,6 +115,7 @@ export const startups: CardType = {
   name: 'startups',
   searchLink: '/startups',
   apiName: 'startups',
+  useApiV2: true,
   version: 'beta'
 } as const;
 
@@ -141,6 +144,7 @@ export const sourcingSu: CardType = {
   name: 'sourcingSu',
   searchLink: '/sourcing-startup',
   apiName: 'startups',
+  useApiV2: true,
   version: 'beta'
 } as const;
 
@@ -153,6 +157,7 @@ export const retex: CardType = {
   name: 'retex',
   searchLink: '/retour-experience',
   apiName: 'collectivites',
+  useApiV2: true,
   version: 'beta'
 } as const;
 
