@@ -1,4 +1,5 @@
 import searchPublicBuyer from 'api2/searchPublicBuyer.json'
+import searchStartup from 'api2/searchStartup.json'
 import { mockedPublicBuyer } from './mockedPublicBuyer'
 import { mockedStartup } from './mockedStartup'
 
@@ -12,7 +13,8 @@ export type Collectivite = PublicBuyer
 
 //Startup
 //    Search
-// TODO
+export type SearchStartup = typeof searchStartup
+export type HitStartup = SearchStartup["hits"][number]
 //    Details
 export type Startup = typeof mockedStartup
 
@@ -27,7 +29,7 @@ export const Api = {
     })).then((resp) => resp.json()).then(x => x as PublicBuyer),
     searchStartup: (description : string) => fetch(`${getBaseUrl()}/startup/search?` + new URLSearchParams({
         q: description,
-    })).then((resp) => resp.json()),
+    })).then((resp) => resp.json()).then(x => x as SearchStartup),
     getStartup: (nom : string) => fetch(`${getBaseUrl()}/startup?` + new URLSearchParams({
         nom: nom,
     })).then((resp) => resp.json()).then(x => x as Startup)

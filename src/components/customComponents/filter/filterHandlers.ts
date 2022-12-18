@@ -21,6 +21,7 @@ import {
   PublicBuyFilters,
   StartupFilters
 } from './filters';
+import { SearchPublicBuyer, SearchStartup } from 'api2/Api';
 
 export const handleForecastedBuyFilter = (search: Search, filters: ForecastedBuyFilters) => {
   const cards: ProjetAchat[] = search.cards?.projets_achats;
@@ -137,34 +138,35 @@ export const handleInvestorFilter = (search: Search, filters: InvestorFilters) =
   return filteredCards;
 };
 
-export const handleStartUpFilter = (search: Search, filters: StartupFilters) => {
-  const cards = search.cards?.startups;
+export const handleStartUpFilter = (search: SearchStartup, filters: StartupFilters) => {
+  const cards = search.hits
 
   const { market, zone } = filters;
   const isZoneFilterActivated = Object.keys(zones).includes(zone);
   const isMarketFilterActivated = Object.keys(markets).includes(market);
-  const filteredCards = cards.filter((card) => {
-    let zoneFlag = true;
-    let marketFlag = true;
+  // const filteredCards = cards.filter((card) => {
+  //   let zoneFlag = true;
+  //   let marketFlag = true;
 
-    const greenTechDetails = card?.SOLUTIONS && card?.SOLUTIONS['GreenTech Innovation'];
-    if (greenTechDetails && greenTechDetails[0]) {
-      if (isZoneFilterActivated) {
-        zoneFlag = zonesSynonymes[zone as Region].includes(greenTechDetails[0].Région);
-      }
-      if (isMarketFilterActivated) {
-        const cardMarkets = greenTechDetails[0].Marché.split(',');
-        marketFlag = cardMarkets.includes(market);
-      }
-      return zoneFlag && marketFlag;
-    }
-    return false;
-  });
-  return filteredCards;
+  //   const greenTechDetails = card?.SOLUTIONS && card?.SOLUTIONS['GreenTech Innovation'];
+  //   if (greenTechDetails && greenTechDetails[0]) {
+  //     if (isZoneFilterActivated) {
+  //       zoneFlag = zonesSynonymes[zone as Region].includes(greenTechDetails[0].Région);
+  //     }
+  //     if (isMarketFilterActivated) {
+  //       const cardMarkets = greenTechDetails[0].Marché.split(',');
+  //       marketFlag = cardMarkets.includes(market);
+  //     }
+  //     return zoneFlag && marketFlag;
+  //   }
+  //   return false;
+  // });
+  // return filteredCards;
+  return cards;
 };
 
-export const handlePublicBuyFilter = (search: Search, filters: PublicBuyFilters) => {
-  const cards = search.cards?.collectivites;
+export const handlePublicBuyFilter = (search: SearchPublicBuyer, filters: PublicBuyFilters) => {
+  const cards = search.hits;
 
   const { certification, entity } = filters;
   const isCertificationFilterActivated = Object.keys(certifications).includes(certification);

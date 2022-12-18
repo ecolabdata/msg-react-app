@@ -10,8 +10,6 @@ import AdvancedFilters from '../customComponents/filter/AdvancedFilters';
 import SearchForm from '../customComponents/SearchForm';
 import Pagination from '../dsfrComponents/Pagination';
 import SearchResults from '../customComponents/SearchResults';
-import { mockedPublicBuyer } from '../../api/mockedPublicBuyer';
-import { mockedStartup } from '../../api2/mockedStartup';
 
 type Props = {
   cardType: CardType;
