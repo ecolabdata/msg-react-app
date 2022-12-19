@@ -50,6 +50,8 @@ export function buildSearchPageV2<SearchType extends SearchPublicBuyer | SearchS
     useEffect(() => {
       if (description.length > 0) {
         console.log('Fetching data');
+        setIsLoading(true);
+
         searchApi(description).then((json) => {
           setResp(json);
           setIsLoading(false);
@@ -62,7 +64,6 @@ export function buildSearchPageV2<SearchType extends SearchPublicBuyer | SearchS
     const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
       if (description.length > 0) {
-        setIsLoading(true);
         setErrorTxt('');
         navigate({ search: `?q=${description}` });
       } else {
