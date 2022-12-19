@@ -12,20 +12,20 @@ import Pagination from '../dsfrComponents/Pagination';
 
 type Props<SearchType extends SearchPublicBuyer | SearchStartup> = {
   cardType: CardType;
-  children: (hit: SearchType["hits"][number], i: number, isLoading: boolean) => React.ReactNode,
-  usedAdvancedFilter: FilterProperties
+  children: (hit: SearchType['hits'][number], i: number, isLoading: boolean) => React.ReactNode;
+  usedAdvancedFilter: FilterProperties;
 };
 
-
-
-export function buildSearchPageV2<SearchType extends SearchPublicBuyer | SearchStartup>(searchApi: (description:string) => Promise<SearchType>) {
+export function buildSearchPageV2<SearchType extends SearchPublicBuyer | SearchStartup>(
+  searchApi: (description: string) => Promise<SearchType>
+) {
   return ({ cardType, children, usedAdvancedFilter }: Props<SearchType>) => {
-    const { initialValues, searchByType, handleFilter, filters } = usedAdvancedFilter
+    const { initialValues, searchByType, handleFilter, filters } = usedAdvancedFilter;
     const { usedNextScrollTarget } = useContext(ApplicationContext);
     const [, setNextScrollTarget] = usedNextScrollTarget;
     const navigate = useNavigate();
     const loc = useLocation();
-    const q = new URLSearchParams(loc.search).get('q')
+    const q = new URLSearchParams(loc.search).get('q');
 
     const [isLoading, setIsLoading] = useState(false);
     const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
@@ -49,16 +49,14 @@ export function buildSearchPageV2<SearchType extends SearchPublicBuyer | SearchS
 
     useEffect(() => {
       if (description.length > 0) {
-        console.log("Fetching data")
-        searchApi(description)
-          .then((json) => {
-            setResp(json)
-            setIsLoading(false);
-          })
+        console.log('Fetching data');
+        searchApi(description).then((json) => {
+          setResp(json);
+          setIsLoading(false);
+        });
       } else {
-        setResp(null)
+        setResp(null);
       }
-
     }, [q]);
 
     const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
@@ -66,20 +64,20 @@ export function buildSearchPageV2<SearchType extends SearchPublicBuyer | SearchS
       if (description.length > 0) {
         setIsLoading(true);
         setErrorTxt('');
-        navigate({ search: `?q=${description}` })
+        navigate({ search: `?q=${description}` });
       } else {
         document?.getElementById('keywordsForm-Décrivez votre projet en quelques lignes.')?.focus();
         setErrorTxt("Erreur: la description de l'entreprise est obligatoire");
       }
     };
+    console.log({ cardType });
 
     return (
       <>
         <div
           className="headContainer  container mb-20 mx-auto max-w-headerSize
             xl:mx-auto
-            "
-        >
+            ">
           <div className="cardTitleAndLogo p-2 text-base">
             <h2 className="w-fit font-bold text-2xl md:text-4xl">
               <div className="flex items-center ">
@@ -91,7 +89,9 @@ export function buildSearchPageV2<SearchType extends SearchPublicBuyer | SearchS
                 />
                 &nbsp;
                 {cardType.title} &nbsp;{' '}
-                <span className="bg-yellow md:text-3xl font-light">{`(${resp?.total.value || 0} résultats)`}</span>
+                <span className="bg-yellow md:text-3xl font-light">{`(${
+                  resp?.total.value || 0
+                } résultats)`}</span>
               </div>
             </h2>
 
@@ -102,8 +102,7 @@ export function buildSearchPageV2<SearchType extends SearchPublicBuyer | SearchS
             <form
               onSubmit={(event) => handleOnSubmitForm(event)}
               id="keywordsForm"
-              className="researchContainer m-auto flex flex-col justify-around flex-wrap h-fit w-full"
-            >
+              className="researchContainer m-auto flex flex-col justify-around flex-wrap h-fit w-full">
               <fieldset>
                 <legend className="sr-only">Votre projet</legend>
                 <SearchForm
@@ -112,9 +111,13 @@ export function buildSearchPageV2<SearchType extends SearchPublicBuyer | SearchS
                   usedErrorTextDescription={[errorTxt, setErrorTxt]}
                   usedInListPage={true}
                   color={cardType.color}
+                  showThematicField={
+                    cardType.name !== 'acheteurs-publics' && cardType.name !== 'retex'
+                  }
                 />
               </fieldset>
-              <div className="flex flex-col mt-4">
+              {/* Waiting for SearchPage & SearchPageV2 to be merged and use useAdvancedFilters*/}
+              {/* <div className="flex flex-col mt-4">
                 <button
                   aria-expanded={isAdvancedSearchOpen}
                   type="button"
@@ -131,15 +134,14 @@ export function buildSearchPageV2<SearchType extends SearchPublicBuyer | SearchS
                     values={filtersValues}
                   />
                 )}
-              </div>
+              </div> */}
             </form>
 
             <div className="researchButtonsContainer mt-8 w-full flex flex-col items-center justify-center">
               <button
                 form="keywordsForm"
                 disabled={isLoading}
-                className="mx-3 fr-btn fr-btn--primary  fr-btn--lg"
-              >
+                className="mx-3 fr-btn fr-btn--primary  fr-btn--lg">
                 <span className={`mx-auto`}>
                   {isLoading ? 'Chargement...' : 'Valider et rechercher'}
                 </span>
@@ -148,14 +150,13 @@ export function buildSearchPageV2<SearchType extends SearchPublicBuyer | SearchS
                 type="button"
                 disabled={isLoading}
                 onClick={handleResetFilters}
-                className="mt-4 underline"
-              >
+                className="mt-4 underline">
                 Réinitialiser
               </button>
             </div>
           </div>
         </div>
-        {(
+        {
           <>
             <SearchResults hitCount={resp?.total.value || 0} isLoading={isLoading}>
               {resp?.hits.map((hit, i) => children(hit, i, isLoading))}
@@ -175,8 +176,8 @@ export function buildSearchPageV2<SearchType extends SearchPublicBuyer | SearchS
               nbPage={nbPage}
             />
           </>
-        )}
+        }
       </>
     );
-  }
+  };
 }
