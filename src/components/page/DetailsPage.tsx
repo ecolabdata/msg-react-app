@@ -1,5 +1,5 @@
 import { Api } from 'api2/Api';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import {
   AnyCard,
@@ -18,26 +18,28 @@ type DetailsProps = {
 };
 
 export const Details: React.FC<DetailsProps> = ({ cardType }) => {
-  let { id } = useParams();
+  const { id } = useParams();
   const location = useLocation();
   const query = useQuery();
   const initialState = location.state as { cardData: AnyCard } | null;
   const [card, setCard] = useState<AnyCard>(initialState?.cardData || JSON.parse(query.cardData))
-  if (cardType.useApiV2 && id) {
-    if (cardType.apiName == acheteurPublic.apiName) {
-      console.log({query: id})
-      Api.getActeurPublic(id).then(x => {
-        console.log({resp: x})
-        setCard(x)
-      })
-    } else if (cardType.apiName == startups.apiName) {
-      console.log({query: id})
-      Api.getStartup(id).then(x => {
-        console.log({resp: x})
-        setCard(x)
-      })
+  useEffect(() => {
+    if (cardType.useApiV2 && id) {
+      if (cardType.apiName == acheteurPublic.apiName) {
+        console.log({ query: id })
+        Api.getActeurPublic(id).then(x => {
+          console.log({ resp: x })
+          setCard(x)
+        })
+      } else if (cardType.apiName == startups.apiName) {
+        console.log({ query: id })
+        Api.getStartup(id).then(x => {
+          console.log({ resp: x })
+          setCard(x)
+        })
+      }
     }
-  }
+  }, [id])
 
   if (!card) return <p>No data</p>;
 
