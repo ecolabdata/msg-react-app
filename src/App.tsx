@@ -29,7 +29,7 @@ export const ApplicationContext = createContext<{
 const Router = () => {
   localStorage.setItem('scheme', 'dark');
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  useEffect(() => {}, [localStorage.scheme]);
+  useEffect(() => { }, [localStorage.scheme]);
   const usedFavoris = useFavoris();
   const usedCorbeille = useCorbeille();
   const usedNextScrollTarget = useState<ScrollToOptions | null>(null);
@@ -56,9 +56,7 @@ const Router = () => {
         <JwtAuthProvider>
           <TrackPage />
           <Routes>
-            <Route path="*" element={<AuthRequiredWall />}>
-              <Route path="*" element={<Authentified />} />
-            </Route>
+            <Route path="*" element={<Authentified />} />
           </Routes>
         </JwtAuthProvider>
       </ApplicationContext.Provider>
