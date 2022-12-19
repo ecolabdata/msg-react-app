@@ -7,6 +7,7 @@ import ScreenReaderOnlyText from './ScreenReaderOnlyText';
 
 interface CardProps {
   name: string;
+  nameElem? : JSX.Element;
   toprow: string;
   linkData: AnyCard | {};
   slug: string;
@@ -17,6 +18,7 @@ interface CardProps {
 const ResultCard: React.FC<PropsWithChildren<CardProps>> = ({
   cardType,
   name,
+  nameElem,
   toprow,
   linkData,
   slug,
@@ -51,7 +53,7 @@ const ResultCard: React.FC<PropsWithChildren<CardProps>> = ({
                 className="rm-link-underline">
                 <p className="clamp mt-2 font-bold text-lg" title={name}>
                   <ScreenReaderOnlyText content={toprow} />
-                  {name}
+                  {nameElem || name}
                 </p>
               </Link>
             </h3>

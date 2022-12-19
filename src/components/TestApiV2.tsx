@@ -55,7 +55,7 @@ const closingTag = '@/msg-highlighted-field@'
 
 function replaceHlTxt(txt : string) {
     console.log({txt})
-    return txt.replaceAll("@msg-highlighted-field@", '<b style="color: green">').replaceAll('@/msg-highlighted-field@', '</b>')
+    return txt.replaceAll(openingTag, '<b style="color: green">').replaceAll(closingTag, '</b>')
 }
 
 export default TestApiV2;
