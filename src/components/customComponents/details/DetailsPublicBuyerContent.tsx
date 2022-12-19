@@ -29,26 +29,30 @@ const DetailsPublicBuyer: React.FC<DetailsPublicBuyerContentProps> = ({ card }) 
 
   return (
     <div>
-      <h2 className="text-4xl mb-2">Cette collectivité à travaillé avec ... </h2>
-      <div className="flex flex-col mt-8 mb-16">
-        <p className="mb-4">
-          La liste suivante non exhaustive est basée sur les données des marchés présents dans les
-          <span>
-            {' '}
-            <a
-              href="https://www.economie.gouv.fr/daj/oecp-recensement-economique-commande-publique"
-              target="_blank"
-              rel="noreferrer"
-            >
-              DECP
-            </a>
-          </span>
-        </p>
-        <TagsList
-          tags={tags as string[]}
-          tagClassName="bg-red-marianne-625-lightBackground text-red-marianne-625"
-        />
-      </div>
+      {tags?.length > 0 && (
+        <>
+          <h2 className="text-4xl mb-2">Cette collectivité à travaillé avec ... </h2>
+          <div className="flex flex-col mt-8 mb-16">
+            <p className="mb-4">
+              La liste suivante non exhaustive est basée sur les données des marchés présents dans
+              les
+              <span>
+                {' '}
+                <a
+                  href="https://www.economie.gouv.fr/daj/oecp-recensement-economique-commande-publique"
+                  target="_blank"
+                  rel="noreferrer">
+                  DECP
+                </a>
+              </span>
+            </p>
+            <TagsList
+              tags={tags as string[]}
+              tagClassName="bg-red-marianne-625-lightBackground text-red-marianne-625"
+            />
+          </div>
+        </>
+      )}
       <div className=" my-8 w-full flex flex-col items-center my-16 ">
         <h3 className="text-4xl mb-8">Quelques chiffres</h3>
         <div className="flex flex-wrap w-full justify-center">
