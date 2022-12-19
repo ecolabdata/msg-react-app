@@ -31,7 +31,7 @@ const DetailsHeader: React.FC<DetailsHeaderProps> = ({ card, cardType }) => {
         <p
           className={`fr-badge fr-badge--sm `}
           style={{ color: cardType?.color, backgroundColor: cardType?.backgroundColor }}>
-          {cardType?.name}
+          {cardType?.name === 'sourcingSu' ? 'start up' : cardType?.name}
         </p>
         <h1 className="my-4 w-full font-bold text-4xl">{title}</h1>
         <p className="">{subtitle}</p>
