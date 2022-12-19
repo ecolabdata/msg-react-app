@@ -18,11 +18,10 @@ type DetailsProps = {
 };
 
 export const Details: React.FC<DetailsProps> = ({ cardType }) => {
-  const { id } = useParams();
   const location = useLocation();
-  const query = useQuery();
+  const {id, cardData} = useQuery();
   const initialState = location.state as { cardData: AnyCard } | null;
-  const [card, setCard] = useState<AnyCard>(initialState?.cardData || JSON.parse(query.cardData))
+  const [card, setCard] = useState<AnyCard>(initialState?.cardData || JSON.parse(cardData))
   useEffect(() => {
     if (cardType.useApiV2 && id) {
       if (cardType.apiName == acheteurPublic.apiName) {

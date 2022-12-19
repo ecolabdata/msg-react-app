@@ -1,37 +1,12 @@
 import React from 'react';
 import GenericPagination from '../../dsfrComponents/GenericPagination';
+import { PublicBuyer } from 'api2/Api';
 
-export type Decp = {
-  id: string;
-  source: string;
-  uid: string;
-  _type: string;
-  objet: string;
-  codeCPV: string;
-  dureeMois: number;
-  dateNotification: string;
-  datePublicationDonnees: string;
-  montant: number;
-  formePrix: number;
-  modifications: string[];
-  nature: string;
-  procedure: string;
-  dateSignature: string;
-  dateDebutExecution: string;
-  valeurGlobale: string;
-  montantSubventionPublique: number;
-  donneesExecution: string;
-  uuid: string;
-  lieuExecution_code: string;
-  lieuExecution_typeCode: string;
-  lieuExecution_nom: string;
-};
-
-interface PublicBuyerPanelContentProps {
-  contents: Decp[];
+interface PublicBuyerDecpTabProps {
+  contents: PublicBuyer["decp"];
 }
 
-export const PublicBuyerPanelContent: React.FC<PublicBuyerPanelContentProps> = ({ contents }) => {
+export const PublicBuyerDecpTab: React.FC<PublicBuyerDecpTabProps> = ({ contents }) => {
   const PAGE_SIZE = 10;
   const [page, setPage] = React.useState(0);
 
@@ -64,10 +39,9 @@ export const PublicBuyerPanelContent: React.FC<PublicBuyerPanelContentProps> = (
   );
 };
 
-export default PublicBuyerPanelContent;
 
 interface CPVCardProps {
-  content: Decp;
+  content: PublicBuyer["decp"][number];
 }
 
 const CPVCard: React.FC<CPVCardProps> = ({ content }) => {

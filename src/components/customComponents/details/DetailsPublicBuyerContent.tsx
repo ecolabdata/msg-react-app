@@ -1,8 +1,10 @@
+import { PublicBuyer } from 'api2/Api';
 import { Collectivite } from '../../../api/Api';
 import { InformationCard } from '../InformationCard';
 import { Tabs } from '../Tabs';
 import { TagsList } from '../TagsList';
-import PublicBuyerPanelContent, { Decp } from './PublicBuyerTabPanel';
+import { PublicBuyerApprochTab } from './PublicBuyerApprochTab';
+import {PublicBuyerDecpTab} from './PublicBuyerDecpTab';
 
 interface DetailsPublicBuyerContentProps {
   card: Collectivite;
@@ -11,19 +13,19 @@ interface DetailsPublicBuyerContentProps {
 const DetailsPublicBuyer: React.FC<DetailsPublicBuyerContentProps> = ({ card }) => {
   const tags = card.labelled_startups.map((s) => s.nom).filter((name) => !!name);
 
-  const marketContents = card.decp.filter((d) => d._type === 'Marché');
-  const buyContents = card.decp.filter((d) => d._type === 'Achats');
+  const marketContents = card.decp
+  const buyContents = card.approch_content
 
   const tabs = [
     {
       id: 'market-tab',
       Button: 'Marchés passés',
-      Panel: <PublicBuyerPanelContent contents={marketContents as unknown as Decp[]} />
+      Panel: <PublicBuyerDecpTab contents={marketContents} />
     },
     {
       id: 'buy-tab',
       Button: 'Achats programmés',
-      Panel: <PublicBuyerPanelContent contents={buyContents as unknown as Decp[]} />
+      Panel: <PublicBuyerApprochTab contents={buyContents} />
     }
   ];
 
@@ -59,7 +61,7 @@ const DetailsPublicBuyer: React.FC<DetailsPublicBuyerContentProps> = ({ card }) 
           <InformationCard title={marketContents?.length || 0} subtitle="Marchés passés" />
           <InformationCard title={buyContents?.length || 0} subtitle="Achats programmés" />
           <InformationCard
-            title={getAverageMarketDealAmount(marketContents as unknown as Decp[])}
+            title={getAverageMarketDealAmount(marketContents)}
             subtitle="Montant moyen en euros"
           />
         </div>
@@ -75,7 +77,7 @@ const DetailsPublicBuyer: React.FC<DetailsPublicBuyerContentProps> = ({ card }) 
 
 export default DetailsPublicBuyer;
 
-const getAverageMarketDealAmount = (markets: Decp[]) => {
+const getAverageMarketDealAmount = (markets: PublicBuyer['decp']) => {
   const { amount, numberOfMarkets } = markets.reduce(
     ({ amount, numberOfMarkets }, market) => {
       if (!isNaN(market?.montant)) {

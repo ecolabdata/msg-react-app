@@ -28,12 +28,12 @@ const ResultCard: React.FC<PropsWithChildren<CardProps>> = ({
   const [, setNextScrolTarget] = usedNextScrollTarget;
 
   //TODO: When an endpoint by id exist. All this should be removed to link card to `/${cardType.name}/details/${cardData.id}`
-  let linkTo = `/${cardType.name}/details/${slug}?cardData=${encodeURIComponent(
+  let linkTo = `/${cardType.name}/details/${slug}?id=${name}&cardData=${encodeURIComponent(
     JSON.stringify(linkData)
   )}`;
 
   if (linkTo.length > 8192) {
-    linkTo = `/${cardType.name}/details/${slug}`;
+    linkTo = `/${cardType.name}/details/${slug}?id=${name}`;
   }
 
   return (
