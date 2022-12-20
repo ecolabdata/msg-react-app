@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-interface ProfileCardProps {
+export interface ProfileCardProps {
   title: string;
   description: string;
   badge: string;

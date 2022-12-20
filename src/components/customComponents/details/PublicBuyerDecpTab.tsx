@@ -3,7 +3,7 @@ import GenericPagination from '../../dsfrComponents/GenericPagination';
 import { PublicBuyer } from 'api2/Api';
 
 interface PublicBuyerDecpTabProps {
-  contents: PublicBuyer["decp"];
+  contents: PublicBuyer['decp'];
 }
 
 export const PublicBuyerDecpTab: React.FC<PublicBuyerDecpTabProps> = ({ contents }) => {
@@ -14,7 +14,7 @@ export const PublicBuyerDecpTab: React.FC<PublicBuyerDecpTabProps> = ({ contents
     <>
       <p className="font-semibold my-4 text-right">{contents?.length} résultats</p>
       {contents?.length ? (
-        <div className="fr-container--fluid flex flex-col items-center">
+        <div className="container--fluid flex flex-col items-center">
           <ul className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {contents.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE).map((decpItem) => (
               <li key={decpItem.id}>
@@ -39,9 +39,8 @@ export const PublicBuyerDecpTab: React.FC<PublicBuyerDecpTabProps> = ({ contents
   );
 };
 
-
 interface CPVCardProps {
-  content: PublicBuyer["decp"][number];
+  content: PublicBuyer['decp'][number];
 }
 
 const CPVCard: React.FC<CPVCardProps> = ({ content }) => {

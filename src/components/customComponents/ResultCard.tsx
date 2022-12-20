@@ -3,11 +3,11 @@ import { PropsWithChildren, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ApplicationContext } from '../../App';
 import { CardType } from '../../model/CardType';
-import ScreenReaderOnlyText from './ScreenReaderOnlyText';
+import ScreenReaderOnlyText from '../Core/ScreenReaderOnlyText';
 
 interface CardProps {
   name: string;
-  nameElem? : JSX.Element;
+  nameElem?: JSX.Element;
   toprow: string;
   linkData: AnyCard | {};
   slug: string;
@@ -50,7 +50,8 @@ const ResultCard: React.FC<PropsWithChildren<CardProps>> = ({
                 }}
                 to={linkTo}
                 state={{ cardData: linkData }}
-                className="rm-link-underline">
+                className="rm-link-underline"
+              >
                 <p className="clamp mt-2 font-bold text-lg" title={name}>
                   <ScreenReaderOnlyText content={toprow} />
                   {nameElem || name}
@@ -63,7 +64,8 @@ const ResultCard: React.FC<PropsWithChildren<CardProps>> = ({
                 <li>
                   <p
                     className={`fr-badge fr-badge--sm `}
-                    style={{ color: cardType.color, backgroundColor: cardType.backgroundColor }}>
+                    style={{ color: cardType.color, backgroundColor: cardType.backgroundColor }}
+                  >
                     {toprow}
                   </p>
                 </li>

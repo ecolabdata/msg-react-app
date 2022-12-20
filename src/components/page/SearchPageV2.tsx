@@ -9,6 +9,7 @@ import { Api, HitPublicBuyer, SearchPublicBuyer, SearchStartup } from 'api2/Api'
 import SearchForm from '../customComponents/SearchForm';
 import SearchResults from '../customComponents/SearchResults';
 import Pagination from '../dsfrComponents/Pagination';
+import Container from 'components/Core/Container';
 
 type Props<SearchType extends SearchPublicBuyer | SearchStartup> = {
   cardType: CardType;
@@ -75,10 +76,7 @@ export function buildSearchPageV2<SearchType extends SearchPublicBuyer | SearchS
 
     return (
       <>
-        <div
-          className="headContainer  container mb-20 mx-auto max-w-headerSize
-            xl:mx-auto
-            ">
+        <Container>
           <div className="cardTitleAndLogo p-2 text-base">
             <h2 className="w-fit font-bold text-2xl md:text-4xl">
               <div className="flex items-center ">
@@ -103,7 +101,8 @@ export function buildSearchPageV2<SearchType extends SearchPublicBuyer | SearchS
             <form
               onSubmit={(event) => handleOnSubmitForm(event)}
               id="keywordsForm"
-              className="researchContainer m-auto flex flex-col justify-around flex-wrap h-fit w-full">
+              className="my-8 flex flex-col justify-around flex-wrap h-fit w-full"
+              >
               <fieldset>
                 <legend className="sr-only">Votre projet</legend>
                 <SearchForm
@@ -138,11 +137,12 @@ export function buildSearchPageV2<SearchType extends SearchPublicBuyer | SearchS
               </div> */}
             </form>
 
-            <div className="researchButtonsContainer mt-8 w-full flex flex-col items-center justify-center">
+            <div className="container mt-8 w-full flex flex-col items-center justify-center">
               <button
                 form="keywordsForm"
                 disabled={isLoading}
-                className="mx-3 fr-btn fr-btn--primary  fr-btn--lg">
+                className="mx-3 fr-btn fr-btn--primary  fr-btn--lg"
+              >
                 <span className={`mx-auto`}>
                   {isLoading ? 'Chargement...' : 'Valider et rechercher'}
                 </span>
@@ -151,14 +151,15 @@ export function buildSearchPageV2<SearchType extends SearchPublicBuyer | SearchS
                 type="button"
                 disabled={isLoading}
                 onClick={handleResetFilters}
-                className="mt-4 underline">
+                className="mt-4 underline"
+              >
                 Réinitialiser
               </button>
             </div>
           </div>
-        </div>
+        </Container>
         {
-          <>
+          <Container>
             <SearchResults hitCount={resp?.total.value || 0} isLoading={isLoading}>
               {resp?.hits.map((hit, i) => children(hit, i, isLoading))}
             </SearchResults>
@@ -176,7 +177,7 @@ export function buildSearchPageV2<SearchType extends SearchPublicBuyer | SearchS
               baseUrl={cardType.searchLink}
               nbPage={nbPage}
             />
-          </>
+          </Container>
         }
       </>
     );

@@ -1,6 +1,6 @@
 import { PropsWithChildren, useEffect, useRef } from 'react';
 
-import ScreenReaderOnlyText from './ScreenReaderOnlyText';
+import ScreenReaderOnlyText from '../Core/ScreenReaderOnlyText';
 
 type Props = {
   hitCount: number;
@@ -32,15 +32,21 @@ const SearchResults: React.FC<PropsWithChildren<Props>> = ({ hitCount, isLoading
         <ScreenReaderOnlyText content={`Aucun résultat trouvé`} aria-live="polite" />
       )}
       {hitCount > 0 ? (
-        <div tabIndex={0} ref={ref} className="fr-container max-w-full" id="cardsContainer">
+        <section
+          tabIndex={0}
+          ref={ref}
+          className="my-8"
+          id="cardsContainer"
+        >
           <span
-            className="flex justify-end font-bold mb-4"
-            aria-hidden={true}>{`(${hitCount} résultats)`}</span>
+            className="flex justify-end font-bold mb-4 text-xl"
+            aria-hidden={true}
+          >{`(${hitCount} résultats)`}</span>
           <ScreenReaderOnlyText content={`il y'a ${hitCount} résultats`} />
           <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {children}
           </ul>
-        </div>
+        </section>
       ) : (
         'Aucun résultat trouvé'
       )}

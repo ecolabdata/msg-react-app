@@ -1,5 +1,5 @@
 import { PictoDownload, PictoSendMail } from '../../assets/Icons';
-import ExternalLink from './ExternalLink';
+import ExternalLink from '../Core/ExternalLink';
 
 type LinkContent = {
   url: string | undefined;

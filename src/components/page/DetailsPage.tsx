@@ -3,8 +3,11 @@ import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import {
   AnyCard,
-  isAcheteurPublic, isAide,
-  isInvestisseur, isProjetAchat, isStartup
+  isAcheteurPublic,
+  isAide,
+  isInvestisseur,
+  isProjetAchat,
+  isStartup
 } from '../../api/Api';
 import { useQuery } from '../../hooks/useQuery';
 import { acheteurPublic, CardType, startups } from '../../model/CardType';
@@ -19,26 +22,26 @@ type DetailsProps = {
 
 export const Details: React.FC<DetailsProps> = ({ cardType }) => {
   const location = useLocation();
-  const {id, cardData} = useQuery();
+  const { id, cardData } = useQuery();
   const initialState = location.state as { cardData: AnyCard } | null;
-  const [card, setCard] = useState<AnyCard>(initialState?.cardData || JSON.parse(cardData))
+  const [card, setCard] = useState<AnyCard>(initialState?.cardData || JSON.parse(cardData));
   useEffect(() => {
     if (cardType.useApiV2 && id) {
       if (cardType.apiName == acheteurPublic.apiName) {
-        console.log({ query: id })
-        Api.getActeurPublic(id).then(x => {
-          console.log({ resp: x })
-          setCard(x)
-        })
+        console.log({ query: id });
+        Api.getActeurPublic(id).then((x) => {
+          console.log({ resp: x });
+          setCard(x);
+        });
       } else if (cardType.apiName == startups.apiName) {
-        console.log({ query: id })
-        Api.getStartup(id).then(x => {
-          console.log({ resp: x })
-          setCard(x)
-        })
+        console.log({ query: id });
+        Api.getStartup(id).then((x) => {
+          console.log({ resp: x });
+          setCard(x);
+        });
       }
     }
-  }, [id])
+  }, [id]);
 
   if (!card) return <p>No data</p>;
 

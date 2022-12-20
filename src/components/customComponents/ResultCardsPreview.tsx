@@ -23,7 +23,7 @@ const ResultCardsPreview: React.FC<CardsPreviewProps> = ({
   const ref = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="globalContainerCard flex flex-col justify-center mb-8 mx-4 lg:mx-12">
+    <div className="container flex flex-col justify-center mb-8 mx-4 lg:mx-12">
       <div className="cardGeneralInformations flex flex-wrap mb-4">
         <div className="cardTitle p-2 flex-auto">
           <div className="flex items-center">
@@ -51,7 +51,7 @@ const ResultCardsPreview: React.FC<CardsPreviewProps> = ({
         </div>
       </div>
 
-      <div className="fr-container--fluid" ref={ref}>
+      <div className="container--fluid" ref={ref}>
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {children}
         </ul>
