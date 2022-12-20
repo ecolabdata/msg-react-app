@@ -7,7 +7,7 @@ const ModalThemeSelection: React.FC = () => {
         role="dialog"
         aria-labelledby="fr-theme-modal-title"
       >
-        <div className="fr-container fr-container--fluid fr-container-md">
+        <div className="container container--fluid container-md">
           <div className="fr-grid-row fr-grid-row--center">
             <div className="fr-col-12 fr-col-md-6 fr-col-lg-4">
               <div className="fr-modal__body">

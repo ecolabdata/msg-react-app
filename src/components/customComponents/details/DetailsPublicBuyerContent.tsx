@@ -4,7 +4,7 @@ import { InformationCard } from '../InformationCard';
 import { Tabs } from '../Tabs';
 import { TagsList } from '../TagsList';
 import { PublicBuyerApprochTab } from './PublicBuyerApprochTab';
-import {PublicBuyerDecpTab} from './PublicBuyerDecpTab';
+import { PublicBuyerDecpTab } from './PublicBuyerDecpTab';
 
 interface DetailsPublicBuyerContentProps {
   card: Collectivite;
@@ -13,8 +13,8 @@ interface DetailsPublicBuyerContentProps {
 const DetailsPublicBuyer: React.FC<DetailsPublicBuyerContentProps> = ({ card }) => {
   const tags = card.labelled_startups.map((s) => s.nom).filter((name) => !!name);
 
-  const marketContents = card.decp
-  const buyContents = card.approch_content
+  const marketContents = card.decp;
+  const buyContents = card.approch_content;
 
   const tabs = [
     {
@@ -43,7 +43,8 @@ const DetailsPublicBuyer: React.FC<DetailsPublicBuyerContentProps> = ({ card }) 
                 <a
                   href="https://www.economie.gouv.fr/daj/oecp-recensement-economique-commande-publique"
                   target="_blank"
-                  rel="noreferrer">
+                  rel="noreferrer"
+                >
                   DECP
                 </a>
               </span>

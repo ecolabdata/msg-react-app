@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
-import ExternalLink from './customComponents/ExternalLink';
+import ExternalLink from './Core/ExternalLink';
 
 const Footer: React.FC = () => {
   return (
     <>
       <footer className="fr-footer relative mt-8" role="contentinfo" id="footer">
-        <div className="fr-container dsfr-lg:relative">
+        <div className="container dsfr-lg:relative">
           <div className="fr-footer__body">
             <div className="fr-footer__brand fr-enlarge-link">
               <Link

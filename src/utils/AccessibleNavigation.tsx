@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import ScreenReaderOnlyText from '../components/customComponents/ScreenReaderOnlyText';
+import ScreenReaderOnlyText from '../components/Core/ScreenReaderOnlyText';
 
 function AccessibleNavigation() {
   const [message, setMessage] = useState('');

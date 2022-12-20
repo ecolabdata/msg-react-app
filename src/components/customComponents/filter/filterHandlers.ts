@@ -139,7 +139,7 @@ export const handleInvestorFilter = (search: Search, filters: InvestorFilters) =
 };
 
 export const handleStartUpFilter = (search: SearchStartup, filters: StartupFilters) => {
-  const cards = search.hits
+  const cards = search.hits;
 
   const { market, zone } = filters;
   const isZoneFilterActivated = Object.keys(zones).includes(zone);

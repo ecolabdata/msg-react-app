@@ -6,9 +6,7 @@ export const OverlappingTitle: React.FC<{
   return (
     <>
       <div
-        className={`titleContainer ${
-          !usedInListPage && 'absolute h-0 -top-5 left-4 overflow-visible'
-        }`}
+        className={`container ${!usedInListPage && 'absolute h-0 -top-5 left-4 overflow-visible'}`}
       >
         <div className="flex w-fit">
           <h2

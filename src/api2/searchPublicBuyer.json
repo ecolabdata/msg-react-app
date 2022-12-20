@@ -1,1 +1,1328 @@
-{"total": {"value": 63, "relation": "eq"}, "max_score": 10.772081, "hits": [{"_index": "public_actor_cards20221218_051206", "_id": "U9ymI4UBjAQWTvUjSF-v", "_version": 1, "_score": 10.772081, "fields": {"public_actor_id": ["75105632600018"], "public_actor_nom": ["SPL LA FABRIQUE DE BORDEAUX METROPOLE"], "public_actor_id_siren": ["751056326"]}, "highlight": {"public_actor_nom": ["SPL LA FABRIQUE DE @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@ @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "BdymI4UBjAQWTvUjKlmc", "_version": 1, "_score": 7.9820175, "fields": {"public_actor_id": ["26330582300019"], "public_actor_nom": ["CHU BORDEAUX"], "public_actor_id_siren": ["263305823"]}, "highlight": {"public_actor_nom": ["CHU @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "k9ymI4UBjAQWTvUjOlyy", "_version": 1, "_score": 7.9820175, "fields": {"public_actor_id": ["38258912500030"], "public_actor_nom": ["REGAZ - BORDEAUX"], "public_actor_id_siren": ["382589125"]}, "highlight": {"decp.objet": ["Renouvellement des canalisations de gaz en fonte gs sur les communes de @msg-highlighted-field@bordeaux@/msg-highlighted-field@ @msg-highlighted-field@m\u00e9tropole@/msg-highlighted-field@: Lot 1 : Renouvellement des canalisations de gaz en fonte GS sur les communes situ\u00e9es au sud de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@", "Renouvellement des canalisations de gaz en fonte gs sur les communes de @msg-highlighted-field@bordeaux@/msg-highlighted-field@ @msg-highlighted-field@m\u00e9tropole@/msg-highlighted-field@: Lot 2 : Renouvellement des canalisations de gaz en fonte GS sur les communes situ\u00e9es au nord de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@", "Travaux de chaudronnerie relatifs \u00e0 la mise en place d'une pompe \u00e0 chaleur dans la centrale g\u00e9othermique de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ M\u00e9riadeck", "Travaux d'\u00e9lectricit\u00e9 relatifs \u00e0 la mise en place d'une pompe \u00e0 chaleur dans la centrale g\u00e9othermique de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ M\u00e9riadeck", "Prestations d'enqu\u00eates de recensement d'ouvrages gaz avant compteur sur les communes de la concession de R\u00e9gaz autres que @msg-highlighted-field@Bordeaux@/msg-highlighted-field@: Lot 2"], "decp.lieuExecution_nom": ["@msg-highlighted-field@bordeaux@/msg-highlighted-field@", "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@", "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@", "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@", "@msg-highlighted-field@Bordeaux@/msg-highlighted-field@"], "public_actor_nom": ["REGAZ - @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "edymI4UBjAQWTvUjSGCv", "_version": 1, "_score": 7.9820175, "fields": {"public_actor_id": ["79425293200015"], "public_actor_nom": ["CHU BORDEAUX "], "public_actor_id_siren": ["794252932"]}, "highlight": {"public_actor_nom": ["CHU @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "3NylI4UBjAQWTvUj4Tb0", "_version": 1, "_score": 7.6579285, "fields": {"public_actor_id": ["20003986500056"], "public_actor_nom": ["METZ METROPOLE"], "public_actor_id_siren": ["200039865"]}, "highlight": {"public_actor_nom": ["METZ @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "3dylI4UBjAQWTvUj4Tb0", "_version": 1, "_score": 7.6579285, "fields": {"labelled_startups.nom": ["UNICO France"], "public_actor_id": ["20003986500106"], "public_actor_nom": ["METZ METROPOLE"], "public_actor_id_siren": ["200039865"], "labelled_startups": [{"nom": ["UNICO France"]}]}, "highlight": {"decp.objet": ["ECLAIRAGE PUBLIC METZ @msg-highlighted-field@METTROPOLE@/msg-highlighted-field@", "ECLAIRAGE PUBLIC METZ @msg-highlighted-field@METTROPOLE@/msg-highlighted-field@", "ECLAIRAGE PUBLIC METZ @msg-highlighted-field@METTROPOLE@/msg-highlighted-field@", "ECLAIRAGE PUBLIC METZ @msg-highlighted-field@METTROPOLE@/msg-highlighted-field@", "Maintenance r\u00e9seau Metz @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ et ville de Metz"], "decp.lieuExecution_nom": ["METZ @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"], "public_actor_nom": ["METZ @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "ltymI4UBjAQWTvUjI1MM", "_version": 1, "_score": 7.6579285, "fields": {"public_actor_id": ["24350013900189"], "public_actor_nom": ["RENNES METROPOLE "], "public_actor_id_siren": ["243500139"]}, "highlight": {"decp.objet": ["HOTEL RENNES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ - Cloisonnement de bureaux d'accueil et salles de r\u00e9union en bout d'ailes - Cloison", "HOTEL RENNES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ - Cloisonnement de bureaux d'accueil et salles de r\u00e9union en bout d'ailes - Electricit\u00e9", "LA MODIFICATION DE LA SIGNALETIQUE LIGNE \"a\" - En mars 2002, Rennes @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ a mis en service la ligne a du m\u00e9tro automatique de Rennes comprenant quinze stations. En 2021, il est pr\u00e9vu de mettre en service la ligne b du m\u00e9tro. - Rennes @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@, autori", "FOURNITURE DE PHOTOS AERIENNES PERSPECTIVES TECHNIQUES SUR LES TERRITOIRES DE RENNES ET DE RENNES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@", "Sondages g\u00e9otechniques sur le territoire de Rennes @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ - Accord cadre \u00e0 bons de commande"], "public_actor_nom": ["RENNES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "C9ymI4UBjAQWTvUjI1QM", "_version": 1, "_score": 7.6579285, "fields": {"labelled_startups.nom": ["Altereo", "Explorama", "In sun we trust"], "public_actor_id": ["24450046800040"], "public_actor_nom": ["ORLEANS METROPOLE"], "public_actor_id_siren": ["244500468"], "labelled_startups": [{"nom": ["Altereo"]}, {"nom": ["Explorama"]}, {"nom": ["In sun we trust"]}]}, "highlight": {"decp.objet": ["ORLEANS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@", "M22247S - MS008 - REQUALIFICATION DE LA RUE DU PONT @msg-highlighted-field@BORDEAU@/msg-highlighted-field@ A ST JEAN DE BRAYE", "M22248S - MS008 - LOT2 REQUALIFICATION DE LA RUE DU PONT @msg-highlighted-field@BORDEAU@/msg-highlighted-field@ A ST JEAN DE BRAYE, ECLAIRAGE PUBLIC", "M22248S - MS008 - LOT2 REQUALIFICATION DE LA RUE DU PONT @msg-highlighted-field@BORDEAU@/msg-highlighted-field@ A ST JEAN DE BRAYE, ECLAIRAGE PUBLIC", "M22248S - MS008 - LOT2 REQUALIFICATION DE LA RUE DU PONT @msg-highlighted-field@BORDEAU@/msg-highlighted-field@ A ST JEAN DE BRAYE, ECLAIRAGE PUBLIC"], "decp.lieuExecution_nom": ["ORLEANS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@", "ORLEANS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@", "ORLEANS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@", "ORLEANS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@", "ORLEANS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"], "public_actor_nom": ["ORLEANS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "DNymI4UBjAQWTvUjI1QM", "_version": 1, "_score": 7.6579285, "fields": {"public_actor_id": ["24450046800057"], "public_actor_nom": ["ORLEANS METROPOLE"], "public_actor_id_siren": ["244500468"]}, "highlight": {"public_actor_nom": ["ORLEANS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "DdymI4UBjAQWTvUjI1QM", "_version": 1, "_score": 7.6579285, "fields": {"public_actor_id": ["24450046800065"], "public_actor_nom": ["ORLEANS METROPOLE"], "public_actor_id_siren": ["244500468"]}, "highlight": {"public_actor_nom": ["ORLEANS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "DtymI4UBjAQWTvUjI1QM", "_version": 1, "_score": 7.6579285, "fields": {"public_actor_id": ["24450046800164"], "public_actor_nom": ["ORLEANS METROPOLE"], "public_actor_id_siren": ["244500468"]}, "highlight": {"decp.objet": ["M21172 - ETUDE SUR UNE STRATEGIE DE PRESERVATION DES RESSOURCES EN EAU POUR ORLEANS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"], "public_actor_nom": ["ORLEANS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "VdylI4UBjAQWTvUj3DRC", "_version": 1, "_score": 7.1717906, "fields": {"public_actor_id": ["18330008600091"], "public_actor_nom": ["CROUS de Bordeaux"], "public_actor_id_siren": ["183300086"]}, "highlight": {"decp.objet": ["CCP 2020-10-Sites campus et @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ (33), P\u00e9rigueux (24) et Agen(47)", "CCAP n\u00b02020-11 du 12/08/2020-Lot 1 - @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ - R\u00e9sidences, restaurants et services centraux", "CCP- n\u00b02021-03 du 21/01/2021-Lot 1 - Locaux d'habitation et Etablissements recevant du public - @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@, Agen et P\u00e9rigueux", "CCP n\u00b02021-20 du 07/09/2021-Campus @msg-highlighted-field@Bordeaux@/msg-highlighted-field@", "CCP n\u00b02022-10-Lot 1 - @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@"], "public_actor_nom": ["CROUS de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "btymI4UBjAQWTvUjJ1YK", "_version": 1, "_score": 7.1717906, "fields": {"public_actor_id": ["25330618700035"], "public_actor_nom": ["SIVU Bordeaux M\u00e9rignac"], "public_actor_id_siren": ["253306187"]}, "highlight": {"decp.objet": ["SERVICES D'ASSURANCES POUR LE SIVU @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@-MERIGNAC: Lot 1: 21.A02", "SERVICES D'ASSURANCES POUR LE SIVU @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@-MERIGNAC: Lot 2: 21.A05", "Service d'accompagnement \u00e0 la mobilit\u00e9 professionnelle pour le SIVU @msg-highlighted-field@Bordeaux@/msg-highlighted-field@-M\u00e9rignac", "Prestation de mise \u00e0 disposition de personnel int\u00e9rimaire pour le SIVU @msg-highlighted-field@Bordeaux@/msg-highlighted-field@-M\u00e9rignac", "Fourniture et livraison de pain bio : Vieux @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ - St-Michel - St-Seurin - M\u00e9riadeck"], "decp.lieuExecution_nom": ["@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@", "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@", "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@", "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@", "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@"], "public_actor_nom": ["SIVU @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ M\u00e9rignac"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "rtymI4UBjAQWTvUjSGCv", "_version": 1, "_score": 7.1717906, "fields": {"public_actor_id": ["81210279600024"], "public_actor_nom": ["BORDEAUX BEGLES ENERGIES"], "public_actor_id_siren": ["812102796"]}, "highlight": {"decp.objet": ["Extension du r\u00e9seau de chaleur Saint-Jean Belcier (@msg-highlighted-field@Bordeaux@/msg-highlighted-field@)"], "decp.lieuExecution_nom": ["@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@", "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@", "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@", "@msg-highlighted-field@Bordeaux@/msg-highlighted-field@"], "public_actor_nom": ["@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@ BEGLES ENERGIES"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "6tymI4UBjAQWTvUjSGCv", "_version": 1, "_score": 7.1717906, "fields": {"public_actor_id": ["83250928500017"], "public_actor_nom": ["Bordeaux M\u00e9tropole Energies"], "public_actor_id_siren": ["832509285"]}, "highlight": {"decp.lieuExecution_nom": ["@msg-highlighted-field@bordeaux@/msg-highlighted-field@", "@msg-highlighted-field@Bordeaux@/msg-highlighted-field@", "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@", "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@", "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@"], "public_actor_nom": ["@msg-highlighted-field@Bordeaux@/msg-highlighted-field@ M\u00e9tropole Energies"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "0dylI4UBjAQWTvUj3DVD", "_version": 1, "_score": 6.880599, "fields": {"public_actor_id": ["20002341400101"], "public_actor_nom": ["Metropole Rouen Normandie"], "public_actor_id_siren": ["200023414"]}, "highlight": {"decp.objet": ["Coeur de @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ - Travaux d'am\u00e9nagement du quartier Seine cath\u00e9drale", "Coeur de @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ - Travaux d'am\u00e9nagement du quartier Seine cath\u00e9drale", "Coeur de @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ - Travaux d'am\u00e9nagement du quartier Seine cath\u00e9drale", "Coeur de @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ - Travaux d'am\u00e9nagement du quartier Seine cath\u00e9drale", "Fourniture d'\u00e9quipements sc\u00e9niques de la SMAC de la @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@"], "decp.lieuExecution_nom": ["PERIMETRE @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ ROUEN NORMANDIE/CASE/SBV CAR/SBV AS"], "public_actor_nom": ["@msg-highlighted-field@Metropole@/msg-highlighted-field@ Rouen Normandie"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "GtylI4UBjAQWTvUj4Tf0", "_version": 1, "_score": 6.880599, "fields": {"public_actor_id": ["20004071500019"], "public_actor_nom": ["GRENOBLE ALPES METROPOLE"], "public_actor_id_siren": ["200040715"]}, "highlight": {"decp.objet": ["Permanences de soutien psychologique dans les maisons de l'emploi de Grenoble-Alpes @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ (2 lots)", "Analyses d'eau pour Grenoble-Alpes @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@", "Prestations d'impression et de distribution du journal \"Grenoble-Alpes @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@\". LOT 2 Distribution du journal \"Grenoble-Alpes @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@\"", "T\u00e9l\u00e9surveillance des locaux de Grenoble-Alpes @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@", "Prestations d'impression et de distribution du Journal de la @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ - Relance du lot 1 - Impression du journal Grenoble-Alpes @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@"], "public_actor_nom": ["GRENOBLE ALPES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "ZNymI4UBjAQWTvUjI1MM", "_version": 1, "_score": 6.880599, "fields": {"labelled_startups.nom": ["Altereo"], "public_actor_id": ["24300064300045"], "public_actor_nom": ["NIMES METROPOLE - BP"], "public_actor_id_siren": ["243000643"], "labelled_startups": [{"nom": ["Altereo"]}]}, "highlight": {"decp.objet": ["ENTRETIEN DES ESPACES VERTS DE QUATRES ZONES D'ACTIVITE DE NIMES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@", "PRESTATIONS REVISION ET ENTRETIEN VEHICULES PARC AUTO NIMES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@", "assainissement de communes de N\u00eemes @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ - Communes de : Caissargues ? G\u00e9n\u00e9rac - Sernhac", "MISE EN PLACE SERVICES SECOURS A PERSONNES MANIFESTATIONS NIMES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@", "DERATISATION, DESINSECTISATION, DESINFECTION BATIMENTS NIMES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"], "decp.lieuExecution_nom": ["NIMES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"], "public_actor_nom": ["NIMES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ - BP"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "utymI4UBjAQWTvUjKlec", "_version": 1, "_score": 6.880599, "fields": {"public_actor_id": ["25730221600037"], "public_actor_nom": ["SMIA METROPOLE SAVOIE"], "public_actor_id_siren": ["257302216"]}, "highlight": {"public_actor_nom": ["SMIA @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ SAVOIE"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "79ymI4UBjAQWTvUjMFo3", "_version": 1, "_score": 6.880599, "fields": {"public_actor_id": ["27280002000013"], "public_actor_nom": ["CHARTRES METROPOLE HABITAT"], "public_actor_id_siren": ["272800020"]}, "highlight": {"decp.objet": ["MARCHES D'ENTRETIEN DES ESPACES EXTERIEURS ET DU MOBILIER URBAIN DANS LES IMMEUBLES COLLECTIFS DE CHARTRES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ HABITAT", "MARCHES D'ENTRETIEN DES ESPACES EXTERIEURS ET DU MOBILIER URBAIN DANS LES IMMEUBLES COLLECTIFS DE CHARTRES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ HABITAT", "MARCHES D'ENTRETIEN DES ESPACES EXTERIEURS ET DU MOBILIER URBAIN DANS LES IMMEUBLES COLLECTIFS DE CHARTRES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ HABITAT", "MARCHES D'ENTRETIEN DES ESPACES EXTERIEURS ET DU MOBILIER URBAIN DANS LES IMMEUBLES COLLECTIFS DE CHARTRES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ HABITAT", "March\u00e9 d'entretien et maintenance des \u00e9clairages ext\u00e9rieurs du patrimoine de Chartres @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ Habitat"], "decp.lieuExecution_nom": ["CHARTRES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ HABITAT  23 rue des Bas Bourgs \u00e0 Chartres  CS 20137  28008 CHARTRES CEDEX"], "public_actor_nom": ["CHARTRES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ HABITAT"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "zdymI4UBjAQWTvUjOlyy", "_version": 1, "_score": 6.880599, "fields": {"public_actor_id": ["40137617300019"], "public_actor_nom": ["EST METROPOLE HABITAT"], "public_actor_id_siren": ["401376173"]}, "highlight": {"decp.objet": ["ccg/ACBC DIAGS IMMO-Accord cadre \u00e0 \u00e9mission de bons de commande - Diagnostics immobiliers li\u00e9s au transfert de patrimoine sur l'ensemble des groupes g\u00e9r\u00e9s par Est @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ Habitat", "March\u00e9 d'AMO \u00e0 la gestion des espaces verts sur l'ensemble des r\u00e9sidences g\u00e9r\u00e9es  par EST @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ HABITAT", "PA/ACBC Fourniture Bureau/ca-Accord-cadre mono-attributaire \u00e0 bons de commande pour l'achat et la livraison de fournitures de bureau pour les besoins d'Est @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ Habitat"], "public_actor_nom": ["EST @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ HABITAT"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "UtymI4UBjAQWTvUjSF-v", "_version": 1, "_score": 6.880599, "fields": {"public_actor_id": ["75102459700013"], "public_actor_nom": ["SPL CAP METROPOLE"], "public_actor_id_siren": ["751024597"]}, "highlight": {"decp.objet": ["R\u00e9alisation de petits entretien courants, neutralisation de fluides et s\u00e9curisation de divers b\u00e2timents appartenant \u00e0 Cap @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ - Lot 09 - M\u00e9tallerie", "R\u00e9alisation de petits entretien courants, neutralisation de fluides et s\u00e9curisation de divers b\u00e2timents appartenant \u00e0 Cap @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ - Lot 07 - Electricit\u00e9", "R\u00e9alisation de petits entretien courants, neutralisation de fluides et s\u00e9curisation de divers b\u00e2timents appartenant \u00e0 Cap @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ - Lot 01 - Ma\u00e7onnerie VRD", "95/LC/CV-R\u00e9alisation de travaux d'entretien courant de menuiserie et s\u00e9curisation de divers b\u00e2timents appartenant \u00e0 CAP @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@.", "March\u00e9 2021-015 - R\u00e9alisation de d\u00e9barras des encombrants de divers b\u00e2timents appartenant \u00e0 Cap @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@."], "public_actor_nom": ["SPL CAP @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "cNymI4UBjAQWTvUjSF-v", "_version": 1, "_score": 6.880599, "fields": {"public_actor_id": ["7585015600037"], "public_actor_nom": ["MAISON FLANDRE METROPOLE"], "public_actor_id_siren": ["758501560"]}, "highlight": {"public_actor_nom": ["MAISON FLANDRE @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "BtymI4UBjAQWTvUjKlmc", "_version": 1, "_score": 6.510893, "fields": {"public_actor_id": ["26330636700016"], "public_actor_nom": ["CREDIT MUNICIPAL DE BORDEAUX"], "public_actor_id_siren": ["263306367"]}, "highlight": {"decp.objet": ["March\u00e9 de services relatif \u00e0 la prestation d'assurance pour les besoins de la Caisse de Cr\u00e9dit Municipal de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@", "March\u00e9 de services relatif \u00e0 la prestation d'assurance pour les besoins de la Caisse de Cr\u00e9dit Municipal de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@", "Mission de commissariat aux comptes pour le Cr\u00e9dit Municipal de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@", "Prestations de nettoyage des locaux du si\u00e8ge et des agences du Cr\u00e9dit Municipal de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@: Lot 5: Prestations de nettoyage des locaux du si\u00e8ge de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@", "R\u00e9alisation d'un audit sur la strat\u00e9gie du Cr\u00e9dit Municipal de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@"], "decp.lieuExecution_nom": ["@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@", "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@", "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@", "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@", "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@"], "public_actor_nom": ["CREDIT MUNICIPAL DE @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "CtylI4UBjAQWTvUj4Tb0", "_version": 1, "_score": 6.246535, "fields": {"public_actor_id": ["20002752200024"], "public_actor_nom": ["Metropole Toulon-Provence-Mediterranee"], "public_actor_id_siren": ["200027522"]}, "highlight": {"public_actor_nom": ["@msg-highlighted-field@Metropole@/msg-highlighted-field@ Toulon-Provence-Mediterranee"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "H9ylI4UBjAQWTvUj4Tb0", "_version": 1, "_score": 6.246535, "fields": {"public_actor_id": ["20003019500032"], "public_actor_nom": ["METROPOLE NICE COTE D'AZUR"], "public_actor_id_siren": ["200030195"]}, "highlight": {"public_actor_nom": ["@msg-highlighted-field@METROPOLE@/msg-highlighted-field@ NICE COTE D'AZUR"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "INylI4UBjAQWTvUj4Tb0", "_version": 1, "_score": 6.246535, "fields": {"public_actor_id": ["20003019500057"], "public_actor_nom": ["METROPOLE NICE COTE D'AZUR"], "public_actor_id_siren": ["200030195"]}, "highlight": {"public_actor_nom": ["@msg-highlighted-field@METROPOLE@/msg-highlighted-field@ NICE COTE D'AZUR"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "ItylI4UBjAQWTvUj4Tb0", "_version": 1, "_score": 6.246535, "fields": {"public_actor_id": ["20003019500123"], "public_actor_nom": ["METROPOLE NICE COTE D'AZUR"], "public_actor_id_siren": ["200030195"]}, "highlight": {"public_actor_nom": ["@msg-highlighted-field@METROPOLE@/msg-highlighted-field@ NICE COTE D'AZUR"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "I9ylI4UBjAQWTvUj4Tb0", "_version": 1, "_score": 6.246535, "fields": {"public_actor_id": ["20003019500131"], "public_actor_nom": ["METROPOLE NICE COTE D'AZUR"], "public_actor_id_siren": ["200030195"]}, "highlight": {"decp.objet": ["LOT 4 TRANSPORT DES DECHETS A PARTIR DES QUAIS DE TRANSFERT DE LA @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ NICE COTE D'AZUR", "LOT 4 TRANSPORT DES DECHETS A PARTIR DES QUAIS DE TRANSFERT DE LA @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ NICE COTE D'AZUR", "LOT 4 TRANSPORT DES DECHETS A PARTIR DES QUAIS DE TRANSFERT DE LA @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ NICE COTE D'AZUR", "HAB VALORISATION DES GRAVATS SALES PRODUITS SUR LE TERRITOIRE DE LA @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ NICE COTE D'AZUR", "HAB TRANSPORT DES FERRAILLES PRODUITES SUR LE TERRITOIRE DE LA @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"], "public_actor_nom": ["@msg-highlighted-field@METROPOLE@/msg-highlighted-field@ NICE COTE D'AZUR"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "G9ylI4UBjAQWTvUj4Tf0", "_version": 1, "_score": 6.246535, "fields": {"public_actor_id": ["20004071500035"], "public_actor_nom": ["GRENOBLE ALPES METROPOLE DECHETS"], "public_actor_id_siren": ["200040715"]}, "highlight": {"public_actor_nom": ["GRENOBLE ALPES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ DECHETS"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "I9ylI4UBjAQWTvUj6Dg7", "_version": 1, "_score": 6.246535, "fields": {"public_actor_id": ["20005478100022"], "public_actor_nom": ["METROPOLE DU GRAND PARIS"], "public_actor_id_siren": ["200054781"]}, "highlight": {"decp.objet": ["MGP-CONSTRUCTION DU STAND @msg-highlighted-field@M\u00c9TROPOLE@/msg-highlighted-field@ MGP POUR LE SIMI LOT 2", "MGP STRATEGIE @msg-highlighted-field@METROPOL@/msg-highlighted-field@. D'ECONOM CIRCULAIRE & SOLIDAIRE LOT1", "MGP DEBATS MENSUELS AVEC LES CITOYENS SUR PROJETS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@", "MGP_MISE EN OEUVRE-ACTE II DU PACTE POUR LOGISTIQUE @msg-highlighted-field@METROPOL@/msg-highlighted-field@"], "public_actor_nom": ["@msg-highlighted-field@METROPOLE@/msg-highlighted-field@ DU GRAND PARIS"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "gtylI4UBjAQWTvUj7Top", "_version": 1, "_score": 6.246535, "fields": {"public_actor_id": ["20006925000013"], "public_actor_nom": ["CA TROYES CHAMPAGNE METROPOLE"], "public_actor_id_siren": ["200069250"]}, "highlight": {"public_actor_nom": ["CA TROYES CHAMPAGNE @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "udymI4UBjAQWTvUjI1MM", "_version": 1, "_score": 6.246535, "fields": {"public_actor_id": ["24370075400027"], "public_actor_nom": ["TOURS METROPOLE REGIE ASSAIN"], "public_actor_id_siren": ["243700754"]}, "highlight": {"public_actor_nom": ["TOURS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ REGIE ASSAIN"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "u9ymI4UBjAQWTvUjI1MM", "_version": 1, "_score": 6.246535, "fields": {"public_actor_id": ["24370075400050"], "public_actor_nom": ["TOURS METROPOLE REGIE EAU"], "public_actor_id_siren": ["243700754"]}, "highlight": {"public_actor_nom": ["TOURS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ REGIE EAU"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "QtymI4UBjAQWTvUjJ1UK", "_version": 1, "_score": 6.246535, "fields": {"labelled_startups.nom": ["Trizzy"], "public_actor_id": ["24830054300217"], "public_actor_nom": ["METROPOLE TOULON PROVENCE MEDITERRANEE"], "public_actor_id_siren": ["248300543"], "labelled_startups": [{"nom": ["Trizzy"]}]}, "highlight": {"decp.objet": ["20TRAV12 ACBC POUR LES TRAVAUX URGENTS TOUS CORPS D'ETATS SUR LES BIENS VETUSTES DE LA @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ TPM", "ACHAT DE MASQUES DE PROTECTION POUR LES BESOINS DE LA @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ TOULON PROVENCE MEDITERRANE", "20MAP53-Prestations d'impression d'affiches pour la @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ Toulon Provence M\u00e9diterran\u00e9e", "20PI06 ACBC pour les \u00e9tudes pr\u00e9-op\u00e9rationnelles d'am\u00e9nagements et ouvrages hydrauliques de la @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ TPM", "20PI06 ACBC pour les \u00e9tudes pr\u00e9-op\u00e9rationnelles d'am\u00e9nagements et ouvrages hydrauliques de la @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ TPM"], "decp.lieuExecution_nom": ["@msg-highlighted-field@METROPOLE@/msg-highlighted-field@ TPM", "@msg-highlighted-field@METROPOLE@/msg-highlighted-field@ TPM", "@msg-highlighted-field@METROPOLE@/msg-highlighted-field@ TPM", "@msg-highlighted-field@METROPOLE@/msg-highlighted-field@ TPM", "@msg-highlighted-field@METROPOLE@/msg-highlighted-field@ TPM"], "public_actor_nom": ["@msg-highlighted-field@METROPOLE@/msg-highlighted-field@ TOULON PROVENCE MEDITERRANEE"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "DNymI4UBjAQWTvUjMFs3", "_version": 1, "_score": 6.246535, "fields": {"public_actor_id": ["27720003600196"], "public_actor_nom": ["Le Mans Metropole Habitat"], "public_actor_id_siren": ["277200036"]}, "highlight": {"decp.objet": ["Le nettoyage et l'entretien des bureaux du si\u00e8ge de Le Mans @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ Habitat, 2018 \u00e0 2022.", "Nettoyage et entretien des agences de proximit\u00e9 de Le Mans @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ Habitat, 2018 \u00e0 2021.", "ACCORD-CADRE A BONS DE COMMANDE 2019 \u00e0 2022 -lot 8 : serrurerie / lot 11 : \u00e9vier et meuble sous \u00e9vier / lot 15 : fermetures ext\u00e9rieures et menuiseries PVC - Divers groupes, LE MANS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@<br />", "ACCORD-CADRE A BONS DE COMMANDE 2019 \u00e0 2022 -lot 8 : serrurerie / lot 11 : \u00e9vier et meuble sous \u00e9vier / lot 15 : fermetures ext\u00e9rieures et menuiseries PVC - Divers groupes, LE MANS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@<br />", "ACCORD-CADRE A BONS DE COMMANDE 2019 \u00e0 2022 -lot 8 : serrurerie / lot 11 : \u00e9vier et meuble sous \u00e9vier / lot 15 : fermetures ext\u00e9rieures et menuiseries PVC - Divers groupes, LE MANS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@<br />"], "public_actor_nom": ["Le Mans @msg-highlighted-field@Metropole@/msg-highlighted-field@ Habitat"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "tNymI4UBjAQWTvUjSGCv", "_version": 1, "_score": 6.246535, "fields": {"public_actor_id": ["81511012700017"], "public_actor_nom": ["SPL CHARTRES METROPOLE ENERGIES"], "public_actor_id_siren": ["815110127"]}, "highlight": {"public_actor_nom": ["SPL CHARTRES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ ENERGIES"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "VdymI4UBjAQWTvUjQ15V", "_version": 1, "_score": 5.9615235, "fields": {"public_actor_id": ["52153011300021"], "public_actor_nom": ["SRIA de l'Universit\u00e9 de Bordeaux"], "public_actor_id_siren": ["521530113"]}, "highlight": {"decp.objet": ["Concours restreint de ma\ufffdtrise d'\u009cuvre pour la restructuration/extension du b\ufffdtiment \"Marne\" Universit\ufffd de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@- site Victoire.", "MA2018-08-Travaux d'am\ufffdnagement urbain de l'Universit\ufffd de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ \"Secteur Bordes\" Parkings B4 et B18", "Travaux d'am\ufffdlioration des installations CVC dans le b\ufffdtiment B18 de l'Universit\ufffd de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@", "MA2019-01-Mission MOE Am\ufffdnagement Urbain Campus @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ \ufffdSecteur CARREIRE - Liaison douce inter quartiers Nord-Sud\ufffd", "MA2018-04R-FOURNITURE ET POSE D'ELEMENTS DE SIGNALETIQUE SUR LES SITES DE L'UNIVERSITE DE @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@ ET DE SES PARTENAIRES Suite 1er appel d'offres d\ufffdclar\ufffd sans suite"], "public_actor_nom": ["SRIA de l'Universit\u00e9 de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "VNymI4UBjAQWTvUjSF-v", "_version": 1, "_score": 5.9615235, "fields": {"public_actor_id": ["75105632600026"], "public_actor_nom": ["La Fabrique de Bordeaux M\u00e9tropole"], "public_actor_id_siren": ["751056326"]}, "highlight": {"public_actor_nom": ["La Fabrique de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ M\u00e9tropole"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "uNylI4UBjAQWTvUjyDDf", "_version": 1, "_score": 5.858005, "fields": {"public_actor_id": ["13000509300070"], "public_actor_nom": ["Minist\u00e8re de la Justice  - PFI de Bordeaux - Plate-forme Interr\u00e9gionale de Bordeaux  "], "public_actor_id_siren": ["130005093"]}, "highlight": {"decp.objet": ["Lot 1 - Travaux de d\u00e9samiantage et de d\u00e9plombage pour la zone g\u00e9ographique 1 - Ville de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ rive gauche", "Maintenance des installations CVC pour les services et \u00e9tablissements publics de l'\u00c9tat en r\u00e9gion Nouvelle-Aquitaine (hors d\u00e9partements 19-23-87) - Lot 1 - @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ et Gironde Ouest - Petits \u00e9quipements (PE)"], "public_actor_nom": ["Minist\u00e8re de la Justice  - PFI de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ - Plate-forme Interr\u00e9gionale de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "rdylI4UBjAQWTvUj8Dxz", "_version": 1, "_score": 5.7194715, "fields": {"public_actor_id": ["20008495200015"], "public_actor_nom": ["LE HAVRE SEINE METROPOLE - Fonctionnement"], "public_actor_id_siren": ["200084952"]}, "highlight": {"decp.objet": ["Contr\u00f4le de r\u00e9ception des r\u00e9seaux d'eau et d'assainissement de la Communaut\u00e9 Urbaine Le Havre Seine @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@", "Groupement de commande Communaut\u00e9 urbaine le Havre Seine @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@/ Ville du Havre - FOURNITURE DE LUMAIRES A LEDS", "Groupement de commande Communaut\u00e9 urbaine le Havre Seine @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@/ Ville du Havre - FOURNITURE DE LUMAIRES A LEDS", "Groupement de commande Communaut\u00e9 urbaine le Havre Seine @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@/ Ville du Havre - FOURNITURE DE LUMAIRES A LEDS", "Groupement de commande Communaut\u00e9 urbaine le Havre Seine @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@/ Ville du Havre - FOURNITURE DE LUMAIRES A LEDS"], "decp.lieuExecution_nom": ["COMMUNAUTE URBAINE LE HAVRE SEINE @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"], "public_actor_nom": ["LE HAVRE SEINE @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ - Fonctionnement"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "sdymI4UBjAQWTvUjI1MM", "_version": 1, "_score": 5.7194715, "fields": {"public_actor_id": ["24360032700122"], "public_actor_nom": ["MACH 36/CA CHTX METROPOLE"], "public_actor_id_siren": ["243600327"]}, "highlight": {"public_actor_nom": ["MACH 36/CA CHTX @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "utymI4UBjAQWTvUjI1MM", "_version": 1, "_score": 5.7194715, "fields": {"labelled_startups.nom": ["EkWateur", "Altereo", "EkWateur"], "public_actor_id": ["24370075400035"], "public_actor_nom": ["TOURS METROPOLE VAL DE LOIRE "], "public_actor_id_siren": ["243700754"], "labelled_startups": [{"nom": ["EkWateur"]}, {"nom": ["Altereo"]}, {"nom": ["EkWateur"]}]}, "highlight": {"decp.objet": ["SECTEUR TOURS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@- AUTRES RESEAUX ELECTRIQUES", "DETAGAGE ET MISE EN PEINTURE OUVRAGES SUR RESEAU @msg-highlighted-field@METROPOL@/msg-highlighted-field@", "21MS6 VOIRIE-Requalification de la rue du chemin vert entre la rue Albert Camus et l'avenue de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@", "TMVL            | 21SED BATIMENT V2 | 1-Sud @msg-highlighted-field@Metropole@/msg-highlighted-field@ de Tours", "TMVL            | 22PLU-@msg-highlighted-field@METROPOL@/msg-highlighted-field@ | 1-TMVL            | 22PLU-@msg-highlighted-field@METROPOL@/msg-highlighted-field@ | 1"], "public_actor_nom": ["TOURS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ VAL DE LOIRE"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "w9ymI4UBjAQWTvUjOluy", "_version": 1, "_score": 5.7194715, "fields": {"public_actor_id": ["30185204200011"], "public_actor_nom": ["TERRITOIRE PORTES DE LA METROPOLE"], "public_actor_id_siren": ["301852042"]}, "highlight": {"public_actor_nom": ["TERRITOIRE PORTES DE LA @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "wtymI4UBjAQWTvUjQ11V", "_version": 1, "_score": 5.497649, "fields": {"public_actor_id": ["48760720200024"], "public_actor_nom": ["A\ufffdroport de Bordeaux M\ufffdrignac"], "public_actor_id_siren": ["487607202"]}, "highlight": {"public_actor_nom": ["A\ufffdroport de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ M\ufffdrignac"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "h9ylI4UBjAQWTvUjyDDf", "_version": 1, "_score": 5.4094944, "fields": {"public_actor_id": ["13000190200027"], "public_actor_nom": ["Minist\u00e8re des arm\u00e9es - Etablissement du service d'infrastructure de la d\u00e9fense de Bordeaux - ESID Bordeaux "], "public_actor_id_siren": ["130001902"]}, "highlight": {"decp.objet": ["ESID @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ - R\u00e9alisation des travaux de purge des buttes de tirs pour l'ensemble des infrastructures relevant du p\u00e9rim\u00e8tre de comp\u00e9tence de l'Etablissement du Service d'Infrastructure de la D\u00e9fense de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ - LOT 1 : @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@, CAZAUX, MONT DE MARSAN", "ESID @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ - R\u00e9alisation des travaux de purge des buttes de tirs pour l'ensemble des infrastructures relevant du p\u00e9rim\u00e8tre de comp\u00e9tence de l'Etablissement du Service d'Infrastructure de la D\u00e9fense de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ - 4", "ESID @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ - R\u00e9alisation des travaux de purge des buttes de tirs pour l'ensemble des infrastructures relevant du p\u00e9rim\u00e8tre de comp\u00e9tence de l'Etablissement du Service d'Infrastructure de la D\u00e9fense de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ - 2", "ESID @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ - R\u00e9alisation des travaux de purge des buttes de tirs pour l'ensemble des infrastructures relevant du p\u00e9rim\u00e8tre de comp\u00e9tence de l'Etablissement du Service d'Infrastructure de la D\u00e9fense de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ - 5", ". - Lot 3 : Zone de l\u2019ESID de @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@  -"], "public_actor_nom": ["Minist\u00e8re des arm\u00e9es - Etablissement du service d'infrastructure de la d\u00e9fense de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ - ESID @msg-highlighted-field@Bordeaux@/msg-highlighted-field@"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "79ymI4UBjAQWTvUjT2Bb", "_version": 1, "_score": 5.2744317, "fields": {"public_actor_id": ["83417557200017"], "public_actor_nom": ["BREST METROPOLE AMENAGEMENT -SOCIETE PUBLIQUE LOCALE "], "public_actor_id_siren": ["834175572"]}, "highlight": {"public_actor_nom": ["BREST @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ AMENAGEMENT -SOCIETE PUBLIQUE LOCALE"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "8dymI4UBjAQWTvUjT2Bb", "_version": 1, "_score": 4.89365, "fields": {"public_actor_id": ["83432932800027"], "public_actor_nom": ["REGIE DE L EAU DE METZ METROPOLE"], "public_actor_id_siren": ["834329328"]}, "highlight": {"decp.lieuExecution_nom": ["PERIMETRE REGIE DE L'EAU DE METZ @msg-highlighted-field@METROPOLE@/msg-highlighted-field@", "PERIMETRE REGIE DE L'EAU DE METZ @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"], "public_actor_nom": ["REGIE DE L EAU DE METZ @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "VNylI4UBjAQWTvUj1DLA", "_version": 1, "_score": 4.757304, "fields": {"public_actor_id": ["13002285800018"], "public_actor_nom": ["CHAMBRE DE COMMERCE ET D'INDUSTRIE TERRITORIALE BORDEAUX GIRONDE"], "public_actor_id_siren": ["130022858"]}, "highlight": {"decp.objet": ["Prestation d'int\u00e9gration et d'interface de la solution SALESFORCE CRM dans le cadre de la refonte du SI Client de la Chambre de Commerce et d'Industrie @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Gironde", "Approvisionnement en fournitures de bureau des services de la Chambre de Commerce et d'Industrie @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Gironde", "Prestation de services de s\u00e9curit\u00e9 incendie, d'assistance \u00e0 personnes et de gardiennage des locaux de la Chambre de Commerce et d'Industrie @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Gironde", "Choix d\u2019un bureau d\u2019\u00e9tudes pour la r\u00e9alisation d\u2019investigations structurelles du Palais de la Bourse de la Chambre de Commerce et d\u2019Industrie @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Gironde", "Travaux de couverture et \u00e9tanch\u00e9it\u00e9 du b\u00e2timent A du Centre de Formation du Lac de la Chambre de Commerce et d'Industrie @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Gironde"], "public_actor_nom": ["CHAMBRE DE COMMERCE ET D'INDUSTRIE TERRITORIALE @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@ GIRONDE"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "FtylI4UBjAQWTvUj1DLA", "_version": 1, "_score": 4.4571886, "fields": {"public_actor_id": ["13002032400013"], "public_actor_nom": ["Minist\u00e8re de l'Int\u00e9rieur - SGAMI SUD OUEST- Bordeaux - DAGF - BCP "], "public_actor_id_siren": ["130020324"]}, "highlight": {"decp.objet": ["March\u00e9 de nettoyage des locaux et des surfaces vitr\u00e9es de l'H\u00f4tel de police de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ et de sites ext\u00e9rieurs - H\u00f4tel de police de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@", "March\u00e9 de nettoyage des locaux et des surfaces vitr\u00e9es de l'H\u00f4tel de police de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ et de sites ext\u00e9rieurs - @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Centre-Est", "March\u00e9 de nettoyage des locaux et des surfaces vitr\u00e9es de l'H\u00f4tel de police de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ et de sites ext\u00e9rieurs - Ouest @msg-highlighted-field@Bordeaux@/msg-highlighted-field@", "March\u00e9 de nettoyage des locaux et des surfaces vitr\u00e9es de l'H\u00f4tel de police de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ et de sites ext\u00e9rieurs - Sud @msg-highlighted-field@Bordeaux@/msg-highlighted-field@", "Exploitation du standard t\u00e9l\u00e9phonique de l'H\u00f4tel de police de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@"], "public_actor_nom": ["Minist\u00e8re de l'Int\u00e9rieur - SGAMI SUD OUEST- @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ - DAGF - BCP"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "_9ylI4UBjAQWTvUj1DLA", "_version": 1, "_score": 4.4571886, "fields": {"public_actor_id": ["15700033200013"], "public_actor_nom": ["Minist\u00e8re de l'Int\u00e9rieur - R\u00e9gion de Gendarmerie Aquitaine - RGLIM Bordeaux "], "public_actor_id_siren": ["157000332"]}, "highlight": {"public_actor_nom": ["Minist\u00e8re de l'Int\u00e9rieur - R\u00e9gion de Gendarmerie Aquitaine - RGLIM @msg-highlighted-field@Bordeaux@/msg-highlighted-field@"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "ctymI4UBjAQWTvUjOlyy", "_version": 1, "_score": 4.2762165, "fields": {"public_actor_id": ["36180043600046"], "public_actor_nom": ["SAREMM (SOCIETE D'AMENAGEMENT ET DE RESTAURATION DE METZ METROPOLE )"], "public_actor_id_siren": ["361800436"]}, "highlight": {"public_actor_nom": ["SAREMM (SOCIETE D'AMENAGEMENT ET DE RESTAURATION DE METZ @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ )"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "SNylI4UBjAQWTvUjyDDf", "_version": 1, "_score": 4.192692, "fields": {"public_actor_id": ["12001003800061"], "public_actor_nom": ["Minist\u00e8re de la Justice  - Antenne R\u00e9gionale de l'Equipement de Bordeaux "], "public_actor_id_siren": ["120010038"]}, "highlight": {"public_actor_nom": ["Minist\u00e8re de la Justice  - Antenne R\u00e9gionale de l'Equipement de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "4dylI4UBjAQWTvUj1DLA", "_version": 1, "_score": 4.192692, "fields": {"public_actor_id": ["15000100600017"], "public_actor_nom": ["Direction Interarm\u00e9es des R\u00e9seaux d'Infrastructure et des Syst\u00e8mes d'Information - Bordeaux"], "public_actor_id_siren": ["150001006"]}, "highlight": {"public_actor_nom": ["Direction Interarm\u00e9es des R\u00e9seaux d'Infrastructure et des Syst\u00e8mes d'Information - @msg-highlighted-field@Bordeaux@/msg-highlighted-field@"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "R9ylI4UBjAQWTvUj1DPA", "_version": 1, "_score": 3.9578276, "fields": {"public_actor_id": ["17330120100211"], "public_actor_nom": ["Minist\u00e8re de la Justice  - Direction interr\u00e9gionale des services p\u00e9nitentiaires de Bordeaux "], "public_actor_id_siren": ["173301201"]}, "highlight": {"decp.objet": ["Coordination de la programmation socio-culturelle de la Direction Interr\u00e9gionale des Services P\u00e9nitentiaires de @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@", "MAINTENANCE PREVENTIVE ET CORRECTIVE DU SYSTEME DE VIDEOSURVEILLANCE DE 16 ETABLISSEMENTS PENITENTIAIRES DU RESSORT DE LA DISP DE @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@", "Maintenance des installations CVC pour les services et \u00e9tablissements publics de l'\u00c9tat en r\u00e9gion Nouvelle-Aquitaine (hors d\u00e9partements 19-23-87) - Lot 3 - @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ - Gros et moyens \u00e9quipements (GME)", "Programme Personnalis\u00e9 d'Accompagnement \u00e0 l'Insertion Professionnelle dans 3 \u00e9tablissements p\u00e9nitentiaires de la Dordogne du ressort de la Direction Interr\u00e9gionale des Services P\u00e9nitentiaires de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@", "Fourniture et la livraison de pains frais de 220 g au profit des personnes d\u00e9tenues pour la maison d\u2019arr\u00eat de PAU, \u00e9tablissement en gestion publique du ressort de la DISP @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@"], "public_actor_nom": ["Minist\u00e8re de la Justice  - Direction interr\u00e9gionale des services p\u00e9nitentiaires de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "39ylI4UBjAQWTvUj1DLA", "_version": 1, "_score": 3.747881, "fields": {"public_actor_id": ["15000081800016"], "public_actor_nom": ["Minist\u00e8re des arm\u00e9es - Structure Sp\u00e9cialis\u00e9e d'achat et de Mandatement 33 503 Bordeaux "], "public_actor_id_siren": ["150000818"]}, "highlight": {"public_actor_nom": ["Minist\u00e8re des arm\u00e9es - Structure Sp\u00e9cialis\u00e9e d'achat et de Mandatement 33 503 @msg-highlighted-field@Bordeaux@/msg-highlighted-field@"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "y9ylI4UBjAQWTvUj3DRC", "_version": 1, "_score": 3.2333355, "fields": {"public_actor_id": ["19331766600017"], "public_actor_nom": ["Etablissements et organismes de l'enseignement sup\u00e9rieur, de la recherche et de l'innovation - Universit\u00e9 Bordeaux Montaigne "], "public_actor_id_siren": ["193317666"]}, "highlight": {"decp.objet": ["March\u00e9 dexploitation de chauffage de type MTI des B\u00e2timents de luniversit\u00e9 @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Montaigne", "Maintenance des ascenseurs de l\u2019universit\u00e9 @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Montaigne", "Missions de ma\u00eetrise d\u2019\u0153uvre pour des op\u00e9rations de raccordement de l\u2019IUT @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Montaigne au RCU (R\u00e9seau de Chaleur Urbain) \u00e0 @msg-highlighted-field@Bordeaux@/msg-highlighted-field@.", "- concerne le raccordement au r\u00e9seau de chaleur urbain de l\u2019iut @msg-highlighted-field@bordeaux@/msg-highlighted-field@ montaigne (@msg-highlighted-field@bordeaux@/msg-highlighted-field@).", "Nettoyage des locaux de l'IUT @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Montaigne"], "approch_content.label": ["Prestations de traiteurs pour le compte de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ INP, SciencesPo @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ et l'Universit\u00e9 @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Montaigne", "Prestations de nettoyage des locaux de l'universit\u00e9 @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Montaigne", "Fourniture de livres pour l'Universit\u00e9 @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Montaigne", "March\u00e9 d'assurances de l'Universit\u00e9 @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Montaigne", "Nettoyage de l'IUT @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Montaigne"], "public_actor_nom": ["Etablissements et organismes de l'enseignement sup\u00e9rieur, de la recherche et de l'innovation - Universit\u00e9 @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Montaigne"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "2dylI4UBjAQWTvUjyDDf", "_version": 1, "_score": 3.0918427, "fields": {"public_actor_id": ["13000635600013"], "public_actor_nom": ["Etablissements et organismes de l'enseignement sup\u00e9rieur, de la recherche et de l'innovation - Institut polytechnique de Bordeaux\u00a0 "], "public_actor_id_siren": ["130006356"]}, "highlight": {"decp.objet": ["Prestations de traiteurs pour le compte de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ INP, Science Po @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ et l'Universit\u00e9 de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Montaigne_Lot 02 : prestations de service traiteur : buffets sucr\u00e9s et/ou sal\u00e9s et repas", "Prestations de traiteurs pour le compte de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ INP, Science Po @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ et l'Universit\u00e9 de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Montaigne_Lot 02 : prestations de service traiteur : buffets sucr\u00e9s et/ou sal\u00e9s et repas", "Prestations de traiteurs pour le compte de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ INP, Sciences Po @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ et l\u2019 Universit\u00e9 @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Montaigne_Lot 04 : prestations de service traiteur : petits-d\u00e9jeuners et pauses-caf\u00e9", "Prestations de traiteurs pour le compte de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ INP, Sciences Po @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ et l\u2019 Universit\u00e9 @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Montaigne_Lot 04 : prestations de service traiteur : petits-d\u00e9jeuners et pauses-caf\u00e9", "Prestations de traiteurs pour le compte de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ INP, Sciences Po @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ et l\u2019 Universit\u00e9 @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Montaigne_Lot 04 : prestations de service traiteur : petits-d\u00e9jeuners et pauses-caf\u00e9"], "public_actor_nom": ["Etablissements et organismes de l'enseignement sup\u00e9rieur, de la recherche et de l'innovation - Institut polytechnique de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@\u00a0"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "JtylI4UBjAQWTvUj3DRC", "_version": 1, "_score": 2.7330437, "fields": {"public_actor_id": ["18008904700146"], "public_actor_nom": ["Etablissements et organismes de l'enseignement sup\u00e9rieur, de la recherche et de l'innovation - Centre de Recherche Inria Bordeaux - Sud-Ouest  "], "public_actor_id_siren": ["180089047"]}, "highlight": {"decp.objet": ["Location et maintenance de fontaine \u00e0 eau, accessoires et services associ\u00e9s pour le centre de recherche Inria @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Sud-Ouest", "Prestations de gardiennage pour le centre de recheche Inria @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Sud Ouest", "La maintenance des syst\u00e8mes \u00e9lectriques courants forts et courants faibles du centre de recherche Inria @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Sud-Ouest.", "Prestations de mise en propret\u00e9 des locaux et vitreries du Centre de Recherche INRIA @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Sud-Ouest", "Travaux de mise en conformit\u00e9 accessibilit\u00e9 PMR de 30 escaliers du Centre de recherche Inria @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Sud-Ouest - M\u00e9tallerie"], "public_actor_nom": ["Etablissements et organismes de l'enseignement sup\u00e9rieur, de la recherche et de l'innovation - Centre de Recherche Inria @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ - Sud-Ouest"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "CNylI4UBjAQWTvUjyDLf", "_version": 1, "_score": 2.63126, "fields": {"public_actor_id": ["13001835100010"], "public_actor_nom": ["Etablissements et organismes de l'enseignement sup\u00e9rieur, de la recherche et de l'innovation - UNIVERSITE DE BORDEAUX - P\u00f4le Patrimoine et Environnement - D\u00e9l\u00e9gation "], "public_actor_id_siren": ["130018351"]}, "highlight": {"decp.objet": ["Le pr\u00e9sent march\u00e9 a pour objet l\u2019acc\u00e8s \u00e0 la base de donn\u00e9es de presse internationale FACTIVA pour l\u2019Universit\u00e9 de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ et ses partenaires (Universit\u00e9 @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Montaigne, IEP @msg-highlighted-field@Bordeaux@/msg-highlighted-field@, INP @msg-highlighted-field@Bordeaux@/msg-highlighted-field@, @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ sciences Agro) conform\u00e9ment \u00e0 l", "Plomberie Sanitaire p\u00e9rim\u00e8tre \u00ab@msg-highlighted-field@Bordeaux@/msg-highlighted-field@\u00bb", "Plomberie Sanitaire p\u00e9rim\u00e8tre \u00ab@msg-highlighted-field@Bordeaux@/msg-highlighted-field@\u00bb", "Plomberie Sanitaire p\u00e9rim\u00e8tre \u00ab@msg-highlighted-field@Bordeaux@/msg-highlighted-field@\u00bb", "Upgrade laser 440nm pour le @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Imaging Center de l\u2019universit\u00e9 de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@"], "public_actor_nom": ["Etablissements et organismes de l'enseignement sup\u00e9rieur, de la recherche et de l'innovation - UNIVERSITE DE @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@ - P\u00f4le Patrimoine et Environnement - D\u00e9l\u00e9gation"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "IdymI4UBjAQWTvUjSGCv", "_version": 1, "_score": 2.63126, "fields": {"public_actor_id": ["78180414100021"], "public_actor_nom": ["Minist\u00e8re de la Transition \u00c9cologique, Minist\u00e8re de la Coh\u00e9sion des Territoires, Minist\u00e8re de la Mer - GRAND PORT MARITIME DE BORDEAUX "], "public_actor_id_siren": ["781804141"]}, "highlight": {"decp.objet": ["La consultation porte sur les prestations suivantes :\nFourniture de c\u00e2bles \u00e9lectriques pour le Grand Port Maritime de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@", "La consultation porte sur les prestations suivantes :\nFourniture de c\u00e2bles \u00e9lectriques pour le Grand Port Maritime de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@", "La consultation porte sur les prestations suivantes :\nFourniture de c\u00e2bles \u00e9lectriques pour le Grand Port Maritime de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@", "La consultation porte sur les prestations suivantes :\nFourniture de c\u00e2bles \u00e9lectriques pour le Grand Port Maritime de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@", "(Lot n\u00b01): D\u00e9construction, d\u00e9pollution et d\u00e9molition du hangar H37 \u00e0 @msg-highlighted-field@Bordeaux@/msg-highlighted-field@-Bacalan"], "public_actor_nom": ["Minist\u00e8re de la Transition \u00c9cologique, Minist\u00e8re de la Coh\u00e9sion des Territoires, Minist\u00e8re de la Mer - GRAND PORT MARITIME DE @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "WdymI4UBjAQWTvUjQ15V", "_version": 1, "_score": 2.536786, "fields": {"public_actor_id": ["52174744400037"], "public_actor_nom": ["Minist\u00e8re de la Transition \u00c9cologique, Minist\u00e8re de la Coh\u00e9sion des Territoires, Minist\u00e8re de la Mer - ETABLISSMENT PUBLIC D'AMENAGEMENT DE BORDEAUX - EURATLANTIQUE "], "public_actor_id_siren": ["521747444"]}, "highlight": {"decp.objet": ["C2019-021-Prestations d'expertise comptable pour l'EPA @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@ EURATLANTIQUE", "C2019-028-Prestations topographiques pour le compte de l'EPA @msg-highlighted-field@Bordeaux@/msg-highlighted-field@-Euratlantique", "Travaux d'infrastructure VRD sur le p\ufffdrim\ufffdtre OIN - @msg-highlighted-field@Bordeaux@/msg-highlighted-field@-Euratlantique", "Travaux d'infrastructure VRD sur le p\ufffdrim\ufffdtre OIN - @msg-highlighted-field@Bordeaux@/msg-highlighted-field@-Euratlantique", "Travaux d'infrastructure VRD sur le p\ufffdrim\ufffdtre OIN - @msg-highlighted-field@Bordeaux@/msg-highlighted-field@-Euratlantique"], "public_actor_nom": ["Minist\u00e8re de la Transition \u00c9cologique, Minist\u00e8re de la Coh\u00e9sion des Territoires, Minist\u00e8re de la Mer - ETABLISSMENT PUBLIC D'AMENAGEMENT DE @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@ - EURATLANTIQUE"]}}, {"_index": "public_actor_cards20221218_051206", "_id": "SdylI4UBjAQWTvUj1DPA", "_version": 1, "_score": 2.4488602, "fields": {"public_actor_id": ["17330430400012"], "public_actor_nom": ["Minist\u00e8re de l'\u00e9ducation nationale et de la jeunesse et Minist\u00e8re de l'enseignement sup\u00e9rieur, de la recherche et de l'innovation - Rectorat Acad\u00e9mie BORDEAUX "], "public_actor_id_siren": ["173304304"]}, "highlight": {"decp.objet": ["Le pr\u00e9sent accord-cadre a pour objet la fourniture et la livraison franco de port et d\u2019emballage de copies normalis\u00e9es E.N, de copies d\u00e9mat\u00e9rialis\u00e9es SANTORIN et de papier brouillon pour les rectorats                            des acad\u00e9mies de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@.", "Maintenance des installations CVC pour les services et \u00e9tablissements publics de l'\u00c9tat en r\u00e9gion Nouvelle-Aquitaine (hors d\u00e9partements 19-23-87) - Lot 1 - @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ et Gironde Ouest - Petits \u00e9quipements (PE)", "Maintenance des installations CVC pour les services et \u00e9tablissements publics de l'\u00c9tat en r\u00e9gion Nouvelle-Aquitaine (hors d\u00e9partements 19-23-87) - Lot 3 - @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ - Gros et moyens \u00e9quipements (GME)"], "public_actor_nom": ["Minist\u00e8re de l'\u00e9ducation nationale et de la jeunesse et Minist\u00e8re de l'enseignement sup\u00e9rieur, de la recherche et de l'innovation - Rectorat Acad\u00e9mie @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@"]}}]}
+{
+  "total": { "value": 63, "relation": "eq" },
+  "max_score": 10.772081,
+  "hits": [
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "U9ymI4UBjAQWTvUjSF-v",
+      "_version": 1,
+      "_score": 10.772081,
+      "fields": {
+        "public_actor_id": ["75105632600018"],
+        "public_actor_nom": ["SPL LA FABRIQUE DE BORDEAUX METROPOLE"],
+        "public_actor_id_siren": ["751056326"]
+      },
+      "highlight": {
+        "public_actor_nom": [
+          "SPL LA FABRIQUE DE @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@ @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "BdymI4UBjAQWTvUjKlmc",
+      "_version": 1,
+      "_score": 7.9820175,
+      "fields": {
+        "public_actor_id": ["26330582300019"],
+        "public_actor_nom": ["CHU BORDEAUX"],
+        "public_actor_id_siren": ["263305823"]
+      },
+      "highlight": {
+        "public_actor_nom": ["CHU @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@"]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "k9ymI4UBjAQWTvUjOlyy",
+      "_version": 1,
+      "_score": 7.9820175,
+      "fields": {
+        "public_actor_id": ["38258912500030"],
+        "public_actor_nom": ["REGAZ - BORDEAUX"],
+        "public_actor_id_siren": ["382589125"]
+      },
+      "highlight": {
+        "decp.objet": [
+          "Renouvellement des canalisations de gaz en fonte gs sur les communes de @msg-highlighted-field@bordeaux@/msg-highlighted-field@ @msg-highlighted-field@m\u00e9tropole@/msg-highlighted-field@: Lot 1 : Renouvellement des canalisations de gaz en fonte GS sur les communes situ\u00e9es au sud de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@",
+          "Renouvellement des canalisations de gaz en fonte gs sur les communes de @msg-highlighted-field@bordeaux@/msg-highlighted-field@ @msg-highlighted-field@m\u00e9tropole@/msg-highlighted-field@: Lot 2 : Renouvellement des canalisations de gaz en fonte GS sur les communes situ\u00e9es au nord de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@",
+          "Travaux de chaudronnerie relatifs \u00e0 la mise en place d'une pompe \u00e0 chaleur dans la centrale g\u00e9othermique de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ M\u00e9riadeck",
+          "Travaux d'\u00e9lectricit\u00e9 relatifs \u00e0 la mise en place d'une pompe \u00e0 chaleur dans la centrale g\u00e9othermique de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ M\u00e9riadeck",
+          "Prestations d'enqu\u00eates de recensement d'ouvrages gaz avant compteur sur les communes de la concession de R\u00e9gaz autres que @msg-highlighted-field@Bordeaux@/msg-highlighted-field@: Lot 2"
+        ],
+        "decp.lieuExecution_nom": [
+          "@msg-highlighted-field@bordeaux@/msg-highlighted-field@",
+          "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@",
+          "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@",
+          "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@",
+          "@msg-highlighted-field@Bordeaux@/msg-highlighted-field@"
+        ],
+        "public_actor_nom": ["REGAZ - @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@"]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "edymI4UBjAQWTvUjSGCv",
+      "_version": 1,
+      "_score": 7.9820175,
+      "fields": {
+        "public_actor_id": ["79425293200015"],
+        "public_actor_nom": ["CHU BORDEAUX "],
+        "public_actor_id_siren": ["794252932"]
+      },
+      "highlight": {
+        "public_actor_nom": ["CHU @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@"]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "3NylI4UBjAQWTvUj4Tb0",
+      "_version": 1,
+      "_score": 7.6579285,
+      "fields": {
+        "public_actor_id": ["20003986500056"],
+        "public_actor_nom": ["METZ METROPOLE"],
+        "public_actor_id_siren": ["200039865"]
+      },
+      "highlight": {
+        "public_actor_nom": ["METZ @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "3dylI4UBjAQWTvUj4Tb0",
+      "_version": 1,
+      "_score": 7.6579285,
+      "fields": {
+        "labelled_startups.nom": ["UNICO France"],
+        "public_actor_id": ["20003986500106"],
+        "public_actor_nom": ["METZ METROPOLE"],
+        "public_actor_id_siren": ["200039865"],
+        "labelled_startups": [{ "nom": ["UNICO France"] }]
+      },
+      "highlight": {
+        "decp.objet": [
+          "ECLAIRAGE PUBLIC METZ @msg-highlighted-field@METTROPOLE@/msg-highlighted-field@",
+          "ECLAIRAGE PUBLIC METZ @msg-highlighted-field@METTROPOLE@/msg-highlighted-field@",
+          "ECLAIRAGE PUBLIC METZ @msg-highlighted-field@METTROPOLE@/msg-highlighted-field@",
+          "ECLAIRAGE PUBLIC METZ @msg-highlighted-field@METTROPOLE@/msg-highlighted-field@",
+          "Maintenance r\u00e9seau Metz @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ et ville de Metz"
+        ],
+        "decp.lieuExecution_nom": ["METZ @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"],
+        "public_actor_nom": ["METZ @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "ltymI4UBjAQWTvUjI1MM",
+      "_version": 1,
+      "_score": 7.6579285,
+      "fields": {
+        "public_actor_id": ["24350013900189"],
+        "public_actor_nom": ["RENNES METROPOLE "],
+        "public_actor_id_siren": ["243500139"]
+      },
+      "highlight": {
+        "decp.objet": [
+          "HOTEL RENNES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ - Cloisonnement de bureaux d'accueil et salles de r\u00e9union en bout d'ailes - Cloison",
+          "HOTEL RENNES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ - Cloisonnement de bureaux d'accueil et salles de r\u00e9union en bout d'ailes - Electricit\u00e9",
+          "LA MODIFICATION DE LA SIGNALETIQUE LIGNE \"a\" - En mars 2002, Rennes @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ a mis en service la ligne a du m\u00e9tro automatique de Rennes comprenant quinze stations. En 2021, il est pr\u00e9vu de mettre en service la ligne b du m\u00e9tro. - Rennes @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@, autori",
+          "FOURNITURE DE PHOTOS AERIENNES PERSPECTIVES TECHNIQUES SUR LES TERRITOIRES DE RENNES ET DE RENNES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@",
+          "Sondages g\u00e9otechniques sur le territoire de Rennes @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ - Accord cadre \u00e0 bons de commande"
+        ],
+        "public_actor_nom": ["RENNES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "C9ymI4UBjAQWTvUjI1QM",
+      "_version": 1,
+      "_score": 7.6579285,
+      "fields": {
+        "labelled_startups.nom": ["Altereo", "Explorama", "In sun we trust"],
+        "public_actor_id": ["24450046800040"],
+        "public_actor_nom": ["ORLEANS METROPOLE"],
+        "public_actor_id_siren": ["244500468"],
+        "labelled_startups": [
+          { "nom": ["Altereo"] },
+          { "nom": ["Explorama"] },
+          { "nom": ["In sun we trust"] }
+        ]
+      },
+      "highlight": {
+        "decp.objet": [
+          "ORLEANS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@",
+          "M22247S - MS008 - REQUALIFICATION DE LA RUE DU PONT @msg-highlighted-field@BORDEAU@/msg-highlighted-field@ A ST JEAN DE BRAYE",
+          "M22248S - MS008 - LOT2 REQUALIFICATION DE LA RUE DU PONT @msg-highlighted-field@BORDEAU@/msg-highlighted-field@ A ST JEAN DE BRAYE, ECLAIRAGE PUBLIC",
+          "M22248S - MS008 - LOT2 REQUALIFICATION DE LA RUE DU PONT @msg-highlighted-field@BORDEAU@/msg-highlighted-field@ A ST JEAN DE BRAYE, ECLAIRAGE PUBLIC",
+          "M22248S - MS008 - LOT2 REQUALIFICATION DE LA RUE DU PONT @msg-highlighted-field@BORDEAU@/msg-highlighted-field@ A ST JEAN DE BRAYE, ECLAIRAGE PUBLIC"
+        ],
+        "decp.lieuExecution_nom": [
+          "ORLEANS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@",
+          "ORLEANS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@",
+          "ORLEANS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@",
+          "ORLEANS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@",
+          "ORLEANS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"
+        ],
+        "public_actor_nom": ["ORLEANS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "DNymI4UBjAQWTvUjI1QM",
+      "_version": 1,
+      "_score": 7.6579285,
+      "fields": {
+        "public_actor_id": ["24450046800057"],
+        "public_actor_nom": ["ORLEANS METROPOLE"],
+        "public_actor_id_siren": ["244500468"]
+      },
+      "highlight": {
+        "public_actor_nom": ["ORLEANS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "DdymI4UBjAQWTvUjI1QM",
+      "_version": 1,
+      "_score": 7.6579285,
+      "fields": {
+        "public_actor_id": ["24450046800065"],
+        "public_actor_nom": ["ORLEANS METROPOLE"],
+        "public_actor_id_siren": ["244500468"]
+      },
+      "highlight": {
+        "public_actor_nom": ["ORLEANS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "DtymI4UBjAQWTvUjI1QM",
+      "_version": 1,
+      "_score": 7.6579285,
+      "fields": {
+        "public_actor_id": ["24450046800164"],
+        "public_actor_nom": ["ORLEANS METROPOLE"],
+        "public_actor_id_siren": ["244500468"]
+      },
+      "highlight": {
+        "decp.objet": [
+          "M21172 - ETUDE SUR UNE STRATEGIE DE PRESERVATION DES RESSOURCES EN EAU POUR ORLEANS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"
+        ],
+        "public_actor_nom": ["ORLEANS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "VdylI4UBjAQWTvUj3DRC",
+      "_version": 1,
+      "_score": 7.1717906,
+      "fields": {
+        "public_actor_id": ["18330008600091"],
+        "public_actor_nom": ["CROUS de Bordeaux"],
+        "public_actor_id_siren": ["183300086"]
+      },
+      "highlight": {
+        "decp.objet": [
+          "CCP 2020-10-Sites campus et @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ (33), P\u00e9rigueux (24) et Agen(47)",
+          "CCAP n\u00b02020-11 du 12/08/2020-Lot 1 - @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ - R\u00e9sidences, restaurants et services centraux",
+          "CCP- n\u00b02021-03 du 21/01/2021-Lot 1 - Locaux d'habitation et Etablissements recevant du public - @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@, Agen et P\u00e9rigueux",
+          "CCP n\u00b02021-20 du 07/09/2021-Campus @msg-highlighted-field@Bordeaux@/msg-highlighted-field@",
+          "CCP n\u00b02022-10-Lot 1 - @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@"
+        ],
+        "public_actor_nom": ["CROUS de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@"]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "btymI4UBjAQWTvUjJ1YK",
+      "_version": 1,
+      "_score": 7.1717906,
+      "fields": {
+        "public_actor_id": ["25330618700035"],
+        "public_actor_nom": ["SIVU Bordeaux M\u00e9rignac"],
+        "public_actor_id_siren": ["253306187"]
+      },
+      "highlight": {
+        "decp.objet": [
+          "SERVICES D'ASSURANCES POUR LE SIVU @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@-MERIGNAC: Lot 1: 21.A02",
+          "SERVICES D'ASSURANCES POUR LE SIVU @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@-MERIGNAC: Lot 2: 21.A05",
+          "Service d'accompagnement \u00e0 la mobilit\u00e9 professionnelle pour le SIVU @msg-highlighted-field@Bordeaux@/msg-highlighted-field@-M\u00e9rignac",
+          "Prestation de mise \u00e0 disposition de personnel int\u00e9rimaire pour le SIVU @msg-highlighted-field@Bordeaux@/msg-highlighted-field@-M\u00e9rignac",
+          "Fourniture et livraison de pain bio : Vieux @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ - St-Michel - St-Seurin - M\u00e9riadeck"
+        ],
+        "decp.lieuExecution_nom": [
+          "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@",
+          "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@",
+          "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@",
+          "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@",
+          "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@"
+        ],
+        "public_actor_nom": [
+          "SIVU @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ M\u00e9rignac"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "rtymI4UBjAQWTvUjSGCv",
+      "_version": 1,
+      "_score": 7.1717906,
+      "fields": {
+        "public_actor_id": ["81210279600024"],
+        "public_actor_nom": ["BORDEAUX BEGLES ENERGIES"],
+        "public_actor_id_siren": ["812102796"]
+      },
+      "highlight": {
+        "decp.objet": [
+          "Extension du r\u00e9seau de chaleur Saint-Jean Belcier (@msg-highlighted-field@Bordeaux@/msg-highlighted-field@)"
+        ],
+        "decp.lieuExecution_nom": [
+          "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@",
+          "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@",
+          "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@",
+          "@msg-highlighted-field@Bordeaux@/msg-highlighted-field@"
+        ],
+        "public_actor_nom": [
+          "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@ BEGLES ENERGIES"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "6tymI4UBjAQWTvUjSGCv",
+      "_version": 1,
+      "_score": 7.1717906,
+      "fields": {
+        "public_actor_id": ["83250928500017"],
+        "public_actor_nom": ["Bordeaux M\u00e9tropole Energies"],
+        "public_actor_id_siren": ["832509285"]
+      },
+      "highlight": {
+        "decp.lieuExecution_nom": [
+          "@msg-highlighted-field@bordeaux@/msg-highlighted-field@",
+          "@msg-highlighted-field@Bordeaux@/msg-highlighted-field@",
+          "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@",
+          "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@",
+          "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@"
+        ],
+        "public_actor_nom": [
+          "@msg-highlighted-field@Bordeaux@/msg-highlighted-field@ M\u00e9tropole Energies"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "0dylI4UBjAQWTvUj3DVD",
+      "_version": 1,
+      "_score": 6.880599,
+      "fields": {
+        "public_actor_id": ["20002341400101"],
+        "public_actor_nom": ["Metropole Rouen Normandie"],
+        "public_actor_id_siren": ["200023414"]
+      },
+      "highlight": {
+        "decp.objet": [
+          "Coeur de @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ - Travaux d'am\u00e9nagement du quartier Seine cath\u00e9drale",
+          "Coeur de @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ - Travaux d'am\u00e9nagement du quartier Seine cath\u00e9drale",
+          "Coeur de @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ - Travaux d'am\u00e9nagement du quartier Seine cath\u00e9drale",
+          "Coeur de @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ - Travaux d'am\u00e9nagement du quartier Seine cath\u00e9drale",
+          "Fourniture d'\u00e9quipements sc\u00e9niques de la SMAC de la @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@"
+        ],
+        "decp.lieuExecution_nom": [
+          "PERIMETRE @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ ROUEN NORMANDIE/CASE/SBV CAR/SBV AS"
+        ],
+        "public_actor_nom": [
+          "@msg-highlighted-field@Metropole@/msg-highlighted-field@ Rouen Normandie"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "GtylI4UBjAQWTvUj4Tf0",
+      "_version": 1,
+      "_score": 6.880599,
+      "fields": {
+        "public_actor_id": ["20004071500019"],
+        "public_actor_nom": ["GRENOBLE ALPES METROPOLE"],
+        "public_actor_id_siren": ["200040715"]
+      },
+      "highlight": {
+        "decp.objet": [
+          "Permanences de soutien psychologique dans les maisons de l'emploi de Grenoble-Alpes @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ (2 lots)",
+          "Analyses d'eau pour Grenoble-Alpes @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@",
+          "Prestations d'impression et de distribution du journal \"Grenoble-Alpes @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@\". LOT 2 Distribution du journal \"Grenoble-Alpes @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@\"",
+          "T\u00e9l\u00e9surveillance des locaux de Grenoble-Alpes @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@",
+          "Prestations d'impression et de distribution du Journal de la @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ - Relance du lot 1 - Impression du journal Grenoble-Alpes @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@"
+        ],
+        "public_actor_nom": [
+          "GRENOBLE ALPES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "ZNymI4UBjAQWTvUjI1MM",
+      "_version": 1,
+      "_score": 6.880599,
+      "fields": {
+        "labelled_startups.nom": ["Altereo"],
+        "public_actor_id": ["24300064300045"],
+        "public_actor_nom": ["NIMES METROPOLE - BP"],
+        "public_actor_id_siren": ["243000643"],
+        "labelled_startups": [{ "nom": ["Altereo"] }]
+      },
+      "highlight": {
+        "decp.objet": [
+          "ENTRETIEN DES ESPACES VERTS DE QUATRES ZONES D'ACTIVITE DE NIMES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@",
+          "PRESTATIONS REVISION ET ENTRETIEN VEHICULES PARC AUTO NIMES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@",
+          "assainissement de communes de N\u00eemes @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ - Communes de : Caissargues ? G\u00e9n\u00e9rac - Sernhac",
+          "MISE EN PLACE SERVICES SECOURS A PERSONNES MANIFESTATIONS NIMES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@",
+          "DERATISATION, DESINSECTISATION, DESINFECTION BATIMENTS NIMES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"
+        ],
+        "decp.lieuExecution_nom": [
+          "NIMES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"
+        ],
+        "public_actor_nom": ["NIMES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ - BP"]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "utymI4UBjAQWTvUjKlec",
+      "_version": 1,
+      "_score": 6.880599,
+      "fields": {
+        "public_actor_id": ["25730221600037"],
+        "public_actor_nom": ["SMIA METROPOLE SAVOIE"],
+        "public_actor_id_siren": ["257302216"]
+      },
+      "highlight": {
+        "public_actor_nom": ["SMIA @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ SAVOIE"]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "79ymI4UBjAQWTvUjMFo3",
+      "_version": 1,
+      "_score": 6.880599,
+      "fields": {
+        "public_actor_id": ["27280002000013"],
+        "public_actor_nom": ["CHARTRES METROPOLE HABITAT"],
+        "public_actor_id_siren": ["272800020"]
+      },
+      "highlight": {
+        "decp.objet": [
+          "MARCHES D'ENTRETIEN DES ESPACES EXTERIEURS ET DU MOBILIER URBAIN DANS LES IMMEUBLES COLLECTIFS DE CHARTRES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ HABITAT",
+          "MARCHES D'ENTRETIEN DES ESPACES EXTERIEURS ET DU MOBILIER URBAIN DANS LES IMMEUBLES COLLECTIFS DE CHARTRES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ HABITAT",
+          "MARCHES D'ENTRETIEN DES ESPACES EXTERIEURS ET DU MOBILIER URBAIN DANS LES IMMEUBLES COLLECTIFS DE CHARTRES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ HABITAT",
+          "MARCHES D'ENTRETIEN DES ESPACES EXTERIEURS ET DU MOBILIER URBAIN DANS LES IMMEUBLES COLLECTIFS DE CHARTRES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ HABITAT",
+          "March\u00e9 d'entretien et maintenance des \u00e9clairages ext\u00e9rieurs du patrimoine de Chartres @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ Habitat"
+        ],
+        "decp.lieuExecution_nom": [
+          "CHARTRES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ HABITAT  23 rue des Bas Bourgs \u00e0 Chartres  CS 20137  28008 CHARTRES CEDEX"
+        ],
+        "public_actor_nom": [
+          "CHARTRES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ HABITAT"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "zdymI4UBjAQWTvUjOlyy",
+      "_version": 1,
+      "_score": 6.880599,
+      "fields": {
+        "public_actor_id": ["40137617300019"],
+        "public_actor_nom": ["EST METROPOLE HABITAT"],
+        "public_actor_id_siren": ["401376173"]
+      },
+      "highlight": {
+        "decp.objet": [
+          "ccg/ACBC DIAGS IMMO-Accord cadre \u00e0 \u00e9mission de bons de commande - Diagnostics immobiliers li\u00e9s au transfert de patrimoine sur l'ensemble des groupes g\u00e9r\u00e9s par Est @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ Habitat",
+          "March\u00e9 d'AMO \u00e0 la gestion des espaces verts sur l'ensemble des r\u00e9sidences g\u00e9r\u00e9es  par EST @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ HABITAT",
+          "PA/ACBC Fourniture Bureau/ca-Accord-cadre mono-attributaire \u00e0 bons de commande pour l'achat et la livraison de fournitures de bureau pour les besoins d'Est @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ Habitat"
+        ],
+        "public_actor_nom": ["EST @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ HABITAT"]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "UtymI4UBjAQWTvUjSF-v",
+      "_version": 1,
+      "_score": 6.880599,
+      "fields": {
+        "public_actor_id": ["75102459700013"],
+        "public_actor_nom": ["SPL CAP METROPOLE"],
+        "public_actor_id_siren": ["751024597"]
+      },
+      "highlight": {
+        "decp.objet": [
+          "R\u00e9alisation de petits entretien courants, neutralisation de fluides et s\u00e9curisation de divers b\u00e2timents appartenant \u00e0 Cap @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ - Lot 09 - M\u00e9tallerie",
+          "R\u00e9alisation de petits entretien courants, neutralisation de fluides et s\u00e9curisation de divers b\u00e2timents appartenant \u00e0 Cap @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ - Lot 07 - Electricit\u00e9",
+          "R\u00e9alisation de petits entretien courants, neutralisation de fluides et s\u00e9curisation de divers b\u00e2timents appartenant \u00e0 Cap @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ - Lot 01 - Ma\u00e7onnerie VRD",
+          "95/LC/CV-R\u00e9alisation de travaux d'entretien courant de menuiserie et s\u00e9curisation de divers b\u00e2timents appartenant \u00e0 CAP @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@.",
+          "March\u00e9 2021-015 - R\u00e9alisation de d\u00e9barras des encombrants de divers b\u00e2timents appartenant \u00e0 Cap @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@."
+        ],
+        "public_actor_nom": ["SPL CAP @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "cNymI4UBjAQWTvUjSF-v",
+      "_version": 1,
+      "_score": 6.880599,
+      "fields": {
+        "public_actor_id": ["7585015600037"],
+        "public_actor_nom": ["MAISON FLANDRE METROPOLE"],
+        "public_actor_id_siren": ["758501560"]
+      },
+      "highlight": {
+        "public_actor_nom": [
+          "MAISON FLANDRE @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "BtymI4UBjAQWTvUjKlmc",
+      "_version": 1,
+      "_score": 6.510893,
+      "fields": {
+        "public_actor_id": ["26330636700016"],
+        "public_actor_nom": ["CREDIT MUNICIPAL DE BORDEAUX"],
+        "public_actor_id_siren": ["263306367"]
+      },
+      "highlight": {
+        "decp.objet": [
+          "March\u00e9 de services relatif \u00e0 la prestation d'assurance pour les besoins de la Caisse de Cr\u00e9dit Municipal de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@",
+          "March\u00e9 de services relatif \u00e0 la prestation d'assurance pour les besoins de la Caisse de Cr\u00e9dit Municipal de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@",
+          "Mission de commissariat aux comptes pour le Cr\u00e9dit Municipal de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@",
+          "Prestations de nettoyage des locaux du si\u00e8ge et des agences du Cr\u00e9dit Municipal de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@: Lot 5: Prestations de nettoyage des locaux du si\u00e8ge de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@",
+          "R\u00e9alisation d'un audit sur la strat\u00e9gie du Cr\u00e9dit Municipal de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@"
+        ],
+        "decp.lieuExecution_nom": [
+          "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@",
+          "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@",
+          "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@",
+          "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@",
+          "@msg-highlighted-field@BORDEAUX@/msg-highlighted-field@"
+        ],
+        "public_actor_nom": [
+          "CREDIT MUNICIPAL DE @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "CtylI4UBjAQWTvUj4Tb0",
+      "_version": 1,
+      "_score": 6.246535,
+      "fields": {
+        "public_actor_id": ["20002752200024"],
+        "public_actor_nom": ["Metropole Toulon-Provence-Mediterranee"],
+        "public_actor_id_siren": ["200027522"]
+      },
+      "highlight": {
+        "public_actor_nom": [
+          "@msg-highlighted-field@Metropole@/msg-highlighted-field@ Toulon-Provence-Mediterranee"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "H9ylI4UBjAQWTvUj4Tb0",
+      "_version": 1,
+      "_score": 6.246535,
+      "fields": {
+        "public_actor_id": ["20003019500032"],
+        "public_actor_nom": ["METROPOLE NICE COTE D'AZUR"],
+        "public_actor_id_siren": ["200030195"]
+      },
+      "highlight": {
+        "public_actor_nom": [
+          "@msg-highlighted-field@METROPOLE@/msg-highlighted-field@ NICE COTE D'AZUR"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "INylI4UBjAQWTvUj4Tb0",
+      "_version": 1,
+      "_score": 6.246535,
+      "fields": {
+        "public_actor_id": ["20003019500057"],
+        "public_actor_nom": ["METROPOLE NICE COTE D'AZUR"],
+        "public_actor_id_siren": ["200030195"]
+      },
+      "highlight": {
+        "public_actor_nom": [
+          "@msg-highlighted-field@METROPOLE@/msg-highlighted-field@ NICE COTE D'AZUR"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "ItylI4UBjAQWTvUj4Tb0",
+      "_version": 1,
+      "_score": 6.246535,
+      "fields": {
+        "public_actor_id": ["20003019500123"],
+        "public_actor_nom": ["METROPOLE NICE COTE D'AZUR"],
+        "public_actor_id_siren": ["200030195"]
+      },
+      "highlight": {
+        "public_actor_nom": [
+          "@msg-highlighted-field@METROPOLE@/msg-highlighted-field@ NICE COTE D'AZUR"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "I9ylI4UBjAQWTvUj4Tb0",
+      "_version": 1,
+      "_score": 6.246535,
+      "fields": {
+        "public_actor_id": ["20003019500131"],
+        "public_actor_nom": ["METROPOLE NICE COTE D'AZUR"],
+        "public_actor_id_siren": ["200030195"]
+      },
+      "highlight": {
+        "decp.objet": [
+          "LOT 4 TRANSPORT DES DECHETS A PARTIR DES QUAIS DE TRANSFERT DE LA @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ NICE COTE D'AZUR",
+          "LOT 4 TRANSPORT DES DECHETS A PARTIR DES QUAIS DE TRANSFERT DE LA @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ NICE COTE D'AZUR",
+          "LOT 4 TRANSPORT DES DECHETS A PARTIR DES QUAIS DE TRANSFERT DE LA @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ NICE COTE D'AZUR",
+          "HAB VALORISATION DES GRAVATS SALES PRODUITS SUR LE TERRITOIRE DE LA @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ NICE COTE D'AZUR",
+          "HAB TRANSPORT DES FERRAILLES PRODUITES SUR LE TERRITOIRE DE LA @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"
+        ],
+        "public_actor_nom": [
+          "@msg-highlighted-field@METROPOLE@/msg-highlighted-field@ NICE COTE D'AZUR"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "G9ylI4UBjAQWTvUj4Tf0",
+      "_version": 1,
+      "_score": 6.246535,
+      "fields": {
+        "public_actor_id": ["20004071500035"],
+        "public_actor_nom": ["GRENOBLE ALPES METROPOLE DECHETS"],
+        "public_actor_id_siren": ["200040715"]
+      },
+      "highlight": {
+        "public_actor_nom": [
+          "GRENOBLE ALPES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ DECHETS"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "I9ylI4UBjAQWTvUj6Dg7",
+      "_version": 1,
+      "_score": 6.246535,
+      "fields": {
+        "public_actor_id": ["20005478100022"],
+        "public_actor_nom": ["METROPOLE DU GRAND PARIS"],
+        "public_actor_id_siren": ["200054781"]
+      },
+      "highlight": {
+        "decp.objet": [
+          "MGP-CONSTRUCTION DU STAND @msg-highlighted-field@M\u00c9TROPOLE@/msg-highlighted-field@ MGP POUR LE SIMI LOT 2",
+          "MGP STRATEGIE @msg-highlighted-field@METROPOL@/msg-highlighted-field@. D'ECONOM CIRCULAIRE & SOLIDAIRE LOT1",
+          "MGP DEBATS MENSUELS AVEC LES CITOYENS SUR PROJETS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@",
+          "MGP_MISE EN OEUVRE-ACTE II DU PACTE POUR LOGISTIQUE @msg-highlighted-field@METROPOL@/msg-highlighted-field@"
+        ],
+        "public_actor_nom": [
+          "@msg-highlighted-field@METROPOLE@/msg-highlighted-field@ DU GRAND PARIS"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "gtylI4UBjAQWTvUj7Top",
+      "_version": 1,
+      "_score": 6.246535,
+      "fields": {
+        "public_actor_id": ["20006925000013"],
+        "public_actor_nom": ["CA TROYES CHAMPAGNE METROPOLE"],
+        "public_actor_id_siren": ["200069250"]
+      },
+      "highlight": {
+        "public_actor_nom": [
+          "CA TROYES CHAMPAGNE @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "udymI4UBjAQWTvUjI1MM",
+      "_version": 1,
+      "_score": 6.246535,
+      "fields": {
+        "public_actor_id": ["24370075400027"],
+        "public_actor_nom": ["TOURS METROPOLE REGIE ASSAIN"],
+        "public_actor_id_siren": ["243700754"]
+      },
+      "highlight": {
+        "public_actor_nom": [
+          "TOURS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ REGIE ASSAIN"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "u9ymI4UBjAQWTvUjI1MM",
+      "_version": 1,
+      "_score": 6.246535,
+      "fields": {
+        "public_actor_id": ["24370075400050"],
+        "public_actor_nom": ["TOURS METROPOLE REGIE EAU"],
+        "public_actor_id_siren": ["243700754"]
+      },
+      "highlight": {
+        "public_actor_nom": [
+          "TOURS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ REGIE EAU"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "QtymI4UBjAQWTvUjJ1UK",
+      "_version": 1,
+      "_score": 6.246535,
+      "fields": {
+        "labelled_startups.nom": ["Trizzy"],
+        "public_actor_id": ["24830054300217"],
+        "public_actor_nom": ["METROPOLE TOULON PROVENCE MEDITERRANEE"],
+        "public_actor_id_siren": ["248300543"],
+        "labelled_startups": [{ "nom": ["Trizzy"] }]
+      },
+      "highlight": {
+        "decp.objet": [
+          "20TRAV12 ACBC POUR LES TRAVAUX URGENTS TOUS CORPS D'ETATS SUR LES BIENS VETUSTES DE LA @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ TPM",
+          "ACHAT DE MASQUES DE PROTECTION POUR LES BESOINS DE LA @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ TOULON PROVENCE MEDITERRANE",
+          "20MAP53-Prestations d'impression d'affiches pour la @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ Toulon Provence M\u00e9diterran\u00e9e",
+          "20PI06 ACBC pour les \u00e9tudes pr\u00e9-op\u00e9rationnelles d'am\u00e9nagements et ouvrages hydrauliques de la @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ TPM",
+          "20PI06 ACBC pour les \u00e9tudes pr\u00e9-op\u00e9rationnelles d'am\u00e9nagements et ouvrages hydrauliques de la @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ TPM"
+        ],
+        "decp.lieuExecution_nom": [
+          "@msg-highlighted-field@METROPOLE@/msg-highlighted-field@ TPM",
+          "@msg-highlighted-field@METROPOLE@/msg-highlighted-field@ TPM",
+          "@msg-highlighted-field@METROPOLE@/msg-highlighted-field@ TPM",
+          "@msg-highlighted-field@METROPOLE@/msg-highlighted-field@ TPM",
+          "@msg-highlighted-field@METROPOLE@/msg-highlighted-field@ TPM"
+        ],
+        "public_actor_nom": [
+          "@msg-highlighted-field@METROPOLE@/msg-highlighted-field@ TOULON PROVENCE MEDITERRANEE"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "DNymI4UBjAQWTvUjMFs3",
+      "_version": 1,
+      "_score": 6.246535,
+      "fields": {
+        "public_actor_id": ["27720003600196"],
+        "public_actor_nom": ["Le Mans Metropole Habitat"],
+        "public_actor_id_siren": ["277200036"]
+      },
+      "highlight": {
+        "decp.objet": [
+          "Le nettoyage et l'entretien des bureaux du si\u00e8ge de Le Mans @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ Habitat, 2018 \u00e0 2022.",
+          "Nettoyage et entretien des agences de proximit\u00e9 de Le Mans @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ Habitat, 2018 \u00e0 2021.",
+          "ACCORD-CADRE A BONS DE COMMANDE 2019 \u00e0 2022 -lot 8 : serrurerie / lot 11 : \u00e9vier et meuble sous \u00e9vier / lot 15 : fermetures ext\u00e9rieures et menuiseries PVC - Divers groupes, LE MANS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@<br />",
+          "ACCORD-CADRE A BONS DE COMMANDE 2019 \u00e0 2022 -lot 8 : serrurerie / lot 11 : \u00e9vier et meuble sous \u00e9vier / lot 15 : fermetures ext\u00e9rieures et menuiseries PVC - Divers groupes, LE MANS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@<br />",
+          "ACCORD-CADRE A BONS DE COMMANDE 2019 \u00e0 2022 -lot 8 : serrurerie / lot 11 : \u00e9vier et meuble sous \u00e9vier / lot 15 : fermetures ext\u00e9rieures et menuiseries PVC - Divers groupes, LE MANS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@<br />"
+        ],
+        "public_actor_nom": [
+          "Le Mans @msg-highlighted-field@Metropole@/msg-highlighted-field@ Habitat"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "tNymI4UBjAQWTvUjSGCv",
+      "_version": 1,
+      "_score": 6.246535,
+      "fields": {
+        "public_actor_id": ["81511012700017"],
+        "public_actor_nom": ["SPL CHARTRES METROPOLE ENERGIES"],
+        "public_actor_id_siren": ["815110127"]
+      },
+      "highlight": {
+        "public_actor_nom": [
+          "SPL CHARTRES @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ ENERGIES"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "VdymI4UBjAQWTvUjQ15V",
+      "_version": 1,
+      "_score": 5.9615235,
+      "fields": {
+        "public_actor_id": ["52153011300021"],
+        "public_actor_nom": ["SRIA de l'Universit\u00e9 de Bordeaux"],
+        "public_actor_id_siren": ["521530113"]
+      },
+      "highlight": {
+        "decp.objet": [
+          "Concours restreint de ma\ufffdtrise d'\u009cuvre pour la restructuration/extension du b\ufffdtiment \"Marne\" Universit\ufffd de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@- site Victoire.",
+          "MA2018-08-Travaux d'am\ufffdnagement urbain de l'Universit\ufffd de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ \"Secteur Bordes\" Parkings B4 et B18",
+          "Travaux d'am\ufffdlioration des installations CVC dans le b\ufffdtiment B18 de l'Universit\ufffd de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@",
+          "MA2019-01-Mission MOE Am\ufffdnagement Urbain Campus @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ \ufffdSecteur CARREIRE - Liaison douce inter quartiers Nord-Sud\ufffd",
+          "MA2018-04R-FOURNITURE ET POSE D'ELEMENTS DE SIGNALETIQUE SUR LES SITES DE L'UNIVERSITE DE @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@ ET DE SES PARTENAIRES Suite 1er appel d'offres d\ufffdclar\ufffd sans suite"
+        ],
+        "public_actor_nom": [
+          "SRIA de l'Universit\u00e9 de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "VNymI4UBjAQWTvUjSF-v",
+      "_version": 1,
+      "_score": 5.9615235,
+      "fields": {
+        "public_actor_id": ["75105632600026"],
+        "public_actor_nom": ["La Fabrique de Bordeaux M\u00e9tropole"],
+        "public_actor_id_siren": ["751056326"]
+      },
+      "highlight": {
+        "public_actor_nom": [
+          "La Fabrique de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ M\u00e9tropole"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "uNylI4UBjAQWTvUjyDDf",
+      "_version": 1,
+      "_score": 5.858005,
+      "fields": {
+        "public_actor_id": ["13000509300070"],
+        "public_actor_nom": [
+          "Minist\u00e8re de la Justice  - PFI de Bordeaux - Plate-forme Interr\u00e9gionale de Bordeaux  "
+        ],
+        "public_actor_id_siren": ["130005093"]
+      },
+      "highlight": {
+        "decp.objet": [
+          "Lot 1 - Travaux de d\u00e9samiantage et de d\u00e9plombage pour la zone g\u00e9ographique 1 - Ville de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ rive gauche",
+          "Maintenance des installations CVC pour les services et \u00e9tablissements publics de l'\u00c9tat en r\u00e9gion Nouvelle-Aquitaine (hors d\u00e9partements 19-23-87) - Lot 1 - @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ et Gironde Ouest - Petits \u00e9quipements (PE)"
+        ],
+        "public_actor_nom": [
+          "Minist\u00e8re de la Justice  - PFI de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ - Plate-forme Interr\u00e9gionale de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "rdylI4UBjAQWTvUj8Dxz",
+      "_version": 1,
+      "_score": 5.7194715,
+      "fields": {
+        "public_actor_id": ["20008495200015"],
+        "public_actor_nom": ["LE HAVRE SEINE METROPOLE - Fonctionnement"],
+        "public_actor_id_siren": ["200084952"]
+      },
+      "highlight": {
+        "decp.objet": [
+          "Contr\u00f4le de r\u00e9ception des r\u00e9seaux d'eau et d'assainissement de la Communaut\u00e9 Urbaine Le Havre Seine @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@",
+          "Groupement de commande Communaut\u00e9 urbaine le Havre Seine @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@/ Ville du Havre - FOURNITURE DE LUMAIRES A LEDS",
+          "Groupement de commande Communaut\u00e9 urbaine le Havre Seine @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@/ Ville du Havre - FOURNITURE DE LUMAIRES A LEDS",
+          "Groupement de commande Communaut\u00e9 urbaine le Havre Seine @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@/ Ville du Havre - FOURNITURE DE LUMAIRES A LEDS",
+          "Groupement de commande Communaut\u00e9 urbaine le Havre Seine @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@/ Ville du Havre - FOURNITURE DE LUMAIRES A LEDS"
+        ],
+        "decp.lieuExecution_nom": [
+          "COMMUNAUTE URBAINE LE HAVRE SEINE @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"
+        ],
+        "public_actor_nom": [
+          "LE HAVRE SEINE @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ - Fonctionnement"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "sdymI4UBjAQWTvUjI1MM",
+      "_version": 1,
+      "_score": 5.7194715,
+      "fields": {
+        "public_actor_id": ["24360032700122"],
+        "public_actor_nom": ["MACH 36/CA CHTX METROPOLE"],
+        "public_actor_id_siren": ["243600327"]
+      },
+      "highlight": {
+        "public_actor_nom": [
+          "MACH 36/CA CHTX @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "utymI4UBjAQWTvUjI1MM",
+      "_version": 1,
+      "_score": 5.7194715,
+      "fields": {
+        "labelled_startups.nom": ["EkWateur", "Altereo", "EkWateur"],
+        "public_actor_id": ["24370075400035"],
+        "public_actor_nom": ["TOURS METROPOLE VAL DE LOIRE "],
+        "public_actor_id_siren": ["243700754"],
+        "labelled_startups": [
+          { "nom": ["EkWateur"] },
+          { "nom": ["Altereo"] },
+          { "nom": ["EkWateur"] }
+        ]
+      },
+      "highlight": {
+        "decp.objet": [
+          "SECTEUR TOURS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@- AUTRES RESEAUX ELECTRIQUES",
+          "DETAGAGE ET MISE EN PEINTURE OUVRAGES SUR RESEAU @msg-highlighted-field@METROPOL@/msg-highlighted-field@",
+          "21MS6 VOIRIE-Requalification de la rue du chemin vert entre la rue Albert Camus et l'avenue de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@",
+          "TMVL            | 21SED BATIMENT V2 | 1-Sud @msg-highlighted-field@Metropole@/msg-highlighted-field@ de Tours",
+          "TMVL            | 22PLU-@msg-highlighted-field@METROPOL@/msg-highlighted-field@ | 1-TMVL            | 22PLU-@msg-highlighted-field@METROPOL@/msg-highlighted-field@ | 1"
+        ],
+        "public_actor_nom": [
+          "TOURS @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ VAL DE LOIRE"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "w9ymI4UBjAQWTvUjOluy",
+      "_version": 1,
+      "_score": 5.7194715,
+      "fields": {
+        "public_actor_id": ["30185204200011"],
+        "public_actor_nom": ["TERRITOIRE PORTES DE LA METROPOLE"],
+        "public_actor_id_siren": ["301852042"]
+      },
+      "highlight": {
+        "public_actor_nom": [
+          "TERRITOIRE PORTES DE LA @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "wtymI4UBjAQWTvUjQ11V",
+      "_version": 1,
+      "_score": 5.497649,
+      "fields": {
+        "public_actor_id": ["48760720200024"],
+        "public_actor_nom": ["A\ufffdroport de Bordeaux M\ufffdrignac"],
+        "public_actor_id_siren": ["487607202"]
+      },
+      "highlight": {
+        "public_actor_nom": [
+          "A\ufffdroport de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ M\ufffdrignac"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "h9ylI4UBjAQWTvUjyDDf",
+      "_version": 1,
+      "_score": 5.4094944,
+      "fields": {
+        "public_actor_id": ["13000190200027"],
+        "public_actor_nom": [
+          "Minist\u00e8re des arm\u00e9es - Etablissement du service d'infrastructure de la d\u00e9fense de Bordeaux - ESID Bordeaux "
+        ],
+        "public_actor_id_siren": ["130001902"]
+      },
+      "highlight": {
+        "decp.objet": [
+          "ESID @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ - R\u00e9alisation des travaux de purge des buttes de tirs pour l'ensemble des infrastructures relevant du p\u00e9rim\u00e8tre de comp\u00e9tence de l'Etablissement du Service d'Infrastructure de la D\u00e9fense de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ - LOT 1 : @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@, CAZAUX, MONT DE MARSAN",
+          "ESID @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ - R\u00e9alisation des travaux de purge des buttes de tirs pour l'ensemble des infrastructures relevant du p\u00e9rim\u00e8tre de comp\u00e9tence de l'Etablissement du Service d'Infrastructure de la D\u00e9fense de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ - 4",
+          "ESID @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ - R\u00e9alisation des travaux de purge des buttes de tirs pour l'ensemble des infrastructures relevant du p\u00e9rim\u00e8tre de comp\u00e9tence de l'Etablissement du Service d'Infrastructure de la D\u00e9fense de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ - 2",
+          "ESID @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ - R\u00e9alisation des travaux de purge des buttes de tirs pour l'ensemble des infrastructures relevant du p\u00e9rim\u00e8tre de comp\u00e9tence de l'Etablissement du Service d'Infrastructure de la D\u00e9fense de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ - 5",
+          ". - Lot 3 : Zone de l\u2019ESID de @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@  -"
+        ],
+        "public_actor_nom": [
+          "Minist\u00e8re des arm\u00e9es - Etablissement du service d'infrastructure de la d\u00e9fense de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ - ESID @msg-highlighted-field@Bordeaux@/msg-highlighted-field@"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "79ymI4UBjAQWTvUjT2Bb",
+      "_version": 1,
+      "_score": 5.2744317,
+      "fields": {
+        "public_actor_id": ["83417557200017"],
+        "public_actor_nom": ["BREST METROPOLE AMENAGEMENT -SOCIETE PUBLIQUE LOCALE "],
+        "public_actor_id_siren": ["834175572"]
+      },
+      "highlight": {
+        "public_actor_nom": [
+          "BREST @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ AMENAGEMENT -SOCIETE PUBLIQUE LOCALE"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "8dymI4UBjAQWTvUjT2Bb",
+      "_version": 1,
+      "_score": 4.89365,
+      "fields": {
+        "public_actor_id": ["83432932800027"],
+        "public_actor_nom": ["REGIE DE L EAU DE METZ METROPOLE"],
+        "public_actor_id_siren": ["834329328"]
+      },
+      "highlight": {
+        "decp.lieuExecution_nom": [
+          "PERIMETRE REGIE DE L'EAU DE METZ @msg-highlighted-field@METROPOLE@/msg-highlighted-field@",
+          "PERIMETRE REGIE DE L'EAU DE METZ @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"
+        ],
+        "public_actor_nom": [
+          "REGIE DE L EAU DE METZ @msg-highlighted-field@METROPOLE@/msg-highlighted-field@"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "VNylI4UBjAQWTvUj1DLA",
+      "_version": 1,
+      "_score": 4.757304,
+      "fields": {
+        "public_actor_id": ["13002285800018"],
+        "public_actor_nom": ["CHAMBRE DE COMMERCE ET D'INDUSTRIE TERRITORIALE BORDEAUX GIRONDE"],
+        "public_actor_id_siren": ["130022858"]
+      },
+      "highlight": {
+        "decp.objet": [
+          "Prestation d'int\u00e9gration et d'interface de la solution SALESFORCE CRM dans le cadre de la refonte du SI Client de la Chambre de Commerce et d'Industrie @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Gironde",
+          "Approvisionnement en fournitures de bureau des services de la Chambre de Commerce et d'Industrie @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Gironde",
+          "Prestation de services de s\u00e9curit\u00e9 incendie, d'assistance \u00e0 personnes et de gardiennage des locaux de la Chambre de Commerce et d'Industrie @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Gironde",
+          "Choix d\u2019un bureau d\u2019\u00e9tudes pour la r\u00e9alisation d\u2019investigations structurelles du Palais de la Bourse de la Chambre de Commerce et d\u2019Industrie @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Gironde",
+          "Travaux de couverture et \u00e9tanch\u00e9it\u00e9 du b\u00e2timent A du Centre de Formation du Lac de la Chambre de Commerce et d'Industrie @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Gironde"
+        ],
+        "public_actor_nom": [
+          "CHAMBRE DE COMMERCE ET D'INDUSTRIE TERRITORIALE @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@ GIRONDE"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "FtylI4UBjAQWTvUj1DLA",
+      "_version": 1,
+      "_score": 4.4571886,
+      "fields": {
+        "public_actor_id": ["13002032400013"],
+        "public_actor_nom": [
+          "Minist\u00e8re de l'Int\u00e9rieur - SGAMI SUD OUEST- Bordeaux - DAGF - BCP "
+        ],
+        "public_actor_id_siren": ["130020324"]
+      },
+      "highlight": {
+        "decp.objet": [
+          "March\u00e9 de nettoyage des locaux et des surfaces vitr\u00e9es de l'H\u00f4tel de police de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ et de sites ext\u00e9rieurs - H\u00f4tel de police de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@",
+          "March\u00e9 de nettoyage des locaux et des surfaces vitr\u00e9es de l'H\u00f4tel de police de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ et de sites ext\u00e9rieurs - @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Centre-Est",
+          "March\u00e9 de nettoyage des locaux et des surfaces vitr\u00e9es de l'H\u00f4tel de police de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ et de sites ext\u00e9rieurs - Ouest @msg-highlighted-field@Bordeaux@/msg-highlighted-field@",
+          "March\u00e9 de nettoyage des locaux et des surfaces vitr\u00e9es de l'H\u00f4tel de police de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ et de sites ext\u00e9rieurs - Sud @msg-highlighted-field@Bordeaux@/msg-highlighted-field@",
+          "Exploitation du standard t\u00e9l\u00e9phonique de l'H\u00f4tel de police de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@"
+        ],
+        "public_actor_nom": [
+          "Minist\u00e8re de l'Int\u00e9rieur - SGAMI SUD OUEST- @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ - DAGF - BCP"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "_9ylI4UBjAQWTvUj1DLA",
+      "_version": 1,
+      "_score": 4.4571886,
+      "fields": {
+        "public_actor_id": ["15700033200013"],
+        "public_actor_nom": [
+          "Minist\u00e8re de l'Int\u00e9rieur - R\u00e9gion de Gendarmerie Aquitaine - RGLIM Bordeaux "
+        ],
+        "public_actor_id_siren": ["157000332"]
+      },
+      "highlight": {
+        "public_actor_nom": [
+          "Minist\u00e8re de l'Int\u00e9rieur - R\u00e9gion de Gendarmerie Aquitaine - RGLIM @msg-highlighted-field@Bordeaux@/msg-highlighted-field@"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "ctymI4UBjAQWTvUjOlyy",
+      "_version": 1,
+      "_score": 4.2762165,
+      "fields": {
+        "public_actor_id": ["36180043600046"],
+        "public_actor_nom": [
+          "SAREMM (SOCIETE D'AMENAGEMENT ET DE RESTAURATION DE METZ METROPOLE )"
+        ],
+        "public_actor_id_siren": ["361800436"]
+      },
+      "highlight": {
+        "public_actor_nom": [
+          "SAREMM (SOCIETE D'AMENAGEMENT ET DE RESTAURATION DE METZ @msg-highlighted-field@METROPOLE@/msg-highlighted-field@ )"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "SNylI4UBjAQWTvUjyDDf",
+      "_version": 1,
+      "_score": 4.192692,
+      "fields": {
+        "public_actor_id": ["12001003800061"],
+        "public_actor_nom": [
+          "Minist\u00e8re de la Justice  - Antenne R\u00e9gionale de l'Equipement de Bordeaux "
+        ],
+        "public_actor_id_siren": ["120010038"]
+      },
+      "highlight": {
+        "public_actor_nom": [
+          "Minist\u00e8re de la Justice  - Antenne R\u00e9gionale de l'Equipement de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "4dylI4UBjAQWTvUj1DLA",
+      "_version": 1,
+      "_score": 4.192692,
+      "fields": {
+        "public_actor_id": ["15000100600017"],
+        "public_actor_nom": [
+          "Direction Interarm\u00e9es des R\u00e9seaux d'Infrastructure et des Syst\u00e8mes d'Information - Bordeaux"
+        ],
+        "public_actor_id_siren": ["150001006"]
+      },
+      "highlight": {
+        "public_actor_nom": [
+          "Direction Interarm\u00e9es des R\u00e9seaux d'Infrastructure et des Syst\u00e8mes d'Information - @msg-highlighted-field@Bordeaux@/msg-highlighted-field@"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "R9ylI4UBjAQWTvUj1DPA",
+      "_version": 1,
+      "_score": 3.9578276,
+      "fields": {
+        "public_actor_id": ["17330120100211"],
+        "public_actor_nom": [
+          "Minist\u00e8re de la Justice  - Direction interr\u00e9gionale des services p\u00e9nitentiaires de Bordeaux "
+        ],
+        "public_actor_id_siren": ["173301201"]
+      },
+      "highlight": {
+        "decp.objet": [
+          "Coordination de la programmation socio-culturelle de la Direction Interr\u00e9gionale des Services P\u00e9nitentiaires de @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@",
+          "MAINTENANCE PREVENTIVE ET CORRECTIVE DU SYSTEME DE VIDEOSURVEILLANCE DE 16 ETABLISSEMENTS PENITENTIAIRES DU RESSORT DE LA DISP DE @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@",
+          "Maintenance des installations CVC pour les services et \u00e9tablissements publics de l'\u00c9tat en r\u00e9gion Nouvelle-Aquitaine (hors d\u00e9partements 19-23-87) - Lot 3 - @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ - Gros et moyens \u00e9quipements (GME)",
+          "Programme Personnalis\u00e9 d'Accompagnement \u00e0 l'Insertion Professionnelle dans 3 \u00e9tablissements p\u00e9nitentiaires de la Dordogne du ressort de la Direction Interr\u00e9gionale des Services P\u00e9nitentiaires de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@",
+          "Fourniture et la livraison de pains frais de 220 g au profit des personnes d\u00e9tenues pour la maison d\u2019arr\u00eat de PAU, \u00e9tablissement en gestion publique du ressort de la DISP @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@"
+        ],
+        "public_actor_nom": [
+          "Minist\u00e8re de la Justice  - Direction interr\u00e9gionale des services p\u00e9nitentiaires de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "39ylI4UBjAQWTvUj1DLA",
+      "_version": 1,
+      "_score": 3.747881,
+      "fields": {
+        "public_actor_id": ["15000081800016"],
+        "public_actor_nom": [
+          "Minist\u00e8re des arm\u00e9es - Structure Sp\u00e9cialis\u00e9e d'achat et de Mandatement 33 503 Bordeaux "
+        ],
+        "public_actor_id_siren": ["150000818"]
+      },
+      "highlight": {
+        "public_actor_nom": [
+          "Minist\u00e8re des arm\u00e9es - Structure Sp\u00e9cialis\u00e9e d'achat et de Mandatement 33 503 @msg-highlighted-field@Bordeaux@/msg-highlighted-field@"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "y9ylI4UBjAQWTvUj3DRC",
+      "_version": 1,
+      "_score": 3.2333355,
+      "fields": {
+        "public_actor_id": ["19331766600017"],
+        "public_actor_nom": [
+          "Etablissements et organismes de l'enseignement sup\u00e9rieur, de la recherche et de l'innovation - Universit\u00e9 Bordeaux Montaigne "
+        ],
+        "public_actor_id_siren": ["193317666"]
+      },
+      "highlight": {
+        "decp.objet": [
+          "March\u00e9 dexploitation de chauffage de type MTI des B\u00e2timents de luniversit\u00e9 @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Montaigne",
+          "Maintenance des ascenseurs de l\u2019universit\u00e9 @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Montaigne",
+          "Missions de ma\u00eetrise d\u2019\u0153uvre pour des op\u00e9rations de raccordement de l\u2019IUT @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Montaigne au RCU (R\u00e9seau de Chaleur Urbain) \u00e0 @msg-highlighted-field@Bordeaux@/msg-highlighted-field@.",
+          "- concerne le raccordement au r\u00e9seau de chaleur urbain de l\u2019iut @msg-highlighted-field@bordeaux@/msg-highlighted-field@ montaigne (@msg-highlighted-field@bordeaux@/msg-highlighted-field@).",
+          "Nettoyage des locaux de l'IUT @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Montaigne"
+        ],
+        "approch_content.label": [
+          "Prestations de traiteurs pour le compte de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ INP, SciencesPo @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ et l'Universit\u00e9 @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Montaigne",
+          "Prestations de nettoyage des locaux de l'universit\u00e9 @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Montaigne",
+          "Fourniture de livres pour l'Universit\u00e9 @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Montaigne",
+          "March\u00e9 d'assurances de l'Universit\u00e9 @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Montaigne",
+          "Nettoyage de l'IUT @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Montaigne"
+        ],
+        "public_actor_nom": [
+          "Etablissements et organismes de l'enseignement sup\u00e9rieur, de la recherche et de l'innovation - Universit\u00e9 @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Montaigne"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "2dylI4UBjAQWTvUjyDDf",
+      "_version": 1,
+      "_score": 3.0918427,
+      "fields": {
+        "public_actor_id": ["13000635600013"],
+        "public_actor_nom": [
+          "Etablissements et organismes de l'enseignement sup\u00e9rieur, de la recherche et de l'innovation - Institut polytechnique de Bordeaux\u00a0 "
+        ],
+        "public_actor_id_siren": ["130006356"]
+      },
+      "highlight": {
+        "decp.objet": [
+          "Prestations de traiteurs pour le compte de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ INP, Science Po @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ et l'Universit\u00e9 de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Montaigne_Lot 02 : prestations de service traiteur : buffets sucr\u00e9s et/ou sal\u00e9s et repas",
+          "Prestations de traiteurs pour le compte de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ INP, Science Po @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ et l'Universit\u00e9 de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Montaigne_Lot 02 : prestations de service traiteur : buffets sucr\u00e9s et/ou sal\u00e9s et repas",
+          "Prestations de traiteurs pour le compte de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ INP, Sciences Po @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ et l\u2019 Universit\u00e9 @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Montaigne_Lot 04 : prestations de service traiteur : petits-d\u00e9jeuners et pauses-caf\u00e9",
+          "Prestations de traiteurs pour le compte de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ INP, Sciences Po @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ et l\u2019 Universit\u00e9 @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Montaigne_Lot 04 : prestations de service traiteur : petits-d\u00e9jeuners et pauses-caf\u00e9",
+          "Prestations de traiteurs pour le compte de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ INP, Sciences Po @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ et l\u2019 Universit\u00e9 @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Montaigne_Lot 04 : prestations de service traiteur : petits-d\u00e9jeuners et pauses-caf\u00e9"
+        ],
+        "public_actor_nom": [
+          "Etablissements et organismes de l'enseignement sup\u00e9rieur, de la recherche et de l'innovation - Institut polytechnique de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@\u00a0"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "JtylI4UBjAQWTvUj3DRC",
+      "_version": 1,
+      "_score": 2.7330437,
+      "fields": {
+        "public_actor_id": ["18008904700146"],
+        "public_actor_nom": [
+          "Etablissements et organismes de l'enseignement sup\u00e9rieur, de la recherche et de l'innovation - Centre de Recherche Inria Bordeaux - Sud-Ouest  "
+        ],
+        "public_actor_id_siren": ["180089047"]
+      },
+      "highlight": {
+        "decp.objet": [
+          "Location et maintenance de fontaine \u00e0 eau, accessoires et services associ\u00e9s pour le centre de recherche Inria @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Sud-Ouest",
+          "Prestations de gardiennage pour le centre de recheche Inria @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Sud Ouest",
+          "La maintenance des syst\u00e8mes \u00e9lectriques courants forts et courants faibles du centre de recherche Inria @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Sud-Ouest.",
+          "Prestations de mise en propret\u00e9 des locaux et vitreries du Centre de Recherche INRIA @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Sud-Ouest",
+          "Travaux de mise en conformit\u00e9 accessibilit\u00e9 PMR de 30 escaliers du Centre de recherche Inria @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Sud-Ouest - M\u00e9tallerie"
+        ],
+        "public_actor_nom": [
+          "Etablissements et organismes de l'enseignement sup\u00e9rieur, de la recherche et de l'innovation - Centre de Recherche Inria @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ - Sud-Ouest"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "CNylI4UBjAQWTvUjyDLf",
+      "_version": 1,
+      "_score": 2.63126,
+      "fields": {
+        "public_actor_id": ["13001835100010"],
+        "public_actor_nom": [
+          "Etablissements et organismes de l'enseignement sup\u00e9rieur, de la recherche et de l'innovation - UNIVERSITE DE BORDEAUX - P\u00f4le Patrimoine et Environnement - D\u00e9l\u00e9gation "
+        ],
+        "public_actor_id_siren": ["130018351"]
+      },
+      "highlight": {
+        "decp.objet": [
+          "Le pr\u00e9sent march\u00e9 a pour objet l\u2019acc\u00e8s \u00e0 la base de donn\u00e9es de presse internationale FACTIVA pour l\u2019Universit\u00e9 de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ et ses partenaires (Universit\u00e9 @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Montaigne, IEP @msg-highlighted-field@Bordeaux@/msg-highlighted-field@, INP @msg-highlighted-field@Bordeaux@/msg-highlighted-field@, @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ sciences Agro) conform\u00e9ment \u00e0 l",
+          "Plomberie Sanitaire p\u00e9rim\u00e8tre \u00ab@msg-highlighted-field@Bordeaux@/msg-highlighted-field@\u00bb",
+          "Plomberie Sanitaire p\u00e9rim\u00e8tre \u00ab@msg-highlighted-field@Bordeaux@/msg-highlighted-field@\u00bb",
+          "Plomberie Sanitaire p\u00e9rim\u00e8tre \u00ab@msg-highlighted-field@Bordeaux@/msg-highlighted-field@\u00bb",
+          "Upgrade laser 440nm pour le @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ Imaging Center de l\u2019universit\u00e9 de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@"
+        ],
+        "public_actor_nom": [
+          "Etablissements et organismes de l'enseignement sup\u00e9rieur, de la recherche et de l'innovation - UNIVERSITE DE @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@ - P\u00f4le Patrimoine et Environnement - D\u00e9l\u00e9gation"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "IdymI4UBjAQWTvUjSGCv",
+      "_version": 1,
+      "_score": 2.63126,
+      "fields": {
+        "public_actor_id": ["78180414100021"],
+        "public_actor_nom": [
+          "Minist\u00e8re de la Transition \u00c9cologique, Minist\u00e8re de la Coh\u00e9sion des Territoires, Minist\u00e8re de la Mer - GRAND PORT MARITIME DE BORDEAUX "
+        ],
+        "public_actor_id_siren": ["781804141"]
+      },
+      "highlight": {
+        "decp.objet": [
+          "La consultation porte sur les prestations suivantes :\nFourniture de c\u00e2bles \u00e9lectriques pour le Grand Port Maritime de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@",
+          "La consultation porte sur les prestations suivantes :\nFourniture de c\u00e2bles \u00e9lectriques pour le Grand Port Maritime de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@",
+          "La consultation porte sur les prestations suivantes :\nFourniture de c\u00e2bles \u00e9lectriques pour le Grand Port Maritime de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@",
+          "La consultation porte sur les prestations suivantes :\nFourniture de c\u00e2bles \u00e9lectriques pour le Grand Port Maritime de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@",
+          "(Lot n\u00b01): D\u00e9construction, d\u00e9pollution et d\u00e9molition du hangar H37 \u00e0 @msg-highlighted-field@Bordeaux@/msg-highlighted-field@-Bacalan"
+        ],
+        "public_actor_nom": [
+          "Minist\u00e8re de la Transition \u00c9cologique, Minist\u00e8re de la Coh\u00e9sion des Territoires, Minist\u00e8re de la Mer - GRAND PORT MARITIME DE @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "WdymI4UBjAQWTvUjQ15V",
+      "_version": 1,
+      "_score": 2.536786,
+      "fields": {
+        "public_actor_id": ["52174744400037"],
+        "public_actor_nom": [
+          "Minist\u00e8re de la Transition \u00c9cologique, Minist\u00e8re de la Coh\u00e9sion des Territoires, Minist\u00e8re de la Mer - ETABLISSMENT PUBLIC D'AMENAGEMENT DE BORDEAUX - EURATLANTIQUE "
+        ],
+        "public_actor_id_siren": ["521747444"]
+      },
+      "highlight": {
+        "decp.objet": [
+          "C2019-021-Prestations d'expertise comptable pour l'EPA @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@ EURATLANTIQUE",
+          "C2019-028-Prestations topographiques pour le compte de l'EPA @msg-highlighted-field@Bordeaux@/msg-highlighted-field@-Euratlantique",
+          "Travaux d'infrastructure VRD sur le p\ufffdrim\ufffdtre OIN - @msg-highlighted-field@Bordeaux@/msg-highlighted-field@-Euratlantique",
+          "Travaux d'infrastructure VRD sur le p\ufffdrim\ufffdtre OIN - @msg-highlighted-field@Bordeaux@/msg-highlighted-field@-Euratlantique",
+          "Travaux d'infrastructure VRD sur le p\ufffdrim\ufffdtre OIN - @msg-highlighted-field@Bordeaux@/msg-highlighted-field@-Euratlantique"
+        ],
+        "public_actor_nom": [
+          "Minist\u00e8re de la Transition \u00c9cologique, Minist\u00e8re de la Coh\u00e9sion des Territoires, Minist\u00e8re de la Mer - ETABLISSMENT PUBLIC D'AMENAGEMENT DE @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@ - EURATLANTIQUE"
+        ]
+      }
+    },
+    {
+      "_index": "public_actor_cards20221218_051206",
+      "_id": "SdylI4UBjAQWTvUj1DPA",
+      "_version": 1,
+      "_score": 2.4488602,
+      "fields": {
+        "public_actor_id": ["17330430400012"],
+        "public_actor_nom": [
+          "Minist\u00e8re de l'\u00e9ducation nationale et de la jeunesse et Minist\u00e8re de l'enseignement sup\u00e9rieur, de la recherche et de l'innovation - Rectorat Acad\u00e9mie BORDEAUX "
+        ],
+        "public_actor_id_siren": ["173304304"]
+      },
+      "highlight": {
+        "decp.objet": [
+          "Le pr\u00e9sent accord-cadre a pour objet la fourniture et la livraison franco de port et d\u2019emballage de copies normalis\u00e9es E.N, de copies d\u00e9mat\u00e9rialis\u00e9es SANTORIN et de papier brouillon pour les rectorats                            des acad\u00e9mies de @msg-highlighted-field@Bordeaux@/msg-highlighted-field@.",
+          "Maintenance des installations CVC pour les services et \u00e9tablissements publics de l'\u00c9tat en r\u00e9gion Nouvelle-Aquitaine (hors d\u00e9partements 19-23-87) - Lot 1 - @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ et Gironde Ouest - Petits \u00e9quipements (PE)",
+          "Maintenance des installations CVC pour les services et \u00e9tablissements publics de l'\u00c9tat en r\u00e9gion Nouvelle-Aquitaine (hors d\u00e9partements 19-23-87) - Lot 3 - @msg-highlighted-field@Bordeaux@/msg-highlighted-field@ @msg-highlighted-field@M\u00e9tropole@/msg-highlighted-field@ - Gros et moyens \u00e9quipements (GME)"
+        ],
+        "public_actor_nom": [
+          "Minist\u00e8re de l'\u00e9ducation nationale et de la jeunesse et Minist\u00e8re de l'enseignement sup\u00e9rieur, de la recherche et de l'innovation - Rectorat Acad\u00e9mie @msg-highlighted-field@BORDEAUX@/msg-highlighted-field@"
+        ]
+      }
+    }
+  ]
+}
