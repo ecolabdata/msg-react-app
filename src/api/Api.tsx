@@ -10,7 +10,7 @@ import {
   startups
 } from '../model/CardType';
 import mockApiResponse from './mock_api_resp.json';
-import { StartupV2 as StartupV2, CollectiviteV2 as CollectiviteV2 } from 'api2/Api'
+import { StartupV2 as StartupV2, CollectiviteV2 as CollectiviteV2 } from 'api2/Api';
 
 export const buildId = (obj: any) => sha1(canonicalize(obj)).slice(0, 8);
 
@@ -84,12 +84,7 @@ export function applyCard<T>(
 }
 
 function handleResp(
-  query:
-    | Query
-    | InvestisseurQuery
-    | AidesClientQuery
-    | AidesInnoQuery
-    | ForecastedBuyQuery,
+  query: Query | InvestisseurQuery | AidesClientQuery | AidesInnoQuery | ForecastedBuyQuery,
   resp: ApiResponse
 ) {
   const cards = {
@@ -99,18 +94,18 @@ function handleResp(
     investisseurs: !resp.cards.investisseurs
       ? []
       : resp.cards.investisseurs.map((x) => {
-        return { ...x, id: buildId(x), cardTypeName: investisseur.name };
-      }),
+          return { ...x, id: buildId(x), cardTypeName: investisseur.name };
+        }),
     aides_clients: !resp.cards.aides_clients
       ? []
       : resp.cards.aides_clients.map((x) => {
-        return { ...x, id: buildId(x), cardTypeName: aideClient.name };
-      }),
+          return { ...x, id: buildId(x), cardTypeName: aideClient.name };
+        }),
     aides_innovation: !resp.cards.aides_innovation
       ? []
       : resp.cards.aides_innovation.map((x) => {
-        return { ...x, id: buildId(x), cardTypeName: aideInno.name };
-      })
+          return { ...x, id: buildId(x), cardTypeName: aideInno.name };
+        })
   };
   return { query, cards };
 }

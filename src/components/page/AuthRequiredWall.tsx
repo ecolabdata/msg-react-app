@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import { Outlet } from 'react-router-dom';
 import { JwtState, useJwtState } from '../../utils/jwt';
-import ExternalLink from '../customComponents/ExternalLink';
+import ExternalLink from '../Core/ExternalLink';
 import MsgLogo from '../customComponents/MsgLogo';
 
 const template = (bigTitle: string, smallTitle: string) => (

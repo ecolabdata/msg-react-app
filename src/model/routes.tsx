@@ -33,11 +33,16 @@ import { ProjetAchatSearchPage } from 'components/page/search/ProjetAchatSearchP
 import { ActeurPublicSearchPage } from 'components/page/search/ActeurPublicSearchPage';
 import React from 'react';
 
-function buildSearchRoute(cardType : CardType, Elem : React.FC<{cardType:CardType}>) : React.ReactFragment {
-  return <>
+function buildSearchRoute(
+  cardType: CardType,
+  Elem: React.FC<{ cardType: CardType }>
+): React.ReactFragment {
+  return (
+    <>
       <Route path={cardType.searchLink} element={<Elem cardType={cardType} />} />
       <Route path={cardType.searchLink + '/search'} element={<Elem cardType={cardType} />} />
-  </>
+    </>
+  );
 }
 
 export const routes = (

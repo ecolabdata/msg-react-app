@@ -91,7 +91,7 @@ export const aideClient: CardType = {
   name: 'aides-clients',
   searchLink: '/aides-clients',
   apiName: 'aides_clients',
-  version: 'beta',
+  version: 'beta'
 } as const;
 
 export const aideInno: CardType = {
@@ -144,7 +144,7 @@ export const sourcingSu: CardType = {
   description: 'Sourcez des entreprises éco-innovantes qui répondent à vos besoins',
   name: 'sourcingSu',
   searchLink: '/sourcing-startup',
-  
+
   apiName: 'startups',
   useApiV2: true,
   version: 'beta'

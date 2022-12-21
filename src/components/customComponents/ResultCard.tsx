@@ -1,9 +1,9 @@
 import { AnyCard } from 'api/Api';
+import ScreenReaderOnlyText from 'components/Core/ScreenReaderOnlyText';
 import { PropsWithChildren, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ApplicationContext } from '../../App';
 import { CardType } from '../../model/CardType';
-import ScreenReaderOnlyText from './ScreenReaderOnlyText';
 
 interface CardProps {
   name: string;

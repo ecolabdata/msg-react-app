@@ -157,7 +157,7 @@ export function useAdvancedFilters(type: CardTypeNameFromModel): FilterPropertie
         filters: helpFilters
       };
     case 'investisseurs':
-      default:
+    default:
       return {
         initialValues: getInitialValues(investorFilters),
         searchByType: ({ description, secteurs, filters }: SearchParams) => {

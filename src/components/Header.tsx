@@ -20,7 +20,7 @@ const Header = () => {
       <header role="banner" className="fr-header shadow-header bg-grey-75">
         <SkipLinks />
         <div className="fr-header__body">
-          <div className="fr-container ">
+          <div className="container ">
             <div className="fr-header__body-row">
               <div className="fr-header__brand fr-enlarge-link ">
                 <div className="fr-header__brand-top">

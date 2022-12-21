@@ -1,4 +1,4 @@
-import ExternalLink from './ExternalLink';
+import ExternalLink from '../Core/ExternalLink';
 
 type LinkContent = {
   url: string;

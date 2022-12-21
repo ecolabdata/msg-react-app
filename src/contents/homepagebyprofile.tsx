@@ -1,5 +1,5 @@
 import { publicActorPersona, startupPersona } from '../model/CardType';
-import ExternalLink from '../components/customComponents/ExternalLink';
+import ExternalLink from '../components/Core/ExternalLink';
 
 const homePageContent = {
   startup: {
