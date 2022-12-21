@@ -7,13 +7,15 @@ import {
   isInvestisseur,
   isProjetAchat,
   isStartup
-} from '../../../api/Api';
+} from 'api/Api';
 import ExternalLink from '../../Core/ExternalLink';
 
 interface ContactAreaProps {
   card: AnyCard;
   className?: string;
 }
+
+const someNotNull = (x : Record<string, any>) => Object.values(x).find(x => x != null)
 
 const ContactArea: React.FC<ContactAreaProps> = ({ card, className }) => {
   const { title, content, cta, link, secondaryCta } = normalizeContactInformations(card);
@@ -23,7 +25,7 @@ const ContactArea: React.FC<ContactAreaProps> = ({ card, className }) => {
     <section className={`flex flex-col ${className}`}>
       <h2 className="text-2xl mb-4">{title}</h2>
       <p>{content}</p>
-      {cta?.contact ? (
+      {cta?.contact && someNotNull(cta?.contact) ? (
         <>
           {!showContact && (
             <button
@@ -42,7 +44,7 @@ const ContactArea: React.FC<ContactAreaProps> = ({ card, className }) => {
           )}
         </>
       ) : (
-        cta && (
+        cta && cta.url && (
           <ExternalLink
             href={cta.url}
             content={cta.label}
