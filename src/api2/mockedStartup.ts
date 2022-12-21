@@ -1,52 +1,59 @@
 export const mockedStartup = {
-  cardTypeName: 'startups',
-  NOM: 'Gouach',
-  SIREN: 844405274,
-  SOLUTIONS: {
-    'GreenTech Innovation': [
+  "NOM": "Sylfen",
+  "SIREN": 811828086,
+  "SOLUTIONS": {
+    "GreenTech Innovation": [
       {
-        Pitch: 'Solution de stockage électrique durable pour la petite mobilité.',
-        Thématique: 'Mobilité durable',
-        Projet: 'Gouach',
-        "L'entreprise":
-          'La technologie GOUACH permet d’optimiser le contrôle des modules dans les batteries et d’en diminuer le coût d’entretien.\n',
-        'Site internet': 'https://gouach.com/index.html',
-        Mail: 'contact@gouach.com',
-        LinkedIn: 'https://www.linkedin.com/company/gouach-power/about/',
-        Marché: ['B to A', 'B to B'],
-        Soutiens: ['Région Nouvelle-Aquitaine'],
-        'Enjeux ODD': [
-          "7 - Energie propre et d'un coût abordable",
-          '11 - Villes et communautés durables'
+        "Pitch": "Live better",
+        "Thématique": "Bâtiments et villes durables",
+        "Projet": "Smart Energy Hub",
+        "L'entreprise": "SYLFEN rend les bâtiments autonomes en énergie toute l’année, en fiabilisant, grâce au stockage hydrogène, l'approvisionnement énergétique à partir de productions locales et renouvelables.\n",
+        "Site internet": "https://sylfen.com/fr/accueil/",
+        "Mail": "fe.ruchon@sylfen.com",
+        "LinkedIn": "https://www.linkedin.com/company/sylfen/",
+        "Marché": [
+          "B to A",
+          "B to B"
         ],
-        'Références publiques': '-1',
-        'Références privées': '-1',
-        'Référencée UGAP': '-1',
-        'Ont-ils acquis un marché innovant ?': '-1',
-        RNIG: '-1',
-        Région: 'Normandie'
+        "Soutiens": [
+          "Afhypac",
+          "CEA",
+          "InnoEnergy",
+          "Minatec",
+          "SBA",
+          "Tennerdis"
+        ],
+        "Enjeux ODD": [
+          "7 - Energie propre et d'un coût abordable"
+        ],
+        "Références publiques": [
+          "Ville de Saint Joachim"
+        ],
+        "Références privées": [
+          ""
+        ],
+        "Référencée UGAP": null,
+        "Ont-ils acquis un marché innovant ?": null,
+        "RNIG": null
       }
     ],
-    GREEN20: [
+    "GREEN20": [
       {
-        Pitch:
-          'Gouach fabrique la première batterie électrique 100% réparable à destination de la micro-mobilité (e-bike, e-scooter). C’est une batterie intelligente et connecté qui permet des fonctionnalités et des business-models innovants (leasing, abonnement, détection de pannes).',
-        "Date de création de l'entreprise": '2018-05-12',
-        "Secteurs d'activité": 'Mobility - CleanTech',
-        'Région du siège social': 'Mobility - CleanTech',
-        'Marché prioritaire France 2030': 'Batteries'
+        "Pitch": "Sylfen permet aux propriétaires de bâtiments de réussir leur transition énergétique et de sécuriser leur approvisionnement en énergie à partir d'énergies renouvelables et locales. La solution, le Smart Energy Hub, associe (1) des batteries pour un stockage court terme, (2) une chaîne hydrogène innovante alimentée par un électrolyseur réversible et (3) des logiciels de gestion intelligente et prévisionnelle de tous les flux d'énergie (électricité, chaleur/froid, gaz, recharge de véhicules électriques ou hydrogène) sur site client. ",
+        "Date de création de l'entreprise": "2015-05-06",
+        "Secteurs d'activité": "Construction Tech - PropTech",
+        "Région du siège social": "Construction Tech - PropTech",
+        "Marché prioritaire France 2030": "Ville durable et bâtiments innovants"
       }
     ],
-    'Solar Impulse': [
+    "Solar Impulse": [
       {
-        'Solution name': 'Gouach repairable electric batteries',
-        'Country - from Companies': 'France',
-        'Labelling date': 'January 28, 2022',
-        public_short_description:
-          "Non-replaceable batteries are bad news for the environment and consumers. Most batteries in today’s products cannot be easily removed, replaced, or repaired. 80% of cells in a classical lithium-ion battery found in the trash are functional. The global demand capacity for batteries is projected to increase in the next decade: up to 60% for batteries in consumer electronics and 15% for LEV (Light electric vehicles) by 2030. Gouach is producing in France a battery for LEV that is repairable in less than 10 minutes, as reliable and powerful as the market leaders but eco-friendly. The solution uses a solder-less design so that the battery electronics and cells can be changed easily, with no risk and without damage to the cells. This allows for an increase in the battery longevity and a substantial reduction of the battery's CO2 footprint. Gouach aims at providing a sustainable, repairable, and eco-friendly battery for fleet sharing, delivery fleet, and electric vehicles manufacturers.",
-        'Link Solutions Explorer (from solutionrewrites)':
-          'https://solarimpulse.com/solutions-explorer/gouach-repairable-electric-batteries'
+        "Solution name": "Smart Energy Hub",
+        "Country - from Companies": "France",
+        "Labelling date": "February 14, 2019",
+        "public_short_description": "Fully integrated hybrid energy storage (batteries and hydrogen) solution for autonomous buildings",
+        "Link Solutions Explorer (from solutionrewrites)": "https://solarimpulse.com/solutions-explorer/smart-energy-hub"
       }
     ]
   }
-};
+}

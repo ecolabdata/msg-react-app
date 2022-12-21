@@ -39,20 +39,21 @@ type GreentechData = NonNullable<ReturnType<typeof getGreenTechData>>
 const MainSection: React.FC<{ greenTechData: GreentechData }> = ({ greenTechData }) => {
   const {
     Pitch: pitch,
-    'Références publiques': publicCustomers,
-    Soutiens: helpers,
-    Région: zone,
+
     Marché: markets,
     "L'entreprise": companyDescription,
-    'Enjeux ODD': oddStakes
-  } = greenTechData;
 
+  } = greenTechData;
+  const zone = null;
+  const publicCustomers = greenTechData && greenTechData['Références publiques'].filter(x => x)
+  const oddStakes = greenTechData && greenTechData['Enjeux ODD'].filter(x => x) 
+  const helpers = greenTechData && greenTechData['Soutiens'].filter(x => x) 
   return <><InformationItemsWrapper>
     <>
       {pitch && <InformationItem showDivider={false} label={'Pitch'} contents={pitch} />}
-      {publicCustomers && (
+      {publicCustomers && publicCustomers.length > 0 ? (
         <InformationItem label={'Clients publics'} contents={publicCustomers} />
-      )}
+      ) : null}
       {helpers && <InformationItem label={'Soutiens et supports'} contents={helpers} />}
     </>
     <>
