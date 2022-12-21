@@ -1,3 +1,4 @@
+import Container from 'components/Core/Container';
 import {
   Aide,
   Investisseur,
@@ -21,15 +22,13 @@ interface DetailsGenericContentProps {
 const DetailsGenericContent: React.FC<DetailsGenericContentProps> = ({ card }) => {
   return (
     <>
-      <div className="flex flex-col sm:flex-row">
-        {isStartup(card) && <StartupInformations card={card} className="w-full sm:w-[70%]" />}
-        {isProjetAchat(card) && (
-          <ForecastedBuyInformations className="w-full sm:w-[70%]" card={card} />
-        )}
-        {isAide(card) && <HelpPage className="w-full sm:w-[70%]" card={card} />}
-        {isInvestisseur(card) && <InvestorInformation className="w-full sm:w-[70%]" card={card} />}
-        <ContactArea className="w-full sm:w-[30%] ml-4" card={card} />
-      </div>
+      <Container customClasses="grid grid-cols-1 sm:grid-cols-3 gap-8">
+        {isStartup(card) && <StartupInformations card={card} className="sm:col-span-2" />}
+        {isProjetAchat(card) && <ForecastedBuyInformations card={card} className="sm:col-span-2" />}
+        {isAide(card) && <HelpPage className="sm:col-span-2" card={card} />}
+        {isInvestisseur(card) && <InvestorInformation className="sm:col-span-2" card={card} />}
+        <ContactArea card={card} />
+      </Container>{' '}
     </>
   );
 };

@@ -8,7 +8,7 @@ import { CardType } from '../../model/CardType';
 interface CardProps {
   name: string;
   id?: string;
-  nameElem? : JSX.Element;
+  nameElem?: JSX.Element;
   toprow: string;
   linkData: AnyCard | {};
   slug: string;
@@ -37,7 +37,7 @@ const ResultCard: React.FC<PropsWithChildren<CardProps>> = ({
   )}`;
 
   if (linkTo.length > 8192) {
-    linkTo = `/${cardType.name}/details/${slug}?id=${id ||name}`;
+    linkTo = `/${cardType.name}/details/${slug}?id=${id || name}`;
   }
 
   return (
@@ -52,7 +52,8 @@ const ResultCard: React.FC<PropsWithChildren<CardProps>> = ({
                 }}
                 to={linkTo}
                 state={{ cardData: linkData }}
-                className="rm-link-underline">
+                className="rm-link-underline"
+              >
                 <p className="clamp mt-2 font-bold text-lg" title={name}>
                   <ScreenReaderOnlyText content={toprow} />
                   {nameElem || name}
@@ -65,7 +66,8 @@ const ResultCard: React.FC<PropsWithChildren<CardProps>> = ({
                 <li>
                   <p
                     className={`fr-badge fr-badge--sm `}
-                    style={{ color: cardType.color, backgroundColor: cardType.backgroundColor }}>
+                    style={{ color: cardType.color, backgroundColor: cardType.backgroundColor }}
+                  >
                     {toprow}
                   </p>
                 </li>

@@ -1,3 +1,4 @@
+import Container from 'components/Core/Container';
 import Heading from 'components/Core/Heading';
 import { Link, useNavigate } from 'react-router-dom';
 import {
@@ -18,7 +19,7 @@ interface DetailsHeaderProps {
 
 const DetailsHeader: React.FC<DetailsHeaderProps> = ({ card, cardType }) => {
   const { subtitle, title } = normalizeHeaderProps(card);
-  const backgroundColor = cardType?.color && tailwindColorUtility[cardType?.color].lightBackground;
+  const borderColor = cardType?.color && tailwindColorUtility[cardType?.color].border;
   const navigate = useNavigate();
 
   const handleGoBack = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -27,8 +28,8 @@ const DetailsHeader: React.FC<DetailsHeaderProps> = ({ card, cardType }) => {
   };
 
   return (
-    <>
-      <section className={`pt-8 px-[10%] min-h-[200px] ${backgroundColor}`}>
+    <Container customClasses="mb-12">
+      <div className={`pb-12 mb-12 border-b ${borderColor}`}>
         <p
           className={`fr-badge fr-badge--sm `}
           style={{ color: cardType?.color, backgroundColor: cardType?.backgroundColor }}
@@ -36,16 +37,16 @@ const DetailsHeader: React.FC<DetailsHeaderProps> = ({ card, cardType }) => {
           {cardType?.name === 'sourcingSu' ? 'start up' : cardType?.name}
         </p>
         <Heading align="left">{title}</Heading>
-        <p className="">{subtitle}</p>
-      </section>
+        <p className="text-grey-625-active">{subtitle}</p>
+      </div>
       <Link
         to={'..'}
-        className="mx-[10%] mt-8 fr-link fr-fi-arrow-left-line fr-link--icon-left w-fit"
+        className="mt-8 fr-link fr-fi-arrow-left-line fr-link--icon-left w-fit"
         onClick={handleGoBack}
       >
-        Revenir en arrière
+        Retour à la liste
       </Link>
-    </>
+    </Container>
   );
 };
 
@@ -60,7 +61,6 @@ const normalizeHeaderProps = (card: AnyCard) => {
   }
 
   if (isAide(card)) {
-    console.log(card);
     return {
       title: card.name,
       subtitle: card.financers

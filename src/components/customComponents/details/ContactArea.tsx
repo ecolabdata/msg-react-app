@@ -22,7 +22,7 @@ const ContactArea: React.FC<ContactAreaProps> = ({ card, className }) => {
   const [showContact, setShowContact] = useState(false);
 
   return (
-    <section className={`flex flex-col ${className}`}>
+    <div className={`flex flex-col ${className}`}>
       <h2 className="text-2xl mb-4">{title}</h2>
       <p>{content}</p>
       {cta?.contact && someNotNull(cta?.contact) ? (
@@ -66,7 +66,7 @@ const ContactArea: React.FC<ContactAreaProps> = ({ card, className }) => {
           className="fr-btn fr-btn--secondary w-fit px-4 h-fit py-2 hover:bg-claire-bf__hover mt-6"
         />
       )}
-    </section>
+    </div>
   );
 };
 

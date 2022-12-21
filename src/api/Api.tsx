@@ -24,7 +24,7 @@ export const cardTypeNames = [
 ] as const;
 export type CardTypeName = typeof cardTypeNames[number];
 
-type GeneratedData = { id: string; cardTypeName: string };
+type GeneratedData = { id: string; cardTypeName: string; url?: string };
 /*
 cardType list
 https://www.notion.so/messervicesgreentech/0290b8c9cfd4437b8f9ee8bb9ee697ee?v=94b3a82bc59243e5b99ed4574bf8407f
