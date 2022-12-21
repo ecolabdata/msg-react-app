@@ -25,11 +25,18 @@ type Solution = {
 
 export const StartupInformations: React.FC<StartupInformationsProps> = ({ card, className }) => {
   const greenTechData = getGreenTechData(card);
-
-  if (!greenTechData) return <></>;
-
   const labels = normalizeLabels(card);
+  return (
+    <section className={className}>
+      {greenTechData ? <MainSection greenTechData={greenTechData} /> : null}
+      <LabelSection labels={labels} />
+    </section>
+  );
+};
 
+type GreentechData = NonNullable<ReturnType<typeof getGreenTechData>>
+
+const MainSection: React.FC<{ greenTechData: GreentechData }> = ({ greenTechData }) => {
   const {
     Pitch: pitch,
     'Références publiques': publicCustomers,
@@ -40,45 +47,47 @@ export const StartupInformations: React.FC<StartupInformationsProps> = ({ card, 
     'Enjeux ODD': oddStakes
   } = greenTechData;
 
-  return (
-    <section className={className}>
-      <InformationItemsWrapper>
-        <>
-          {pitch && <InformationItem showDivider={false} label={'Pitch'} contents={pitch} />}
-          {publicCustomers && (
-            <InformationItem label={'Clients publics'} contents={publicCustomers} />
-          )}
-          {helpers && <InformationItem label={'Soutiens et supports'} contents={helpers} />}
-        </>
-        <>
-          {zone && <InformationItem showDivider={false} label={'Région'} contents={zone} />}
-          {markets && <InformationItem label={'Marchés'} contents={markets} />}
-          {!!(oddStakes.length > 0) && (
-            <InformationItem label={'Enjeux ODD'} contents={oddStakes} />
-          )}
-        </>
-      </InformationItemsWrapper>
-      <InformationItem
-        showDivider={false}
-        label={'Entreprise'}
-        contents={companyDescription}
-        className="mt-8"
-      />
-      <div className="mt-16">
-        {labels?.length > 0 &&
-          labels.map(({ label, name, description }, i) => (
-            <LabelDetails
-              key={i}
-              label={label}
-              solutionName={name}
-              description={description}
-              className="mb-8"
-            />
-          ))}
-      </div>
-    </section>
-  );
-};
+  return <><InformationItemsWrapper>
+    <>
+      {pitch && <InformationItem showDivider={false} label={'Pitch'} contents={pitch} />}
+      {publicCustomers && (
+        <InformationItem label={'Clients publics'} contents={publicCustomers} />
+      )}
+      {helpers && <InformationItem label={'Soutiens et supports'} contents={helpers} />}
+    </>
+    <>
+      {zone && <InformationItem showDivider={false} label={'Région'} contents={zone} />}
+      {markets && <InformationItem label={'Marchés'} contents={markets} />}
+      {!!(oddStakes.length > 0) && (
+        <InformationItem label={'Enjeux ODD'} contents={oddStakes} />
+      )}
+    </>
+  </InformationItemsWrapper>
+    <InformationItem
+      showDivider={false}
+      label={'Entreprise'}
+      contents={companyDescription}
+      className="mt-8"
+    />
+  </>
+}
+
+type Labels = ReturnType<typeof normalizeLabels>
+
+const LabelSection: React.FC<{ labels: Labels }> = ({ labels }) => {
+  return <div className="mt-16">
+    {labels?.length > 0 &&
+      labels.map(({ label, name, description }, i) => (
+        <LabelDetails
+          key={i}
+          label={label}
+          solutionName={name}
+          description={description}
+          className="mb-8"
+        />
+      ))}
+  </div>
+}
 
 const normalizeLabels = (card: Startup) => {
   const solutions = card?.SOLUTIONS;
