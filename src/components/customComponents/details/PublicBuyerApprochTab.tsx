@@ -57,10 +57,10 @@ const CPVCard: React.FC<CPVCardProps> = ({ content }) => {
   const dlroStr =
     dlroDate &&
     ('0' + dlroDate?.getUTCDate()).slice(-2) +
-    '/' +
-    ('0' + ((dlroDate?.getUTCMonth() || 0) + 1)).slice(-2) +
-    '/' +
-    dlroDate?.getUTCFullYear();
+      '/' +
+      ('0' + ((dlroDate?.getUTCMonth() || 0) + 1)).slice(-2) +
+      '/' +
+      dlroDate?.getUTCFullYear();
 
   return (
     <div className="fr-card h-full w-full bg-input-background">
@@ -97,7 +97,9 @@ const CPVCard: React.FC<CPVCardProps> = ({ content }) => {
               {consultationLink && (
                 <div className="flex justify-between my-4">
                   <p>
-                    <a href={url} target="_blank" rel="noreferrer noopener">Sur APPROCH</a>
+                    <a href={url} target="_blank" rel="noreferrer noopener">
+                      Sur APPROCH
+                    </a>
                   </p>
                 </div>
               )}

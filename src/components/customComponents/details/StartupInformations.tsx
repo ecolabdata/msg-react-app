@@ -34,61 +34,65 @@ export const StartupInformations: React.FC<StartupInformationsProps> = ({ card, 
   );
 };
 
-type GreentechData = NonNullable<ReturnType<typeof getGreenTechData>>
+type GreentechData = NonNullable<ReturnType<typeof getGreenTechData>>;
 
 const MainSection: React.FC<{ greenTechData: GreentechData }> = ({ greenTechData }) => {
   const {
     Pitch: pitch,
 
     Marché: markets,
-    "L'entreprise": companyDescription,
-
+    "L'entreprise": companyDescription
   } = greenTechData;
   const zone = null;
-  const publicCustomers = greenTechData && greenTechData['Références publiques'].filter(x => x)
-  const oddStakes = greenTechData && greenTechData['Enjeux ODD'].filter(x => x) 
-  const helpers = greenTechData && greenTechData['Soutiens'].filter(x => x) 
-  return <><InformationItemsWrapper>
+  const publicCustomers = greenTechData && greenTechData['Références publiques'].filter((x) => x);
+  const oddStakes = greenTechData && greenTechData['Enjeux ODD'].filter((x) => x);
+  const helpers = greenTechData && greenTechData['Soutiens'].filter((x) => x);
+  return (
     <>
-      {pitch && <InformationItem showDivider={false} label={'Pitch'} contents={pitch} />}
-      {publicCustomers && publicCustomers.length > 0 ? (
-        <InformationItem label={'Clients publics'} contents={publicCustomers} />
-      ) : null}
-      {helpers && <InformationItem label={'Soutiens et supports'} contents={helpers} />}
+      <InformationItemsWrapper>
+        <>
+          {pitch && <InformationItem showDivider={false} label={'Pitch'} contents={pitch} />}
+          {publicCustomers && publicCustomers.length > 0 ? (
+            <InformationItem label={'Clients publics'} contents={publicCustomers} />
+          ) : null}
+          {helpers && <InformationItem label={'Soutiens et supports'} contents={helpers} />}
+        </>
+        <>
+          {zone && <InformationItem showDivider={false} label={'Région'} contents={zone} />}
+          {markets && <InformationItem label={'Marchés'} contents={markets} />}
+          {!!(oddStakes.length > 0) && (
+            <InformationItem label={'Enjeux ODD'} contents={oddStakes} />
+          )}
+        </>
+      </InformationItemsWrapper>
+      <InformationItem
+        showDivider={false}
+        label={'Entreprise'}
+        contents={companyDescription}
+        className="mt-8"
+      />
     </>
-    <>
-      {zone && <InformationItem showDivider={false} label={'Région'} contents={zone} />}
-      {markets && <InformationItem label={'Marchés'} contents={markets} />}
-      {!!(oddStakes.length > 0) && (
-        <InformationItem label={'Enjeux ODD'} contents={oddStakes} />
-      )}
-    </>
-  </InformationItemsWrapper>
-    <InformationItem
-      showDivider={false}
-      label={'Entreprise'}
-      contents={companyDescription}
-      className="mt-8"
-    />
-  </>
-}
+  );
+};
 
-type Labels = ReturnType<typeof normalizeLabels>
+type Labels = ReturnType<typeof normalizeLabels>;
 
 const LabelSection: React.FC<{ labels: Labels }> = ({ labels }) => {
-  return <div className="mt-16">
-    {labels?.length > 0 &&
-      labels.map(({ label, name, description }, i) => (
-        <LabelDetails
-          key={i}
-          label={label}
-          solutionName={name}
-          description={description}
-          className="mb-8"
-        />
-      ))}
-  </div>
-}
+  return (
+    <div className="mt-16">
+      {labels?.length > 0 &&
+        labels.map(({ label, name, description }, i) => (
+          <LabelDetails
+            key={i}
+            label={label}
+            solutionName={name}
+            description={description}
+            className="mb-8"
+          />
+        ))}
+    </div>
+  );
+};
 
 const normalizeLabels = (card: Startup) => {
   const solutions = card?.SOLUTIONS;

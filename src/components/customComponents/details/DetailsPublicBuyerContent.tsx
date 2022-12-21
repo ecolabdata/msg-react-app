@@ -14,8 +14,8 @@ const DetailsPublicBuyer: React.FC<DetailsPublicBuyerContentProps> = ({ card }) 
   const tags = card.labelled_startups.map((s) => s.nom).filter((name) => !!name);
 
   const marketContents = card.decp;
-  let buyContents = card.approch_content?.filter(x => {
-    return x.status != 'draft'
+  const buyContents = card.approch_content?.filter((x) => {
+    return x.status != 'draft';
   });
   const tabs = [
     {
