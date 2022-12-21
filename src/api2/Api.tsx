@@ -19,8 +19,8 @@ export type HitStartup = SearchStartup["hits"][number]
 //    Details
 export type StartupV2 = typeof mockedStartup
 
-const getBaseUrl = () => "https://api-v2.msg.greentechinnovation.fr/"
-//const getBaseUrl = () => "http://localhost:5000/"
+//const getBaseUrl = () => "https://api-v2.msg.greentechinnovation.fr/"
+const getBaseUrl = () => "http://localhost:5000/"
 
 export const Api = {
     searchActeurPublic: (description : string) => fetch(`${getBaseUrl()}acteur_public/search?` + new URLSearchParams({
@@ -28,8 +28,8 @@ export const Api = {
         }))
         .then((resp) => resp.json())
         .then(x => x as SearchPublicBuyer),
-    getActeurPublic: (nom : string) => fetch(`${getBaseUrl()}acteur_public?` + new URLSearchParams({
-            nom: nom,
+    getActeurPublic: (siret : string) => fetch(`${getBaseUrl()}acteur_public?` + new URLSearchParams({
+        siret: siret,
         }))
         .then((resp) => resp.json())
         .then(x => x.results[0] as PublicBuyer)

@@ -7,6 +7,7 @@ import ScreenReaderOnlyText from './ScreenReaderOnlyText';
 
 interface CardProps {
   name: string;
+  id?: string;
   nameElem? : JSX.Element;
   toprow: string;
   linkData: AnyCard | {};
@@ -18,6 +19,7 @@ interface CardProps {
 const ResultCard: React.FC<PropsWithChildren<CardProps>> = ({
   cardType,
   name,
+  id,
   nameElem,
   toprow,
   linkData,
@@ -30,12 +32,12 @@ const ResultCard: React.FC<PropsWithChildren<CardProps>> = ({
   const [, setNextScrolTarget] = usedNextScrollTarget;
 
   //TODO: When an endpoint by id exist. All this should be removed to link card to `/${cardType.name}/details/${cardData.id}`
-  let linkTo = `/${cardType.name}/details/${slug}?id=${name}&cardData=${encodeURIComponent(
+  let linkTo = `/${cardType.name}/details/${slug}?id=${id || name}&cardData=${encodeURIComponent(
     JSON.stringify(linkData)
   )}`;
 
   if (linkTo.length > 8192) {
-    linkTo = `/${cardType.name}/details/${slug}?id=${name}`;
+    linkTo = `/${cardType.name}/details/${slug}?id=${id ||name}`;
   }
 
   return (
