@@ -46,15 +46,13 @@ export const Details: React.FC<DetailsProps> = ({ cardType }) => {
   if (!card) return <p>No data</p>;
 
   return (
-    <div className="globalContainer flex flex-col justify-around">
+    <>
       <DetailsHeader card={card} cardType={cardType} />
-      <div className="mx-[9%] mt-16">
-        {isAcheteurPublic(card) && <PublicBuyerContent card={card} />}
-        {(isStartup(card) || isProjetAchat(card) || isAide(card) || isInvestisseur(card)) && (
-          <GenericDetails card={card} />
-        )}
-        <DetailsFooter card={card} />
-      </div>
-    </div>
+      {isAcheteurPublic(card) && <PublicBuyerContent card={card} />}
+      {(isStartup(card) || isProjetAchat(card) || isAide(card) || isInvestisseur(card)) && (
+        <GenericDetails card={card} />
+      )}
+      <DetailsFooter card={card} />
+    </>
   );
 };

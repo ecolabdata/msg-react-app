@@ -32,12 +32,7 @@ const SearchResults: React.FC<PropsWithChildren<Props>> = ({ hitCount, isLoading
         <ScreenReaderOnlyText content={`Aucun résultat trouvé`} aria-live="polite" />
       )}
       {hitCount > 0 ? (
-        <section
-          tabIndex={0}
-          ref={ref}
-          className="my-8"
-          id="cardsContainer"
-        >
+        <section tabIndex={0} ref={ref} className="my-8" id="cardsContainer">
           <span
             className="flex justify-end font-bold mb-4 text-xl"
             aria-hidden={true}

@@ -2,7 +2,7 @@ import { PublicBuyer } from 'api2/Api';
 import { Collectivite } from '../../../api/Api';
 import { InformationCard } from '../InformationCard';
 import { Tabs } from '../Tabs';
-import { TagsList } from '../TagsList';
+import { TagsList } from '../../Core/TagsList';
 import { PublicBuyerApprochTab } from './PublicBuyerApprochTab';
 import { PublicBuyerDecpTab } from './PublicBuyerDecpTab';
 

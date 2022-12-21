@@ -23,6 +23,8 @@ export const ForecastedBuyInformations: React.FC<ForecastedBuyInformationsProps>
     purchasingCategory
   } = card;
 
+  console.log('card', card);
+
   const considerations = getConsiderations({
     socialConsiderationsConcerned,
     environmentalConsiderationsConcerned
@@ -30,10 +32,10 @@ export const ForecastedBuyInformations: React.FC<ForecastedBuyInformationsProps>
 
   const days = getDaysBetweenDates(new Date(Date.now()), new Date(publicationTargetDate));
   return (
-    <section className={`${className}`}>
+    <div className={`${className}`}>
       <InformationItemsWrapper>
         <>
-          {status && <InformationItem label={'Status'} contents={status} showDivider={false} />}
+          {status && <InformationItem label={'Status'} contents={status} />}
           {departments && (
             <InformationItem
               label={'Périmètre géographique'}
@@ -46,27 +48,18 @@ export const ForecastedBuyInformations: React.FC<ForecastedBuyInformationsProps>
         </>
         <>
           {publicationTargetDate && (
-            <InformationItem
-              label={'Date limite'}
-              contents={getDateText(days)}
-              showDivider={false}
-            />
+            <InformationItem label={'Date limite'} contents={getDateText(days)} />
           )}
           {CPVPrimary && <InformationItem label={'Code CPV'} contents={CPVPrimary?.toString()} />}
         </>
       </InformationItemsWrapper>
-      <InformationItem
-        showDivider={false}
-        label={'Description du projet'}
-        contents={description}
-        className="mt-8"
-      />
+      <InformationItem label={'Description du projet'} contents={description} />
       <InformationItemsWrapper>
         <>
           {marketMaxDuration && (
             <InformationItem
               label={'Durée de la prestation'}
-              contents={marketMaxDuration.toString()}
+              contents={`${marketMaxDuration.toString()} mois`}
             />
           )}
         </>
@@ -76,7 +69,7 @@ export const ForecastedBuyInformations: React.FC<ForecastedBuyInformationsProps>
           )}
         </>
       </InformationItemsWrapper>
-    </section>
+    </div>
   );
 };
 

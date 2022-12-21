@@ -102,7 +102,7 @@ export function buildSearchPageV2<SearchType extends SearchPublicBuyer | SearchS
               onSubmit={(event) => handleOnSubmitForm(event)}
               id="keywordsForm"
               className="my-8 flex flex-col justify-around flex-wrap h-fit w-full"
-              >
+            >
               <fieldset>
                 <legend className="sr-only">Votre projet</legend>
                 <SearchForm
