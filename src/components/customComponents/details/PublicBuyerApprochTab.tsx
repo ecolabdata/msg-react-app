@@ -9,7 +9,6 @@ interface PublicBuyerApprochTabProps {
 export const PublicBuyerApprochTab: React.FC<PublicBuyerApprochTabProps> = ({ contents }) => {
   const PAGE_SIZE = 10;
   const [page, setPage] = React.useState(0);
-
   return (
     <>
       <p className="font-semibold my-4 text-right">{contents?.length} résultats</p>
@@ -50,16 +49,18 @@ const CPVCard: React.FC<CPVCardProps> = ({ content }) => {
     dlro,
     purchasingCategory,
     procedureType,
-    consultationLink
+    consultationLink,
+    url,
+    status
   } = content;
   const dlroDate = dlro && new Date(dlro);
   const dlroStr =
     dlroDate &&
     ('0' + dlroDate?.getUTCDate()).slice(-2) +
-      '/' +
-      ('0' + ((dlroDate?.getUTCMonth() || 0) + 1)).slice(-2) +
-      '/' +
-      dlroDate?.getUTCFullYear();
+    '/' +
+    ('0' + ((dlroDate?.getUTCMonth() || 0) + 1)).slice(-2) +
+    '/' +
+    dlroDate?.getUTCFullYear();
 
   return (
     <div className="fr-card h-full w-full bg-input-background">
@@ -87,12 +88,19 @@ const CPVCard: React.FC<CPVCardProps> = ({ content }) => {
                   <br />
                   {marketEstimatedAmount} €
                 </p>
-                {consultationLink && (
-                  <p>
-                    <a href={consultationLink}>Sur APPROCH</a>
-                  </p>
-                )}
+                <p>
+                  <span className="font-bold">Status: </span>
+                  <br />
+                  {status}
+                </p>
               </div>
+              {consultationLink && (
+                <div className="flex justify-between my-4">
+                  <p>
+                    <a href={url} target="_blank" rel="noreferrer noopener">Sur APPROCH</a>
+                  </p>
+                </div>
+              )}
             </div>
           </div>
           <div className="fr-card__start">
