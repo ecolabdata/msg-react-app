@@ -75,6 +75,13 @@ const closingTag = '@/msg-highlighted-field@';
 
 function replaceHlTxt(txt: string, cssColor: string) {
   console.log({ txt });
+  if (txt.length > 20) {
+    const openIndex = txt.indexOf(openingTag)
+    const closeIndex = txt.indexOf(closingTag)
+    let rsd = 20 //remaining space to dipslay
+    rsd = openIndex 
+    txt.slice()
+  }
   return txt
     .replaceAll(openingTag, `<b style="color: ${cssColor}">`)
     .replaceAll(closingTag, '</b>');
