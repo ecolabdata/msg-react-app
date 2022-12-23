@@ -80,49 +80,9 @@ const closingTag = '@/msg-highlighted-field@';
 function replaceHlTxt(txt: string, cssColor: string) {
   return parseHighlights(txt,
     ({ children }) => <b style={{ color: cssColor }}>{children}</b>,
-    40
+    80
   )
 }
-
-function replaceTagsWithElement(txt: string, openTag: string, closeTag: string, element: React.FunctionComponent<{}>, contextLength?: number): JSX.Element | string {
-  // Find the index of the opening tag and the closing tag
-  const openIndex = txt.indexOf(openTag);
-  const closeIndex = txt.indexOf(closeTag);
-
-  if (openIndex === -1) return txt;
-
-  // Extract the content between the tags
-  const content = txt.substring(openIndex + openTag.length, closeIndex);
-
-  // Create the JSX element using the element function and the extracted content
-  const jsxElement = React.createElement(element, {}, content);
-
-  // Determine the number of characters to include before and after the tags
-  const startIndex = contextLength ? Math.max(0, openIndex - contextLength) : 0;
-  const endIndex = contextLength ? Math.min(txt.length, closeIndex + contextLength) : txt.length;
-
-  // Truncate the text as necessary and add ellipses if needed
-  let before = txt.substring(startIndex, openIndex);
-  if (startIndex > 0) {
-    before = '...' + before;
-  }
-  const afterStr = txt.substring(closeIndex + closeTag.length);
-  let after = replaceTagsWithElement(afterStr, openTag, closeTag, element, contextLength);
-  if (typeof after === 'string') {
-    after = after.substring(0, endIndex)
-    if (endIndex < txt.length) {
-      after = after + '...';
-    }
-  }
-  // Create the final JSX element by combining the truncated text before and after the tags with the JSX element
-  return (<>
-    {before}
-    {jsxElement}
-    {after}
-  </>);
-}
-
-//ICIIIII
 
 function parseHighlights(highlightField: string, element: React.FunctionComponent<{}>, contextLength: number): JSX.Element {
 
@@ -144,18 +104,20 @@ function parseHighlights(highlightField: string, element: React.FunctionComponen
 }
 
 function parseNextHighlightsChunk(substrings: string[], element: React.FunctionComponent<{}>, contextLength: number): JSX.Element | string | null {
-  //debugger;
   if (substrings.length === 1) {
     return null
   } else {
-    // Iterate over the substrings and create JSX elements as needed
-    const [before, oTag, content, cTag, after] = substrings; 
-    let beforeTrunc = before.slice(Math.max(before.length - contextLength, 0))
+    const [before, oTag, content, cTag, after] = substrings;
+
+    const beforeContextLength = Math.max(before.length - contextLength, 0);
+    const afterContextLength = Math.min(contextLength, after.length);
+
+    let beforeTrunc = before.slice(beforeContextLength)
     if (before.length > beforeTrunc.length) {
       beforeTrunc = "..." + beforeTrunc
     }
 
-    let afterTrunc = after.slice(0, Math.min(contextLength, after.length))
+    let afterTrunc = after.slice(0, afterContextLength)
     if (after.length > afterTrunc.length) {
       afterTrunc = afterTrunc + "..."
     }
