@@ -8,7 +8,7 @@ interface DetailsFooterProps {
 }
 
 const DetailsFooter: React.FC<DetailsFooterProps> = ({ card }) => {
-  const sources = getSources(card.cardTypeName, card.url);
+  const sources = getSources(card.cardTypeName);
 
   return (
     <Container>

@@ -13,10 +13,10 @@ const homePageContent = {
       {
         title: 'Parlez la même langue que les acheteurs publics !',
         description:
-          'Téléchargez notre template d’argumentaire innovation qui vous permettra de valoriser votre solution auprès des acheteurs publics !',
+          'Téléchargez notre modèle d’argumentaire innovation qui vous permettra de valoriser votre solution auprès des acheteurs publics !',
 
         cta: {
-          name: "Télécharger le template d'argumentaire",
+          name: "Télécharger le modèle d'argumentaire",
           url: 'https://drive.google.com/uc?export=download&id=1tFbq0duIZauZPTekjfJXFPylT96LHmNL',
           icon: 'download'
         },
