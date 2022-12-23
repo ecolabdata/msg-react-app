@@ -100,23 +100,22 @@ export const SearchPage: React.FC<Props> = ({ cardType, children, usedAdvancedFi
             <span className="bg-yellow md:text-3xl font-light">{`(${cards.length} résultats)`}</span>
           </Heading>
 
-          <p className="mt-2 text-base">{cardType.description}</p>
+          {cardType.description && <p className="mt-2 text-base">{cardType.description}</p>}
         </div>
 
         <div className="flex flex-col items-center w-full px-4 md:px-0">
           <form
             onSubmit={(event) => handleOnSubmitForm(event)}
             id="keywordsForm"
-            className="my-8 flex flex-col justify-around flex-wrap h-fit w-full"
-          >
+            className="my-8 flex flex-col justify-around flex-wrap h-fit w-full">
             <fieldset>
-              <legend className="sr-only">Votre projet</legend>
+              <legend className="sr-only">Champs de recherche principaux</legend>
               <SearchForm
                 usedDescription={[description, setDescription]}
                 usedSecteurs={[secteurs, setSecteurs]}
                 usedErrorTextDescription={[errorTxt, setErrorTxt]}
                 usedInListPage={true}
-                color={cardType.color}
+                cardType={cardType}
                 showThematicField={cardType.name !== 'acheteurs-publics'}
               />
             </fieldset>
@@ -126,8 +125,7 @@ export const SearchPage: React.FC<Props> = ({ cardType, children, usedAdvancedFi
                   aria-expanded={isAdvancedSearchOpen}
                   type="button"
                   className="ml-auto underline"
-                  onClick={handleToggleAdvancedSearch}
-                >
+                  onClick={handleToggleAdvancedSearch}>
                   Recherche avancée
                 </button>
                 {isAdvancedSearchOpen && (
@@ -146,8 +144,7 @@ export const SearchPage: React.FC<Props> = ({ cardType, children, usedAdvancedFi
             <button
               form="keywordsForm"
               disabled={isLoading}
-              className="mx-3 fr-btn fr-btn--primary  fr-btn--lg"
-            >
+              className="mx-3 fr-btn fr-btn--primary  fr-btn--lg">
               <span className={`mx-auto`}>
                 {isLoading ? 'Chargement...' : 'Valider et rechercher'}
               </span>
@@ -156,8 +153,7 @@ export const SearchPage: React.FC<Props> = ({ cardType, children, usedAdvancedFi
               type="button"
               disabled={isLoading}
               onClick={handleResetFilters}
-              className="mt-4 underline"
-            >
+              className="mt-4 underline">
               Réinitialiser
             </button>
           </div>

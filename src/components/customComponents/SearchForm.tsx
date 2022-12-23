@@ -1,3 +1,4 @@
+import { CardType } from 'model/CardType';
 import { ThematicsEnum } from '../../model/ThematicsEnum';
 import SearchFieldWrapper from './SearchFieldWrapper';
 import SelectInputOptions from './SelectInputOptions';
@@ -8,7 +9,7 @@ interface SearchFormProps {
   usedDescription: [string, React.Dispatch<React.SetStateAction<string>>];
   usedSecteurs: [string[], React.Dispatch<React.SetStateAction<string[]>>];
   usedErrorTextDescription: [string, React.Dispatch<React.SetStateAction<string>>];
-  color?: string;
+  cardType?: CardType;
   showThematicField?: boolean;
 }
 
@@ -18,7 +19,7 @@ const SearchForm: React.FC<SearchFormProps> = ({
   usedDescription,
   usedErrorTextDescription,
   showThematicField = true,
-  color
+  cardType
 }) => {
   const [description, setDescription] = usedDescription;
   const [descriptionError] = usedErrorTextDescription;
@@ -30,30 +31,28 @@ const SearchForm: React.FC<SearchFormProps> = ({
       <SearchFieldWrapper
         label="Votre recherche"
         usedInListPage={usedInListPage}
-        className={`w-full ${showThematicField && 'md:w-[55%]'}`}
-      >
+        className={`w-full ${showThematicField && 'md:w-[55%]'}`}>
         <TextAreaInput
           value={description}
           onValueChange={setDescription}
           errorText={descriptionError}
-          label="Décrivez votre projet en quelques lignes."
+          label={cardType?.searchText ?? ''}
           formId="keywordsForm"
           required
-          color={color}
+          color={cardType?.color}
         />
       </SearchFieldWrapper>
       {showThematicField && (
         <SearchFieldWrapper
           label="La thématique"
           usedInListPage={usedInListPage}
-          className="w-full md:w-[45%]"
-        >
+          className="w-full md:w-[45%]">
           <SelectInputOptions
             className="mb-auto"
             optionsData={thematicsValues}
             secteurs={secteurs}
             setSecteurs={setSecteurs}
-            color={color}
+            color={cardType?.color}
           />
         </SearchFieldWrapper>
       )}
