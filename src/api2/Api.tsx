@@ -23,11 +23,12 @@ export type StartupV2 = typeof mockedStartup;
 const getBaseUrl = () => 'http://localhost:5000/';
 
 export const Api = {
-  searchActeurPublic: (description: string) =>
+  searchActeurPublic: (description: string, from: number) =>
     fetch(
       `${getBaseUrl()}acteur_public/search?` +
         new URLSearchParams({
-          q: description
+          q: description,
+          from: from.toString()
         })
     )
       .then((resp) => resp.json())
@@ -42,11 +43,12 @@ export const Api = {
       .then((resp) => resp.json())
       .then((x) => x.results[0] as PublicBuyer)
       .then((x) => Object.assign(x, { cardTypeName: acheteurPublic.name, id: 'idc' })),
-  searchStartup: (description: string) =>
+  searchStartup: (description: string, from: number) =>
     fetch(
       `${getBaseUrl()}startup/search?` +
         new URLSearchParams({
-          q: description
+          q: description,
+          from: from.toString()
         })
     )
       .then((resp) => resp.json())
@@ -55,7 +57,7 @@ export const Api = {
     fetch(
       `${getBaseUrl()}startup?` +
         new URLSearchParams({
-          nom: nom
+          nom: nom,
         })
     )
       .then((resp) => resp.json())
