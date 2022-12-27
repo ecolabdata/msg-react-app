@@ -2,7 +2,9 @@ import { Startup } from 'api/Api';
 import { Api, HitStartup } from 'api2/Api';
 import { useAdvancedFilters } from 'components/customComponents/filter/filters';
 import ResultCard from 'components/customComponents/ResultCard';
+import { debug } from 'console';
 import { CardType, startups } from 'model/CardType';
+import React from 'react';
 import slugify from 'slugify';
 import { getGreenTechData } from 'utils/utilityFunctions';
 import { buildSearchPageV2 } from '../SearchPageV2';
@@ -32,7 +34,9 @@ export const StartupResultCard: React.FC<StartupResultCardProps> = ({
 }) => {
   const NOM = hit.fields.NOM[0];
   const hlNOM = hit.highlight.NOM ? (
-    <p dangerouslySetInnerHTML={{ __html: replaceHlTxt(hit.highlight.NOM[0], cardType.color) }}></p>
+    <p>
+      {replaceHlTxt(hit.highlight.NOM[0], cardType.color)}
+    </p>
   ) : undefined;
   const thematiqueGI =
     hit.fields['SOLUTIONS.GreenTech Innovation.Thématique'] &&
@@ -49,7 +53,7 @@ export const StartupResultCard: React.FC<StartupResultCardProps> = ({
   const firstHlKey = Object.keys(hit.highlight).filter((key) => key !== 'NOM')[0];
   const hlHtml = firstHlKey ? (
     <div key={firstHlKey}>
-      <p dangerouslySetInnerHTML={{ __html: replaceHlTxt(hl[firstHlKey][0], cardType.color) }}></p>
+      <div>{replaceHlTxt(hl[firstHlKey][0], cardType.color)}</div>
     </div>
   ) : (
     firstHlKey
@@ -74,8 +78,57 @@ const openingTag = '@msg-highlighted-field@';
 const closingTag = '@/msg-highlighted-field@';
 
 function replaceHlTxt(txt: string, cssColor: string) {
-  console.log({ txt });
-  return txt
-    .replaceAll(openingTag, `<b style="color: ${cssColor}">`)
-    .replaceAll(closingTag, '</b>');
+  return parseHighlights(txt,
+    ({ children }) => <b style={{ color: cssColor }}>{children}</b>,
+    80
+  )
+}
+
+function parseHighlights(highlightField: string, element: React.FunctionComponent<{}>, contextLength: number): JSX.Element {
+
+  // Split the highlight field into an array of substrings
+  const substrings = highlightField.split(/(@msg-highlighted-field@|@\/msg-highlighted-field@)/);
+
+  //[<>, "asd", </>, <>, "sdf", </>]
+  //["", <>, asd </>, "", <>, "sdf", </>, ""]
+  const completeWithEmptyStr = (substrings: string[]) => substrings.flatMap((e, i) => {
+    if (i === 0 && e === '@msg-highlighted-field@') return ["", e]
+    else if (i === (substrings.length - 1) && e === '@/msg-highlighted-field@') return [e, ""]
+    else if (e === '@msg-highlighted-field@' && substrings[i - 1] === '@/msg-highlighted-field@') return ["", e]
+    else return [e]
+  });
+  return <>
+    {parseNextHighlightsChunk(completeWithEmptyStr(substrings), element, contextLength)}
+  </>
+  
+}
+
+function parseNextHighlightsChunk(substrings: string[], element: React.FunctionComponent<{}>, contextLength: number): JSX.Element | string | null {
+  if (substrings.length === 1) {
+    return null
+  } else {
+    const [before, oTag, content, cTag, after] = substrings;
+
+    const beforeContextLength = Math.max(before.length - contextLength, 0);
+    const afterContextLength = Math.min(contextLength, after.length);
+
+    let beforeTrunc = before.slice(beforeContextLength)
+    if (before.length > beforeTrunc.length) {
+      beforeTrunc = "..." + beforeTrunc
+    }
+
+    let afterTrunc = after.slice(0, afterContextLength)
+    if (after.length > afterTrunc.length) {
+      afterTrunc = afterTrunc + "..."
+    }
+
+    const jsxElement = React.createElement(element, {}, content)
+    substrings[4] = substrings[4].slice(afterTrunc.length)
+    return <>
+      {beforeTrunc}
+      {jsxElement}
+      {afterTrunc}
+      {parseNextHighlightsChunk(substrings.slice(4), element, contextLength)}
+    </>
+  }
 }
