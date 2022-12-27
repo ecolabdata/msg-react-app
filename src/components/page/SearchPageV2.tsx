@@ -36,7 +36,8 @@ export function buildSearchPageV2<SearchType extends SearchPublicBuyer | SearchS
     const [description, setDescription] = useState(q || '');
     const [secteurs, setSecteurs] = useState<string[]>([]);
     const [errorTxt, setErrorTxt] = useState('');
-    const pageChunkSize = 20;
+    //The API return 100 results
+    const pageChunkSize = 100;
     const [resp, setResp] = useState<SearchType | null>(null);
     const [filtersValues, setFiltersValues] = useState(initialValues);
 
@@ -55,8 +56,8 @@ export function buildSearchPageV2<SearchType extends SearchPublicBuyer | SearchS
       if (description.length > 0) {
         console.log('Fetching data');
         setIsLoading(true);
-        //The API return 100 result max
-        searchApi(description, (page - 1) * 100).then((json) => {
+        
+        searchApi(description, (page - 1) * pageChunkSize).then((json) => {
           setResp(json);
           setIsLoading(false);
         });
