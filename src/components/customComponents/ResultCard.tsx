@@ -41,7 +41,7 @@ const ResultCard: React.FC<PropsWithChildren<CardProps>> = ({
   }
 
   return (
-    <li className="h-full" style={{opacity: isLoading ? 0 : 'inherit' }}>
+    <li className="h-full" style={{opacity: isLoading ? 0.15 : 'inherit' }}>
       <div className="fr-card fr-enlarge-link w-full h-full">
         <div className="fr-card__body ">
           <div className="fr-card__content !pt-4 !px-6 !pb-16 ">

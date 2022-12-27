@@ -70,9 +70,7 @@ export function buildSearchPageV2<SearchType extends SearchPublicBuyer | SearchS
       event.preventDefault();
       if (description.length > 0) {
         setErrorTxt('');
-        let searchQuery = `?q=${description}`
-        if (page > 0) searchQuery += `&page=${page}`
-        navigate({search: searchQuery},{
+        navigate({search: `?q=${description}`},{
           preventScrollReset: true,
         });
       } else {
