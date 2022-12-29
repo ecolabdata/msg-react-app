@@ -19,8 +19,8 @@ export type HitStartup = SearchStartup['hits'][number];
 //    Details
 export type StartupV2 = typeof mockedStartup;
 
-//const getBaseUrl = () => "https://api-v2.msg.greentechinnovation.fr/"
-const getBaseUrl = () => 'http://localhost:5000/';
+const getBaseUrl = () => "https://api-v2.msg.greentechinnovation.fr/"
+//const getBaseUrl = () => 'http://localhost:5000/';
 
 export const Api = {
   searchActeurPublic: (description: string, from: number) =>
