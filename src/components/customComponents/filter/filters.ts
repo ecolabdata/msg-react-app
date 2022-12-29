@@ -77,7 +77,7 @@ export type AnyFilters =
   | HelpFilters
   | InvestorFilters;
 
-type FilterProperties = {
+export type FilterProperties = {
   initialValues: AnyFilters;
   searchByType: (searchParams: SearchParams) => Promise<{
     query:
@@ -102,7 +102,7 @@ type FilterProperties = {
 
 type SearchParams = { description: string; secteurs: string[]; filters: AnyFilters };
 
-export const useAdvancedFilters = (type: CardTypeNameFromModel): FilterProperties => {
+export function useAdvancedFilters(type: CardTypeNameFromModel): FilterProperties {
   const forecastedBuyFilters = [publicationDateFilter, zoneFilter, environnementalFilter];
   const startupFilters = [marketFilter, zoneFilter];
   const publicBuyFilters: FilterDefinition[] = [];
@@ -111,6 +111,7 @@ export const useAdvancedFilters = (type: CardTypeNameFromModel): FilterPropertie
 
   switch (type) {
     case 'achats-previsionnels':
+    case 'achats-programmes':
       return {
         initialValues: getInitialValues(forecastedBuyFilters),
         searchByType: ({ description, secteurs, filters }: SearchParams) =>
@@ -121,30 +122,6 @@ export const useAdvancedFilters = (type: CardTypeNameFromModel): FilterPropertie
           }),
         handleFilter: handleForecastedBuyFilter,
         filters: forecastedBuyFilters
-      };
-    case 'startups':
-      return {
-        initialValues: getInitialValues(startupFilters),
-        searchByType: ({ description, secteurs, filters: filters }: SearchParams) =>
-          searchStartups({
-            description,
-            secteurs,
-            ...(filters as StartupFilters)
-          }),
-        handleFilter: handleStartUpFilter,
-        filters: startupFilters
-      };
-    case 'acheteurs-publics':
-      return {
-        initialValues: getInitialValues(publicBuyFilters),
-        searchByType: ({ description, secteurs, filters }: SearchParams) =>
-          searchPublicBuys({
-            description,
-            secteurs,
-            ...(filters as PublicBuyFilters)
-          }),
-        handleFilter: handlePublicBuyFilter,
-        filters: publicBuyFilters
       };
     case 'aides-innovations':
       return {
@@ -163,6 +140,7 @@ export const useAdvancedFilters = (type: CardTypeNameFromModel): FilterPropertie
         filters: helpFilters
       };
     case 'aides-clients':
+    case 'aides-financieres':
       return {
         initialValues: getInitialValues(helpFilters),
         searchByType: ({ description, secteurs, filters }: SearchParams) => {
@@ -196,10 +174,10 @@ export const useAdvancedFilters = (type: CardTypeNameFromModel): FilterPropertie
         filters: investorFilters
       };
   }
-};
+}
 
-const getInitialValues = (filters: FilterDefinition[]) => {
+function getInitialValues(filters: FilterDefinition[]) {
   return filters.reduce((acc, cur) => {
     return { ...acc, [cur.id]: cur.initialValue };
   }, {} as AnyFilters);
-};
+}

@@ -13,7 +13,7 @@ const Scrollable: React.FC<CardsPreviewProps> = ({ emetor, cardTitle }) => {
   return (
     <>
       <div
-        className="cardContainer rounded-r min-w-282 ml-3 mt-4 w-282 h-181 addBorder-l border-l-3 border-private-investors p-4 bg-research-card-preview
+        className="container rounded-r min-w-282 ml-3 mt-4 w-282 h-181 addBorder-l border-l-3 border-private-investors p-4 bg-research-card-preview
                      flex flex-col
                      hover:scale-y-115 hover:shadow-2xl
                      transform transition ease-out duration-200 
@@ -40,7 +40,7 @@ const Scrollable: React.FC<CardsPreviewProps> = ({ emetor, cardTitle }) => {
         </button>
       </div>
       <div
-        className="cardContainer rounded-r min-w-282 ml-3 mt-4 w-282 h-181 addBorder-l border-l-3 border-private-investors p-4 bg-research-card-preview
+        className="container rounded-r min-w-282 ml-3 mt-4 w-282 h-181 addBorder-l border-l-3 border-private-investors p-4 bg-research-card-preview
                      flex flex-col
                      hover:scale-y-115 hover:shadow-2xl
                      transform transition ease-out duration-200 
@@ -67,7 +67,7 @@ const Scrollable: React.FC<CardsPreviewProps> = ({ emetor, cardTitle }) => {
         </button>
       </div>
       <div
-        className="cardContainer rounded-r min-w-282 ml-3 mt-4 w-282 h-181 addBorder-l border-l-3 border-private-investors p-4 bg-research-card-preview
+        className="container rounded-r min-w-282 ml-3 mt-4 w-282 h-181 addBorder-l border-l-3 border-private-investors p-4 bg-research-card-preview
                      flex flex-col
                      hover:scale-y-115 hover:shadow-2xl
                      transform transition ease-out duration-200 
@@ -94,7 +94,7 @@ const Scrollable: React.FC<CardsPreviewProps> = ({ emetor, cardTitle }) => {
         </button>
       </div>
       <div
-        className="cardContainer rounded-r min-w-282 ml-3 mt-4 w-282 h-181 addBorder-l border-l-3 border-private-investors p-4 bg-research-card-preview
+        className="container rounded-r min-w-282 ml-3 mt-4 w-282 h-181 addBorder-l border-l-3 border-private-investors p-4 bg-research-card-preview
                      flex flex-col
                      hover:scale-y-115 hover:shadow-2xl
                      transform transition ease-out duration-200 
@@ -121,7 +121,7 @@ const Scrollable: React.FC<CardsPreviewProps> = ({ emetor, cardTitle }) => {
         </button>
       </div>
       <div
-        className="cardContainer rounded-r min-w-282 ml-3 mt-4 w-282 h-181 addBorder-l border-l-3 border-private-investors p-4 bg-research-card-preview
+        className="container rounded-r min-w-282 ml-3 mt-4 w-282 h-181 addBorder-l border-l-3 border-private-investors p-4 bg-research-card-preview
                      flex flex-col
                      hover:scale-y-115 hover:shadow-2xl
                      transform transition ease-out duration-200 
@@ -148,7 +148,7 @@ const Scrollable: React.FC<CardsPreviewProps> = ({ emetor, cardTitle }) => {
         </button>
       </div>
       <div
-        className="cardContainer rounded-r min-w-282 ml-3 mt-4 w-282 h-181 addBorder-l border-l-3 border-private-investors p-4 bg-research-card-preview
+        className="container rounded-r min-w-282 ml-3 mt-4 w-282 h-181 addBorder-l border-l-3 border-private-investors p-4 bg-research-card-preview
                      flex flex-col
                      hover:scale-y-115 hover:shadow-2xl
                      transform transition ease-out duration-200 
@@ -175,7 +175,7 @@ const Scrollable: React.FC<CardsPreviewProps> = ({ emetor, cardTitle }) => {
         </button>
       </div>
       <div
-        className="cardContainer rounded-r min-w-282 ml-3 mt-4 w-282 h-181 addBorder-l border-l-3 border-private-investors p-4 bg-research-card-preview
+        className="container rounded-r min-w-282 ml-3 mt-4 w-282 h-181 addBorder-l border-l-3 border-private-investors p-4 bg-research-card-preview
                      flex flex-col
                      hover:scale-y-115 hover:shadow-2xl
                      transform transition ease-out duration-200 
@@ -202,7 +202,7 @@ const Scrollable: React.FC<CardsPreviewProps> = ({ emetor, cardTitle }) => {
         </button>
       </div>
       <div
-        className="cardContainer rounded-r min-w-282 ml-3 mt-4 w-282 h-181 addBorder-l border-l-3 border-private-investors p-4 bg-research-card-preview
+        className="container rounded-r min-w-282 ml-3 mt-4 w-282 h-181 addBorder-l border-l-3 border-private-investors p-4 bg-research-card-preview
                      flex flex-col
                      hover:scale-y-115 hover:shadow-2xl
                      transform transition ease-out duration-200 
@@ -229,7 +229,7 @@ const Scrollable: React.FC<CardsPreviewProps> = ({ emetor, cardTitle }) => {
         </button>
       </div>
       <div
-        className="cardContainer rounded-r min-w-282 ml-3 mt-4 w-282 h-181 addBorder-l border-l-3 border-private-investors p-4 bg-research-card-preview
+        className="container rounded-r min-w-282 ml-3 mt-4 w-282 h-181 addBorder-l border-l-3 border-private-investors p-4 bg-research-card-preview
                      flex flex-col
                      hover:scale-y-115 hover:shadow-2xl
                      transform transition ease-out duration-200 
@@ -256,7 +256,7 @@ const Scrollable: React.FC<CardsPreviewProps> = ({ emetor, cardTitle }) => {
         </button>
       </div>
       <div
-        className="cardContainer rounded-r min-w-282 ml-3 mt-4 w-282 h-181 addBorder-l border-l-3 border-private-investors p-4 bg-research-card-preview
+        className="container rounded-r min-w-282 ml-3 mt-4 w-282 h-181 addBorder-l border-l-3 border-private-investors p-4 bg-research-card-preview
                      flex flex-col
                      hover:scale-y-115 hover:shadow-2xl
                      transform transition ease-out duration-200 
@@ -283,7 +283,7 @@ const Scrollable: React.FC<CardsPreviewProps> = ({ emetor, cardTitle }) => {
         </button>
       </div>
       <div
-        className="cardContainer rounded-r min-w-282 ml-3 mt-4 w-282 h-181 addBorder-l border-l-3 border-private-investors p-4 bg-research-card-preview
+        className="container rounded-r min-w-282 ml-3 mt-4 w-282 h-181 addBorder-l border-l-3 border-private-investors p-4 bg-research-card-preview
                      flex flex-col
                      hover:scale-y-115 hover:shadow-2xl
                      transform transition ease-out duration-200 
@@ -310,7 +310,7 @@ const Scrollable: React.FC<CardsPreviewProps> = ({ emetor, cardTitle }) => {
         </button>
       </div>
       <div
-        className="cardContainer rounded-r min-w-282 ml-3 mt-4 w-282 h-181 addBorder-l border-l-3 border-private-investors p-4 bg-research-card-preview
+        className="container rounded-r min-w-282 ml-3 mt-4 w-282 h-181 addBorder-l border-l-3 border-private-investors p-4 bg-research-card-preview
                      flex flex-col
                      hover:scale-y-115 hover:shadow-2xl
                      transform transition ease-out duration-200 
@@ -337,7 +337,7 @@ const Scrollable: React.FC<CardsPreviewProps> = ({ emetor, cardTitle }) => {
         </button>
       </div>
       <div
-        className="cardContainer rounded-r min-w-282 ml-3 mt-4 w-282 h-181 addBorder-l border-l-3 border-private-investors p-4 bg-research-card-preview
+        className="container rounded-r min-w-282 ml-3 mt-4 w-282 h-181 addBorder-l border-l-3 border-private-investors p-4 bg-research-card-preview
                      flex flex-col
                      hover:scale-y-115 hover:shadow-2xl
                      transform transition ease-out duration-200 
@@ -364,7 +364,7 @@ const Scrollable: React.FC<CardsPreviewProps> = ({ emetor, cardTitle }) => {
         </button>
       </div>
       <div
-        className="cardContainer rounded-r min-w-282 ml-3 mt-4 w-282 h-181 addBorder-l border-l-3 border-private-investors p-4 bg-research-card-preview
+        className="container rounded-r min-w-282 ml-3 mt-4 w-282 h-181 addBorder-l border-l-3 border-private-investors p-4 bg-research-card-preview
                      flex flex-col
                      hover:scale-y-115 hover:shadow-2xl
                      transform transition ease-out duration-200 
@@ -391,7 +391,7 @@ const Scrollable: React.FC<CardsPreviewProps> = ({ emetor, cardTitle }) => {
         </button>
       </div>
       <div
-        className="cardContainer rounded-r min-w-282 ml-3 mt-4 w-282 h-181 addBorder-l border-l-3 border-private-investors p-4 bg-research-card-preview
+        className="container rounded-r min-w-282 ml-3 mt-4 w-282 h-181 addBorder-l border-l-3 border-private-investors p-4 bg-research-card-preview
                      flex flex-col
                      hover:scale-y-115 hover:shadow-2xl
                      transform transition ease-out duration-200 
@@ -418,7 +418,7 @@ const Scrollable: React.FC<CardsPreviewProps> = ({ emetor, cardTitle }) => {
         </button>
       </div>
       <div
-        className="cardContainer rounded-r min-w-282 ml-3 mt-4 w-282 h-181 addBorder-l border-l-3 border-private-investors p-4 bg-research-card-preview
+        className="container rounded-r min-w-282 ml-3 mt-4 w-282 h-181 addBorder-l border-l-3 border-private-investors p-4 bg-research-card-preview
                      flex flex-col
                      hover:scale-y-115 hover:shadow-2xl
                      transform transition ease-out duration-200 

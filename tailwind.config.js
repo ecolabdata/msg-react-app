@@ -3,6 +3,16 @@ module.exports = {
   purge: ['./public/**/*.html', './src/**/*.{js,jsx,ts,tsx,}'],
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '1rem',
+        sm: '2rem',
+        lg: '4rem',
+        xl: '5rem',
+        '2xl': '6rem'
+      }
+    },
     extend: {
       width: {
         55: '55%',
@@ -110,6 +120,17 @@ module.exports = {
             hover: '#fa9293',
             active: '#fbabac',
             lightBackground: '#2D0405'
+          }
+        },
+
+        // Startup
+        'green-menthe-moon': {
+          652: {
+            DEFAULT: '#4EC8AE',
+            hover: '#4EC8AE',
+            active: '#4EC8AE',
+            lightBackground: '#1A2624',
+            text: '#4EC8AE'
           }
         },
 

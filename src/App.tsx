@@ -56,9 +56,7 @@ const Router = () => {
         <JwtAuthProvider>
           <TrackPage />
           <Routes>
-            <Route path="*" element={<AuthRequiredWall />}>
-              <Route path="*" element={<Authentified />} />
-            </Route>
+            <Route path="*" element={<Authentified />} />
           </Routes>
         </JwtAuthProvider>
       </ApplicationContext.Provider>

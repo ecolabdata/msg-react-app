@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react';
 import { Link, LinkProps, useLocation } from 'react-router-dom';
 import useCheckMobileScreen from '../hooks/useCheckMobileScreen';
-import ExternalLink from './customComponents/ExternalLink';
+import ExternalLink from './Core/ExternalLink';
 
 interface NavigationMenuProps {
   isBurgerMenuOpen: boolean;
@@ -15,7 +15,7 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({ isBurgerMenuOpen }) => 
       {(!isMobile || (isMobile && isBurgerMenuOpen)) && (
         <div className="fr-header shadow-header bg-grey-75">
           <div className="fr-header__body">
-            <div className="fr-container ">
+            <div className="container ">
               <div className="flex">
                 <nav
                   className="fr-nav md:self-start md:w-full flex-1"

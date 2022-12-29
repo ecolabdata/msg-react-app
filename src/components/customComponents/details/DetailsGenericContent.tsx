@@ -1,22 +1,34 @@
-import { isProjetAchat, isStartup, ProjetAchat, Startup } from '../../../api/Api';
+import Container from 'components/Core/Container';
+import {
+  Aide,
+  Investisseur,
+  isAide,
+  isInvestisseur,
+  isProjetAchat,
+  isStartup,
+  ProjetAchat,
+  Startup
+} from '../../../api/Api';
 import ContactArea from './ContactArea';
 import { ForecastedBuyInformations } from './ForecastedBuyInformations';
+import HelpPage from './HelpInformations';
+import InvestorInformation from './InvestorInformations';
 import { StartupInformations } from './StartupInformations';
 
 interface DetailsGenericContentProps {
-  card: Startup | ProjetAchat;
+  card: Startup | ProjetAchat | Aide | Investisseur;
 }
 
 const DetailsGenericContent: React.FC<DetailsGenericContentProps> = ({ card }) => {
   return (
     <>
-      <div className="flex flex-col sm:flex-row">
-        {isStartup(card) && <StartupInformations card={card} className="w-full sm:w-[70%]" />}
-        {isProjetAchat(card) && (
-          <ForecastedBuyInformations className="w-full sm:w-[70%]" card={card} />
-        )}
-        <ContactArea className="w-full sm:w-[30%] ml-4" card={card} />
-      </div>
+      <Container customClasses="grid grid-cols-1 sm:grid-cols-3 gap-8">
+        {isStartup(card) && <StartupInformations card={card} className="sm:col-span-2" />}
+        {isProjetAchat(card) && <ForecastedBuyInformations card={card} className="sm:col-span-2" />}
+        {isAide(card) && <HelpPage className="sm:col-span-2" card={card} />}
+        {isInvestisseur(card) && <InvestorInformation className="sm:col-span-2" card={card} />}
+        <ContactArea card={card} />
+      </Container>{' '}
     </>
   );
 };

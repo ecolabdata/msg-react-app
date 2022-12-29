@@ -1,17 +1,16 @@
 import { Link } from 'react-router-dom';
-import ExternalLink from './customComponents/ExternalLink';
+import ExternalLink from './Core/ExternalLink';
 
 const Footer: React.FC = () => {
   return (
     <>
       <footer className="fr-footer relative mt-8" role="contentinfo" id="footer">
-        <div className="fr-container dsfr-lg:relative">
+        <div className="container dsfr-lg:relative">
           <div className="fr-footer__body">
             <div className="fr-footer__brand fr-enlarge-link">
               <Link
                 to="/"
-                title="Ministère de la transition écologique et de la cohésion des territoires - Retour à l’accueil"
-              >
+                title="Ministère de la transition écologique et de la cohésion des territoires - Retour à l’accueil">
                 <p className="fr-logo uppercase">
                   ministère <br />
                   de la transition <br />
@@ -75,39 +74,37 @@ const Footer: React.FC = () => {
           <div className="fr-footer__bottom">
             <ul className="fr-footer__bottom-list">
               <li className="fr-footer__bottom-item">
-                <span className=" text-grey-625 font-bold text-xs">
-                  Accessibilité : Non conforme
-                </span>
+                <Link
+                  className="fr-footer__bottom-link text-grey-625 font-bold text-xs text-grey-625 font-bold text-xs"
+                  to="/legal/accessibility">
+                  Accessibilité
+                </Link>
               </li>
               <li className="fr-footer__bottom-item">
                 <Link
                   className="fr-footer__bottom-link text-grey-625 font-bold text-xs text-grey-625 font-bold text-xs"
-                  to="/plan-du-site"
-                >
+                  to="/plan-du-site">
                   Plan du site
                 </Link>
               </li>
               <li className="fr-footer__bottom-item">
                 <Link
                   className="fr-footer__bottom-link text-grey-625 font-bold text-xs"
-                  to="/legal/legal-notices"
-                >
+                  to="/legal/legal-notices">
                   Mentions légales
                 </Link>
               </li>
               <li className="fr-footer__bottom-item">
                 <Link
                   className="fr-footer__bottom-link text-grey-625 font-bold text-xs"
-                  to="/legal/gdpr"
-                >
+                  to="/legal/gdpr">
                   Données personnelles
                 </Link>
               </li>
               <li className="fr-footer__bottom-item">
                 <Link
                   className="fr-footer__bottom-link text-grey-625 font-bold text-xs"
-                  to="/legal/cookies"
-                >
+                  to="/legal/cookies">
                   Gestion des cookies
                 </Link>
               </li>

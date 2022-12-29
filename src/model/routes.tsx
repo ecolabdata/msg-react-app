@@ -9,25 +9,65 @@ import HomeByProfile from '../components/page/HomeByProfile';
 import LegalNotices from '../components/page/LegalNoticesPage';
 import Page404 from '../components/page/Page404';
 import Sitemap from '../components/page/Sitemap';
-import { all as allCardType } from './CardType';
+import {
+  achatPrevi,
+  acheteurPublic,
+  aideClient,
+  aideFin,
+  aideInno,
+  all as allCardType,
+  CardType,
+  investisseur,
+  retex,
+  sourcingSu,
+  startups,
+  achatProg
+} from './CardType';
 
 import PageLayout from '../components/page/PageLayout';
+import TestApiV2 from '../components/TestApiV2';
+import { AideSearchPage } from 'components/page/search/AidesSearchPage';
+import { InvestisseurSearchPage } from 'components/page/search/InvestisseurSearchPage';
+import { StartupSearchPage } from 'components/page/search/StartupSearchPage';
+import { ProjetAchatSearchPage } from 'components/page/search/ProjetAchatSearchPage';
+import { ActeurPublicSearchPage } from 'components/page/search/ActeurPublicSearchPage';
+import React from 'react';
+
+function buildSearchRoute(
+  cardType: CardType,
+  Elem: React.FC<{ cardType: CardType }>
+): React.ReactFragment {
+  return (
+    <>
+      <Route path={cardType.searchLink} element={<Elem cardType={cardType} />} />
+      <Route path={cardType.searchLink + '/search'} element={<Elem cardType={cardType} />} />
+    </>
+  );
+}
 
 export const routes = (
   <Routes>
     <Route element={<PageLayout />}>
       <Route path="/" element={<Home />} />
+      <Route path="/test-apiv2" element={<TestApiV2 />} />
       <Route path="/startup" element={<HomeByProfile profile="startup" />} />
       <Route path="/acteurs-publics" element={<HomeByProfile profile="publicActor" />} />
-      {allCardType.map((cardType) => (
-        <>
-          <Route path={cardType.searchLink} element={<SearchPage cardType={cardType} />} />
-          <Route
-            path={cardType.searchLink + '/search'}
-            element={<SearchPage cardType={cardType} />}
-          />
-          <Route path={`/${cardType.name}/details/:id`} element={<Details />} />
-        </>
+      {buildSearchRoute(aideClient, AideSearchPage)}
+      {buildSearchRoute(aideInno, AideSearchPage)}
+      {buildSearchRoute(aideFin, AideSearchPage)}
+      {buildSearchRoute(investisseur, InvestisseurSearchPage)}
+      {buildSearchRoute(startups, StartupSearchPage)}
+      {buildSearchRoute(sourcingSu, StartupSearchPage)}
+      {buildSearchRoute(acheteurPublic, ActeurPublicSearchPage)}
+      {buildSearchRoute(retex, ActeurPublicSearchPage)}
+      {buildSearchRoute(achatPrevi, ProjetAchatSearchPage)}
+      {buildSearchRoute(achatProg, ProjetAchatSearchPage)}
+      {allCardType.map((cardType, i) => (
+        <Route
+          key={i}
+          path={`/${cardType.name}/details/:id`}
+          element={<Details cardType={cardType} />}
+        />
       ))}
       <Route path="/legal">
         <Route path="legal-notices" element={<LegalNotices />} />

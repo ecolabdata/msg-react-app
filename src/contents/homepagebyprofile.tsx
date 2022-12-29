@@ -1,5 +1,5 @@
 import { publicActorPersona, startupPersona } from '../model/CardType';
-import ExternalLink from '../components/customComponents/ExternalLink';
+import ExternalLink from '../components/Core/ExternalLink';
 
 const homePageContent = {
   startup: {
@@ -7,22 +7,22 @@ const homePageContent = {
     cards: startupPersona,
     mainContent: {
       title: 'Start-up greentech, trouvez des leviers pour booster votre développement ! ',
-      description: 'Trouvez des pistes pour accéder plus facilement à la commande publique !'
+      description: 'Trouvez des ressources autour des 5 axes suivants'
     },
     ctaBlocs: [
       {
         title: 'Parlez la même langue que les acheteurs publics !',
         description:
-          'Téléchargez notre template d’argumentaire innovation qui vous permettra de valoriser votre solution auprès des acheteurs publics !',
+          'Téléchargez notre modèle d’argumentaire innovation qui vous permettra de valoriser votre solution auprès des acheteurs publics !',
 
         cta: {
-          name: "Télécharger le template d'argumentaire",
+          name: "Télécharger le modèle d'argumentaire",
           url: 'https://drive.google.com/uc?export=download&id=1tFbq0duIZauZPTekjfJXFPylT96LHmNL',
           icon: 'download'
         },
         links: [
           {
-            name: 'Voir le guide pratique des achats innovants',
+            name: 'Voir le guide pratique achats innovants',
             url: 'https://www.economie.gouv.fr/files/2020-08/guide-pratique-achat-public-innovant.pdf'
           },
           {
@@ -78,8 +78,7 @@ const homePageContent = {
       description: (
         <>
           Très bonne idée ! Pour accentuer votre visibilité auprès des acheteurs publics et de
-          l’écosystème Greentech Innovation, enregistrer vos recherches et recevoir des alertes,
-          remplissez
+          l’écosystème Greentech, remplissez
           <ExternalLink
             href="https://airtable.com/shrY73vlVka9j2cg8"
             content="ce formulaire d’inscription"
@@ -108,19 +107,15 @@ const homePageContent = {
         links: [{ name: 'Rapidd', url: 'https://rapidd.developpement-durable.gouv.fr/' }]
       },
       {
+        title: 'Aides',
+        description:
+          'Obtenez un accompagnement pour intégrer des considérations environnementales dans vos  achats.',
+        links: [{ name: 'Le guichet vert', url: 'https://laclauseverte.fr/le-guichet-vert/' }]
+      },
+      {
         title: 'Financements',
         description: 'Trouvez des aides pour financer vos achats responsables',
         links: [{ name: 'Aides Territoires', url: 'https://aides-territoires.beta.gouv.fr/' }]
-      },
-      {
-        title: 'Achats programmés',
-        description: 'Publiez vos projets, entrez en contact avec des entreprises',
-        links: [
-          {
-            name: 'Approch',
-            url: 'https://projets-achats.marches-publics.gouv.fr/#'
-          }
-        ]
       },
       {
         title: 'Clause',
@@ -143,8 +138,18 @@ const homePageContent = {
         ]
       },
       {
-        title: 'Label Ville durable innovante',
-        description: 'Informations sur le label porté par le Cerema et Efficacity',
+        title: 'Achats programmés',
+        description: 'Publiez vos projets, entrez en contact avec des entreprises',
+        links: [
+          {
+            name: 'Approch',
+            url: 'https://projets-achats.marches-publics.gouv.fr/#'
+          }
+        ]
+      },
+      {
+        title: 'Labels',
+        description: 'Informations sur les labels valorisant votre politique d’achats durables',
         links: [
           {
             name: 'Label VDI',

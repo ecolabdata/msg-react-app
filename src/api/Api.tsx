@@ -10,6 +10,7 @@ import {
   startups
 } from '../model/CardType';
 import mockApiResponse from './mock_api_resp.json';
+import { StartupV2 as StartupV2, CollectiviteV2 as CollectiviteV2 } from 'api2/Api';
 
 export const buildId = (obj: any) => sha1(canonicalize(obj)).slice(0, 8);
 
@@ -23,7 +24,7 @@ export const cardTypeNames = [
 ] as const;
 export type CardTypeName = typeof cardTypeNames[number];
 
-type GeneratedData = { id: string; cardTypeName: string };
+type GeneratedData = { id: string; cardTypeName: string; url?: string };
 /*
 cardType list
 https://www.notion.so/messervicesgreentech/0290b8c9cfd4437b8f9ee8bb9ee697ee?v=94b3a82bc59243e5b99ed4574bf8407f
@@ -35,13 +36,13 @@ export type Aide = Omit<
 > &
   GeneratedData;
 
-export type Collectivite = typeof mockApiResponse.cards.collectivites[number] & GeneratedData; //Deduced from DECP
+export type Collectivite = CollectiviteV2 & GeneratedData;
 
-export type ProjetAchat = typeof mockApiResponse.cards.projets_achats[number] & GeneratedData; //deduced from DECP
+export type ProjetAchat = typeof mockApiResponse.cards.projets_achats[number] & GeneratedData;
 
-export type Investisseur = typeof mockApiResponse.cards.investisseurs[number] & GeneratedData; //From GI file
+export type Investisseur = typeof mockApiResponse.cards.investisseurs[number] & GeneratedData;
 
-export type Startup = typeof mockApiResponse.cards.startups[number] & GeneratedData; //From GI file
+export type Startup = StartupV2 & GeneratedData;
 
 export type AnyCard = Aide | ProjetAchat | Collectivite | Investisseur | Startup;
 
@@ -83,22 +84,10 @@ export function applyCard<T>(
 }
 
 function handleResp(
-  query:
-    | Query
-    | InvestisseurQuery
-    | AidesClientQuery
-    | AidesInnoQuery
-    | ForecastedBuyQuery
-    | StartupQuery
-    | PublicBuyQuery,
+  query: Query | InvestisseurQuery | AidesClientQuery | AidesInnoQuery | ForecastedBuyQuery,
   resp: ApiResponse
 ) {
   const cards = {
-    collectivites: !resp.cards.collectivites
-      ? []
-      : resp.cards.collectivites.map((x) => {
-          return { ...x, id: buildId(x), cardTypeName: acheteurPublic.name };
-        }),
     projets_achats: resp.cards.projets_achats.map((x) => {
       return { ...x, id: buildId(x), cardTypeName: achatPrevi.name };
     }),
@@ -116,17 +105,9 @@ function handleResp(
       ? []
       : resp.cards.aides_innovation.map((x) => {
           return { ...x, id: buildId(x), cardTypeName: aideInno.name };
-        }),
-    startups: !resp.cards.startups
-      ? []
-      : resp.cards.startups.map((x) => {
-          return { ...x, id: buildId(x), cardTypeName: startups.name };
         })
   };
-  const cardsById = Object.fromEntries(
-    allCardType.flatMap((x): AnyCard[] => cards[x.apiName]).map((x) => [x.id, x])
-  );
-  return { query, cardsById, cards };
+  return { query, cards };
 }
 
 function buildFetchRequest(params: any) {

@@ -1,21 +1,17 @@
-import { AnyCard, isAcheteurPublic, isProjetAchat, isStartup } from '../../../api/Api';
+import Container from 'components/Core/Container';
+import getSources from 'contents/genericSources';
+import { AnyCard } from '../../../api/Api';
+import CopieLink from '../../Core/CopieLink';
 
 interface DetailsFooterProps {
   card: AnyCard;
 }
 
 const DetailsFooter: React.FC<DetailsFooterProps> = ({ card }) => {
-  const handleCopy = (textToCopy: string) => {
-    if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
-      return navigator.clipboard.writeText(textToCopy);
-    } else {
-      return Promise.reject('The Clipboard API is not available.');
-    }
-  };
-  const sources = getSources(card);
+  const sources = getSources(card.cardTypeName);
 
   return (
-    <section className="my-16">
+    <Container>
       <p>
         Sources de la donnée :{' '}
         <span>
@@ -26,39 +22,12 @@ const DetailsFooter: React.FC<DetailsFooterProps> = ({ card }) => {
           ))}
         </span>
       </p>
-      <div className="my-8">
-        <p>Partager la page</p>
-        <button
-          className="fr-btn fr-btn--tertiary-no-outline fr-fi-checkbox-circle-line fr-btn--icon-left mt-8"
-          onClick={() => handleCopy(window.location.href)}
-        >
-          Copier le lien
-        </button>
+      <div className="text-xl mb-5 font-bold mt-10">
+        <h2 className="mb-3">Partager la page</h2>
+        <CopieLink />
       </div>
-    </section>
+    </Container>
   );
 };
 
 export default DetailsFooter;
-
-const getSources = (card: AnyCard) => {
-  if (isAcheteurPublic(card)) {
-    return [
-      { label: 'DECP', url: '' },
-      { label: 'OECP', url: '' },
-      { label: 'catalogue Greentech Innovation', url: '' }
-    ];
-  }
-  if (isStartup(card)) {
-    return [
-      { label: 'Annuaire Greentech Innovation', url: '' },
-      { label: 'Lauréats Solar Impulse', url: '' },
-      { label: 'Ecolabel Européen', url: '' },
-      { label: 'French Tech Green20', url: '' }
-    ];
-  }
-
-  if (isProjetAchat(card)) {
-    return [{ label: 'APProch', url: '' }];
-  }
-};

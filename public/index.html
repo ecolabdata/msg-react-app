@@ -48,6 +48,9 @@
         // https://next.msg.greentechinnovation.fr/
         _paq.push(['setSiteId', '1508']);
         console.log({ setSiteId: '1508' })
+      } else if(['mes-services-greentech.ecologie.gouv.fr'].includes(window.location.hostname)) {
+        _paq.push(['setSiteId', '1542']);
+        console.log({ setSiteId: '1542' })
       } else {
         // URL alpha => "Internet Alpha Mes Services Greentech" avec Id Matomo : 1509
         // https://messervices.greentechinnovation.fr/

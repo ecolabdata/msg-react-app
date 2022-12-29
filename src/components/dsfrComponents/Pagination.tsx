@@ -1,10 +1,10 @@
 import { Link, NavLink } from 'react-router-dom';
 import { InitialState } from '../../utils/InitialState';
 interface PaginationProps {
-  baseUrl: string;
+  baseUrl: string | ((pageno: number) => string);
   currentPageNo: number;
   nbPage: number;
-  initialState: InitialState;
+  initialState?: InitialState;
   onClick?: React.MouseEventHandler<HTMLAnchorElement> | undefined;
   isLoading?: boolean;
 }
@@ -45,7 +45,8 @@ const Pagination: React.FC<PaginationProps> = ({
           ) : (
             <Link
               onClick={onClick}
-              to={baseUrl}
+              preventScrollReset={true}
+              to={applyPage(baseUrl, currentPageNo - 1)}
               state={{ ...initialState, page: currentPageNo - 1 }}
               className="fr-pagination__link rounded-full fr-pagination__link--prev fr-pagination__link--lg-label"
               role="link"
@@ -60,7 +61,8 @@ const Pagination: React.FC<PaginationProps> = ({
           <li key={`Page ${generatedPageNo}`}>
             <NavLink
               onClick={onClick}
-              to={baseUrl}
+              preventScrollReset={true}
+              to={applyPage(baseUrl, generatedPageNo)}
               className="fr-pagination__link rounded-full"
               role="link"
               title={`Page ${generatedPageNo}`}
@@ -85,7 +87,8 @@ const Pagination: React.FC<PaginationProps> = ({
           ) : (
             <Link
               onClick={onClick}
-              to={baseUrl}
+              preventScrollReset={true}
+              to={applyPage(baseUrl, currentPageNo + 1)}
               className="fr-pagination__link rounded-full fr-pagination__link--next fr-pagination__link--lg-label"
               role="link"
               replace={true}
@@ -99,5 +102,14 @@ const Pagination: React.FC<PaginationProps> = ({
     </nav>
   );
 };
+
+function applyPage(baseUrl: string | ((pageno: number) => string), pageno : number) {
+  if (typeof baseUrl === 'string') {
+    return baseUrl
+  } else {
+    return baseUrl(pageno)
+  }
+}
+
 
 export default Pagination;

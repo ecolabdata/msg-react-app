@@ -1,21 +1,31 @@
 import { useState } from 'react';
-import { AnyCard, isAcheteurPublic, isProjetAchat, isStartup } from '../../../api/Api';
-import ExternalLink from '../ExternalLink';
+import { getGreenTechData } from 'utils/utilityFunctions';
+import {
+  AnyCard,
+  isAcheteurPublic,
+  isAide,
+  isInvestisseur,
+  isProjetAchat,
+  isStartup
+} from 'api/Api';
+import ExternalLink from '../../Core/ExternalLink';
 
 interface ContactAreaProps {
   card: AnyCard;
   className?: string;
 }
 
+const someNotNull = (x: Record<string, any>) => Object.values(x).find((x) => x != null);
+
 const ContactArea: React.FC<ContactAreaProps> = ({ card, className }) => {
-  const { title, content, cta, link } = normalizeContactInformations(card);
+  const { title, content, cta, link, secondaryCta } = normalizeContactInformations(card);
   const [showContact, setShowContact] = useState(false);
 
   return (
-    <section className={`flex flex-col ${className}`}>
+    <div className={`flex flex-col ${className}`}>
       <h2 className="text-2xl mb-4">{title}</h2>
       <p>{content}</p>
-      {cta?.contact ? (
+      {cta?.contact && someNotNull(cta?.contact) ? (
         <>
           {!showContact && (
             <button
@@ -34,11 +44,12 @@ const ContactArea: React.FC<ContactAreaProps> = ({ card, className }) => {
           )}
         </>
       ) : (
-        cta && (
+        cta &&
+        cta.url && (
           <ExternalLink
             href={cta.url}
             content={cta.label}
-            className="fr-btn fr-btn--primary w-fit px-4 h-3 py-2 hover:bg-claire-bf__hover mt-6"
+            className="fr-btn fr-btn--primary w-fit  px-4 h-3 py-2 hover:bg-claire-bf__hover mt-6"
           />
         )
       )}
@@ -49,13 +60,54 @@ const ContactArea: React.FC<ContactAreaProps> = ({ card, className }) => {
           className="fr-link rm-link-underline mt-2"
         />
       )}
-    </section>
+      {secondaryCta && secondaryCta.url && (
+        <ExternalLink
+          href={secondaryCta.url}
+          content={secondaryCta.label}
+          className="fr-btn fr-btn--secondary w-fit px-4 h-fit py-2 hover:bg-claire-bf__hover mt-6"
+        />
+      )}
+    </div>
   );
 };
 
 export default ContactArea;
 
 const normalizeContactInformations = (card: AnyCard) => {
+  if (isInvestisseur(card)) {
+    return {
+      title: 'Contact et détails',
+      content: `${card.Prenom} ${card.Nom}`,
+      cta: {
+        label: 'Voir la fiche et le contact',
+        icon: 'mail',
+        contact: {
+          phone: card.TELEPHONE_FIXE,
+          mail: card.Email
+        }
+      },
+      secondaryCta: {
+        label: 'Voir le porfolio complet',
+        url: card.Site_Web
+      }
+    };
+  }
+
+  if (isAide(card)) {
+    return {
+      title: 'Contact',
+      content: 'Relais locaux',
+      cta: {
+        label: "Lien vers l'aide originale",
+        url: card.origin_url
+      },
+      secondaryCta: {
+        label: 'Lien vers la démarche en ligne',
+        url: card.application_url
+      }
+    };
+  }
+
   if (isAcheteurPublic(card)) {
     return {
       title: 'Contact',
@@ -68,19 +120,20 @@ const normalizeContactInformations = (card: AnyCard) => {
     };
   }
   if (isStartup(card)) {
+    const greenTechData = getGreenTechData(card);
+
     return {
       title: 'Contact et détails',
-      content: card['Start-up'],
+      content: card['NOM'],
       cta: {
         label: 'Voir le contact',
         icon: 'mail',
         contact: {
-          mail: card.Mail,
-          linkedIn: card.LinkedIn,
-          phone: card.Téléphone
+          mail: greenTechData?.Mail,
+          linkedIn: greenTechData?.LinkedIn
         }
       },
-      link: card['Site internet']
+      link: greenTechData && greenTechData['Site internet']
     };
   }
 

@@ -1,23 +1,25 @@
+import Container from 'components/Core/Container';
+import Heading from 'components/Core/Heading';
 import { useContext, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AidesQuery, AnyCard, Search } from '../../api/Api';
 import { ApplicationContext } from '../../App';
-import { useAdvancedFilters } from '../customComponents/filter/filters';
 import { CardType } from '../../model/CardType';
 import { InitialState } from '../../utils/InitialState';
 import AdvancedFilters from '../customComponents/filter/AdvancedFilters';
-
+import { FilterProperties } from '../customComponents/filter/filters';
 import SearchForm from '../customComponents/SearchForm';
-import Pagination from '../dsfrComponents/Pagination';
 import SearchResults from '../customComponents/SearchResults';
+import Pagination from '../dsfrComponents/Pagination';
 
 type Props = {
   cardType: CardType;
+  children: (card: AnyCard, i: number, isLoading: boolean) => React.ReactNode;
+  usedAdvancedFilter: FilterProperties;
 };
 
-export const SearchPage: React.FC<Props> = ({ cardType }) => {
-  const { initialValues, searchByType, handleFilter, filters } = useAdvancedFilters(cardType.name);
-
+export const SearchPage: React.FC<Props> = ({ cardType, children, usedAdvancedFilter }) => {
+  const { initialValues, searchByType, handleFilter, filters } = usedAdvancedFilter;
   const { usedNextScrollTarget } = useContext(ApplicationContext);
   const [, setNextScrollTarget] = usedNextScrollTarget;
   const location = useLocation();
@@ -71,6 +73,7 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
         setCards(filteredCards);
         return navigate(cardType.searchLink, {
           replace: true,
+          preventScrollReset: true,
           state: { search, results: filteredCards }
         });
       });
@@ -81,14 +84,10 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
   };
 
   return (
-    <div className="md:mx-16 md:mt-8">
-      <div
-        className="headContainer  container mb-20 mx-auto max-w-headerSize
-            xl:mx-auto
-            "
-      >
+    <Container>
+      <div>
         <div className="cardTitleAndLogo p-2 text-base">
-          <h2 className="w-fit font-bold text-2xl md:text-4xl md:flex md:items-center ">
+          <Heading level={2} customClasses="w-fit md:flex md:items-center " align="left">
             <div className="flex items-center ">
               <cardType.SVGLogo
                 width="80"
@@ -100,25 +99,24 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
               {cardType.title} &nbsp;{' '}
             </div>
             <span className="bg-yellow md:text-3xl font-light">{`(${cards.length} résultats)`}</span>
-          </h2>
+          </Heading>
 
-          <p className="mt-2 text-base">{cardType.description}</p>
+          {cardType.description && <p className="mt-2 text-base">{cardType.description}</p>}
         </div>
 
         <div className="flex flex-col items-center w-full px-4 md:px-0">
           <form
             onSubmit={(event) => handleOnSubmitForm(event)}
             id="keywordsForm"
-            className="researchContainer m-auto flex flex-col justify-around flex-wrap h-fit w-full"
-          >
+            className="my-8 flex flex-col justify-around flex-wrap h-fit w-full">
             <fieldset>
-              <legend className="sr-only">Votre projet</legend>
+              <legend className="sr-only">Champs de recherche principaux</legend>
               <SearchForm
                 usedDescription={[description, setDescription]}
                 usedSecteurs={[secteurs, setSecteurs]}
                 usedErrorTextDescription={[errorTxt, setErrorTxt]}
                 usedInListPage={true}
-                color={cardType.color}
+                cardType={cardType}
                 showThematicField={cardType.name !== 'acheteurs-publics'}
               />
             </fieldset>
@@ -128,8 +126,7 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
                   aria-expanded={isAdvancedSearchOpen}
                   type="button"
                   className="ml-auto underline"
-                  onClick={handleToggleAdvancedSearch}
-                >
+                  onClick={handleToggleAdvancedSearch}>
                   Recherche avancée
                 </button>
                 {isAdvancedSearchOpen && (
@@ -144,12 +141,11 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
             )}
           </form>
 
-          <div className="researchButtonsContainer mt-8 w-full flex flex-col items-center justify-center">
+          <div className="container mt-8 w-full flex flex-col items-center justify-center">
             <button
               form="keywordsForm"
               disabled={isLoading}
-              className="mx-3 fr-btn fr-btn--primary  fr-btn--lg"
-            >
+              className="mx-3 fr-btn fr-btn--primary  fr-btn--lg">
               <span className={`mx-auto`}>
                 {isLoading ? 'Chargement...' : 'Valider et rechercher'}
               </span>
@@ -158,8 +154,7 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
               type="button"
               disabled={isLoading}
               onClick={handleResetFilters}
-              className="mt-4 underline"
-            >
+              className="mt-4 underline">
               Réinitialiser
             </button>
           </div>
@@ -167,7 +162,11 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
       </div>
       {initialState && (
         <>
-          <SearchResults cards={cardsSlice} cardType={cardType} isLoading={isLoading} />
+          <SearchResults hitCount={cards.length} isLoading={isLoading}>
+            {cardsSlice.map((card, i) => {
+              return children(card as AnyCard, i, isLoading);
+            })}
+          </SearchResults>
           <Pagination
             isLoading={isLoading && nbPage > 0}
             onClick={() => {
@@ -185,6 +184,6 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
           />
         </>
       )}
-    </div>
+    </Container>
   );
 };

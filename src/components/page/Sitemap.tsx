@@ -53,7 +53,7 @@ const Sitemap = () => {
   });
 
   return (
-    <div className="fr-container">
+    <div className="container">
       <h1 className="my-8 w-full font-bold text-3xl text-center">Plan du site</h1>
       <ul>
         <li key={'/'}>
@@ -64,7 +64,6 @@ const Sitemap = () => {
         </li>
 
         {allRoutesFiltered.map((routes: FormatedRoute[]) => {
-          console.log('routes', routes);
           if (!routes[0]) return;
 
           if (routes.length === 1) {
