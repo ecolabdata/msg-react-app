@@ -73,6 +73,7 @@ export const SearchPage: React.FC<Props> = ({ cardType, children, usedAdvancedFi
         setCards(filteredCards);
         return navigate(cardType.searchLink, {
           replace: true,
+          preventScrollReset: true,
           state: { search, results: filteredCards }
         });
       });

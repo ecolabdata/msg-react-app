@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate  } from 'react-router-dom';
 import { ApplicationContext } from '../../App';
 import { CardType } from '../../model/CardType';
 import AdvancedFilters from '../customComponents/filter/AdvancedFilters';
@@ -18,7 +18,7 @@ type Props<SearchType extends SearchPublicBuyer | SearchStartup> = {
 };
 
 export function buildSearchPageV2<SearchType extends SearchPublicBuyer | SearchStartup>(
-  searchApi: (description: string) => Promise<SearchType>
+  searchApi: (description: string, from : number) => Promise<SearchType>
 ) {
   return ({ cardType, children, usedAdvancedFilter }: Props<SearchType>) => {
     const { initialValues, searchByType, handleFilter, filters } = usedAdvancedFilter;
@@ -26,14 +26,18 @@ export function buildSearchPageV2<SearchType extends SearchPublicBuyer | SearchS
     const [, setNextScrollTarget] = usedNextScrollTarget;
     const navigate = useNavigate();
     const loc = useLocation();
-    const q = new URLSearchParams(loc.search).get('q');
+    const queryParam = new URLSearchParams(loc.search)
+    const q = queryParam.get('q');
+    let page =  Number(queryParam.get('page'));
+    if (isNaN(page) || page === 0 ) page = 1
 
     const [isLoading, setIsLoading] = useState(false);
     const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
     const [description, setDescription] = useState(q || '');
     const [secteurs, setSecteurs] = useState<string[]>([]);
     const [errorTxt, setErrorTxt] = useState('');
-    const pageChunkSize = 20;
+    //The API return 100 results
+    const pageChunkSize = 100;
     const [resp, setResp] = useState<SearchType | null>(null);
     const [filtersValues, setFiltersValues] = useState(initialValues);
 
@@ -52,21 +56,23 @@ export function buildSearchPageV2<SearchType extends SearchPublicBuyer | SearchS
       if (description.length > 0) {
         console.log('Fetching data');
         setIsLoading(true);
-
-        searchApi(description).then((json) => {
+        
+        searchApi(description, (page - 1) * pageChunkSize).then((json) => {
           setResp(json);
           setIsLoading(false);
         });
       } else {
         setResp(null);
       }
-    }, [q]);
+    }, [q, page]);
 
     const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
       if (description.length > 0) {
         setErrorTxt('');
-        navigate({ search: `?q=${description}` });
+        navigate({search: `?q=${description}`},{
+          preventScrollReset: true,
+        });
       } else {
         document?.getElementById('keywordsForm-Décrivez votre projet en quelques lignes.')?.focus();
         setErrorTxt("Erreur: la description de l'entreprise est obligatoire");
@@ -169,8 +175,8 @@ export function buildSearchPageV2<SearchType extends SearchPublicBuyer | SearchS
                     top: element.offsetTop - window.innerHeight * 0.2
                   });
               }}
-              currentPageNo={1}
-              baseUrl={cardType.searchLink}
+              currentPageNo={page}
+              baseUrl={pageno => cardType.searchLink + `?q=${description}&page=${pageno}`}
               nbPage={nbPage}
             />
           </Container>

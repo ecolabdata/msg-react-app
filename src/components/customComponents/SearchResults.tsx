@@ -14,7 +14,7 @@ const SearchResults: React.FC<PropsWithChildren<Props>> = ({ hitCount, isLoading
     setTimeout(() => {
       //time out is used for accessibility purpose (we wait juste a little to have results before focusing list results)
       if (ref?.current && !isLoading) {
-        ref.current.focus();
+        ref.current.focus({preventScroll: true});
         ref.current.scrollIntoView({
           behavior: 'smooth'
         });

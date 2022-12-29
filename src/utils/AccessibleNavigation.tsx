@@ -43,7 +43,7 @@ function AccessibleNavigation() {
         title.focus();
       }
     }, 500);
-  }, [location]);
+  }, [location.pathname]);
 
   return (
     <>
