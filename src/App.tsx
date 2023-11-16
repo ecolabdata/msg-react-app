@@ -15,6 +15,7 @@ import {
   useFavoris
 } from './utils/categoris';
 import { JwtAuthProvider } from './utils/jwt';
+import { ProjetFormContextProvider } from 'components/context/useProjectFormContext';
 
 export const ApplicationContext = createContext<{
   usedFavoris: UsedFavoris;
@@ -52,13 +53,15 @@ const Router = () => {
   return (
     <>
       <ApplicationContext.Provider value={{ usedFavoris, usedCorbeille, usedNextScrollTarget }}>
-        <AccessibleNavigation />
-        <JwtAuthProvider>
-          <TrackPage />
-          <Routes>
-            <Route path="*" element={<Authentified />} />
-          </Routes>
-        </JwtAuthProvider>
+        <ProjetFormContextProvider>
+          <AccessibleNavigation />
+          <JwtAuthProvider>
+            <TrackPage />
+            <Routes>
+              <Route path="*" element={<Authentified />} />
+            </Routes>
+          </JwtAuthProvider>
+        </ProjetFormContextProvider>
       </ApplicationContext.Provider>
     </>
   );

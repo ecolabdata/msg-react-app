@@ -1,193 +1,209 @@
 import Container from 'components/Core/Container';
 import Heading from 'components/Core/Heading';
-import { useContext, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { AidesQuery, AnyCard, Search } from '../../api/Api';
-import { ApplicationContext } from '../../App';
+import { CardTypeName } from '../../api/Api';
 import { CardType } from '../../model/CardType';
-import { InitialState } from '../../utils/InitialState';
-import AdvancedFilters from '../customComponents/filter/AdvancedFilters';
-import { FilterProperties } from '../customComponents/filter/filters';
-import SearchForm from '../customComponents/SearchForm';
+import { SearchState } from '../../utils/InitialState';
 import SearchResults from '../customComponents/SearchResults';
 import Pagination from '../dsfrComponents/Pagination';
+import { useProjetFormContext } from 'components/context/useProjectFormContext';
+import {
+  getCompanies,
+  getCompanyAids,
+  getInvestors,
+  getPublicBuyerAids,
+  getPublicBuyersV2,
+  getPublicPurchases
+} from 'apiv4/services';
+import { useFetch } from 'apiv4/useFetch';
+import { SearchResultItem, isPublicBuyerResultList } from 'apiv4/interfaces/typeguards';
+import { PublicBuyerResults } from 'apiv4/interfaces/publicBuyer';
+import SelectInputOptions from 'components/customComponents/SelectInputOptions';
+import TextAreaInput from 'components/customComponents/TextAreaInput';
+import { ThematicsEnum } from 'model/ThematicsEnum';
+import SearchFieldWrapper from 'components/customComponents/SearchFieldWrapper';
+import { useAdvancedFilters } from 'components/customComponents/filter/filters';
 
 type Props = {
   cardType: CardType;
-  children: (card: AnyCard, i: number, isLoading: boolean) => React.ReactNode;
-  usedAdvancedFilter: FilterProperties;
 };
 
-export const SearchPage: React.FC<Props> = ({ cardType, children, usedAdvancedFilter }) => {
-  const { initialValues, searchByType, handleFilter, filters } = usedAdvancedFilter;
-  const { usedNextScrollTarget } = useContext(ApplicationContext);
-  const [, setNextScrollTarget] = usedNextScrollTarget;
-  const location = useLocation();
-  const initialState = location.state as
-    | (InitialState & { page?: number; montantMin: number })
-    | null;
-  const initialQuery = initialState?.search.query as AidesQuery | null;
-  const initialSearchResults = initialState?.results || [];
-
-  const pageNo = initialState?.page || 1;
+export const SearchPage: React.FC<Props> = ({ cardType }) => {
+  const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
+  const { filters, handleFilter } = useAdvancedFilters(cardType.name);
+  const thematicsValues = Object.values(ThematicsEnum);
   const navigate = useNavigate();
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
-  const [description, setDescription] = useState(initialQuery?.description || '');
-  const [secteurs, setSecteurs] = useState<string[]>(initialQuery?.secteurs || []);
-  const [errorTxt, setErrorTxt] = useState('');
-  const pageChunkSize = 20;
-  const [cards, setCards] = useState<AnyCard[]>(initialSearchResults);
-  const [filtersValues, setFiltersValues] = useState(initialValues);
+  const location = useLocation();
+  const initialState = location.state as SearchState | null;
+  const currentPage = initialState?.page ?? 1;
 
-  const nbPage = Math.ceil(cards.length / pageChunkSize);
-  const cardsSlice = useMemo(
-    () => cards.slice((pageNo - 1) * pageChunkSize, pageNo * pageChunkSize),
-    [cards, pageChunkSize, pageNo]
+  const { description, handleDescriptionChange, thematics, setThematics, error } =
+    useProjetFormContext();
+
+  const fetcher = getFetcher(cardType.apiName);
+  const { url, ...options } = fetcher(
+    buildQueryString(initialState?.search.description, initialState?.search.thematics) ?? ''
   );
 
-  const handleToggleAdvancedSearch = () => {
-    setIsAdvancedSearchOpen(!isAdvancedSearchOpen);
+  const pageChunkSize = 20;
+  const { data: cards, error: apiError } = useFetch<SearchResultItem[] | PublicBuyerResults>(url);
+  const isLoading = !cards && !apiError;
+
+  const count = cards ? getCount(cards) : 0;
+  const results = cards && isPublicBuyerResultList(cards) ? cards.hits : cards;
+
+  const pageNumber = Math.ceil(count / pageChunkSize);
+  const cardsSlice = useMemo(
+    () => results?.slice((currentPage - 1) * pageChunkSize, currentPage * pageChunkSize),
+    [cards, pageChunkSize, currentPage]
+  );
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    navigate(location.pathname, {
+      state: {
+        ...initialState,
+        search: {
+          ...initialState?.search,
+          description,
+          thematics
+        }
+      }
+    });
   };
 
-  const handleResetFilters = () => {
-    setDescription('');
-    setSecteurs([]);
-    setFiltersValues(initialValues);
-  };
-
-  const handleUpdateFilter = (filterName: string, filterValue: string | boolean) => {
-    setFiltersValues({ ...filtersValues, [filterName]: filterValue });
-  };
-
-  const handleOnSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    if (description.length > 0) {
-      setIsLoading(true);
-      setErrorTxt('');
-      searchByType({ description, secteurs, filters: filtersValues }).then((search) => {
-        setIsLoading(false);
-        const filteredCards = handleFilter(search as Search, filtersValues as any);
-        setCards(filteredCards);
-        return navigate(cardType.searchLink, {
-          replace: true,
-          preventScrollReset: true,
-          state: { search, results: filteredCards }
-        });
-      });
-    } else {
-      document?.getElementById('keywordsForm-Décrivez votre projet en quelques lignes.')?.focus();
-      setErrorTxt("Erreur: la description de l'entreprise est obligatoire");
-    }
+  const handleResetForm = () => {
+    handleDescriptionChange('');
+    setThematics([]);
   };
 
   return (
     <Container>
-      <div>
-        <div className="cardTitleAndLogo p-2 text-base">
-          <Heading level={2} customClasses="w-fit md:flex md:items-center " align="left">
-            <div className="flex items-center ">
-              <cardType.SVGLogo
-                width="80"
-                height="80"
-                style={{ color: cardType.color }}
-                aria-hidden={true}
-              />
-              &nbsp;
-              {cardType.title} &nbsp;{' '}
-            </div>
-            <span className="bg-yellow md:text-3xl font-light">{`(${cards.length} résultats)`}</span>
-          </Heading>
-
-          {cardType.description && <p className="mt-2 text-base">{cardType.description}</p>}
-        </div>
-
-        <div className="flex flex-col items-center w-full px-4 md:px-0">
-          <form
-            onSubmit={(event) => handleOnSubmitForm(event)}
-            id="keywordsForm"
-            className="my-8 flex flex-col justify-around flex-wrap h-fit w-full"
-          >
-            <fieldset>
-              <legend className="sr-only">Champs de recherche principaux</legend>
-              <SearchForm
-                usedDescription={[description, setDescription]}
-                usedSecteurs={[secteurs, setSecteurs]}
-                usedErrorTextDescription={[errorTxt, setErrorTxt]}
-                usedInListPage={true}
-                cardType={cardType}
-                showThematicField={cardType.name !== 'acheteurs-publics'}
-              />
-            </fieldset>
-            {filters?.length > 0 && (
-              <div className="flex flex-col mt-4">
-                <button
-                  aria-expanded={isAdvancedSearchOpen}
-                  type="button"
-                  className="ml-auto underline"
-                  onClick={handleToggleAdvancedSearch}
-                >
-                  Recherche avancée
-                </button>
-                {isAdvancedSearchOpen && (
-                  <AdvancedFilters
-                    cardType={cardType}
-                    filters={filters}
-                    setFilters={handleUpdateFilter}
-                    values={filtersValues}
-                  />
-                )}
-              </div>
-            )}
-          </form>
-
-          <div className="container mt-8 w-full flex flex-col items-center justify-center">
-            <button
-              form="keywordsForm"
-              disabled={isLoading}
-              className="mx-3 fr-btn fr-btn--primary  fr-btn--lg"
-            >
-              <span className={`mx-auto`}>
-                {isLoading ? 'Chargement...' : 'Valider et rechercher'}
-              </span>
-            </button>
-            <button
-              type="button"
-              disabled={isLoading}
-              onClick={handleResetFilters}
-              className="mt-4 underline"
-            >
-              Réinitialiser
-            </button>
+      <div className="cardTitleAndLogo p-2 text-base">
+        <Heading level={2} customClasses="w-fit md:flex md:items-center " align="left">
+          <div className="flex items-center ">
+            <cardType.SVGLogo
+              width="80"
+              height="80"
+              style={{ color: cardType.color }}
+              aria-hidden={true}
+            />
+            &nbsp;
+            {cardType.title} &nbsp;{' '}
           </div>
-        </div>
+          <span className="bg-yellow md:text-3xl font-light">{`(${count} résultats)`}</span>
+        </Heading>
+
+        {cardType.description && <p className="mt-2 text-base">{cardType.description}</p>}
       </div>
-      {initialState && (
+
+      <form
+        onSubmit={handleSubmit}
+        id="projectForm"
+        className="my-8 flex flex-col justify-around flex-wrap h-fit w-full">
+        <fieldset>
+          <legend className="sr-only">Champs de recherche principaux</legend>
+          <div className="flex flex-col md:flex-row h-full">
+            <SearchFieldWrapper
+              label="Votre recherche"
+              usedInListPage={true}
+              className={`w-full'md:w-[55%]`}>
+              <TextAreaInput
+                value={description}
+                onValueChange={handleDescriptionChange}
+                error={error}
+                label={cardType?.searchText ?? ''}
+                formId="projectForm"
+                required
+                color={cardType?.color}
+              />
+            </SearchFieldWrapper>
+            <SearchFieldWrapper
+              label="La thématique"
+              usedInListPage={true}
+              className="w-full md:w-[45%]">
+              <SelectInputOptions
+                className="mb-auto"
+                optionsData={thematicsValues}
+                secteurs={thematics}
+                setSecteurs={setThematics}
+                color={cardType?.color}
+              />
+            </SearchFieldWrapper>
+          </div>
+        </fieldset>
+      </form>
+
+      <div className="container mt-8 w-full flex flex-col items-center justify-center">
+        <button
+          form="projectForm"
+          disabled={isLoading || error}
+          className="mx-3 fr-btn fr-btn--primary  fr-btn--lg">
+          <span className={`mx-auto`}>{isLoading ? 'Chargement...' : 'Valider et rechercher'}</span>
+        </button>
+        <button
+          type="button"
+          disabled={isLoading}
+          onClick={handleResetForm}
+          className="mt-4 underline">
+          Réinitialiser
+        </button>
+      </div>
+      {apiError && <p>Erreur</p>}
+      {cardsSlice && (
         <>
-          <SearchResults hitCount={cards.length} isLoading={isLoading}>
-            {cardsSlice.map((card, i) => {
-              return children(card as AnyCard, i, isLoading);
-            })}
-          </SearchResults>
+          <SearchResults
+            hitCount={count}
+            isLoading={isLoading}
+            results={cardsSlice}
+            cardType={cardType}
+          />
+
           <Pagination
-            isLoading={isLoading && nbPage > 0}
-            onClick={() => {
-              const element = document.getElementById('cardsContainer');
-              if (element)
-                setNextScrollTarget({
-                  behavior: 'smooth',
-                  top: element.offsetTop - window.innerHeight * 0.2
-                });
-            }}
-            currentPageNo={pageNo}
+            isLoading={isLoading && pageNumber > 0}
+            currentPageNo={currentPage || 1}
             baseUrl={cardType.searchLink}
-            nbPage={nbPage}
+            nbPage={pageNumber}
             initialState={initialState}
           />
         </>
       )}
     </Container>
   );
+};
+
+const getFetcher = (type: CardTypeName) => {
+  switch (type) {
+    case 'projets_achats': {
+      return getPublicPurchases;
+    }
+    case 'aides_innovation': {
+      return getCompanyAids;
+    }
+    case 'aides_clients': {
+      return getPublicBuyerAids;
+    }
+    case 'investisseurs': {
+      return getInvestors;
+    }
+    case 'startups': {
+      return getCompanies;
+    }
+    case 'collectivites': {
+      return getPublicBuyersV2;
+    }
+    default:
+      return () => ({ url: undefined, options: undefined });
+  }
+};
+
+const getCount = (results: SearchResultItem[] | PublicBuyerResults) => {
+  return results && isPublicBuyerResultList(results) ? results.hits.length : results?.length;
+};
+
+const buildQueryString = (description: string | undefined, thematics: string[] | undefined) => {
+  if (!thematics) return description;
+  return [description, ...thematics].join(';');
 };

@@ -1,3 +1,9 @@
+import { AidResult } from './interfaces/aid';
+import { CompanyResult } from './interfaces/company';
+import { InvestorResult } from './interfaces/investor';
+import { PublicBuyerResults } from './interfaces/publicBuyer';
+import { PublicPurchaseResult } from './interfaces/publicPurchase';
+
 export const baseApiUrl = process.env.REACT_APP_API_URL;
 
 const baseGetRequestOptions = {
@@ -15,6 +21,8 @@ export function getAll(query: string) {
   };
 }
 
+export type GetCompanyByIdReponse = CompanyResult;
+
 export function getCompanies(query: string) {
   const params = new URLSearchParams({ query });
   return {
@@ -30,6 +38,8 @@ export function getCompanyById(id: string) {
   };
 }
 
+export type GetInvestorResponse = InvestorResult;
+
 export function getInvestors(query: string) {
   const params = new URLSearchParams({ query });
   return {
@@ -44,6 +54,8 @@ export function getInvestorById(id: string) {
     ...baseGetRequestOptions
   };
 }
+
+export type GetAidResult = AidResult;
 
 export function getCompanyAids(query: string) {
   const params = new URLSearchParams({ query });
@@ -75,6 +87,8 @@ export function getPublicBuyerAidById(id: string) {
   };
 }
 
+export type GetPublicPurchaseResult = PublicPurchaseResult;
+
 export function getPublicPurchases(query: string) {
   const params = new URLSearchParams({ query });
   return {
@@ -89,6 +103,8 @@ export function getPublicPurchaseById(id: string) {
     ...baseGetRequestOptions
   };
 }
+
+export type GetPublicBuyerV2 = PublicBuyerResults;
 
 export function getPublicBuyersV2(query: string) {
   const params = new URLSearchParams({ query });

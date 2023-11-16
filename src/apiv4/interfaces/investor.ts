@@ -69,25 +69,25 @@ type TransformedPexeApi = {
   Groupe: string;
   PAYS: string | null;
   Origine: string | null;
-  Vous_êtes: string | null;
-  Nom_du_fonds: string | null;
-  Taille_du_fonds: string | null;
-  Année_de_création: string | null;
-  Durée_de_vie_du_fonds: string | null;
+  'Vous êtes': string | null;
+  'Nom du fonds': string | null;
+  'Taille du fonds': string | null;
+  'Année de création': string | null;
+  'Durée de vie du fonds': string | null;
   Logo: string | null;
-  Type_de_financement: string | null;
-  Présentation_synthétique_du_fonds: string | null;
-  "Secteurs_d'intervention": string | null;
-  Zone_géographique_ciblée: string | null;
+  'Type de financement': string | null;
+  'Présentation synthétique du fonds': string | null;
+  "Secteurs d'intervention": string | null;
+  'Zone géographique ciblée': string | null;
   "Présentation_de_la_politique_d'investissement": string | null;
-  Taille_des_entreprises_ciblées_en_CA_min: string | null;
-  Taille_des_entreprises_ciblées_en_CA_max: string | null;
+  'Taille des entreprises ciblées en CA min': string | null;
+  'Taille des entreprises ciblées en CA max': string | null;
   'Ticket_min_en_K€': number | null;
   'Ticket_max_en_K€': number | null;
   'Nombre_de_prises_de_participations_estimé_pour_l’année': string | null;
-  Nombre_total_de_participations_sur_les_sujets_transition_écologique_et_énergétique_depuis_la_création:
-  | string
-  | null;
+  'Nombre total de participations sur les sujets transition écologique et énergétique depuis la création':
+    | string
+    | null;
   'Investissement_emblématique_n°1': string | null;
   'Mots_clés_investissement_n°1': string | null;
   'Investissement_emblématique_n°2': string | null;
