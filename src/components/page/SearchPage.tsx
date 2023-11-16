@@ -1,14 +1,11 @@
 import Container from 'components/Core/Container';
 import Heading from 'components/Core/Heading';
-import { useContext, useMemo, useState } from 'react';
+import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { AidesQuery, AnyCard, CardTypeName, Search } from '../../api/Api';
-import { ApplicationContext } from '../../App';
+import { CardTypeName } from '../../api/Api';
 import { CardType } from '../../model/CardType';
-import { InitialState } from '../../utils/InitialState';
-import AdvancedFilters from '../customComponents/filter/AdvancedFilters';
+import { SearchState } from '../../utils/InitialState';
 import { FilterProperties } from '../customComponents/filter/filters';
-import SearchForm from '../customComponents/SearchForm';
 import SearchResults from '../customComponents/SearchResults';
 import Pagination from '../dsfrComponents/Pagination';
 import { useProjetFormContext } from 'components/context/useProjectFormContext';
@@ -23,6 +20,10 @@ import {
 import { useFetch } from 'apiv4/useFetch';
 import { SearchResultItem, isPublicBuyerResultList } from 'apiv4/interfaces/typeguards';
 import { PublicBuyerResults } from 'apiv4/interfaces/publicBuyer';
+import SelectInputOptions from 'components/customComponents/SelectInputOptions';
+import TextAreaInput from 'components/customComponents/TextAreaInput';
+import { ThematicsEnum } from 'model/ThematicsEnum';
+import SearchFieldWrapper from 'components/customComponents/SearchFieldWrapper';
 
 type Props = {
   cardType: CardType;
@@ -30,26 +31,47 @@ type Props = {
 };
 
 export const SearchPage: React.FC<Props> = ({ cardType, usedAdvancedFilter }) => {
-  const [isLoading, setIsLoading] = useState(false);
   const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
+  const thematicsValues = Object.values(ThematicsEnum);
+  const navigate = useNavigate();
 
-  const [errorTxt, setErrorTxt] = useState('');
-  const pageChunkSize = 20;
-  // const [cards, setCards] = useState<AnyCard[]>([]);
-  const {
-    description,
-    setDescription,
-    thematics: secteurs,
-    setThematics: setSecteurs
-  } = useProjetFormContext();
+  const location = useLocation();
+  const initialState = location.state as SearchState | null;
+
+  const { description, handleDescriptionChange, thematics, setThematics, error } =
+    useProjetFormContext();
 
   const fetcher = getFetcher(cardType.apiName);
-  const { url, ...options } = fetcher(description);
-  const { data: cards, error } = useFetch<SearchResultItem[] | PublicBuyerResults>(url);
+  const { url, ...options } = fetcher(initialState?.search.description ?? '');
+
+  const pageChunkSize = 2;
+  const { data: cards, error: apiError } = useFetch<SearchResultItem[] | PublicBuyerResults>(url);
+  const isLoading = !cards && !apiError;
+
+  const count = cards ? getCount(cards) : 0;
+  const pageNumber = Math.ceil(count / pageChunkSize);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    navigate(location.pathname, {
+      state: {
+        ...initialState,
+        search: {
+          ...initialState?.search,
+          description,
+          thematics
+        }
+      }
+    });
+  };
+
+  const handleResetForm = () => {
+    handleDescriptionChange('');
+    setThematics([]);
+  };
 
   return (
     <Container>
-      {/* <div> */}
       <div className="cardTitleAndLogo p-2 text-base">
         <Heading level={2} customClasses="w-fit md:flex md:items-center " align="left">
           <div className="flex items-center ">
@@ -62,98 +84,81 @@ export const SearchPage: React.FC<Props> = ({ cardType, usedAdvancedFilter }) =>
             &nbsp;
             {cardType.title} &nbsp;{' '}
           </div>
-          <span className="bg-yellow md:text-3xl font-light">{`(${
-            cards && isPublicBuyerResultList(cards) ? cards.hits.length : cards?.length
-          } résultats)`}</span>
+          <span className="bg-yellow md:text-3xl font-light">{`(${count} résultats)`}</span>
         </Heading>
 
         {cardType.description && <p className="mt-2 text-base">{cardType.description}</p>}
       </div>
 
-      {/* <div className="flex flex-col items-center w-full px-4 md:px-0">
-          <form
-            onSubmit={(event) => handleOnSubmitForm(event)}
-            id="keywordsForm"
-            className="my-8 flex flex-col justify-around flex-wrap h-fit w-full"
-          >
-            <fieldset>
-              <legend className="sr-only">Champs de recherche principaux</legend>
-              <SearchForm
-                usedDescription={[description, setDescription]}
-                usedSecteurs={[secteurs, setSecteurs]}
-                usedErrorTextDescription={[errorTxt, setErrorTxt]}
-                usedInListPage={true}
-                cardType={cardType}
-                showThematicField={cardType.name !== 'acheteurs-publics'}
+      <form
+        onSubmit={handleSubmit}
+        id="projectForm"
+        className="my-8 flex flex-col justify-around flex-wrap h-fit w-full">
+        <fieldset>
+          <legend className="sr-only">Champs de recherche principaux</legend>
+          <div className="flex flex-col md:flex-row h-full">
+            <SearchFieldWrapper
+              label="Votre recherche"
+              usedInListPage={true}
+              className={`w-full'md:w-[55%]`}>
+              <TextAreaInput
+                value={description}
+                onValueChange={handleDescriptionChange}
+                error={error}
+                label={cardType?.searchText ?? ''}
+                formId="projectForm"
+                required
+                color={cardType?.color}
               />
-            </fieldset>
-            {filters?.length > 0 && (
-              <div className="flex flex-col mt-4">
-                <button
-                  aria-expanded={isAdvancedSearchOpen}
-                  type="button"
-                  className="ml-auto underline"
-                  onClick={handleToggleAdvancedSearch}
-                >
-                  Recherche avancée
-                </button>
-                {isAdvancedSearchOpen && (
-                  <AdvancedFilters
-                    cardType={cardType}
-                    filters={filters}
-                    setFilters={handleUpdateFilter}
-                    values={filtersValues}
-                  />
-                )}
-              </div>
-            )}
-          </form>
-
-          <div className="container mt-8 w-full flex flex-col items-center justify-center">
-            <button
-              form="keywordsForm"
-              disabled={isLoading}
-              className="mx-3 fr-btn fr-btn--primary  fr-btn--lg"
-            >
-              <span className={`mx-auto`}>
-                {isLoading ? 'Chargement...' : 'Valider et rechercher'}
-              </span>
-            </button>
-            <button
-              type="button"
-              disabled={isLoading}
-              onClick={handleResetFilters}
-              className="mt-4 underline"
-            >
-              Réinitialiser
-            </button>
+            </SearchFieldWrapper>
+            <SearchFieldWrapper
+              label="La thématique"
+              usedInListPage={true}
+              className="w-full md:w-[45%]">
+              <SelectInputOptions
+                className="mb-auto"
+                optionsData={thematicsValues}
+                secteurs={thematics}
+                setSecteurs={setThematics}
+                color={cardType?.color}
+              />
+            </SearchFieldWrapper>
           </div>
-        </div>
-      </div> */}
+        </fieldset>
+      </form>
+
+      <div className="container mt-8 w-full flex flex-col items-center justify-center">
+        <button
+          form="projectForm"
+          disabled={isLoading}
+          className="mx-3 fr-btn fr-btn--primary  fr-btn--lg">
+          <span className={`mx-auto`}>{isLoading ? 'Chargement...' : 'Valider et rechercher'}</span>
+        </button>
+        <button
+          type="button"
+          disabled={isLoading}
+          onClick={handleResetForm}
+          className="mt-4 underline">
+          Réinitialiser
+        </button>
+      </div>
+      {apiError && <p>Erreur</p>}
       {cards && (
         <>
           <SearchResults
-            hitCount={cards && isPublicBuyerResultList(cards) ? cards.hits.length : cards?.length}
+            hitCount={count}
             isLoading={isLoading}
             results={cards && isPublicBuyerResultList(cards) ? cards.hits : cards}
             cardType={cardType}
           />
 
-          {/* <Pagination
-          isLoading={isLoading && nbPage > 0}
-          onClick={() => {
-            const element = document.getElementById('cardsContainer');
-            if (element)
-              setNextScrollTarget({
-                behavior: 'smooth',
-                top: element.offsetTop - window.innerHeight * 0.2
-              });
-          }}
-          currentPageNo={pageNo}
-          baseUrl={cardType.searchLink}
-          nbPage={nbPage}
-          initialState={initialState}
-        /> */}
+          <Pagination
+            isLoading={isLoading && pageNumber > 0}
+            currentPageNo={initialState?.page ? initialState?.page + 1 : 1}
+            baseUrl={cardType.searchLink}
+            nbPage={pageNumber}
+            initialState={initialState}
+          />
         </>
       )}
     </Container>
@@ -183,4 +188,8 @@ const getFetcher = (type: CardTypeName) => {
     default:
       return () => ({ url: undefined, options: undefined });
   }
+};
+
+const getCount = (results: SearchResultItem[] | PublicBuyerResults) => {
+  return results && isPublicBuyerResultList(results) ? results.hits.length : results?.length;
 };

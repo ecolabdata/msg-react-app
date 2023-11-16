@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
 import { CardType } from '../../model/CardType';
+import { SearchState } from 'utils/InitialState';
 
 interface CardTypeProps {
   cardTypeData: CardType | ExplorerTypeCard;
   explorerCard?: boolean;
+  state?: SearchState;
 }
 
 export interface ExplorerTypeCard {
@@ -17,10 +19,9 @@ export interface ExplorerTypeCard {
   homeDescription?: string;
 }
 
-const HomeCard: React.FC<CardTypeProps> = (props) => {
-  const isExplorerCard = props.explorerCard ?? false;
-  const { SVGLogo, title, description, color, searchLink, version, homeDescription } =
-    props.cardTypeData;
+const HomeCard: React.FC<CardTypeProps> = ({ explorerCard, cardTypeData, state }) => {
+  const isExplorerCard = explorerCard ?? false;
+  const { SVGLogo, title, description, color, searchLink, version, homeDescription } = cardTypeData;
   const isAlpha = version === 'alpha';
 
   const alphaCardStyle =
@@ -34,17 +35,15 @@ const HomeCard: React.FC<CardTypeProps> = (props) => {
                 ${!isExplorerCard && isAlpha ? alphaCardStyle : 'fr-enlarge-link'} }
                  m-[1em]
                 `}
-      style={{ width: isExplorerCard ? 'calc(361px * 2 + 2em)' : 320 }}
-    >
+      style={{ width: isExplorerCard ? 'calc(361px * 2 + 2em)' : 320 }}>
       <div className="fr-card__body flex-none">
         <div className="fr-card__content p-4 !pb-14 !h-auto">
           <h3 className="fr-card__title">
             {!isAlpha ? (
               <Link
                 to={searchLink}
-                className={`${isExplorerCard && 'text-black '}
-                                    text-lg`}
-              >
+                state={state}
+                className={`${isExplorerCard && 'text-black '} text-lg`}>
                 {title}
               </Link>
             ) : (

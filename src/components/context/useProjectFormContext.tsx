@@ -2,14 +2,16 @@ import React from 'react';
 
 export interface ProjetFormContextProps {
   description: string;
-  setDescription: React.Dispatch<React.SetStateAction<string>>;
+  handleDescriptionChange: (v: string) => void;
+  error: boolean;
   thematics: string[];
   setThematics: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 export const ProjetFormContext = React.createContext<ProjetFormContextProps>({
   description: '',
-  setDescription: () => {},
+  handleDescriptionChange: () => {},
+  error: false,
   thematics: [],
   setThematics: () => {}
 });
@@ -17,14 +19,21 @@ export const ProjetFormContext = React.createContext<ProjetFormContextProps>({
 export const ProjetFormContextProvider: React.FC = ({ ...props }) => {
   const [description, setDescription] = React.useState<string>('');
   const [thematics, setThematics] = React.useState<string[]>([]);
+  const [error, setError] = React.useState<boolean>(false);
+
+  const handleDescriptionChange = (v: string) => {
+    setDescription(v);
+    setError(!v.length);
+  };
 
   return (
     <ProjetFormContext.Provider
       value={{
         description,
-        setDescription,
+        handleDescriptionChange,
         thematics,
-        setThematics
+        setThematics,
+        error
       }}
       {...props}
     />
