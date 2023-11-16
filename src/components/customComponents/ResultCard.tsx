@@ -13,7 +13,7 @@ interface CardProps {
   node: ReactNode;
 }
 
-const ResultCardV2: React.FC<PropsWithChildren<CardProps>> = ({
+const ResultCard: React.FC<PropsWithChildren<CardProps>> = ({
   cardType,
   name,
   toprow,
@@ -57,4 +57,4 @@ const ResultCardV2: React.FC<PropsWithChildren<CardProps>> = ({
   );
 };
 
-export default ResultCardV2;
+export default ResultCard;

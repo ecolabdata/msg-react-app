@@ -54,39 +54,6 @@ export type ApiResponse = typeof mockApiResponse;
 
 export type Search = ReturnType<typeof handleResp>;
 
-export function isAcheteurPublic(x: AnyCard): x is PublicBuyerCard {
-  return x.cardTypeName === acheteurPublic.name;
-}
-export function isProjetAchat(x: AnyCard): x is PublicPurchaseCard {
-  return x.cardTypeName === achatPrevi.name;
-}
-export function isInvestisseur(x: AnyCard): x is InvestorCard {
-  return x.cardTypeName === investisseur.name;
-}
-export function isAide(x: AnyCard): x is AidCard {
-  return x.cardTypeName === aideClient.name || x.cardTypeName === aideInno.name;
-}
-export function isStartup(x: AnyCard): x is CompanyCard {
-  return x.cardTypeName === startups.name;
-}
-
-export function applyCard<T>(
-  cardData: AnyCard,
-  doAcheteurPublic: (x: PublicBuyerCard) => T,
-  doProjetAchat: (x: PublicPurchaseCard) => T,
-  doInvestisseur: (x: InvestorCard) => T,
-  doAide: (x: AidCard) => T,
-  doStartup: (x: CompanyCard) => T,
-  other: () => T
-): T {
-  if (isAcheteurPublic(cardData)) return doAcheteurPublic(cardData);
-  else if (isProjetAchat(cardData)) return doProjetAchat(cardData);
-  else if (isInvestisseur(cardData)) return doInvestisseur(cardData);
-  else if (isAide(cardData)) return doAide(cardData);
-  else if (isStartup(cardData)) return doStartup(cardData);
-  return other();
-}
-
 function handleResp(
   query: Query | InvestisseurQuery | AidesClientQuery | AidesInnoQuery | ForecastedBuyQuery,
   resp: ApiResponse
@@ -98,18 +65,18 @@ function handleResp(
     investisseurs: !resp.cards.investisseurs
       ? []
       : resp.cards.investisseurs.map((x) => {
-        return { ...x, id: buildId(x), cardTypeName: investisseur.name };
-      }),
+          return { ...x, id: buildId(x), cardTypeName: investisseur.name };
+        }),
     aides_clients: !resp.cards.aides_clients
       ? []
       : resp.cards.aides_clients.map((x) => {
-        return { ...x, id: buildId(x), cardTypeName: aideClient.name };
-      }),
+          return { ...x, id: buildId(x), cardTypeName: aideClient.name };
+        }),
     aides_innovation: !resp.cards.aides_innovation
       ? []
       : resp.cards.aides_innovation.map((x) => {
-        return { ...x, id: buildId(x), cardTypeName: aideInno.name };
-      })
+          return { ...x, id: buildId(x), cardTypeName: aideInno.name };
+        })
   };
   return { query, cards };
 }

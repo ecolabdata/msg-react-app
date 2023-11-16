@@ -34,7 +34,7 @@ function buildSearchRoute(cardType: CardType): React.ReactFragment {
   return (
     <>
       <Route
-        path={cardType.searchLink}
+        path={cardType.name}
         element={
           <SearchPage usedAdvancedFilter={useAdvancedFilters(cardType.name)} cardType={cardType} />
         }

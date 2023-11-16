@@ -19,11 +19,12 @@ export const getThumbnailInformation = (
       name: (item.fields?.public_actor_nom && item.fields.public_actor_nom[0]) ?? 'N/A',
       toprow: 'Ville / Région',
       id: item._id,
-      slug: `acheteur-public/${item._id}`,
+      slug: `details/${item._id}`,
       node: null
     };
   }
 
+  const slug = `details/${item.id}`;
   if (isInvestorV4(item)) {
     return {
       cardType: investisseur,
@@ -32,7 +33,7 @@ export const getThumbnailInformation = (
         item.card.data_source.transformed_pexe_api &&
         item.card.data_source.transformed_pexe_api['Vous êtes'],
       id: item.id,
-      slug: `investisseur/${item.id}`,
+      slug,
       node: (
         <>
           <p>
@@ -54,7 +55,7 @@ export const getThumbnailInformation = (
       name: item.card.name,
       toprow: item.card.themes && item.card.themes[0],
       id: item.id,
-      slug: `startup/${item.id}`,
+      slug,
       node: <p>{item.card.short_description}</p>
     };
   }
@@ -65,7 +66,7 @@ export const getThumbnailInformation = (
       name: item.card.name,
       toprow: item.card.data_source['approch']?.purchasingEntity?.label,
       id: item.id,
-      slug: `achats-previsionnels/${item.id}`,
+      slug,
       node: item.card.description && (
         <p className="h-[3em] truncate" title={item.card.description}>
           {item.card.description}
@@ -80,7 +81,7 @@ export const getThumbnailInformation = (
       name: item.card.name,
       toprow: item.card.supports && item.card.supports[0],
       id: item.id,
-      slug: `achats-previsionnels/${item.id}`,
+      slug,
       node: (
         <>
           <p>{item.card.nature}</p>

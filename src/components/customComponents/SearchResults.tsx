@@ -1,7 +1,7 @@
 import { PropsWithChildren, useEffect, useRef } from 'react';
 
 import ScreenReaderOnlyText from '../Core/ScreenReaderOnlyText';
-import ResultCardV2 from './ResultCard';
+import ResultCard from './ResultCard';
 import { SearchResultItem } from 'apiv4/interfaces/typeguards';
 import { getThumbnailInformation } from 'helpers/searchTypeHelpers';
 import { CardType } from 'model/CardType';
@@ -52,7 +52,7 @@ const SearchResults: React.FC<PropsWithChildren<Props>> = ({
           <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {results.map((r, id) => {
               const thumbnailInformations = getThumbnailInformation(r, cardType);
-              return <ResultCardV2 key={id} {...thumbnailInformations} cardType={cardType} />;
+              return <ResultCard key={id} {...thumbnailInformations} cardType={cardType} />;
             })}
           </ul>
         </section>
