@@ -43,7 +43,9 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
     useProjetFormContext();
 
   const fetcher = getFetcher(cardType.apiName);
-  const { url, ...options } = fetcher(initialState?.search.description ?? '');
+  const { url, ...options } = fetcher(
+    buildQueryString(initialState?.search.description, initialState?.search.thematics) ?? ''
+  );
 
   const pageChunkSize = 20;
   const { data: cards, error: apiError } = useFetch<SearchResultItem[] | PublicBuyerResults>(url);
@@ -139,7 +141,7 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
       <div className="container mt-8 w-full flex flex-col items-center justify-center">
         <button
           form="projectForm"
-          disabled={isLoading}
+          disabled={isLoading || error}
           className="mx-3 fr-btn fr-btn--primary  fr-btn--lg">
           <span className={`mx-auto`}>{isLoading ? 'Chargement...' : 'Valider et rechercher'}</span>
         </button>
@@ -201,4 +203,9 @@ const getFetcher = (type: CardTypeName) => {
 
 const getCount = (results: SearchResultItem[] | PublicBuyerResults) => {
   return results && isPublicBuyerResultList(results) ? results.hits.length : results?.length;
+};
+
+const buildQueryString = (description: string | undefined, thematics: string[] | undefined) => {
+  if (!thematics) return description;
+  return [description, ...thematics].join(';');
 };
