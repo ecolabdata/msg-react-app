@@ -26,21 +26,19 @@ import {
 
 import PageLayout from '../components/page/PageLayout';
 import TestApiV2 from '../components/TestApiV2';
-import { AideSearchPage } from 'components/page/search/AidesSearchPage';
-import { InvestisseurSearchPage } from 'components/page/search/InvestisseurSearchPage';
-import { StartupSearchPage } from 'components/page/search/StartupSearchPage';
-import { ProjetAchatSearchPage } from 'components/page/search/ProjetAchatSearchPage';
-import { ActeurPublicSearchPage } from 'components/page/search/ActeurPublicSearchPage';
 import React from 'react';
+import SingleSearchPage from 'components/page/SingleSearchFormPage';
+import { useAdvancedFilters } from 'components/customComponents/filter/filters';
 
-function buildSearchRoute(
-  cardType: CardType,
-  Elem: React.FC<{ cardType: CardType }>
-): React.ReactFragment {
+function buildSearchRoute(cardType: CardType): React.ReactFragment {
   return (
     <>
-      <Route path={cardType.searchLink} element={<Elem cardType={cardType} />} />
-      <Route path={cardType.searchLink + '/search'} element={<Elem cardType={cardType} />} />
+      <Route
+        path={cardType.searchLink}
+        element={
+          <SearchPage usedAdvancedFilter={useAdvancedFilters(cardType.name)} cardType={cardType} />
+        }
+      />
     </>
   );
 }
@@ -50,18 +48,20 @@ export const routes = (
     <Route element={<PageLayout />}>
       <Route path="/" element={<Home />} />
       <Route path="/test-apiv2" element={<TestApiV2 />} />
-      <Route path="/startup" element={<HomeByProfile profile="startup" />} />
-      <Route path="/acteurs-publics" element={<HomeByProfile profile="publicActor" />} />
-      {buildSearchRoute(aideClient, AideSearchPage)}
-      {buildSearchRoute(aideInno, AideSearchPage)}
-      {buildSearchRoute(aideFin, AideSearchPage)}
-      {buildSearchRoute(investisseur, InvestisseurSearchPage)}
-      {buildSearchRoute(startups, StartupSearchPage)}
-      {buildSearchRoute(sourcingSu, StartupSearchPage)}
-      {buildSearchRoute(acheteurPublic, ActeurPublicSearchPage)}
-      {buildSearchRoute(retex, ActeurPublicSearchPage)}
-      {buildSearchRoute(achatPrevi, ProjetAchatSearchPage)}
-      {buildSearchRoute(achatProg, ProjetAchatSearchPage)}
+      <Route path="/startupOld" element={<HomeByProfile profile="startup" />} />
+      <Route path="/acteurs-publicsOld" element={<HomeByProfile profile="publicActor" />} />
+      <Route path="/startup" element={<SingleSearchPage profile="startup" />} />
+      <Route path="/acteurs-publics" element={<SingleSearchPage profile="publicActor" />} />
+      {buildSearchRoute(aideClient)}
+      {buildSearchRoute(aideInno)}
+      {buildSearchRoute(aideFin)}
+      {buildSearchRoute(investisseur)}
+      {buildSearchRoute(startups)}
+      {buildSearchRoute(sourcingSu)}
+      {buildSearchRoute(acheteurPublic)}
+      {buildSearchRoute(retex)}
+      {buildSearchRoute(achatPrevi)}
+      {buildSearchRoute(achatProg)}
       {allCardType.map((cardType, i) => (
         <Route
           key={i}

@@ -1,7 +1,7 @@
 import { AidResult } from './interfaces/aid';
 import { CompanyResult } from './interfaces/company';
 import { InvestorResult } from './interfaces/investor';
-import { PublicBuyerResult } from './interfaces/publicBuyer';
+import { PublicBuyerResults } from './interfaces/publicBuyer';
 import { PublicPurchaseResult } from './interfaces/publicPurchase';
 
 export const baseApiUrl = process.env.REACT_APP_API_URL;
@@ -104,7 +104,7 @@ export function getPublicPurchaseById(id: string) {
   };
 }
 
-export type GetPublicBuyerV2 = PublicBuyerResult;
+export type GetPublicBuyerV2 = PublicBuyerResults;
 
 export function getPublicBuyersV2(query: string) {
   const params = new URLSearchParams({ query });

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { CardType } from '../../model/CardType';
 
 interface CardTypeProps {
@@ -21,6 +22,7 @@ const HomeCard: React.FC<CardTypeProps> = (props) => {
   const { SVGLogo, title, description, color, searchLink, version, homeDescription } =
     props.cardTypeData;
   const isAlpha = version === 'alpha';
+
   const alphaCardStyle =
     "after:text-sm after:px-4 after:py-1 after:rounded-2xl after:absolute after:bottom-2 after:right-2 after:content-['Bientôt'] ";
   return (
@@ -38,13 +40,13 @@ const HomeCard: React.FC<CardTypeProps> = (props) => {
         <div className="fr-card__content p-4 !pb-14 !h-auto">
           <h3 className="fr-card__title">
             {!isAlpha ? (
-              <a
-                href={searchLink}
+              <Link
+                to={searchLink}
                 className={`${isExplorerCard && 'text-black '}
                                     text-lg`}
               >
                 {title}
-              </a>
+              </Link>
             ) : (
               <p className="text-lg">{title}</p>
             )}

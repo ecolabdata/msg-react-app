@@ -1,7 +1,7 @@
 import { Department, ReservedPublicMarkets } from './common';
 
 //FIXME: find out why it is not returning a Card
-export type PublicBuyerResult = {
+export type PublicBuyerResults = {
   total: {
     value: number;
     relation: string;
@@ -15,7 +15,9 @@ export type PublicBuyerHit = {
   _id: string;
   _version: number;
   _score: number;
-  fields: Record<string, unknown>;
+  fields: Record<string, unknown> & {
+    public_actor_nom?: string[];
+  };
   highlight: Record<string, unknown>;
 };
 
