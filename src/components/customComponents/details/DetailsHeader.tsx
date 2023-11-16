@@ -26,7 +26,6 @@ const DetailsHeader: React.FC<DetailsHeaderProps> = ({ data, cardType }) => {
     e.preventDefault();
     navigate(-1);
   };
-  console.log(isInvestorV4(data));
 
   return (
     <Container customClasses="mb-12">

@@ -44,7 +44,6 @@ function buildSearchRoute(
     </>
   );
 }
-console.log(allCardType);
 
 export const routes = (
   <Routes>

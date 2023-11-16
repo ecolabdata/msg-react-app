@@ -57,16 +57,15 @@ const CPVCard: React.FC<CPVCardProps> = ({ content }) => {
   const dlroStr =
     dlroDate &&
     ('0' + dlroDate?.getUTCDate()).slice(-2) +
-      '/' +
-      ('0' + ((dlroDate?.getUTCMonth() || 0) + 1)).slice(-2) +
-      '/' +
-      dlroDate?.getUTCFullYear();
+    '/' +
+    ('0' + ((dlroDate?.getUTCMonth() || 0) + 1)).slice(-2) +
+    '/' +
+    dlroDate?.getUTCFullYear();
 
   return (
     <div className="fr-card h-full w-full bg-input-background">
       <div className="fr-card__body ">
         <div className="fr-card__content">
-          {/* <h3 className="fr-card__title"></h3> Commented because it creates an empty heading error */}
           <div className="fr-card__desc flex flex-col flex-1 ">
             <p className="font-bold">{description}</p>
             <div className="mt-auto">
