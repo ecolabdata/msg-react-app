@@ -9,65 +9,31 @@ import HomeByProfile from '../components/page/HomeByProfile';
 import LegalNotices from '../components/page/LegalNoticesPage';
 import Page404 from '../components/page/Page404';
 import Sitemap from '../components/page/Sitemap';
-import {
-  achatPrevi,
-  acheteurPublic,
-  aideClient,
-  aideFin,
-  aideInno,
-  all as allCardType,
-  CardType,
-  investisseur,
-  retex,
-  sourcingSu,
-  startups,
-  achatProg
-} from './CardType';
+import { all as allCardType } from './CardType';
 
 import PageLayout from '../components/page/PageLayout';
 import TestApiV2 from '../components/TestApiV2';
-import React from 'react';
 import SingleSearchPage from 'components/page/SingleSearchFormPage';
-import { useAdvancedFilters } from 'components/customComponents/filter/filters';
-
-function buildSearchRoute(cardType: CardType): React.ReactFragment {
-  return (
-    <>
-      <Route
-        path={cardType.name}
-        element={
-          <SearchPage usedAdvancedFilter={useAdvancedFilters(cardType.name)} cardType={cardType} />
-        }
-      />
-    </>
-  );
-}
 
 export const routes = (
   <Routes>
     <Route element={<PageLayout />}>
       <Route path="/" element={<Home />} />
       <Route path="/test-apiv2" element={<TestApiV2 />} />
+      {/* Delete old routes when not needed anymore */}
       <Route path="/startupOld" element={<HomeByProfile profile="startup" />} />
       <Route path="/acteurs-publicsOld" element={<HomeByProfile profile="publicActor" />} />
       <Route path="/startup" element={<SingleSearchPage profile="startup" />} />
       <Route path="/acteurs-publics" element={<SingleSearchPage profile="publicActor" />} />
-      {buildSearchRoute(aideClient)}
-      {buildSearchRoute(aideInno)}
-      {buildSearchRoute(aideFin)}
-      {buildSearchRoute(investisseur)}
-      {buildSearchRoute(startups)}
-      {buildSearchRoute(sourcingSu)}
-      {buildSearchRoute(acheteurPublic)}
-      {buildSearchRoute(retex)}
-      {buildSearchRoute(achatPrevi)}
-      {buildSearchRoute(achatProg)}
       {allCardType.map((cardType, i) => (
-        <Route
-          key={i}
-          path={`/${cardType.name}/details/:id`}
-          element={<Details cardType={cardType} />}
-        />
+        <>
+          <Route
+            key={i}
+            path={`/${cardType.name}/details/:id`}
+            element={<Details cardType={cardType} />}
+          />
+          <Route path={cardType.name} element={<SearchPage cardType={cardType} />} />
+        </>
       ))}
       <Route path="/legal">
         <Route path="legal-notices" element={<LegalNotices />} />

@@ -35,7 +35,7 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
     useProjetFormContext();
   const [step, setStep] = React.useState(0);
   return (
-    <>
+    <div className="mt-16">
       <Container isFlexCol>
         <h1
           className="m-0 w-full font-bold text-4xl text-center 
@@ -98,7 +98,7 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
           </Container>
         )}
       </Container>
-    </>
+    </div>
   );
 };
 

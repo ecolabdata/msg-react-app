@@ -5,7 +5,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { CardTypeName } from '../../api/Api';
 import { CardType } from '../../model/CardType';
 import { SearchState } from '../../utils/InitialState';
-import { FilterProperties } from '../customComponents/filter/filters';
 import SearchResults from '../customComponents/SearchResults';
 import Pagination from '../dsfrComponents/Pagination';
 import { useProjetFormContext } from 'components/context/useProjectFormContext';
@@ -24,14 +23,15 @@ import SelectInputOptions from 'components/customComponents/SelectInputOptions';
 import TextAreaInput from 'components/customComponents/TextAreaInput';
 import { ThematicsEnum } from 'model/ThematicsEnum';
 import SearchFieldWrapper from 'components/customComponents/SearchFieldWrapper';
+import { useAdvancedFilters } from 'components/customComponents/filter/filters';
 
 type Props = {
   cardType: CardType;
-  usedAdvancedFilter: FilterProperties;
 };
 
-export const SearchPage: React.FC<Props> = ({ cardType, usedAdvancedFilter }) => {
+export const SearchPage: React.FC<Props> = ({ cardType }) => {
   const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
+  const { filters, handleFilter } = useAdvancedFilters(cardType.name);
   const thematicsValues = Object.values(ThematicsEnum);
   const navigate = useNavigate();
 
