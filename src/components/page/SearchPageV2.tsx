@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { useLocation, useNavigate  } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ApplicationContext } from '../../App';
 import { CardType } from '../../model/CardType';
 import AdvancedFilters from '../customComponents/filter/AdvancedFilters';
@@ -18,7 +18,7 @@ type Props<SearchType extends SearchPublicBuyer | SearchStartup> = {
 };
 
 export function buildSearchPageV2<SearchType extends SearchPublicBuyer | SearchStartup>(
-  searchApi: (description: string, from : number) => Promise<SearchType>
+  searchApi: (description: string, from: number) => Promise<SearchType>
 ) {
   return ({ cardType, children, usedAdvancedFilter }: Props<SearchType>) => {
     const { initialValues, searchByType, handleFilter, filters } = usedAdvancedFilter;
@@ -26,10 +26,10 @@ export function buildSearchPageV2<SearchType extends SearchPublicBuyer | SearchS
     const [, setNextScrollTarget] = usedNextScrollTarget;
     const navigate = useNavigate();
     const loc = useLocation();
-    const queryParam = new URLSearchParams(loc.search)
+    const queryParam = new URLSearchParams(loc.search);
     const q = queryParam.get('q');
-    let page =  Number(queryParam.get('page'));
-    if (isNaN(page) || page === 0 ) page = 1
+    let page = Number(queryParam.get('page'));
+    if (isNaN(page) || page === 0) page = 1;
 
     const [isLoading, setIsLoading] = useState(false);
     const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
@@ -56,7 +56,7 @@ export function buildSearchPageV2<SearchType extends SearchPublicBuyer | SearchS
       if (description.length > 0) {
         console.log('Fetching data');
         setIsLoading(true);
-        
+
         searchApi(description, (page - 1) * pageChunkSize).then((json) => {
           setResp(json);
           setIsLoading(false);
@@ -70,9 +70,12 @@ export function buildSearchPageV2<SearchType extends SearchPublicBuyer | SearchS
       event.preventDefault();
       if (description.length > 0) {
         setErrorTxt('');
-        navigate({search: `?q=${description}`},{
-          preventScrollReset: true,
-        });
+        navigate(
+          { search: `?q=${description}` },
+          {
+            preventScrollReset: true
+          }
+        );
       } else {
         document?.getElementById('keywordsForm-Décrivez votre projet en quelques lignes.')?.focus();
         setErrorTxt("Erreur: la description de l'entreprise est obligatoire");
@@ -106,7 +109,8 @@ export function buildSearchPageV2<SearchType extends SearchPublicBuyer | SearchS
             <form
               onSubmit={(event) => handleOnSubmitForm(event)}
               id="keywordsForm"
-              className="my-8 flex flex-col justify-around flex-wrap h-fit w-full">
+              className="my-8 flex flex-col justify-around flex-wrap h-fit w-full"
+            >
               <fieldset>
                 <legend className="sr-only">Champs de recherche principaux</legend>
                 <SearchForm
@@ -145,7 +149,8 @@ export function buildSearchPageV2<SearchType extends SearchPublicBuyer | SearchS
               <button
                 form="keywordsForm"
                 disabled={isLoading}
-                className="mx-3 fr-btn fr-btn--primary  fr-btn--lg">
+                className="mx-3 fr-btn fr-btn--primary  fr-btn--lg"
+              >
                 <span className={`mx-auto`}>
                   {isLoading ? 'Chargement...' : 'Valider et rechercher'}
                 </span>
@@ -154,7 +159,8 @@ export function buildSearchPageV2<SearchType extends SearchPublicBuyer | SearchS
                 type="button"
                 disabled={isLoading}
                 onClick={handleResetFilters}
-                className="mt-4 underline">
+                className="mt-4 underline"
+              >
                 Réinitialiser
               </button>
             </div>
@@ -176,7 +182,7 @@ export function buildSearchPageV2<SearchType extends SearchPublicBuyer | SearchS
                   });
               }}
               currentPageNo={page}
-              baseUrl={pageno => cardType.searchLink + `?q=${description}&page=${pageno}`}
+              baseUrl={(pageno) => cardType.searchLink + `?q=${description}&page=${pageno}`}
               nbPage={nbPage}
             />
           </Container>

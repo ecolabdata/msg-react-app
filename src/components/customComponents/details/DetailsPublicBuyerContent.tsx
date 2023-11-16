@@ -1,13 +1,12 @@
-import { PublicBuyer } from 'api2/Api';
-import { Collectivite } from '../../../api/Api';
 import { InformationCard } from '../InformationCard';
 import { Tabs } from '../Tabs';
 import { TagsList } from '../../Core/TagsList';
 import { PublicBuyerApprochTab } from './PublicBuyerApprochTab';
 import { PublicBuyerDecpTab } from './PublicBuyerDecpTab';
+import { PublicBuyerCard } from 'apiv4/interfaces/publicBuyer';
 
 interface DetailsPublicBuyerContentProps {
-  card: Collectivite;
+  card: PublicBuyerCard;
 }
 
 const DetailsPublicBuyer: React.FC<DetailsPublicBuyerContentProps> = ({ card }) => {
@@ -79,7 +78,7 @@ const DetailsPublicBuyer: React.FC<DetailsPublicBuyerContentProps> = ({ card }) 
 
 export default DetailsPublicBuyer;
 
-const getAverageMarketDealAmount = (markets: PublicBuyer['decp']) => {
+const getAverageMarketDealAmount = (markets: PublicBuyerCard['decp']) => {
   const { amount, numberOfMarkets } = markets.reduce(
     ({ amount, numberOfMarkets }, market) => {
       if (!isNaN(market?.montant)) {

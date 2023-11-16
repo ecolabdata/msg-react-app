@@ -1,9 +1,9 @@
-import { ProjetAchat } from '../../../api/Api';
+import { PublicPurchaseCard } from 'apiv4/interfaces/publicPurchase';
 import { getDaysBetweenDates, yesNotoBoolean } from '../../../utils/utilityFunctions';
 import { InformationItem, InformationItemsWrapper } from './InformationItem';
 
 interface ForecastedBuyInformationsProps {
-  card: ProjetAchat;
+  card: PublicPurchaseCard;
   className?: string;
 }
 
@@ -13,81 +13,90 @@ export const ForecastedBuyInformations: React.FC<ForecastedBuyInformationsProps>
 }) => {
   const {
     status,
-    departments,
-    socialConsiderationsConcerned,
-    environmentalConsiderationsConcerned,
-    publicationTargetDate,
-    CPVPrimary,
+    social_considerations,
+    environmental_considerations,
+    reserved_public_markets,
+    publication_date,
+    cpv_code,
     description,
-    marketMaxDuration,
-    purchasingCategory
+    duration_month,
+    estimated_amount,
+    procedure_type,
+    category
   } = card;
 
   console.log('card', card);
 
   const considerations = getConsiderations({
-    socialConsiderationsConcerned,
-    environmentalConsiderationsConcerned
+    social_considerations,
+    environmental_considerations
   });
 
-  const days = getDaysBetweenDates(new Date(Date.now()), new Date(publicationTargetDate));
+  const days =
+    publication_date && getDaysBetweenDates(new Date(Date.now()), new Date(publication_date));
   return (
     <div className={`${className}`}>
       <InformationItemsWrapper>
         <>
           {status && <InformationItem label={'Status'} contents={status} />}
-          {departments && (
-            <InformationItem
-              label={'Périmètre géographique'}
-              contents={departments.map((d) => d.department)}
-            />
-          )}
+
           {!!(considerations.length > 0) && (
             <InformationItem label={'Considérations spéciales'} contents={considerations} />
           )}
         </>
         <>
-          {publicationTargetDate && (
+          {publication_date && (
             <InformationItem label={'Date limite'} contents={getDateText(days)} />
           )}
-          {CPVPrimary && <InformationItem label={'Code CPV'} contents={CPVPrimary?.toString()} />}
+          {cpv_code && <InformationItem label={'Code CPV'} contents={cpv_code.toString()} />}
         </>
       </InformationItemsWrapper>
       <InformationItem label={'Description du projet'} contents={description} />
       <InformationItemsWrapper>
         <>
-          {marketMaxDuration && (
+          {duration_month && (
             <InformationItem
               label={'Durée de la prestation'}
-              contents={`${marketMaxDuration.toString()} mois`}
+              contents={`${duration_month.toString()} mois`}
             />
           )}
         </>
-        <>
-          {purchasingCategory && (
-            <InformationItem label={"Catégorie d'achat"} contents={purchasingCategory} />
-          )}
-        </>
+        <>{category && <InformationItem label={"Catégorie d'achat"} contents={category} />}</>
       </InformationItemsWrapper>
+      <InformationItemsWrapper>
+        {estimated_amount && (
+          <InformationItem
+            label={'Montant estimé du marché'}
+            contents={`${estimated_amount.toLocaleString()}€`}
+          />
+        )}
+        {procedure_type && (
+          <InformationItem label={'Type de procédure'} contents={procedure_type} />
+        )}
+      </InformationItemsWrapper>
+      {reserved_public_markets && reserved_public_markets?.length > 0 && (
+        <InformationItem label={'Marché public réservé'} contents={reserved_public_markets} />
+      )}
     </div>
   );
 };
 
 const getConsiderations = ({
-  socialConsiderationsConcerned,
-  environmentalConsiderationsConcerned
+  social_considerations,
+  environmental_considerations
 }: {
-  socialConsiderationsConcerned: string;
-  environmentalConsiderationsConcerned: string;
+  social_considerations: string | null;
+  environmental_considerations: string | null;
 }) => {
-  const social = yesNotoBoolean(socialConsiderationsConcerned) && 'Sociales';
-  const environnement = yesNotoBoolean(environmentalConsiderationsConcerned) && 'Environnementales';
+  const social = yesNotoBoolean(social_considerations) && 'Sociales';
+  const environnement = yesNotoBoolean(environmental_considerations) && 'Environnementales';
   const considerations = [social, environnement].filter(Boolean) as string[];
 
   return considerations;
 };
 
-const getDateText = (days: number) => {
+const getDateText = (days: number | '' | null) => {
+  if (!days) return;
   return days > 0
     ? `${days} jours restant jusqu'à la publication de l'appel d'offres
 `

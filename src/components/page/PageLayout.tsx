@@ -7,9 +7,7 @@ export const PageLayout = () => {
   return (
     <>
       <Header />
-      <div className="bg-gey-50 text-white">
-        <BreadCumb />
-      </div>
+      <div className="bg-gey-50 text-white">{/* <BreadCumb /> */}</div>
       <main
         role="main"
         className={`h-full p-1 md:pb-6 ${

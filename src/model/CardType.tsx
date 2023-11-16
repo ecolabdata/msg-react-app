@@ -39,7 +39,7 @@ export type CardTypeNameFromModel =
   | 'achats-programmes'
   | 'investisseurs'
   | 'startups'
-  | 'sourcingSu'
+  | 'sourcing-startup'
   | 'retex';
 
 export const acheteurPublic: CardType = {
@@ -148,7 +148,7 @@ export const sourcingSu: CardType = {
   title: "Sourcing d'entreprises",
   description:
     'Entreprises éco-innovantes pour préparer vos projets d’achats durables. (liste évolutive)',
-  name: 'sourcingSu',
+  name: 'sourcing-startup',
   searchLink: '/sourcing-startup',
   apiName: 'startups',
   useApiV2: true,

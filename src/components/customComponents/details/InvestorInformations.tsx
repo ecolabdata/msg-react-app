@@ -1,26 +1,24 @@
-import { Investisseur } from '../../../api/Api';
+import { InvestorCard } from 'apiv4/interfaces/investor';
 import { InformationItemsWrapper, InformationItem } from './InformationItem';
 
 interface InvestorInformationsContentProps {
-  card: Investisseur;
+  card: InvestorCard;
   className?: string;
 }
 
 const InvestorInformations: React.FC<InvestorInformationsContentProps> = ({ card, className }) => {
   const {
-    'Zone géographqiue ciblée': zone,
-    'Ticket max en K€': max,
-    'Ticket min en K€': min,
-    "Secteurs d'intervention": sectors,
-    'Taille des entreprises ciblées en CA (max)': maxIncomeTarget,
-    'Taille des entreprises ciblées en CA (min)': minIncomeTarget,
-    'Présentation synthétique du fonds': description,
-    "Présentation de la politique d'investissement": investmentPolicy,
-    'Investissement emblématique n°1': investment1,
-    'Investissement emblématique n°2': investment2,
-    'Investissement emblématique n°3': investment3,
-    'Nombre total de participations sur les sujets transition écologique et énergétique depuis la création':
-      participationNb
+    zone,
+    ticket_max_k_euro: max,
+    ticket_min_k_euro: min,
+    sectors,
+    targeted_company_size_max_ca: maxIncomeTarget,
+    targeted_company_size_min_ca: minIncomeTarget,
+    description,
+    investment_policy: investmentPolicy,
+    main_investments,
+    investments_on_ecological_transition: participationNb,
+    source_url
   } = card;
 
   return (
@@ -29,18 +27,16 @@ const InvestorInformations: React.FC<InvestorInformationsContentProps> = ({ card
         {zone && (
           <InformationItem label={'Zone géographique ciblée'} contents={zone} showDivider={false} />
         )}
-        {(min || max) && (
+        {min || max ? (
           <InformationItem
             label={'Tickets'}
             contents={`Min: ${min}€; Max: ${max}€`}
             showDivider={false}
           />
-        )}
+        ) : null}
       </InformationItemsWrapper>
-      {sectors && (
-        <InformationItem label={"Secteurs d'intervention"} contents={sectors.split(';')} />
-      )}
-      {sectors && (
+      {sectors && <InformationItem label={"Secteurs d'intervention"} contents={sectors} />}
+      {(Number(maxIncomeTarget) > 0 || Number(minIncomeTarget) > 0) && (
         <InformationItem
           label={'Taille des entreprises ciblées en CA'}
           contents={`min: ${minIncomeTarget} max: ${maxIncomeTarget}`}
@@ -50,19 +46,23 @@ const InvestorInformations: React.FC<InvestorInformationsContentProps> = ({ card
       {investmentPolicy && (
         <InformationItem label={"Politique d'investissement"} contents={investmentPolicy} />
       )}
-      {investmentPolicy && (
-        <InformationItem label={"Politique d'investissement"} contents={investmentPolicy} />
-      )}
       {participationNb && (
         <InformationItem
           label={'Participations sur les sujets de transition écologique'}
           contents={participationNb}
         />
       )}
-      {(investment1 || investment2 || investment3) && (
+      {main_investments && (
         <InformationItem
           label={'Principales participations du fond'}
-          contents={[investment1, investment2, investment3].filter(Boolean)}
+          contents={main_investments.filter(Boolean)}
+        />
+      )}
+      {source_url && (
+        <InformationItem
+          label={'URL Source'}
+          contents={`<a href=${source_url}>${source_url}</a>`}
+          isHtml
         />
       )}
     </section>

@@ -104,3 +104,21 @@ export function getPublicBuyerV2ById(id: string) {
     ...baseGetRequestOptions
   };
 }
+
+export function generateCardByIDFetchParameters(id: string, type: string) {
+  if (!typeToUrl[type]) return { url: undefined, method: undefined, headers: undefined };
+
+  return {
+    url: `${baseApiUrl}/v4/${typeToUrl[type]}/${id}`,
+    ...baseGetRequestOptions
+  };
+}
+
+const typeToUrl: { [key: string]: string | undefined } = {
+  projets_achats: 'public_purchase_card_v4',
+  aides_innovation: 'company_aid_card_v4',
+  aides_clients: 'public_buyer_aid_card_v4',
+  investisseurs: 'investor_card_v4',
+  startups: 'company_card_v4',
+  collectivites: undefined
+};

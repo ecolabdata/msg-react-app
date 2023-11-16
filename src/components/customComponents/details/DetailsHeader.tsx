@@ -1,24 +1,24 @@
 import Container from 'components/Core/Container';
 import Heading from 'components/Core/Heading';
 import { Link, useNavigate } from 'react-router-dom';
-import {
-  AnyCard,
-  isAcheteurPublic,
-  isAide,
-  isInvestisseur,
-  isProjetAchat,
-  isStartup
-} from '../../../api/Api';
 import { CardType, startups } from '../../../model/CardType';
-import { getGreenTechData, tailwindColorUtility } from '../../../utils/utilityFunctions';
+import { tailwindColorUtility } from '../../../utils/utilityFunctions';
+
+import {
+  SearchResultItem,
+  isAidV4,
+  isCompanyV4,
+  isInvestorV4,
+  isPublicPurchaseV4
+} from 'apiv4/interfaces/typeguards';
 
 interface DetailsHeaderProps {
-  card: AnyCard;
+  data: SearchResultItem;
   cardType: CardType;
 }
 
-const DetailsHeader: React.FC<DetailsHeaderProps> = ({ card, cardType }) => {
-  const { subtitle, title } = normalizeHeaderProps(card);
+const DetailsHeader: React.FC<DetailsHeaderProps> = ({ data, cardType }) => {
+  const { subtitle, title } = normalizeHeaderProps(data);
   const borderColor = cardType?.color && tailwindColorUtility[cardType?.color].border;
   const navigate = useNavigate();
 
@@ -34,10 +34,16 @@ const DetailsHeader: React.FC<DetailsHeaderProps> = ({ card, cardType }) => {
           className={`fr-badge fr-badge--sm `}
           style={{ color: cardType?.color, backgroundColor: cardType?.backgroundColor }}
         >
-          {cardType?.name === 'sourcingSu' ? 'start up' : cardType?.name}
+          {cardType?.name === 'sourcing-startup' ? 'start up' : cardType?.name}
         </p>
         <Heading align="left">{title}</Heading>
-        <p className="text-grey-625-active">{subtitle}</p>
+        {isInvestorV4(data) && data.card.logo && (
+          <img src={data.card.logo} alt="" width="100" className="mt-4" />
+        )}
+        {isCompanyV4(data) && data.card.logo_url && (
+          <img src={data.card.logo_url} alt="" width="100" className="mt-4" />
+        )}
+        <p className="text-grey-625-active mt-4">{subtitle}</p>
       </div>
       <Link
         to={'..'}
@@ -52,41 +58,41 @@ const DetailsHeader: React.FC<DetailsHeaderProps> = ({ card, cardType }) => {
 
 export default DetailsHeader;
 
-const normalizeHeaderProps = (card: AnyCard) => {
-  if (isInvestisseur(card)) {
+const normalizeHeaderProps = (data: SearchResultItem) => {
+  if (isInvestorV4(data)) {
     return {
-      title: card['Nom du fonds'],
-      subtitle: card['Type de financement']
+      title: data.card.name,
+      subtitle: data.card.investment_policy
     };
   }
 
-  if (isAide(card)) {
+  if (isAidV4(data)) {
     return {
-      title: card.name,
-      subtitle: card.financers
+      title: data.card.name,
+      subtitle: data.card.supports
     };
   }
 
-  if (isAcheteurPublic(card)) {
+  if (isPublicPurchaseV4(data)) {
     return {
-      title: card.public_actor_nom,
-      subtitle: ''
+      title: data.card.name,
+      subtitle: `Périmètre géographique : ${data.card.departments}`
     };
   }
-  if (isStartup(card)) {
+  if (isCompanyV4(data)) {
     return {
-      title: card['NOM'],
-      subtitle: getGreenTechData(card)?.Thématique,
+      title: data.card.name,
+      subtitle: data.card.data_source?.greentech_innovation?.Thématique,
       cardType: startups
     };
   }
 
-  if (isProjetAchat(card)) {
-    return {
-      title: card.label,
-      subtitle: card.departments?.map((d) => d.department).join('|')
-    };
-  }
+  // if (isProjetAchat(card)) {
+  //   return {
+  //     // title: card.name,
+  //     // subtitle: card.departments?.map((d) => d.department).join('|')
+  //   };
+  // }
   return {
     title: '',
     subtitle: ''

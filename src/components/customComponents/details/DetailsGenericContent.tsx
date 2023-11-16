@@ -1,33 +1,32 @@
 import Container from 'components/Core/Container';
-import {
-  Aide,
-  Investisseur,
-  isAide,
-  isInvestisseur,
-  isProjetAchat,
-  isStartup,
-  ProjetAchat,
-  Startup
-} from '../../../api/Api';
 import ContactArea from './ContactArea';
 import { ForecastedBuyInformations } from './ForecastedBuyInformations';
 import HelpPage from './HelpInformations';
 import InvestorInformation from './InvestorInformations';
 import { StartupInformations } from './StartupInformations';
+import {
+  SearchResultItem,
+  isAidV4,
+  isCompanyV4,
+  isInvestorV4,
+  isPublicPurchaseV4
+} from 'apiv4/interfaces/typeguards';
 
 interface DetailsGenericContentProps {
-  card: Startup | ProjetAchat | Aide | Investisseur;
+  data: SearchResultItem;
 }
 
-const DetailsGenericContent: React.FC<DetailsGenericContentProps> = ({ card }) => {
+const DetailsGenericContent: React.FC<DetailsGenericContentProps> = ({ data }) => {
   return (
     <>
       <Container customClasses="grid grid-cols-1 sm:grid-cols-3 gap-8">
-        {isStartup(card) && <StartupInformations card={card} className="sm:col-span-2" />}
-        {isProjetAchat(card) && <ForecastedBuyInformations card={card} className="sm:col-span-2" />}
-        {isAide(card) && <HelpPage className="sm:col-span-2" card={card} />}
-        {isInvestisseur(card) && <InvestorInformation className="sm:col-span-2" card={card} />}
-        <ContactArea card={card} />
+        {isCompanyV4(data) && <StartupInformations card={data.card} className="sm:col-span-2" />}
+        {isPublicPurchaseV4(data) && (
+          <ForecastedBuyInformations card={data.card} className="sm:col-span-2" />
+        )}
+        {isAidV4(data) && <HelpPage className="sm:col-span-2" card={data.card} />}
+        {isInvestorV4(data) && <InvestorInformation className="sm:col-span-2" card={data.card} />}
+        <ContactArea data={data} />
       </Container>{' '}
     </>
   );
