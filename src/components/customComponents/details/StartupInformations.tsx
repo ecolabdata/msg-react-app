@@ -113,22 +113,24 @@ const LabelSection: React.FC<{ labels: Labels }> = ({ labels }) => {
   return (
     <div className="mt-16">
       {labels?.length > 0 &&
-        labels.map(({ label, name, description }, i) => (
-          <LabelDetails
-            key={i}
-            label={label}
-            solutionName={name}
-            description={description}
-            className="mb-8"
-          />
-        ))}
+        labels.map(
+          ({ label, name, description }, i) =>
+            name && (
+              <LabelDetails
+                key={i}
+                label={label}
+                solutionName={name}
+                description={description}
+                className="mb-8"
+              />
+            )
+        )}
     </div>
   );
 };
 
 const normalizeLabels = (card: CompanyCard) => {
   const dataSource = card.data_source;
-  console.log(dataSource);
 
   const normalized: SolutionWithLabel[] = [];
   if (dataSource.greentech_innovation) {
@@ -141,13 +143,13 @@ const normalizeLabels = (card: CompanyCard) => {
   if (dataSource.green20) {
     normalized.push({
       description: dataSource.green20.Pitch,
-      name: dataSource.green20["Nom de l'entreprise"] || 'Pas de nom de solution',
+      name: dataSource.green20["Nom de l'entreprise"],
       label: 'GREEN20'
     });
     if (dataSource.solar_impulse) {
       normalized.push({
         description: dataSource.solar_impulse.public_short_description,
-        name: dataSource.solar_impulse['Solution name'] || 'Pas de nom de solution',
+        name: dataSource.solar_impulse['Solution name'],
         label: 'Solar Impulse'
       });
     }

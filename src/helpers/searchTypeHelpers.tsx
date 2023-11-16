@@ -53,7 +53,7 @@ export const getThumbnailInformation = (
     return {
       cardType: startups,
       name: item.card.name,
-      toprow: item.card.themes && item.card.themes[0],
+      toprow: item.card.themes && item.card.themes[0] ? item.card.themes[0] : 'Start-up',
       id: item.id,
       slug,
       node: <p>{item.card.short_description}</p>

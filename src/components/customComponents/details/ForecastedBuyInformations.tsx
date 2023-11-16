@@ -25,8 +25,6 @@ export const ForecastedBuyInformations: React.FC<ForecastedBuyInformationsProps>
     category
   } = card;
 
-  console.log('card', card);
-
   const considerations = getConsiderations({
     social_considerations,
     environmental_considerations

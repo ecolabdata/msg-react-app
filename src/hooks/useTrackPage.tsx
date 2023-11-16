@@ -20,7 +20,6 @@ export const useTrackPage = () => {
 
     _paq.push(['setReferrerUrl', document.referrer]);
     _paq.push(['setCustomUrl', url.href]);
-    console.log({ useLocationChange: payload });
     // if (payload?.userTestCampaign) _paq.push(['setCustomDimension', 1, payload?.userTestCampaign]);
     //_paq.push(['setDocumentTitle', 'My New Title']);
 

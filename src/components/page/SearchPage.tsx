@@ -60,8 +60,6 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
     [cards, pageChunkSize, currentPage]
   );
 
-  console.log(initialState, results, cardsSlice, pageNumber, currentPage);
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     navigate(location.pathname, {
