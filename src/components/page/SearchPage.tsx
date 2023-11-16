@@ -1,6 +1,6 @@
 import Container from 'components/Core/Container';
 import Heading from 'components/Core/Heading';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { CardTypeName } from '../../api/Api';
 import { CardType } from '../../model/CardType';
@@ -37,6 +37,7 @@ export const SearchPage: React.FC<Props> = ({ cardType, usedAdvancedFilter }) =>
 
   const location = useLocation();
   const initialState = location.state as SearchState | null;
+  const currentPage = initialState?.page ?? 1;
 
   const { description, handleDescriptionChange, thematics, setThematics, error } =
     useProjetFormContext();
@@ -44,12 +45,20 @@ export const SearchPage: React.FC<Props> = ({ cardType, usedAdvancedFilter }) =>
   const fetcher = getFetcher(cardType.apiName);
   const { url, ...options } = fetcher(initialState?.search.description ?? '');
 
-  const pageChunkSize = 2;
+  const pageChunkSize = 20;
   const { data: cards, error: apiError } = useFetch<SearchResultItem[] | PublicBuyerResults>(url);
   const isLoading = !cards && !apiError;
 
   const count = cards ? getCount(cards) : 0;
+  const results = cards && isPublicBuyerResultList(cards) ? cards.hits : cards;
+
   const pageNumber = Math.ceil(count / pageChunkSize);
+  const cardsSlice = useMemo(
+    () => results?.slice((currentPage - 1) * pageChunkSize, currentPage * pageChunkSize),
+    [cards, pageChunkSize, currentPage]
+  );
+
+  console.log(initialState, results, cardsSlice, pageNumber, currentPage);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -143,18 +152,18 @@ export const SearchPage: React.FC<Props> = ({ cardType, usedAdvancedFilter }) =>
         </button>
       </div>
       {apiError && <p>Erreur</p>}
-      {cards && (
+      {cardsSlice && (
         <>
           <SearchResults
             hitCount={count}
             isLoading={isLoading}
-            results={cards && isPublicBuyerResultList(cards) ? cards.hits : cards}
+            results={cardsSlice}
             cardType={cardType}
           />
 
           <Pagination
             isLoading={isLoading && pageNumber > 0}
-            currentPageNo={initialState?.page ? initialState?.page + 1 : 1}
+            currentPageNo={currentPage || 1}
             baseUrl={cardType.searchLink}
             nbPage={pageNumber}
             initialState={initialState}

@@ -85,12 +85,14 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
         )}
         {step === 1 && (
           //FIXME: this should probably be a radio button list part of the form
-          <Container as="ul" customClasses="flex flex-wrap justify-center w-full 2XL:!w-1/2">
+          <Container
+            as="ul"
+            customClasses="flex flex-wrap justify-center w-full 2xl:w-3/4 4xl:w-1/2">
             {cards.map((card, index) => (
               <HomeCard
                 cardTypeData={card}
                 key={index}
-                state={{ search: { description, thematics }, page: 0 }}
+                state={{ search: { description, thematics }, page: 1 }}
               />
             ))}
           </Container>
