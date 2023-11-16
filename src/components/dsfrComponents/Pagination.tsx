@@ -103,13 +103,12 @@ const Pagination: React.FC<PaginationProps> = ({
   );
 };
 
-function applyPage(baseUrl: string | ((pageno: number) => string), pageno : number) {
+function applyPage(baseUrl: string | ((pageno: number) => string), pageno: number) {
   if (typeof baseUrl === 'string') {
-    return baseUrl
+    return baseUrl;
   } else {
-    return baseUrl(pageno)
+    return baseUrl(pageno);
   }
 }
-
 
 export default Pagination;

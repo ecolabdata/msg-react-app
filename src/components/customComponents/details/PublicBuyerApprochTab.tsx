@@ -1,9 +1,9 @@
 import React from 'react';
 import GenericPagination from '../../dsfrComponents/GenericPagination';
-import { PublicBuyer } from 'api2/Api';
+import { PublicBuyerCard } from 'apiv4/interfaces/publicBuyer';
 
 interface PublicBuyerApprochTabProps {
-  contents: PublicBuyer['approch_content'];
+  contents: PublicBuyerCard['approch_content'];
 }
 
 export const PublicBuyerApprochTab: React.FC<PublicBuyerApprochTabProps> = ({ contents }) => {
@@ -39,7 +39,7 @@ export const PublicBuyerApprochTab: React.FC<PublicBuyerApprochTabProps> = ({ co
 };
 
 interface CPVCardProps {
-  content: PublicBuyer['approch_content'][number];
+  content: PublicBuyerCard['approch_content'][number];
 }
 
 const CPVCard: React.FC<CPVCardProps> = ({ content }) => {
@@ -66,7 +66,7 @@ const CPVCard: React.FC<CPVCardProps> = ({ content }) => {
     <div className="fr-card h-full w-full bg-input-background">
       <div className="fr-card__body ">
         <div className="fr-card__content">
-          <h3 className="fr-card__title"></h3>
+          {/* <h3 className="fr-card__title"></h3> Commented because it creates an empty heading error */}
           <div className="fr-card__desc flex flex-col flex-1 ">
             <p className="font-bold">{description}</p>
             <div className="mt-auto">
@@ -79,7 +79,7 @@ const CPVCard: React.FC<CPVCardProps> = ({ content }) => {
                 <p>
                   <span className="font-bold">Procedure: </span>
                   <br />
-                  {procedureType.label}
+                  {procedureType.$ref}
                 </p>
               </div>
               <div className="flex justify-between my-4">

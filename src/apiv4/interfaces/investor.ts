@@ -86,8 +86,8 @@ type TransformedPexeApi = {
   'Ticket_max_en_K€': number | null;
   'Nombre_de_prises_de_participations_estimé_pour_l’année': string | null;
   Nombre_total_de_participations_sur_les_sujets_transition_écologique_et_énergétique_depuis_la_création:
-    | string
-    | null;
+  | string
+  | null;
   'Investissement_emblématique_n°1': string | null;
   'Mots_clés_investissement_n°1': string | null;
   'Investissement_emblématique_n°2': string | null;

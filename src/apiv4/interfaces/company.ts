@@ -29,13 +29,13 @@ export type CompanyCard = {
   project_picture_url: string | null;
   project_video_url: string | null;
   data_source: {
-    greentech_innovation: GreenTechInnovation;
-    green20: Green20;
-    solar_impulse: SolarImpulse;
+    greentech_innovation: GreenTechInnovation | null;
+    green20: Green20 | null;
+    solar_impulse: SolarImpulse | null;
   };
 };
 
-type GreenTechInnovation = {
+export type GreenTechInnovation = {
   'Start-up': string | null;
   Pitch: string | null;
   Thématique: string | null;

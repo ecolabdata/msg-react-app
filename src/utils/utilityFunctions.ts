@@ -1,3 +1,4 @@
+import { CompanyCard } from 'apiv4/interfaces/company';
 import { Startup } from '../api/Api';
 
 export const generateNumber = (min: number, max: number) =>
@@ -36,7 +37,7 @@ export const tailwindColorUtility: Record<string, Record<string, string>> = {
   }
 };
 
-export const yesNotoBoolean = (value: string) => {
+export const yesNotoBoolean = (value: string | null) => {
   if (!value) return false;
   const lowerValue = value.toLowerCase();
   if (lowerValue === 'yes' || lowerValue === 'oui') return true;
@@ -46,10 +47,3 @@ export const yesNotoBoolean = (value: string) => {
 export function getDaysBetweenDates(first: Date, second: Date) {
   return Math.round((second.getTime() - first.getTime()) / (1000 * 60 * 60 * 24));
 }
-
-export const getGreenTechData = (startup: Startup) => {
-  if (startup.SOLUTIONS['GreenTech Innovation'] && startup.SOLUTIONS['GreenTech Innovation'][0]) {
-    return startup.SOLUTIONS['GreenTech Innovation'][0];
-  }
-  return null;
-};

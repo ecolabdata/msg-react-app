@@ -1,9 +1,10 @@
 import React from 'react';
 import GenericPagination from '../../dsfrComponents/GenericPagination';
 import { PublicBuyer } from 'api2/Api';
+import { PublicBuyerCard } from 'apiv4/interfaces/publicBuyer';
 
 interface PublicBuyerDecpTabProps {
-  contents: PublicBuyer['decp'];
+  contents: PublicBuyerCard['decp'];
 }
 
 export const PublicBuyerDecpTab: React.FC<PublicBuyerDecpTabProps> = ({ contents }) => {
@@ -40,7 +41,7 @@ export const PublicBuyerDecpTab: React.FC<PublicBuyerDecpTabProps> = ({ contents
 };
 
 interface CPVCardProps {
-  content: PublicBuyer['decp'][number];
+  content: PublicBuyerCard['decp'][number];
 }
 
 const CPVCard: React.FC<CPVCardProps> = ({ content }) => {
@@ -49,7 +50,7 @@ const CPVCard: React.FC<CPVCardProps> = ({ content }) => {
     <div className="fr-card h-full w-full bg-input-background">
       <div className="fr-card__body ">
         <div className="fr-card__content">
-          <h3 className="fr-card__title"></h3>
+          {/* <h3 className="fr-card__title"></h3> Commented because it creates an empty heading error */}
           <div className="fr-card__desc flex flex-col flex-1 ">
             <p className="font-bold">{objet}</p>
             <div className="mt-auto">

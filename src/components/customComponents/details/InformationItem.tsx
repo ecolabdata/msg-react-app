@@ -3,7 +3,7 @@ import { TagsList } from '../../Core/TagsList';
 
 interface InformationItemProps {
   label: string;
-  contents: string | string[];
+  contents?: string | string[] | null;
   showDivider?: boolean;
   className?: string;
   isHtml?: boolean;

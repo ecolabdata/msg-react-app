@@ -4,9 +4,9 @@ import solarImpulse from '../../../assets/images/solar-impulse.png';
 import { Label } from './StartupInformations';
 
 interface LabelDetailsProps {
-  label: Label;
-  solutionName: string;
-  description: string;
+  label: Label | null;
+  solutionName: string | null;
+  description: string | null;
   className?: string;
 }
 
@@ -19,7 +19,7 @@ export const LabelDetails: React.FC<LabelDetailsProps> = ({
   return (
     <div className={` flex  ${className}`}>
       <div className="w-[120px]">
-        <img src={getLabelLogo(label)} alt="" width="80" className="mt-4" />
+        {label && <img src={getLabelLogo(label)} alt="" width="80" className="mt-4" />}
       </div>
       <div className="flex flex-col w-full">
         <h3 className="text-xl">{solutionName}</h3>
