@@ -27,7 +27,7 @@ const AdvancedFilters: React.FC<AdvancedFiltersProps> = ({
           <Select
             key={id}
             classes=" w-full lg:max-w-[202px] md:mr-8"
-            selectClassName="bg-research-precision-container"
+            selectClassName={`${localStorage.getItem("scheme") === 'dark' && "bg-research-precision-container"}`}
             label={label}
             color={cardType.color}
             defaultOption={defaultOption}

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Chevron from './../../assets/icons/chevronWhite.svg';
+import ChevronBlack from './../../assets/icons/chevronBlack.svg';
 import OptionItem from './OptionItem';
 import { useOutsideAlerter } from '../../hooks/useOutsideAlerter';
 import { tailwindColorUtility } from '../../utils/utilityFunctions';
@@ -61,7 +62,7 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({
         type="button"
         onKeyDown={handleKeyDown}
         role="combobox"
-        className={`mt-2 w-full h-10 min-h-[50px] addBorder-b border-3 ${borderColor} p-2 pt-3 flex bg-input-background`}
+        className={`mt-2 w-full h-10 min-h-[50px] addBorder-b border-3 ${borderColor} p-2 pt-3 flex ${localStorage.getItem("scheme") === "dark" && "bg-input-background"}`}
         onClick={() => {
           setDisplaySelect(!displaySelect);
         }}>
@@ -69,22 +70,21 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({
           {secteurs.length <= 0 ? 'Sélectionnez une option' : secteurs.join(', ')}
         </p>
         <span
-          className={`${
-            localStorage.scheme === 'dark' ? 'bg-dark-text-action' : 'bg-blue-france'
-          } w-6 h-6 rounded-full  text-black font-bold`}>
+          className={`${localStorage.getItem("scheme") === 'dark' ? 'bg-dark-text-action' : 'bg-blue-france'
+            } w-6 h-6 rounded-full  ${localStorage.getItem("scheme") === "dark" && "text-black"} font-bold`}>
           {' '}
           {secteurs.length}{' '}
         </span>
         <img
           className={`${displaySelect ? 'rotate-90' : ''} h-5 w-5 m-0.5`}
-          src={Chevron}
+          src={localStorage.scheme === 'dark' ? Chevron : ChevronBlack}
           aria-hidden="true"
         />
       </button>
 
       {displaySelect && (
         <>
-          <ul className="z-10 absolute w-full max-h-[320px] overflow-auto flex flex-col bg-background-inputs  shadow-slate-400 shadow-sm">
+          <ul className={`z-10 absolute w-full max-h-[320px] overflow-auto flex flex-col ${localStorage.getItem("scheme") === "dark" ? "bg-background-inputs" : "bg-white"}  shadow-slate-400 shadow-sm`}>
             {optionsData.map((option, index) => {
               return (
                 <OptionItem

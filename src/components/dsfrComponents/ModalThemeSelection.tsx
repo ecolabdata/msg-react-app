@@ -1,4 +1,7 @@
-const ModalThemeSelection: React.FC = () => {
+import { SetStateAction } from "react";
+import { Dispatch } from "react";
+
+const ModalThemeSelection: React.FC<{ openedModale: boolean, setOpenedModale: Dispatch<SetStateAction<boolean>> }> = ({ openedModale, setOpenedModale }) => {
   return (
     <>
       <dialog
@@ -12,7 +15,7 @@ const ModalThemeSelection: React.FC = () => {
             <div className="fr-col-12 fr-col-md-6 fr-col-lg-4">
               <div className="fr-modal__body">
                 <div className="fr-modal__header">
-                  <button className="fr-link--close fr-link" aria-controls="fr-theme-modal">
+                  <button className="fr-link--close fr-link" aria-controls="fr-theme-modal" onClick={() => setOpenedModale(!openedModale)} >
                     Fermer
                   </button>
                 </div>

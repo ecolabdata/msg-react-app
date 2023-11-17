@@ -32,7 +32,7 @@ const DetailsHeader: React.FC<DetailsHeaderProps> = ({ data, cardType }) => {
       <div className={`pb-12 mb-12 border-b ${borderColor}`}>
         <p
           className={`fr-badge fr-badge--sm `}
-          style={{ color: cardType?.color, backgroundColor: cardType?.backgroundColor }}
+          style={{ color: cardType?.color, backgroundColor: localStorage.getItem("scheme") === "dark" ? cardType?.backgroundColor : "" }}
         >
           {cardType?.name === 'sourcing-startup' ? 'start up' : cardType?.name}
         </p>

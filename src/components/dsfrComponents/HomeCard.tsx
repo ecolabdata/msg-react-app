@@ -28,10 +28,9 @@ const HomeCard: React.FC<CardTypeProps> = ({ explorerCard, cardTypeData, state }
     "after:text-sm after:px-4 after:py-1 after:rounded-2xl after:absolute after:bottom-2 after:right-2 after:content-['Bientôt'] ";
   return (
     <li
-      className={`fr-card self-stretch justify-center ${
-        isExplorerCard &&
+      className={`fr-card self-stretch justify-center ${isExplorerCard &&
         'bg-blue-france-main-525 text-black before:bg-blue-france-sun-113 hover:bg-blue-france-main-525-hover'
-      } 
+        } 
                 ${!isExplorerCard && isAlpha ? alphaCardStyle : 'fr-enlarge-link'} }
                  m-[1em]
                 `}
@@ -50,7 +49,7 @@ const HomeCard: React.FC<CardTypeProps> = ({ explorerCard, cardTypeData, state }
               <p className="text-lg">{title}</p>
             )}
           </h3>
-          <p className="fr-card__desc text-base text-grey-625-active">
+          <p className="fr-card__desc text-base">
             {homeDescription ?? description}
           </p>
         </div>
