@@ -67,7 +67,7 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
         value={value}
         form={formId}
         className={classNames(
-          `cursor-text mt-2 w-full rounded-t-sm p-2 bg-background-inputs ${borderColor}`,
+          ` cursor-text mt-2 w-full rounded-t-sm p-2 ${localStorage.getItem("scheme") === "dark" ? "bg-input-background" : "bg-slate-50"} ${borderColor}`,
           { [`addBorder-b border-3`]: !error },
           { 'addBorder border-2 border-red-marianne-625-hover': error },
           classNameProp

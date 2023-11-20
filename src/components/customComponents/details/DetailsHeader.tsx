@@ -32,7 +32,7 @@ const DetailsHeader: React.FC<DetailsHeaderProps> = ({ data, cardType }) => {
       <div className={`pb-12 mb-12 border-b ${borderColor}`}>
         <p
           className={`fr-badge fr-badge--sm `}
-          style={{ color: cardType?.color, backgroundColor: cardType?.backgroundColor }}
+          style={{ color: localStorage.getItem("scheme") === "dark" ? cardType?.color : cardType.backgroundColor, backgroundColor: localStorage.getItem("scheme") === "dark" ? cardType?.backgroundColor : cardType.color }}
         >
           {cardType?.name === 'sourcing-startup' ? 'start up' : cardType?.name}
         </p>
@@ -43,7 +43,7 @@ const DetailsHeader: React.FC<DetailsHeaderProps> = ({ data, cardType }) => {
         {isCompanyV4(data) && data.card.logo_url && (
           <img src={data.card.logo_url} alt="" width="100" className="mt-4" />
         )}
-        <p className="text-grey-625-active mt-4">{subtitle}</p>
+        <p className={`${localStorage.getItem("scheme") === "dark" && "text-grey-625-active"} mt-4`}>{subtitle}</p>
       </div>
       <Link
         to={'..'}
@@ -76,7 +76,7 @@ const normalizeHeaderProps = (data: SearchResultItem) => {
   if (isPublicPurchaseV4(data)) {
     return {
       title: data.card.name,
-      subtitle: `Périmètre géographique : ${data.card.departments}`
+      subtitle: data.card.departments && data.card.departments.length > 0 && `Périmètre géographique : ${data.card.departments}`
     };
   }
   if (isCompanyV4(data)) {

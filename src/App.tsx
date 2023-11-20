@@ -28,9 +28,8 @@ export const ApplicationContext = createContext<{
 });
 
 const Router = () => {
-  localStorage.setItem('scheme', 'dark');
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  useEffect(() => {}, [localStorage.scheme]);
+  useEffect(() => { }, [localStorage.scheme]);
   const usedFavoris = useFavoris();
   const usedCorbeille = useCorbeille();
   const usedNextScrollTarget = useState<ScrollToOptions | null>(null);

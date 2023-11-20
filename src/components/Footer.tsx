@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
 import ExternalLink from './Core/ExternalLink';
+import { SetStateAction } from "react";
+import { Dispatch } from "react";
 
-const Footer: React.FC = () => {
+
+const Footer: React.FC<{ isOpenModale: boolean, setIsOpenModale: Dispatch<SetStateAction<boolean>> }> = ({ isOpenModale, setIsOpenModale }) => {
   return (
     <>
       <footer className="fr-footer relative mt-8" role="contentinfo" id="footer">
@@ -21,12 +24,12 @@ const Footer: React.FC = () => {
               </Link>
             </div>
             <div className="fr-footer__content">
-              <p className="fr-footer__content-desc font-bold text-sm text-white">
+              <p className="fr-footer__content-desc font-bold text-sm">
                 Mes services Greentech est en version beta. L’outil vous propose des leviers pour
                 booster votre développement ! Pour nous faire part de vos remarques ou nous aider à
                 améliorer l’expérience merci de répondre à cette{' '}
                 <ExternalLink
-                  className="font-bold text-blue-france-625 mr-1"
+                  className={`font-bold ${localStorage.getItem("scheme") === "dark" ? "text-blue-france-625" : "text-blue-france-sun-113"} mr-1`}
                   href="https://airtable.com/shrwwE4lA2GFxK0T4"
                   content="courte enquête"
                 />
@@ -35,35 +38,35 @@ const Footer: React.FC = () => {
               <ul className="fr-footer__content-list">
                 <li className="fr-footer__content-item">
                   <ExternalLink
-                    className="fr-footer__content-link text-grey-625-active font-normal text-sm"
+                    className="fr-footer__content-link font-normal text-sm"
                     href="https://www.ecologie.gouv.fr/"
                     content="ecologie.gouv.fr"
                   />
                 </li>
                 <li className="fr-footer__content-item">
                   <ExternalLink
-                    className="fr-footer__content-link text-grey-625-active font-normal text-sm"
+                    className="fr-footer__content-link font-normal text-sm"
                     href="https://www.economie.gouv.fr/"
                     content="economie.gouv.fr"
                   />
                 </li>
                 <li className="fr-footer__content-item">
                   <ExternalLink
-                    className="fr-footer__content-link text-grey-625-active font-normal text-sm"
+                    className="fr-footer__content-link font-normal text-sm"
                     href="https://gouvernement.fr"
                     content="gouvernement.fr"
                   />
                 </li>
                 <li className="fr-footer__content-item">
                   <ExternalLink
-                    className="fr-footer__content-link text-grey-625-active font-normal text-sm"
+                    className="fr-footer__content-link font-normal text-sm"
                     href="https://service-public.fr"
                     content="service-public.fr"
                   />
                 </li>
                 <li className="fr-footer__content-item">
                   <ExternalLink
-                    className="fr-footer__content-link text-grey-625-active font-normal text-sm"
+                    className="fr-footer__content-link font-normal text-sm"
                     href="https://data.gouv.fr"
                     content="data.gouv.fr"
                   />
@@ -75,51 +78,52 @@ const Footer: React.FC = () => {
             <ul className="fr-footer__bottom-list">
               <li className="fr-footer__bottom-item">
                 <Link
-                  className="fr-footer__bottom-link text-grey-625 font-bold text-xs text-grey-625 font-bold text-xs"
+                  className="fr-footer__bottom-link  font-bold text-xs font-bold text-xs"
                   to="/legal/accessibility">
                   Accessibilité
                 </Link>
               </li>
               <li className="fr-footer__bottom-item">
                 <Link
-                  className="fr-footer__bottom-link text-grey-625 font-bold text-xs text-grey-625 font-bold text-xs"
+                  className="fr-footer__bottom-link font-bold text-xs font-bold text-xs"
                   to="/plan-du-site">
                   Plan du site
                 </Link>
               </li>
               <li className="fr-footer__bottom-item">
                 <Link
-                  className="fr-footer__bottom-link text-grey-625 font-bold text-xs"
+                  className="fr-footer__bottom-link font-bold text-xs"
                   to="/legal/legal-notices">
                   Mentions légales
                 </Link>
               </li>
               <li className="fr-footer__bottom-item">
                 <Link
-                  className="fr-footer__bottom-link text-grey-625 font-bold text-xs"
+                  className="fr-footer__bottom-link font-bold text-xs"
                   to="/legal/gdpr">
                   Données personnelles
                 </Link>
               </li>
               <li className="fr-footer__bottom-item">
                 <Link
-                  className="fr-footer__bottom-link text-grey-625 font-bold text-xs"
+                  className="fr-footer__bottom-link font-bold text-xs"
                   to="/legal/cookies">
                   Gestion des cookies
                 </Link>
               </li>
 
-              {/* <li className="fr-footer__bottom-item">
+              <li className="fr-footer__bottom-item">
                 <button
-                  className="fr-footer__bottom-link fr-fi-theme-fill fr-link--icon-left text-grey-625 font-bold text-xs"
+                  className="fr-footer__bottom-link fr-fi-theme-fill fr-link--icon-left  font-bold text-xs"
                   aria-controls="fr-theme-modal"
-                  data-fr-opened="fals"
+                  data-fr-opened={isOpenModale}
+                  onClick={() => setIsOpenModale(!isOpenModale)}
                 >
-                  Passer au thème clair
+                  Changer le thème
                 </button>
-              </li> */}
+              </li>
             </ul>
-            <div className="fr-footer__bottom-copy text-grey-625 font-bold text-xs mb-4">
+            <div className="fr-footer__bottom-copy font-bold text-xs mb-4">
               <p>
                 Sauf mention contraire, tous les contenus de ce site sont sous{' '}
                 <ExternalLink
