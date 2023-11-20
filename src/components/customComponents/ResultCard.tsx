@@ -44,7 +44,7 @@ const ResultCard: React.FC<PropsWithChildren<CardProps>> = ({
                 <li>
                   <p
                     className={`fr-badge fr-badge--sm `}
-                    style={{ color: cardType.color, backgroundColor: localStorage.getItem("scheme") === "dark" ? cardType?.backgroundColor : "" }}>
+                    style={{ color: localStorage.getItem("scheme") === "dark" ? cardType?.color : cardType.backgroundColor, backgroundColor: localStorage.getItem("scheme") === "dark" ? cardType?.backgroundColor : cardType.color }}>
                     {toprow}
                   </p>
                 </li>

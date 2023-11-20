@@ -62,7 +62,7 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({
         type="button"
         onKeyDown={handleKeyDown}
         role="combobox"
-        className={`mt-2 w-full h-10 min-h-[50px] addBorder-b border-3 ${borderColor} p-2 pt-3 flex ${localStorage.getItem("scheme") === "dark" && "bg-input-background"}`}
+        className={`mt-2 w-full h-10 min-h-[50px] addBorder-b border-3 ${borderColor} p-2 pt-3 flex ${localStorage.getItem("scheme") === "dark" ? "bg-input-background" : "bg-slate-50"}`}
         onClick={() => {
           setDisplaySelect(!displaySelect);
         }}>
@@ -84,7 +84,7 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({
 
       {displaySelect && (
         <>
-          <ul className={`z-10 absolute w-full max-h-[320px] overflow-auto flex flex-col ${localStorage.getItem("scheme") === "dark" ? "bg-background-inputs" : "bg-white"}  shadow-slate-400 shadow-sm`}>
+          <ul className={`z-10 absolute w-full max-h-[320px] overflow-auto flex flex-col ${localStorage.getItem("scheme") === "dark" ? "bg-input-background" : "bg-slate-50"}  shadow-slate-400 shadow-sm`}>
             {optionsData.map((option, index) => {
               return (
                 <OptionItem

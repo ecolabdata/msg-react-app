@@ -47,7 +47,7 @@ const ContactArea: React.FC<ContactAreaProps> = ({ data, className }) => {
           <ExternalLink
             href={cta.url}
             content={cta.label}
-            className="fr-btn fr-btn--primary w-fit  px-4 h-3 py-2 hover:bg-claire-bf__hover mt-6"
+            className="fr-btn fr-btn--primary w-fit  px-4  py-2 hover:bg-claire-bf__hover mt-6"
           />
         )
       )}

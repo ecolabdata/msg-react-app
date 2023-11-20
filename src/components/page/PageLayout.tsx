@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 
 export const PageLayout = () => {
-  const [openedModale, setOpenedModale] = useState(false)
+  const [isOpenModale, setIsOpenModale] = useState(false)
 
 
 
@@ -24,8 +24,8 @@ export const PageLayout = () => {
           <Outlet />
         </div>
       </main>
-      <Footer openedModale={openedModale} setOpenedModale={setOpenedModale} />
-      <ModalThemeSelection openedModale={openedModale} setOpenedModale={setOpenedModale} />
+      <Footer isOpenModale={isOpenModale} setIsOpenModale={setIsOpenModale} />
+      <ModalThemeSelection isOpenModale={isOpenModale} setIsOpenModale={setIsOpenModale} />
     </>
   );
 };

@@ -4,7 +4,7 @@ import { SetStateAction } from "react";
 import { Dispatch } from "react";
 
 
-const Footer: React.FC<{ openedModale: boolean, setOpenedModale: Dispatch<SetStateAction<boolean>> }> = ({ openedModale, setOpenedModale }) => {
+const Footer: React.FC<{ isOpenModale: boolean, setIsOpenModale: Dispatch<SetStateAction<boolean>> }> = ({ isOpenModale, setIsOpenModale }) => {
   return (
     <>
       <footer className="fr-footer relative mt-8" role="contentinfo" id="footer">
@@ -29,7 +29,7 @@ const Footer: React.FC<{ openedModale: boolean, setOpenedModale: Dispatch<SetSta
                 booster votre développement ! Pour nous faire part de vos remarques ou nous aider à
                 améliorer l’expérience merci de répondre à cette{' '}
                 <ExternalLink
-                  className="font-bold text-blue-france-625 mr-1"
+                  className={`font-bold ${localStorage.getItem("scheme") === "dark" ? "text-blue-france-625" : "text-blue-france-sun-113"} mr-1`}
                   href="https://airtable.com/shrwwE4lA2GFxK0T4"
                   content="courte enquête"
                 />
@@ -116,8 +116,8 @@ const Footer: React.FC<{ openedModale: boolean, setOpenedModale: Dispatch<SetSta
                 <button
                   className="fr-footer__bottom-link fr-fi-theme-fill fr-link--icon-left  font-bold text-xs"
                   aria-controls="fr-theme-modal"
-                  data-fr-opened={openedModale}
-                  onClick={() => setOpenedModale(!openedModale)}
+                  data-fr-opened={isOpenModale}
+                  onClick={() => setIsOpenModale(!isOpenModale)}
                 >
                   Changer le thème
                 </button>
