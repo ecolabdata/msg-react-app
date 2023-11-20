@@ -9,6 +9,7 @@ import {
   isAidV4,
   isCompanyV4,
   isInvestorV4,
+  isPublicBuyerResults,
   isPublicPurchaseV4
 } from 'apiv4/interfaces/typeguards';
 
@@ -76,7 +77,7 @@ const normalizeHeaderProps = (data: SearchResultItem) => {
   if (isPublicPurchaseV4(data)) {
     return {
       title: data.card.name,
-      subtitle: data.card.departments && data.card.departments.length > 0 && `Périmètre géographique : ${data.card.departments}`
+      subtitle: data.card.departments && data.card.departments.length > 0 && `Périmètre géographique : ${data.card.departments.join(" ")}`
     };
   }
   if (isCompanyV4(data)) {
@@ -87,12 +88,11 @@ const normalizeHeaderProps = (data: SearchResultItem) => {
     };
   }
 
-  // if (isProjetAchat(card)) {
-  //   return {
-  //     // title: card.name,
-  //     // subtitle: card.departments?.map((d) => d.department).join('|')
-  //   };
-  // }
+  if (isPublicBuyerResults(data)) {
+    return {
+      title: data._source.public_actor_nom,
+    };
+  }
   return {
     title: '',
     subtitle: ''

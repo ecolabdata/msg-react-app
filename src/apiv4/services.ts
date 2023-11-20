@@ -136,5 +136,5 @@ const typeToUrl: { [key: string]: string | undefined } = {
   aides_clients: 'public_buyer_aid_card_v4',
   investisseurs: 'investor_card_v4',
   startups: 'company_card_v4',
-  collectivites: undefined
+  collectivites: 'public_buyer_card_v2'
 };

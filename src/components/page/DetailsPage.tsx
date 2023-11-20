@@ -5,6 +5,8 @@ import GenericDetails from '../customComponents/details/DetailsGenericContent';
 import DetailsHeader from '../customComponents/details/DetailsHeader';
 import { useFetch } from 'apiv4/useFetch';
 import { generateCardByIDFetchParameters } from 'apiv4/services';
+import { isPublicBuyerResults } from 'apiv4/interfaces/typeguards';
+import DetailsPublicBuyer from 'components/customComponents/details/DetailsPublicBuyerContent';
 import {
   SearchResultItem,
   isAidV4,
@@ -31,7 +33,7 @@ export const Details: React.FC<DetailsProps> = ({ cardType }) => {
   return (
     <>
       <DetailsHeader data={data} cardType={cardType} />
-      {/* {isPublicPurchaseV4(data) && <PublicBuyerContent card={data.card} />} */}
+      {isPublicBuyerResults(data) && <DetailsPublicBuyer card={data._source} />}
       {(isCompanyV4(data) || isPublicPurchaseV4(data) || isAidV4(data) || isInvestorV4(data)) && (
         <GenericDetails data={data} />
       )}

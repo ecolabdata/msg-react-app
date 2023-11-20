@@ -4,7 +4,7 @@ import {
   isAidV4,
   isCompanyV4,
   isInvestorV4,
-  isPublicBuyerHit,
+  isPublicBuyerResultHit,
   isPublicPurchaseV4
 } from 'apiv4/interfaces/typeguards';
 import { investisseur, startups, achatPrevi, CardType, acheteurPublic } from 'model/CardType';
@@ -13,10 +13,10 @@ export const getThumbnailInformation = (
   item: SearchResultItem | PublicBuyerHit,
   cardType: CardType
 ) => {
-  if (isPublicBuyerHit(item)) {
+  if (isPublicBuyerResultHit(item)) {
     return {
       cardType: acheteurPublic,
-      name: (item.fields?.public_actor_nom && item.fields.public_actor_nom[0]) ?? 'N/A',
+      name: (item.fields.public_actor_nom && item.fields.public_actor_nom[0]) ?? 'N/A',
       toprow: 'Ville / Région',
       id: item._id,
       slug: `details/${item._id}`,
@@ -24,7 +24,7 @@ export const getThumbnailInformation = (
     };
   }
 
-  const slug = `details/${item.id}`;
+  const slug = "id" in item ? `details/${item.id}` : null;
   if (isInvestorV4(item)) {
     return {
       cardType: investisseur,

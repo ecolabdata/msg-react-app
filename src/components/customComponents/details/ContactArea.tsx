@@ -115,7 +115,7 @@ const normalizeContactInformations = (data: SearchResultItem) => {
         'Certains contacts de services publics sont présents sur lannuaire.service-public.fr',
       cta: {
         label: "Accèder à l'annuaire",
-        url: '#'
+        url: data.card.source_url
       }
     };
   }
