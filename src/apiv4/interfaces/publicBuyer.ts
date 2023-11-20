@@ -21,6 +21,21 @@ export type PublicBuyerHit = {
   highlight: Record<string, unknown>;
 };
 
+export type PublicBuyerResultById = {
+  _index: string;
+  _id: string;
+  _version: number;
+  _score: number;
+  _seq_no: number,
+  primary_term: number,
+  found: boolean,
+  _source: PublicBuyerCard;
+  labelled_startups: Startup[],
+  public_references_startups: Startup[],
+  public_actor_id_siren: string,
+  approch_content: ApprochContent | null
+};
+
 export type PublicBuyerCard = {
   public_actor_id: string;
   public_actor_nom: string;
