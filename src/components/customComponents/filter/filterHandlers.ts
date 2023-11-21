@@ -1,4 +1,3 @@
-import { ProjetAchat, Aide } from '../../../api/Api';
 import {
   publicationDates,
   zones,
@@ -16,12 +15,12 @@ import {
 import { yesNotoBoolean } from '../../../utils/utilityFunctions';
 import {
   ForecastedBuyFilters,
-  HelpFilters,
   InvestorFilters,
   PublicBuyFilters,
-  StartupFilters
+  StartupFilters,
+  HelpsFilters
 } from './filters';
-import { SearchPublicBuyer, SearchStartup } from 'api2/Api';
+import { SearchPublicBuyer } from 'api2/Api';
 import { PublicBuyerHit } from 'apiv4/interfaces/publicBuyer';
 import { SearchResultItem } from 'apiv4/interfaces/typeguards';
 import { PublicPurchaseResult } from 'apiv4/interfaces/publicPurchase';
@@ -67,27 +66,16 @@ export const handleForecastedBuyFilter = (search: SearchResultItem[] | PublicBuy
   return filteredCards;
 };
 
-// export const handleInnovationHelpFilter = (search: SearchResultItem[] | PublicBuyerHit[], filters: HelpFilters) => {
-//   const cards = search.cards?.aides_innovation;
-
-//   return handleHelpsFilter(cards, filters);
-// };
-
-// export const handleCustomerHelpFilter = (search: SearchResultItem[] | PublicBuyerHit[], filters: HelpFilters) => {
-//   const cards = search.cards?.aides_clients;
-
-//   return handleHelpsFilter(cards, filters);
-// };
-
-export const handleHelpsFilter = (search: SearchResultItem[] | PublicBuyerHit[], filters: HelpFilters) => {
-  const { deadline, helpType, isPermanentHelp } = filters;
+export const handleHelpsFilter = (search: SearchResultItem[] | PublicBuyerHit[], filters: HelpsFilters) => {
+  const { deadline, helpType, zone } = filters;
   const cards = search as AidResult[]
   const isDeadlineFilterActivated = Object.keys(deadlines).includes(deadline);
   const isHelpTypeFilterActivated = Object.keys(helpTypes).includes(helpType);
+  const isZoneFilterActivated = Object.keys(zones).includes(zone);
   const filteredCards = cards.filter(({ card }) => {
     let deadlineFlag = true;
     let helpTypeFlag = true;
-    let isPermanentHelpFlag = true;
+    let zoneFlag = true
 
     if (isDeadlineFilterActivated) {
       if (card.submission_deadline) {
@@ -96,19 +84,29 @@ export const handleHelpsFilter = (search: SearchResultItem[] | PublicBuyerHit[],
         targetedDeadline.setMonth(targetedDeadline.getMonth() + monthsDelay);
         const cardDeadline = new Date(card.submission_deadline);
         deadlineFlag = cardDeadline < targetedDeadline;
-      } else {
-        deadlineFlag = isPermanentHelp;
       }
     }
-    if (!isPermanentHelp) {
-      isPermanentHelpFlag = !!card.submission_deadline;
-    }
-    const nature = card.nature
-    if (isHelpTypeFilterActivated && nature) {
-      helpTypeFlag = !nature.length ? true : nature.includes(helpType);
+
+    if (isZoneFilterActivated && card.zone) {
+      if (card.zone.includes('France') || card.zone.includes('')) {
+        zoneFlag = true;
+      } else {
+        const hasCardZonesSelectedFilter = card.zone.some((z) => {
+          let cardZone = z.trim();
+          cardZone = cardZone.startsWith('-') ? cardZone.substring(1) : cardZone;
+          const selectedZoneSynonymes = zonesSynonymes[zone as Region];
+          return selectedZoneSynonymes.includes(cardZone);
+        });
+        zoneFlag = hasCardZonesSelectedFilter;
+      }
     }
 
-    return deadlineFlag && isPermanentHelpFlag && helpTypeFlag;
+    const cardNature = card.nature
+    if (isHelpTypeFilterActivated && cardNature) {
+      helpTypeFlag = !cardNature.length ? true : cardNature.includes(helpType);
+    }
+
+    return deadlineFlag && helpTypeFlag && zoneFlag;
   });
   return filteredCards;
 };
@@ -116,13 +114,15 @@ export const handleHelpsFilter = (search: SearchResultItem[] | PublicBuyerHit[],
 export const handleInvestorFilter = (search: SearchResultItem[] | PublicBuyerHit[], filters: InvestorFilters) => {
   const cards = search as InvestorResult[]
 
-  const { fundingType, zone } = filters;
+  const { fundingType, zone, minimumAmount } = filters;
   const isFundingTypeFilterActivated = Object.keys(fundingTypes).includes(fundingType);
   const isZoneFilterActivated = Object.keys(zones).includes(zone);
+  const isAmountFilterActivated = minimumAmount > 0
 
   const filteredCards = cards.filter(({ card }) => {
     let fundingTypeFlag = true;
     let zoneFlag = true;
+    let minimumAmountFlag = true
     const cardData = card.data_source.transformed_pexe_api
     if (isFundingTypeFilterActivated && cardData && cardData['Type de financement']) {
       const cardFundingTypes = cardData['Type de financement'].split(';').map((t) => t.trim());
@@ -143,7 +143,13 @@ export const handleInvestorFilter = (search: SearchResultItem[] | PublicBuyerHit
         zoneFlag = hasCardZonesSelectedFilter;
       }
     }
-    return fundingTypeFlag && zoneFlag;
+
+    if (isAmountFilterActivated && cardData?.['Ticket_min_en_K€']) {
+      if (minimumAmount > cardData?.['Ticket_min_en_K€']) {
+        minimumAmountFlag = false
+      }
+    }
+    return fundingTypeFlag && zoneFlag && minimumAmountFlag;
   });
   return filteredCards;
 };

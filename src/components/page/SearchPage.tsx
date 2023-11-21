@@ -51,7 +51,7 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
     buildQueryString(initialState?.search.description, initialState?.search.thematics) ?? ''
   );
 
-  const pageChunkSize = 5;
+  const pageChunkSize = 10;
   const { data: cards, error: apiError } = useFetch<SearchResultItem[] | PublicBuyerResults>(url);
   const isLoading = !cards && !apiError;
 

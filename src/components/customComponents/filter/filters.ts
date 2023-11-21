@@ -6,7 +6,6 @@ import {
   publicationDateFilter,
   helpTypeFilter,
   deadlineFilter,
-  permanentHelpFilter,
   minimumAmountFilter,
   fundingTypeFilter
 } from './constants';
@@ -40,10 +39,10 @@ export type PublicBuyFilters = {
   entity: string;
 };
 
-export type HelpFilters = {
-  isPermanentHelp: boolean;
+export type HelpsFilters = {
   helpType: string;
   deadline: string;
+  zone: string;
 };
 
 export type InvestorFilters = {
@@ -56,7 +55,7 @@ export type AnyFilters =
   | StartupFilters
   | ForecastedBuyFilters
   | PublicBuyFilters
-  | HelpFilters
+  | HelpsFilters
   | InvestorFilters;
 
 export type FilterProperties = {
@@ -65,14 +64,14 @@ export type FilterProperties = {
   handleFilter:
   | ((search: SearchResultItem[] | PublicBuyerHit[], filters: StartupFilters) => CompanyResult[])
   | ((search: SearchResultItem[] | PublicBuyerHit[], filters: ForecastedBuyFilters) => PublicPurchaseResult[])
-  | ((search: SearchResultItem[] | PublicBuyerHit[], filters: HelpFilters) => AidResult[])
+  | ((search: SearchResultItem[] | PublicBuyerHit[], filters: HelpsFilters) => AidResult[])
   | ((search: SearchResultItem[] | PublicBuyerHit[], filters: InvestorFilters) => InvestorResult[]);
 };
 
 export function useAdvancedFilters(type: CardTypeNameFromModel): FilterProperties {
   const forecastedBuyFilters = [publicationDateFilter, zoneFilter, environnementalFilter];
   const startupFilters = [marketFilter, zoneFilter];
-  const helpFilters = [helpTypeFilter, deadlineFilter, permanentHelpFilter];
+  const helpsFilters = [helpTypeFilter, deadlineFilter, zoneFilter];
   const investorFilters = [minimumAmountFilter, zoneFilter, fundingTypeFilter];
 
   switch (type) {
@@ -87,9 +86,9 @@ export function useAdvancedFilters(type: CardTypeNameFromModel): FilterPropertie
     case 'aides-clients':
     case 'aides-financieres':
       return {
-        initialValues: getInitialValues(helpFilters),
+        initialValues: getInitialValues(helpsFilters),
         handleFilter: handleHelpsFilter,
-        filters: helpFilters
+        filters: helpsFilters
       };
     case 'startups':
     case 'sourcing-startup':
