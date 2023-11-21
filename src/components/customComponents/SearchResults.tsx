@@ -8,7 +8,7 @@ import { CardType } from 'model/CardType';
 import { PublicBuyerHit } from 'apiv4/interfaces/publicBuyer';
 
 type Props = {
-  hitCount: number;
+  hitCount?: number;
   isLoading: boolean;
   results: SearchResultItem[] | PublicBuyerHit[];
   cardType: CardType;
@@ -43,7 +43,7 @@ const SearchResults: React.FC<PropsWithChildren<Props>> = ({
       {!isLoading && hitCount === 0 && (
         <ScreenReaderOnlyText content={`Aucun résultat trouvé`} aria-live="polite" />
       )}
-      {hitCount > 0 ? (
+      {hitCount && hitCount > 0 ? (
         <section tabIndex={0} ref={ref} className="my-8" id="cardsContainer">
           <span
             className="flex justify-end font-bold mb-4 text-xl"

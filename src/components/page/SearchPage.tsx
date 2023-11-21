@@ -18,7 +18,7 @@ import {
 } from 'apiv4/services';
 import { useFetch } from 'apiv4/useFetch';
 import { SearchResultItem, isPublicBuyerResultList } from 'apiv4/interfaces/typeguards';
-import { PublicBuyerResults } from 'apiv4/interfaces/publicBuyer';
+import { PublicBuyerHit, PublicBuyerResults } from 'apiv4/interfaces/publicBuyer';
 import SelectInputOptions from 'components/customComponents/SelectInputOptions';
 import TextAreaInput from 'components/customComponents/TextAreaInput';
 import { ThematicsEnum } from 'model/ThematicsEnum';
@@ -32,9 +32,11 @@ type Props = {
 
 export const SearchPage: React.FC<Props> = ({ cardType }) => {
   const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
-  const { initialValues, searchByType, handleFilter, filters } = useAdvancedFilters(cardType.name);
+  const { initialValues, handleFilter, filters } = useAdvancedFilters(cardType.name);
   const [filtersValues, setFiltersValues] = useState(initialValues);
+  const [filteredResultsCount, setFilteredResultsCount] = useState(0)
   const thematicsValues = Object.values(ThematicsEnum);
+
   const navigate = useNavigate();
 
   const location = useLocation();
@@ -49,22 +51,32 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
     buildQueryString(initialState?.search.description, initialState?.search.thematics) ?? ''
   );
 
-  const pageChunkSize = 20;
+  const pageChunkSize = 5;
   const { data: cards, error: apiError } = useFetch<SearchResultItem[] | PublicBuyerResults>(url);
   const isLoading = !cards && !apiError;
 
-  const count = cards ? getCount(cards) : 0;
+
   const results = cards && isPublicBuyerResultList(cards) ? cards.hits : cards;
 
-  const pageNumber = Math.ceil(count / pageChunkSize);
-  const cardsSlice = useMemo(
-    () => results?.slice((currentPage - 1) * pageChunkSize, currentPage * pageChunkSize),
-    [cards, pageChunkSize, currentPage]
-  );
+  const [filteredData, setFilteredData] = useState<SearchResultItem[] | PublicBuyerHit[] | undefined>(results)
 
-  // useEffect(() => {
-  //   const filteredResults = handleFilter(results, filtersValues as any)
-  // }, [filtersValues])
+
+  const pageNumber = Math.ceil(filteredResultsCount / pageChunkSize);
+
+  useEffect(() => {
+    const filteredResults = results && isAdvancedSearchOpen ? handleFilter(results, filtersValues as any) : results
+    filteredResults && setFilteredData((filteredResults as any).slice((currentPage - 1) * pageChunkSize, currentPage * pageChunkSize))
+    filteredResults && setFilteredResultsCount(filteredResults?.length)
+
+    if (pageNumber <= 1) {
+      navigate(location.pathname, {
+        state: {
+          ...initialState, page: 1,
+        }
+      });
+    }
+
+  }, [filtersValues, cards, isAdvancedSearchOpen, pageChunkSize, currentPage, pageNumber])
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -91,6 +103,7 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
   const handleResetForm = () => {
     handleDescriptionChange('');
     setThematics([]);
+    setFiltersValues(initialValues)
   };
 
   return (
@@ -107,7 +120,7 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
             &nbsp;
             {cardType.title} &nbsp;{' '}
           </div>
-          <span className="bg-yellow md:text-3xl font-light">{`(${count} résultats)`}</span>
+          <span className="bg-yellow md:text-3xl font-light">{`(${filteredResultsCount} résultats)`}</span>
         </Heading>
 
         {cardType.description && <p className="mt-2 text-base">{cardType.description}</p>}
@@ -185,12 +198,12 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
         </button>
       </div>
       {apiError && <p>Erreur</p>}
-      {cardsSlice && (
+      {filteredData && (
         <>
           <SearchResults
-            hitCount={count}
+            hitCount={filteredResultsCount}
             isLoading={isLoading}
-            results={cardsSlice}
+            results={filteredData}
             cardType={cardType}
           />
 
@@ -232,9 +245,9 @@ const getFetcher = (type: CardTypeName) => {
   }
 };
 
-const getCount = (results: SearchResultItem[] | PublicBuyerResults) => {
-  return results && isPublicBuyerResultList(results) ? results.hits.length : results?.length;
-};
+// const getCount = (results: SearchResultItem[] | PublicBuyerHit[]) => {
+//   return results && isPublicBuyerResultList(results) ? results.hits.length : results?.length;
+// };
 
 const buildQueryString = (description: string | undefined, thematics: string[] | undefined) => {
   if (!thematics) return description;

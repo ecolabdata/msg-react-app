@@ -166,7 +166,7 @@ export const environnementalFilter: FilterDefinition = {
   label: 'Considération environnementale',
   id: 'hasEcologicalConcern' as keyof AnyFilters,
   type: 'toggle',
-  initialValue: true
+  initialValue: false
 };
 
 export const marketFilter: FilterDefinition = {
