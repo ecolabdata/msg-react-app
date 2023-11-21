@@ -1,6 +1,6 @@
 import Container from 'components/Core/Container';
 import Heading from 'components/Core/Heading';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { CardTypeName } from '../../api/Api';
 import { CardType } from '../../model/CardType';
@@ -24,6 +24,7 @@ import TextAreaInput from 'components/customComponents/TextAreaInput';
 import { ThematicsEnum } from 'model/ThematicsEnum';
 import SearchFieldWrapper from 'components/customComponents/SearchFieldWrapper';
 import { useAdvancedFilters } from 'components/customComponents/filter/filters';
+import AdvancedFilters from 'components/customComponents/filter/AdvancedFilters';
 
 type Props = {
   cardType: CardType;
@@ -31,7 +32,8 @@ type Props = {
 
 export const SearchPage: React.FC<Props> = ({ cardType }) => {
   const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
-  const { filters, handleFilter } = useAdvancedFilters(cardType.name);
+  const { initialValues, searchByType, handleFilter, filters } = useAdvancedFilters(cardType.name);
+  const [filtersValues, setFiltersValues] = useState(initialValues);
   const thematicsValues = Object.values(ThematicsEnum);
   const navigate = useNavigate();
 
@@ -60,6 +62,10 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
     [cards, pageChunkSize, currentPage]
   );
 
+  // useEffect(() => {
+  //   const filteredResults = handleFilter(results, filtersValues as any)
+  // }, [filtersValues])
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     navigate(location.pathname, {
@@ -72,6 +78,14 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
         }
       }
     });
+  };
+
+  const handleToggleAdvancedSearch = () => {
+    setIsAdvancedSearchOpen(!isAdvancedSearchOpen);
+  };
+
+  const handleUpdateFilter = (filterName: string, filterValue: string | boolean) => {
+    setFiltersValues({ ...filtersValues, [filterName]: filterValue });
   };
 
   const handleResetForm = () => {
@@ -134,6 +148,25 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
             </SearchFieldWrapper>
           </div>
         </fieldset>
+        {filters?.length > 0 && (
+          <div className="flex flex-col mt-4">
+            <button
+              aria-expanded={isAdvancedSearchOpen}
+              type="button"
+              className="ml-auto underline"
+              onClick={handleToggleAdvancedSearch}>
+              Recherche avancée
+            </button>
+            {isAdvancedSearchOpen && (
+              <AdvancedFilters
+                cardType={cardType}
+                filters={filters}
+                setFilters={handleUpdateFilter}
+                values={filtersValues}
+              />
+            )}
+          </div>
+        )}
       </form>
 
       <div className="container mt-8 w-full flex flex-col items-center justify-center">
