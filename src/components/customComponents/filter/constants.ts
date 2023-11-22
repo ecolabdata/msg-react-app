@@ -166,7 +166,7 @@ export const environnementalFilter: FilterDefinition = {
   label: 'Considération environnementale',
   id: 'hasEcologicalConcern' as keyof AnyFilters,
   type: 'toggle',
-  initialValue: true
+  initialValue: false
 };
 
 export const marketFilter: FilterDefinition = {
@@ -222,10 +222,10 @@ export const permanentHelpFilter: FilterDefinition = {
 };
 
 export const minimumAmountFilter: FilterDefinition = {
-  label: 'Montant (en K€)',
+  label: 'Montant minimum (en K€)',
   id: 'minimumAmount' as keyof AnyFilters,
   type: 'inputNumber',
-  initialValue: ''
+  initialValue: 0
 };
 
 export const companyIncomeFilter: FilterDefinition = {

@@ -1,5 +1,4 @@
 const getSources = (type?: string) => {
-  console.log('type', type);
 
   switch (type) {
     case 'acheteurs-publics':

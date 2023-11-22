@@ -1,6 +1,6 @@
 import Container from 'components/Core/Container';
 import Heading from 'components/Core/Heading';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { CardTypeName } from '../../api/Api';
 import { CardType } from '../../model/CardType';
@@ -18,12 +18,13 @@ import {
 } from 'apiv4/services';
 import { useFetch } from 'apiv4/useFetch';
 import { SearchResultItem, isPublicBuyerResultList } from 'apiv4/interfaces/typeguards';
-import { PublicBuyerResults } from 'apiv4/interfaces/publicBuyer';
+import { PublicBuyerHit, PublicBuyerResults } from 'apiv4/interfaces/publicBuyer';
 import SelectInputOptions from 'components/customComponents/SelectInputOptions';
 import TextAreaInput from 'components/customComponents/TextAreaInput';
 import { ThematicsEnum } from 'model/ThematicsEnum';
 import SearchFieldWrapper from 'components/customComponents/SearchFieldWrapper';
 import { useAdvancedFilters } from 'components/customComponents/filter/filters';
+import AdvancedFilters from 'components/customComponents/filter/AdvancedFilters';
 
 type Props = {
   cardType: CardType;
@@ -31,8 +32,11 @@ type Props = {
 
 export const SearchPage: React.FC<Props> = ({ cardType }) => {
   const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
-  const { filters, handleFilter } = useAdvancedFilters(cardType.name);
+  const { initialValues, handleFilter, filters } = useAdvancedFilters(cardType.name);
+  const [filtersValues, setFiltersValues] = useState(initialValues);
+  const [filteredResultsCount, setFilteredResultsCount] = useState(0)
   const thematicsValues = Object.values(ThematicsEnum);
+
   const navigate = useNavigate();
 
   const location = useLocation();
@@ -51,14 +55,28 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
   const { data: cards, error: apiError } = useFetch<SearchResultItem[] | PublicBuyerResults>(url);
   const isLoading = !cards && !apiError;
 
-  const count = cards ? getCount(cards) : 0;
+
   const results = cards && isPublicBuyerResultList(cards) ? cards.hits : cards;
 
-  const pageNumber = Math.ceil(count / pageChunkSize);
-  const cardsSlice = useMemo(
-    () => results?.slice((currentPage - 1) * pageChunkSize, currentPage * pageChunkSize),
-    [cards, pageChunkSize, currentPage]
-  );
+  const [filteredData, setFilteredData] = useState<SearchResultItem[] | PublicBuyerHit[] | undefined>(results)
+
+
+  const pageNumber = Math.ceil(filteredResultsCount / pageChunkSize);
+
+  useEffect(() => {
+    const filteredResults = results && isAdvancedSearchOpen ? handleFilter(results, filtersValues as any) : results
+    filteredResults && setFilteredData((filteredResults).slice((currentPage - 1) * pageChunkSize, currentPage * pageChunkSize))
+    filteredResults && setFilteredResultsCount(filteredResults?.length)
+
+    if (pageNumber <= 1) {
+      navigate(location.pathname, {
+        state: {
+          ...initialState, page: 1,
+        }
+      });
+    }
+
+  }, [filtersValues, cards, isAdvancedSearchOpen, pageChunkSize, currentPage, pageNumber])
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -74,9 +92,18 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
     });
   };
 
+  const handleToggleAdvancedSearch = () => {
+    setIsAdvancedSearchOpen(!isAdvancedSearchOpen);
+  };
+
+  const handleUpdateFilter = (filterName: string, filterValue: string | boolean) => {
+    setFiltersValues({ ...filtersValues, [filterName]: filterValue });
+  };
+
   const handleResetForm = () => {
     handleDescriptionChange('');
     setThematics([]);
+    setFiltersValues(initialValues)
   };
 
   return (
@@ -93,7 +120,7 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
             &nbsp;
             {cardType.title} &nbsp;{' '}
           </div>
-          <span className="bg-yellow md:text-3xl font-light">{`(${count} résultats)`}</span>
+          <span className="bg-yellow md:text-3xl font-light">{`(${filteredResultsCount} résultats)`}</span>
         </Heading>
 
         {cardType.description && <p className="mt-2 text-base">{cardType.description}</p>}
@@ -134,6 +161,25 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
             </SearchFieldWrapper>
           </div>
         </fieldset>
+        {filters?.length > 0 && (
+          <div className="flex flex-col mt-4">
+            <button
+              aria-expanded={isAdvancedSearchOpen}
+              type="button"
+              className="ml-auto underline"
+              onClick={handleToggleAdvancedSearch}>
+              Recherche avancée
+            </button>
+            {isAdvancedSearchOpen && (
+              <AdvancedFilters
+                cardType={cardType}
+                filters={filters}
+                setFilters={handleUpdateFilter}
+                values={filtersValues}
+              />
+            )}
+          </div>
+        )}
       </form>
 
       <div className="container mt-8 w-full flex flex-col items-center justify-center">
@@ -152,12 +198,12 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
         </button>
       </div>
       {apiError && <p>Erreur</p>}
-      {cardsSlice && (
+      {filteredData && (
         <>
           <SearchResults
-            hitCount={count}
+            hitCount={filteredResultsCount}
             isLoading={isLoading}
-            results={cardsSlice}
+            results={filteredData}
             cardType={cardType}
           />
 
@@ -197,10 +243,6 @@ const getFetcher = (type: CardTypeName) => {
     default:
       return () => ({ url: undefined, options: undefined });
   }
-};
-
-const getCount = (results: SearchResultItem[] | PublicBuyerResults) => {
-  return results && isPublicBuyerResultList(results) ? results.hits.length : results?.length;
 };
 
 const buildQueryString = (description: string | undefined, thematics: string[] | undefined) => {

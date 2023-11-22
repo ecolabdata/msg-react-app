@@ -1,26 +1,4 @@
 import {
-  AidesQuery,
-  Buy,
-  Collectivite,
-  InvestisseurQuery,
-  IStartup,
-  ProjetAchat,
-  Startup,
-  PublicBuy,
-  Query,
-  Search,
-  searchForecastedBuys,
-  searchPublicBuys,
-  searchStartups,
-  searchAidesInno,
-  Aide,
-  searchAidesClient,
-  AidesClientQuery,
-  AidesInnoQuery,
-  searchInvestisseur,
-  Investisseur
-} from '../../../api/Api';
-import {
   FilterDefinition,
   zoneFilter,
   environnementalFilter,
@@ -28,7 +6,6 @@ import {
   publicationDateFilter,
   helpTypeFilter,
   deadlineFilter,
-  permanentHelpFilter,
   minimumAmountFilter,
   fundingTypeFilter
 } from './constants';
@@ -36,11 +13,15 @@ import { CardTypeNameFromModel } from '../../../model/CardType';
 import {
   handleForecastedBuyFilter,
   handleStartUpFilter,
-  handlePublicBuyFilter,
-  handleInnovationHelpFilter,
-  handleCustomerHelpFilter,
-  handleInvestorFilter
+  handleInvestorFilter,
+  handleHelpsFilter
 } from './filterHandlers';
+import { PublicBuyerHit } from 'apiv4/interfaces/publicBuyer';
+import { SearchResultItem } from 'apiv4/interfaces/typeguards';
+import { PublicPurchaseResult } from 'apiv4/interfaces/publicPurchase';
+import { CompanyResult } from 'apiv4/interfaces/company';
+import { AidResult } from 'apiv4/interfaces/aid';
+import { InvestorResult } from 'apiv4/interfaces/investor';
 
 export type StartupFilters = {
   market: string;
@@ -58,10 +39,10 @@ export type PublicBuyFilters = {
   entity: string;
 };
 
-export type HelpFilters = {
-  isPermanentHelp: boolean;
+export type HelpsFilters = {
   helpType: string;
   deadline: string;
+  zone: string;
 };
 
 export type InvestorFilters = {
@@ -74,39 +55,23 @@ export type AnyFilters =
   | StartupFilters
   | ForecastedBuyFilters
   | PublicBuyFilters
-  | HelpFilters
+  | HelpsFilters
   | InvestorFilters;
 
 export type FilterProperties = {
   initialValues: AnyFilters;
-  searchByType: (searchParams: SearchParams) => Promise<{
-    query:
-      | Buy
-      | Query
-      | InvestisseurQuery
-      | AidesQuery
-      | IStartup
-      | PublicBuy
-      | AidesClientQuery
-      | AidesInnoQuery
-      | InvestisseurQuery;
-  }>;
   filters: FilterDefinition[];
   handleFilter:
-    | ((search: Search, filters: StartupFilters) => Startup[])
-    | ((search: Search, filters: ForecastedBuyFilters) => ProjetAchat[])
-    | ((search: Search, filters: PublicBuyFilters) => Collectivite[])
-    | ((search: Search, filters: HelpFilters) => Aide[])
-    | ((search: Search, filters: InvestorFilters) => Investisseur[]);
+  | ((search: SearchResultItem[] | PublicBuyerHit[], filters: StartupFilters) => CompanyResult[])
+  | ((search: SearchResultItem[] | PublicBuyerHit[], filters: ForecastedBuyFilters) => PublicPurchaseResult[])
+  | ((search: SearchResultItem[] | PublicBuyerHit[], filters: HelpsFilters) => AidResult[])
+  | ((search: SearchResultItem[] | PublicBuyerHit[], filters: InvestorFilters) => InvestorResult[]);
 };
-
-type SearchParams = { description: string; secteurs: string[]; filters: AnyFilters };
 
 export function useAdvancedFilters(type: CardTypeNameFromModel): FilterProperties {
   const forecastedBuyFilters = [publicationDateFilter, zoneFilter, environnementalFilter];
   const startupFilters = [marketFilter, zoneFilter];
-  const publicBuyFilters: FilterDefinition[] = [];
-  const helpFilters = [helpTypeFilter, deadlineFilter, permanentHelpFilter];
+  const helpsFilters = [helpTypeFilter, deadlineFilter, zoneFilter];
   const investorFilters = [minimumAmountFilter, zoneFilter, fundingTypeFilter];
 
   switch (type) {
@@ -114,62 +79,35 @@ export function useAdvancedFilters(type: CardTypeNameFromModel): FilterPropertie
     case 'achats-programmes':
       return {
         initialValues: getInitialValues(forecastedBuyFilters),
-        searchByType: ({ description, secteurs, filters }: SearchParams) =>
-          searchForecastedBuys({
-            description,
-            secteurs,
-            ...(filters as ForecastedBuyFilters)
-          }),
         handleFilter: handleForecastedBuyFilter,
         filters: forecastedBuyFilters
       };
     case 'aides-innovations':
-      return {
-        initialValues: getInitialValues(helpFilters),
-        searchByType: ({ description, secteurs, filters: filters }: SearchParams) => {
-          const { deadline, isPermanentHelp, helpType } = filters as HelpFilters;
-          return searchAidesInno({
-            description,
-            secteurs,
-            aid_type: helpType,
-            echeance: deadline,
-            displayAidePermanente: isPermanentHelp
-          });
-        },
-        handleFilter: handleInnovationHelpFilter,
-        filters: helpFilters
-      };
     case 'aides-clients':
     case 'aides-financieres':
       return {
-        initialValues: getInitialValues(helpFilters),
-        searchByType: ({ description, secteurs, filters }: SearchParams) => {
-          const { deadline, isPermanentHelp, helpType } = filters as HelpFilters;
-          return searchAidesClient({
-            description,
-            secteurs,
-            aid_type: helpType,
-            echeance: deadline,
-            displayAidePermanente: isPermanentHelp
-          });
-        },
-        handleFilter: handleCustomerHelpFilter,
-        filters: helpFilters
+        initialValues: getInitialValues(helpsFilters),
+        handleFilter: handleHelpsFilter,
+        filters: helpsFilters
+      };
+    case 'startups':
+    case 'sourcing-startup':
+      return {
+        initialValues: getInitialValues(startupFilters),
+        handleFilter: handleStartUpFilter,
+        filters: startupFilters
+      };
+
+    case 'acheteurs-publics':
+      return {
+        initialValues: {} as AnyFilters,
+        handleFilter: () => [],
+        filters: []
       };
     case 'investisseurs':
     default:
       return {
         initialValues: getInitialValues(investorFilters),
-        searchByType: ({ description, secteurs, filters }: SearchParams) => {
-          const { minimumAmount } = filters as InvestorFilters;
-          return searchInvestisseur({
-            description,
-            secteurs,
-            type: 'investisseur',
-            ...(filters as InvestorFilters),
-            montantMin: minimumAmount
-          });
-        },
         handleFilter: handleInvestorFilter,
         filters: investorFilters
       };
