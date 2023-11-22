@@ -14,6 +14,7 @@ import { all as allCardType } from './CardType';
 import PageLayout from '../components/page/PageLayout';
 import TestApiV2 from '../components/TestApiV2';
 import SingleSearchPage from 'components/page/SingleSearchFormPage';
+import { Ressources } from 'components/page/Ressources';
 
 export const routes = (
   <Routes>
@@ -24,6 +25,8 @@ export const routes = (
       <Route path="/startupOld" element={<HomeByProfile profile="startup" />} />
       <Route path="/acteurs-publicsOld" element={<HomeByProfile profile="publicActor" />} />
       <Route path="/startup" element={<SingleSearchPage profile="startup" />} />
+      <Route path="/ressources-entreprises" element={<Ressources profile='startup' />} />
+      <Route path="/ressources-acheteurs-publics" element={<Ressources profile='publicActor' />} />
       <Route path="/acteurs-publics" element={<SingleSearchPage profile="publicActor" />} />
       {allCardType.map((cardType, i) => (
         <>

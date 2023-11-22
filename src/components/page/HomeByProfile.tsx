@@ -1,7 +1,7 @@
 import Container from 'components/Core/Container';
 import Heading from 'components/Core/Heading';
 import { Link } from 'react-router-dom';
-import homePageContent from '../../contents/homepagebyprofile';
+import ressourcesByProfileContent from 'contents/RessourcesByProfileContent';
 import CtaBloc from '../customComponents/CtaBloc';
 import LinksCard from '../customComponents/LinksCard';
 import HomeCard from '../dsfrComponents/HomeCard';
@@ -11,7 +11,7 @@ interface HomeByProfileProps {
 }
 
 const HomeByProfile: React.FC<HomeByProfileProps> = ({ profile }) => {
-  const pageContent = homePageContent[profile];
+  const pageContent = ressourcesByProfileContent[profile];
   return (
     <>
       <Container isFlexCol>
@@ -49,11 +49,10 @@ const HomeByProfile: React.FC<HomeByProfileProps> = ({ profile }) => {
         <Heading level={2}>Cela peut aussi vous intéresser</Heading>
         <Container
           as="ul"
-          customClasses={`grid grid-cols-1 sm:grid-cols-2 ${
-            pageContent.suggestions.length > 2
+          customClasses={`grid grid-cols-1 sm:grid-cols-2 ${pageContent.suggestions.length > 2
               ? 'md:grid-cols-3 md:max-w-5/6 2XL:max-w-2/3'
               : 'md:grid-cols-2 md:max-w-5/6 2XL:max-w-1/2'
-          } gap-8 flex justify-center `}
+            } gap-8 flex justify-center `}
         >
           {pageContent.suggestions.map(({ title, description, links }) => (
             <li key={title}>
