@@ -15,6 +15,7 @@ import {
   useFavoris
 } from './utils/categoris';
 import { JwtAuthProvider } from './utils/jwt';
+import { ProjetFormContextProvider } from 'components/context/useProjectFormContext';
 
 export const ApplicationContext = createContext<{
   usedFavoris: UsedFavoris;
@@ -27,9 +28,8 @@ export const ApplicationContext = createContext<{
 });
 
 const Router = () => {
-  localStorage.setItem('scheme', 'dark');
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  useEffect(() => {}, [localStorage.scheme]);
+  useEffect(() => { }, [localStorage.scheme]);
   const usedFavoris = useFavoris();
   const usedCorbeille = useCorbeille();
   const usedNextScrollTarget = useState<ScrollToOptions | null>(null);
@@ -52,13 +52,15 @@ const Router = () => {
   return (
     <>
       <ApplicationContext.Provider value={{ usedFavoris, usedCorbeille, usedNextScrollTarget }}>
-        <AccessibleNavigation />
-        <JwtAuthProvider>
-          <TrackPage />
-          <Routes>
-            <Route path="*" element={<Authentified />} />
-          </Routes>
-        </JwtAuthProvider>
+        <ProjetFormContextProvider>
+          <AccessibleNavigation />
+          <JwtAuthProvider>
+            <TrackPage />
+            <Routes>
+              <Route path="*" element={<Authentified />} />
+            </Routes>
+          </JwtAuthProvider>
+        </ProjetFormContextProvider>
       </ApplicationContext.Provider>
     </>
   );

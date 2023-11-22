@@ -1,14 +1,14 @@
 import Container from 'components/Core/Container';
 import getSources from 'contents/genericSources';
-import { AnyCard } from '../../../api/Api';
 import CopieLink from '../../Core/CopieLink';
+import { CardType } from 'model/CardType';
 
 interface DetailsFooterProps {
-  card: AnyCard;
+  cardType: CardType;
 }
 
-const DetailsFooter: React.FC<DetailsFooterProps> = ({ card }) => {
-  const sources = getSources(card.cardTypeName);
+const DetailsFooter: React.FC<DetailsFooterProps> = ({ cardType }) => {
+  const sources = getSources(cardType.name);
 
   return (
     <Container>

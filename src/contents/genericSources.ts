@@ -1,4 +1,5 @@
-const getSources = (type: string) => {
+const getSources = (type?: string) => {
+
   switch (type) {
     case 'acheteurs-publics':
       return [
@@ -13,6 +14,7 @@ const getSources = (type: string) => {
         }
       ];
     case 'startups':
+    case 'sourcing-startup':
       return [
         {
           label: 'Annuaire Greentech Innovation',

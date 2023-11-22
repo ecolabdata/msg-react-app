@@ -7,21 +7,21 @@ interface TextAreaInputProps {
   label: string;
   onValueChange: (value: string) => void;
   formId: string;
-  errorText?: string;
   required?: boolean;
   className?: string;
   color?: string;
+  error?: boolean;
 }
 
 const TextAreaInput: React.FC<TextAreaInputProps> = ({
   formId,
   label,
   value,
-  errorText = '',
   required = false,
   onValueChange,
   className: classNameProp = '',
-  color
+  color,
+  error
 }) => {
   const MIN_HEIGHT = 50;
   const inputId = `${formId}-${label}`;
@@ -53,8 +53,7 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
     <div
       style={{
         minHeight: parentHeight
-      }}
-    >
+      }}>
       <label htmlFor={inputId} className="text-base fr-label">
         {label} {required && <span aria-hidden={true}>(obligatoire)</span>}
       </label>
@@ -68,23 +67,22 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
         value={value}
         form={formId}
         className={classNames(
-          `cursor-text mt-2 w-full rounded-t-sm p-2 bg-background-inputs ${borderColor}`,
-          { [`addBorder-b border-3`]: !errorText },
-          { 'addBorder border-2 border-red-marianne-625-hover': errorText },
+          ` cursor-text mt-2 w-full rounded-t-sm p-2 ${localStorage.getItem("scheme") === "dark" ? "bg-input-background" : "bg-slate-50"} ${borderColor}`,
+          { [`addBorder-b border-3`]: !error },
+          { 'addBorder border-2 border-red-marianne-625-hover': error },
           classNameProp
         )}
-        aria-invalid={!!errorText}
+        aria-invalid={!!error}
         aria-required={required}
-        aria-describedby={errorText ? `${inputId}-error` : undefined}
+        aria-describedby={error ? `${inputId}-error` : undefined}
       />
-      {errorText && (
+      {error && (
         <div
-          className={`errorContainer ${errorText.length <= 0 && 'hidden'} 
+          className={`errorContainer ${!error && 'hidden'} 
         h-12 flex justify-center items-center color`}
           id={`${inputId}-error`}
-          aria-live="polite"
-        >
-          <p className="text-red-marianne-625-hover">{errorText}</p>
+          aria-live="polite">
+          <p className="text-red-marianne-625-hover">Ce champs est obligatoire</p>
         </div>
       )}
     </div>

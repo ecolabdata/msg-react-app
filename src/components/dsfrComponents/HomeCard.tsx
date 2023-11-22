@@ -1,8 +1,11 @@
+import { Link } from 'react-router-dom';
 import { CardType } from '../../model/CardType';
+import { SearchState } from 'utils/InitialState';
 
 interface CardTypeProps {
   cardTypeData: CardType | ExplorerTypeCard;
   explorerCard?: boolean;
+  state?: SearchState;
 }
 
 export interface ExplorerTypeCard {
@@ -16,19 +19,18 @@ export interface ExplorerTypeCard {
   homeDescription?: string;
 }
 
-const HomeCard: React.FC<CardTypeProps> = (props) => {
-  const isExplorerCard = props.explorerCard ?? false;
-  const { SVGLogo, title, description, color, searchLink, version, homeDescription } =
-    props.cardTypeData;
+const HomeCard: React.FC<CardTypeProps> = ({ explorerCard, cardTypeData, state }) => {
+  const isExplorerCard = explorerCard ?? false;
+  const { SVGLogo, title, description, color, searchLink, version, homeDescription } = cardTypeData;
   const isAlpha = version === 'alpha';
+
   const alphaCardStyle =
     "after:text-sm after:px-4 after:py-1 after:rounded-2xl after:absolute after:bottom-2 after:right-2 after:content-['Bientôt'] ";
   return (
     <li
-      className={`fr-card self-stretch justify-center ${
-        isExplorerCard &&
+      className={`fr-card self-stretch justify-center ${isExplorerCard &&
         'bg-blue-france-main-525 text-black before:bg-blue-france-sun-113 hover:bg-blue-france-main-525-hover'
-      } 
+        } 
                 ${!isExplorerCard && isAlpha ? alphaCardStyle : 'fr-enlarge-link'} }
                  m-[1em]
                 `}
@@ -37,17 +39,17 @@ const HomeCard: React.FC<CardTypeProps> = (props) => {
         <div className="fr-card__content p-4 !pb-14 !h-auto">
           <h3 className="fr-card__title">
             {!isAlpha ? (
-              <a
-                href={searchLink}
-                className={`${isExplorerCard && 'text-black '}
-                                    text-lg`}>
+              <Link
+                to={searchLink}
+                state={state}
+                className={`${isExplorerCard && 'text-black '} text-lg`}>
                 {title}
-              </a>
+              </Link>
             ) : (
               <p className="text-lg">{title}</p>
             )}
           </h3>
-          <p className="fr-card__desc text-base text-grey-625-active">
+          <p className="fr-card__desc text-base">
             {homeDescription ?? description}
           </p>
         </div>

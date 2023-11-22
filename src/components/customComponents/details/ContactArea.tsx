@@ -1,24 +1,22 @@
 import { useState } from 'react';
-import { getGreenTechData } from 'utils/utilityFunctions';
-import {
-  AnyCard,
-  isAcheteurPublic,
-  isAide,
-  isInvestisseur,
-  isProjetAchat,
-  isStartup
-} from 'api/Api';
 import ExternalLink from '../../Core/ExternalLink';
+import {
+  SearchResultItem,
+  isAidV4,
+  isCompanyV4,
+  isInvestorV4,
+  isPublicPurchaseV4
+} from 'apiv4/interfaces/typeguards';
 
 interface ContactAreaProps {
-  card: AnyCard;
+  data: SearchResultItem;
   className?: string;
 }
 
 const someNotNull = (x: Record<string, any>) => Object.values(x).find((x) => x != null);
 
-const ContactArea: React.FC<ContactAreaProps> = ({ card, className }) => {
-  const { title, content, cta, link, secondaryCta } = normalizeContactInformations(card);
+const ContactArea: React.FC<ContactAreaProps> = ({ data, className }) => {
+  const { title, content, cta, link, secondaryCta } = normalizeContactInformations(data);
   const [showContact, setShowContact] = useState(false);
 
   return (
@@ -49,7 +47,7 @@ const ContactArea: React.FC<ContactAreaProps> = ({ card, className }) => {
           <ExternalLink
             href={cta.url}
             content={cta.label}
-            className="fr-btn fr-btn--primary w-fit  px-4 h-3 py-2 hover:bg-claire-bf__hover mt-6"
+            className="fr-btn fr-btn--primary w-fit  px-4  py-2 hover:bg-claire-bf__hover mt-6"
           />
         )
       )}
@@ -73,71 +71,74 @@ const ContactArea: React.FC<ContactAreaProps> = ({ card, className }) => {
 
 export default ContactArea;
 
-const normalizeContactInformations = (card: AnyCard) => {
-  if (isInvestisseur(card)) {
+const normalizeContactInformations = (data: SearchResultItem) => {
+  if (isInvestorV4(data)) {
+    const contactData = data.card.data_source?.transformed_pexe_api;
     return {
       title: 'Contact et détails',
-      content: `${card.Prenom} ${card.Nom}`,
+      content: `${contactData?.Prenom} ${contactData?.Nom}`,
       cta: {
         label: 'Voir la fiche et le contact',
         icon: 'mail',
         contact: {
-          phone: card.TELEPHONE_FIXE,
-          mail: card.Email
+          phone: contactData?.TELEPHONE_FIXE,
+          mail: contactData?.Email
         }
       },
       secondaryCta: {
         label: 'Voir le porfolio complet',
-        url: card.Site_Web
+        url: contactData?.Site_Web
       }
     };
   }
 
-  if (isAide(card)) {
+  if (isAidV4(data)) {
     return {
       title: 'Contact',
       content: 'Relais locaux',
       cta: {
         label: "Lien vers l'aide originale",
-        url: card.origin_url
+        url: data.card.data_source.aide_territoire?.origin_url
       },
       secondaryCta: {
         label: 'Lien vers la démarche en ligne',
-        url: card.application_url
+        url: data.card.data_source.aide_territoire?.application_url
       }
     };
   }
 
-  if (isAcheteurPublic(card)) {
+  if (isPublicPurchaseV4(data)) {
+    //A METTRE A JOUR AVEC LA NOUVELLE FONCTION ISPUBLICBUYER
     return {
       title: 'Contact',
       content:
         'Certains contacts de services publics sont présents sur lannuaire.service-public.fr',
       cta: {
         label: "Accèder à l'annuaire",
-        url: '#'
+        url: data.card.source_url
       }
     };
   }
-  if (isStartup(card)) {
-    const greenTechData = getGreenTechData(card);
+  if (isCompanyV4(data)) {
+    const greenTechData = data.card.data_source?.greentech_innovation;
 
     return {
       title: 'Contact et détails',
-      content: card['NOM'],
+      content: data.card.name,
       cta: {
         label: 'Voir le contact',
         icon: 'mail',
         contact: {
           mail: greenTechData?.Mail,
-          linkedIn: greenTechData?.LinkedIn
+          linkedIn: greenTechData?.LinkedIn,
+          phone: greenTechData && greenTechData['Téléphone']
         }
       },
       link: greenTechData && greenTechData['Site internet']
     };
   }
 
-  if (isProjetAchat(card)) {
+  if (isPublicPurchaseV4(data)) {
     return {
       title: 'Contact',
       content:

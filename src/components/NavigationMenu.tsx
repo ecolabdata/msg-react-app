@@ -13,7 +13,7 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({ isBurgerMenuOpen }) => 
   return (
     <>
       {(!isMobile || (isMobile && isBurgerMenuOpen)) && (
-        <div className="fr-header shadow-header bg-grey-75">
+        <div className="fr-header">
           <div className="fr-header__body">
             <div className="container ">
               <div className="flex">

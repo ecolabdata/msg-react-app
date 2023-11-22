@@ -3,7 +3,7 @@ import { TagsList } from '../../Core/TagsList';
 
 interface InformationItemProps {
   label: string;
-  contents: string | string[];
+  contents?: string | string[] | null;
   showDivider?: boolean;
   className?: string;
   isHtml?: boolean;
@@ -34,8 +34,8 @@ export const InformationItem: React.FC<InformationItemProps> = ({
 export const InformationItemsWrapper = ({ children }: { children: ReactNode[] }) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-      <div>{children[0]}</div>
-      <div>{children[1]}</div>
+      {children[0] && <div>{children[0]}</div>}
+      {children[1] && <div>{children[1]}</div>}
     </div>
   );
 };

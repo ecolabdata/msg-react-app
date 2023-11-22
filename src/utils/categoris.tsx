@@ -15,15 +15,15 @@ export const buildUseCategorie =
       {}
     );
     const toggleCategorie = (card: AnyCard) => {
-      if (!cardCategorie[card.id]) {
-        setCardCategorie(Object.assign({}, cardCategorie, { [card.id]: card }));
+      if (!cardCategorie[(card as any).id]) {
+        setCardCategorie(Object.assign({}, cardCategorie, { [(card as any).id]: card }));
       } else {
-        delete cardCategorie[card.id];
+        delete cardCategorie[(card as any).id];
         setCardCategorie(Object.assign({}, cardCategorie));
       }
     };
     const isCategorie = (card: AnyCard) => {
-      return cardCategorie[card.id] != undefined;
+      return cardCategorie[(card as any).id] != undefined;
     };
     return [toggleCategorie, isCategorie, cardCategorie, setCardCategorie];
   };

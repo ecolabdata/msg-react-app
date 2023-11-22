@@ -1,20 +1,19 @@
-import { Api } from 'api2/Api';
-import { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
-import {
-  AnyCard,
-  isAcheteurPublic,
-  isAide,
-  isInvestisseur,
-  isProjetAchat,
-  isStartup
-} from '../../api/Api';
-import { useQuery } from '../../hooks/useQuery';
-import { acheteurPublic, CardType, startups } from '../../model/CardType';
+import { useLocation } from 'react-router-dom';
+import { CardType } from '../../model/CardType';
 import DetailsFooter from '../customComponents/details/DetailsFooter';
 import GenericDetails from '../customComponents/details/DetailsGenericContent';
 import DetailsHeader from '../customComponents/details/DetailsHeader';
-import PublicBuyerContent from '../customComponents/details/DetailsPublicBuyerContent';
+import { useFetch } from 'apiv4/useFetch';
+import { generateCardByIDFetchParameters } from 'apiv4/services';
+import { isPublicBuyerResults } from 'apiv4/interfaces/typeguards';
+import DetailsPublicBuyer from 'components/customComponents/details/DetailsPublicBuyerContent';
+import {
+  SearchResultItem,
+  isAidV4,
+  isCompanyV4,
+  isInvestorV4,
+  isPublicPurchaseV4
+} from 'apiv4/interfaces/typeguards';
 
 type DetailsProps = {
   cardType: CardType;
@@ -22,37 +21,24 @@ type DetailsProps = {
 
 export const Details: React.FC<DetailsProps> = ({ cardType }) => {
   const location = useLocation();
-  const { id, cardData } = useQuery();
-  const initialState = location.state as { cardData: AnyCard } | null;
-  const [card, setCard] = useState<AnyCard>(initialState?.cardData || JSON.parse(cardData));
-  useEffect(() => {
-    if (cardType.useApiV2 && id) {
-      if (cardType.apiName == acheteurPublic.apiName) {
-        console.log({ query: id });
-        Api.getActeurPublic(id).then((x) => {
-          console.log({ resp: x });
-          setCard(x);
-        });
-      } else if (cardType.apiName == startups.apiName) {
-        console.log({ query: id });
-        Api.getStartup(id).then((x) => {
-          console.log({ resp: x });
-          setCard(x);
-        });
-      }
-    }
-  }, [id]);
 
-  if (!card) return <p>No data</p>;
+  const { url, method, headers } = generateCardByIDFetchParameters(
+    location.pathname.split('/')[3],
+    cardType.apiName
+  );
+  const { data, error } = useFetch<SearchResultItem>(url, { method, headers });
+
+  if (!data) return <p>No data</p>;
 
   return (
     <>
-      <DetailsHeader card={card} cardType={cardType} />
-      {isAcheteurPublic(card) && <PublicBuyerContent card={card} />}
-      {(isStartup(card) || isProjetAchat(card) || isAide(card) || isInvestisseur(card)) && (
-        <GenericDetails card={card} />
+      <DetailsHeader data={data} cardType={cardType} />
+      {isPublicBuyerResults(data) && <DetailsPublicBuyer card={data._source} />}
+      {(isCompanyV4(data) || isPublicPurchaseV4(data) || isAidV4(data) || isInvestorV4(data)) && (
+        <GenericDetails data={data} />
       )}
-      <DetailsFooter card={card} />
+
+      <DetailsFooter cardType={cardType} />
     </>
   );
 };

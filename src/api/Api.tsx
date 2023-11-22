@@ -5,12 +5,16 @@ import {
   acheteurPublic,
   aideClient,
   aideInno,
-  all as allCardType,
   investisseur,
   startups
 } from '../model/CardType';
 import mockApiResponse from './mock_api_resp.json';
 import { StartupV2 as StartupV2, CollectiviteV2 as CollectiviteV2 } from 'api2/Api';
+import { CompanyCard } from 'apiv4/interfaces/company';
+import { AidCard } from 'apiv4/interfaces/aid';
+import { InvestorCard } from 'apiv4/interfaces/investor';
+import { PublicBuyerCard } from 'apiv4/interfaces/publicBuyer';
+import { PublicPurchaseCard } from 'apiv4/interfaces/publicPurchase';
 
 export const buildId = (obj: any) => sha1(canonicalize(obj)).slice(0, 8);
 
@@ -44,44 +48,11 @@ export type Investisseur = typeof mockApiResponse.cards.investisseurs[number] & 
 
 export type Startup = StartupV2 & GeneratedData;
 
-export type AnyCard = Aide | ProjetAchat | Collectivite | Investisseur | Startup;
+export type AnyCard = CompanyCard | AidCard | InvestorCard | PublicBuyerCard | PublicPurchaseCard;
 
 export type ApiResponse = typeof mockApiResponse;
 
 export type Search = ReturnType<typeof handleResp>;
-
-export function isAcheteurPublic(x: AnyCard): x is Collectivite {
-  return x.cardTypeName === acheteurPublic.name;
-}
-export function isProjetAchat(x: AnyCard): x is ProjetAchat {
-  return x.cardTypeName === achatPrevi.name;
-}
-export function isInvestisseur(x: AnyCard): x is Investisseur {
-  return x.cardTypeName === investisseur.name;
-}
-export function isAide(x: AnyCard): x is Aide {
-  return x.cardTypeName === aideClient.name || x.cardTypeName === aideInno.name;
-}
-export function isStartup(x: AnyCard): x is Startup {
-  return x.cardTypeName === startups.name;
-}
-
-export function applyCard<T>(
-  cardData: AnyCard,
-  doAcheteurPublic: (x: Collectivite) => T,
-  doProjetAchat: (x: ProjetAchat) => T,
-  doInvestisseur: (x: Investisseur) => T,
-  doAide: (x: Aide) => T,
-  doStartup: (x: Startup) => T,
-  other: () => T
-): T {
-  if (isAcheteurPublic(cardData)) return doAcheteurPublic(cardData);
-  else if (isProjetAchat(cardData)) return doProjetAchat(cardData);
-  else if (isInvestisseur(cardData)) return doInvestisseur(cardData);
-  else if (isAide(cardData)) return doAide(cardData);
-  else if (isStartup(cardData)) return doStartup(cardData);
-  return other();
-}
 
 function handleResp(
   query: Query | InvestisseurQuery | AidesClientQuery | AidesInnoQuery | ForecastedBuyQuery,

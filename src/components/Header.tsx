@@ -17,7 +17,7 @@ const Header = () => {
 
   return (
     <>
-      <header role="banner" className="fr-header shadow-header bg-grey-75">
+      <header role="banner" className="fr-header">
         <SkipLinks />
         <div className="fr-header__body">
           <div className="container ">

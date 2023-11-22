@@ -1,8 +1,9 @@
+import { AidCard } from 'apiv4/interfaces/aid';
 import { Aide } from '../../../api/Api';
 import { InformationItemsWrapper, InformationItem } from './InformationItem';
 
 interface HelpPageContentProps {
-  card: Aide;
+  card: AidCard;
   className?: string;
 }
 
@@ -11,11 +12,12 @@ const HelpPage: React.FC<HelpPageContentProps> = ({ card, className }) => {
     submission_deadline,
     subvention_rate_lower_bound,
     subvention_rate_upper_bound,
-    targeted_audiences,
-    perimeter,
-    eligibility,
-    description,
-    aid_types
+    beneficiaries,
+    zone,
+    html_eligibility,
+    html_description,
+    recurrence,
+    nature
   } = card;
   const d = submission_deadline ? new Date(submission_deadline) : null;
 
@@ -34,27 +36,24 @@ const HelpPage: React.FC<HelpPageContentProps> = ({ card, className }) => {
   return (
     <section className={`${className}`}>
       <InformationItemsWrapper>
-        {displayabeSubmissionDeadLine && (
+        {beneficiaries && (
+          <InformationItem label={'Bénéficaires'} contents={beneficiaries} showDivider={false} />
+        )}
+        {submission_deadline && displayabeSubmissionDeadLine && (
           <InformationItem
             label={'Calendrier'}
             contents={`Date de cloture: ${displayabeSubmissionDeadLine}`}
             showDivider={false}
           />
         )}
-        {targeted_audiences && (
-          <InformationItem
-            label={'Bénéficaires'}
-            contents={targeted_audiences}
-            showDivider={false}
-          />
-        )}
       </InformationItemsWrapper>
-      <InformationItem label={'Zone géographique couverte'} contents={perimeter} />
-      <InformationItem label={"Critères d'éligibilité"} contents={eligibility} isHtml />
-      <InformationItem label={'Description'} contents={description} isHtml />
+      <InformationItem label={'Zone géographique couverte'} contents={zone} />
+      <InformationItem label={'Récurence'} contents={recurrence} />
+      <InformationItem label={"Critères d'éligibilité"} contents={html_eligibility} isHtml />
+      <InformationItem label={'Description'} contents={html_description} isHtml />
       <InformationItemsWrapper>
-        {aid_types && (
-          <InformationItem label={"Nature de l'aide"} contents={aid_types} showDivider={false} />
+        {nature && (
+          <InformationItem label={"Nature de l'aide"} contents={nature} showDivider={false} />
         )}
         {subvention?.display && (
           <InformationItem
