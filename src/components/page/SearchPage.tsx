@@ -51,7 +51,7 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
     buildQueryString(initialState?.search.description, initialState?.search.thematics) ?? ''
   );
 
-  const pageChunkSize = 10;
+  const pageChunkSize = 20;
   const { data: cards, error: apiError } = useFetch<SearchResultItem[] | PublicBuyerResults>(url);
   const isLoading = !cards && !apiError;
 
@@ -65,7 +65,7 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
 
   useEffect(() => {
     const filteredResults = results && isAdvancedSearchOpen ? handleFilter(results, filtersValues as any) : results
-    filteredResults && setFilteredData((filteredResults as any).slice((currentPage - 1) * pageChunkSize, currentPage * pageChunkSize))
+    filteredResults && setFilteredData((filteredResults).slice((currentPage - 1) * pageChunkSize, currentPage * pageChunkSize))
     filteredResults && setFilteredResultsCount(filteredResults?.length)
 
     if (pageNumber <= 1) {
@@ -244,10 +244,6 @@ const getFetcher = (type: CardTypeName) => {
       return () => ({ url: undefined, options: undefined });
   }
 };
-
-// const getCount = (results: SearchResultItem[] | PublicBuyerHit[]) => {
-//   return results && isPublicBuyerResultList(results) ? results.hits.length : results?.length;
-// };
 
 const buildQueryString = (description: string | undefined, thematics: string[] | undefined) => {
   if (!thematics) return description;
