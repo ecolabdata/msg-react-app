@@ -5,7 +5,6 @@ import { SearchPage } from '../components/page/SearchPage';
 import { Details } from '../components/page/DetailsPage';
 import GdprPage from '../components/page/GdprPage';
 import Home from '../components/page/Home';
-import HomeByProfile from '../components/page/HomeByProfile';
 import LegalNotices from '../components/page/LegalNoticesPage';
 import Page404 from '../components/page/Page404';
 import Sitemap from '../components/page/Sitemap';
@@ -22,8 +21,6 @@ export const routes = (
       <Route path="/" element={<Home />} />
       <Route path="/test-apiv2" element={<TestApiV2 />} />
       {/* Delete old routes when not needed anymore */}
-      <Route path="/startupOld" element={<HomeByProfile profile="startup" />} />
-      <Route path="/acteurs-publicsOld" element={<HomeByProfile profile="publicActor" />} />
       <Route path="/startup" element={<SingleSearchPage profile="startup" />} />
       <Route path="/ressources-entreprises" element={<Ressources profile='startup' />} />
       <Route path="/ressources-acheteurs-publics" element={<Ressources profile='publicActor' />} />

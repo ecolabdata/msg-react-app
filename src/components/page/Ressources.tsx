@@ -3,14 +3,14 @@ import Heading from 'components/Core/Heading';
 import { Link } from 'react-router-dom';
 import CtaBloc from '../customComponents/CtaBloc';
 import LinksCard from '../customComponents/LinksCard';
-import homePageContent from '../../contents/RessourcesByProfileContent';
+import ressourcesContent from '../../contents/RessourcesByProfileContent';
 
 
 
 
 export const Ressources: React.FC<{ profile: "startup" | "publicActor" }> = ({ profile }) => {
 
-    const pageContent = homePageContent[profile];
+    const pageContent = ressourcesContent[profile];
 
     return (
         <>
