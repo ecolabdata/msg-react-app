@@ -34,6 +34,20 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({ isBurgerMenuOpen }) => 
                       <NavigationLink to="/acteurs-publics">Acheteurs</NavigationLink>
                     </li>
                     <li className="fr-nav__item">
+                      <button className="fr-nav__btn" aria-expanded="false" aria-controls="menu-774">Ressources</button>
+                      <div className="fr-collapse fr-menu" id="menu-774">
+                        <ul className="fr-menu__list">
+                          <li>
+                            <NavigationLink className="fr-nav__link" to="/ressources-entreprises" target="_self">Entreprises</NavigationLink>
+                          </li>
+                          <li>
+                            <NavigationLink className="fr-nav__link" to="/ressources-acheteurs-publics" target="_self">Acheteurs</NavigationLink>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+
+                    <li className="fr-nav__item">
                       <ExternalLink
                         className="fr-nav__link"
                         href="mailto:greentechinnovation@developpement-durable.gouv.fr"

@@ -1,9 +1,9 @@
 import { publicActorPersona, startupPersona } from '../model/CardType';
 import ExternalLink from '../components/Core/ExternalLink';
 
-const homePageContent = {
+const ressourcesByProfileContent = {
   startup: {
-    pageTitle: 'Accueil startups',
+    pageTitle: 'Ressources entreprises',
     cards: startupPersona,
     mainContent: {
       title: 'Start-up greentech, trouvez des leviers pour booster votre développement ! ',
@@ -88,11 +88,11 @@ const homePageContent = {
         </>
       ),
       extraLink: 'Vous n’êtes pas une entreprise ? Aller sur la version acheteur public',
-      extraUrl: '/acteurs-publics'
+      extraUrl: '/ressources-acheteurs-publics'
     }
   },
   publicActor: {
-    pageTitle: 'Accueil acheteur public',
+    pageTitle: 'Ressources acheteurs publics',
     cards: publicActorPersona,
     mainContent: {
       title: 'Acteurs publics, sourcez des entreprises éco-innovantes !',
@@ -162,9 +162,9 @@ const homePageContent = {
       title: null,
       description: null,
       extraLink: 'Vous n’êtes pas un acheteur public ? Aller sur la version entreprise',
-      extraUrl: '/startup'
+      extraUrl: '/ressources-entreprises'
     }
   }
 };
 
-export default homePageContent;
+export default ressourcesByProfileContent;
