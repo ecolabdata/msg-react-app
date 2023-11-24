@@ -1,6 +1,6 @@
 import Container from 'components/Core/Container';
 import Heading from 'components/Core/Heading';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { CardTypeName } from '../../api/Api';
 import { CardType } from '../../model/CardType';
@@ -48,7 +48,7 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
     useProjetFormContext();
 
   const fetcher = getFetcher(cardType.apiName);
-  const { url, ...options } = fetcher(
+  const { url } = fetcher(
     buildQueryString(initialState?.search.description, initialState?.search.thematics) ?? ''
   );
 
@@ -75,6 +75,7 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
 
     if (pageNumber <= 1) {
       navigate(location.pathname, {
+        replace: true,
         state: {
           ...initialState,
           page: 1
