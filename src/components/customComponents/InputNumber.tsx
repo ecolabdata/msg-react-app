@@ -14,7 +14,7 @@ const InputNumber: React.FC<InputNumberProps> = ({ label, classes, onChange, col
           {label}
         </label>
         <input
-          className={`text-white rounded-t-md w-64 addBorder-b border-3 bg-input-background`}
+          className={`text-white rounded-t-md w-64 addBorder-b border-3`}
           style={{ borderColor: color }}
           type="number"
           id={label}

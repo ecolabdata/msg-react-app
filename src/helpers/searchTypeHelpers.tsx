@@ -8,6 +8,7 @@ import {
   isPublicPurchaseV4
 } from 'apiv4/interfaces/typeguards';
 import { investisseur, startups, achatPrevi, CardType, acheteurPublic } from 'model/CardType';
+import { ThematicsEnum, extendedThematicsDictionnary } from 'model/ThematicsEnum';
 
 export const getThumbnailInformation = (
   item: SearchResultItem | PublicBuyerHit,
@@ -24,7 +25,7 @@ export const getThumbnailInformation = (
     };
   }
 
-  const slug = "id" in item ? `details/${item.id}` : null;
+  const slug = 'id' in item ? `details/${item.id}` : null;
   if (isInvestorV4(item)) {
     return {
       cardType: investisseur,
@@ -99,4 +100,13 @@ export const getThumbnailInformation = (
     id: 'N/A',
     node: <></>
   };
+};
+
+export const getExtendedThematics = (thematics: ThematicsEnum[]) => {
+  const extendedThematics = thematics.map((theme) => {
+    const synonyms = extendedThematicsDictionnary[theme];
+    return synonyms ? [...synonyms, theme].join(';') : [theme].join(';');
+  });
+
+  return extendedThematics;
 };

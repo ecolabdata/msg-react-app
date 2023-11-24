@@ -2,6 +2,7 @@ import { PropsWithChildren } from 'react';
 import { Link, LinkProps, useLocation } from 'react-router-dom';
 import useCheckMobileScreen from '../hooks/useCheckMobileScreen';
 import ExternalLink from './Core/ExternalLink';
+import { useProjetFormContext } from './context/useProjectFormContext';
 
 interface NavigationMenuProps {
   isBurgerMenuOpen: boolean;
@@ -9,6 +10,10 @@ interface NavigationMenuProps {
 
 const NavigationMenu: React.FC<NavigationMenuProps> = ({ isBurgerMenuOpen }) => {
   const isMobile = useCheckMobileScreen();
+  const { setSearchFormStep } = useProjetFormContext();
+  const resetSearchFormStep = () => {
+    setSearchFormStep(0);
+  };
 
   return (
     <>
@@ -21,27 +26,49 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({ isBurgerMenuOpen }) => 
                   className="fr-nav md:self-start md:w-full flex-1"
                   id="header-navigation"
                   role="navigation"
-                  aria-label="Menu principal"
-                >
+                  aria-label="Menu principal">
                   <ul className="fr-nav__list">
                     <li className="fr-nav__item">
-                      <NavigationLink to="/">Accueil</NavigationLink>
+                      <NavigationLink onClick={resetSearchFormStep} to="/">
+                        Accueil
+                      </NavigationLink>
                     </li>
                     <li className="fr-nav__item">
-                      <NavigationLink to="/startup">Entreprises</NavigationLink>
+                      <NavigationLink onClick={resetSearchFormStep} to="/startup">
+                        Entreprises
+                      </NavigationLink>
                     </li>
                     <li className="fr-nav__item">
-                      <NavigationLink to="/acteurs-publics">Acheteurs</NavigationLink>
+                      <NavigationLink onClick={resetSearchFormStep} to="/acteurs-publics">
+                        Acheteurs
+                      </NavigationLink>
                     </li>
                     <li className="fr-nav__item">
-                      <button className="fr-nav__btn" aria-expanded="false" aria-controls="menu-774">Ressources</button>
+                      <button
+                        className="fr-nav__btn"
+                        aria-expanded="false"
+                        aria-controls="menu-774">
+                        Ressources
+                      </button>
                       <div className="fr-collapse fr-menu" id="menu-774">
                         <ul className="fr-menu__list">
                           <li>
-                            <NavigationLink className="fr-nav__link" to="/ressources-entreprises" target="_self">Entreprises</NavigationLink>
+                            <NavigationLink
+                              onClick={resetSearchFormStep}
+                              className="fr-nav__link"
+                              to="/ressources-entreprises"
+                              target="_self">
+                              Entreprises
+                            </NavigationLink>
                           </li>
                           <li>
-                            <NavigationLink className="fr-nav__link" to="/ressources-acheteurs-publics" target="_self">Acheteurs</NavigationLink>
+                            <NavigationLink
+                              onClick={resetSearchFormStep}
+                              className="fr-nav__link"
+                              to="/ressources-acheteurs-publics"
+                              target="_self">
+                              Acheteurs
+                            </NavigationLink>
                           </li>
                         </ul>
                       </div>
@@ -67,16 +94,16 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({ isBurgerMenuOpen }) => 
 
 export default NavigationMenu;
 
-const NavigationLink: React.FC<PropsWithChildren<LinkProps>> = ({ to, children }) => {
+const NavigationLink: React.FC<PropsWithChildren<LinkProps>> = ({ to, children, ...props }) => {
   const { pathname } = useLocation();
 
   return (
     <Link
       className="fr-nav__link"
+      {...props}
       to={to}
       target="_self"
-      {...(pathname === to && { 'aria-current': 'page' })}
-    >
+      {...(pathname === to && { 'aria-current': 'page' })}>
       {children}
     </Link>
   );
