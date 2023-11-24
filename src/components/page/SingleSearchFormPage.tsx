@@ -27,13 +27,22 @@ const content = {
 const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
   const { title, cards, color } = content[profile];
 
+  const thematicsValues = Object.values(ThematicsEnum);
+  const {
+    description,
+    handleDescriptionChange,
+    thematics,
+    setThematics,
+    error,
+    setSearchFormStep: setStep,
+    searchFormStep: step
+  } = useProjetFormContext();
+
+  console.log(step);
+
   const handleSubmit = () => {
     setStep(1);
   };
-  const thematicsValues = Object.values(ThematicsEnum);
-  const { description, handleDescriptionChange, thematics, setThematics, error } =
-    useProjetFormContext();
-  const [step, setStep] = React.useState(0);
   return (
     <div className="mt-16">
       <Container isFlexCol>
@@ -53,7 +62,9 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
               <fieldset>
                 <legend className="sr-only">Décrivez votre projet</legend>
                 <div
-                  className={`container py-8 px-6 mr-0 ${localStorage.getItem("scheme") === "dark" && "bg-research-precision-container"} justify-start flex flex-col lg:mt-0`}>
+                  className={`container py-8 px-6 mr-0 ${
+                    localStorage.getItem('scheme') === 'dark' && 'bg-research-precision-container'
+                  } justify-start flex flex-col lg:mt-0`}>
                   <TextAreaInput
                     value={description}
                     onValueChange={handleDescriptionChange}
@@ -65,7 +76,9 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
                   />
                 </div>
                 <div
-                  className={`container py-8 px-6 mr-0 ${localStorage.getItem("scheme") === "dark" && "bg-research-precision-container"} justify-start flex flex-col lg:mt-0`}>
+                  className={`container py-8 px-6 mr-0 ${
+                    localStorage.getItem('scheme') === 'dark' && 'bg-research-precision-container'
+                  } justify-start flex flex-col lg:mt-0`}>
                   <SelectInputOptions
                     className="mb-auto"
                     optionsData={thematicsValues}
@@ -95,6 +108,13 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
                 state={{ search: { description, thematics }, page: 1 }}
               />
             ))}
+            <div className="container mt-8 w-full flex flex-col items-center justify-center">
+              {(description || thematics?.length > 0) && (
+                <button type="button" onClick={() => setStep(0)} className="mt-4 underline">
+                  Modifier mon projet
+                </button>
+              )}
+            </div>
           </Container>
         )}
       </Container>
