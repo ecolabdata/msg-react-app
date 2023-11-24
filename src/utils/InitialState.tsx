@@ -1,3 +1,4 @@
+import { ThematicsEnum } from 'model/ThematicsEnum';
 import { AnyCard, Search } from '../api/Api';
 
 export type InitialState = {
@@ -8,7 +9,7 @@ export type InitialState = {
 export type SearchState = {
   search: {
     description: string;
-    thematics: string[];
+    thematics: ThematicsEnum[];
   };
   page: number;
 };

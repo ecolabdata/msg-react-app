@@ -1,15 +1,16 @@
-import { useEffect, useRef, useState } from 'react';
+import { SetStateAction, useEffect, useRef, useState } from 'react';
 import Chevron from './../../assets/icons/chevronWhite.svg';
 import ChevronBlack from './../../assets/icons/chevronBlack.svg';
 import OptionItem from './OptionItem';
 import { useOutsideAlerter } from '../../hooks/useOutsideAlerter';
 import { tailwindColorUtility } from '../../utils/utilityFunctions';
+import { ThematicsEnum } from 'model/ThematicsEnum';
 
 interface SelectInputOptionsProps {
   optionsData: string[];
-  secteurs: string[];
+  secteurs: ThematicsEnum[];
   className?: string;
-  setSecteurs: React.Dispatch<React.SetStateAction<string[]>>;
+  setSecteurs: React.Dispatch<React.SetStateAction<ThematicsEnum[]>>;
   color?: string;
 }
 
@@ -62,7 +63,9 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({
         type="button"
         onKeyDown={handleKeyDown}
         role="combobox"
-        className={`mt-2 w-full h-10 min-h-[50px] addBorder-b border-3 ${borderColor} p-2 pt-3 flex ${localStorage.getItem("scheme") === "dark" ? "bg-input-background" : "bg-slate-50"}`}
+        className={`mt-2 w-full h-10 min-h-[50px] addBorder-b border-3 ${borderColor} p-2 pt-3 flex ${
+          localStorage.getItem('scheme') === 'dark' ? 'bg-input-background' : 'bg-slate-50'
+        }`}
         onClick={() => {
           setDisplaySelect(!displaySelect);
         }}>
@@ -70,8 +73,11 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({
           {secteurs.length <= 0 ? 'Sélectionnez une option' : secteurs.join(', ')}
         </p>
         <span
-          className={`${localStorage.getItem("scheme") === 'dark' ? 'bg-dark-text-action' : 'bg-blue-france'
-            } w-6 h-6 rounded-full  ${localStorage.getItem("scheme") === "dark" && "text-black"} font-bold`}>
+          className={`${
+            localStorage.getItem('scheme') === 'dark' ? 'bg-dark-text-action' : 'bg-blue-france'
+          } w-6 h-6 rounded-full  ${
+            localStorage.getItem('scheme') === 'dark' && 'text-black'
+          } font-bold`}>
           {' '}
           {secteurs.length}{' '}
         </span>
@@ -84,14 +90,17 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({
 
       {displaySelect && (
         <>
-          <ul className={`z-10 absolute w-full max-h-[320px] overflow-auto flex flex-col ${localStorage.getItem("scheme") === "dark" ? "bg-input-background" : "bg-slate-50"}  shadow-slate-400 shadow-sm`}>
+          <ul
+            className={`z-10 absolute w-full max-h-[320px] overflow-auto flex flex-col ${
+              localStorage.getItem('scheme') === 'dark' ? 'bg-input-background' : 'bg-slate-50'
+            }  shadow-slate-400 shadow-sm`}>
             {optionsData.map((option, index) => {
               return (
                 <OptionItem
                   key={option}
                   option={option}
                   secteursSet={secteursSet}
-                  setSecteurs={setSecteurs}
+                  setSecteurs={setSecteurs as (value: SetStateAction<string[]>) => void}
                   ref={index === 0 ? firstInputRef : null}
                   setDisplaySelect={setDisplaySelect}
                   focusField={focusField}

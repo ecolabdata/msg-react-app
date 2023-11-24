@@ -1,11 +1,12 @@
+import { ThematicsEnum } from 'model/ThematicsEnum';
 import React from 'react';
 
 export interface ProjetFormContextProps {
   description: string;
   handleDescriptionChange: (v: string) => void;
   error: boolean;
-  thematics: string[];
-  setThematics: React.Dispatch<React.SetStateAction<string[]>>;
+  thematics: ThematicsEnum[];
+  setThematics: React.Dispatch<React.SetStateAction<ThematicsEnum[]>>;
 }
 
 export const ProjetFormContext = React.createContext<ProjetFormContextProps>({
@@ -18,7 +19,7 @@ export const ProjetFormContext = React.createContext<ProjetFormContextProps>({
 
 export const ProjetFormContextProvider: React.FC = ({ ...props }) => {
   const [description, setDescription] = React.useState<string>('');
-  const [thematics, setThematics] = React.useState<string[]>([]);
+  const [thematics, setThematics] = React.useState<ThematicsEnum[]>([]);
   const [error, setError] = React.useState<boolean>(false);
 
   const handleDescriptionChange = (v: string) => {

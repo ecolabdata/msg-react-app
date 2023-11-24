@@ -25,6 +25,7 @@ import { ThematicsEnum } from 'model/ThematicsEnum';
 import SearchFieldWrapper from 'components/customComponents/SearchFieldWrapper';
 import { useAdvancedFilters } from 'components/customComponents/filter/filters';
 import AdvancedFilters from 'components/customComponents/filter/AdvancedFilters';
+import { getExtendedThematics } from 'helpers/searchTypeHelpers';
 
 type Props = {
   cardType: CardType;
@@ -34,7 +35,7 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
   const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
   const { initialValues, handleFilter, filters } = useAdvancedFilters(cardType.name);
   const [filtersValues, setFiltersValues] = useState(initialValues);
-  const [filteredResultsCount, setFilteredResultsCount] = useState(0)
+  const [filteredResultsCount, setFilteredResultsCount] = useState(0);
   const thematicsValues = Object.values(ThematicsEnum);
 
   const navigate = useNavigate();
@@ -55,28 +56,32 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
   const { data: cards, error: apiError } = useFetch<SearchResultItem[] | PublicBuyerResults>(url);
   const isLoading = !cards && !apiError;
 
-
   const results = cards && isPublicBuyerResultList(cards) ? cards.hits : cards;
 
-  const [filteredData, setFilteredData] = useState<SearchResultItem[] | PublicBuyerHit[] | undefined>(results)
-
+  const [filteredData, setFilteredData] = useState<
+    SearchResultItem[] | PublicBuyerHit[] | undefined
+  >(results);
 
   const pageNumber = Math.ceil(filteredResultsCount / pageChunkSize);
 
   useEffect(() => {
-    const filteredResults = results && isAdvancedSearchOpen ? handleFilter(results, filtersValues as any) : results
-    filteredResults && setFilteredData((filteredResults).slice((currentPage - 1) * pageChunkSize, currentPage * pageChunkSize))
-    filteredResults && setFilteredResultsCount(filteredResults?.length)
+    const filteredResults =
+      results && isAdvancedSearchOpen ? handleFilter(results, filtersValues as any) : results;
+    filteredResults &&
+      setFilteredData(
+        filteredResults.slice((currentPage - 1) * pageChunkSize, currentPage * pageChunkSize)
+      );
+    filteredResults && setFilteredResultsCount(filteredResults?.length);
 
     if (pageNumber <= 1) {
       navigate(location.pathname, {
         state: {
-          ...initialState, page: 1,
+          ...initialState,
+          page: 1
         }
       });
     }
-
-  }, [filtersValues, cards, isAdvancedSearchOpen, pageChunkSize, currentPage, pageNumber])
+  }, [filtersValues, cards, isAdvancedSearchOpen, pageChunkSize, currentPage, pageNumber]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -103,7 +108,7 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
   const handleResetForm = () => {
     handleDescriptionChange('');
     setThematics([]);
-    setFiltersValues(initialValues)
+    setFiltersValues(initialValues);
   };
 
   return (
@@ -245,7 +250,11 @@ const getFetcher = (type: CardTypeName) => {
   }
 };
 
-const buildQueryString = (description: string | undefined, thematics: string[] | undefined) => {
+const buildQueryString = (
+  description: string | undefined,
+  thematics: ThematicsEnum[] | undefined
+) => {
   if (!thematics) return description;
-  return [description, ...thematics].join(';');
+  const extendedThematics = getExtendedThematics(thematics);
+  return [description, ...extendedThematics].join(';');
 };
