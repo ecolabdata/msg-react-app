@@ -77,14 +77,14 @@ const ressourcesByProfileContent = {
         'Vous souhaitez que votre entreprise éco-innovante soit visible dans Mes Services Greentech ?',
       description: (
         <>
-          Très bonne idée ! Pour accentuer votre visibilité auprès des acheteurs publics et de
-          l’écosystème Greentech, remplissez
+          Très bonne idée ! Pour accentuer votre visibilité auprès des acheteurs publics et de l’écosystème Greentech,
+          nous vous invitons à candidater à l'AMI Greentech Innovation, présenté sur le site internet{' '}
           <ExternalLink
-            href="https://airtable.com/shrY73vlVka9j2cg8"
-            content="ce formulaire d’inscription"
+            href="https://greentechinnovation.fr/"
+            content="Greentech Innovation "
             className="text-base my-8 text-blue-france-625 p-1 link-underline"
           />
-          ! (Sous réserve de validation par nos équipes)
+          !
         </>
       ),
       extraLink: 'Vous n’êtes pas une entreprise ? Aller sur la version acheteur public',

@@ -170,7 +170,7 @@ export const environnementalFilter: FilterDefinition = {
 };
 
 export const marketFilter: FilterDefinition = {
-  label: 'Marchés',
+  label: 'Type de marché',
   defaultOption: 'Tous',
   options: Object.keys(markets),
   id: 'market' as keyof AnyFilters,

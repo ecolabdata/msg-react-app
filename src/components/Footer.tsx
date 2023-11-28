@@ -15,19 +15,18 @@ const Footer: React.FC<{ isOpenModale: boolean, setIsOpenModale: Dispatch<SetSta
                 to="/"
                 title="Ministère de la transition écologique et de la cohésion des territoires - Retour à l’accueil">
                 <p className="fr-logo uppercase">
-                  ministère <br />
-                  de la transition <br />
-                  écologique <br />
-                  et de la cohésion <br />
-                  des territoires
+                  gouvernement
                 </p>
               </Link>
             </div>
             <div className="fr-footer__content">
               <p className="fr-footer__content-desc font-bold text-sm">
-                Mes services Greentech est en version beta. L’outil vous propose des leviers pour
-                booster votre développement ! Pour nous faire part de vos remarques ou nous aider à
-                améliorer l’expérience merci de répondre à cette{' '}
+                Mes services Greentech est en version beta. Pour les porteurs de projets,
+                cet outil vous permet d'accéder à des ressources utiles pour accéder aux marchés publics
+                d'innovation dans les territoires. Pour les collectivités,
+                profitez de cet outil pour faire votre sourcing de solutions, retrouver des sources possibles de financement,
+                et des informations sur les marchés d'innovation. Pour nous faire part de vos remarques
+                ou nous aider à améliorer l’expérience merci de répondre à cette{' '}
                 <ExternalLink
                   className={`font-bold ${localStorage.getItem("scheme") === "dark" ? "text-blue-france-625" : "text-blue-france-sun-113"} mr-1`}
                   href="https://airtable.com/shrwwE4lA2GFxK0T4"

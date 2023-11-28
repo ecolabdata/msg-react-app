@@ -7,13 +7,11 @@ const Home: React.FC = () => {
   return (
     <>
       <Container isFlexCol>
-        <Heading>{homePageContent.heading1}</Heading>
-        <Heading level={2}>{homePageContent.heading2}</Heading>
+        <Heading level={1}>{homePageContent.heading2}</Heading>
         <p
           className="mt-8 text-center w-[65%]
                 lg:max-w-[62%]
-                "
-        >
+                ">
           {homePageContent.subtitle}
         </p>
       </Container>
