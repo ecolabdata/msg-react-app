@@ -1,6 +1,6 @@
 const homePageContent = {
   heading1: 'Mes Services Greentech',
-  heading2: 'La plateforme dédiée à l’écosystème greentech',
+  heading2: "La plateforme dédié à l'écosystème Greentech, pour stimuler les marchés publics d'innovation durables",
   subtitle: 'Afin de vous orienter vers les meilleures ressources, choisissez votre profil :',
   cards: [
     {

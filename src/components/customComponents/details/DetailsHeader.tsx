@@ -39,7 +39,10 @@ const DetailsHeader: React.FC<DetailsHeaderProps> = ({ data, cardType }) => {
         </p>
         <Heading align="left">{title}</Heading>
         {isInvestorV4(data) && data.card.logo && (
-          <img src={data.card.logo} alt="" width="100" className="mt-4" />
+          <img src={data.card.logo} alt="" className="mt-4 h-10" />
+        )}
+        {isCompanyV4(data) && data.card.logo_url && (
+          <img src={data.card.logo_url} alt="" className="mt-4 h-10" />
         )}
         {isCompanyV4(data) && data.card.logo_url && (
           <img src={data.card.logo_url} alt="" width="100" className="mt-4" />
