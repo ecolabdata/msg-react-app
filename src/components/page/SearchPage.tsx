@@ -65,6 +65,11 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
   const pageNumber = Math.ceil(filteredResultsCount / pageChunkSize);
 
   useEffect(() => {
+    if (!location.state) {
+      setFilteredData([])
+      setFilteredResultsCount(0)
+      return
+    }
     const filteredResults =
       results && isAdvancedSearchOpen ? handleFilter(results, filtersValues as any) : results;
     filteredResults &&
@@ -110,6 +115,9 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
     handleDescriptionChange('');
     setThematics([]);
     setFiltersValues(initialValues);
+    navigate(location.pathname, {
+      state: null
+    });
   };
 
   return (
