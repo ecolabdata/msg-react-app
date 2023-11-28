@@ -26,11 +26,7 @@ const Header = () => {
                 <div className="fr-header__brand-top">
                   <div className="fr-header__logo">
                     <p className="fr-logo uppercase">
-                      ministère <br />
-                      de la transition <br />
-                      écologique <br />
-                      et de la cohésion <br />
-                      des territoires
+                      gouvernement
                     </p>
                   </div>
                 </div>
