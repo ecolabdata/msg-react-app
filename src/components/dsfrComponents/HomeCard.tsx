@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { CardType } from '../../model/CardType';
 import { SearchState } from 'utils/InitialState';
 
@@ -23,6 +23,7 @@ const HomeCard: React.FC<CardTypeProps> = ({ explorerCard, cardTypeData, state }
   const isExplorerCard = explorerCard ?? false;
   const { SVGLogo, title, description, color, searchLink, version, homeDescription } = cardTypeData;
   const isAlpha = version === 'alpha';
+  const location = useLocation()
 
   const alphaCardStyle =
     "after:text-sm after:px-4 after:py-1 after:rounded-2xl after:absolute after:bottom-2 after:right-2 after:content-['Bientôt'] ";
@@ -40,7 +41,7 @@ const HomeCard: React.FC<CardTypeProps> = ({ explorerCard, cardTypeData, state }
           <h3 className="fr-card__title">
             {!isAlpha ? (
               <Link
-                to={searchLink}
+                to={`${location.pathname}${searchLink}`}
                 state={state}
                 className={`${isExplorerCard && 'text-black '} text-lg`}>
                 {title}

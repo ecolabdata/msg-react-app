@@ -38,8 +38,6 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
     searchFormStep: step
   } = useProjetFormContext();
 
-  console.log(step);
-
   const handleSubmit = () => {
     setStep(1);
   };
@@ -62,9 +60,8 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
               <fieldset>
                 <legend className="sr-only">Décrivez votre projet</legend>
                 <div
-                  className={`container py-8 px-6 mr-0 ${
-                    localStorage.getItem('scheme') === 'dark' && 'bg-research-precision-container'
-                  } justify-start flex flex-col lg:mt-0`}>
+                  className={`container py-8 px-6 mr-0 ${localStorage.getItem('scheme') === 'dark' && 'bg-research-precision-container'
+                    } justify-start flex flex-col lg:mt-0`}>
                   <TextAreaInput
                     value={description}
                     onValueChange={handleDescriptionChange}
@@ -76,9 +73,8 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
                   />
                 </div>
                 <div
-                  className={`container py-8 px-6 mr-0 ${
-                    localStorage.getItem('scheme') === 'dark' && 'bg-research-precision-container'
-                  } justify-start flex flex-col lg:mt-0`}>
+                  className={`container py-8 px-6 mr-0 ${localStorage.getItem('scheme') === 'dark' && 'bg-research-precision-container'
+                    } justify-start flex flex-col lg:mt-0`}>
                   <SelectInputOptions
                     className="mb-auto"
                     optionsData={thematicsValues}

@@ -20,12 +20,12 @@ export const getThumbnailInformation = (
       name: (item.fields.public_actor_nom && item.fields.public_actor_nom[0]) ?? 'N/A',
       toprow: 'Ville / Région',
       id: item._id,
-      slug: `details/${item._id}`,
+      slug: `/${item._id}`,
       node: null
     };
   }
 
-  const slug = 'id' in item ? `details/${item.id}` : null;
+  const slug = 'id' in item ? `/${item.id}` : null;
   if (isInvestorV4(item)) {
     return {
       cardType: investisseur,

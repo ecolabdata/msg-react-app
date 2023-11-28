@@ -2,7 +2,6 @@ import { createContext, Dispatch, SetStateAction, useEffect, useState } from 're
 import { Route, Routes } from 'react-router-dom';
 
 import './App.css';
-import { AuthRequiredWall } from './components/page/AuthRequiredWall';
 import { useTrackPage } from './hooks/useTrackPage';
 import routes from './model/routes';
 import AccessibleNavigation from './utils/AccessibleNavigation';

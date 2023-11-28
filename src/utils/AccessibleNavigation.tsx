@@ -7,22 +7,22 @@ function AccessibleNavigation() {
   const location = useLocation();
 
   const pagesTitle: any = {
-    'aides-innovations': 'Aides à l’innovation',
-    'aides-clients': 'Aides pour vos clients',
+    'startup/aides-innovations': 'Aides à l’innovation',
+    'startup/aides-clients': 'Aides pour vos clients',
     startup: 'Accueil startups',
     'acteurs-publics': 'Accueil acheteur public',
     startups: 'Start-up greentech',
-    'achats-previsionnels': 'Achats publics à venir',
-    investisseurs: 'Investisseurs',
-    'acheteurs-publics': 'Ils ont travaillé avec des start-up',
-    'aides-financieres': 'Aides financières',
-    'sourcing-startup': 'Entreprises éco-innovantes',
-    'retour-experience': 'Ils ont travaillé avec des start-up',
-    'achats-programmes': 'Achats publics programmés',
-    'legal/legal-notices': 'Mentions Légales',
+    'startup/achats-previsionnels': 'Achats publics à venir',
+    'startup/investisseurs': 'Investisseurs',
+    'startup/acheteurs-publics': 'Ils ont travaillé avec des start-up',
+    'acteurs-publics/acheteurs-publics': 'Ils ont travaillé avec des start-up',
+    'acteurs-publics/aides-financieres': 'Aides financières',
+    'acteurs-publics/sourcing-startup': 'Entreprises éco-innovantes',
+    'acteurs-publics/achats-previsionnels': 'Achats publics à venir',
+    'legal/mentions-legales': 'Mentions Légales',
     'legal/cookies': 'Gestion des cookies',
-    'legal/gdpr': 'Données personnelles',
-    accessibility: 'Accessibilité',
+    'legal/donnees-personnelles': 'Données personnelles',
+    accessibilite: 'Accessibilité',
     'plan-du-site': 'Plan du site'
   };
   useEffect(() => {

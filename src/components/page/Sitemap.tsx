@@ -1,21 +1,16 @@
 import { useEffect, useState } from 'react';
-import { Link, Location } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import reactRouterToArray from 'react-router-to-array';
-import { useQuery } from '../../hooks/useQuery';
 import routes from '../../model/routes';
-import formatSlugForBreadCumb from '../../utils/formatSlugForBreadcrumb';
 
-export type FormatedRoute =
+type FormatedRoute =
   | {
-      urlToRedirect: string;
-      slugToDisplay: string;
-    }
-  | undefined;
+    urlToRedirect: string;
+    slugToDisplay: string;
+  }
 
 const Sitemap = () => {
   const [allRoutes, setAllRoutes] = useState<string[]>();
-
-  const query = useQuery();
 
   useEffect(() => {
     setAllRoutes(reactRouterToArray(routes));
@@ -26,14 +21,15 @@ const Sitemap = () => {
   }
 
   const allFormatedRoutes = allRoutes
-    .filter((route: string) => !route.includes('/search'))
     .map((route: string) => {
-      return formatSlugForBreadCumb(query, { pathname: route } as Location, route);
+      return {
+        urlToRedirect: route,
+        slugToDisplay: route.replace("/", "").replaceAll("-", " ").replaceAll("/", " - ").replace(/^(.)/, (match) => match.toUpperCase())
+      };
     });
 
   const keys = allRoutes.map((str: string) => {
     const middle = str.slice(str.indexOf('/') + 1, str.lastIndexOf('/'));
-
     return middle;
   });
 
@@ -64,7 +60,6 @@ const Sitemap = () => {
         </li>
 
         {allRoutesFiltered.map((routes: FormatedRoute[]) => {
-          if (!routes[0]) return;
 
           if (routes.length === 1) {
             return (
@@ -80,8 +75,6 @@ const Sitemap = () => {
             <ul key={routes[0].urlToRedirect}>
               {typeof routes !== 'string' &&
                 routes.map((route: FormatedRoute, index: number) => {
-                  if (!route) return;
-
                   if (index === 0) {
                     return (
                       <li key={route.urlToRedirect}>
