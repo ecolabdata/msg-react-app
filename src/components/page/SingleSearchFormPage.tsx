@@ -4,7 +4,7 @@ import SelectInputOptions from 'components/customComponents/SelectInputOptions';
 import TextAreaInput from 'components/customComponents/TextAreaInput';
 import { acheteurPublic, publicActorPersona, startupPersona, startups } from 'model/CardType';
 import { ThematicsEnum } from 'model/ThematicsEnum';
-import React from 'react';
+import React, { FormEvent } from 'react';
 import HomeCard from 'components/dsfrComponents/HomeCard';
 
 interface SingleSearchPageProps {
@@ -38,7 +38,12 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
     searchFormStep: step
   } = useProjetFormContext();
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    if (!description) {
+      handleDescriptionChange("")
+      return
+    }
     setStep(1);
   };
   return (
@@ -54,7 +59,7 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
         {step === 0 && (
           <Container as="div" customClasses="md:max-w-4/5">
             <form
-              onSubmit={() => handleSubmit()}
+              onSubmit={(e) => handleSubmit(e)}
               id="projectForm"
               className="my-8 flex flex-col justify-around flex-wrap h-fit w-full">
               <fieldset>
