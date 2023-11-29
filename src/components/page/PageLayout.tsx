@@ -10,13 +10,11 @@ import { useState } from 'react';
 export const PageLayout = () => {
   const [isOpenModale, setIsOpenModale] = useState(false)
 
-
-
   return (
     <>
 
       <Header />
-      <div className="bg-gey-50 text-white">{/* <BreadCumb /> */}</div>
+      <div className="bg-gey-50 text-white"><BreadCumb /></div>
       <main
         role="main"
       >

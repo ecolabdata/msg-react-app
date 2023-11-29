@@ -78,7 +78,7 @@ const Footer: React.FC<{ isOpenModale: boolean, setIsOpenModale: Dispatch<SetSta
               <li className="fr-footer__bottom-item">
                 <Link
                   className="fr-footer__bottom-link  font-bold text-xs font-bold text-xs"
-                  to="/legal/accessibility">
+                  to="/legal/accessibilite">
                   Accessibilité
                 </Link>
               </li>
@@ -92,14 +92,14 @@ const Footer: React.FC<{ isOpenModale: boolean, setIsOpenModale: Dispatch<SetSta
               <li className="fr-footer__bottom-item">
                 <Link
                   className="fr-footer__bottom-link font-bold text-xs"
-                  to="/legal/legal-notices">
+                  to="/legal/mentions-legales">
                   Mentions légales
                 </Link>
               </li>
               <li className="fr-footer__bottom-item">
                 <Link
                   className="fr-footer__bottom-link font-bold text-xs"
-                  to="/legal/gdpr">
+                  to="/legal/donnees-personnelles">
                   Données personnelles
                 </Link>
               </li>

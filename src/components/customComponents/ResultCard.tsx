@@ -1,6 +1,6 @@
 import ScreenReaderOnlyText from 'components/Core/ScreenReaderOnlyText';
 import { PropsWithChildren, ReactNode } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { CardType } from '../../model/CardType';
 
 interface CardProps {
@@ -21,6 +21,7 @@ const ResultCard: React.FC<PropsWithChildren<CardProps>> = ({
   isLoading,
   node
 }) => {
+  const location = useLocation()
   return (
     <li className="h-full" style={{ opacity: isLoading ? 0.15 : 'inherit' }}>
       <div className="fr-card fr-enlarge-link w-full h-full">
@@ -28,7 +29,7 @@ const ResultCard: React.FC<PropsWithChildren<CardProps>> = ({
           <div className="fr-card__content !pt-4 !px-6 !pb-16 ">
             <h3 className="fr-card__title">
               {slug && (
-                <Link to={slug} className="rm-link-underline">
+                <Link to={`${location.pathname}${slug}`} className="rm-link-underline">
                   {name && (
                     <p className="clamp mt-2 font-bold text-lg" title={name}>
                       {toprow && <ScreenReaderOnlyText content={toprow} />}
