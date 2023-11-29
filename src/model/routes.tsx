@@ -42,15 +42,16 @@ export const routes = (
           <Route path={`/startup/${cardType.name}`} element={<SearchPage cardType={cardType} />} />
         </>
       ))}
-      <Route path="/legal">
-        <Route path="mentions-legales" element={<LegalNotices />} />
-        <Route path="cookies" element={<CookiePage />} />
-        <Route path="donnees-personnelles" element={<GdprPage />} />
-        <Route path="accessibilite" element={<AccessibilityPage />} />
-      </Route>
+
+      <Route path="mentions-legales" element={<LegalNotices />} />
+      <Route path="cookies" element={<CookiePage />} />
+      <Route path="donnees-personnelles" element={<GdprPage />} />
+      <Route path="accessibilite" element={<AccessibilityPage />} />
       <Route path="/plan-du-site" element={<Sitemap />} />
-      <Route path="*" element={<Page404 />} />
     </Route>
+
+    <Route path="*" element={<Page404 />} />
+
   </Routes>
 );
 

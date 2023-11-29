@@ -28,25 +28,33 @@ const Sitemap = () => {
       };
     });
 
-  const keys = allRoutes.map((str: string) => {
-    const middle = str.slice(str.indexOf('/') + 1, str.lastIndexOf('/'));
-    return middle;
-  });
+  const groupRoutesByParent = (data: FormatedRoute[]) => {
+    return data.reduce((acc, route) => {
+      const parts = route.urlToRedirect.split('/').filter(Boolean);
+      let currentLevel: any = acc;
+      parts.forEach((part, index) => {
+        if (!currentLevel[part]) {
+          currentLevel[part] = index === parts.length - 1 ? [route] : {};
+        } else if (Array.isArray(currentLevel[part])) {
+          currentLevel[part].push(route);
+        }
+        currentLevel = currentLevel[part];
+      });
 
-  const filteredArray = keys
-    .filter(function (ele: string, pos: number) {
-      return keys.indexOf(ele) == pos;
-    })
-    .filter(Boolean)
-    .filter((route: string) => !route.includes('/'));
+      return acc;
+    }, {});
+  }
+  const formatArrayOfRoutes = (groupedRoutes: (FormatedRoute[] | { [key: string]: (FormatedRoute[]) })) => {
+    return Object.entries(groupedRoutes).map(([key, value]) => {
+      if (Array.isArray(value)) {
+        return value;
+      } else {
+        return Object.entries(value).map(([subKey, subValue]) => ({ [subKey]: subValue }));
+      }
+    });
+  }
 
-  const allRoutesFiltered = filteredArray.map((stringRoute: string) => {
-    const filterInRoutes = allFormatedRoutes.filter((route: FormatedRoute) =>
-      route?.urlToRedirect?.includes(stringRoute)
-    );
-
-    return filterInRoutes;
-  });
+  const formatedArrayOfRoutes = formatArrayOfRoutes(groupRoutesByParent(allFormatedRoutes)).sort((a, b) => b.length - a.length);
 
   return (
     <div className="container">
@@ -59,7 +67,7 @@ const Sitemap = () => {
           </Link>
         </li>
 
-        {allRoutesFiltered.map((routes: FormatedRoute[]) => {
+        {formatedArrayOfRoutes.map((routes: FormatedRoute[]) => {
 
           if (routes.length === 1) {
             return (
