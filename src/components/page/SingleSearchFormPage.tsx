@@ -4,7 +4,7 @@ import SelectInputOptions from 'components/customComponents/SelectInputOptions';
 import TextAreaInput from 'components/customComponents/TextAreaInput';
 import { acheteurPublic, publicActorPersona, startupPersona, startups } from 'model/CardType';
 import { ThematicsEnum } from 'model/ThematicsEnum';
-import React from 'react';
+import React, { FormEvent } from 'react';
 import HomeCard from 'components/dsfrComponents/HomeCard';
 
 interface SingleSearchPageProps {
@@ -38,9 +38,12 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
     searchFormStep: step
   } = useProjetFormContext();
 
-  console.log(step);
-
-  const handleSubmit = () => {
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    if (!description) {
+      handleDescriptionChange("")
+      return
+    }
     setStep(1);
   };
   return (
@@ -56,15 +59,14 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
         {step === 0 && (
           <Container as="div" customClasses="md:max-w-4/5">
             <form
-              onSubmit={() => handleSubmit()}
+              onSubmit={(e) => handleSubmit(e)}
               id="projectForm"
               className="my-8 flex flex-col justify-around flex-wrap h-fit w-full">
               <fieldset>
                 <legend className="sr-only">Décrivez votre projet</legend>
                 <div
-                  className={`container py-8 px-6 mr-0 ${
-                    localStorage.getItem('scheme') === 'dark' && 'bg-research-precision-container'
-                  } justify-start flex flex-col lg:mt-0`}>
+                  className={`container py-8 px-6 mr-0 ${localStorage.getItem('scheme') === 'dark' && 'bg-research-precision-container'
+                    } justify-start flex flex-col lg:mt-0`}>
                   <TextAreaInput
                     value={description}
                     onValueChange={handleDescriptionChange}
@@ -76,9 +78,8 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
                   />
                 </div>
                 <div
-                  className={`container py-8 px-6 mr-0 ${
-                    localStorage.getItem('scheme') === 'dark' && 'bg-research-precision-container'
-                  } justify-start flex flex-col lg:mt-0`}>
+                  className={`container py-8 px-6 mr-0 ${localStorage.getItem('scheme') === 'dark' && 'bg-research-precision-container'
+                    } justify-start flex flex-col lg:mt-0`}>
                   <SelectInputOptions
                     className="mb-auto"
                     optionsData={thematicsValues}

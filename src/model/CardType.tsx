@@ -40,7 +40,6 @@ export type CardTypeNameFromModel =
   | 'investisseurs'
   | 'startups'
   | 'sourcing-startup'
-  | 'retex';
 
 export const acheteurPublic: CardType = {
   SVGLogo: PictoCityHall,
@@ -156,19 +155,6 @@ export const sourcingSu: CardType = {
   searchText: 'Recherchez des entreprises par mots clés (nom, siret, thématique...)'
 } as const;
 
-export const retex: CardType = {
-  SVGLogo: PictoCityHall,
-  backgroundColor: '#2C202B',
-  color: '#F95C5E',
-  title: 'Fiches acheteurs (1 700 fiches)',
-  description: 'La fiche acheteur de 1700 collectivités ou organismes publics',
-  name: 'retex',
-  searchLink: '/retour-experience',
-  apiName: 'collectivites',
-  useApiV2: true,
-  version: 'beta',
-  searchText: 'Recherchez des acteurs publics par mot clé (nom, siret, code cpv, fournisseur...)'
-} as const;
 
 export const achatProg: CardType = {
   SVGLogo: PictoCalendar,
