@@ -27,6 +27,7 @@ import { useAdvancedFilters } from 'components/customComponents/filter/filters';
 import AdvancedFilters from 'components/customComponents/filter/AdvancedFilters';
 import { getExtendedThematics } from 'helpers/searchTypeHelpers';
 import { normalizeSearchPageResults } from 'utils/normalizeSearchPageResults';
+import { StartupSubTitle } from 'contents/complementaryContents';
 
 type Props = {
   cardType: CardType;
@@ -137,8 +138,8 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
           </div>
           <span className="bg-yellow md:text-3xl font-light">{`(${filteredResultsCount} résultats)`}</span>
         </Heading>
-
         {cardType.description && <p className="mt-2 text-base">{cardType.description}</p>}
+        {cardType.title === "Sourcing d'entreprises" && <StartupSubTitle />}
       </div>
 
       <form

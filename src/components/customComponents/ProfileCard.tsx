@@ -14,7 +14,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ title, description, badge, ty
         <div className="fr-card__content !pt-4 !px-6 !pb-16 ">
           <h3 className="fr-card__title">
             <Link
-              to={type === 'startup' ? '/startup' : '/acteurs-publics'}
+              to={type === 'startup' ? '/entreprises' : '/acteurs-publics'}
               className="rm-link-underline"
             >
               <span className="clamp mt-2 font-bold text-xl">{title}</span>

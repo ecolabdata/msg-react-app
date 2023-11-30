@@ -88,11 +88,11 @@ const ressourcesByProfileContent = {
         </>
       ),
       extraLink: 'Vous n’êtes pas une entreprise ? Aller sur la version acheteur public',
-      extraUrl: '/ressources-acheteurs-publics'
+      extraUrl: '/ressources-acteurs-publics'
     }
   },
   publicActor: {
-    pageTitle: 'Ressources acheteurs publics',
+    pageTitle: 'Ressources acteurs publics',
     cards: publicActorPersona,
     mainContent: {
       title: 'Acteurs publics, sourcez des entreprises éco-innovantes !',
@@ -161,7 +161,7 @@ const ressourcesByProfileContent = {
     secondaryContent: {
       title: null,
       description: null,
-      extraLink: 'Vous n’êtes pas un acheteur public ? Aller sur la version entreprise',
+      extraLink: 'Vous n’êtes pas un acteur public ? Aller sur la version entreprise',
       extraUrl: '/ressources-entreprises'
     }
   }

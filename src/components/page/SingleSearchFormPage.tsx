@@ -19,7 +19,7 @@ const content = {
     color: startups.color
   },
   publicActor: {
-    title: 'Acteur public sourcez des entreprises éco-innovantes',
+    title: 'Acteurs publics, retrouvez des outils pour favoriser les innovations durables dans vos marchés publics',
     cards: publicActorPersona,
     color: acheteurPublic.color
   }
