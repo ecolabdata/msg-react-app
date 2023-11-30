@@ -17,7 +17,7 @@ import {
   getPublicPurchases
 } from 'apiv4/services';
 import { useFetch } from 'apiv4/useFetch';
-import { SearchResultItem, isPublicBuyerResultList } from 'apiv4/interfaces/typeguards';
+import { SearchResultItem } from 'apiv4/interfaces/typeguards';
 import { PublicBuyerHit, PublicBuyerResults } from 'apiv4/interfaces/publicBuyer';
 import SelectInputOptions from 'components/customComponents/SelectInputOptions';
 import TextAreaInput from 'components/customComponents/TextAreaInput';
@@ -26,6 +26,7 @@ import SearchFieldWrapper from 'components/customComponents/SearchFieldWrapper';
 import { useAdvancedFilters } from 'components/customComponents/filter/filters';
 import AdvancedFilters from 'components/customComponents/filter/AdvancedFilters';
 import { getExtendedThematics } from 'helpers/searchTypeHelpers';
+import { normalizeSearchPageResults } from 'utils/normalizeSearchPageResults';
 
 type Props = {
   cardType: CardType;
@@ -56,7 +57,7 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
   const { data: cards, error: apiError } = useFetch<SearchResultItem[] | PublicBuyerResults>(url);
   const isLoading = !cards && !apiError;
 
-  const results = cards && isPublicBuyerResultList(cards) ? cards.hits : cards;
+  const results = cards && normalizeSearchPageResults(cards)
 
   const [filteredData, setFilteredData] = useState<
     SearchResultItem[] | PublicBuyerHit[] | undefined
