@@ -61,12 +61,12 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
     if (isPublicBuyerResultList(cards)) {
       return cards.hits
     }
+    if (!cards.length) return
     if (isCompanyCardList(cards)) {
       return cards.filter((data) => !(data.card.data_source.green20?.Pitch)) //this is because green20 does not exist anymore and should not even be returned by api
     }
     return cards
   }
-
   const results = cards && generateResults(cards)
 
   const [filteredData, setFilteredData] = useState<
