@@ -17,7 +17,7 @@ import {
   getPublicPurchases
 } from 'apiv4/services';
 import { useFetch } from 'apiv4/useFetch';
-import { SearchResultItem, isCompanyCardList, isPublicBuyerResultList } from 'apiv4/interfaces/typeguards';
+import { SearchResultItem } from 'apiv4/interfaces/typeguards';
 import { PublicBuyerHit, PublicBuyerResults } from 'apiv4/interfaces/publicBuyer';
 import SelectInputOptions from 'components/customComponents/SelectInputOptions';
 import TextAreaInput from 'components/customComponents/TextAreaInput';
@@ -26,6 +26,7 @@ import SearchFieldWrapper from 'components/customComponents/SearchFieldWrapper';
 import { useAdvancedFilters } from 'components/customComponents/filter/filters';
 import AdvancedFilters from 'components/customComponents/filter/AdvancedFilters';
 import { getExtendedThematics } from 'helpers/searchTypeHelpers';
+import { normalizeSearchPageResults } from 'utils/normalizeSearchPageResults';
 
 type Props = {
   cardType: CardType;
@@ -56,18 +57,7 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
   const { data: cards, error: apiError } = useFetch<SearchResultItem[] | PublicBuyerResults>(url);
   const isLoading = !cards && !apiError;
 
-  const generateResults = (cards: SearchResultItem[] | PublicBuyerResults) => {
-    if (!cards) return
-    if (isPublicBuyerResultList(cards)) {
-      return cards.hits
-    }
-    if (!cards.length) return
-    if (isCompanyCardList(cards)) {
-      return cards.filter((data) => !(data.card.data_source.green20?.Pitch)) //this is because green20 does not exist anymore and should not even be returned by api
-    }
-    return cards
-  }
-  const results = cards && generateResults(cards)
+  const results = cards && normalizeSearchPageResults(cards)
 
   const [filteredData, setFilteredData] = useState<
     SearchResultItem[] | PublicBuyerHit[] | undefined
