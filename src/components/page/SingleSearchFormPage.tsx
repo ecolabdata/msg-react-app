@@ -4,8 +4,9 @@ import SelectInputOptions from 'components/customComponents/SelectInputOptions';
 import TextAreaInput from 'components/customComponents/TextAreaInput';
 import { acheteurPublic, publicActorPersona, startupPersona, startups } from 'model/CardType';
 import { ThematicsEnum } from 'model/ThematicsEnum';
-import React, { FormEvent } from 'react';
+import React, { FormEvent, useEffect } from 'react';
 import HomeCard from 'components/dsfrComponents/HomeCard';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface SingleSearchPageProps {
   profile: 'startup' | 'publicActor';
@@ -18,7 +19,7 @@ const content = {
     color: startups.color
   },
   publicActor: {
-    title: 'Acteur public sourcez des entreprises éco-innovantes',
+    title: 'Acteurs publics, retrouvez des outils pour favoriser les innovations durables dans vos marchés publics',
     cards: publicActorPersona,
     color: acheteurPublic.color
   }
@@ -26,7 +27,8 @@ const content = {
 
 const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
   const { title, cards, color } = content[profile];
-
+  const location = useLocation()
+  const navigate = useNavigate()
   const thematicsValues = Object.values(ThematicsEnum);
   const {
     description,
@@ -44,8 +46,14 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
       handleDescriptionChange("")
       return
     }
-    setStep(1);
+    navigate(location.pathname, { state: "cardPick" })
   };
+
+  useEffect(() => {
+    location.state === null && setStep(0)
+    location.state === "cardPick" && setStep(1)
+  }, [location])
+
   return (
     <div className="mt-16">
       <Container isFlexCol>

@@ -19,9 +19,9 @@ function AccessibleNavigation() {
     'acteurs-publics/aides-financieres': 'Aides financières',
     'acteurs-publics/sourcing-startup': 'Entreprises éco-innovantes',
     'acteurs-publics/achats-previsionnels': 'Achats publics à venir',
-    'legal/mentions-legales': 'Mentions Légales',
-    'legal/cookies': 'Gestion des cookies',
-    'legal/donnees-personnelles': 'Données personnelles',
+    'mentions-legales': 'Mentions Légales',
+    'cookies': 'Gestion des cookies',
+    'donnees-personnelles': 'Données personnelles',
     accessibilite: 'Accessibilité',
     'plan-du-site': 'Plan du site'
   };

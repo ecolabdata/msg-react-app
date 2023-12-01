@@ -18,9 +18,9 @@ export const routes = (
   <Routes>
     <Route element={<PageLayout />}>
       <Route path="/" element={<Home />} />
-      <Route path="/startup" element={<SingleSearchPage profile="startup" />} />
+      <Route path="/entreprises" element={<SingleSearchPage profile="startup" />} />
       <Route path="/ressources-entreprises" element={<Ressources profile='startup' />} />
-      <Route path="/ressources-acheteurs-publics" element={<Ressources profile='publicActor' />} />
+      <Route path="/ressources-acteurs-publics" element={<Ressources profile='publicActor' />} />
       <Route path="/acteurs-publics" element={<SingleSearchPage profile="publicActor" />} />
       {publicActorPersona.map((cardType, i) => (
         <>
@@ -36,21 +36,22 @@ export const routes = (
         <>
           <Route
             key={i}
-            path={`/startup/${cardType.name}/:id`}
+            path={`/entreprises/${cardType.name}/:id`}
             element={<Details cardType={cardType} />}
           />
-          <Route path={`/startup/${cardType.name}`} element={<SearchPage cardType={cardType} />} />
+          <Route path={`/entreprises/${cardType.name}`} element={<SearchPage cardType={cardType} />} />
         </>
       ))}
-      <Route path="/legal">
-        <Route path="mentions-legales" element={<LegalNotices />} />
-        <Route path="cookies" element={<CookiePage />} />
-        <Route path="donnees-personnelles" element={<GdprPage />} />
-        <Route path="accessibilite" element={<AccessibilityPage />} />
-      </Route>
+
+      <Route path="mentions-legales" element={<LegalNotices />} />
+      <Route path="cookies" element={<CookiePage />} />
+      <Route path="donnees-personnelles" element={<GdprPage />} />
+      <Route path="accessibilite" element={<AccessibilityPage />} />
       <Route path="/plan-du-site" element={<Sitemap />} />
-      <Route path="*" element={<Page404 />} />
     </Route>
+
+    <Route path="*" element={<Page404 />} />
+
   </Routes>
 );
 

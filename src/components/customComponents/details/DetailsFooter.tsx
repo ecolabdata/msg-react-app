@@ -12,16 +12,16 @@ const DetailsFooter: React.FC<DetailsFooterProps> = ({ cardType }) => {
 
   return (
     <Container>
-      <p>
+      {sources && <p>
         Sources de la donnée :{' '}
         <span>
-          {sources?.map(({ url, label }) => (
+          {sources.map(({ url, label }) => (
             <a key={label} className="mr-2" href={url}>
               {label}
             </a>
           ))}
         </span>
-      </p>
+      </p>}
       <div className="text-xl mb-5 font-bold mt-10">
         <h2 className="mb-3">Partager la page</h2>
         <CopieLink />

@@ -24,6 +24,10 @@ export function isPublicBuyerResultList(x: PublicBuyerResults | SearchResultItem
   return 'total' in x;
 }
 
+export function isCompanyCardList(x: PublicBuyerResults | SearchResultItem[]): x is CompanyResult[] { //this is only used to filter green20 in SearchPage.jsx
+  return Array.isArray(x) && isCompanyV4(x[0]);
+}
+
 export function isPublicBuyerResults(x: SearchResultItem): x is PublicBuyerResultById {
   return '_source' in x;
 }
