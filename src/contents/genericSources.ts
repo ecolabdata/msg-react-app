@@ -15,20 +15,7 @@ const getSources = (type?: string) => {
       ];
     case 'startups':
     case 'sourcing-startup':
-      return [
-        {
-          label: 'Annuaire Greentech Innovation',
-          url: 'https://airtable.com/shrdUCC87l85zyUsE/tbl49Pd1At3ZmGD6E'
-        },
-        {
-          label: 'Lauréats Solar Impulse',
-          url: 'https://solarimpulse.com/solutions-explorer-fr'
-        },
-        {
-          label: 'French Tech Green20',
-          url: 'https://lafrenchtech.com/fr/la-france-aide-les-startup/french-tech-green-20/?cn-reloaded=1'
-        }
-      ];
+      return null;
     case 'achats-previsionnels':
       return [{ label: 'APProch', url: 'https://projets-achats.marches-publics.gouv.fr/' }];
     case 'achats-programmés':

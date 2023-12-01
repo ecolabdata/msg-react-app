@@ -34,13 +34,13 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({ isBurgerMenuOpen }) => 
                       </NavigationLink>
                     </li>
                     <li className="fr-nav__item">
-                      <NavigationLink onClick={resetSearchFormStep} to="/startup">
+                      <NavigationLink onClick={resetSearchFormStep} to="/entreprises">
                         Entreprises
                       </NavigationLink>
                     </li>
                     <li className="fr-nav__item">
                       <NavigationLink onClick={resetSearchFormStep} to="/acteurs-publics">
-                        Acheteurs
+                        Acteurs publics
                       </NavigationLink>
                     </li>
                     <li className="fr-nav__item">
@@ -65,9 +65,9 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({ isBurgerMenuOpen }) => 
                             <NavigationLink
                               onClick={resetSearchFormStep}
                               className="fr-nav__link"
-                              to="/ressources-acheteurs-publics"
+                              to="/ressources-acteurs-publics"
                               target="_self">
-                              Acheteurs
+                              Acteurs publics
                             </NavigationLink>
                           </li>
                         </ul>

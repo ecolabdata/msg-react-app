@@ -146,7 +146,7 @@ export const sourcingSu: CardType = {
   color: '#4EC8AE',
   title: "Sourcing d'entreprises",
   description:
-    'Entreprises éco-innovantes pour préparer vos projets d’achats durables. (liste évolutive)',
+    'Vous souhaitez identifier des porteurs de solutions pour préparer vos projets d’achats ou découvrir le catalogue d’entreprises (liste évolutive).',
   name: 'sourcing-startup',
   searchLink: '/sourcing-startup',
   apiName: 'startups',
