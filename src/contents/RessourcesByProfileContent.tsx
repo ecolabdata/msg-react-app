@@ -13,11 +13,11 @@ const ressourcesByProfileContent = {
       {
         title: 'Parlez la même langue que les acheteurs publics !',
         description:
-          'Téléchargez notre modèle d’argumentaire innovation qui vous permettra de valoriser votre solution auprès des acheteurs publics !',
+          'Inspiré du Guide Pratique de l’Achat Public Innovant, téléchargez cet exemple de template qui vous permettra de valoriser votre solution auprès des acheteurs publics !',
 
         cta: {
           name: "Télécharger le modèle d'argumentaire",
-          url: 'https://drive.google.com/uc?export=download&id=1tFbq0duIZauZPTekjfJXFPylT96LHmNL',
+          url: 'https://docs.google.com/document/d/12krGhJ_OS1yQ2MCze2yUI1ztx452sXK8/edit?usp=sharing&ouid=113036023962989545192&rtpof=true&sd=true',
           icon: 'download'
         },
         links: [
@@ -109,8 +109,8 @@ const ressourcesByProfileContent = {
       {
         title: 'Aides',
         description:
-          'Obtenez un accompagnement pour intégrer des considérations environnementales dans vos  achats.',
-        links: [{ name: 'Le guichet vert', url: 'https://laclauseverte.fr/le-guichet-vert/' }]
+          'Profitez d’un premier niveau de conseil gratuit pour intégrer des considérations environnementales dans vos achats.',
+        links: [{ name: 'Le guichet vert', url: 'https://laclauseverte.fr/le-guichet-vert/' }, { name: 'Rapidd', url: 'https://rapidd.developpement-durable.gouv.fr/article/8022' }]
       },
       {
         title: 'Financements',
@@ -154,6 +154,16 @@ const ressourcesByProfileContent = {
           {
             name: 'Label VDI',
             url: 'https://www.label-vdi.fr/detail-label'
+          }
+        ]
+      },
+      {
+        title: 'Caractère innovant d’une solution',
+        description: 'Exemple de modèle simple vous permettant d’étudier le caractère innovant ou non d’une solution portée par une entreprise ! ',
+        links: [
+          {
+            name: "Télécharger le modèle",
+            url: 'https://docs.google.com/document/d/12krGhJ_OS1yQ2MCze2yUI1ztx452sXK8/edit?usp=sharing&ouid=113036023962989545192&rtpof=true&sd=true'
           }
         ]
       }
