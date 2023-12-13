@@ -154,21 +154,6 @@ export const sourcingSu: CardType = {
   searchText: 'Recherchez des entreprises par mots clés (nom, siret, thématique...)'
 } as const;
 
-
-// export const achatProg: CardType = {
-//   SVGLogo: PictoCalendar,
-//   backgroundColor: '#272419',
-//   color: '#D8C635',
-//   title: 'Achats programmés',
-//   description:
-//     'Projets d’achats des services de l’État et de leurs établissements publics, des établissements hospitaliers et des collectivités territoriales.',
-//   name: 'achats-programmes',
-//   searchLink: '/achats-programmes',
-//   apiName: 'projets_achats',
-//   version: 'beta',
-//   searchText: 'Recherchez des achats programmés par mots clés,'
-// } as const;
-
 export const startupPersona: CardType[] = [
   aideInno,
   aideClient,

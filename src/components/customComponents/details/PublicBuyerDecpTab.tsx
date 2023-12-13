@@ -75,7 +75,7 @@ const CPVCard: React.FC<CPVCardProps> = ({ content }) => {
               <li>
                 <p
                   className={`fr-badge fr-badge--sm`}
-                  style={{ color: 'rgb(44, 32, 43)', backgroundColor: 'rgb(249, 92, 94)' }}
+                  style={localStorage.getItem("scheme") === "dark" ? { color: 'rgb(249, 92, 94)', backgroundColor: 'rgb(44, 32, 43)' } : { color: 'rgb(44, 32, 43)', backgroundColor: 'rgb(249, 92, 94)' }}
                 >
                   Code CPV: {codeCPV}
                 </p>
