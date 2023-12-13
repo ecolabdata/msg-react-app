@@ -1,4 +1,6 @@
-const getSources = (type?: string) => {
+import { CardTypeNameFromModel } from "model/CardType";
+
+const getSources = (type: CardTypeNameFromModel) => {
 
   switch (type) {
     case 'acheteurs-publics':
@@ -13,13 +15,8 @@ const getSources = (type?: string) => {
           url: 'https://airtable.com/shrdUCC87l85zyUsE/tbl49Pd1At3ZmGD6E'
         }
       ];
-    case 'startups':
-    case 'sourcing-startup':
-      return null;
-    case 'achats-previsionnels':
+    case 'achats-publics-a-venir':
       return [{ label: 'APProch', url: 'https://projets-achats.marches-publics.gouv.fr/' }];
-    case 'achats-programmés':
-      return [{ label: 'APProch', url: 'https://projets-achats.marches-publics.gouv.fr/#' }];
     case 'aides-clients':
     case 'aides-innovations':
       return [{ label: 'Aides territoires', url: 'https://aides-territoires.beta.gouv.fr/' }];
@@ -32,7 +29,7 @@ const getSources = (type?: string) => {
       ];
 
     default:
-      return [];
+      return null;
   }
 };
 

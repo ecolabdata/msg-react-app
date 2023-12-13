@@ -1,4 +1,5 @@
 const homePageContent = {
+  warning: 'Mes Services Greentech est en béta',
   heading1: 'Mes Services Greentech',
   heading2: "La plateforme dédiée à l'écosystème Greentech, pour stimuler les marchés publics d'innovation durables",
   subtitle: 'Afin de vous orienter vers les meilleures ressources, choisissez votre profil :',

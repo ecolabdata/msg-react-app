@@ -98,7 +98,7 @@ const MainSection: React.FC<{ greenTechData: GreenTechInnovation; card: CompanyC
         {source_url && (
           <InformationItem
             label={'URL Source'}
-            contents={`<a href=${source_url}>${source_url}</a>`}
+            contents={`<a target="_blank" href=${source_url}>${source_url}</a>`}
             isHtml
           />
         )}

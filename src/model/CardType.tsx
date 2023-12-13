@@ -32,11 +32,10 @@ export interface CardType {
 
 export type CardTypeNameFromModel =
   | 'acheteurs-publics'
-  | 'achats-previsionnels'
+  | 'achats-publics-a-venir'
   | 'aides-clients'
   | 'aides-innovations'
   | 'aides-financieres'
-  | 'achats-programmes'
   | 'investisseurs'
   | 'startups'
   | 'sourcing-startup'
@@ -62,8 +61,8 @@ export const achatPrevi: CardType = {
   title: 'Achats publics à venir',
   description: 'Projets d’achats publics à venir',
   homeDescription: 'Achats publics prévus ces trois prochaines années dans votre domaine.',
-  name: 'achats-previsionnels',
-  searchLink: '/achats-previsionnels',
+  name: 'achats-publics-a-venir',
+  searchLink: '/achats-publics-a-venir',
   apiName: 'projets_achats',
   searchText: 'Recherchez des projets d’achat public par mots clés (nom, cpv, thématique...)',
   version: 'beta'
@@ -156,19 +155,19 @@ export const sourcingSu: CardType = {
 } as const;
 
 
-export const achatProg: CardType = {
-  SVGLogo: PictoCalendar,
-  backgroundColor: '#272419',
-  color: '#D8C635',
-  title: 'Achats programmés',
-  description:
-    'Projets d’achats des services de l’État et de leurs établissements publics, des établissements hospitaliers et des collectivités territoriales.',
-  name: 'achats-programmes',
-  searchLink: '/achats-programmes',
-  apiName: 'projets_achats',
-  version: 'beta',
-  searchText: 'Recherchez des achats programmés par mots clés,'
-} as const;
+// export const achatProg: CardType = {
+//   SVGLogo: PictoCalendar,
+//   backgroundColor: '#272419',
+//   color: '#D8C635',
+//   title: 'Achats programmés',
+//   description:
+//     'Projets d’achats des services de l’État et de leurs établissements publics, des établissements hospitaliers et des collectivités territoriales.',
+//   name: 'achats-programmes',
+//   searchLink: '/achats-programmes',
+//   apiName: 'projets_achats',
+//   version: 'beta',
+//   searchText: 'Recherchez des achats programmés par mots clés,'
+// } as const;
 
 export const startupPersona: CardType[] = [
   aideInno,

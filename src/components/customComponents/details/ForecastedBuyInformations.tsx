@@ -44,7 +44,7 @@ export const ForecastedBuyInformations: React.FC<ForecastedBuyInformationsProps>
         </>
         <>
           {publication_date && (
-            <InformationItem label={'Date limite'} contents={getDateText(days)} />
+            <InformationItem label={'Temporalité'} contents={getDateText(days)} />
           )}
           {cpv_code && <InformationItem label={'Code CPV'} contents={cpv_code.toString()} />}
         </>

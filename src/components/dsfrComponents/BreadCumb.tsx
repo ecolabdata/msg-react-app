@@ -10,7 +10,7 @@ const BreadCumb: React.FC = () => {
   useEffect(() => {
     setSlugs(location.pathname.split('/'))
   }, [location])
-
+  if (location.pathname === "/") return <></>
   return (
     <nav
       role="navigation"
