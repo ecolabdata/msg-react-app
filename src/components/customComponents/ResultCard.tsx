@@ -22,6 +22,7 @@ const ResultCard: React.FC<PropsWithChildren<CardProps>> = ({
   node
 }) => {
   const location = useLocation()
+  if (!name) return <></>
   return (
     <li className="h-full" style={{ opacity: isLoading ? 0.15 : 'inherit' }}>
       <div className="fr-card fr-enlarge-link w-full h-full">

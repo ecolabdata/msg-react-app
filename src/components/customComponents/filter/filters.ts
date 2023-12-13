@@ -75,8 +75,7 @@ export function useAdvancedFilters(type: CardTypeNameFromModel): FilterPropertie
   const investorFilters = [minimumAmountFilter, zoneFilter, fundingTypeFilter];
 
   switch (type) {
-    case 'achats-previsionnels':
-    case 'achats-programmes':
+    case 'achats-publics-a-venir':
       return {
         initialValues: getInitialValues(forecastedBuyFilters),
         handleFilter: handleForecastedBuyFilter,
