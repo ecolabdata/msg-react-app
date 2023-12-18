@@ -19,8 +19,8 @@ export const routes = (
     <Route element={<PageLayout />}>
       <Route path="/" element={<Home />} />
       <Route path="/entreprises" element={<SingleSearchPage profile="startup" />} />
-      <Route path="/ressources-entreprises" element={<Ressources profile='startup' />} />
-      <Route path="/ressources-acteurs-publics" element={<Ressources profile='publicActor' />} />
+      <Route path="/ressources-entreprises" element={<Ressources profile="startup" />} />
+      <Route path="/ressources-acteurs-publics" element={<Ressources profile="publicActor" />} />
       <Route path="/acteurs-publics" element={<SingleSearchPage profile="publicActor" />} />
       {publicActorPersona.map((cardType, i) => (
         <>
@@ -29,7 +29,10 @@ export const routes = (
             path={`/acteurs-publics/${cardType.name}/:id`}
             element={<Details cardType={cardType} />}
           />
-          <Route path={`/acteurs-publics/${cardType.name}`} element={<SearchPage cardType={cardType} />} />
+          <Route
+            path={`/acteurs-publics/${cardType.name}`}
+            element={<SearchPage cardType={cardType} />}
+          />
         </>
       ))}
       {startupPersona.map((cardType, i) => (
@@ -39,7 +42,10 @@ export const routes = (
             path={`/entreprises/${cardType.name}/:id`}
             element={<Details cardType={cardType} />}
           />
-          <Route path={`/entreprises/${cardType.name}`} element={<SearchPage cardType={cardType} />} />
+          <Route
+            path={`/entreprises/${cardType.name}`}
+            element={<SearchPage cardType={cardType} />}
+          />
         </>
       ))}
 
@@ -51,7 +57,6 @@ export const routes = (
     </Route>
 
     <Route path="*" element={<Page404 />} />
-
   </Routes>
 );
 
