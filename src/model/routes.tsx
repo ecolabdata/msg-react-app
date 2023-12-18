@@ -13,13 +13,11 @@ import { publicActorPersona, startupPersona } from './CardType';
 import PageLayout from '../components/page/PageLayout';
 import SingleSearchPage from 'components/page/SingleSearchFormPage';
 import { Ressources } from 'components/page/Ressources';
-import MaintenancePage from 'components/page/MaintenancePage';
 
 export const routes = (
   <Routes>
-    <Route path="/" element={<MaintenancePage />} />
     <Route element={<PageLayout />}>
-      {/* <Route path="/" element={<Home />} /> */}
+      <Route path="/" element={<Home />} />
       <Route path="/entreprises" element={<SingleSearchPage profile="startup" />} />
       <Route path="/ressources-entreprises" element={<Ressources profile="startup" />} />
       <Route path="/ressources-acteurs-publics" element={<Ressources profile="publicActor" />} />
