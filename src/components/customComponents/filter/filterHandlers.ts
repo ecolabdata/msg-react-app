@@ -28,8 +28,11 @@ import { CompanyResult } from 'apiv4/interfaces/company';
 import { AidResult } from 'apiv4/interfaces/aid';
 import { InvestorResult } from 'apiv4/interfaces/investor';
 
-export const handleForecastedBuyFilter = (search: SearchResultItem[] | PublicBuyerHit[], filters: ForecastedBuyFilters) => {
-  const cards = search as PublicPurchaseResult[]
+export const handleForecastedBuyFilter = (
+  search: SearchResultItem[] | PublicBuyerHit[],
+  filters: ForecastedBuyFilters
+) => {
+  const cards = search as PublicPurchaseResult[];
   const { hasEcologicalConcern, publicationDate, zone } = filters;
   const isZoneFilterActivated = Object.keys(zones).includes(zone);
   const isPublicationDateFilterActivated = Object.keys(publicationDates).includes(publicationDate);
@@ -47,11 +50,13 @@ export const handleForecastedBuyFilter = (search: SearchResultItem[] | PublicBuy
         zone && departmentsByRegion[zone as Region].map((d) => d.toString());
 
       const cardDepartments = card.departments;
-      zoneFlag = cardDepartments ? cardDepartments.some((d) => departmentsForZone?.includes(d)) : true;
+      zoneFlag = cardDepartments
+        ? cardDepartments.some((d) => departmentsForZone?.includes(d))
+        : true;
     }
 
     if (isPublicationDateFilterActivated) {
-      if (!card.publication_date) return true
+      if (!card.publication_date) return true;
       const deadline = new Date(card.publication_date);
       const NOW = new Date();
       if ((publicationDate as PublicationDates) === 'publié') {
@@ -66,16 +71,19 @@ export const handleForecastedBuyFilter = (search: SearchResultItem[] | PublicBuy
   return filteredCards;
 };
 
-export const handleHelpsFilter = (search: SearchResultItem[] | PublicBuyerHit[], filters: HelpsFilters) => {
+export const handleHelpsFilter = (
+  search: SearchResultItem[] | PublicBuyerHit[],
+  filters: HelpsFilters
+) => {
   const { deadline, helpType, zone } = filters;
-  const cards = search as AidResult[]
+  const cards = search as AidResult[];
   const isDeadlineFilterActivated = Object.keys(deadlines).includes(deadline);
   const isHelpTypeFilterActivated = Object.keys(helpTypes).includes(helpType);
   const isZoneFilterActivated = Object.keys(zones).includes(zone);
   const filteredCards = cards.filter(({ card }) => {
     let deadlineFlag = true;
     let helpTypeFlag = true;
-    let zoneFlag = true
+    let zoneFlag = true;
 
     if (isDeadlineFilterActivated) {
       if (card.submission_deadline) {
@@ -101,7 +109,7 @@ export const handleHelpsFilter = (search: SearchResultItem[] | PublicBuyerHit[],
       }
     }
 
-    const cardNature = card.nature
+    const cardNature = card.nature;
     if (isHelpTypeFilterActivated && cardNature) {
       helpTypeFlag = !cardNature.length ? true : cardNature.includes(helpType);
     }
@@ -111,24 +119,27 @@ export const handleHelpsFilter = (search: SearchResultItem[] | PublicBuyerHit[],
   return filteredCards;
 };
 
-export const handleInvestorFilter = (search: SearchResultItem[] | PublicBuyerHit[], filters: InvestorFilters) => {
-  const cards = search as InvestorResult[]
+export const handleInvestorFilter = (
+  search: SearchResultItem[] | PublicBuyerHit[],
+  filters: InvestorFilters
+) => {
+  const cards = search as InvestorResult[];
 
   const { fundingType, zone, minimumAmount } = filters;
   const isFundingTypeFilterActivated = Object.keys(fundingTypes).includes(fundingType);
   const isZoneFilterActivated = Object.keys(zones).includes(zone);
-  const isAmountFilterActivated = minimumAmount > 0
+  const isAmountFilterActivated = minimumAmount > 0;
 
   const filteredCards = cards.filter(({ card }) => {
     let fundingTypeFlag = true;
     let zoneFlag = true;
-    let minimumAmountFlag = true
-    const cardData = card.data_source.transformed_pexe_api
+    let minimumAmountFlag = true;
+    const cardData = card.data_source.transformed_pexe_api;
     if (isFundingTypeFilterActivated && cardData && cardData['Type de financement']) {
       const cardFundingTypes = cardData['Type de financement'].split(';').map((t) => t.trim());
       fundingTypeFlag = cardFundingTypes.includes(fundingType);
     }
-    if (isZoneFilterActivated && cardData && cardData["Zone géographique ciblée"]) {
+    if (isZoneFilterActivated && cardData && cardData['Zone géographique ciblée']) {
       const cardZones = cardData['Zone géographique ciblée'].split(';');
       if (cardZones.includes('France entière') || cardZones.includes('')) {
         zoneFlag = true;
@@ -146,7 +157,7 @@ export const handleInvestorFilter = (search: SearchResultItem[] | PublicBuyerHit
 
     if (isAmountFilterActivated && cardData?.['Ticket_min_en_K€']) {
       if (minimumAmount > cardData?.['Ticket_min_en_K€']) {
-        minimumAmountFlag = false
+        minimumAmountFlag = false;
       }
     }
     return fundingTypeFlag && zoneFlag && minimumAmountFlag;
@@ -154,8 +165,11 @@ export const handleInvestorFilter = (search: SearchResultItem[] | PublicBuyerHit
   return filteredCards;
 };
 
-export const handleStartUpFilter = (search: SearchResultItem[] | PublicBuyerHit[], filters: StartupFilters) => {
-  const cards = search as CompanyResult[]
+export const handleStartUpFilter = (
+  search: SearchResultItem[] | PublicBuyerHit[],
+  filters: StartupFilters
+) => {
+  const cards = search as CompanyResult[];
 
   const { market, zone } = filters;
   const isZoneFilterActivated = Object.keys(zones).includes(zone);
@@ -165,11 +179,11 @@ export const handleStartUpFilter = (search: SearchResultItem[] | PublicBuyerHit[
     let marketFlag = true;
     const greenTechDetails = card?.data_source.greentech_innovation;
     if (greenTechDetails) {
-      const zones = greenTechDetails["Région"]
+      const zones = greenTechDetails['Région'];
       if (isZoneFilterActivated && zones) {
-        zoneFlag = !zones.length ? true : zonesSynonymes[zone as Region].includes(zones.join(" "));
+        zoneFlag = !zones.length ? true : zonesSynonymes[zone as Region].includes(zones.join(' '));
       }
-      const markets = greenTechDetails["Marché"]
+      const markets = greenTechDetails['Marché'];
       if (isMarketFilterActivated && markets) {
         const cardMarkets = market.split(',');
         marketFlag = !markets.length ? true : cardMarkets.includes(market);

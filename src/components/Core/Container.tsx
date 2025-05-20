@@ -21,8 +21,7 @@ const Container: React.FC<ContainerProps> = ({
         className={`container my-4 ${customClasses} ${
           isFlexCol && 'flex flex-col items-center mb-8'
         }`}
-        {...props}
-      >
+        {...props}>
         {children}
       </ContainerTag>
     </>

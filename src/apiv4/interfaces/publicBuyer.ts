@@ -26,14 +26,14 @@ export type PublicBuyerResultById = {
   _id: string;
   _version: number;
   _score: number;
-  _seq_no: number,
-  primary_term: number,
-  found: boolean,
+  _seq_no: number;
+  primary_term: number;
+  found: boolean;
   _source: PublicBuyerCard;
-  labelled_startups: Startup[],
-  public_references_startups: Startup[],
-  public_actor_id_siren: string,
-  approch_content: ApprochContent | null
+  labelled_startups: Startup[];
+  public_references_startups: Startup[];
+  public_actor_id_siren: string;
+  approch_content: ApprochContent | null;
 };
 
 export type PublicBuyerCard = {

@@ -21,8 +21,8 @@ const ResultCard: React.FC<PropsWithChildren<CardProps>> = ({
   isLoading,
   node
 }) => {
-  const location = useLocation()
-  if (!name) return <></>
+  const location = useLocation();
+  if (!name) return <></>;
   return (
     <li className="h-full" style={{ opacity: isLoading ? 0.15 : 'inherit' }}>
       <div className="fr-card fr-enlarge-link w-full h-full">
@@ -46,7 +46,16 @@ const ResultCard: React.FC<PropsWithChildren<CardProps>> = ({
                 <li>
                   <p
                     className={`fr-badge fr-badge--sm `}
-                    style={{ color: localStorage.getItem("scheme") === "dark" ? cardType?.color : cardType.backgroundColor, backgroundColor: localStorage.getItem("scheme") === "dark" ? cardType?.backgroundColor : cardType.color }}>
+                    style={{
+                      color:
+                        localStorage.getItem('scheme') === 'dark'
+                          ? cardType?.color
+                          : cardType.backgroundColor,
+                      backgroundColor:
+                        localStorage.getItem('scheme') === 'dark'
+                          ? cardType?.backgroundColor
+                          : cardType.color
+                    }}>
                     {toprow}
                   </p>
                 </li>

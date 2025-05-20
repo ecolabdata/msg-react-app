@@ -18,8 +18,7 @@ const Scrollable: React.FC<CardsPreviewProps> = ({ emetor, cardTitle }) => {
                      hover:scale-y-115 hover:shadow-2xl
                      transform transition ease-out duration-200 
                      group
-                    "
-      >
+                    ">
         <div className="emetor-row flex">
           <p className="text-green-500 text-xs"> {emetor}</p>
           <div className="mb-2 w-full opacity-0 flex justify-end transition-opacity duration-200 group-hover:opacity-100">
@@ -45,8 +44,7 @@ const Scrollable: React.FC<CardsPreviewProps> = ({ emetor, cardTitle }) => {
                      hover:scale-y-115 hover:shadow-2xl
                      transform transition ease-out duration-200 
                      group
-                    "
-      >
+                    ">
         <div className="emetor-row flex">
           <p className="text-green-500 text-xs"> {emetor}</p>
           <div className="mb-2 w-full opacity-0 flex justify-end transition-opacity duration-200 group-hover:opacity-100">
@@ -72,8 +70,7 @@ const Scrollable: React.FC<CardsPreviewProps> = ({ emetor, cardTitle }) => {
                      hover:scale-y-115 hover:shadow-2xl
                      transform transition ease-out duration-200 
                      group
-                    "
-      >
+                    ">
         <div className="emetor-row flex">
           <p className="text-green-500 text-xs"> {emetor}</p>
           <div className="mb-2 w-full opacity-0 flex justify-end transition-opacity duration-200 group-hover:opacity-100">
@@ -99,8 +96,7 @@ const Scrollable: React.FC<CardsPreviewProps> = ({ emetor, cardTitle }) => {
                      hover:scale-y-115 hover:shadow-2xl
                      transform transition ease-out duration-200 
                      group
-                    "
-      >
+                    ">
         <div className="emetor-row flex">
           <p className="text-green-500 text-xs"> {emetor}</p>
           <div className="mb-2 w-full opacity-0 flex justify-end transition-opacity duration-200 group-hover:opacity-100">
@@ -126,8 +122,7 @@ const Scrollable: React.FC<CardsPreviewProps> = ({ emetor, cardTitle }) => {
                      hover:scale-y-115 hover:shadow-2xl
                      transform transition ease-out duration-200 
                      group
-                    "
-      >
+                    ">
         <div className="emetor-row flex">
           <p className="text-green-500 text-xs"> {emetor}</p>
           <div className="mb-2 w-full opacity-0 flex justify-end transition-opacity duration-200 group-hover:opacity-100">
@@ -153,8 +148,7 @@ const Scrollable: React.FC<CardsPreviewProps> = ({ emetor, cardTitle }) => {
                      hover:scale-y-115 hover:shadow-2xl
                      transform transition ease-out duration-200 
                      group
-                    "
-      >
+                    ">
         <div className="emetor-row flex">
           <p className="text-green-500 text-xs"> {emetor}</p>
           <div className="mb-2 w-full opacity-0 flex justify-end transition-opacity duration-200 group-hover:opacity-100">
@@ -180,8 +174,7 @@ const Scrollable: React.FC<CardsPreviewProps> = ({ emetor, cardTitle }) => {
                      hover:scale-y-115 hover:shadow-2xl
                      transform transition ease-out duration-200 
                      group
-                    "
-      >
+                    ">
         <div className="emetor-row flex">
           <p className="text-green-500 text-xs"> {emetor}</p>
           <div className="mb-2 w-full opacity-0 flex justify-end transition-opacity duration-200 group-hover:opacity-100">
@@ -207,8 +200,7 @@ const Scrollable: React.FC<CardsPreviewProps> = ({ emetor, cardTitle }) => {
                      hover:scale-y-115 hover:shadow-2xl
                      transform transition ease-out duration-200 
                      group
-                    "
-      >
+                    ">
         <div className="emetor-row flex">
           <p className="text-green-500 text-xs"> {emetor}</p>
           <div className="mb-2 w-full opacity-0 flex justify-end transition-opacity duration-200 group-hover:opacity-100">
@@ -234,8 +226,7 @@ const Scrollable: React.FC<CardsPreviewProps> = ({ emetor, cardTitle }) => {
                      hover:scale-y-115 hover:shadow-2xl
                      transform transition ease-out duration-200 
                      group
-                    "
-      >
+                    ">
         <div className="emetor-row flex">
           <p className="text-green-500 text-xs"> {emetor}</p>
           <div className="mb-2 w-full opacity-0 flex justify-end transition-opacity duration-200 group-hover:opacity-100">
@@ -261,8 +252,7 @@ const Scrollable: React.FC<CardsPreviewProps> = ({ emetor, cardTitle }) => {
                      hover:scale-y-115 hover:shadow-2xl
                      transform transition ease-out duration-200 
                      group
-                    "
-      >
+                    ">
         <div className="emetor-row flex">
           <p className="text-green-500 text-xs"> {emetor}</p>
           <div className="mb-2 w-full opacity-0 flex justify-end transition-opacity duration-200 group-hover:opacity-100">
@@ -288,8 +278,7 @@ const Scrollable: React.FC<CardsPreviewProps> = ({ emetor, cardTitle }) => {
                      hover:scale-y-115 hover:shadow-2xl
                      transform transition ease-out duration-200 
                      group
-                    "
-      >
+                    ">
         <div className="emetor-row flex">
           <p className="text-green-500 text-xs"> {emetor}</p>
           <div className="mb-2 w-full opacity-0 flex justify-end transition-opacity duration-200 group-hover:opacity-100">
@@ -315,8 +304,7 @@ const Scrollable: React.FC<CardsPreviewProps> = ({ emetor, cardTitle }) => {
                      hover:scale-y-115 hover:shadow-2xl
                      transform transition ease-out duration-200 
                      group
-                    "
-      >
+                    ">
         <div className="emetor-row flex">
           <p className="text-green-500 text-xs"> {emetor}</p>
           <div className="mb-2 w-full opacity-0 flex justify-end transition-opacity duration-200 group-hover:opacity-100">
@@ -342,8 +330,7 @@ const Scrollable: React.FC<CardsPreviewProps> = ({ emetor, cardTitle }) => {
                      hover:scale-y-115 hover:shadow-2xl
                      transform transition ease-out duration-200 
                      group
-                    "
-      >
+                    ">
         <div className="emetor-row flex">
           <p className="text-green-500 text-xs"> {emetor}</p>
           <div className="mb-2 w-full opacity-0 flex justify-end transition-opacity duration-200 group-hover:opacity-100">
@@ -369,8 +356,7 @@ const Scrollable: React.FC<CardsPreviewProps> = ({ emetor, cardTitle }) => {
                      hover:scale-y-115 hover:shadow-2xl
                      transform transition ease-out duration-200 
                      group
-                    "
-      >
+                    ">
         <div className="emetor-row flex">
           <p className="text-green-500 text-xs"> {emetor}</p>
           <div className="mb-2 w-full opacity-0 flex justify-end transition-opacity duration-200 group-hover:opacity-100">
@@ -396,8 +382,7 @@ const Scrollable: React.FC<CardsPreviewProps> = ({ emetor, cardTitle }) => {
                      hover:scale-y-115 hover:shadow-2xl
                      transform transition ease-out duration-200 
                      group
-                    "
-      >
+                    ">
         <div className="emetor-row flex">
           <p className="text-green-500 text-xs"> {emetor}</p>
           <div className="mb-2 w-full opacity-0 flex justify-end transition-opacity duration-200 group-hover:opacity-100">
@@ -423,8 +408,7 @@ const Scrollable: React.FC<CardsPreviewProps> = ({ emetor, cardTitle }) => {
                      hover:scale-y-115 hover:shadow-2xl
                      transform transition ease-out duration-200 
                      group
-                    "
-      >
+                    ">
         <div className="emetor-row flex">
           <p className="text-green-500 text-xs"> {emetor}</p>
           <div className="mb-2 w-full opacity-0 flex justify-end transition-opacity duration-200 group-hover:opacity-100">

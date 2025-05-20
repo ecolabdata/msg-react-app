@@ -2,27 +2,24 @@ import { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import useCheckMobileScreen from '../../hooks/useCheckMobileScreen';
 
-
 const BreadCumb: React.FC = () => {
-  const [slugs, setSlugs] = useState<string[]>([])
-  const location = useLocation()
+  const [slugs, setSlugs] = useState<string[]>([]);
+  const location = useLocation();
   const isMobile = useCheckMobileScreen();
   useEffect(() => {
-    setSlugs(location.pathname.split('/'))
-  }, [location])
-  if (location.pathname === "/") return <></>
+    setSlugs(location.pathname.split('/'));
+  }, [location]);
+  if (location.pathname === '/') return <></>;
   return (
     <nav
       role="navigation"
       className="fr-breadcrumb  h-full container mx-auto  !mb-0 mt-8 "
-      aria-label="vous êtes ici :"
-    >
+      aria-label="vous êtes ici :">
       {isMobile && slugs.length > 0 && (
         <button
           className="fr-breadcrumb__button"
           aria-expanded="false"
-          aria-controls="breadcrumb-1"
-        >
+          aria-controls="breadcrumb-1">
           Voir le fil d’Ariane
         </button>
       )}
@@ -38,27 +35,33 @@ const BreadCumb: React.FC = () => {
 
           {slugs.length > 1 &&
             slugs.map((slug, index) => {
-              if (!slug) return <></>
+              if (!slug) return <></>;
               if (index >= 3) {
-                return <li key={slug}>
-                  <span className="fr-breadcrumb__link" aria-current="page">Fiche détail</span>
-                </li>
+                return (
+                  <li key={slug}>
+                    <span className="fr-breadcrumb__link" aria-current="page">
+                      Fiche détail
+                    </span>
+                  </li>
+                );
               }
-              let fullSlug = ""
+              let fullSlug = '';
               if (slugs[index - 1]) {
-                fullSlug += `${slugs[index - 1]}/`
+                fullSlug += `${slugs[index - 1]}/`;
               }
-              fullSlug += slug
+              fullSlug += slug;
               return (
                 <li key={fullSlug}>
-                  <Link className="fr-breadcrumb__link capitalize" to={fullSlug} aria-current={index === slugs.length - 1 ? "page" : undefined} >
+                  <Link
+                    className="fr-breadcrumb__link capitalize"
+                    to={fullSlug}
+                    aria-current={index === slugs.length - 1 ? 'page' : undefined}>
                     {' '}
-                    {slug.replaceAll("-", " ")}
+                    {slug.replaceAll('-', ' ')}
                   </Link>
                 </li>
               );
             })}
-
         </ol>
       </div>
     </nav>

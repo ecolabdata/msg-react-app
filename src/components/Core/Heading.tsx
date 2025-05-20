@@ -46,8 +46,7 @@ const Heading: React.FC<HeadingProps> = ({
         className={`${alignClass()} my-4 ${
           inSmallContainer ? 'max-w-headerSize' : 'w-full'
         } font-bold ${sizeClass()} ${customClasses}`}
-        {...props}
-      >
+        {...props}>
         {' '}
         {children}{' '}
       </HeadingTag>

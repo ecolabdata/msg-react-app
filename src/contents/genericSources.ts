@@ -1,7 +1,6 @@
-import { CardTypeNameFromModel } from "model/CardType";
+import { CardTypeNameFromModel } from 'model/CardType';
 
 const getSources = (type: CardTypeNameFromModel) => {
-
   switch (type) {
     case 'acheteurs-publics':
       return [

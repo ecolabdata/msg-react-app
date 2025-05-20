@@ -38,7 +38,7 @@ export type CardTypeNameFromModel =
   | 'aides-financieres'
   | 'investisseurs'
   | 'startups'
-  | 'sourcing-startup'
+  | 'sourcing-startup';
 
 export const acheteurPublic: CardType = {
   SVGLogo: PictoCityHall,

@@ -1,21 +1,26 @@
-import { SetStateAction } from "react";
-import { Dispatch } from "react";
+import { SetStateAction } from 'react';
+import { Dispatch } from 'react';
 
-const ModalThemeSelection: React.FC<{ isOpenModale: boolean, setIsOpenModale: Dispatch<SetStateAction<boolean>> }> = ({ isOpenModale, setIsOpenModale }) => {
+const ModalThemeSelection: React.FC<{
+  isOpenModale: boolean;
+  setIsOpenModale: Dispatch<SetStateAction<boolean>>;
+}> = ({ isOpenModale, setIsOpenModale }) => {
   return (
     <>
       <dialog
         id="fr-theme-modal"
         className="fr-modal"
         role="dialog"
-        aria-labelledby="fr-theme-modal-title"
-      >
+        aria-labelledby="fr-theme-modal-title">
         <div className="container container--fluid container-md">
           <div className="fr-grid-row fr-grid-row--center">
             <div className="fr-col-12 fr-col-md-6 fr-col-lg-4">
               <div className="fr-modal__body">
                 <div className="fr-modal__header">
-                  <button className="fr-link--close fr-link" aria-controls="fr-theme-modal" onClick={() => setIsOpenModale(!isOpenModale)} >
+                  <button
+                    className="fr-link--close fr-link"
+                    aria-controls="fr-theme-modal"
+                    onClick={() => setIsOpenModale(!isOpenModale)}>
                     Fermer
                   </button>
                 </div>

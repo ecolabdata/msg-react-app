@@ -28,8 +28,7 @@ const ContactArea: React.FC<ContactAreaProps> = ({ data, className }) => {
           {!showContact && (
             <button
               onClick={() => setShowContact(true)}
-              className="fr-btn fr-btn--primary w-fit px-4 h-3 py-2 hover:bg-claire-bf__hover mt-6  "
-            >
+              className="fr-btn fr-btn--primary w-fit px-4 h-3 py-2 hover:bg-claire-bf__hover mt-6  ">
               {cta?.label}
             </button>
           )}

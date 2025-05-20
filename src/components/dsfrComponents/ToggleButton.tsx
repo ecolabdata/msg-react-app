@@ -36,8 +36,7 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({ label, checked, color, onCh
                 "
           htmlFor={label}
           data-fr-checked-label=""
-          data-fr-unchecked-label=""
-        >
+          data-fr-unchecked-label="">
           {label}
         </label>
       </div>
