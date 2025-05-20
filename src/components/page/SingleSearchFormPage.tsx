@@ -19,7 +19,8 @@ const content = {
     color: startups.color
   },
   publicActor: {
-    title: 'Acteurs publics, retrouvez des outils pour favoriser les innovations durables dans vos marchés publics',
+    title:
+      'Acteurs publics, retrouvez des outils pour favoriser les innovations durables dans vos marchés publics',
     cards: publicActorPersona,
     color: acheteurPublic.color
   }
@@ -27,8 +28,8 @@ const content = {
 
 const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
   const { title, cards, color } = content[profile];
-  const location = useLocation()
-  const navigate = useNavigate()
+  const location = useLocation();
+  const navigate = useNavigate();
   const thematicsValues = Object.values(ThematicsEnum);
   const {
     description,
@@ -43,16 +44,16 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (!description) {
-      handleDescriptionChange("")
-      return
+      handleDescriptionChange('');
+      return;
     }
-    navigate(location.pathname, { state: "cardPick" })
+    navigate(location.pathname, { state: 'cardPick' });
   };
 
   useEffect(() => {
-    location.state === null && setStep(0)
-    location.state === "cardPick" && setStep(1)
-  }, [location])
+    location.state === null && setStep(0);
+    location.state === 'cardPick' && setStep(1);
+  }, [location]);
 
   return (
     <div className="mt-16">
@@ -73,8 +74,9 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
               <fieldset>
                 <legend className="sr-only">Décrivez votre projet</legend>
                 <div
-                  className={`container py-8 px-6 mr-0 ${localStorage.getItem('scheme') === 'dark' && 'bg-research-precision-container'
-                    } justify-start flex flex-col lg:mt-0`}>
+                  className={`container py-8 px-6 mr-0 ${
+                    localStorage.getItem('scheme') === 'dark' && 'bg-research-precision-container'
+                  } justify-start flex flex-col lg:mt-0`}>
                   <TextAreaInput
                     value={description}
                     onValueChange={handleDescriptionChange}
@@ -86,8 +88,9 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
                   />
                 </div>
                 <div
-                  className={`container py-8 px-6 mr-0 ${localStorage.getItem('scheme') === 'dark' && 'bg-research-precision-container'
-                    } justify-start flex flex-col lg:mt-0`}>
+                  className={`container py-8 px-6 mr-0 ${
+                    localStorage.getItem('scheme') === 'dark' && 'bg-research-precision-container'
+                  } justify-start flex flex-col lg:mt-0`}>
                   <SelectInputOptions
                     className="mb-auto"
                     optionsData={thematicsValues}

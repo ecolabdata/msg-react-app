@@ -58,7 +58,7 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
   const { data: cards, error: apiError } = useFetch<SearchResultItem[] | PublicBuyerResults>(url);
   const isLoading = !cards && !apiError;
 
-  const results = cards && normalizeSearchPageResults(cards)
+  const results = cards && normalizeSearchPageResults(cards);
 
   const [filteredData, setFilteredData] = useState<
     SearchResultItem[] | PublicBuyerHit[] | undefined
@@ -68,9 +68,9 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
 
   useEffect(() => {
     if (!location.state) {
-      setFilteredData([])
-      setFilteredResultsCount(0)
-      return
+      setFilteredData([]);
+      setFilteredResultsCount(0);
+      return;
     }
     const filteredResults =
       results && isAdvancedSearchOpen ? handleFilter(results, filtersValues as any) : results;
@@ -139,7 +139,7 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
           <span className="bg-yellow md:text-3xl font-light">{`(${filteredResultsCount} résultats)`}</span>
         </Heading>
         {cardType.description && <p className="mt-2 text-base">{cardType.description}</p>}
-        {cardType.apiName === "startups" && <StartupSubTitle />}
+        {cardType.apiName === 'startups' && <StartupSubTitle />}
       </div>
 
       <form

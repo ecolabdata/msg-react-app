@@ -77,8 +77,9 @@ const ressourcesByProfileContent = {
         'Vous souhaitez que votre entreprise éco-innovante soit visible dans Mes Services Greentech ?',
       description: (
         <>
-          Très bonne idée ! Pour accentuer votre visibilité auprès des acheteurs publics et de l’écosystème Greentech,
-          nous vous invitons à candidater à l'AMI Greentech Innovation, présenté sur le site internet{' '}
+          Très bonne idée ! Pour accentuer votre visibilité auprès des acheteurs publics et de
+          l’écosystème Greentech, nous vous invitons à candidater à l'AMI Greentech Innovation,
+          présenté sur le site internet{' '}
           <ExternalLink
             href="https://greentechinnovation.fr/"
             content="Greentech Innovation "
@@ -110,7 +111,10 @@ const ressourcesByProfileContent = {
         title: 'Aides',
         description:
           'Profitez d’un premier niveau de conseil gratuit pour intégrer des considérations environnementales dans vos achats.',
-        links: [{ name: 'Le guichet vert', url: 'https://laclauseverte.fr/le-guichet-vert/' }, { name: 'Rapidd', url: 'https://rapidd.developpement-durable.gouv.fr/article/8022' }]
+        links: [
+          { name: 'Le guichet vert', url: 'https://laclauseverte.fr/le-guichet-vert/' },
+          { name: 'Rapidd', url: 'https://rapidd.developpement-durable.gouv.fr/article/8022' }
+        ]
       },
       {
         title: 'Financements',
@@ -159,10 +163,11 @@ const ressourcesByProfileContent = {
       },
       {
         title: 'Caractère innovant d’une solution',
-        description: 'Exemple de modèle simple vous permettant d’étudier le caractère innovant ou non d’une solution portée par une entreprise ! ',
+        description:
+          'Exemple de modèle simple vous permettant d’étudier le caractère innovant ou non d’une solution portée par une entreprise ! ',
         links: [
           {
-            name: "Télécharger le modèle",
+            name: 'Télécharger le modèle',
             url: 'https://docs.google.com/document/d/12krGhJ_OS1yQ2MCze2yUI1ztx452sXK8/edit?usp=sharing&ouid=113036023962989545192&rtpof=true&sd=true'
           }
         ]

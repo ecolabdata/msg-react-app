@@ -20,7 +20,7 @@ function AccessibleNavigation() {
     'acteurs-publics/sourcing-startup': 'Entreprises éco-innovantes',
     'acteurs-publics/achats-publics-a-venir': 'Achats publics à venir',
     'mentions-legales': 'Mentions Légales',
-    'cookies': 'Gestion des cookies',
+    cookies: 'Gestion des cookies',
     'donnees-personnelles': 'Données personnelles',
     accessibilite: 'Accessibilité',
     'plan-du-site': 'Plan du site'

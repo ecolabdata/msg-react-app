@@ -57,10 +57,10 @@ const CPVCard: React.FC<CPVCardProps> = ({ content }) => {
   const dlroStr =
     dlroDate &&
     ('0' + dlroDate?.getUTCDate()).slice(-2) +
-    '/' +
-    ('0' + ((dlroDate?.getUTCMonth() || 0) + 1)).slice(-2) +
-    '/' +
-    dlroDate?.getUTCFullYear();
+      '/' +
+      ('0' + ((dlroDate?.getUTCMonth() || 0) + 1)).slice(-2) +
+      '/' +
+      dlroDate?.getUTCFullYear();
 
   return (
     <div className="fr-card h-full w-full bg-input-background">
@@ -108,8 +108,7 @@ const CPVCard: React.FC<CPVCardProps> = ({ content }) => {
             <ul className="fr-tags-group" aria-hidden={true}>
               <li>
                 <p
-                  className={`fr-badge fr-badge--sm bg-red-marianne-625-lightBackground text-red-marianne-625`}
-                >
+                  className={`fr-badge fr-badge--sm bg-red-marianne-625-lightBackground text-red-marianne-625`}>
                   Cat. Achat: {purchasingCategory}
                 </p>
               </li>

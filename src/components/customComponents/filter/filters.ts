@@ -62,10 +62,16 @@ export type FilterProperties = {
   initialValues: AnyFilters;
   filters: FilterDefinition[];
   handleFilter:
-  | ((search: SearchResultItem[] | PublicBuyerHit[], filters: StartupFilters) => CompanyResult[])
-  | ((search: SearchResultItem[] | PublicBuyerHit[], filters: ForecastedBuyFilters) => PublicPurchaseResult[])
-  | ((search: SearchResultItem[] | PublicBuyerHit[], filters: HelpsFilters) => AidResult[])
-  | ((search: SearchResultItem[] | PublicBuyerHit[], filters: InvestorFilters) => InvestorResult[]);
+    | ((search: SearchResultItem[] | PublicBuyerHit[], filters: StartupFilters) => CompanyResult[])
+    | ((
+        search: SearchResultItem[] | PublicBuyerHit[],
+        filters: ForecastedBuyFilters
+      ) => PublicPurchaseResult[])
+    | ((search: SearchResultItem[] | PublicBuyerHit[], filters: HelpsFilters) => AidResult[])
+    | ((
+        search: SearchResultItem[] | PublicBuyerHit[],
+        filters: InvestorFilters
+      ) => InvestorResult[]);
 };
 
 export function useAdvancedFilters(type: CardTypeNameFromModel): FilterProperties {

@@ -33,8 +33,14 @@ const DetailsHeader: React.FC<DetailsHeaderProps> = ({ data, cardType }) => {
       <div className={`pb-12 mb-12 border-b ${borderColor}`}>
         <p
           className={`fr-badge fr-badge--sm `}
-          style={{ color: localStorage.getItem("scheme") === "dark" ? cardType?.color : cardType.backgroundColor, backgroundColor: localStorage.getItem("scheme") === "dark" ? cardType?.backgroundColor : cardType.color }}
-        >
+          style={{
+            color:
+              localStorage.getItem('scheme') === 'dark'
+                ? cardType?.color
+                : cardType.backgroundColor,
+            backgroundColor:
+              localStorage.getItem('scheme') === 'dark' ? cardType?.backgroundColor : cardType.color
+          }}>
           {cardType?.name === 'sourcing-startup' ? 'start up' : cardType?.name}
         </p>
         <Heading align="left">{title}</Heading>
@@ -47,13 +53,15 @@ const DetailsHeader: React.FC<DetailsHeaderProps> = ({ data, cardType }) => {
         {isCompanyV4(data) && data.card.logo_url && (
           <img src={data.card.logo_url} alt="" width="100" className="mt-4" />
         )}
-        <p className={`${localStorage.getItem("scheme") === "dark" && "text-grey-625-active"} mt-4`}>{subtitle}</p>
+        <p
+          className={`${localStorage.getItem('scheme') === 'dark' && 'text-grey-625-active'} mt-4`}>
+          {subtitle}
+        </p>
       </div>
       <Link
         to={'..'}
         className="mt-8 fr-link fr-fi-arrow-left-line fr-link--icon-left w-fit"
-        onClick={handleGoBack}
-      >
+        onClick={handleGoBack}>
         Retour à la liste
       </Link>
     </Container>
@@ -80,7 +88,10 @@ const normalizeHeaderProps = (data: SearchResultItem) => {
   if (isPublicPurchaseV4(data)) {
     return {
       title: data.card.name,
-      subtitle: data.card.departments && data.card.departments.length > 0 && `Périmètre géographique : ${data.card.departments.join(" ")}`
+      subtitle:
+        data.card.departments &&
+        data.card.departments.length > 0 &&
+        `Périmètre géographique : ${data.card.departments.join(' ')}`
     };
   }
   if (isCompanyV4(data)) {
@@ -93,7 +104,7 @@ const normalizeHeaderProps = (data: SearchResultItem) => {
 
   if (isPublicBuyerResults(data)) {
     return {
-      title: data._source.public_actor_nom,
+      title: data._source.public_actor_nom
     };
   }
   return {

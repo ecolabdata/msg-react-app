@@ -48,8 +48,7 @@ export const AuthRequiredWall = () => {
         <div
           className="
                     h-[100vh] p-2
-                    flex items-center justify-center"
-        >
+                    flex items-center justify-center">
           {message}
         </div>
       </>

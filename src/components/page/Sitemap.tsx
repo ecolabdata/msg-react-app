@@ -3,11 +3,10 @@ import { Link } from 'react-router-dom';
 import reactRouterToArray from 'react-router-to-array';
 import routes from '../../model/routes';
 
-type FormatedRoute =
-  | {
-    urlToRedirect: string;
-    slugToDisplay: string;
-  }
+type FormatedRoute = {
+  urlToRedirect: string;
+  slugToDisplay: string;
+};
 
 const Sitemap = () => {
   const [allRoutes, setAllRoutes] = useState<string[]>();
@@ -20,13 +19,16 @@ const Sitemap = () => {
     return <p>Chargement ...</p>;
   }
 
-  const allFormatedRoutes = allRoutes
-    .map((route: string) => {
-      return {
-        urlToRedirect: route,
-        slugToDisplay: route.replace("/", "").replaceAll("-", " ").replaceAll("/", " - ").replace(/^(.)/, (match) => match.toUpperCase())
-      };
-    });
+  const allFormatedRoutes = allRoutes.map((route: string) => {
+    return {
+      urlToRedirect: route,
+      slugToDisplay: route
+        .replace('/', '')
+        .replaceAll('-', ' ')
+        .replaceAll('/', ' - ')
+        .replace(/^(.)/, (match) => match.toUpperCase())
+    };
+  });
 
   const groupRoutesByParent = (data: FormatedRoute[]) => {
     return data.reduce((acc, route) => {
@@ -43,8 +45,10 @@ const Sitemap = () => {
 
       return acc;
     }, {});
-  }
-  const formatArrayOfRoutes = (groupedRoutes: (FormatedRoute[] | { [key: string]: (FormatedRoute[]) })) => {
+  };
+  const formatArrayOfRoutes = (
+    groupedRoutes: FormatedRoute[] | { [key: string]: FormatedRoute[] }
+  ) => {
     return Object.entries(groupedRoutes).map(([key, value]) => {
       if (Array.isArray(value)) {
         return value;
@@ -52,9 +56,11 @@ const Sitemap = () => {
         return Object.entries(value).map(([subKey, subValue]) => ({ [subKey]: subValue }));
       }
     });
-  }
+  };
 
-  const formatedArrayOfRoutes = formatArrayOfRoutes(groupRoutesByParent(allFormatedRoutes)).sort((a, b) => b.length - a.length);
+  const formatedArrayOfRoutes = formatArrayOfRoutes(groupRoutesByParent(allFormatedRoutes)).sort(
+    (a, b) => b.length - a.length
+  );
 
   return (
     <div className="container">
@@ -68,7 +74,6 @@ const Sitemap = () => {
         </li>
 
         {formatedArrayOfRoutes.map((routes: FormatedRoute[]) => {
-
           if (routes.length === 1) {
             return (
               <li key={routes[0].urlToRedirect}>

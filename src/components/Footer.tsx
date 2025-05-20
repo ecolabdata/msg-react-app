@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom';
 import ExternalLink from './Core/ExternalLink';
-import { SetStateAction } from "react";
-import { Dispatch } from "react";
+import { SetStateAction } from 'react';
+import { Dispatch } from 'react';
 
-
-const Footer: React.FC<{ isOpenModale: boolean, setIsOpenModale: Dispatch<SetStateAction<boolean>> }> = ({ isOpenModale, setIsOpenModale }) => {
+const Footer: React.FC<{
+  isOpenModale: boolean;
+  setIsOpenModale: Dispatch<SetStateAction<boolean>>;
+}> = ({ isOpenModale, setIsOpenModale }) => {
   return (
     <>
       <footer className="fr-footer relative mt-8" role="contentinfo" id="footer">
@@ -14,21 +16,25 @@ const Footer: React.FC<{ isOpenModale: boolean, setIsOpenModale: Dispatch<SetSta
               <Link
                 to="/"
                 title="Ministère de la transition écologique et de la cohésion des territoires - Retour à l’accueil">
-                <p className="fr-logo uppercase">
-                  gouvernement
-                </p>
+                <p className="fr-logo uppercase">gouvernement</p>
               </Link>
             </div>
             <div className="fr-footer__content">
               <p className="fr-footer__content-desc font-bold text-sm">
-                Mes services Greentech est en version beta. Cet outil est porté par les Ministères de la Transition Écologique,
-                Cohésion des Territoires, Transition Energétique. Pour les porteurs de projets, cet outil vous permet d'accéder
-                à des ressources utiles pour accéder aux marchés publics d'innovation dans les territoires. Pour les acteurs publics,
-                profitez de cet outil pour faire votre sourcing de solutions, retrouver des sources possibles de financement,
-                et des informations sur les marchés d'innovation. Pour nous faire part de vos remarques ou nous aider à améliorer
-                l’expérience merci de répondre à cette {' '}
+                Mes services Greentech est en version beta. Cet outil est porté par les Ministères
+                de la Transition Écologique, Cohésion des Territoires, Transition Energétique. Pour
+                les porteurs de projets, cet outil vous permet d'accéder à des ressources utiles
+                pour accéder aux marchés publics d'innovation dans les territoires. Pour les acteurs
+                publics, profitez de cet outil pour faire votre sourcing de solutions, retrouver des
+                sources possibles de financement, et des informations sur les marchés d'innovation.
+                Pour nous faire part de vos remarques ou nous aider à améliorer l’expérience merci
+                de répondre à cette{' '}
                 <ExternalLink
-                  className={`font-bold ${localStorage.getItem("scheme") === "dark" ? "text-blue-france-625" : "text-blue-france-sun-113"} mr-1`}
+                  className={`font-bold ${
+                    localStorage.getItem('scheme') === 'dark'
+                      ? 'text-blue-france-625'
+                      : 'text-blue-france-sun-113'
+                  } mr-1`}
                   href="https://airtable.com/shrwwE4lA2GFxK0T4"
                   content="courte enquête"
                 />
@@ -90,9 +96,7 @@ const Footer: React.FC<{ isOpenModale: boolean, setIsOpenModale: Dispatch<SetSta
                 </Link>
               </li>
               <li className="fr-footer__bottom-item">
-                <Link
-                  className="fr-footer__bottom-link font-bold text-xs"
-                  to="/mentions-legales">
+                <Link className="fr-footer__bottom-link font-bold text-xs" to="/mentions-legales">
                   Mentions légales
                 </Link>
               </li>
@@ -104,9 +108,7 @@ const Footer: React.FC<{ isOpenModale: boolean, setIsOpenModale: Dispatch<SetSta
                 </Link>
               </li>
               <li className="fr-footer__bottom-item">
-                <Link
-                  className="fr-footer__bottom-link font-bold text-xs"
-                  to="/cookies">
+                <Link className="fr-footer__bottom-link font-bold text-xs" to="/cookies">
                   Gestion des cookies
                 </Link>
               </li>
@@ -116,8 +118,7 @@ const Footer: React.FC<{ isOpenModale: boolean, setIsOpenModale: Dispatch<SetSta
                   className="fr-footer__bottom-link fr-fi-theme-fill fr-link--icon-left  font-bold text-xs"
                   aria-controls="fr-theme-modal"
                   data-fr-opened={isOpenModale}
-                  onClick={() => setIsOpenModale(!isOpenModale)}
-                >
+                  onClick={() => setIsOpenModale(!isOpenModale)}>
                   Changer le thème
                 </button>
               </li>

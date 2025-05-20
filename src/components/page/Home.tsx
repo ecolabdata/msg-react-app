@@ -7,8 +7,8 @@ const Home: React.FC = () => {
   return (
     <>
       <Container isFlexCol>
-        <div className='flex justify-center mt-8 mb-4 gap-2'>
-          <p className='italic'>{homePageContent.warning}</p>
+        <div className="flex justify-center mt-8 mb-4 gap-2">
+          <p className="italic">{homePageContent.warning}</p>
           <span className="fr-badge fr-badge--sm fr-badge--green-emeraude">BÊTA</span>
         </div>
         <Heading level={1}>{homePageContent.heading2}</Heading>

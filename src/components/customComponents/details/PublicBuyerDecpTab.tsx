@@ -47,7 +47,10 @@ interface CPVCardProps {
 const CPVCard: React.FC<CPVCardProps> = ({ content }) => {
   const { codeCPV, dureeMois, procedure, montant, objet } = content;
   return (
-    <div className={`fr-card h-full w-full  ${localStorage.getItem('scheme') === 'dark' ? 'bg-input-background' : ''}`}>
+    <div
+      className={`fr-card h-full w-full  ${
+        localStorage.getItem('scheme') === 'dark' ? 'bg-input-background' : ''
+      }`}>
       <div className="fr-card__body ">
         <div className="fr-card__content">
           {/* <h3 className="fr-card__title"></h3> Commented because it creates an empty heading error */}
@@ -75,8 +78,11 @@ const CPVCard: React.FC<CPVCardProps> = ({ content }) => {
               <li>
                 <p
                   className={`fr-badge fr-badge--sm`}
-                  style={localStorage.getItem("scheme") === "dark" ? { color: 'rgb(249, 92, 94)', backgroundColor: 'rgb(44, 32, 43)' } : { color: 'rgb(44, 32, 43)', backgroundColor: 'rgb(249, 92, 94)' }}
-                >
+                  style={
+                    localStorage.getItem('scheme') === 'dark'
+                      ? { color: 'rgb(249, 92, 94)', backgroundColor: 'rgb(44, 32, 43)' }
+                      : { color: 'rgb(44, 32, 43)', backgroundColor: 'rgb(249, 92, 94)' }
+                  }>
                   Code CPV: {codeCPV}
                 </p>
               </li>
