@@ -5,13 +5,16 @@ import OptionItem from './OptionItem';
 import { useOutsideAlerter } from '../../hooks/useOutsideAlerter';
 import { tailwindColorUtility } from '../../utils/utilityFunctions';
 import { ThematicsEnum } from 'model/ThematicsEnum';
+import classNames from 'classnames';
 
 interface SelectInputOptionsProps {
   optionsData: string[];
   secteurs: ThematicsEnum[];
   className?: string;
-  setSecteurs: React.Dispatch<React.SetStateAction<ThematicsEnum[]>>;
+  setSecteurs: (value: ThematicsEnum[]) => void;
   color?: string;
+  error?: boolean;
+  required?: boolean;
 }
 
 const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({
@@ -19,7 +22,9 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({
   secteurs,
   setSecteurs,
   className,
-  color
+  color,
+  error,
+  required = false
 }) => {
   const [displaySelect, setDisplaySelect] = useState(false);
   const secteursSet = new Set(secteurs);
@@ -53,7 +58,7 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({
   return (
     <div className={`relative ${className}`} ref={wrapperRef}>
       <label className="fr-label" htmlFor="select-container">
-        Thématiques
+        {`Thématiques ${required ? '(obligatoire)' : ''}`}
       </label>
       <button
         aria-multiselectable={true}
@@ -63,9 +68,13 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({
         type="button"
         onKeyDown={handleKeyDown}
         role="combobox"
-        className={`mt-2 w-full h-10 min-h-[50px] addBorder-b border-3 ${borderColor} p-2 pt-3 flex ${
-          localStorage.getItem('scheme') === 'dark' ? 'bg-input-background' : 'bg-slate-50'
-        }`}
+        className={classNames(
+          `mt-2 w-full h-10 min-h-[50px] addBorder-b border-3 ${borderColor} p-2 pt-3 flex ${
+            localStorage.getItem('scheme') === 'dark' ? 'bg-input-background' : 'bg-slate-50'
+          }`,
+          { [`addBorder-b border-3`]: !error },
+          { 'addBorder border-2 border-red-marianne-625-hover': error }
+        )}
         onClick={() => {
           setDisplaySelect(!displaySelect);
         }}>
@@ -87,7 +96,14 @@ const SelectInputOptions: React.FC<SelectInputOptionsProps> = ({
           aria-hidden="true"
         />
       </button>
-
+      {error && (
+        <div
+          className={`errorContainer ${!error && 'hidden'} 
+        h-12 flex justify-center items-center color`}
+          aria-live="polite">
+          <p className="text-red-marianne-625-hover">Ce champs est obligatoire</p>
+        </div>
+      )}
       {displaySelect && (
         <>
           <ul

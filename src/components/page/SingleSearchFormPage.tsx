@@ -33,9 +33,9 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
   const thematicsValues = Object.values(ThematicsEnum);
   const {
     description,
-    handleDescriptionChange,
+    setDescription,
+    handleThematicsChange,
     thematics,
-    setThematics,
     error,
     setSearchFormStep: setStep,
     searchFormStep: step
@@ -43,8 +43,8 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if (!description) {
-      handleDescriptionChange('');
+    if (!thematics?.length) {
+      handleThematicsChange(null);
       return;
     }
     navigate(location.pathname, { state: 'cardPick' });
@@ -79,11 +79,9 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
                   } justify-start flex flex-col lg:mt-0`}>
                   <TextAreaInput
                     value={description}
-                    onValueChange={handleDescriptionChange}
-                    error={error}
+                    onValueChange={setDescription}
                     label={'Décrivez votre projet'}
                     formId="keywordsForm"
-                    required
                     color={color}
                   />
                 </div>
@@ -93,10 +91,12 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
                   } justify-start flex flex-col lg:mt-0`}>
                   <SelectInputOptions
                     className="mb-auto"
+                    error={error}
                     optionsData={thematicsValues}
                     secteurs={thematics}
-                    setSecteurs={setThematics}
+                    setSecteurs={handleThematicsChange}
                     color={color}
+                    required
                   />
                 </div>
               </fieldset>
