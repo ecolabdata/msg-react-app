@@ -1,24 +1,24 @@
 import { ThematicsEnum } from 'model/ThematicsEnum';
 import React from 'react';
-
+import { useLocation } from 'react-router-dom';
 export interface ProjetFormContextProps {
   description: string;
-  handleDescriptionChange: (v: string) => void;
   error: boolean;
   thematics: ThematicsEnum[];
-  setThematics: React.Dispatch<React.SetStateAction<ThematicsEnum[]>>;
   searchFormStep: number;
   setSearchFormStep: React.Dispatch<React.SetStateAction<number>>;
+  setDescription: React.Dispatch<React.SetStateAction<string>>;
+  handleThematicsChange: (v: ThematicsEnum[] | null) => void;
 }
 
 export const ProjetFormContext = React.createContext<ProjetFormContextProps>({
   description: '',
-  handleDescriptionChange: () => {},
   error: false,
   thematics: [],
-  setThematics: () => {},
   searchFormStep: 0,
-  setSearchFormStep: () => {}
+  setSearchFormStep: () => {},
+  handleThematicsChange: () => {},
+  setDescription: () => {}
 });
 
 export const ProjetFormContextProvider: React.FC = ({ ...props }) => {
@@ -26,19 +26,28 @@ export const ProjetFormContextProvider: React.FC = ({ ...props }) => {
   const [thematics, setThematics] = React.useState<ThematicsEnum[]>([]);
   const [error, setError] = React.useState<boolean>(false);
   const [searchFormStep, setSearchFormStep] = React.useState<number>(0);
+  const pathname = useLocation().pathname;
 
-  const handleDescriptionChange = (v: string) => {
-    setDescription(v);
-    setError(!v.length);
+  React.useEffect(() => {
+    setError(false);
+  }, [pathname]);
+
+  const handleThematicsChange = (v: ThematicsEnum[] | null) => {
+    if (!v) {
+      setError(true);
+    } else {
+      setError(false);
+      setThematics(v);
+    }
   };
 
   return (
     <ProjetFormContext.Provider
       value={{
         description,
-        handleDescriptionChange,
+        handleThematicsChange,
         thematics,
-        setThematics,
+        setDescription,
         error,
         searchFormStep,
         setSearchFormStep
