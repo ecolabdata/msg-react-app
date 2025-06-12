@@ -16,9 +16,10 @@ export type Card = {
   cardSubtitle: string;
   shortDescription: string | null;
   logoUrl: string | null;
-  descriptionThumbnail: string | null;
+  description: string | null;
 };
 
-export type Label = { description: string; name: string; label: string } | null;
+export type Label = { description: string; name: string; label: LabelNames };
+export type LabelNames = 'GREEN20' | 'Solar Impulse' | 'GreenTech Innovation';
 
 export type AllCards = CompanyCard;

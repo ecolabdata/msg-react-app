@@ -60,6 +60,7 @@ const SearchResultsV5: React.FC<PropsWithChildren<Props>> = ({
                   isLoading={isLoading}
                   content={card.shortDescription}
                   name={card.cardTitle}
+                  logo={card.logoUrl}
                 />
               );
             })}

@@ -7,6 +7,7 @@ interface StartupInformationsProps {
   className?: string;
 }
 
+// V5 Remove this replaced in api5/interfaces/common
 export type Label = 'GREEN20' | 'Solar Impulse' | 'GreenTech Innovation';
 
 type SolutionWithLabel = {
@@ -14,7 +15,7 @@ type SolutionWithLabel = {
   description: string | null;
   label: Label;
 };
-
+// V5 remove this replaced by DetailsBody
 export const StartupInformations: React.FC<StartupInformationsProps> = ({ card, className }) => {
   const greenTechData = card.data_source?.greentech_innovation;
   const labels = normalizeLabels(card);

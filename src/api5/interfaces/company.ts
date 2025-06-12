@@ -20,7 +20,7 @@ export type CompanyCard = Card & {
   labels: Label[];
   siren: string | null;
   financialData: {};
-  images: { url: string; alt: string | null }[];
+  images: string[];
   projectDescription: string | null;
   companyDescrition: string | null;
 };

@@ -18,6 +18,7 @@ interface DetailsHeaderProps {
   cardType: CardType;
 }
 
+// V5 remove this
 const DetailsHeader: React.FC<DetailsHeaderProps> = ({ data, cardType }) => {
   const { subtitle, title } = normalizeHeaderProps(data);
   const borderColor = cardType?.color && tailwindColorUtility[cardType?.color].border;

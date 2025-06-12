@@ -11,6 +11,7 @@ interface CardProps {
   cardType: CardType;
   isLoading?: boolean;
   content: string | null;
+  logo?: string | null;
 }
 
 const ResultCardV5: React.FC<PropsWithChildren<CardProps>> = ({
@@ -19,7 +20,8 @@ const ResultCardV5: React.FC<PropsWithChildren<CardProps>> = ({
   toprow,
   id,
   isLoading,
-  content
+  content,
+  logo
 }) => {
   const location = useLocation();
   if (!name) return <></>;
@@ -28,21 +30,6 @@ const ResultCardV5: React.FC<PropsWithChildren<CardProps>> = ({
       <div className="fr-card fr-enlarge-link w-full h-full">
         <div className="fr-card__body ">
           <div className="fr-card__content !pt-4 !px-6 !pb-16 ">
-            <h3 className="fr-card__title">
-              {id && (
-                <Link to={`${location.pathname}${id}`} className="rm-link-underline">
-                  {name && (
-                    <p className="clamp mt-2 font-bold text-lg" title={name}>
-                      {toprow && toprow.length && (
-                        <ScreenReaderOnlyText content={toprow.map((el) => el?.label).join('')} />
-                      )}
-                      {name}
-                    </p>
-                  )}
-                </Link>
-              )}
-            </h3>
-            <div className="fr-card__desc">{content}</div>
             <div className="fr-card__start">
               <ul className="fr-tags-group" aria-hidden={true}>
                 <li>
@@ -63,6 +50,24 @@ const ResultCardV5: React.FC<PropsWithChildren<CardProps>> = ({
                 </li>
               </ul>
             </div>
+            <div className="fr-card__title">
+              <h3>
+                {id && (
+                  <Link to={`${location.pathname}/${id}`} className="rm-link-underline">
+                    {name && (
+                      <p className="mt-2 font-bold text-lg" title={name}>
+                        {toprow && toprow.length && (
+                          <ScreenReaderOnlyText content={toprow.map((el) => el?.label).join('')} />
+                        )}
+                        {name}
+                      </p>
+                    )}
+                  </Link>
+                )}
+              </h3>
+              {logo && <img className="max-h-8" src={logo} />}
+            </div>
+            <div className="fr-card__desc">{content}</div>
           </div>
         </div>
       </div>

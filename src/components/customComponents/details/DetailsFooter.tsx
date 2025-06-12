@@ -6,7 +6,7 @@ import { CardType } from 'model/CardType';
 interface DetailsFooterProps {
   cardType: CardType;
 }
-
+// V5 remove this
 const DetailsFooter: React.FC<DetailsFooterProps> = ({ cardType }) => {
   const sources = getSources(cardType.name);
 

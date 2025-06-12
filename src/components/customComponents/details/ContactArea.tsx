@@ -15,6 +15,7 @@ interface ContactAreaProps {
 
 const someNotNull = (x: Record<string, any>) => Object.values(x).find((x) => x != null);
 
+// V5 remove this
 const ContactArea: React.FC<ContactAreaProps> = ({ data, className }) => {
   const { title, content, cta, link, secondaryCta } = normalizeContactInformations(data);
   const [showContact, setShowContact] = useState(false);
