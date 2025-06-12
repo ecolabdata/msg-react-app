@@ -1,22 +1,12 @@
 import { Link, NavLink } from 'react-router-dom';
-import { SearchState } from '../../utils/InitialState';
 interface PaginationProps {
   baseUrl: string;
   currentPageNo: number;
   nbPage: number;
-  initialState: SearchState | null;
-  onClick?: React.MouseEventHandler<HTMLAnchorElement> | undefined;
   isLoading?: boolean;
 }
-// V5 : delete this
-const Pagination: React.FC<PaginationProps> = ({
-  baseUrl,
-  currentPageNo,
-  nbPage,
-  initialState,
-  onClick,
-  isLoading
-}) => {
+
+const PaginationV5: React.FC<PaginationProps> = ({ baseUrl, currentPageNo, nbPage, isLoading }) => {
   const generatedPageNos = Array(nbPage)
     .fill(1)
     .map((x, idx) => x + idx);
@@ -42,10 +32,8 @@ const Pagination: React.FC<PaginationProps> = ({
             </a>
           ) : (
             <Link
-              onClick={onClick}
               preventScrollReset={true}
-              to={baseUrl}
-              state={{ ...initialState, page: currentPageNo - 1 }}
+              to={baseUrl + `?page=${currentPageNo - 1}`}
               className="fr-pagination__link rounded-full fr-pagination__link--prev fr-pagination__link--lg-label"
               role="link"
               replace={true}>
@@ -57,14 +45,12 @@ const Pagination: React.FC<PaginationProps> = ({
         {generatedPageNos.map((generatedPageNo) => (
           <li key={`Page ${generatedPageNo}`}>
             <NavLink
-              onClick={onClick}
               preventScrollReset={true}
-              to={baseUrl}
+              to={baseUrl + `?page=${generatedPageNo}`}
               className="fr-pagination__link rounded-full"
               role="link"
               title={`Page ${generatedPageNo}`}
               replace={true}
-              state={{ ...initialState, page: generatedPageNo }}
               aria-current={generatedPageNo === currentPageNo ? 'page' : 'false'}>
               {generatedPageNo}
             </NavLink>
@@ -81,10 +67,8 @@ const Pagination: React.FC<PaginationProps> = ({
             </a>
           ) : (
             <Link
-              onClick={onClick}
               preventScrollReset={true}
-              to={baseUrl}
-              state={{ ...initialState, page: currentPageNo + 1 }}
+              to={baseUrl + `?page=${currentPageNo + 1}`}
               className="fr-pagination__link rounded-full fr-pagination__link--next fr-pagination__link--lg-label"
               role="link"
               replace={true}>
@@ -97,4 +81,4 @@ const Pagination: React.FC<PaginationProps> = ({
   );
 };
 
-export default Pagination;
+export default PaginationV5;

@@ -13,6 +13,7 @@ import { publicActorPersona, startupPersona } from './CardType';
 import PageLayout from '../components/page/PageLayout';
 import SingleSearchPage from 'components/page/SingleSearchFormPage';
 import { Ressources } from 'components/page/Ressources';
+import { SearchPageV5 } from 'components/page/V5/SearchPageV5';
 
 export const routes = (
   <Routes>
@@ -31,7 +32,7 @@ export const routes = (
           />
           <Route
             path={`/acteurs-publics/${cardType.name}`}
-            element={<SearchPage cardType={cardType} />}
+            element={<SearchPageV5 cardType={cardType} />}
           />
         </>
       ))}

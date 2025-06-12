@@ -1,24 +1,24 @@
 import { PropsWithChildren, useEffect, useRef } from 'react';
 
-import ScreenReaderOnlyText from '../Core/ScreenReaderOnlyText';
-import ResultCard from './ResultCard';
-import { SearchResultItem } from 'apiv4/interfaces/typeguards';
-import { getThumbnailInformation } from 'helpers/searchTypeHelpers';
+import ScreenReaderOnlyText from '../../Core/ScreenReaderOnlyText';
 import { CardType } from 'model/CardType';
-import { PublicBuyerHit } from 'apiv4/interfaces/publicBuyer';
+import { AllCards } from 'api5/interfaces/common';
+import ResultCardV5 from './ResultCardV5';
 
 type Props = {
   hitCount?: number;
   isLoading: boolean;
-  results: SearchResultItem[] | PublicBuyerHit[];
+  results: AllCards[];
   cardType: CardType;
+  url: string;
 };
-// V5 : delete this
-const SearchResults: React.FC<PropsWithChildren<Props>> = ({
+
+const SearchResultsV5: React.FC<PropsWithChildren<Props>> = ({
   hitCount,
   isLoading,
   results,
-  cardType
+  cardType,
+  url
 }) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -32,7 +32,7 @@ const SearchResults: React.FC<PropsWithChildren<Props>> = ({
         });
       }
     }, 500);
-  }, [isLoading]);
+  }, [isLoading, url]);
 
   return (
     <>
@@ -50,9 +50,18 @@ const SearchResults: React.FC<PropsWithChildren<Props>> = ({
             aria-hidden={true}>{`(${hitCount} résultats)`}</span>
           <ScreenReaderOnlyText content={`il y'a ${hitCount} résultats`} />
           <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {results.map((r, id) => {
-              const thumbnailInformations = getThumbnailInformation(r, cardType);
-              return <ResultCard key={id} {...thumbnailInformations} cardType={cardType} />;
+            {results.map((card, index) => {
+              return (
+                <ResultCardV5
+                  key={card.id + index}
+                  id={card.id}
+                  toprow={card.labels}
+                  cardType={cardType}
+                  isLoading={isLoading}
+                  content={card.shortDescription}
+                  name={card.cardTitle}
+                />
+              );
             })}
           </ul>
         </section>
@@ -63,4 +72,4 @@ const SearchResults: React.FC<PropsWithChildren<Props>> = ({
   );
 };
 
-export default SearchResults;
+export default SearchResultsV5;

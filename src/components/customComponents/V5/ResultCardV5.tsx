@@ -1,25 +1,25 @@
 import ScreenReaderOnlyText from 'components/Core/ScreenReaderOnlyText';
-import { PropsWithChildren, ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { CardType } from '../../model/CardType';
+import { CardType } from '../../../model/CardType';
+import { Label } from 'api5/interfaces/common';
 
 interface CardProps {
   name?: string | null;
-  id?: string;
-  toprow?: string | null;
-  slug: string | null;
+  id: string | null;
+  toprow?: Label[];
   cardType: CardType;
   isLoading?: boolean;
-  node: ReactNode;
+  content: string | null;
 }
-// V5 : delete this
-const ResultCard: React.FC<PropsWithChildren<CardProps>> = ({
+
+const ResultCardV5: React.FC<PropsWithChildren<CardProps>> = ({
   cardType,
   name,
   toprow,
-  slug,
+  id,
   isLoading,
-  node
+  content
 }) => {
   const location = useLocation();
   if (!name) return <></>;
@@ -29,18 +29,20 @@ const ResultCard: React.FC<PropsWithChildren<CardProps>> = ({
         <div className="fr-card__body ">
           <div className="fr-card__content !pt-4 !px-6 !pb-16 ">
             <h3 className="fr-card__title">
-              {slug && (
-                <Link to={`${location.pathname}${slug}`} className="rm-link-underline">
+              {id && (
+                <Link to={`${location.pathname}${id}`} className="rm-link-underline">
                   {name && (
                     <p className="clamp mt-2 font-bold text-lg" title={name}>
-                      {toprow && <ScreenReaderOnlyText content={toprow} />}
+                      {toprow && toprow.length && (
+                        <ScreenReaderOnlyText content={toprow.map((el) => el?.label).join('')} />
+                      )}
                       {name}
                     </p>
                   )}
                 </Link>
               )}
             </h3>
-            <div className="fr-card__desc">{node}</div>
+            <div className="fr-card__desc">{content}</div>
             <div className="fr-card__start">
               <ul className="fr-tags-group" aria-hidden={true}>
                 <li>
@@ -56,7 +58,7 @@ const ResultCard: React.FC<PropsWithChildren<CardProps>> = ({
                           ? cardType?.backgroundColor
                           : cardType.color
                     }}>
-                    {toprow}
+                    {toprow && toprow.map((el) => el?.label).join(' | ')}
                   </p>
                 </li>
               </ul>
@@ -68,4 +70,4 @@ const ResultCard: React.FC<PropsWithChildren<CardProps>> = ({
   );
 };
 
-export default ResultCard;
+export default ResultCardV5;
