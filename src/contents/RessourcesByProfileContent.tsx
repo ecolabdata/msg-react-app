@@ -13,7 +13,7 @@ const ressourcesByProfileContent = {
       {
         title: 'Parlez la même langue que les acheteurs publics !',
         description:
-          'Inspiré du Guide Pratique de l’Achat Public Innovant, téléchargez cet exemple de template qui vous permettra de valoriser votre solution auprès des acheteurs publics !',
+          'Inspiré du Guide de l’achat public de solutions innovantes construit par la DAJ du Ministère de l’Economie, téléchargez et remplissez cet exemple de template qui aidera l’acheteur public à justifier de votre caractère innovant ou non',
 
         cta: {
           name: "Télécharger le modèle d'argumentaire",
@@ -108,12 +108,12 @@ const ressourcesByProfileContent = {
         links: [{ name: 'Rapidd', url: 'https://rapidd.developpement-durable.gouv.fr/' }]
       },
       {
-        title: 'Aides',
+        title: 'Aides - Considérations environnementales',
         description:
-          'Profitez d’un premier niveau de conseil gratuit pour intégrer des considérations environnementales dans vos achats.',
+          'Un premier niveau de conseil gratuit pour intégrer des considérations environnementales dans vos marchés avec le guichet vert. Une liste de considérations environnementales mobilisables dans vos marchés avec la clause verte.',
         links: [
           { name: 'Le guichet vert', url: 'https://laclauseverte.fr/le-guichet-vert/' },
-          { name: 'Rapidd', url: 'https://rapidd.developpement-durable.gouv.fr/article/8022' }
+          { name: 'La clause verte', url: 'https://laclauseverte.fr/' }
         ]
       },
       {
@@ -122,22 +122,31 @@ const ressourcesByProfileContent = {
         links: [{ name: 'Aides Territoires', url: 'https://aides-territoires.beta.gouv.fr/' }]
       },
       {
-        title: 'Clause',
-        description: "Facilitez vous l'intégration de clauses environnementales.",
-        links: [
-          {
-            name: 'La clause verte',
-            url: 'https://laclauseverte.fr/'
-          }
-        ]
-      },
-      {
         title: 'Inclusion',
         description: "Toutes les structures de l'insertion et du handicap à un seul endroit",
         links: [
           {
             name: "Le marché de l'inclusion",
             url: 'https://lemarche.inclusion.beta.gouv.fr/#'
+          }
+        ]
+      },
+      {
+        title: "Sourcing d'entreprises",
+        description:
+          'Sans être exhaustif, voici quelques liens utiles dans votre sourcing d’entreprises Greentech',
+        links: [
+          {
+            name: 'Mission French Tech (FT 2030 - Verticale Transition écologique)',
+            url: 'https://lafrenchtech.gouv.fr/fr/programme/french-tech-2030/#toc-laur%c3%a9ats-2023'
+          },
+          {
+            name: 'Solar impulse ',
+            url: 'https://solarimpulse.com/solutions-explorer-fr/showcase'
+          },
+          {
+            name: 'PEXE',
+            url: 'https://annuaires.ecoentreprises-france.fr/sommaire#/'
           }
         ]
       },
