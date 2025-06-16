@@ -7,8 +7,11 @@ C:\Users\{USER}\.aws
 aws_access_key_id=ACCESSKEY
 aws_secret_access_key=SECRETKEY
 
-aws s3 ls --endpoint-url=https://s3.fr-par.scw.cloud --region=fr-par
+1. Generate build : npm run build
+2. Run for preprod deployment:
+    aws s3 sync --endpoint-url=https://s3.fr-par.scw.cloud --region=fr-par  build/ s3://msg-next --delete
+3. Prod deployment
+    aws s3 sync --endpoint-url=https://s3.fr-par.scw.cloud --region=fr-par  build/ s3://msg-prod
 
-aws s3 sync --endpoint-url=https://s3.fr-par.scw.cloud --region=fr-par  build/ s3://msg-prod
-
-aws s3 sync --endpoint-url=https://s3.fr-par.scw.cloud --region=fr-par  build/ s3://msg-next --delete
+Check available buckets :
+    aws s3 ls --endpoint-url=https://s3.fr-par.scw.cloud --region=fr-par
