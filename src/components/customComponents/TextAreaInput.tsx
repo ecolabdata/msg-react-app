@@ -11,6 +11,7 @@ interface TextAreaInputProps {
   className?: string;
   color?: string;
   error?: boolean;
+  placeholder?: string;
 }
 
 const TextAreaInput: React.FC<TextAreaInputProps> = ({
@@ -21,7 +22,8 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
   onValueChange,
   className: classNameProp = '',
   color,
-  error
+  error,
+  placeholder
 }) => {
   const MIN_HEIGHT = 50;
   const inputId = `${formId}-${label}`;
@@ -64,6 +66,7 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
         style={{
           height: textAreaHeight
         }}
+        placeholder={placeholder}
         value={value}
         form={formId}
         className={classNames(

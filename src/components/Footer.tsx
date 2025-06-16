@@ -21,21 +21,20 @@ const Footer: React.FC<{
             </div>
             <div className="fr-footer__content">
               <p className="fr-footer__content-desc font-bold text-sm">
-                Mes services Greentech est en version beta. Cet outil est porté par les Ministères
-                de la Transition Écologique, Cohésion des Territoires, Transition Energétique. Pour
-                les porteurs de projets, cet outil vous permet d'accéder à des ressources utiles
-                pour accéder aux marchés publics d'innovation dans les territoires. Pour les acteurs
-                publics, profitez de cet outil pour faire votre sourcing de solutions, retrouver des
-                sources possibles de financement, et des informations sur les marchés d'innovation.
-                Pour nous faire part de vos remarques ou nous aider à améliorer l’expérience merci
-                de répondre à cette{' '}
+                Mes services Greentech est en version beta. Cet outil est porté par le Ministère de
+                l’Aménagement du territoire et de la Transition écologique. Pour les entreprises,
+                cet outil vous permet d'accéder à des ressources utiles pour accéder aux marchés
+                publics d'innovation. Pour les acteurs publics, profitez de cet outil pour faire
+                votre sourcing de solutions, retrouver des sources possibles de financement, et des
+                informations sur les marchés d'innovation. Pour nous faire part de vos remarques ou
+                nous aider à améliorer l’expérience, merci de répondre à cette{' '}
                 <ExternalLink
                   className={`font-bold ${
                     localStorage.getItem('scheme') === 'dark'
                       ? 'text-blue-france-625'
                       : 'text-blue-france-sun-113'
                   } mr-1`}
-                  href="https://airtable.com/shrwwE4lA2GFxK0T4"
+                  href="https://airtable.com/appuYR2vZha6r8jt4/shrwwE4lA2GFxK0T4"
                   content="courte enquête"
                 />
                 (3 minutes).

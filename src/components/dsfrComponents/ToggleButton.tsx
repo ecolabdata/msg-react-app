@@ -32,8 +32,9 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({ label, checked, color, onCh
           id={label}
         />
         <label
-          className="fr-toggle__label text-white text-base
-                "
+          className={`fr-toggle__label  text-base ${
+            localStorage.getItem('scheme') === 'dark' ? 'text-white ' : 'text-black'
+          }`}
           htmlFor={label}
           data-fr-checked-label=""
           data-fr-unchecked-label="">

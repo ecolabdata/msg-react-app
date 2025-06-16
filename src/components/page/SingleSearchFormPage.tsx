@@ -16,18 +16,21 @@ const content = {
   startup: {
     title: 'Start-up greentech, trouvez des leviers pour booster votre développement ! ',
     cards: startupPersona,
-    color: startups.color
+    color: startups.color,
+    subtitle: null
   },
   publicActor: {
     title:
       'Acteurs publics, retrouvez des outils pour favoriser les innovations durables dans vos marchés publics',
     cards: publicActorPersona,
-    color: acheteurPublic.color
+    color: acheteurPublic.color,
+    subtitle:
+      'Mes Services Greentech repose sur le principe du « Moteur de recherche ». En décrivant votre projet par le biais de mots clés et en sélectionnant une thématique, vous accèderez aux résultats des différents blocs outils, dédiés à votre recherche'
   }
 };
 
 const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
-  const { title, cards, color } = content[profile];
+  const { title, cards, color, subtitle } = content[profile];
   const location = useLocation();
   const navigate = useNavigate();
   const thematicsValues = Object.values(ThematicsEnum);
@@ -64,7 +67,11 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
                 ">
           {title}
         </h1>
-
+        {subtitle && (
+          <Container as="div" customClasses="text-center">
+            {subtitle}
+          </Container>
+        )}
         {step === 0 && (
           <Container as="div" customClasses="md:max-w-4/5">
             <form
@@ -72,7 +79,7 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
               id="projectForm"
               className="my-8 flex flex-col justify-around flex-wrap h-fit w-full">
               <fieldset>
-                <legend className="sr-only">Décrivez votre projet</legend>
+                <legend className="sr-only">Décrivez votre besoin</legend>
                 <div
                   className={`container py-8 px-6 mr-0 ${
                     localStorage.getItem('scheme') === 'dark' && 'bg-research-precision-container'
@@ -80,9 +87,10 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
                   <TextAreaInput
                     value={description}
                     onValueChange={setDescription}
-                    label={'Décrivez votre projet'}
+                    label={'Décrivez votre besoin'}
                     formId="keywordsForm"
                     color={color}
+                    placeholder="Ex : panneaux solaires toit école"
                   />
                 </div>
                 <div
