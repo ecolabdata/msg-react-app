@@ -5,17 +5,15 @@ interface State<T> {
   error?: Error;
 }
 
-type Cache<T> = { [url: string]: T };
-
 // discriminated union type
 type Action<T> =
   | { type: 'loading' }
   | { type: 'fetched'; payload: T }
   | { type: 'error'; payload: Error };
 
-export function useFetch<T = unknown>(url?: string, options?: RequestInit): State<T> {
-  const cache = useRef<Cache<T>>({});
+const cache: Record<string, any> = {};
 
+export function useFetch<T = unknown>(url?: string, options?: RequestInit): State<T> {
   // Used to prevent state update if the component is unmounted
   const cancelRequest = useRef<boolean>(false);
 
@@ -50,8 +48,8 @@ export function useFetch<T = unknown>(url?: string, options?: RequestInit): Stat
       dispatch({ type: 'loading' });
 
       // If a cache exists for this url, return it
-      if (cache.current[url]) {
-        dispatch({ type: 'fetched', payload: cache.current[url] });
+      if (cache[url]) {
+        dispatch({ type: 'fetched', payload: cache[url] });
         return;
       }
 
@@ -62,7 +60,7 @@ export function useFetch<T = unknown>(url?: string, options?: RequestInit): Stat
         }
 
         const data = (await response.json()) as T;
-        cache.current[url] = data;
+        cache[url] = data;
         if (cancelRequest.current) return;
 
         dispatch({ type: 'fetched', payload: data });
