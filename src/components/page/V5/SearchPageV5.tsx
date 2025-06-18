@@ -34,7 +34,7 @@ export const SearchPageV5: React.FC<Props> = ({ cardType }) => {
   const location = useLocation();
   const initialState = location.state as SearchState | null;
 
-  const { description, handleDescriptionChange, thematics, setThematics, error } =
+  const { description, setDescription, thematics, handleThematicsChange, error } =
     useProjetFormContext();
 
   const searchParams = new URLSearchParams(location.search);
@@ -85,8 +85,8 @@ export const SearchPageV5: React.FC<Props> = ({ cardType }) => {
   };
 
   const handleResetForm = () => {
-    handleDescriptionChange('');
-    setThematics([]);
+    setDescription('');
+    handleThematicsChange([]);
     setFiltersValues(initialValues);
     navigate(location.pathname, {
       state: null
@@ -125,7 +125,7 @@ export const SearchPageV5: React.FC<Props> = ({ cardType }) => {
               className={`w-full'md:w-[55%]`}>
               <TextAreaInput
                 value={description}
-                onValueChange={handleDescriptionChange}
+                onValueChange={setDescription}
                 error={error}
                 label={cardType?.searchText ?? ''}
                 formId="projectForm"
@@ -141,7 +141,7 @@ export const SearchPageV5: React.FC<Props> = ({ cardType }) => {
                 className="mb-auto"
                 optionsData={thematicsValues}
                 secteurs={thematics}
-                setSecteurs={setThematics}
+                setSecteurs={handleThematicsChange}
                 color={cardType?.color}
               />
             </SearchFieldWrapper>
