@@ -18,7 +18,7 @@ import {
 type DetailsProps = {
   cardType: CardType;
 };
-
+// V5 remove this
 export const Details: React.FC<DetailsProps> = ({ cardType }) => {
   const location = useLocation();
 

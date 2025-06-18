@@ -1,102 +1,69 @@
 import Container from 'components/Core/Container';
 import Heading from 'components/Core/Heading';
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { CardTypeName } from '../../api/Api';
-import { CardType } from '../../model/CardType';
-import { SearchState } from '../../utils/InitialState';
-import SearchResults from '../customComponents/SearchResults';
-import Pagination from '../dsfrComponents/Pagination';
+import { CardTypeName } from '../../../api/Api';
+import { CardType } from '../../../model/CardType';
+import { SearchState } from '../../../utils/InitialState';
 import { useProjetFormContext } from 'components/context/useProjectFormContext';
-import {
-  getCompanies,
-  getCompanyAids,
-  getInvestors,
-  getPublicBuyerAids,
-  getPublicBuyersV2,
-  getPublicPurchases
-} from 'apiv4/services';
-import { useFetch } from 'apiv4/useFetch';
-import { SearchResultItem } from 'apiv4/interfaces/typeguards';
-import { PublicBuyerHit, PublicBuyerResults } from 'apiv4/interfaces/publicBuyer';
 import SelectInputOptions from 'components/customComponents/SelectInputOptions';
 import TextAreaInput from 'components/customComponents/TextAreaInput';
 import { ThematicsEnum } from 'model/ThematicsEnum';
 import SearchFieldWrapper from 'components/customComponents/SearchFieldWrapper';
 import { useAdvancedFilters } from 'components/customComponents/filter/filters';
 import AdvancedFilters from 'components/customComponents/filter/AdvancedFilters';
-import { getExtendedThematics } from 'helpers/searchTypeHelpers';
-import { normalizeSearchPageResults } from 'utils/normalizeSearchPageResults';
 import { StartupSubTitle } from 'components/customComponents/details/StartupSubtitle';
+import { generateCompanyFetchParams } from 'api5/servicesV5';
+import { CardsSearchResult } from 'api5/interfaces/common';
+import SearchResultsV5 from 'components/customComponents/V5/SearchResultsV5';
+import PaginationV5 from './PaginationV5';
+import { useFetch } from 'apiv4/useFetch';
 
 type Props = {
   cardType: CardType;
 };
-// V5 : delete this
-export const SearchPage: React.FC<Props> = ({ cardType }) => {
+
+export const SearchPageV5: React.FC<Props> = ({ cardType }) => {
   const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
   const { initialValues, handleFilter, filters } = useAdvancedFilters(cardType.name);
   const [filtersValues, setFiltersValues] = useState(initialValues);
-  const [filteredResultsCount, setFilteredResultsCount] = useState(0);
   const thematicsValues = Object.values(ThematicsEnum);
 
   const navigate = useNavigate();
 
   const location = useLocation();
   const initialState = location.state as SearchState | null;
-  const currentPage = initialState?.page ?? 1;
 
-  const { description, setDescription, thematics, handleThematicsChange, error } =
+  const { description, handleDescriptionChange, thematics, setThematics, error } =
     useProjetFormContext();
 
-  const fetcher = getFetcher(cardType.apiName);
-  const { url } = fetcher(
-    buildQueryString(initialState?.search.description, initialState?.search.thematics) ?? ''
-  );
+  const searchParams = new URLSearchParams(location.search);
+  const pageParam = parseInt(searchParams.get('page') || '1', 10);
+  const currentPage = isNaN(pageParam) ? 1 : pageParam;
 
-  const pageChunkSize = 20;
-  const { data: cards, error: apiError } = useFetch<SearchResultItem[] | PublicBuyerResults>(url);
-  const isLoading = !cards && !apiError;
+  const fetchParams = getFetchParams(cardType.apiName)({
+    query: 'solaire',
+    page: currentPage,
+    page_size: 20
+  });
 
-  const results = cards && normalizeSearchPageResults(cards);
+  const { url, options } = fetchParams;
+  const urlWithParams = useMemo(() => {
+    if (!url) return '';
+    const urlObj = new URL(url, window.location.origin);
+    urlObj.searchParams.set('page', String(currentPage));
+    return urlObj.toString();
+  }, [url, currentPage]);
 
-  const [filteredData, setFilteredData] = useState<
-    SearchResultItem[] | PublicBuyerHit[] | undefined
-  >(results);
+  const { data, error: apiError } = useFetch<CardsSearchResult>(urlWithParams, options);
+  const isLoading = !data && !apiError;
 
-  const pageNumber = Math.ceil(filteredResultsCount / pageChunkSize);
-
-  useEffect(() => {
-    if (!location.state) {
-      setFilteredData([]);
-      setFilteredResultsCount(0);
-      return;
-    }
-    const filteredResults =
-      results && isAdvancedSearchOpen ? handleFilter(results, filtersValues as any) : results;
-    filteredResults &&
-      setFilteredData(
-        filteredResults.slice((currentPage - 1) * pageChunkSize, currentPage * pageChunkSize)
-      );
-    filteredResults && setFilteredResultsCount(filteredResults?.length);
-
-    if (pageNumber <= 1) {
-      navigate(location.pathname, {
-        replace: true,
-        state: {
-          ...initialState,
-          page: 1
-        }
-      });
-    }
-  }, [filtersValues, cards, isAdvancedSearchOpen, pageChunkSize, currentPage, pageNumber]);
+  const cards = data?.results;
+  const cardsCount = data?.total_count || 0;
+  const pageCount = Math.ceil(cardsCount / (data?.page_size || 20));
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!thematics?.length) {
-      handleThematicsChange(null);
-      return;
-    }
     navigate(location.pathname, {
       state: {
         ...initialState,
@@ -118,14 +85,13 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
   };
 
   const handleResetForm = () => {
-    setDescription('');
-    handleThematicsChange([]);
+    handleDescriptionChange('');
+    setThematics([]);
     setFiltersValues(initialValues);
     navigate(location.pathname, {
       state: null
     });
   };
-
   return (
     <Container>
       <div className="cardTitleAndLogo p-2 text-base">
@@ -140,11 +106,7 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
             &nbsp;
             {cardType.title} &nbsp;{' '}
           </div>
-          {isLoading ? (
-            <span className="bg-yellow md:text-3xl font-light">{`Chargement...`}</span>
-          ) : (
-            <span className="bg-yellow md:text-3xl font-light">{`(${filteredResultsCount} résultats)`}</span>
-          )}
+          <span className="bg-yellow md:text-3xl font-light">{`(${cardsCount} résultats)`}</span>
         </Heading>
         {cardType.description && <p className="mt-2 text-base">{cardType.description}</p>}
         {cardType.apiName === 'startups' && <StartupSubTitle />}
@@ -163,9 +125,11 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
               className={`w-full'md:w-[55%]`}>
               <TextAreaInput
                 value={description}
-                onValueChange={setDescription}
+                onValueChange={handleDescriptionChange}
+                error={error}
                 label={cardType?.searchText ?? ''}
                 formId="projectForm"
+                required
                 color={cardType?.color}
               />
             </SearchFieldWrapper>
@@ -177,10 +141,8 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
                 className="mb-auto"
                 optionsData={thematicsValues}
                 secteurs={thematics}
-                error={error}
-                setSecteurs={handleThematicsChange}
+                setSecteurs={setThematics}
                 color={cardType?.color}
-                required
               />
             </SearchFieldWrapper>
           </div>
@@ -222,21 +184,21 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
         </button>
       </div>
       {apiError && <p>Erreur</p>}
-      {filteredData && (
+      {cards && (
         <>
-          <SearchResults
-            hitCount={filteredResultsCount}
+          <SearchResultsV5
+            hitCount={cardsCount}
             isLoading={isLoading}
-            results={filteredData}
+            results={cards}
             cardType={cardType}
+            url={urlWithParams}
           />
 
-          <Pagination
-            isLoading={isLoading && pageNumber > 0}
+          <PaginationV5
+            isLoading={isLoading && currentPage > 0}
             currentPageNo={currentPage || 1}
-            baseUrl={cardType.searchLink}
-            nbPage={pageNumber}
-            initialState={initialState}
+            baseUrl={location.pathname}
+            nbPage={pageCount}
           />
         </>
       )}
@@ -244,36 +206,11 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
   );
 };
 
-const getFetcher = (type: CardTypeName) => {
+const getFetchParams = (type: CardTypeName) => {
   switch (type) {
-    case 'projets_achats': {
-      return getPublicPurchases;
-    }
-    case 'aides_innovation': {
-      return getCompanyAids;
-    }
-    case 'aides_clients': {
-      return getPublicBuyerAids;
-    }
-    case 'investisseurs': {
-      return getInvestors;
-    }
-    case 'startups': {
-      return getCompanies;
-    }
-    case 'collectivites': {
-      return getPublicBuyersV2;
-    }
+    case 'startups':
+      return generateCompanyFetchParams;
     default:
       return () => ({ url: undefined, options: undefined });
   }
-};
-
-const buildQueryString = (
-  description: string | undefined,
-  thematics: ThematicsEnum[] | undefined
-) => {
-  if (!thematics) return description;
-  const extendedThematics = getExtendedThematics(thematics);
-  return [description, ...extendedThematics].join(';');
 };

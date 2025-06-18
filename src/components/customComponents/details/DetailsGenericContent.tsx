@@ -16,6 +16,7 @@ interface DetailsGenericContentProps {
   data: SearchResultItem;
 }
 
+// V5 remove this replaced by details body
 const DetailsGenericContent: React.FC<DetailsGenericContentProps> = ({ data }) => {
   return (
     <>

@@ -1,10 +1,10 @@
+import { LabelNames } from 'api5/interfaces/common';
 import frenchtech from '../../../assets/images/frenchtech.png';
 import greentech from '../../../assets/images/greentech.png';
 import solarImpulse from '../../../assets/images/solar-impulse.png';
-import { Label } from './StartupInformations';
 
 interface LabelDetailsProps {
-  label: Label | null;
+  label: LabelNames | null;
   solutionName: string | null;
   description: string | null;
   className?: string;
@@ -35,7 +35,7 @@ export const LabelDetails: React.FC<LabelDetailsProps> = ({
   );
 };
 
-const getLabelLogo = (label: Label) => {
+const getLabelLogo = (label: LabelNames) => {
   switch (label) {
     case 'GREEN20':
       return frenchtech;

@@ -35,10 +35,10 @@ const BreadCumb: React.FC = () => {
 
           {slugs.length > 1 &&
             slugs.map((slug, index) => {
-              if (!slug) return <></>;
+              if (!slug) return null;
               if (index >= 3) {
                 return (
-                  <li key={slug}>
+                  <li key={slug + index}>
                     <span className="fr-breadcrumb__link" aria-current="page">
                       Fiche détail
                     </span>
@@ -51,7 +51,7 @@ const BreadCumb: React.FC = () => {
               }
               fullSlug += slug;
               return (
-                <li key={fullSlug}>
+                <li key={fullSlug + index}>
                   <Link
                     className="fr-breadcrumb__link capitalize"
                     to={fullSlug}
