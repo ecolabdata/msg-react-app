@@ -29,7 +29,6 @@ type PublicBuyerBuyTab = {
 
 // type Card = {
 //   id: string;
-//   slug: string;
 //   cardTitle: actuellement item.fields.public_actor_nom[0];
 //   cardSubtitle: l'info n'existe pas actuellement: élément à afficher sur la fiche sous le titre;
 //   shortDescription: l'info n'existe pas actuellement, élément à afficher sur la carte sous le titre;

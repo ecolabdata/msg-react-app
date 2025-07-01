@@ -11,7 +11,6 @@ export type CardsSearchResult = {
 
 export type Card = {
   id: string;
-  slug: string;
   cardTitle: string;
   cardSubtitle: string;
   shortDescription: string | null;
