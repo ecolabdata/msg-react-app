@@ -32,7 +32,7 @@ export type UnknownCard = Card &
 
 export const cardApiNames = [
   'public_buyer_cards',
-  'projets_achats',
+  'public_purchase_cards',
   'investisseurs',
   'aides_clients',
   'aides_innovation',

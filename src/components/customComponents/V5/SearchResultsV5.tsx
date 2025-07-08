@@ -55,7 +55,8 @@ const SearchResultsV5: React.FC<PropsWithChildren<Props>> = ({
                 <ResultCardV5
                   key={card.id + index}
                   id={card.id}
-                  toprow={card.labels}
+                  companyTopRow={card.labels}
+                  publicPurchaseTopRow={card.purchasingEntity}
                   cardType={cardType}
                   isLoading={isLoading}
                   content={card.shortDescription}

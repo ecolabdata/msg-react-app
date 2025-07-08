@@ -63,7 +63,7 @@ export const achatPrevi: CardType = {
   homeDescription: 'Achats publics prévus ces trois prochaines années dans votre domaine.',
   name: 'achats-publics-a-venir',
   searchLink: '/achats-publics-a-venir',
-  apiName: 'projets_achats',
+  apiName: 'public_purchase_cards',
   searchText: 'Recherchez des projets d’achat public par mots clés (nom, cpv, thématique...)',
   version: 'beta'
 } as const;

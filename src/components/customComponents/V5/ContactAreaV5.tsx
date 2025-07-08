@@ -4,15 +4,14 @@ import { UnknownCard } from 'api5/interfaces/common';
 
 interface ContactAreaProps {
   data: UnknownCard;
-  className?: string;
 }
 
-const ContactAreaV5: React.FC<ContactAreaProps> = ({ data, className }) => {
+const ContactAreaV5: React.FC<ContactAreaProps> = ({ data }) => {
   const { cardTitle, phone, email, websiteUrl } = data;
   const [showContact, setShowContact] = useState(false);
 
   return (
-    <div className={`flex flex-col ${className}`}>
+    <div className="flex flex-col">
       <h2 className="text-2xl mb-4">{'Contact et détails'}</h2>
       <p>{cardTitle}</p>
       {(phone || email) && (

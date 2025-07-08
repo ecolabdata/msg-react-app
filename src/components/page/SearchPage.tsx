@@ -246,7 +246,7 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
 
 const getFetcher = (type: CardApiNames) => {
   switch (type) {
-    case 'projets_achats': {
+    case 'public_purchase_cards': {
       return getPublicPurchases;
     }
     case 'aides_innovation': {
