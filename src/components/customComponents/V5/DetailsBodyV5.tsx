@@ -1,12 +1,12 @@
 import Container from 'components/Core/Container';
-import { AllCards } from 'api5/interfaces/common';
+import { UnknownCard } from 'api5/interfaces/common';
 import { InformationItem, InformationItemsWrapper } from '../details/InformationItem';
 import ContactAreaV5 from './ContactAreaV5';
 import CardImagesV5 from './CardImages';
 import LabelSectionV5 from './LabelSectionV5';
 
 interface DetailsGenericContentProps {
-  data: AllCards;
+  data: UnknownCard;
 }
 
 const DetailsBodyV5: React.FC<DetailsGenericContentProps> = ({ data }) => {

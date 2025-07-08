@@ -33,20 +33,22 @@ const ResultCardV5: React.FC<PropsWithChildren<CardProps>> = ({
             <div className="fr-card__start">
               <ul className="fr-tags-group" aria-hidden={true}>
                 <li>
-                  <p
-                    className={`fr-badge fr-badge--sm `}
-                    style={{
-                      color:
-                        localStorage.getItem('scheme') === 'dark'
-                          ? cardType?.color
-                          : cardType.backgroundColor,
-                      backgroundColor:
-                        localStorage.getItem('scheme') === 'dark'
-                          ? cardType?.backgroundColor
-                          : cardType.color
-                    }}>
-                    {toprow && toprow.map((el) => el?.label).join(' | ')}
-                  </p>
+                  {toprow && (
+                    <p
+                      className={`fr-badge fr-badge--sm `}
+                      style={{
+                        color:
+                          localStorage.getItem('scheme') === 'dark'
+                            ? cardType?.color
+                            : cardType.backgroundColor,
+                        backgroundColor:
+                          localStorage.getItem('scheme') === 'dark'
+                            ? cardType?.backgroundColor
+                            : cardType.color
+                      }}>
+                      {toprow.map((el) => el?.label).join(' | ')}
+                    </p>
+                  )}
                 </li>
               </ul>
             </div>

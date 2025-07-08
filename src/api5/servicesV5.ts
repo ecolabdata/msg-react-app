@@ -1,6 +1,7 @@
+import { CardApiNames } from './interfaces/common';
+
 // export const baseApiUrl = process.env.REACT_APP_API_URL;
-export const baseApiUrl = 'http://51.159.164.20:8888';
-const companyCardUrl = `${baseApiUrl}/v5/company_cards`;
+export const baseApiUrl = 'https://api-v5.msg.greentechinnovation.fr';
 
 const baseGetRequestOptions = {
   method: 'GET',
@@ -18,20 +19,19 @@ const basePostRequestOptions = {
   }
 };
 
-export const generateCompanyFetchParams = (params: any) => {
-  // V5 sould be doable to have only one param generator, using an other parameter cardType and a cardTypeToUrlMap
+export const generateFetchParams = (params: Record<string, unknown>, apiName: CardApiNames) => {
+  const url = `${baseApiUrl}/v5/${apiName}`;
   return {
-    url: companyCardUrl,
+    url,
     options: {
       body: JSON.stringify(params),
       ...basePostRequestOptions
     }
   };
 };
-export const generateCompanyByIdFetchParams = (id: string) => {
-  // V5 idem here only one func should be needed, see apiv4/services with typeToUrl map
+export const generateCardByIdFetchParams = (id: string, apiName: CardApiNames) => {
   return {
-    url: `${companyCardUrl}/${id}`,
+    url: `${baseApiUrl}/v5/${apiName}/${id}`,
     ...baseGetRequestOptions
   };
 };

@@ -1,9 +1,3 @@
-import { CompanyCard } from 'apiv4/interfaces/company';
-import { Startup } from '../api/Api';
-
-export const generateNumber = (min: number, max: number) =>
-  Math.floor(Math.random() * (max - min + 1) + min);
-
 export const tailwindColorUtility: Record<string, Record<string, string>> = {
   '#D8C635': {
     border: 'border-[#D8C635]',

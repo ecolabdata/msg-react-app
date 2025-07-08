@@ -33,7 +33,7 @@ export const Details: React.FC<DetailsProps> = ({ cardType }) => {
   return (
     <>
       <DetailsHeader data={data} cardType={cardType} />
-      {isPublicBuyerResults(data) && <DetailsPublicBuyer card={data._source} />}
+      {isPublicBuyerResults(data) && <DetailsPublicBuyer card={data._source as any} />}
       {(isCompanyV4(data) || isPublicPurchaseV4(data) || isAidV4(data) || isInvestorV4(data)) && (
         <GenericDetails data={data} />
       )}

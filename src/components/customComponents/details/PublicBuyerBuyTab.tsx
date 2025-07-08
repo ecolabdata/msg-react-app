@@ -1,12 +1,15 @@
 import React from 'react';
 import GenericPagination from '../../dsfrComponents/GenericPagination';
-import { PublicBuyerCard } from 'apiv4/interfaces/publicBuyer';
+import {
+  type PublicBuyerBuyTab as PublicBuyerBuyTabType,
+  PublicBuyerCard
+} from 'api5/interfaces/publicBuyer';
 
-interface PublicBuyerApprochTabProps {
-  contents: PublicBuyerCard['approch_content'];
+interface PublicBuyerBuyTabProps {
+  contents: PublicBuyerCard['buyContents'] | null;
 }
 
-export const PublicBuyerApprochTab: React.FC<PublicBuyerApprochTabProps> = ({ contents }) => {
+export const PublicBuyerBuyTab: React.FC<PublicBuyerBuyTabProps> = ({ contents }) => {
   const PAGE_SIZE = 10;
   const [page, setPage] = React.useState(0);
   return (
@@ -16,7 +19,7 @@ export const PublicBuyerApprochTab: React.FC<PublicBuyerApprochTabProps> = ({ co
         <div className="container--fluid flex flex-col items-center">
           <ul className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {contents.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE).map((approchItem) => (
-              <li key={approchItem.label}>
+              <li key={approchItem.dlro}>
                 <CPVCard content={approchItem} />
               </li>
             ))}
@@ -39,7 +42,7 @@ export const PublicBuyerApprochTab: React.FC<PublicBuyerApprochTabProps> = ({ co
 };
 
 interface CPVCardProps {
-  content: PublicBuyerCard['approch_content'][number];
+  content: PublicBuyerBuyTabType;
 }
 
 const CPVCard: React.FC<CPVCardProps> = ({ content }) => {
@@ -50,17 +53,8 @@ const CPVCard: React.FC<CPVCardProps> = ({ content }) => {
     purchasingCategory,
     procedureType,
     consultationLink,
-    url,
     status
   } = content;
-  const dlroDate = dlro && new Date(dlro);
-  const dlroStr =
-    dlroDate &&
-    ('0' + dlroDate?.getUTCDate()).slice(-2) +
-      '/' +
-      ('0' + ((dlroDate?.getUTCMonth() || 0) + 1)).slice(-2) +
-      '/' +
-      dlroDate?.getUTCFullYear();
 
   return (
     <div className="fr-card h-full w-full bg-input-background">
@@ -73,12 +67,12 @@ const CPVCard: React.FC<CPVCardProps> = ({ content }) => {
                 <p>
                   <span className="font-bold">Date limite dépot dossier: </span>
                   <br />
-                  {dlroStr}
+                  {dlro}
                 </p>
                 <p>
                   <span className="font-bold">Procedure: </span>
                   <br />
-                  {procedureType.$ref}
+                  {procedureType}
                 </p>
               </div>
               <div className="flex justify-between my-4">
@@ -96,7 +90,10 @@ const CPVCard: React.FC<CPVCardProps> = ({ content }) => {
               {consultationLink && (
                 <div className="flex justify-between my-4">
                   <p>
-                    <a href={url} target="_blank" rel="noreferrer noopener">
+                    <a
+                      href={'https://projets-achats.marches-publics.gouv.fr'}
+                      target="_blank"
+                      rel="noreferrer noopener">
                       Sur APPROCH
                     </a>
                   </p>

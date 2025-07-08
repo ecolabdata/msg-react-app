@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { AnyCard } from '../api/Api';
+import { AnyCard } from 'api5/interfaces/common';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 
 export const buildUseCategorie =

@@ -2,13 +2,13 @@ import { PropsWithChildren, useEffect, useRef } from 'react';
 
 import ScreenReaderOnlyText from '../../Core/ScreenReaderOnlyText';
 import { CardType } from 'model/CardType';
-import { AllCards } from 'api5/interfaces/common';
+import { UnknownCard } from 'api5/interfaces/common';
 import ResultCardV5 from './ResultCardV5';
 
 type Props = {
   hitCount?: number;
   isLoading: boolean;
-  results: AllCards[];
+  results: UnknownCard[];
   cardType: CardType;
   url: string;
 };

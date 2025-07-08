@@ -1,5 +1,4 @@
 import { AidCard } from 'apiv4/interfaces/aid';
-import { Aide } from '../../../api/Api';
 import { InformationItemsWrapper, InformationItem } from './InformationItem';
 
 interface HelpPageContentProps {
