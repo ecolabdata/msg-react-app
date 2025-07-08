@@ -2,13 +2,13 @@ import { PropsWithChildren, useEffect, useRef } from 'react';
 
 import ScreenReaderOnlyText from '../../Core/ScreenReaderOnlyText';
 import { CardType } from 'model/CardType';
-import { AllCards } from 'api5/interfaces/common';
+import { UnknownCard } from 'api5/interfaces/common';
 import ResultCardV5 from './ResultCardV5';
 
 type Props = {
   hitCount?: number;
   isLoading: boolean;
-  results: AllCards[];
+  results: UnknownCard[];
   cardType: CardType;
   url: string;
 };
@@ -55,7 +55,8 @@ const SearchResultsV5: React.FC<PropsWithChildren<Props>> = ({
                 <ResultCardV5
                   key={card.id + index}
                   id={card.id}
-                  toprow={card.labels}
+                  companyTopRow={card.labels}
+                  publicPurchaseTopRow={card.purchasingEntity}
                   cardType={cardType}
                   isLoading={isLoading}
                   content={card.shortDescription}

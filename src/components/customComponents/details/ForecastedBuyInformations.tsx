@@ -7,6 +7,7 @@ interface ForecastedBuyInformationsProps {
   className?: string;
 }
 
+// V5 remove this
 export const ForecastedBuyInformations: React.FC<ForecastedBuyInformationsProps> = ({
   card,
   className

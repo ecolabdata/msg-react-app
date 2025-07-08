@@ -7,7 +7,8 @@ import { Label } from 'api5/interfaces/common';
 interface CardProps {
   name?: string | null;
   id: string | null;
-  toprow?: Label[];
+  companyTopRow?: Label[];
+  publicPurchaseTopRow?: string | null;
   cardType: CardType;
   isLoading?: boolean;
   content: string | null;
@@ -17,7 +18,8 @@ interface CardProps {
 const ResultCardV5: React.FC<PropsWithChildren<CardProps>> = ({
   cardType,
   name,
-  toprow,
+  companyTopRow,
+  publicPurchaseTopRow,
   id,
   isLoading,
   content,
@@ -33,20 +35,23 @@ const ResultCardV5: React.FC<PropsWithChildren<CardProps>> = ({
             <div className="fr-card__start">
               <ul className="fr-tags-group" aria-hidden={true}>
                 <li>
-                  <p
-                    className={`fr-badge fr-badge--sm `}
-                    style={{
-                      color:
-                        localStorage.getItem('scheme') === 'dark'
-                          ? cardType?.color
-                          : cardType.backgroundColor,
-                      backgroundColor:
-                        localStorage.getItem('scheme') === 'dark'
-                          ? cardType?.backgroundColor
-                          : cardType.color
-                    }}>
-                    {toprow && toprow.map((el) => el?.label).join(' | ')}
-                  </p>
+                  {(companyTopRow || publicPurchaseTopRow) && (
+                    <p
+                      className={`fr-badge fr-badge--sm `}
+                      style={{
+                        color:
+                          localStorage.getItem('scheme') === 'dark'
+                            ? cardType?.color
+                            : cardType.backgroundColor,
+                        backgroundColor:
+                          localStorage.getItem('scheme') === 'dark'
+                            ? cardType?.backgroundColor
+                            : cardType.color
+                      }}>
+                      {companyTopRow && companyTopRow.map((el) => el?.label).join(' | ')}
+                      {publicPurchaseTopRow && publicPurchaseTopRow}
+                    </p>
+                  )}
                 </li>
               </ul>
             </div>
@@ -56,8 +61,10 @@ const ResultCardV5: React.FC<PropsWithChildren<CardProps>> = ({
                   <Link to={`${location.pathname}/${id}`} className="rm-link-underline">
                     {name && (
                       <p className="mt-2 font-bold text-lg" title={name}>
-                        {toprow && toprow.length && (
-                          <ScreenReaderOnlyText content={toprow.map((el) => el?.label).join('')} />
+                        {companyTopRow && companyTopRow.length && (
+                          <ScreenReaderOnlyText
+                            content={companyTopRow.map((el) => el?.label).join('')}
+                          />
                         )}
                         {name}
                       </p>

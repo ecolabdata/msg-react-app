@@ -1,25 +1,42 @@
 import { CompanyCard } from './company';
+import { PublicBuyerCard } from './publicBuyer';
+import { PublicPurchaseCard } from './publicPurchase';
 
 export type CardsSearchResult = {
   filter: object;
   page: number;
   page_size: number;
   total_count: number;
-  results: AllCards[];
+  results: UnknownCard[];
   query: string;
 };
 
 export type Card = {
   id: string;
-  slug: string;
   cardTitle: string;
   cardSubtitle: string;
   shortDescription: string | null;
   logoUrl: string | null;
   description: string | null;
+  card_type: Card_type;
 };
 
+export type Card_type = 'company' | 'public_buyer' | 'public_purchase';
 export type Label = { description: string; name: string; label: LabelNames };
 export type LabelNames = 'GREEN20' | 'Solar Impulse' | 'GreenTech Innovation';
 
-export type AllCards = CompanyCard;
+export type UnknownCard = Card &
+  Partial<CompanyCard> &
+  Partial<PublicBuyerCard> &
+  Partial<PublicPurchaseCard>;
+
+export const cardApiNames = [
+  'public_buyer_cards',
+  'public_purchase_cards',
+  'investisseurs',
+  'aides_clients',
+  'aides_innovation',
+  'company_cards'
+] as const;
+export type CardApiNames = typeof cardApiNames[number];
+export type AnyCard = CompanyCard | PublicBuyerCard | PublicPurchaseCard;

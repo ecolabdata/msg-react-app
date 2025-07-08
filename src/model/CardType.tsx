@@ -1,4 +1,4 @@
-import { CardTypeName as ApiName } from '../api/Api';
+import { CardApiNames } from 'api5/interfaces/common';
 import {
   PictoCalendar,
   PictoCityHall,
@@ -19,7 +19,7 @@ export interface CardType {
   description: string;
   name: CardTypeNameFromModel;
   searchLink: string;
-  apiName: ApiName;
+  apiName: CardApiNames;
   useApiV2?: boolean;
   version: typeof versions[number];
   searchText?: string;
@@ -47,7 +47,7 @@ export const acheteurPublic: CardType = {
   title: 'Fiches Acheteurs',
   name: 'acheteurs-publics',
   searchLink: '/acheteurs-publics',
-  apiName: 'collectivites',
+  apiName: 'public_buyer_cards',
   useApiV2: true,
   version: 'beta',
   description: 'La fiche acheteur de 1700 collectivités ou organismes publics',
@@ -63,7 +63,7 @@ export const achatPrevi: CardType = {
   homeDescription: 'Achats publics prévus ces trois prochaines années dans votre domaine.',
   name: 'achats-publics-a-venir',
   searchLink: '/achats-publics-a-venir',
-  apiName: 'projets_achats',
+  apiName: 'public_purchase_cards',
   searchText: 'Recherchez des projets d’achat public par mots clés (nom, cpv, thématique...)',
   version: 'beta'
 } as const;
@@ -117,7 +117,7 @@ export const startups: CardType = {
   description: 'Entreprises éco-innovantes qui vous ressemblent ou répondent à vos besoins',
   name: 'startups',
   searchLink: '/startups',
-  apiName: 'startups',
+  apiName: 'company_cards',
   useApiV2: true,
   version: 'beta'
 } as const;
@@ -148,7 +148,7 @@ export const sourcingSu: CardType = {
     'Vous souhaitez identifier des porteurs de solutions pour préparer vos projets d’achats ou découvrir le catalogue d’entreprises (liste évolutive).',
   name: 'sourcing-startup',
   searchLink: '/sourcing-startup',
-  apiName: 'startups',
+  apiName: 'company_cards',
   useApiV2: true,
   version: 'beta',
   searchText: 'Recherchez des entreprises par mots clés (nom, siret, thématique...)'

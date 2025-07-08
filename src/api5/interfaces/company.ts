@@ -1,7 +1,6 @@
 import { Card, Label } from './common';
 
 export type CompanyCard = Card & {
-  cardType: 'company';
   phone: 'string' | null;
   email: 'string' | null;
   linkedIn: 'string' | null;

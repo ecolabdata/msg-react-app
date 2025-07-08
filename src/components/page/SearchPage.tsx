@@ -2,7 +2,7 @@ import Container from 'components/Core/Container';
 import Heading from 'components/Core/Heading';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { CardTypeName } from '../../api/Api';
+import { CardApiNames } from 'api5/interfaces/common';
 import { CardType } from '../../model/CardType';
 import { SearchState } from '../../utils/InitialState';
 import SearchResults from '../customComponents/SearchResults';
@@ -147,7 +147,7 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
           )}
         </Heading>
         {cardType.description && <p className="mt-2 text-base">{cardType.description}</p>}
-        {cardType.apiName === 'startups' && <StartupSubTitle />}
+        {cardType.apiName === 'company_cards' && <StartupSubTitle />}
       </div>
 
       <form
@@ -244,9 +244,9 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
   );
 };
 
-const getFetcher = (type: CardTypeName) => {
+const getFetcher = (type: CardApiNames) => {
   switch (type) {
-    case 'projets_achats': {
+    case 'public_purchase_cards': {
       return getPublicPurchases;
     }
     case 'aides_innovation': {
@@ -258,10 +258,10 @@ const getFetcher = (type: CardTypeName) => {
     case 'investisseurs': {
       return getInvestors;
     }
-    case 'startups': {
+    case 'company_cards': {
       return getCompanies;
     }
-    case 'collectivites': {
+    case 'public_buyer_cards': {
       return getPublicBuyersV2;
     }
     default:

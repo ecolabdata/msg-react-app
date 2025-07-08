@@ -4,10 +4,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { CardType } from '../../../model/CardType';
 import { tailwindColorUtility } from '../../../utils/utilityFunctions';
 
-import { AllCards } from 'api5/interfaces/common';
+import { UnknownCard } from 'api5/interfaces/common';
 
 interface DetailsHeaderProps {
-  data: AllCards;
+  data: UnknownCard;
   cardType: CardType;
 }
 

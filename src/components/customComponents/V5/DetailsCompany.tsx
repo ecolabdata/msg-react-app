@@ -1,15 +1,15 @@
 import Container from 'components/Core/Container';
-import { AllCards } from 'api5/interfaces/common';
 import { InformationItem, InformationItemsWrapper } from '../details/InformationItem';
 import ContactAreaV5 from './ContactAreaV5';
 import CardImagesV5 from './CardImages';
 import LabelSectionV5 from './LabelSectionV5';
+import { CompanyCard } from 'api5/interfaces/company';
 
-interface DetailsGenericContentProps {
-  data: AllCards;
+interface DetailsCompanyProps {
+  data: CompanyCard;
 }
 
-const DetailsBodyV5: React.FC<DetailsGenericContentProps> = ({ data }) => {
+const DetailsCompany: React.FC<DetailsCompanyProps> = ({ data }) => {
   const {
     pitch,
     publicClients,
@@ -94,4 +94,4 @@ const DetailsBodyV5: React.FC<DetailsGenericContentProps> = ({ data }) => {
   );
 };
 
-export default DetailsBodyV5;
+export default DetailsCompany;

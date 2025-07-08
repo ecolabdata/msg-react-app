@@ -1,9 +1,3 @@
-import { CompanyCard } from 'apiv4/interfaces/company';
-import { Startup } from '../api/Api';
-
-export const generateNumber = (min: number, max: number) =>
-  Math.floor(Math.random() * (max - min + 1) + min);
-
 export const tailwindColorUtility: Record<string, Record<string, string>> = {
   '#D8C635': {
     border: 'border-[#D8C635]',
@@ -36,14 +30,14 @@ export const tailwindColorUtility: Record<string, Record<string, string>> = {
     lightBackground: 'bg-[#2D0405]'
   }
 };
-
+// V5 remove this
 export const yesNotoBoolean = (value: string | null) => {
   if (!value) return false;
   const lowerValue = value.toLowerCase();
   if (lowerValue === 'yes' || lowerValue === 'oui') return true;
   return false;
 };
-
+// V5 remove this
 export function getDaysBetweenDates(first: Date, second: Date) {
   return Math.round((second.getTime() - first.getTime()) / (1000 * 60 * 60 * 24));
 }

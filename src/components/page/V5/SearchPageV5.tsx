@@ -2,7 +2,6 @@ import Container from 'components/Core/Container';
 import Heading from 'components/Core/Heading';
 import { useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { CardTypeName } from '../../../api/Api';
 import { CardType } from '../../../model/CardType';
 import { SearchState } from '../../../utils/InitialState';
 import { useProjetFormContext } from 'components/context/useProjectFormContext';
@@ -13,7 +12,7 @@ import SearchFieldWrapper from 'components/customComponents/SearchFieldWrapper';
 import { useAdvancedFilters } from 'components/customComponents/filter/filters';
 import AdvancedFilters from 'components/customComponents/filter/AdvancedFilters';
 import { StartupSubTitle } from 'components/customComponents/details/StartupSubtitle';
-import { generateCompanyFetchParams } from 'api5/servicesV5';
+import { generateFetchParams } from 'api5/servicesV5';
 import { CardsSearchResult } from 'api5/interfaces/common';
 import SearchResultsV5 from 'components/customComponents/V5/SearchResultsV5';
 import PaginationV5 from './PaginationV5';
@@ -41,11 +40,14 @@ export const SearchPageV5: React.FC<Props> = ({ cardType }) => {
   const pageParam = parseInt(searchParams.get('page') || '1', 10);
   const currentPage = isNaN(pageParam) ? 1 : pageParam;
 
-  const fetchParams = getFetchParams(cardType.apiName)({
-    query: 'solaire',
-    page: currentPage,
-    page_size: 20
-  });
+  const fetchParams = generateFetchParams(
+    {
+      query: 'solaire',
+      page: currentPage,
+      page_size: 20
+    },
+    cardType.apiName
+  );
 
   const { url, options } = fetchParams;
   const urlWithParams = useMemo(() => {
@@ -109,7 +111,7 @@ export const SearchPageV5: React.FC<Props> = ({ cardType }) => {
           <span className="bg-yellow md:text-3xl font-light">{`(${cardsCount} résultats)`}</span>
         </Heading>
         {cardType.description && <p className="mt-2 text-base">{cardType.description}</p>}
-        {cardType.apiName === 'startups' && <StartupSubTitle />}
+        {cardType.apiName === 'company_cards' && <StartupSubTitle />}
       </div>
 
       <form
@@ -204,13 +206,4 @@ export const SearchPageV5: React.FC<Props> = ({ cardType }) => {
       )}
     </Container>
   );
-};
-
-const getFetchParams = (type: CardTypeName) => {
-  switch (type) {
-    case 'startups':
-      return generateCompanyFetchParams;
-    default:
-      return () => ({ url: undefined, options: undefined });
-  }
 };
