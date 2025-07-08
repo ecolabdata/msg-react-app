@@ -7,6 +7,7 @@ import { ThematicsEnum } from 'model/ThematicsEnum';
 import React, { FormEvent, useEffect } from 'react';
 import HomeCard from 'components/dsfrComponents/HomeCard';
 import { useLocation, useNavigate } from 'react-router-dom';
+import HomeCardPreview from 'components/dsfrComponents/HomeCardPreview';
 
 interface SingleSearchPageProps {
   profile: 'startup' | 'publicActor';
@@ -73,48 +74,55 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
           </Container>
         )}
         {step === 0 && (
-          <Container as="div" customClasses="md:max-w-4/5">
-            <form
-              onSubmit={(e) => handleSubmit(e)}
-              id="projectForm"
-              className="my-8 flex flex-col justify-around flex-wrap h-fit w-full">
-              <fieldset>
-                <legend className="sr-only">Décrivez votre besoin</legend>
-                <div
-                  className={`container py-8 px-6 mr-0 ${
-                    localStorage.getItem('scheme') === 'dark' && 'bg-research-precision-container'
-                  } justify-start flex flex-col lg:mt-0`}>
-                  <TextAreaInput
-                    value={description}
-                    onValueChange={setDescription}
-                    label={'Décrivez votre besoin'}
-                    formId="keywordsForm"
-                    color={color}
-                    placeholder="Ex : panneaux solaires toit école"
-                  />
+          <>
+            <ul className="flex flex-wrap justify-center gap-4 md:max-w-4/5 mt-4">
+              {cards.map((card) => {
+                return <HomeCardPreview key={card.name} cardTypeData={card} />;
+              })}
+            </ul>
+            <Container as="div" customClasses="md:max-w-4/5">
+              <form
+                onSubmit={(e) => handleSubmit(e)}
+                id="projectForm"
+                className="my-8 flex flex-col justify-around flex-wrap h-fit w-full">
+                <fieldset>
+                  <legend className="sr-only">Décrivez votre besoin</legend>
+                  <div
+                    className={`container py-8 px-6 mr-0 ${
+                      localStorage.getItem('scheme') === 'dark' && 'bg-research-precision-container'
+                    } justify-start flex flex-col lg:mt-0`}>
+                    <TextAreaInput
+                      value={description}
+                      onValueChange={setDescription}
+                      label={'Décrivez votre besoin'}
+                      formId="keywordsForm"
+                      color={color}
+                      placeholder="Ex : panneaux solaires toit école"
+                    />
+                  </div>
+                  <div
+                    className={`container py-8 px-6 mr-0 ${
+                      localStorage.getItem('scheme') === 'dark' && 'bg-research-precision-container'
+                    } justify-start flex flex-col lg:mt-0`}>
+                    <SelectInputOptions
+                      className="mb-auto"
+                      error={error}
+                      optionsData={thematicsValues}
+                      secteurs={thematics}
+                      setSecteurs={handleThematicsChange}
+                      color={color}
+                      required
+                    />
+                  </div>
+                </fieldset>
+                <div className="flex justify-center my-8">
+                  <button disabled={error} className=" fr-btn fr-btn--primary  fr-btn--lg">
+                    <span className={`mx-auto`}>{'Suivant'}</span>
+                  </button>
                 </div>
-                <div
-                  className={`container py-8 px-6 mr-0 ${
-                    localStorage.getItem('scheme') === 'dark' && 'bg-research-precision-container'
-                  } justify-start flex flex-col lg:mt-0`}>
-                  <SelectInputOptions
-                    className="mb-auto"
-                    error={error}
-                    optionsData={thematicsValues}
-                    secteurs={thematics}
-                    setSecteurs={handleThematicsChange}
-                    color={color}
-                    required
-                  />
-                </div>
-              </fieldset>
-              <div className="flex justify-center my-8">
-                <button disabled={error} className=" fr-btn fr-btn--primary  fr-btn--lg">
-                  <span className={`mx-auto`}>{'Suivant'}</span>
-                </button>
-              </div>
-            </form>
-          </Container>
+              </form>
+            </Container>
+          </>
         )}
         {step === 1 && (
           //FIXME: this should probably be a radio button list part of the form
