@@ -26,7 +26,7 @@ export const Details: React.FC<DetailsProps> = ({ cardType }) => {
     location.pathname.split('/')[3],
     cardType.apiName
   );
-  const { data, error } = useFetch<SearchResultItem>(url, { method, headers });
+  const { data } = useFetch<SearchResultItem>(url, { method, headers });
 
   if (!data) return <p>No data</p>;
 

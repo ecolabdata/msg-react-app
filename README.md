@@ -1,46 +1,40 @@
-# Getting Started with Create React App
+# Install project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Run `npm install`
 
-## Available Scripts
+## Start development
 
-In the project directory, you can run:
-
-### `npm start`
-
+Run `npm start`
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### To build project for production
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
+Run `npm run build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+⚠️ You will need to run this command before deploying
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### Deployment
 
-### `npm run eject`
+Two environments are currently hosted on an aws bucket : prod and next (for staging).
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+First you will need to install aws cli :
+`msiexec.exe /i https://awscli.amazonaws.com/AWSCLIV2.msi`
+`aws --version`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Then connect to aws : add to C:\Users\{USER}\.aws
+`aws_access_key_id=ACCESSKEY`
+`aws_secret_access_key=SECRETKEY`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. Generate build : `npm run build`
+2. Run for preprod deployment:
+    `aws s3 sync --endpoint-url=https://s3.fr-par.scw.cloud --region=fr-par  build/ s3://msg-next --delete`
+3. Prod deployment
+    `aws s3 sync --endpoint-url=https://s3.fr-par.scw.cloud --region=fr-par  build/ s3://msg-prod`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+You can check available buckets with :
+    `aws s3 ls --endpoint-url=https://s3.fr-par.scw.cloud --region=fr-par`

@@ -29,28 +29,28 @@ const DetailsCompany: React.FC<DetailsCompanyProps> = ({ data }) => {
   return (
     <Container customClasses="grid grid-cols-1 sm:grid-cols-3 gap-8">
       <Container customClasses="sm:col-span-2">
+        {pitch && <InformationItem showDivider={false} label={'Pitch'} contents={pitch} />}
+        <InformationItem
+          showDivider={false}
+          label={'Description de la solution'}
+          contents={description}
+          className="mt-8"
+        />
         <InformationItemsWrapper>
           <>
-            {pitch && <InformationItem showDivider={false} label={'Pitch'} contents={pitch} />}
             {publicClients && publicClients.length > 0 ? (
               <InformationItem label={'Clients publics'} contents={publicClients} />
             ) : null}
             {helpersAndSupports && (
               <InformationItem label={'Soutiens et supports'} contents={helpersAndSupports} />
             )}
+            {zones && <InformationItem showDivider={false} label={'Région'} contents={zones} />}
           </>
           <>
-            {zones && <InformationItem showDivider={false} label={'Région'} contents={zones} />}
             {markets && <InformationItem label={'Marchés'} contents={markets} />}
             {oddStakes && <InformationItem label={'Enjeux ODD'} contents={oddStakes} />}
           </>
         </InformationItemsWrapper>
-        <InformationItem
-          showDivider={false}
-          label={"L'entreprise"}
-          contents={description}
-          className="mt-8"
-        />
         <InformationItemsWrapper>
           {creationDate && <InformationItem label={'Date de création'} contents={creationDate} />}
           {headquarterAddress && (
