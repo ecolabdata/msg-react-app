@@ -29,11 +29,10 @@ Then connect to aws : add to C:\Users\{USER}\.aws
 `aws_access_key_id=ACCESSKEY`
 `aws_secret_access_key=SECRETKEY`
 
-1. Generate build : `npm run build`
-2. Run for preprod deployment:
-    `aws s3 sync --endpoint-url=https://s3.fr-par.scw.cloud --region=fr-par  build/ s3://msg-next --delete`
-3. Prod deployment
-    `aws s3 sync --endpoint-url=https://s3.fr-par.scw.cloud --region=fr-par  build/ s3://msg-prod`
+1. Run for preprod deployment:
+    `make deploy-next`
+2. Prod deployment
+    `make deploy-prod`
 
 
 You can check available buckets with :
