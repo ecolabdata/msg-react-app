@@ -16,12 +16,12 @@ export const ProjetFormContext = React.createContext<ProjetFormContextProps>({
   error: false,
   thematics: [],
   searchFormStep: 0,
-  setSearchFormStep: () => {},
-  handleThematicsChange: () => {},
-  setDescription: () => {}
+  setSearchFormStep: () => { },
+  handleThematicsChange: () => { },
+  setDescription: () => { }
 });
 
-export const ProjetFormContextProvider: React.FC = ({ ...props }) => {
+export const ProjetFormContextProvider: React.FC<{ children?: React.ReactNode }> = ({ children, ...props }) => {
   const [description, setDescription] = React.useState<string>('');
   const [thematics, setThematics] = React.useState<ThematicsEnum[]>([]);
   const [error, setError] = React.useState<boolean>(false);
@@ -40,6 +40,7 @@ export const ProjetFormContextProvider: React.FC = ({ ...props }) => {
       setThematics(v);
     }
   };
+  console.log(description);
 
   return (
     <ProjetFormContext.Provider
@@ -53,7 +54,9 @@ export const ProjetFormContextProvider: React.FC = ({ ...props }) => {
         setSearchFormStep
       }}
       {...props}
-    />
+    >
+      {children}
+    </ProjetFormContext.Provider>
   );
 };
 
