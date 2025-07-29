@@ -1,3 +1,4 @@
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import AccessibilityPage from '../components/page/AccessibilityPage';
 import CookiePage from '../components/page/CookiePage';
@@ -25,9 +26,8 @@ export const routes = (
       <Route path="/ressources-acteurs-publics" element={<Ressources profile="publicActor" />} />
       <Route path="/acteurs-publics" element={<SingleSearchPage profile="publicActor" />} />
       {publicActorPersona.map((cardType, i) => (
-        <>
+        <React.Fragment key={i + cardType.name}>
           <Route
-            key={i}
             path={`/acteurs-publics/${cardType.name}/:id`}
             element={<DetailsPageV5 cardType={cardType} />}
           />
@@ -35,12 +35,11 @@ export const routes = (
             path={`/acteurs-publics/${cardType.name}`}
             element={<SearchPageV5 cardType={cardType} />}
           />
-        </>
+        </React.Fragment>
       ))}
       {startupPersona.map((cardType, i) => (
-        <>
+        <React.Fragment key={i + cardType.name}>
           <Route
-            key={i}
             path={`/entreprises/${cardType.name}/:id`}
             element={<Details cardType={cardType} />}
           />
@@ -48,7 +47,7 @@ export const routes = (
             path={`/entreprises/${cardType.name}`}
             element={<SearchPage cardType={cardType} />}
           />
-        </>
+        </React.Fragment>
       ))}
 
       <Route path="mentions-legales" element={<LegalNotices />} />
