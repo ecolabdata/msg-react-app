@@ -1,13 +1,13 @@
 import Container from 'components/Core/Container';
-import { useProjetFormContext } from 'components/context/useProjectFormContext';
 import SelectInputOptions from 'components/customComponents/SelectInputOptions';
 import TextAreaInput from 'components/customComponents/TextAreaInput';
 import { acheteurPublic, publicActorPersona, startupPersona, startups } from 'model/CardType';
 import { ThematicsEnum } from 'model/ThematicsEnum';
-import React, { FormEvent, useEffect } from 'react';
+import React, { FormEvent } from 'react';
 import HomeCard from 'components/dsfrComponents/HomeCard';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import HomeCardPreview from 'components/dsfrComponents/HomeCardPreview';
+import { useSearchState } from 'hooks/useSearchState';
 
 interface SingleSearchPageProps {
   profile: 'startup' | 'publicActor';
@@ -33,17 +33,20 @@ const content = {
 const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
   const { title, cards, color, subtitle } = content[profile];
   const location = useLocation();
-  const navigate = useNavigate();
   const thematicsValues = Object.values(ThematicsEnum);
+
+
   const {
     description,
     setDescription,
     handleThematicsChange,
     thematics,
     error,
-    setSearchFormStep: setStep,
-    searchFormStep: step
-  } = useProjetFormContext();
+    currentStep,
+    updateSearchParams
+  } = useSearchState();
+
+  const searchParams = new URLSearchParams(location.search);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -51,13 +54,10 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
       handleThematicsChange(null);
       return;
     }
-    navigate(location.pathname, { state: 'cardPick' });
+
+    updateSearchParams(description, thematics, 1, 1);
   };
 
-  useEffect(() => {
-    location.state === null && setStep(0);
-    location.state === 'cardPick' && setStep(1);
-  }, [location]);
 
   return (
     <div className="mt-16">
@@ -73,7 +73,7 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
             {subtitle}
           </Container>
         )}
-        {step === 0 && (
+        {currentStep === 0 && (
           <>
             <ul className="flex flex-wrap justify-center gap-4 md:max-w-4/5 mt-4">
               {cards.map((card) => {
@@ -88,9 +88,8 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
                 <fieldset>
                   <legend className="sr-only">Décrivez votre besoin</legend>
                   <div
-                    className={`container py-8 px-6 mr-0 ${
-                      localStorage.getItem('scheme') === 'dark' && 'bg-research-precision-container'
-                    } justify-start flex flex-col lg:mt-0`}>
+                    className={`container py-8 px-6 mr-0 ${localStorage.getItem('scheme') === 'dark' && 'bg-research-precision-container'
+                      } justify-start flex flex-col lg:mt-0`}>
                     <TextAreaInput
                       value={description}
                       onValueChange={setDescription}
@@ -101,9 +100,8 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
                     />
                   </div>
                   <div
-                    className={`container py-8 px-6 mr-0 ${
-                      localStorage.getItem('scheme') === 'dark' && 'bg-research-precision-container'
-                    } justify-start flex flex-col lg:mt-0`}>
+                    className={`container py-8 px-6 mr-0 ${localStorage.getItem('scheme') === 'dark' && 'bg-research-precision-container'
+                      } justify-start flex flex-col lg:mt-0`}>
                     <SelectInputOptions
                       className="mb-auto"
                       error={error}
@@ -124,7 +122,7 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
             </Container>
           </>
         )}
-        {step === 1 && (
+        {currentStep === 1 && (
           //FIXME: this should probably be a radio button list part of the form
           <Container
             as="ul"
@@ -134,11 +132,17 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
                 cardTypeData={card}
                 key={index}
                 state={{ search: { description, thematics }, page: 1 }}
+                params={searchParams.toString()}
               />
             ))}
             <div className="container mt-8 w-full flex flex-col items-center justify-center">
               {(description || thematics?.length > 0) && (
-                <button type="button" onClick={() => setStep(0)} className="mt-4 underline">
+                <button
+                  type="button"
+                  onClick={() => {
+                    updateSearchParams('', [], 1, 0);
+                  }}
+                  className="mt-4 underline">
                   Modifier mon projet
                 </button>
               )}

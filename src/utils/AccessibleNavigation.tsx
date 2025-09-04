@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import ScreenReaderOnlyText from '../components/Core/ScreenReaderOnlyText';
 
 function AccessibleNavigation() {
   const [message, setMessage] = useState('');
   const location = useLocation();
+  const previousPathname = useRef(location.pathname);
 
   const pagesTitle: any = {
     'startup/aides-innovations': 'Aides à l’innovation',
@@ -26,8 +27,15 @@ function AccessibleNavigation() {
     'plan-du-site': 'Plan du site'
   };
   useEffect(() => {
-    window.scrollTo(0, 0);
     const slug = location.pathname.slice(1);
+
+    const pathnameChanged = previousPathname.current !== location.pathname;
+    if (pathnameChanged) {
+      requestAnimationFrame(() => {
+        window.scrollTo(0, 0);
+      });
+      previousPathname.current = location.pathname;
+    }
 
     if (slug) {
       setMessage(`Navigation vers la page ${pagesTitle[slug] || slug}.`);
@@ -36,14 +44,15 @@ function AccessibleNavigation() {
       setMessage(`Navigation vers la page d'accueil`);
       document.title = `Accueil - Mes Services Greentech`;
     }
+
     const title = document.getElementsByTagName('h1')[0];
     setTimeout(() => {
       if (title) {
         title.tabIndex = -1;
-        title.focus();
+        title.focus({ preventScroll: true });
       }
-    }, 500);
-  }, [location.pathname]);
+    }, 100);
+  }, [location.pathname, location.search]);
 
   return (
     <>
