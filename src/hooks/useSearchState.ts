@@ -43,12 +43,8 @@ export const useSearchState = () => {
             params.set('step', newStep.toString());
         }
 
-        // Use replace: false for step changes to create proper browser history
-        // Use replace: true for other changes to avoid cluttering history
-        const isStepChange = newStep !== undefined && newStep !== stepParam;
 
         navigate(`${location.pathname}?${params.toString()}`, {
-            replace: !isStepChange,
             state: { search: { description: newDescription || description, thematics: newThematics || thematics }, page: newPage || pageParam }
         });
     };
