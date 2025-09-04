@@ -46,8 +46,7 @@ const PaginationV5: React.FC<PaginationProps> = ({ baseUrl, currentPageNo, nbPag
               preventScrollReset={true}
               to={buildPageUrl(currentPageNo - 1)}
               className="fr-pagination__link rounded-full fr-pagination__link--prev fr-pagination__link--lg-label"
-              role="link"
-              replace={true}>
+              role="link">
               Précédent
             </Link>
           )}
@@ -61,7 +60,6 @@ const PaginationV5: React.FC<PaginationProps> = ({ baseUrl, currentPageNo, nbPag
               className="fr-pagination__link rounded-full"
               role="link"
               title={`Page ${generatedPageNo}`}
-              replace={true}
               aria-current={generatedPageNo === currentPageNo ? 'page' : 'false'}>
               {generatedPageNo}
             </NavLink>
@@ -81,8 +79,7 @@ const PaginationV5: React.FC<PaginationProps> = ({ baseUrl, currentPageNo, nbPag
               preventScrollReset={true}
               to={buildPageUrl(currentPageNo + 1)}
               className="fr-pagination__link rounded-full fr-pagination__link--next fr-pagination__link--lg-label"
-              role="link"
-              replace={true}>
+              role="link">
               Suivant
             </Link>
           )}

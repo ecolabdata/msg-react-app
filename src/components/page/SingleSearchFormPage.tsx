@@ -1,13 +1,13 @@
 import Container from 'components/Core/Container';
-import { useProjetFormContext } from 'components/context/useProjectFormContext';
 import SelectInputOptions from 'components/customComponents/SelectInputOptions';
 import TextAreaInput from 'components/customComponents/TextAreaInput';
 import { acheteurPublic, publicActorPersona, startupPersona, startups } from 'model/CardType';
 import { ThematicsEnum } from 'model/ThematicsEnum';
-import React, { FormEvent, useEffect } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import HomeCard from 'components/dsfrComponents/HomeCard';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import HomeCardPreview from 'components/dsfrComponents/HomeCardPreview';
+import { useSearchState } from 'hooks/useSearchState';
 
 interface SingleSearchPageProps {
   profile: 'startup' | 'publicActor';
@@ -33,17 +33,22 @@ const content = {
 const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
   const { title, cards, color, subtitle } = content[profile];
   const location = useLocation();
-  const navigate = useNavigate();
   const thematicsValues = Object.values(ThematicsEnum);
+
+
   const {
     description,
     setDescription,
     handleThematicsChange,
     thematics,
     error,
-    setSearchFormStep: setStep,
-    searchFormStep: step
-  } = useProjetFormContext();
+    updateSearchParams
+  } = useSearchState();
+
+  const [step, setStep] = useState(0);
+
+  const searchParams = new URLSearchParams(location.search);
+  const hasSearchParams = searchParams.get('query') || searchParams.get('thematics');
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -51,16 +56,18 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
       handleThematicsChange(null);
       return;
     }
-    navigate(location.pathname, { state: 'cardPick' });
-  };
-  const searchParams = new URLSearchParams();
-  searchParams.set('query', description || '');
 
+    updateSearchParams(description, thematics, 1);
+    setStep(1);
+  };
 
   useEffect(() => {
-    location.state === null && setStep(0);
-    location.state === 'cardPick' && setStep(1);
-  }, [location]);
+    if (hasSearchParams) {
+      setStep(1);
+    } else {
+      setStep(0);
+    }
+  }, [hasSearchParams]);
 
   return (
     <div className="mt-16">
@@ -140,7 +147,15 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
             ))}
             <div className="container mt-8 w-full flex flex-col items-center justify-center">
               {(description || thematics?.length > 0) && (
-                <button type="button" onClick={() => setStep(0)} className="mt-4 underline">
+                <button
+                  type="button"
+                  onClick={() => {
+                    // Clear URL parameters and go back to step 0
+                    // Use replace: true to replace current history entry
+                    updateSearchParams('', [], 1);
+                    setStep(0);
+                  }}
+                  className="mt-4 underline">
                   Modifier mon projet
                 </button>
               )}

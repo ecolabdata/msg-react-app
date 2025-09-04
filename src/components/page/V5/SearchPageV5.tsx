@@ -1,10 +1,8 @@
 import Container from 'components/Core/Container';
 import Heading from 'components/Core/Heading';
 import { useMemo, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { CardType } from '../../../model/CardType';
-import { SearchState } from '../../../utils/InitialState';
-import { useProjetFormContext } from 'components/context/useProjectFormContext';
 import SelectInputOptions from 'components/customComponents/SelectInputOptions';
 import TextAreaInput from 'components/customComponents/TextAreaInput';
 import { ThematicsEnum } from 'model/ThematicsEnum';
@@ -17,6 +15,7 @@ import { CardsSearchResult } from 'api5/interfaces/common';
 import SearchResultsV5 from 'components/customComponents/V5/SearchResultsV5';
 import PaginationV5 from './PaginationV5';
 import { useFetch } from 'apiv4/useFetch';
+import { useSearchState } from 'hooks/useSearchState';
 
 type Props = {
   cardType: CardType;
@@ -24,31 +23,30 @@ type Props = {
 
 export const SearchPageV5: React.FC<Props> = ({ cardType }) => {
   const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
-  const { initialValues, handleFilter, filters } = useAdvancedFilters(cardType.name);
+  const { initialValues, filters } = useAdvancedFilters(cardType.name);
   const [filtersValues, setFiltersValues] = useState(initialValues);
   const thematicsValues = Object.values(ThematicsEnum);
 
-  const navigate = useNavigate();
-
   const location = useLocation();
-  const initialState = location.state as SearchState | null;
 
-  const { description, setDescription, thematics, handleThematicsChange, error } =
-    useProjetFormContext();
+  const {
+    description,
+    setDescription,
+    thematics,
+    handleThematicsChange,
+    error,
+    currentPage,
+    updateSearchParams
+  } = useSearchState();
 
   const searchParams = new URLSearchParams(location.search);
-  const pageParam = parseInt(searchParams.get('page') || '1', 10);
-  const currentPage = isNaN(pageParam) ? 1 : pageParam;
+  const searchQuery = searchParams.get('query') || '';
 
-
-  const queryParam = searchParams.get('query') || '';
-  const thematicsParam = searchParams.get('thematics');
-  const thematicsFromUrl = thematicsParam ? thematicsParam.split(',') as ThematicsEnum[] : [];
   const fetchParams = generateFetchParams(
     {
-      query: queryParam,
+      query: searchQuery,
       page: currentPage,
-      page_size: 20
+      page_size: 2
     },
     cardType.apiName
   );
@@ -57,9 +55,9 @@ export const SearchPageV5: React.FC<Props> = ({ cardType }) => {
     if (!url) return '';
     const urlObj = new URL(url, window.location.origin);
     urlObj.searchParams.set('page', String(currentPage));
-    urlObj.searchParams.set('query', queryParam);
+    urlObj.searchParams.set('query', searchQuery);
     return urlObj.toString();
-  }, [url, currentPage, queryParam]);
+  }, [url, currentPage, searchQuery]);
 
   const { data, error: apiError } = useFetch<CardsSearchResult>(urlWithParams, options);
   const isLoading = !data && !apiError;
@@ -70,19 +68,7 @@ export const SearchPageV5: React.FC<Props> = ({ cardType }) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    searchParams.set('page', '1');
-    searchParams.set('query', description || '');
-
-    navigate(location.pathname + '?' + searchParams.toString(), {
-      state: {
-        ...initialState,
-        search: {
-          ...initialState?.search,
-          description,
-          thematics
-        }
-      }
-    });
+    updateSearchParams(description, thematics, 1);
   };
   const handleToggleAdvancedSearch = () => {
     setIsAdvancedSearchOpen(!isAdvancedSearchOpen);
@@ -96,9 +82,7 @@ export const SearchPageV5: React.FC<Props> = ({ cardType }) => {
     setDescription('');
     handleThematicsChange([]);
     setFiltersValues(initialValues);
-    navigate(location.pathname, {
-      state: null
-    });
+    updateSearchParams('', [], 1);
   };
   return (
     <Container>
@@ -201,7 +185,6 @@ export const SearchPageV5: React.FC<Props> = ({ cardType }) => {
             cardType={cardType}
             url={urlWithParams}
           />
-
           <PaginationV5
             isLoading={isLoading && currentPage > 0}
             currentPageNo={currentPage || 1}

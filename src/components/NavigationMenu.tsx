@@ -2,18 +2,12 @@ import { PropsWithChildren } from 'react';
 import { Link, LinkProps, useLocation } from 'react-router-dom';
 import useCheckMobileScreen from '../hooks/useCheckMobileScreen';
 import ExternalLink from './Core/ExternalLink';
-import { useProjetFormContext } from './context/useProjectFormContext';
-
 interface NavigationMenuProps {
   isBurgerMenuOpen: boolean;
 }
 
 const NavigationMenu: React.FC<NavigationMenuProps> = ({ isBurgerMenuOpen }) => {
   const isMobile = useCheckMobileScreen();
-  const { setSearchFormStep } = useProjetFormContext();
-  const resetSearchFormStep = () => {
-    setSearchFormStep(0);
-  };
 
   return (
     <>
@@ -29,17 +23,17 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({ isBurgerMenuOpen }) => 
                   aria-label="Menu principal">
                   <ul className="fr-nav__list">
                     <li className="fr-nav__item">
-                      <NavigationLink onClick={resetSearchFormStep} to="/">
+                      <NavigationLink to="/">
                         Accueil
                       </NavigationLink>
                     </li>
                     <li className="fr-nav__item">
-                      <NavigationLink onClick={resetSearchFormStep} to="/entreprises">
+                      <NavigationLink to="/entreprises">
                         Entreprises
                       </NavigationLink>
                     </li>
                     <li className="fr-nav__item">
-                      <NavigationLink onClick={resetSearchFormStep} to="/acteurs-publics">
+                      <NavigationLink to="/acteurs-publics">
                         Acteurs publics
                       </NavigationLink>
                     </li>
@@ -54,7 +48,6 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({ isBurgerMenuOpen }) => 
                         <ul className="fr-menu__list">
                           <li>
                             <NavigationLink
-                              onClick={resetSearchFormStep}
                               className="fr-nav__link"
                               to="/ressources-entreprises"
                               target="_self">
@@ -63,7 +56,6 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({ isBurgerMenuOpen }) => 
                           </li>
                           <li>
                             <NavigationLink
-                              onClick={resetSearchFormStep}
                               className="fr-nav__link"
                               to="/ressources-acteurs-publics"
                               target="_self">

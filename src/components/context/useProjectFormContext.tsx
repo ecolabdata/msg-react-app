@@ -5,8 +5,6 @@ export interface ProjetFormContextProps {
   description: string;
   error: boolean;
   thematics: ThematicsEnum[];
-  searchFormStep: number;
-  setSearchFormStep: React.Dispatch<React.SetStateAction<number>>;
   setDescription: React.Dispatch<React.SetStateAction<string>>;
   handleThematicsChange: (v: ThematicsEnum[] | null) => void;
 }
@@ -15,8 +13,6 @@ export const ProjetFormContext = React.createContext<ProjetFormContextProps>({
   description: '',
   error: false,
   thematics: [],
-  searchFormStep: 0,
-  setSearchFormStep: () => { },
   handleThematicsChange: () => { },
   setDescription: () => { }
 });
@@ -25,7 +21,6 @@ export const ProjetFormContextProvider: React.FC<{ children?: React.ReactNode }>
   const [description, setDescription] = React.useState<string>('');
   const [thematics, setThematics] = React.useState<ThematicsEnum[]>([]);
   const [error, setError] = React.useState<boolean>(false);
-  const [searchFormStep, setSearchFormStep] = React.useState<number>(0);
   const pathname = useLocation().pathname;
 
   React.useEffect(() => {
@@ -48,9 +43,7 @@ export const ProjetFormContextProvider: React.FC<{ children?: React.ReactNode }>
         handleThematicsChange,
         thematics,
         setDescription,
-        error,
-        searchFormStep,
-        setSearchFormStep
+        error
       }}
       {...props}
     >
