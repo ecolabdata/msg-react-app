@@ -53,6 +53,9 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
     }
     navigate(location.pathname, { state: 'cardPick' });
   };
+  const searchParams = new URLSearchParams();
+  searchParams.set('query', description || '');
+
 
   useEffect(() => {
     location.state === null && setStep(0);
@@ -88,9 +91,8 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
                 <fieldset>
                   <legend className="sr-only">Décrivez votre besoin</legend>
                   <div
-                    className={`container py-8 px-6 mr-0 ${
-                      localStorage.getItem('scheme') === 'dark' && 'bg-research-precision-container'
-                    } justify-start flex flex-col lg:mt-0`}>
+                    className={`container py-8 px-6 mr-0 ${localStorage.getItem('scheme') === 'dark' && 'bg-research-precision-container'
+                      } justify-start flex flex-col lg:mt-0`}>
                     <TextAreaInput
                       value={description}
                       onValueChange={setDescription}
@@ -101,9 +103,8 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
                     />
                   </div>
                   <div
-                    className={`container py-8 px-6 mr-0 ${
-                      localStorage.getItem('scheme') === 'dark' && 'bg-research-precision-container'
-                    } justify-start flex flex-col lg:mt-0`}>
+                    className={`container py-8 px-6 mr-0 ${localStorage.getItem('scheme') === 'dark' && 'bg-research-precision-container'
+                      } justify-start flex flex-col lg:mt-0`}>
                     <SelectInputOptions
                       className="mb-auto"
                       error={error}
@@ -134,6 +135,7 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
                 cardTypeData={card}
                 key={index}
                 state={{ search: { description, thematics }, page: 1 }}
+                params={searchParams.toString()}
               />
             ))}
             <div className="container mt-8 w-full flex flex-col items-center justify-center">

@@ -40,22 +40,26 @@ export const SearchPageV5: React.FC<Props> = ({ cardType }) => {
   const pageParam = parseInt(searchParams.get('page') || '1', 10);
   const currentPage = isNaN(pageParam) ? 1 : pageParam;
 
+
+  const queryParam = searchParams.get('query') || '';
+  const thematicsParam = searchParams.get('thematics');
+  const thematicsFromUrl = thematicsParam ? thematicsParam.split(',') as ThematicsEnum[] : [];
   const fetchParams = generateFetchParams(
     {
-      query: 'solaire',
+      query: queryParam,
       page: currentPage,
       page_size: 20
     },
     cardType.apiName
   );
-
   const { url, options } = fetchParams;
   const urlWithParams = useMemo(() => {
     if (!url) return '';
     const urlObj = new URL(url, window.location.origin);
     urlObj.searchParams.set('page', String(currentPage));
+    urlObj.searchParams.set('query', queryParam);
     return urlObj.toString();
-  }, [url, currentPage]);
+  }, [url, currentPage, queryParam]);
 
   const { data, error: apiError } = useFetch<CardsSearchResult>(urlWithParams, options);
   const isLoading = !data && !apiError;
@@ -66,7 +70,10 @@ export const SearchPageV5: React.FC<Props> = ({ cardType }) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    navigate(location.pathname, {
+    searchParams.set('page', '1');
+    searchParams.set('query', description || '');
+
+    navigate(location.pathname + '?' + searchParams.toString(), {
       state: {
         ...initialState,
         search: {
@@ -77,7 +84,6 @@ export const SearchPageV5: React.FC<Props> = ({ cardType }) => {
       }
     });
   };
-
   const handleToggleAdvancedSearch = () => {
     setIsAdvancedSearchOpen(!isAdvancedSearchOpen);
   };

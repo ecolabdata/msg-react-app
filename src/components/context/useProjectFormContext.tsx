@@ -40,7 +40,6 @@ export const ProjetFormContextProvider: React.FC<{ children?: React.ReactNode }>
       setThematics(v);
     }
   };
-  console.log(description);
 
   return (
     <ProjetFormContext.Provider

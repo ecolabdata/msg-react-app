@@ -1,4 +1,5 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
+
 interface PaginationProps {
   baseUrl: string;
   currentPageNo: number;
@@ -7,6 +8,9 @@ interface PaginationProps {
 }
 
 const PaginationV5: React.FC<PaginationProps> = ({ baseUrl, currentPageNo, nbPage, isLoading }) => {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+
   const generatedPageNos = Array(nbPage)
     .fill(1)
     .map((x, idx) => x + idx);
@@ -14,6 +18,13 @@ const PaginationV5: React.FC<PaginationProps> = ({ baseUrl, currentPageNo, nbPag
   if (generatedPageNos.length === 1) {
     return <></>;
   }
+
+  // Helper function to build URL with preserved parameters
+  const buildPageUrl = (page: number) => {
+    const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.set('page', page.toString());
+    return baseUrl + '?' + newSearchParams.toString();
+  };
 
   return (
     <nav
@@ -33,7 +44,7 @@ const PaginationV5: React.FC<PaginationProps> = ({ baseUrl, currentPageNo, nbPag
           ) : (
             <Link
               preventScrollReset={true}
-              to={baseUrl + `?page=${currentPageNo - 1}`}
+              to={buildPageUrl(currentPageNo - 1)}
               className="fr-pagination__link rounded-full fr-pagination__link--prev fr-pagination__link--lg-label"
               role="link"
               replace={true}>
@@ -46,7 +57,7 @@ const PaginationV5: React.FC<PaginationProps> = ({ baseUrl, currentPageNo, nbPag
           <li key={`Page ${generatedPageNo}`}>
             <NavLink
               preventScrollReset={true}
-              to={baseUrl + `?page=${generatedPageNo}`}
+              to={buildPageUrl(generatedPageNo)}
               className="fr-pagination__link rounded-full"
               role="link"
               title={`Page ${generatedPageNo}`}
@@ -68,7 +79,7 @@ const PaginationV5: React.FC<PaginationProps> = ({ baseUrl, currentPageNo, nbPag
           ) : (
             <Link
               preventScrollReset={true}
-              to={baseUrl + `?page=${currentPageNo + 1}`}
+              to={buildPageUrl(currentPageNo + 1)}
               className="fr-pagination__link rounded-full fr-pagination__link--next fr-pagination__link--lg-label"
               role="link"
               replace={true}>

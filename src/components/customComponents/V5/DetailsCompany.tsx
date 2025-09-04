@@ -13,18 +13,17 @@ const DetailsCompany: React.FC<DetailsCompanyProps> = ({ data }) => {
   const {
     pitch,
     publicClients,
-    sourceUrl,
     websiteUrl,
     privateClients,
-    headquarterAddress,
     helpersAndSupports,
-    creationDate,
-    zones,
     markets,
     oddStakes,
     description,
     labels,
-    images
+    images,
+    region,
+    departement,
+    ville
   } = data;
   return (
     <Container customClasses="grid grid-cols-1 sm:grid-cols-3 gap-8">
@@ -44,7 +43,7 @@ const DetailsCompany: React.FC<DetailsCompanyProps> = ({ data }) => {
             {helpersAndSupports && (
               <InformationItem label={'Soutiens et supports'} contents={helpersAndSupports} />
             )}
-            {zones && <InformationItem showDivider={false} label={'Région'} contents={zones} />}
+            {region && <InformationItem showDivider={false} label={'Région'} contents={region} />}
           </>
           <>
             {markets && <InformationItem label={'Marchés'} contents={markets} />}
@@ -52,37 +51,36 @@ const DetailsCompany: React.FC<DetailsCompanyProps> = ({ data }) => {
           </>
         </InformationItemsWrapper>
         <InformationItemsWrapper>
-          {creationDate && <InformationItem label={'Date de création'} contents={creationDate} />}
-          {headquarterAddress && (
-            <InformationItem
-              label={'Adresse du siège social de l’entreprise'}
-              contents={headquarterAddress}
-            />
-          )}
+          <>
+            {departement && <InformationItem label={'Département'} contents={departement} />}
+          </>
+          <>
+            {ville && <InformationItem label={'Ville'} contents={ville} />}
+          </>
         </InformationItemsWrapper>
         <InformationItemsWrapper>
-          {publicClients && publicClients.length > 0 && (
-            <InformationItem label={'Clients publics'} contents={publicClients} isHtml />
-          )}
-          {privateClients && privateClients.length > 0 && (
-            <InformationItem label={'Clients privés'} contents={privateClients} isHtml />
-          )}
+          <>
+            {publicClients && publicClients.length > 0 && (
+              <InformationItem label={'Clients publics'} contents={publicClients} isHtml />
+            )}
+          </>
+          <>
+            {privateClients && privateClients.length > 0 && (
+              <InformationItem label={'Clients privés'} contents={privateClients} isHtml />
+            )}
+          </>
         </InformationItemsWrapper>
         <InformationItemsWrapper>
-          {websiteUrl && (
-            <InformationItem
-              label={'Site web'}
-              contents={`<a href=${websiteUrl}>${websiteUrl}</a>`}
-              isHtml
-            />
-          )}
-          {sourceUrl && (
-            <InformationItem
-              label={'URL Source'}
-              contents={`<a target="_blank" href=${sourceUrl}>${sourceUrl}</a>`}
-              isHtml
-            />
-          )}
+          <>
+            {websiteUrl && (
+              <InformationItem
+                label={'Site web'}
+                contents={`<a href=${websiteUrl}>${websiteUrl}</a>`}
+                isHtml
+              />
+            )}
+          </>
+          <></>
         </InformationItemsWrapper>
         {labels && labels.length > 0 && <LabelSectionV5 labels={labels} />}
       </Container>

@@ -40,3 +40,16 @@ export const cardApiNames = [
 ] as const;
 export type CardApiNames = typeof cardApiNames[number];
 export type AnyCard = CompanyCard | PublicBuyerCard | PublicPurchaseCard;
+
+
+export type Image = {
+  width: number | null;
+  height: number | null;
+  url: string;
+};
+
+export type ImageDetailed = Image & {
+  filename: string;
+  type: string;
+  thumbnails: Record<'small' | 'large' | 'full', Image>;
+};
