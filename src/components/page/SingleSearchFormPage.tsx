@@ -3,7 +3,7 @@ import SelectInputOptions from 'components/customComponents/SelectInputOptions';
 import TextAreaInput from 'components/customComponents/TextAreaInput';
 import { acheteurPublic, publicActorPersona, startupPersona, startups } from 'model/CardType';
 import { ThematicsEnum } from 'model/ThematicsEnum';
-import React, { FormEvent, useEffect, useState } from 'react';
+import React, { FormEvent } from 'react';
 import HomeCard from 'components/dsfrComponents/HomeCard';
 import { useLocation } from 'react-router-dom';
 import HomeCardPreview from 'components/dsfrComponents/HomeCardPreview';
@@ -42,13 +42,11 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
     handleThematicsChange,
     thematics,
     error,
+    currentStep,
     updateSearchParams
   } = useSearchState();
 
-  const [step, setStep] = useState(0);
-
   const searchParams = new URLSearchParams(location.search);
-  const hasSearchParams = searchParams.get('query') || searchParams.get('thematics');
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -57,17 +55,9 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
       return;
     }
 
-    updateSearchParams(description, thematics, 1);
-    setStep(1);
+    updateSearchParams(description, thematics, 1, 1);
   };
 
-  useEffect(() => {
-    if (hasSearchParams) {
-      setStep(1);
-    } else {
-      setStep(0);
-    }
-  }, [hasSearchParams]);
 
   return (
     <div className="mt-16">
@@ -83,7 +73,7 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
             {subtitle}
           </Container>
         )}
-        {step === 0 && (
+        {currentStep === 0 && (
           <>
             <ul className="flex flex-wrap justify-center gap-4 md:max-w-4/5 mt-4">
               {cards.map((card) => {
@@ -132,7 +122,7 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
             </Container>
           </>
         )}
-        {step === 1 && (
+        {currentStep === 1 && (
           //FIXME: this should probably be a radio button list part of the form
           <Container
             as="ul"
@@ -150,10 +140,7 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
                 <button
                   type="button"
                   onClick={() => {
-                    // Clear URL parameters and go back to step 0
-                    // Use replace: true to replace current history entry
-                    updateSearchParams('', [], 1);
-                    setStep(0);
+                    updateSearchParams('', [], 1, 0);
                   }}
                   className="mt-4 underline">
                   Modifier mon projet

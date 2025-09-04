@@ -46,7 +46,7 @@ export const SearchPageV5: React.FC<Props> = ({ cardType }) => {
     {
       query: searchQuery,
       page: currentPage,
-      page_size: 2
+      page_size: 20
     },
     cardType.apiName
   );
