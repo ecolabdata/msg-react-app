@@ -98,7 +98,7 @@ export const SearchPageV5: React.FC<Props> = ({ cardType }) => {
             &nbsp;
             {cardType.title} &nbsp;{' '}
           </div>
-          <span className="bg-yellow md:text-3xl font-light">{`(${cardsCount} résultats)`}</span>
+          <span className="bg-yellow md:text-3xl font-light">{isLoading ? 'Chargement...' : `(${cardsCount} résultats)`}</span>
         </Heading>
         {cardType.description && <p className="mt-2 text-base">{cardType.description}</p>}
         {cardType.apiName === 'company_cards' && <StartupSubTitle />}
