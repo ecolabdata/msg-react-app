@@ -74,7 +74,19 @@ const ResultCardV5: React.FC<PropsWithChildren<CardProps>> = ({
               </h3>
               {logo && <img className="max-h-8" src={logo} />}
             </div>
-            <div className="fr-card__desc">{content}</div>
+            <div
+              className="fr-card__desc"
+              style={{
+                display: '-webkit-box',
+                WebkitLineClamp: 7,
+                WebkitBoxOrient: 'vertical',
+                overflow: 'hidden',
+                lineHeight: '1.4',
+                maxHeight: 'calc(1.4em * 7)'
+              }}
+            >
+              {content}
+            </div>
           </div>
         </div>
       </div>
