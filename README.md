@@ -37,3 +37,6 @@ Then connect to aws : add to C:\Users\{USER}\.aws
 
 You can check available buckets with :
     `aws s3 ls --endpoint-url=https://s3.fr-par.scw.cloud --region=fr-par`
+
+##### Work History
+From 20225 onwards, all commits numbers refer to this Trello Kanban : https://trello.com/b/H1JWtMh0/kanban-msg

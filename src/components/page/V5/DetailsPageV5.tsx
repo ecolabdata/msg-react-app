@@ -11,6 +11,7 @@ import { PublicBuyerCard } from 'api5/interfaces/publicBuyer';
 import { CompanyCard } from 'api5/interfaces/company';
 import { PublicPurchaseCard } from 'api5/interfaces/publicPurchase';
 import { DetailsPublicPurchase } from 'components/customComponents/V5/DetailsPublicPurchase';
+import Container from 'components/Core/Container';
 
 type DetailsProps = {
   cardType: CardType;
@@ -25,12 +26,15 @@ export const DetailsPageV5: React.FC<DetailsProps> = ({ cardType }) => {
   );
 
   const { data, error } = useFetch<UnknownCard>(url, { method, headers });
+  const isLoading = !data && !error;
 
-  if (!data) return <p>No data</p>;
+  if (isLoading) return <Container>Chargement en cours...</Container>;
+  if (error) return <Container>Erreur</Container>;
+  if (!data) return <Container>Aucune donnée</Container>;
 
   return (
     <>
-      <DetailsHeaderV5 data={data} cardType={cardType} />
+      <DetailsHeaderV5 data={data} cardType={cardType} badge={data.labels || null} />
       {cardType.apiName === 'public_buyer_cards' && (
         <DetailsPublicBuyer card={data as PublicBuyerCard} />
       )}

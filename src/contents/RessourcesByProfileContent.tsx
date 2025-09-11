@@ -104,7 +104,7 @@ const ressourcesByProfileContent = {
     suggestions: [
       {
         title: 'Communauté',
-        description: 'Rejoignez Rapidd, la communauté des achats durables',
+        description: 'Rejoignez Rapidd, la communauté des achats achats socialement et écologiquement responsables',
         links: [{ name: 'Rapidd', url: 'https://rapidd.developpement-durable.gouv.fr/' }]
       },
       {
@@ -147,6 +147,10 @@ const ressourcesByProfileContent = {
           {
             name: 'PEXE',
             url: 'https://annuaires.ecoentreprises-france.fr/sommaire#/'
+          },
+          {
+            name: 'GreenTech Innovation',
+            url: 'https://greentechinnovation.fr/les-greentech-laureates/'
           }
         ]
       },

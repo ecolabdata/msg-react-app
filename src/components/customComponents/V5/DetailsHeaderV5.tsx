@@ -4,14 +4,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import { CardType } from '../../../model/CardType';
 import { tailwindColorUtility } from '../../../utils/utilityFunctions';
 
-import { UnknownCard } from 'api5/interfaces/common';
+import { Label, UnknownCard } from 'api5/interfaces/common';
 
 interface DetailsHeaderProps {
   data: UnknownCard;
   cardType: CardType;
+  badge: Label[] | null;
 }
 
-const DetailsHeaderV5: React.FC<DetailsHeaderProps> = ({ data, cardType }) => {
+const DetailsHeaderV5: React.FC<DetailsHeaderProps> = ({ data, cardType, badge }) => {
   const borderColor = cardType?.color && tailwindColorUtility[cardType?.color].border;
   const navigate = useNavigate();
   const { cardTitle: title, cardSubtitle: subtitle, logoUrl } = data;
@@ -19,6 +20,7 @@ const DetailsHeaderV5: React.FC<DetailsHeaderProps> = ({ data, cardType }) => {
     e.preventDefault();
     navigate(-1);
   };
+  const companyBadge = badge?.map((el) => el?.label).join(' | ');
 
   return (
     <Container customClasses="mb-12">
@@ -33,7 +35,7 @@ const DetailsHeaderV5: React.FC<DetailsHeaderProps> = ({ data, cardType }) => {
             backgroundColor:
               localStorage.getItem('scheme') === 'dark' ? cardType?.backgroundColor : cardType.color
           }}>
-          {cardType?.name === 'sourcing-startup' ? 'start up' : cardType?.name}
+          {cardType?.name === 'sourcing-startup' ? companyBadge : cardType?.name}
         </p>
         <Heading align="left">{title}</Heading>
         {logoUrl && <img src={logoUrl} alt="" className="mt-4 h-10" />}

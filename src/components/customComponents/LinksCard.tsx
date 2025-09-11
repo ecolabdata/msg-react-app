@@ -13,7 +13,7 @@ interface LinksCardProps {
 
 const LinksCard: React.FC<LinksCardProps> = ({ title, description, links }) => {
   return (
-    <div className="fr-card w-full h-full">
+    <div className="fr-card h-full">
       <div className="fr-card__body ">
         <div className="fr-card__content !pt-4 !px-6 !pb-16 ">
           <h3 className="fr-card__title">{title}</h3>

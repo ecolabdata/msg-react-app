@@ -27,13 +27,9 @@ export const Ressources: React.FC<{ profile: 'startup' | 'publicActor' }> = ({ p
       <Container isFlexCol>
         <Container
           as="ul"
-          customClasses={`grid grid-cols-1 sm:grid-cols-2 ${
-            pageContent.suggestions.length > 2
-              ? 'md:grid-cols-3 md:max-w-5/6 2XL:max-w-2/3'
-              : 'md:grid-cols-2 md:max-w-5/6 2XL:max-w-1/2'
-          } gap-8 flex justify-center `}>
+          customClasses={`flex flex-wrap gap-8 justify-center `}>
           {pageContent.suggestions.map(({ title, description, links }) => (
-            <li key={title}>
+            <li key={title} className="min-w-full md:min-w-[auto] md:max-w-[300px]">
               <LinksCard title={title} description={description} links={links} />
             </li>
           ))}
