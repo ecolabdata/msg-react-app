@@ -86,14 +86,14 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
                 id="projectForm"
                 className="my-8 flex flex-col justify-around flex-wrap h-fit w-full">
                 <fieldset>
-                  <legend className="sr-only">Décrivez votre besoin</legend>
+                  <legend className="sr-only">Décrivez votre besoin en quelques mots clés</legend>
                   <div
                     className={`container py-8 px-6 mr-0 ${localStorage.getItem('scheme') === 'dark' && 'bg-research-precision-container'
                       } justify-start flex flex-col lg:mt-0`}>
                     <TextAreaInput
                       value={description}
                       onValueChange={setDescription}
-                      label={'Décrivez votre besoin'}
+                      label={'Décrivez votre besoin en quelques mots clés'}
                       formId="keywordsForm"
                       color={color}
                       placeholder="Ex : panneaux solaires toit école"

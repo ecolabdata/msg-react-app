@@ -154,8 +154,8 @@ export const sourcingSu: CardType = {
   searchText: 'Recherchez des entreprises par mots clés (nom, siret, thématique...)'
 } as const;
 
-export const startupPersona: CardType[] = [acheteurPublic, achatPrevi, aideClient];
-export const publicActorPersona: CardType[] = [aideFin, sourcingSu, acheteurPublic, achatPrevi];
+export const startupPersona: CardType[] = [achatPrevi, aideClient];
+export const publicActorPersona: CardType[] = [aideFin, sourcingSu, achatPrevi];
 export const all = [...startupPersona, ...publicActorPersona] as const;
 export const byName = Object.fromEntries(all.map((x) => [x.name, x]));
 export const dropdownValues = Object.fromEntries(all.map((x) => [x.name, x.title]));
