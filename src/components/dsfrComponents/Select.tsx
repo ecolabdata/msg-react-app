@@ -23,23 +23,23 @@ const Select: React.FC<SelectProps> = ({
   if (color) style = { boxShadow: `inset 0 -2px 0 0 ${color}` };
   return (
     <div className={`${classes}`}>
-      <label className="fr-label" htmlFor={`select-${label}`}>
+      <label className="fr-label capitalize" htmlFor={`select-${label}`}>
         {label}
       </label>
       <select
         className={`fr-select ${selectClassName}`}
         onChange={onChange}
         style={style}
-        id={`select-${label}`}>
+        id={`select-${label}`}
+        value={selected || ''}>
         <option
           value=""
-          selected={selected === ''}
           disabled={!defaultOption}
           hidden={!defaultOption}>
           {defaultOption || 'Selectionnez une option'}
         </option>
         {optionsData.map((option) => (
-          <option selected={selected === option} value={option} key={option}>
+          <option value={option} key={option}>
             {option}
           </option>
         ))}
