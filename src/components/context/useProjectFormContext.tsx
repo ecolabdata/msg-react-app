@@ -7,6 +7,8 @@ export interface ProjetFormContextProps {
   thematics: ThematicsEnum[];
   setDescription: React.Dispatch<React.SetStateAction<string>>;
   handleThematicsChange: (v: ThematicsEnum[] | null) => void;
+  advancedFilters: Record<string, string[]> | null;
+  setAdvancedFilters: React.Dispatch<React.SetStateAction<Record<string, string[]> | null>>;
 }
 
 export const ProjetFormContext = React.createContext<ProjetFormContextProps>({
@@ -14,12 +16,15 @@ export const ProjetFormContext = React.createContext<ProjetFormContextProps>({
   error: false,
   thematics: [],
   handleThematicsChange: () => { },
-  setDescription: () => { }
+  setDescription: () => { },
+  advancedFilters: null,
+  setAdvancedFilters: () => { }
 });
 
 export const ProjetFormContextProvider: React.FC<{ children?: React.ReactNode }> = ({ children, ...props }) => {
   const [description, setDescription] = React.useState<string>('');
   const [thematics, setThematics] = React.useState<ThematicsEnum[]>([]);
+  const [advancedFilters, setAdvancedFilters] = React.useState<Record<string, string[]> | null>(null);
   const [error, setError] = React.useState<boolean>(false);
   const pathname = useLocation().pathname;
 
@@ -43,7 +48,9 @@ export const ProjetFormContextProvider: React.FC<{ children?: React.ReactNode }>
         handleThematicsChange,
         thematics,
         setDescription,
-        error
+        error,
+        advancedFilters,
+        setAdvancedFilters
       }}
       {...props}
     >

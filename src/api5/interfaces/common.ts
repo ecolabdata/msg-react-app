@@ -53,3 +53,5 @@ export type ImageDetailed = Image & {
   type: string;
   thumbnails: Record<'small' | 'large' | 'full', Image>;
 };
+
+export type SelectFilterData = Record<string, string[]>;

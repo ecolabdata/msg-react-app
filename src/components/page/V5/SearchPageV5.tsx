@@ -7,15 +7,14 @@ import SelectInputOptions from 'components/customComponents/SelectInputOptions';
 import TextAreaInput from 'components/customComponents/TextAreaInput';
 import { ThematicsEnum } from 'model/ThematicsEnum';
 import SearchFieldWrapper from 'components/customComponents/SearchFieldWrapper';
-import { useAdvancedFilters } from 'components/customComponents/filter/filters';
-import AdvancedFilters from 'components/customComponents/filter/AdvancedFilters';
 import { StartupSubTitle } from 'components/customComponents/details/StartupSubtitle';
-import { generateFetchParams } from 'api5/servicesV5';
-import { CardsSearchResult } from 'api5/interfaces/common';
+import { baseApiUrl, generateFetchParams } from 'api5/servicesV5';
+import { CardsSearchResult, SelectFilterData } from 'api5/interfaces/common';
 import SearchResultsV5 from 'components/customComponents/V5/SearchResultsV5';
 import PaginationV5 from './PaginationV5';
 import { useFetch } from 'apiv4/useFetch';
 import { useSearchState } from 'hooks/useSearchState';
+import { AdvancedFiltersV5 } from './AdvancedFiltersV5';
 
 type Props = {
   cardType: CardType;
@@ -23,9 +22,8 @@ type Props = {
 
 export const SearchPageV5: React.FC<Props> = ({ cardType }) => {
   const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
-  const { initialValues, filters } = useAdvancedFilters(cardType.name);
-  const [filtersValues, setFiltersValues] = useState(initialValues);
   const thematicsValues = Object.values(ThematicsEnum);
+  const filters = useFetch<SelectFilterData>(`${baseApiUrl}/v5/${cardType.apiName}/filters/`)
 
   const location = useLocation();
 
@@ -36,15 +34,20 @@ export const SearchPageV5: React.FC<Props> = ({ cardType }) => {
     handleThematicsChange,
     error,
     currentPage,
+    advancedFilters,
+    handleFilterChange,
+    resetFilters,
     updateSearchParams
   } = useSearchState();
 
   const searchParams = new URLSearchParams(location.search);
   const searchQuery = searchParams.get('query') || '';
-
+  const filterQuery = searchParams.get('filters');
+  const parsedFilterQuery = JSON.parse(filterQuery || 'null');
   const fetchParams = generateFetchParams(
     {
       query: searchQuery,
+      filters: parsedFilterQuery || null,
       page: currentPage,
       page_size: 20
     },
@@ -56,8 +59,9 @@ export const SearchPageV5: React.FC<Props> = ({ cardType }) => {
     const urlObj = new URL(url, window.location.origin);
     urlObj.searchParams.set('page', String(currentPage));
     urlObj.searchParams.set('query', searchQuery);
+    urlObj.searchParams.set('filters', filterQuery || 'null');
     return urlObj.toString();
-  }, [url, currentPage, searchQuery]);
+  }, [url, currentPage, searchQuery, parsedFilterQuery]);
 
   const { data, error: apiError } = useFetch<CardsSearchResult>(urlWithParams, options);
   const isLoading = !data && !apiError;
@@ -68,20 +72,16 @@ export const SearchPageV5: React.FC<Props> = ({ cardType }) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    updateSearchParams(description, thematics, 1);
+    updateSearchParams(description, thematics, 1, undefined, advancedFilters);
   };
   const handleToggleAdvancedSearch = () => {
     setIsAdvancedSearchOpen(!isAdvancedSearchOpen);
   };
 
-  const handleUpdateFilter = (filterName: string, filterValue: string | boolean) => {
-    setFiltersValues({ ...filtersValues, [filterName]: filterValue });
-  };
-
   const handleResetForm = () => {
     setDescription('');
     handleThematicsChange([]);
-    setFiltersValues(initialValues);
+    resetFilters();
     updateSearchParams('', [], 1);
   };
   return (
@@ -139,7 +139,7 @@ export const SearchPageV5: React.FC<Props> = ({ cardType }) => {
             </SearchFieldWrapper>
           </div>
         </fieldset>
-        {filters?.length > 0 && (
+        {filters?.data && (
           <div className="flex flex-col mt-4">
             <button
               aria-expanded={isAdvancedSearchOpen}
@@ -149,17 +149,16 @@ export const SearchPageV5: React.FC<Props> = ({ cardType }) => {
               Recherche avancée
             </button>
             {isAdvancedSearchOpen && (
-              <AdvancedFilters
+              <AdvancedFiltersV5
+                filters={filters.data}
                 cardType={cardType}
-                filters={filters}
-                setFilters={handleUpdateFilter}
-                values={filtersValues}
+                onFilterChange={handleFilterChange}
+                selectedFilters={advancedFilters}
               />
             )}
           </div>
         )}
       </form>
-
       <div className="container mt-8 w-full flex flex-col items-center justify-center">
         <button
           form="projectForm"
