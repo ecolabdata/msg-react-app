@@ -3,9 +3,7 @@ import Heading from 'components/Core/Heading';
 import { useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { CardType } from '../../../model/CardType';
-import SelectInputOptions from 'components/customComponents/SelectInputOptions';
 import TextAreaInput from 'components/customComponents/TextAreaInput';
-import { ThematicsEnum } from 'model/ThematicsEnum';
 import SearchFieldWrapper from 'components/customComponents/SearchFieldWrapper';
 import { StartupSubTitle } from 'components/customComponents/details/StartupSubtitle';
 import { baseApiUrl, generateFetchParams } from 'api5/servicesV5';
@@ -22,16 +20,12 @@ type Props = {
 
 export const SearchPageV5: React.FC<Props> = ({ cardType }) => {
   const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
-  const thematicsValues = Object.values(ThematicsEnum);
   const filters = useFetch<SelectFilterData>(`${baseApiUrl}/v5/${cardType.apiName}/filters/`)
-
   const location = useLocation();
 
   const {
     description,
     setDescription,
-    thematics,
-    handleThematicsChange,
     error,
     currentPage,
     advancedFilters,
@@ -65,14 +59,14 @@ export const SearchPageV5: React.FC<Props> = ({ cardType }) => {
 
   const { data, error: apiError } = useFetch<CardsSearchResult>(urlWithParams, options);
   const isLoading = !data && !apiError;
-
+  console.log('data', data);
   const cards = data?.results;
   const cardsCount = data?.total_count || 0;
   const pageCount = Math.ceil(cardsCount / (data?.page_size || 20));
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    updateSearchParams(description, thematics, 1, undefined, advancedFilters);
+    updateSearchParams(description, 1, undefined, advancedFilters);
   };
   const handleToggleAdvancedSearch = () => {
     setIsAdvancedSearchOpen(!isAdvancedSearchOpen);
@@ -80,9 +74,8 @@ export const SearchPageV5: React.FC<Props> = ({ cardType }) => {
 
   const handleResetForm = () => {
     setDescription('');
-    handleThematicsChange([]);
     resetFilters();
-    updateSearchParams('', [], 1);
+    updateSearchParams('', 1);
   };
   return (
     <Container>
@@ -122,18 +115,6 @@ export const SearchPageV5: React.FC<Props> = ({ cardType }) => {
                 label={cardType?.searchText ?? ''}
                 formId="projectForm"
                 required
-                color={cardType?.color}
-              />
-            </SearchFieldWrapper>
-            <SearchFieldWrapper
-              label="La thématique"
-              usedInListPage={true}
-              className="w-full md:w-[45%]">
-              <SelectInputOptions
-                className="mb-auto"
-                optionsData={thematicsValues}
-                secteurs={thematics}
-                setSecteurs={handleThematicsChange}
                 color={cardType?.color}
               />
             </SearchFieldWrapper>

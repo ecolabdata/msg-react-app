@@ -39,7 +39,7 @@ export const DetailsPageV5: React.FC<DetailsProps> = ({ cardType }) => {
         <DetailsPublicBuyer card={data as PublicBuyerCard} />
       )}
       {cardType.apiName === 'company_cards' && <DetailsCompany data={data as CompanyCard} />}
-      {cardType.apiName === 'public_purchase_cards' && (
+      {cardType.apiName === 'public_procurement_cards' && (
         <DetailsPublicPurchase card={data as PublicPurchaseCard} />
       )}
       <DetailsFooter cardType={cardType} />

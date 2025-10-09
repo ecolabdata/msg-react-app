@@ -39,8 +39,6 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
   const {
     description,
     setDescription,
-    handleThematicsChange,
-    thematics,
     error,
     currentStep,
     updateSearchParams
@@ -50,12 +48,7 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if (!thematics?.length) {
-      handleThematicsChange(null);
-      return;
-    }
-
-    updateSearchParams(description, thematics, 1, 1);
+    updateSearchParams(description, 1, 1);
   };
 
 
@@ -99,19 +92,6 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
                       placeholder="Ex : panneaux solaires toit école"
                     />
                   </div>
-                  <div
-                    className={`container py-8 px-6 mr-0 ${localStorage.getItem('scheme') === 'dark' && 'bg-research-precision-container'
-                      } justify-start flex flex-col lg:mt-0`}>
-                    <SelectInputOptions
-                      className="mb-auto"
-                      error={error}
-                      optionsData={thematicsValues}
-                      secteurs={thematics}
-                      setSecteurs={handleThematicsChange}
-                      color={color}
-                      required
-                    />
-                  </div>
                 </fieldset>
                 <div className="flex justify-center my-8">
                   <button disabled={error} className=" fr-btn fr-btn--primary  fr-btn--lg">
@@ -131,16 +111,16 @@ const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
               <HomeCard
                 cardTypeData={card}
                 key={index}
-                state={{ search: { description, thematics }, page: 1 }}
+                state={{ search: { description }, page: 1 }}
                 params={searchParams.toString()}
               />
             ))}
             <div className="container mt-8 w-full flex flex-col items-center justify-center">
-              {(description || thematics?.length > 0) && (
+              {description && (
                 <button
                   type="button"
                   onClick={() => {
-                    updateSearchParams('', [], 1, 0);
+                    updateSearchParams('', 1, 0);
                   }}
                   className="mt-4 underline">
                   Modifier mon projet

@@ -63,7 +63,7 @@ export const achatPrevi: CardType = {
   homeDescription: 'Achats publics prévus ces trois prochaines années dans votre domaine.',
   name: 'achats-publics-a-venir',
   searchLink: '/achats-publics-a-venir',
-  apiName: 'public_purchase_cards',
+  apiName: 'public_procurement_cards',
   searchText: 'Recherchez des projets d’achat public par mots clés (nom, cpv, thématique...)',
   version: 'beta'
 } as const;
@@ -91,7 +91,7 @@ export const aideClient: CardType = {
   description: '',
   name: 'aides-clients',
   searchLink: '/aides-clients',
-  apiName: 'aides_clients',
+  apiName: 'aid_cards',
   version: 'beta',
   searchText: 'Recherchez des aides pour vos clients par mots clés (nom, thématique...)'
 } as const;
@@ -135,7 +135,7 @@ export const aideFin: CardType = {
   name: 'aides-financieres',
   searchLink: '/aides-financieres',
   searchText: 'Recherchez des aides financières par mots clés',
-  apiName: 'aides_clients',
+  apiName: 'aid_cards',
   version: 'beta'
 } as const;
 

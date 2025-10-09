@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import AccessibilityPage from '../components/page/AccessibilityPage';
 import CookiePage from '../components/page/CookiePage';
-import { SearchPage } from '../components/page/SearchPage';
 import { Details } from '../components/page/DetailsPage';
 import GdprPage from '../components/page/GdprPage';
 import Home from '../components/page/Home';
@@ -45,7 +44,7 @@ export const routes = (
           />
           <Route
             path={`/entreprises/${cardType.name}`}
-            element={<SearchPage cardType={cardType} />}
+            element={<SearchPageV5 cardType={cardType} />}
           />
         </React.Fragment>
       ))}
