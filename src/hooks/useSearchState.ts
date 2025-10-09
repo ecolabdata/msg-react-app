@@ -1,6 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useProjetFormContext } from "components/context/useProjectFormContext";
-import { ThematicsEnum } from "model/ThematicsEnum";
 import { useEffect } from "react";
 
 export const useSearchState = () => {

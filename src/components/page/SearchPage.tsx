@@ -2,23 +2,23 @@ import Container from 'components/Core/Container';
 import Heading from 'components/Core/Heading';
 import { useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { CardType } from '../../../model/CardType';
+import { CardType } from '../../model/CardType';
 import TextAreaInput from 'components/customComponents/TextAreaInput';
 import SearchFieldWrapper from 'components/customComponents/SearchFieldWrapper';
 import { StartupSubTitle } from 'components/customComponents/details/StartupSubtitle';
 import { baseApiUrl, generateFetchParams } from 'api5/servicesV5';
 import { CardsSearchResult, SelectFilterData } from 'api5/interfaces/common';
-import SearchResultsV5 from 'components/customComponents/V5/SearchResultsV5';
-import PaginationV5 from './PaginationV5';
+import SearchResults from 'components/customComponents/SearchResults';
+import Pagination from './Pagination';
 import { useFetch } from 'apiv4/useFetch';
 import { useSearchState } from 'hooks/useSearchState';
-import { AdvancedFiltersV5 } from './AdvancedFiltersV5';
+import { AdvancedFilters } from './AdvancedFilters';
 
 type Props = {
   cardType: CardType;
 };
 
-export const SearchPageV5: React.FC<Props> = ({ cardType }) => {
+export const SearchPage: React.FC<Props> = ({ cardType }) => {
   const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
   const filters = useFetch<SelectFilterData>(`${baseApiUrl}/v5/${cardType.apiName}/filters/`)
   const location = useLocation();
@@ -130,7 +130,7 @@ export const SearchPageV5: React.FC<Props> = ({ cardType }) => {
               Recherche avancée
             </button>
             {isAdvancedSearchOpen && (
-              <AdvancedFiltersV5
+              <AdvancedFilters
                 filters={filters.data}
                 cardType={cardType}
                 onFilterChange={handleFilterChange}
@@ -158,14 +158,14 @@ export const SearchPageV5: React.FC<Props> = ({ cardType }) => {
       {apiError && <p>Erreur</p>}
       {cards && (
         <>
-          <SearchResultsV5
+          <SearchResults
             hitCount={cardsCount}
             isLoading={isLoading}
             results={cards}
             cardType={cardType}
             url={urlWithParams}
           />
-          <PaginationV5
+          <Pagination
             isLoading={isLoading && currentPage > 0}
             currentPageNo={currentPage || 1}
             baseUrl={location.pathname}

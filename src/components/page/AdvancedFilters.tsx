@@ -9,7 +9,7 @@ type AdvancedFiltersProps = {
     selectedFilters: Record<string, string[]> | null;
 };
 
-export const AdvancedFiltersV5: React.FC<AdvancedFiltersProps> = ({
+export const AdvancedFilters: React.FC<AdvancedFiltersProps> = ({
     filters,
     cardType,
     onFilterChange,

@@ -7,7 +7,7 @@ interface PaginationProps {
   isLoading?: boolean;
 }
 
-const PaginationV5: React.FC<PaginationProps> = ({ baseUrl, currentPageNo, nbPage, isLoading }) => {
+const Pagination: React.FC<PaginationProps> = ({ baseUrl, currentPageNo, nbPage, isLoading }) => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
 
@@ -89,4 +89,4 @@ const PaginationV5: React.FC<PaginationProps> = ({ baseUrl, currentPageNo, nbPag
   );
 };
 
-export default PaginationV5;
+export default Pagination;

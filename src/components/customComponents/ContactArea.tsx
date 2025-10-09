@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import ExternalLink from '../../Core/ExternalLink';
+import ExternalLink from '../Core/ExternalLink';
 import { UnknownCard } from 'api5/interfaces/common';
 
 interface ContactAreaProps {
   data: UnknownCard;
 }
 
-const ContactAreaV5: React.FC<ContactAreaProps> = ({ data }) => {
+const ContactArea: React.FC<ContactAreaProps> = ({ data }) => {
   const { cardTitle, phone, email, websiteUrl } = data;
   const [showContact, setShowContact] = useState(false);
 
@@ -46,4 +46,4 @@ const ContactAreaV5: React.FC<ContactAreaProps> = ({ data }) => {
   );
 };
 
-export default ContactAreaV5;
+export default ContactArea;

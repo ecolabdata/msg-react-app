@@ -1,6 +1,6 @@
 import type { ImageDetailed } from 'api5/interfaces/common';
 
-const CardImagesV5 = ({ images }: { images: ImageDetailed[] }) => {
+const CardImages = ({ images }: { images: ImageDetailed[] }) => {
   return (
     <div className="flex flex-col gap-2 mt-6">
       <h2 className="text-2xl mb-4">{'Photos'}</h2>
@@ -14,4 +14,4 @@ const CardImagesV5 = ({ images }: { images: ImageDetailed[] }) => {
     </div>
   );
 };
-export default CardImagesV5;
+export default CardImages;

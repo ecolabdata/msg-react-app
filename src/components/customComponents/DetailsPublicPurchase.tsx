@@ -1,5 +1,5 @@
 import { PublicPurchaseCard } from 'api5/interfaces/publicPurchase';
-import { InformationItem, InformationItemsWrapper } from '../details/InformationItem';
+import { InformationItem, InformationItemsWrapper } from './details/InformationItem';
 import Container from 'components/Core/Container';
 
 interface ForecastedBuyInformationsProps {

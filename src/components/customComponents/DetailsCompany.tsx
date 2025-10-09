@@ -1,8 +1,8 @@
 import Container from 'components/Core/Container';
-import { InformationItem, InformationItemsWrapper } from '../details/InformationItem';
-import ContactAreaV5 from './ContactAreaV5';
-import CardImagesV5 from './CardImages';
-import LabelSectionV5 from './LabelSectionV5';
+import { InformationItem, InformationItemsWrapper } from './details/InformationItem';
+import ContactArea from './ContactArea';
+import CardImages from './CardImages';
+import LabelSection from './LabelSection';
 import { CompanyCard } from 'api5/interfaces/company';
 
 interface DetailsCompanyProps {
@@ -82,11 +82,11 @@ const DetailsCompany: React.FC<DetailsCompanyProps> = ({ data }) => {
           </>
           <></>
         </InformationItemsWrapper>
-        {labels && labels.length > 0 && <LabelSectionV5 labels={labels} />}
+        {labels && labels.length > 0 && <LabelSection labels={labels} />}
       </Container>
       <div>
-        <ContactAreaV5 data={data} />
-        {images && images.length > 0 && <CardImagesV5 images={images} />}
+        <ContactArea data={data} />
+        {images && images.length > 0 && <CardImages images={images} />}
       </div>
     </Container>
   );

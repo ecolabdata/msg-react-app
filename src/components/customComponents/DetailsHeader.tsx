@@ -1,8 +1,8 @@
 import Container from 'components/Core/Container';
 import Heading from 'components/Core/Heading';
 import { Link, useNavigate } from 'react-router-dom';
-import { CardType } from '../../../model/CardType';
-import { tailwindColorUtility } from '../../../utils/utilityFunctions';
+import { CardType } from '../../model/CardType';
+import { tailwindColorUtility } from '../../utils/utilityFunctions';
 
 import { Label, UnknownCard } from 'api5/interfaces/common';
 
@@ -12,7 +12,7 @@ interface DetailsHeaderProps {
   badge: Label[] | null;
 }
 
-const DetailsHeaderV5: React.FC<DetailsHeaderProps> = ({ data, cardType, badge }) => {
+const DetailsHeader: React.FC<DetailsHeaderProps> = ({ data, cardType, badge }) => {
   const borderColor = cardType?.color && tailwindColorUtility[cardType?.color].border;
   const navigate = useNavigate();
   const { cardTitle: title, cardSubtitle: subtitle, logoUrl } = data;
@@ -55,4 +55,4 @@ const DetailsHeaderV5: React.FC<DetailsHeaderProps> = ({ data, cardType, badge }
   );
 };
 
-export default DetailsHeaderV5;
+export default DetailsHeader;

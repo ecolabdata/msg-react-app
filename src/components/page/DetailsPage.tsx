@@ -1,44 +1,46 @@
 import { useLocation } from 'react-router-dom';
 import { CardType } from '../../model/CardType';
-import DetailsFooter from '../customComponents/details/DetailsFooter';
-import GenericDetails from '../customComponents/details/DetailsGenericContent';
-import DetailsHeader from '../customComponents/details/DetailsHeader';
 import { useFetch } from 'apiv4/useFetch';
-import { generateCardByIDFetchParameters } from 'apiv4/services';
-import { isPublicBuyerResults } from 'apiv4/interfaces/typeguards';
+import { generateCardByIdFetchParams } from 'api5/servicesV5';
+import { UnknownCard } from 'api5/interfaces/common';
+import DetailsHeader from 'components/customComponents/DetailsHeader';
+import DetailsCompany from 'components/customComponents/DetailsCompany';
 import DetailsPublicBuyer from 'components/customComponents/details/DetailsPublicBuyerContent';
-import {
-  SearchResultItem,
-  isAidV4,
-  isCompanyV4,
-  isInvestorV4,
-  isPublicPurchaseV4
-} from 'apiv4/interfaces/typeguards';
+import { PublicBuyerCard } from 'api5/interfaces/publicBuyer';
+import { CompanyCard } from 'api5/interfaces/company';
+import { PublicPurchaseCard } from 'api5/interfaces/publicPurchase';
+import { DetailsPublicPurchase } from 'components/customComponents/DetailsPublicPurchase';
+import Container from 'components/Core/Container';
 
 type DetailsProps = {
   cardType: CardType;
 };
-// V5 remove this
-export const Details: React.FC<DetailsProps> = ({ cardType }) => {
+
+export const DetailsPage: React.FC<DetailsProps> = ({ cardType }) => {
   const location = useLocation();
 
-  const { url, method, headers } = generateCardByIDFetchParameters(
+  const { url, method, headers } = generateCardByIdFetchParams(
     location.pathname.split('/')[3],
     cardType.apiName
   );
-  const { data } = useFetch<SearchResultItem>(url, { method, headers });
 
-  if (!data) return <p>No data</p>;
+  const { data, error } = useFetch<UnknownCard>(url, { method, headers });
+  const isLoading = !data && !error;
+
+  if (isLoading) return <Container>Chargement en cours...</Container>;
+  if (error) return <Container>Erreur</Container>;
+  if (!data) return <Container>Aucune donnée</Container>;
 
   return (
     <>
-      <DetailsHeader data={data} cardType={cardType} />
-      {isPublicBuyerResults(data) && <DetailsPublicBuyer card={data._source as any} />}
-      {(isCompanyV4(data) || isPublicPurchaseV4(data) || isAidV4(data) || isInvestorV4(data)) && (
-        <GenericDetails data={data} />
+      <DetailsHeader data={data} cardType={cardType} badge={data.labels || null} />
+      {cardType.apiName === 'public_buyer_cards' && (
+        <DetailsPublicBuyer card={data as PublicBuyerCard} />
       )}
-
-      <DetailsFooter cardType={cardType} />
+      {cardType.apiName === 'company_cards' && <DetailsCompany data={data as CompanyCard} />}
+      {cardType.apiName === 'public_procurement_cards' && (
+        <DetailsPublicPurchase card={data as PublicPurchaseCard} />
+      )}
     </>
   );
 };

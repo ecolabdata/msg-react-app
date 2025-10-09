@@ -1,7 +1,7 @@
 import { Label } from 'api5/interfaces/common';
-import { LabelDetails } from '../details/LabelDetails';
+import { LabelDetails } from './details/LabelDetails';
 
-const LabelSectionV5: React.FC<{ labels: Label[] }> = ({ labels }) => {
+const LabelSection: React.FC<{ labels: Label[] }> = ({ labels }) => {
   return (
     <div className="mt-16">
       {labels?.length > 0 &&
@@ -20,4 +20,4 @@ const LabelSectionV5: React.FC<{ labels: Label[] }> = ({ labels }) => {
     </div>
   );
 };
-export default LabelSectionV5;
+export default LabelSection;

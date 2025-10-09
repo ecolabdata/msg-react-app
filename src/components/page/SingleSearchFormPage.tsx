@@ -1,8 +1,6 @@
 import Container from 'components/Core/Container';
-import SelectInputOptions from 'components/customComponents/SelectInputOptions';
 import TextAreaInput from 'components/customComponents/TextAreaInput';
 import { acheteurPublic, publicActorPersona, startupPersona, startups } from 'model/CardType';
-import { ThematicsEnum } from 'model/ThematicsEnum';
 import React, { FormEvent } from 'react';
 import HomeCard from 'components/dsfrComponents/HomeCard';
 import { useLocation } from 'react-router-dom';
@@ -33,7 +31,6 @@ const content = {
 const SingleSearchPage: React.FC<SingleSearchPageProps> = ({ profile }) => {
   const { title, cards, color, subtitle } = content[profile];
   const location = useLocation();
-  const thematicsValues = Object.values(ThematicsEnum);
 
 
   const {

@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import AccessibilityPage from '../components/page/AccessibilityPage';
 import CookiePage from '../components/page/CookiePage';
-import { Details } from '../components/page/DetailsPage';
 import GdprPage from '../components/page/GdprPage';
 import Home from '../components/page/Home';
 import LegalNotices from '../components/page/LegalNoticesPage';
@@ -13,8 +12,8 @@ import { publicActorPersona, startupPersona } from './CardType';
 import PageLayout from '../components/page/PageLayout';
 import SingleSearchPage from 'components/page/SingleSearchFormPage';
 import { Ressources } from 'components/page/Ressources';
-import { SearchPageV5 } from 'components/page/V5/SearchPageV5';
-import { DetailsPageV5 } from 'components/page/V5/DetailsPageV5';
+import { SearchPage } from 'components/page/SearchPage';
+import { DetailsPage } from 'components/page/DetailsPage';
 
 export const routes = (
   <Routes>
@@ -28,11 +27,11 @@ export const routes = (
         <React.Fragment key={i + cardType.name}>
           <Route
             path={`/acteurs-publics/${cardType.name}/:id`}
-            element={<DetailsPageV5 cardType={cardType} />}
+            element={<DetailsPage cardType={cardType} />}
           />
           <Route
             path={`/acteurs-publics/${cardType.name}`}
-            element={<SearchPageV5 cardType={cardType} />}
+            element={<SearchPage cardType={cardType} />}
           />
         </React.Fragment>
       ))}
@@ -40,11 +39,11 @@ export const routes = (
         <React.Fragment key={i + cardType.name}>
           <Route
             path={`/entreprises/${cardType.name}/:id`}
-            element={<Details cardType={cardType} />}
+            element={<DetailsPage cardType={cardType} />}
           />
           <Route
             path={`/entreprises/${cardType.name}`}
-            element={<SearchPageV5 cardType={cardType} />}
+            element={<SearchPage cardType={cardType} />}
           />
         </React.Fragment>
       ))}
