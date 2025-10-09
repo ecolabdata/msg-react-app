@@ -1,0 +1,33 @@
+import { Card } from './common';
+
+export type AidCard = Card & {
+    logo: string | null;
+    contact: string | null;
+    applicationUrl: string | null;
+    websiteUrl: string | null;
+    startDate: string | null;
+    predepositDate: string | null;
+    submissionDeadline: string | null;
+    recurrence: string | null;
+    targetedAudiences: string[] | null;
+    destinations: string[] | null;
+    aidTypes: string[] | null;
+    programs: string[] | null;
+    europeanAid: string | null;
+    financers: string[] | null;
+    instructors: string[] | null;
+    perimeter: string | null;
+    perimeterScale: string | null;
+    isCallForProject: boolean;
+    isCharged: boolean;
+    projectExamples: string | null;
+    projectReferences: string[] | null;
+    subventionComment: string | null;
+    eligibility: string | null;
+    recoverableAdvanceAmount: string | null;
+    loanAmount: string | null;
+    subventionRateLowerBound: number | null;
+    subventionRateUpperBound: number | null;
+    mobilizationSteps: string[] | null;
+    source_data: Array<Record<string, unknown>> | null;
+};

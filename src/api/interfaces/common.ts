@@ -21,7 +21,7 @@ export type Card = {
   card_type: Card_type;
 };
 
-export type Card_type = 'company' | 'public_buyer' | 'public_purchase';
+export type Card_type = 'company' | 'public_buyer' | 'public_purchase' | 'aid';
 export type Label = { description: string; name: string; label: LabelNames };
 export type LabelNames = 'GREEN20' | 'Solar Impulse' | 'GreenTech Innovation';
 
@@ -31,12 +31,10 @@ export type UnknownCard = Card &
   Partial<PublicPurchaseCard>;
 
 export const cardApiNames = [
-  'public_buyer_cards',
   'public_procurement_cards',
-  'investisseurs',
   'aid_cards',
-  'aides_innovation',
-  'company_cards'
+  'company_cards',
+  'public_buyer_cards',
 ] as const;
 export type CardApiNames = typeof cardApiNames[number];
 export type AnyCard = CompanyCard | PublicBuyerCard | PublicPurchaseCard;

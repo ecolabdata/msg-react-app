@@ -1,5 +1,6 @@
 import { SelectFilterData } from 'api/interfaces/common';
 import Select from 'components/dsfrComponents/Select';
+import { filtersTitles } from 'contents/filtersTitles';
 import { CardType } from 'model/CardType';
 
 type AdvancedFiltersProps = {
@@ -23,7 +24,7 @@ export const AdvancedFilters: React.FC<AdvancedFiltersProps> = ({
                     classes="w-full lg:max-w-[202px] md:mr-8"
                     selectClassName={`${localStorage.getItem('scheme') === 'dark' && 'bg-research-precision-container'
                         }`}
-                    label={key}
+                    label={filtersTitles[key as keyof typeof filtersTitles] || key}
                     color={cardType.color}
                     optionsData={value ?? []}
                     defaultOption={undefined}

@@ -25,6 +25,10 @@ export const useSearchState = () => {
 
     // Sync URL params to context on mount
     useEffect(() => {
+        if (!location.search) {
+            setAdvancedFilters(null);
+        }
+
         if (queryParam && queryParam !== description) {
             setDescription(queryParam);
         }

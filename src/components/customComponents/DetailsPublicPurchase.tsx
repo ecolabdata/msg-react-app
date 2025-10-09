@@ -9,66 +9,79 @@ interface ForecastedBuyInformationsProps {
 export const DetailsPublicPurchase: React.FC<ForecastedBuyInformationsProps> = ({ card }) => {
   const {
     status,
-    socialConsiderations,
-    environmentalConsiderations,
+    socialConsiderationsConcerned,
+    environmentalConsiderationsConcerned,
     reservedPublicMarkets,
-    publicationDate,
+    publicationTargetDate,
+    submissionDeadline,
+    websiteUrl,
     cpvCode,
-    description,
-    durationMonth,
-    estimatedAmount,
+    marketMaxDuration,
+    marketEstimatedAmount,
     procedureType,
-    category,
-    temporality,
-    departments
+    purchasingCategory,
+    departments,
+    description
   } = card;
 
   return (
     <Container customClasses="grid grid-cols-1 sm:grid-cols-3 gap-8">
       <div className="sm:col-span-3">
+        <InformationItem label={'Description du projet'} contents={description} />
         <InformationItemsWrapper>
           <>
             {status && <InformationItem label={'Status'} contents={status} />}
-            {(socialConsiderations || environmentalConsiderations) && (
-              <InformationItem
-                label={'Considérations spéciales'}
-                contents={[socialConsiderations || '', environmentalConsiderations || ''].filter(
-                  Boolean
-                )}
-              />
-            )}
+            {cpvCode && <InformationItem label={'Code CPV'} contents={cpvCode.toString()} />}
           </>
           <>
-            {temporality && <InformationItem label={'Temporalité'} contents={temporality} />}
-            {cpvCode && <InformationItem label={'Code CPV'} contents={cpvCode.toString()} />}
+            {socialConsiderationsConcerned !== null && (
+              <InformationItem
+                label={'Considérations sociales'}
+                contents={socialConsiderationsConcerned ? 'Oui' : 'Non'}
+              />
+            )}
+            {environmentalConsiderationsConcerned !== null && (
+              <InformationItem
+                label={'Considérations environnementales'}
+                contents={environmentalConsiderationsConcerned ? 'Oui' : 'Non'}
+              />
+            )}
           </>
         </InformationItemsWrapper>
         <InformationItemsWrapper>
           {departments && <InformationItem label={'Départements'} contents={departments} />}
-          {publicationDate && (
+          {publicationTargetDate && (
             <InformationItem
-              label={'Date de publication'}
-              contents={new Date(publicationDate).toLocaleDateString('fr-FR', {})}
+              label={'Date de publication cible'}
+              contents={new Date(publicationTargetDate).toLocaleDateString('fr-FR', {})}
             />
           )}
         </InformationItemsWrapper>
-        <InformationItem label={'Description du projet'} contents={description} />
+        {websiteUrl && (
+          <InformationItem label={'Site web'} contents={websiteUrl} />
+        )}
+        {submissionDeadline && (
+          <InformationItem
+            label={'Date limite de soumission'}
+            contents={new Date(submissionDeadline).toLocaleDateString('fr-FR', {})}
+          />
+        )}
         <InformationItemsWrapper>
           <>
-            {durationMonth && (
+            {marketMaxDuration && (
               <InformationItem
-                label={'Durée de la prestation'}
-                contents={`${durationMonth.toString()} mois`}
+                label={'Durée maximale du marché'}
+                contents={`${marketMaxDuration.toString()} mois`}
               />
             )}
           </>
-          <>{category && <InformationItem label={"Catégorie d'achat"} contents={category} />}</>
+          <>{purchasingCategory && <InformationItem label={"Catégorie d'achat"} contents={purchasingCategory} />}</>
         </InformationItemsWrapper>
         <InformationItemsWrapper>
-          {estimatedAmount && (
+          {marketEstimatedAmount && (
             <InformationItem
               label={'Montant estimé du marché'}
-              contents={`${estimatedAmount.toLocaleString()}€`}
+              contents={`${marketEstimatedAmount.toLocaleString()}€`}
             />
           )}
           {procedureType && (
