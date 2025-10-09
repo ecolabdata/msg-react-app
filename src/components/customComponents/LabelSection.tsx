@@ -1,4 +1,4 @@
-import { Label } from 'api5/interfaces/common';
+import { Label } from 'api/interfaces/common';
 import { LabelDetails } from './details/LabelDetails';
 
 const LabelSection: React.FC<{ labels: Label[] }> = ({ labels }) => {

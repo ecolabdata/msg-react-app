@@ -1,6 +1,6 @@
 import React from 'react';
 import GenericPagination from '../../dsfrComponents/GenericPagination';
-import { PublicBuyerCard, PublicBuyerMarketsTab } from 'api5/interfaces/publicBuyer';
+import { PublicBuyerCard, PublicBuyerMarketsTab } from 'api/interfaces/publicBuyer';
 
 interface PublicBuyerDecpTabProps {
   contents: PublicBuyerCard['marketContents'] | null;
@@ -47,9 +47,8 @@ const CPVCard: React.FC<CPVCardProps> = ({ card }) => {
   const { cpvCode, monthDuration, procedure, amount, content } = card;
   return (
     <div
-      className={`fr-card h-full w-full  ${
-        localStorage.getItem('scheme') === 'dark' ? 'bg-input-background' : ''
-      }`}>
+      className={`fr-card h-full w-full  ${localStorage.getItem('scheme') === 'dark' ? 'bg-input-background' : ''
+        }`}>
       <div className="fr-card__body ">
         <div className="fr-card__content">
           {/* <h3 className="fr-card__title"></h3> Commented because it creates an empty heading error */}

@@ -4,8 +4,8 @@ export interface ProjetFormContextProps {
   description: string;
   error: boolean;
   setDescription: React.Dispatch<React.SetStateAction<string>>;
-  advancedFilters: Record<string, string[]> | null;
-  setAdvancedFilters: React.Dispatch<React.SetStateAction<Record<string, string[]> | null>>;
+  advancedFilters: Record<string, string> | null;
+  setAdvancedFilters: React.Dispatch<React.SetStateAction<Record<string, string> | null>>;
 }
 
 export const ProjetFormContext = React.createContext<ProjetFormContextProps>({
@@ -18,7 +18,7 @@ export const ProjetFormContext = React.createContext<ProjetFormContextProps>({
 
 export const ProjetFormContextProvider: React.FC<{ children?: React.ReactNode }> = ({ children, ...props }) => {
   const [description, setDescription] = React.useState<string>('');
-  const [advancedFilters, setAdvancedFilters] = React.useState<Record<string, string[]> | null>(null);
+  const [advancedFilters, setAdvancedFilters] = React.useState<Record<string, string> | null>(null);
   const [error, setError] = React.useState<boolean>(false);
   const pathname = useLocation().pathname;
 

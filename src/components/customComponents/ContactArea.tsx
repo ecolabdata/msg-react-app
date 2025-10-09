@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import ExternalLink from '../Core/ExternalLink';
-import { UnknownCard } from 'api5/interfaces/common';
+import { UnknownCard } from 'api/interfaces/common';
 
 interface ContactAreaProps {
   data: UnknownCard;

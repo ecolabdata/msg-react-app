@@ -3,7 +3,7 @@ import { InformationItem, InformationItemsWrapper } from './details/InformationI
 import ContactArea from './ContactArea';
 import CardImages from './CardImages';
 import LabelSection from './LabelSection';
-import { CompanyCard } from 'api5/interfaces/company';
+import { CompanyCard } from 'api/interfaces/company';
 
 interface DetailsCompanyProps {
   data: CompanyCard;

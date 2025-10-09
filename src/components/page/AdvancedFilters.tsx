@@ -1,4 +1,4 @@
-import { SelectFilterData } from 'api5/interfaces/common';
+import { SelectFilterData } from 'api/interfaces/common';
 import Select from 'components/dsfrComponents/Select';
 import { CardType } from 'model/CardType';
 
@@ -6,7 +6,7 @@ type AdvancedFiltersProps = {
     filters: SelectFilterData;
     cardType: CardType;
     onFilterChange: (filterKey: string, value: string) => void;
-    selectedFilters: Record<string, string[]> | null;
+    selectedFilters: Record<string, string> | null;
 };
 
 export const AdvancedFilters: React.FC<AdvancedFiltersProps> = ({

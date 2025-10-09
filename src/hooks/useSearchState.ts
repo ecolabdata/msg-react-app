@@ -13,10 +13,10 @@ export const useSearchState = () => {
     const pageParam = parseInt(searchParams.get('page') || '1', 10);
     const stepParam = parseInt(searchParams.get('step') || '0', 10);
     const filtersParam = searchParams.get('filters');
-    let filtersFromUrl: Record<string, string[]> | null = null;
+    let filtersFromUrl: Record<string, string> | null = null;
     if (filtersParam && filtersParam !== 'null') {
         try {
-            filtersFromUrl = JSON.parse(filtersParam) as Record<string, string[]>;
+            filtersFromUrl = JSON.parse(filtersParam) as Record<string, string>;
         } catch (error) {
             console.warn('Failed to parse filters from URL:', error);
             filtersFromUrl = null;
@@ -35,7 +35,7 @@ export const useSearchState = () => {
     }, [location.search]);
 
     // Update URL when context changes
-    const updateSearchParams = (newDescription?: string, newPage?: number, newStep?: number, advancedFilters?: Record<string, string[]> | null) => {
+    const updateSearchParams = (newDescription?: string, newPage?: number, newStep?: number, advancedFilters?: Record<string, string> | null) => {
         const params = new URLSearchParams();
 
         if (newDescription !== undefined) {
@@ -64,7 +64,7 @@ export const useSearchState = () => {
     const handleFilterChange = (filterKey: string, value: string) => {
         const newFilters = {
             ...advancedFilters,
-            [filterKey]: value ? [value] : []
+            [filterKey]: value ? value : ""
         };
         setAdvancedFilters(newFilters);
     };

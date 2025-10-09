@@ -1,14 +1,14 @@
 import { useLocation } from 'react-router-dom';
 import { CardType } from '../../model/CardType';
-import { useFetch } from 'apiv4/useFetch';
-import { generateCardByIdFetchParams } from 'api5/servicesV5';
-import { UnknownCard } from 'api5/interfaces/common';
+import { useFetch } from 'api/useFetch';
+import { generateCardByIdFetchParams } from 'api/services';
+import { UnknownCard } from 'api/interfaces/common';
 import DetailsHeader from 'components/customComponents/DetailsHeader';
 import DetailsCompany from 'components/customComponents/DetailsCompany';
 import DetailsPublicBuyer from 'components/customComponents/details/DetailsPublicBuyerContent';
-import { PublicBuyerCard } from 'api5/interfaces/publicBuyer';
-import { CompanyCard } from 'api5/interfaces/company';
-import { PublicPurchaseCard } from 'api5/interfaces/publicPurchase';
+import { PublicBuyerCard } from 'api/interfaces/publicBuyer';
+import { CompanyCard } from 'api/interfaces/company';
+import { PublicPurchaseCard } from 'api/interfaces/publicPurchase';
 import { DetailsPublicPurchase } from 'components/customComponents/DetailsPublicPurchase';
 import Container from 'components/Core/Container';
 
@@ -26,11 +26,11 @@ export const DetailsPage: React.FC<DetailsProps> = ({ cardType }) => {
 
   const { data, error } = useFetch<UnknownCard>(url, { method, headers });
   const isLoading = !data && !error;
-
   if (isLoading) return <Container>Chargement en cours...</Container>;
   if (error) return <Container>Erreur</Container>;
   if (!data) return <Container>Aucune donnée</Container>;
 
+  console.log('data', data);
   return (
     <>
       <DetailsHeader data={data} cardType={cardType} badge={data.labels || null} />

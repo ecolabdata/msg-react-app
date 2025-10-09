@@ -2,7 +2,7 @@ import { PropsWithChildren, useEffect, useRef } from 'react';
 
 import ScreenReaderOnlyText from '../Core/ScreenReaderOnlyText';
 import { CardType } from 'model/CardType';
-import { UnknownCard } from 'api5/interfaces/common';
+import { UnknownCard } from 'api/interfaces/common';
 import ResultCard from './ResultCard';
 
 type Props = {

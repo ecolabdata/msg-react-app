@@ -1,6 +1,5 @@
 import { CardApiNames } from './interfaces/common';
 
-// export const baseApiUrl = process.env.REACT_APP_API_URL;
 export const baseApiUrl = 'https://api-v5.msg.greentechinnovation.fr';
 
 const baseGetRequestOptions = {

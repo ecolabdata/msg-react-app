@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { CardType } from '../../model/CardType';
 import { tailwindColorUtility } from '../../utils/utilityFunctions';
 
-import { Label, UnknownCard } from 'api5/interfaces/common';
+import { Label, UnknownCard } from 'api/interfaces/common';
 
 interface DetailsHeaderProps {
   data: UnknownCard;

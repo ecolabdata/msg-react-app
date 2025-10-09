@@ -2,7 +2,7 @@ import ScreenReaderOnlyText from 'components/Core/ScreenReaderOnlyText';
 import { PropsWithChildren } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { CardType } from '../../model/CardType';
-import { Label } from 'api5/interfaces/common';
+import { Label } from 'api/interfaces/common';
 
 interface CardProps {
   name?: string | null;

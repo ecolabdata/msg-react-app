@@ -1,4 +1,4 @@
-import { CardApiNames } from 'api5/interfaces/common';
+import { CardApiNames } from 'api/interfaces/common';
 import {
   PictoCalendar,
   PictoCityHall,

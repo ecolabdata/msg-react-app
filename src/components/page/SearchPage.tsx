@@ -6,11 +6,11 @@ import { CardType } from '../../model/CardType';
 import TextAreaInput from 'components/customComponents/TextAreaInput';
 import SearchFieldWrapper from 'components/customComponents/SearchFieldWrapper';
 import { StartupSubTitle } from 'components/customComponents/details/StartupSubtitle';
-import { baseApiUrl, generateFetchParams } from 'api5/servicesV5';
-import { CardsSearchResult, SelectFilterData } from 'api5/interfaces/common';
+import { baseApiUrl, generateFetchParams } from 'api/services';
+import { CardsSearchResult, SelectFilterData } from 'api/interfaces/common';
 import SearchResults from 'components/customComponents/SearchResults';
 import Pagination from './Pagination';
-import { useFetch } from 'apiv4/useFetch';
+import { useFetch } from 'api/useFetch';
 import { useSearchState } from 'hooks/useSearchState';
 import { AdvancedFilters } from './AdvancedFilters';
 
@@ -59,7 +59,6 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
 
   const { data, error: apiError } = useFetch<CardsSearchResult>(urlWithParams, options);
   const isLoading = !data && !apiError;
-  console.log('data', data);
   const cards = data?.results;
   const cardsCount = data?.total_count || 0;
   const pageCount = Math.ceil(cardsCount / (data?.page_size || 20));

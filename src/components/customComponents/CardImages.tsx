@@ -1,4 +1,4 @@
-import type { ImageDetailed } from 'api5/interfaces/common';
+import type { ImageDetailed } from 'api/interfaces/common';
 
 const CardImages = ({ images }: { images: ImageDetailed[] }) => {
   return (

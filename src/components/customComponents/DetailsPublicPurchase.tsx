@@ -1,4 +1,4 @@
-import { PublicPurchaseCard } from 'api5/interfaces/publicPurchase';
+import { PublicPurchaseCard } from 'api/interfaces/publicPurchase';
 import { InformationItem, InformationItemsWrapper } from './details/InformationItem';
 import Container from 'components/Core/Container';
 
