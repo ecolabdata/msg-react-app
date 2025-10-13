@@ -3,7 +3,7 @@ import GenericPagination from '../../dsfrComponents/GenericPagination';
 import {
   type PublicBuyerBuyTab as PublicBuyerBuyTabType,
   PublicBuyerCard
-} from 'api5/interfaces/publicBuyer';
+} from 'api/interfaces/publicBuyer';
 
 interface PublicBuyerBuyTabProps {
   contents: PublicBuyerCard['buyContents'] | null;

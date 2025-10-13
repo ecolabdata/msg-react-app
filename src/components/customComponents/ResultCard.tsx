@@ -1,25 +1,29 @@
 import ScreenReaderOnlyText from 'components/Core/ScreenReaderOnlyText';
-import { PropsWithChildren, ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { CardType } from '../../model/CardType';
+import { Label } from 'api/interfaces/common';
 
 interface CardProps {
   name?: string | null;
-  id?: string;
-  toprow?: string | null;
-  slug: string | null;
+  id: string | null;
+  companyTopRow?: Label[];
+  publicPurchaseTopRow?: string | null;
   cardType: CardType;
   isLoading?: boolean;
-  node: ReactNode;
+  content: string | null;
+  logo?: string | null;
 }
-// V5 : delete this
+
 const ResultCard: React.FC<PropsWithChildren<CardProps>> = ({
   cardType,
   name,
-  toprow,
-  slug,
+  companyTopRow,
+  publicPurchaseTopRow,
+  id,
   isLoading,
-  node
+  content,
+  logo
 }) => {
   const location = useLocation();
   if (!name) return <></>;
@@ -28,38 +32,60 @@ const ResultCard: React.FC<PropsWithChildren<CardProps>> = ({
       <div className="fr-card fr-enlarge-link w-full h-full">
         <div className="fr-card__body ">
           <div className="fr-card__content !pt-4 !px-6 !pb-16 ">
-            <h3 className="fr-card__title">
-              {slug && (
-                <Link to={`${location.pathname}${slug}`} className="rm-link-underline">
-                  {name && (
-                    <p className="clamp mt-2 font-bold text-lg" title={name}>
-                      {toprow && <ScreenReaderOnlyText content={toprow} />}
-                      {name}
-                    </p>
-                  )}
-                </Link>
-              )}
-            </h3>
-            <div className="fr-card__desc">{node}</div>
             <div className="fr-card__start">
               <ul className="fr-tags-group" aria-hidden={true}>
                 <li>
-                  <p
-                    className={`fr-badge fr-badge--sm `}
-                    style={{
-                      color:
-                        localStorage.getItem('scheme') === 'dark'
-                          ? cardType?.color
-                          : cardType.backgroundColor,
-                      backgroundColor:
-                        localStorage.getItem('scheme') === 'dark'
-                          ? cardType?.backgroundColor
-                          : cardType.color
-                    }}>
-                    {toprow}
-                  </p>
+                  {(companyTopRow || publicPurchaseTopRow) && (
+                    <p
+                      className={`fr-badge fr-badge--sm `}
+                      style={{
+                        color:
+                          localStorage.getItem('scheme') === 'dark'
+                            ? cardType?.color
+                            : cardType.backgroundColor,
+                        backgroundColor:
+                          localStorage.getItem('scheme') === 'dark'
+                            ? cardType?.backgroundColor
+                            : cardType.color
+                      }}>
+                      {companyTopRow && companyTopRow.map((el) => el?.label).join(' | ')}
+                      {publicPurchaseTopRow && publicPurchaseTopRow}
+                    </p>
+                  )}
                 </li>
               </ul>
+            </div>
+            <div className="fr-card__title">
+              <h3>
+                {id && (
+                  <Link to={`${location.pathname}/${id}`} className="rm-link-underline">
+                    {name && (
+                      <p className="mt-2 font-bold text-lg" title={name}>
+                        {companyTopRow && companyTopRow.length && (
+                          <ScreenReaderOnlyText
+                            content={companyTopRow.map((el) => el?.label).join('')}
+                          />
+                        )}
+                        {name}
+                      </p>
+                    )}
+                  </Link>
+                )}
+              </h3>
+              {logo && <img className="max-h-8" src={logo} />}
+            </div>
+            <div
+              className="fr-card__desc"
+              style={{
+                display: '-webkit-box',
+                WebkitLineClamp: 7,
+                WebkitBoxOrient: 'vertical',
+                overflow: 'hidden',
+                lineHeight: '1.4',
+                maxHeight: 'calc(1.4em * 7)'
+              }}
+            >
+              {content}
             </div>
           </div>
         </div>

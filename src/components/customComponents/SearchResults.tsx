@@ -1,25 +1,24 @@
 import { PropsWithChildren, useEffect, useRef } from 'react';
 
 import ScreenReaderOnlyText from '../Core/ScreenReaderOnlyText';
-import ResultCard from './ResultCard';
-import { SearchResultItem } from 'apiv4/interfaces/typeguards';
-import { getThumbnailInformation } from 'helpers/searchTypeHelpers';
 import { CardType } from 'model/CardType';
-import { PublicBuyerHit } from 'apiv4/interfaces/publicBuyer';
-import classNames from 'classnames';
+import { UnknownCard } from 'api/interfaces/common';
+import ResultCard from './ResultCard';
 
 type Props = {
   hitCount?: number;
   isLoading: boolean;
-  results: SearchResultItem[] | PublicBuyerHit[];
+  results: UnknownCard[];
   cardType: CardType;
+  url: string;
 };
-// V5 : delete this
+
 const SearchResults: React.FC<PropsWithChildren<Props>> = ({
   hitCount,
   isLoading,
   results,
-  cardType
+  cardType,
+  url
 }) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -33,31 +32,38 @@ const SearchResults: React.FC<PropsWithChildren<Props>> = ({
         });
       }
     }, 500);
-  }, [isLoading]);
+  }, [isLoading, url]);
 
   return (
     <>
       {isLoading && <ScreenReaderOnlyText content={'Chargement en cours'} aria-live="polite" />}
       {!isLoading && hitCount ? (
-        <ScreenReaderOnlyText content={`il y a ${hitCount} résultats`} aria-live="polite" />
+        <ScreenReaderOnlyText content={`il y'a ${hitCount} résultats`} aria-live="polite" />
       ) : null}
       {!isLoading && hitCount === 0 && (
         <ScreenReaderOnlyText content={`Aucun résultat trouvé`} aria-live="polite" />
       )}
       {hitCount && hitCount > 0 ? (
-        <section
-          tabIndex={0}
-          ref={ref}
-          className={classNames('my-8', { 'opacity-50': isLoading })}
-          id="cardsContainer">
+        <section tabIndex={0} ref={ref} className="my-8" id="cardsContainer">
           <span
             className="flex justify-end font-bold mb-4 text-xl"
             aria-hidden={true}>{`(${hitCount} résultats)`}</span>
-          <ScreenReaderOnlyText content={`il y a ${hitCount} résultats`} />
+          <ScreenReaderOnlyText content={`il y'a ${hitCount} résultats`} />
           <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {results.map((r, id) => {
-              const thumbnailInformations = getThumbnailInformation(r, cardType);
-              return <ResultCard key={id} {...thumbnailInformations} cardType={cardType} />;
+            {results.map((card, index) => {
+              return (
+                <ResultCard
+                  key={card.id + index}
+                  id={card.id}
+                  companyTopRow={card.labels || undefined}
+                  publicPurchaseTopRow={card.purchasingEntity}
+                  cardType={cardType}
+                  isLoading={isLoading}
+                  content={card.shortDescription}
+                  name={card.cardTitle}
+                  logo={card.logoUrl}
+                />
+              );
             })}
           </ul>
         </section>

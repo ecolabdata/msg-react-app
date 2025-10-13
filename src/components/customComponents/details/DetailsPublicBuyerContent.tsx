@@ -3,7 +3,7 @@ import { Tabs } from '../Tabs';
 import { TagsList } from '../../Core/TagsList';
 import { PublicBuyerBuyTab } from './PublicBuyerBuyTab';
 import { PublicBuyerMarketTab } from './PublicBuyerMarketTab';
-import { PublicBuyerCard } from 'api5/interfaces/publicBuyer';
+import { PublicBuyerCard } from 'api/interfaces/publicBuyer';
 
 interface DetailsPublicBuyerContentProps {
   card: PublicBuyerCard;

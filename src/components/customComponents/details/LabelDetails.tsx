@@ -1,4 +1,4 @@
-import { LabelNames } from 'api5/interfaces/common';
+import { LabelNames } from 'api/interfaces/common';
 import frenchtech from '../../../assets/images/frenchtech.png';
 import greentech from '../../../assets/images/greentech.png';
 import solarImpulse from '../../../assets/images/solar-impulse.png';
@@ -24,9 +24,8 @@ export const LabelDetails: React.FC<LabelDetailsProps> = ({
       <div className="flex flex-col w-full">
         <h3 className="text-xl">{solutionName}</h3>
         <p
-          className={`fr-badge fr-badge--sm  ${
-            localStorage.getItem('scheme') === 'dark' && 'bg-green-menthe-moon-652-lightBackground'
-          }  text-green-menthe-moon-652 my-4`}>
+          className={`fr-badge fr-badge--sm  ${localStorage.getItem('scheme') === 'dark' && 'bg-green-menthe-moon-652-lightBackground'
+            }  text-green-menthe-moon-652 my-4`}>
           {label}
         </p>
         <p>{description}</p>

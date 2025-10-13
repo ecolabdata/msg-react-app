@@ -1,4 +1,4 @@
-import { CardApiNames } from 'api5/interfaces/common';
+import { CardApiNames } from 'api/interfaces/common';
 import {
   PictoCalendar,
   PictoCityHall,
@@ -63,23 +63,23 @@ export const achatPrevi: CardType = {
   homeDescription: 'Achats publics prévus ces trois prochaines années dans votre domaine.',
   name: 'achats-publics-a-venir',
   searchLink: '/achats-publics-a-venir',
-  apiName: 'public_purchase_cards',
+  apiName: 'public_procurement_cards',
   searchText: 'Recherchez des projets d’achat public par mots clés (nom, cpv, thématique...)',
   version: 'beta'
 } as const;
 
-export const investisseur: CardType = {
-  SVGLogo: PictoMoney,
-  backgroundColor: '#1E2719',
-  color: '#68A532',
-  title: 'Investisseurs',
-  description: 'Investisseurs adaptés à votre maturité pour votre prochaine levée de fonds.',
-  name: 'investisseurs',
-  searchLink: '/investisseurs',
-  apiName: 'investisseurs',
-  version: 'beta',
-  searchText: 'Recherchez des investisseurs par mots clés (nom, thématique...)'
-} as const;
+// export const investisseur: CardType = {
+//   SVGLogo: PictoMoney,
+//   backgroundColor: '#1E2719',
+//   color: '#68A532',
+//   title: 'Investisseurs',
+//   description: 'Investisseurs adaptés à votre maturité pour votre prochaine levée de fonds.',
+//   name: 'investisseurs',
+//   searchLink: '/investisseurs',
+//   apiName: 'investisseurs',
+//   version: 'beta',
+//   searchText: 'Recherchez des investisseurs par mots clés (nom, thématique...)'
+// } as const;
 
 export const aideClient: CardType = {
   SVGLogo: PictoHealth,
@@ -91,23 +91,23 @@ export const aideClient: CardType = {
   description: '',
   name: 'aides-clients',
   searchLink: '/aides-clients',
-  apiName: 'aides_clients',
+  apiName: 'aid_cards',
   version: 'beta',
   searchText: 'Recherchez des aides pour vos clients par mots clés (nom, thématique...)'
 } as const;
 
-export const aideInno: CardType = {
-  SVGLogo: PictoEnvironnement,
-  backgroundColor: '#272747',
-  color: '#8585F6',
-  title: 'Aides à l’innovation',
-  description: 'Aides publiques dédiées à votre développement',
-  name: 'aides-innovations',
-  searchLink: '/aides-innovations',
-  apiName: 'aides_innovation',
-  version: 'beta',
-  searchText: "Recherchez des aides à l'innovation par mots clés (nom, thématique..)"
-} as const;
+// export const aideInno: CardType = {
+//   SVGLogo: PictoEnvironnement,
+//   backgroundColor: '#272747',
+//   color: '#8585F6',
+//   title: 'Aides à l’innovation',
+//   description: 'Aides publiques dédiées à votre développement',
+//   name: 'aides-innovations',
+//   searchLink: '/aides-innovations',
+//   apiName: 'aides_innovation',
+//   version: 'beta',
+//   searchText: "Recherchez des aides à l'innovation par mots clés (nom, thématique..)"
+// } as const;
 
 export const startups: CardType = {
   SVGLogo: PictoRocket,
@@ -135,7 +135,7 @@ export const aideFin: CardType = {
   name: 'aides-financieres',
   searchLink: '/aides-financieres',
   searchText: 'Recherchez des aides financières par mots clés',
-  apiName: 'aides_clients',
+  apiName: 'aid_cards',
   version: 'beta'
 } as const;
 
