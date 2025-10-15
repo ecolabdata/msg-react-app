@@ -23,7 +23,8 @@ const DetailsCompany: React.FC<DetailsCompanyProps> = ({ data }) => {
     images,
     region,
     departement,
-    ville
+    ville,
+    thematic,
   } = data;
   return (
     <Container customClasses="grid grid-cols-1 sm:grid-cols-3 gap-8">
@@ -34,6 +35,7 @@ const DetailsCompany: React.FC<DetailsCompanyProps> = ({ data }) => {
           label={'Description de la solution'}
           contents={description}
           className="mt-8"
+          isHtml
         />
         <InformationItemsWrapper>
           <>
@@ -82,7 +84,14 @@ const DetailsCompany: React.FC<DetailsCompanyProps> = ({ data }) => {
           </>
           <></>
         </InformationItemsWrapper>
-        {labels && labels.length > 0 && <LabelSection labels={labels} />}
+        <InformationItemsWrapper>
+          <>
+            {thematic && <InformationItem label={'Thématique'} contents={thematic} />}
+          </>
+          <>
+            {labels && labels.length > 0 && <LabelSection labels={labels} />}
+          </>
+        </InformationItemsWrapper>
       </Container>
       <div>
         <ContactArea data={data} />

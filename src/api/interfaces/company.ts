@@ -17,5 +17,6 @@ export type CompanyCard = Card & {
   labels: Label[] | null;
   siren: number | null;
   images: ImageDetailed[] | null;
+  thematic: string | null;
   source_data: Array<Record<string, unknown>> | null;
 };

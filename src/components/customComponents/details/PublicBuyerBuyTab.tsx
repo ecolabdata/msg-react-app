@@ -82,7 +82,7 @@ const CPVCard: React.FC<CPVCardProps> = ({ content }) => {
                   {marketEstimatedAmount} €
                 </p>
                 <p>
-                  <span className="font-bold">Status: </span>
+                  <span className="font-bold">Statut: </span>
                   <br />
                   {status}
                 </p>

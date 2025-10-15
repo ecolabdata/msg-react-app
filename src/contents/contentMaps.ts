@@ -10,3 +10,11 @@ export const filtersTitles = {
     markets: 'Marchés',
     labels: 'Labels',
 } as const;
+
+export const publicPurchaseStatusTitles = {
+    close: 'Fermé',
+    cancel: 'Annulé',
+    draft: 'Brouillon',
+    current: 'En cours',
+    active: 'Actif',
+} as const;

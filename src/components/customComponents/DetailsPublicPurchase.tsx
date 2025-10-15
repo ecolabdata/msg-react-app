@@ -1,6 +1,7 @@
 import { PublicPurchaseCard } from 'api/interfaces/publicPurchase';
 import { InformationItem, InformationItemsWrapper } from './details/InformationItem';
 import Container from 'components/Core/Container';
+import { publicPurchaseStatusTitles } from 'contents/contentMaps';
 
 interface ForecastedBuyInformationsProps {
   card: PublicPurchaseCard;
@@ -9,17 +10,17 @@ interface ForecastedBuyInformationsProps {
 export const DetailsPublicPurchase: React.FC<ForecastedBuyInformationsProps> = ({ card }) => {
   const {
     status,
-    socialConsiderationsConcerned,
-    environmentalConsiderationsConcerned,
-    reservedPublicMarkets,
-    publicationTargetDate,
-    submissionDeadline,
-    websiteUrl,
-    cpvCode,
-    marketMaxDuration,
-    marketEstimatedAmount,
-    procedureType,
-    purchasingCategory,
+    social_considerations_concerned,
+    environmental_considerations_concerned,
+    reserved_public_markets,
+    publication_target_date,
+    submission_deadline,
+    website_url,
+    cpv_code,
+    market_max_duration,
+    market_estimated_amount,
+    procedure_type,
+    purchasing_category,
     departments,
     description
   } = card;
@@ -30,66 +31,66 @@ export const DetailsPublicPurchase: React.FC<ForecastedBuyInformationsProps> = (
         <InformationItem label={'Description du projet'} contents={description} />
         <InformationItemsWrapper>
           <>
-            {status && <InformationItem label={'Status'} contents={status} />}
-            {cpvCode && <InformationItem label={'Code CPV'} contents={cpvCode.toString()} />}
+            {status && <InformationItem label={'Statut'} contents={publicPurchaseStatusTitles[status]} />}
+            {cpv_code && <InformationItem label={'Code CPV'} contents={cpv_code.toString()} />}
           </>
           <>
-            {socialConsiderationsConcerned !== null && (
+            {social_considerations_concerned !== null && (
               <InformationItem
                 label={'Considérations sociales'}
-                contents={socialConsiderationsConcerned ? 'Oui' : 'Non'}
+                contents={social_considerations_concerned ? 'Oui' : 'Non'}
               />
             )}
-            {environmentalConsiderationsConcerned !== null && (
+            {environmental_considerations_concerned !== null && (
               <InformationItem
                 label={'Considérations environnementales'}
-                contents={environmentalConsiderationsConcerned ? 'Oui' : 'Non'}
+                contents={environmental_considerations_concerned ? 'Oui' : 'Non'}
               />
             )}
           </>
         </InformationItemsWrapper>
         <InformationItemsWrapper>
           {departments && <InformationItem label={'Départements'} contents={departments} />}
-          {publicationTargetDate && (
+          {publication_target_date && (
             <InformationItem
               label={'Date de publication cible'}
-              contents={new Date(publicationTargetDate).toLocaleDateString('fr-FR', {})}
+              contents={new Date(publication_target_date).toLocaleDateString('fr-FR', {})}
             />
           )}
         </InformationItemsWrapper>
-        {websiteUrl && (
-          <InformationItem label={'Site web'} contents={websiteUrl} />
+        {website_url && (
+          <InformationItem label={'Site web'} contents={website_url} />
         )}
-        {submissionDeadline && (
+        {submission_deadline && (
           <InformationItem
             label={'Date limite de soumission'}
-            contents={new Date(submissionDeadline).toLocaleDateString('fr-FR', {})}
+            contents={new Date(submission_deadline).toLocaleDateString('fr-FR', {})}
           />
         )}
         <InformationItemsWrapper>
           <>
-            {marketMaxDuration && (
+            {market_max_duration && (
               <InformationItem
                 label={'Durée maximale du marché'}
-                contents={`${marketMaxDuration.toString()} mois`}
+                contents={`${market_max_duration.toString()} mois`}
               />
             )}
           </>
-          <>{purchasingCategory && <InformationItem label={"Catégorie d'achat"} contents={purchasingCategory} />}</>
+          <>{purchasing_category && <InformationItem label={"Catégorie d'achat"} contents={purchasing_category} />}</>
         </InformationItemsWrapper>
         <InformationItemsWrapper>
-          {marketEstimatedAmount && (
+          {market_estimated_amount && (
             <InformationItem
               label={'Montant estimé du marché'}
-              contents={`${marketEstimatedAmount.toLocaleString()}€`}
+              contents={`${market_estimated_amount.toLocaleString()}€`}
             />
           )}
-          {procedureType && (
-            <InformationItem label={'Type de procédure'} contents={procedureType} />
+          {procedure_type && (
+            <InformationItem label={'Type de procédure'} contents={procedure_type} />
           )}
         </InformationItemsWrapper>
-        {reservedPublicMarkets && reservedPublicMarkets?.length > 0 && (
-          <InformationItem label={'Marché public réservé'} contents={reservedPublicMarkets} />
+        {reserved_public_markets && reserved_public_markets?.length > 0 && (
+          <InformationItem label={'Marché public réservé'} contents={reserved_public_markets} />
         )}
       </div>
     </Container>

@@ -56,12 +56,12 @@ const SearchResults: React.FC<PropsWithChildren<Props>> = ({
                   key={card.id + index}
                   id={card.id}
                   companyTopRow={card.labels || undefined}
-                  publicPurchaseTopRow={card.purchasingEntity}
+                  publicPurchaseTopRow={card.purchasing_entity}
                   cardType={cardType}
                   isLoading={isLoading}
                   content={card.shortDescription}
                   name={card.cardTitle}
-                  logo={card.logoUrl}
+                  logo={card?.logo?.url}
                 />
               );
             })}
