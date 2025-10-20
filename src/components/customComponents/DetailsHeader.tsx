@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { CardType } from '../../model/CardType';
 import { tailwindColorUtility } from '../../utils/utilityFunctions';
 
-import { Label, UnknownCard } from 'api/interfaces/common';
+import { API_URL, Label, UnknownCard } from 'api/interfaces/common';
 
 interface DetailsHeaderProps {
   data: UnknownCard;
@@ -38,7 +38,7 @@ const DetailsHeader: React.FC<DetailsHeaderProps> = ({ data, cardType, badge }) 
           {cardType?.name === 'sourcing-startup' ? companyBadge : cardType?.name}
         </p>
         <Heading align="left">{title}</Heading>
-        {logo?.url && <img src={logo.url} alt="" className="mt-4 h-10" />}
+        {logo?.url && <img src={`${API_URL}${logo.url}`} alt="" className="mt-4 h-10" />}
 
         <p
           className={`${localStorage.getItem('scheme') === 'dark' && 'text-grey-625-active'} mt-4`}>

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import ExternalLink from './Core/ExternalLink';
 import { SetStateAction } from 'react';
 import { Dispatch } from 'react';
+import { SURVEY_URL } from 'utils/constants';
 
 const Footer: React.FC<{
   isOpenModale: boolean;
@@ -29,12 +30,11 @@ const Footer: React.FC<{
                 informations sur les marchés d'innovation. Pour nous faire part de vos remarques ou
                 nous aider à améliorer l’expérience, merci de répondre à cette{' '}
                 <ExternalLink
-                  className={`font-bold ${
-                    localStorage.getItem('scheme') === 'dark'
-                      ? 'text-blue-france-625'
-                      : 'text-blue-france-sun-113'
-                  } mr-1`}
-                  href="https://airtable.com/appuYR2vZha6r8jt4/shrwwE4lA2GFxK0T4"
+                  className={`font-bold ${localStorage.getItem('scheme') === 'dark'
+                    ? 'text-blue-france-625'
+                    : 'text-blue-france-sun-113'
+                    } mr-1`}
+                  href={SURVEY_URL}
                   content="courte enquête"
                 />
                 (3 minutes).

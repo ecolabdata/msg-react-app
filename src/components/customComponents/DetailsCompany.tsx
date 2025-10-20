@@ -25,6 +25,8 @@ const DetailsCompany: React.FC<DetailsCompanyProps> = ({ data }) => {
     departement,
     ville,
     thematic,
+    headquarter_address,
+    creation_date,
   } = data;
   return (
     <Container customClasses="grid grid-cols-1 sm:grid-cols-3 gap-8">
@@ -54,10 +56,11 @@ const DetailsCompany: React.FC<DetailsCompanyProps> = ({ data }) => {
         </InformationItemsWrapper>
         <InformationItemsWrapper>
           <>
-            {departement && <InformationItem label={'Département'} contents={departement} />}
+            {creation_date && <InformationItem label={'Date de création'} contents={creation_date} />}
           </>
           <>
             {ville && <InformationItem label={'Ville'} contents={ville} />}
+            {departement && <InformationItem label={'Département'} contents={departement} />}
           </>
         </InformationItemsWrapper>
         <InformationItemsWrapper>
@@ -82,16 +85,19 @@ const DetailsCompany: React.FC<DetailsCompanyProps> = ({ data }) => {
               />
             )}
           </>
-          <></>
+          <>
+            {headquarter_address && (
+              <InformationItem label={'Adresse du siège social'} contents={headquarter_address} />
+            )}
+          </>
         </InformationItemsWrapper>
         <InformationItemsWrapper>
           <>
             {thematic && <InformationItem label={'Thématique'} contents={thematic} />}
           </>
-          <>
-            {labels && labels.length > 0 && <LabelSection labels={labels} />}
-          </>
+          <></>
         </InformationItemsWrapper>
+        {labels && labels.length > 0 && <LabelSection labels={labels} />}
       </Container>
       <div>
         <ContactArea data={data} />

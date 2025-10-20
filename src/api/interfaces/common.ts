@@ -53,3 +53,5 @@ export type ImageDetailed = Image & {
 };
 
 export type SelectFilterData = Record<string, string[]>;
+
+export const API_URL = 'https://api-v5.msg.greentechinnovation.fr';
