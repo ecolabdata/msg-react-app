@@ -24,14 +24,7 @@ export const LegalNotices = () => {
         <p>92800 Puteaux</p>
         <p>Téléphone : 01 40 81 21 22</p>
         <h3 className="my-4 font-bold text-xl">Gestion du portail</h3>
-        <p>Comité &nbsp;de rédaction</p>
-        <p>
-          Rédacteur en chef : Matthieu Humbersot. Rédactrice.teur.s en chef adjoint.e.s : Coralie
-          Coton, Charlotte Samson, Alexis Brissard
-        </p>
-        <p>
-          Equipe numérique : Matthieu Humbersot, Coralie Coton, Charlotte Samson, Alexis Brissard
-        </p>
+        <p>Comité de direction : Equipe GreenTech Innovation</p>
         <p>
           <span>Graphisme : Coralie Coton, Equipe du </span>
           <span>

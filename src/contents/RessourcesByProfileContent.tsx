@@ -13,7 +13,7 @@ const ressourcesByProfileContent = {
       {
         title: 'Parlez la même langue que les acheteurs publics !',
         description:
-          'Inspiré du Guide Pratique de l’Achat Public Innovant, téléchargez cet exemple de template qui vous permettra de valoriser votre solution auprès des acheteurs publics !',
+          'Inspiré du Guide de l’achat public de solutions innovantes construit par la DAJ du Ministère de l’Economie, téléchargez et remplissez cet exemple de template qui aidera l’acheteur public à justifier de votre caractère innovant ou non',
 
         cta: {
           name: "Télécharger le modèle d'argumentaire",
@@ -77,8 +77,9 @@ const ressourcesByProfileContent = {
         'Vous souhaitez que votre entreprise éco-innovante soit visible dans Mes Services Greentech ?',
       description: (
         <>
-          Très bonne idée ! Pour accentuer votre visibilité auprès des acheteurs publics et de l’écosystème Greentech,
-          nous vous invitons à candidater à l'AMI Greentech Innovation, présenté sur le site internet{' '}
+          Très bonne idée ! Pour accentuer votre visibilité auprès des acheteurs publics et de
+          l’écosystème Greentech, nous vous invitons à candidater à l'AMI Greentech Innovation,
+          présenté sur le site internet{' '}
           <ExternalLink
             href="https://greentechinnovation.fr/"
             content="Greentech Innovation "
@@ -103,29 +104,22 @@ const ressourcesByProfileContent = {
     suggestions: [
       {
         title: 'Communauté',
-        description: 'Rejoignez Rapidd, la communauté des achats durables',
+        description: 'Rejoignez Rapidd, la communauté des achats achats socialement et écologiquement responsables',
         links: [{ name: 'Rapidd', url: 'https://rapidd.developpement-durable.gouv.fr/' }]
       },
       {
-        title: 'Aides',
+        title: 'Aides - Considérations environnementales',
         description:
-          'Profitez d’un premier niveau de conseil gratuit pour intégrer des considérations environnementales dans vos achats.',
-        links: [{ name: 'Le guichet vert', url: 'https://laclauseverte.fr/le-guichet-vert/' }, { name: 'Rapidd', url: 'https://rapidd.developpement-durable.gouv.fr/article/8022' }]
+          'Un premier niveau de conseil gratuit pour intégrer des considérations environnementales dans vos marchés avec le guichet vert. Une liste de considérations environnementales mobilisables dans vos marchés avec la clause verte.',
+        links: [
+          { name: 'Le guichet vert', url: 'https://laclauseverte.fr/le-guichet-vert/' },
+          { name: 'La clause verte', url: 'https://laclauseverte.fr/' }
+        ]
       },
       {
         title: 'Financements',
         description: 'Trouvez des aides pour financer vos achats responsables',
         links: [{ name: 'Aides Territoires', url: 'https://aides-territoires.beta.gouv.fr/' }]
-      },
-      {
-        title: 'Clause',
-        description: "Facilitez vous l'intégration de clauses environnementales.",
-        links: [
-          {
-            name: 'La clause verte',
-            url: 'https://laclauseverte.fr/'
-          }
-        ]
       },
       {
         title: 'Inclusion',
@@ -134,6 +128,29 @@ const ressourcesByProfileContent = {
           {
             name: "Le marché de l'inclusion",
             url: 'https://lemarche.inclusion.beta.gouv.fr/#'
+          }
+        ]
+      },
+      {
+        title: "Sourcing d'entreprises",
+        description:
+          'Sans être exhaustif, voici quelques liens utiles dans votre sourcing d’entreprises Greentech',
+        links: [
+          {
+            name: 'Mission French Tech (FT 2030 - Verticale Transition écologique)',
+            url: 'https://lafrenchtech.gouv.fr/fr/programme/french-tech-2030/#toc-laur%c3%a9ats-2023'
+          },
+          {
+            name: 'Solar impulse ',
+            url: 'https://solarimpulse.com/solutions-explorer-fr/showcase'
+          },
+          {
+            name: 'PEXE',
+            url: 'https://annuaires.ecoentreprises-france.fr/sommaire#/'
+          },
+          {
+            name: 'GreenTech Innovation',
+            url: 'https://greentechinnovation.fr/les-greentech-laureates/'
           }
         ]
       },
@@ -159,10 +176,11 @@ const ressourcesByProfileContent = {
       },
       {
         title: 'Caractère innovant d’une solution',
-        description: 'Exemple de modèle simple vous permettant d’étudier le caractère innovant ou non d’une solution portée par une entreprise ! ',
+        description:
+          'Exemple de modèle simple vous permettant d’étudier le caractère innovant ou non d’une solution portée par une entreprise ! ',
         links: [
           {
-            name: "Télécharger le modèle",
+            name: 'Télécharger le modèle',
             url: 'https://docs.google.com/document/d/12krGhJ_OS1yQ2MCze2yUI1ztx452sXK8/edit?usp=sharing&ouid=113036023962989545192&rtpof=true&sd=true'
           }
         ]

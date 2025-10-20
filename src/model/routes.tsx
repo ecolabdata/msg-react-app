@@ -1,8 +1,7 @@
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import AccessibilityPage from '../components/page/AccessibilityPage';
 import CookiePage from '../components/page/CookiePage';
-import { SearchPage } from '../components/page/SearchPage';
-import { Details } from '../components/page/DetailsPage';
 import GdprPage from '../components/page/GdprPage';
 import Home from '../components/page/Home';
 import LegalNotices from '../components/page/LegalNoticesPage';
@@ -13,6 +12,8 @@ import { publicActorPersona, startupPersona } from './CardType';
 import PageLayout from '../components/page/PageLayout';
 import SingleSearchPage from 'components/page/SingleSearchFormPage';
 import { Ressources } from 'components/page/Ressources';
+import { SearchPage } from 'components/page/SearchPage';
+import { DetailsPage } from 'components/page/DetailsPage';
 
 export const routes = (
   <Routes>
@@ -23,30 +24,28 @@ export const routes = (
       <Route path="/ressources-acteurs-publics" element={<Ressources profile="publicActor" />} />
       <Route path="/acteurs-publics" element={<SingleSearchPage profile="publicActor" />} />
       {publicActorPersona.map((cardType, i) => (
-        <>
+        <React.Fragment key={i + cardType.name}>
           <Route
-            key={i}
             path={`/acteurs-publics/${cardType.name}/:id`}
-            element={<Details cardType={cardType} />}
+            element={<DetailsPage cardType={cardType} />}
           />
           <Route
             path={`/acteurs-publics/${cardType.name}`}
             element={<SearchPage cardType={cardType} />}
           />
-        </>
+        </React.Fragment>
       ))}
       {startupPersona.map((cardType, i) => (
-        <>
+        <React.Fragment key={i + cardType.name}>
           <Route
-            key={i}
             path={`/entreprises/${cardType.name}/:id`}
-            element={<Details cardType={cardType} />}
+            element={<DetailsPage cardType={cardType} />}
           />
           <Route
             path={`/entreprises/${cardType.name}`}
             element={<SearchPage cardType={cardType} />}
           />
-        </>
+        </React.Fragment>
       ))}
 
       <Route path="mentions-legales" element={<LegalNotices />} />

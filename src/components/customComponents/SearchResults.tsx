@@ -1,24 +1,24 @@
 import { PropsWithChildren, useEffect, useRef } from 'react';
 
 import ScreenReaderOnlyText from '../Core/ScreenReaderOnlyText';
-import ResultCard from './ResultCard';
-import { SearchResultItem } from 'apiv4/interfaces/typeguards';
-import { getThumbnailInformation } from 'helpers/searchTypeHelpers';
 import { CardType } from 'model/CardType';
-import { PublicBuyerHit } from 'apiv4/interfaces/publicBuyer';
+import { UnknownCard } from 'api/interfaces/common';
+import ResultCard from './ResultCard';
 
 type Props = {
   hitCount?: number;
   isLoading: boolean;
-  results: SearchResultItem[] | PublicBuyerHit[];
+  results: UnknownCard[];
   cardType: CardType;
+  url: string;
 };
 
 const SearchResults: React.FC<PropsWithChildren<Props>> = ({
   hitCount,
   isLoading,
   results,
-  cardType
+  cardType,
+  url
 }) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -32,7 +32,7 @@ const SearchResults: React.FC<PropsWithChildren<Props>> = ({
         });
       }
     }, 500);
-  }, [isLoading]);
+  }, [isLoading, url]);
 
   return (
     <>
@@ -50,9 +50,20 @@ const SearchResults: React.FC<PropsWithChildren<Props>> = ({
             aria-hidden={true}>{`(${hitCount} résultats)`}</span>
           <ScreenReaderOnlyText content={`il y'a ${hitCount} résultats`} />
           <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {results.map((r, id) => {
-              const thumbnailInformations = getThumbnailInformation(r, cardType);
-              return <ResultCard key={id} {...thumbnailInformations} cardType={cardType} />;
+            {results.map((card, index) => {
+              return (
+                <ResultCard
+                  key={card.id + index}
+                  id={card.id}
+                  companyTopRow={card.labels || undefined}
+                  publicPurchaseTopRow={card.purchasing_entity}
+                  cardType={cardType}
+                  isLoading={isLoading}
+                  content={card.shortDescription}
+                  name={card.cardTitle}
+                  logo={card?.logo?.url}
+                />
+              );
             })}
           </ul>
         </section>

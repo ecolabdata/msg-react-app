@@ -18,16 +18,14 @@ const DropDown: React.FC<DropDownProps> = ({ borderColor, title, usedState, valu
         aria-describedby="select-error-desc-error"
         id="select-thematic"
         name="select-thematic"
-        onChange={(e) => setState(e.target.value)}
-      >
+        onChange={(e) => setState(e.target.value)}>
         {Object.entries(values).map(([key, value]) => {
           return (
             <option
               className="font-light text-md"
               value={key}
               selected={value === state}
-              key={value}
-            >
+              key={value}>
               {value}
             </option>
           );

@@ -28,12 +28,10 @@ const CopieLink: React.FC<CopieLinkProps> = ({ link }) => {
     <>
       <button
         className="fr-btn fr-btn--tertiary-no-outline"
-        onClick={() => handleCopy(link || window.location.href)}
-      >
+        onClick={() => handleCopy(link || window.location.href)}>
         <span
           className="fr-icon-links-line mr-3 fr-icon--md border p-3 rounded-full border-grey-625-active border-opacity-20"
-          aria-hidden="true"
-        ></span>
+          aria-hidden="true"></span>
         Copier le lien
       </button>
       {copiedMessage.message && copiedMessage.success && (

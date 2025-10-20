@@ -1,44 +1,45 @@
 import { useLocation } from 'react-router-dom';
 import { CardType } from '../../model/CardType';
-import DetailsFooter from '../customComponents/details/DetailsFooter';
-import GenericDetails from '../customComponents/details/DetailsGenericContent';
-import DetailsHeader from '../customComponents/details/DetailsHeader';
-import { useFetch } from 'apiv4/useFetch';
-import { generateCardByIDFetchParameters } from 'apiv4/services';
-import { isPublicBuyerResults } from 'apiv4/interfaces/typeguards';
-import DetailsPublicBuyer from 'components/customComponents/details/DetailsPublicBuyerContent';
-import {
-  SearchResultItem,
-  isAidV4,
-  isCompanyV4,
-  isInvestorV4,
-  isPublicPurchaseV4
-} from 'apiv4/interfaces/typeguards';
+import { useFetch } from 'api/useFetch';
+import { generateCardByIdFetchParams } from 'api/services';
+import { UnknownCard } from 'api/interfaces/common';
+import DetailsHeader from 'components/customComponents/DetailsHeader';
+import DetailsCompany from 'components/customComponents/DetailsCompany';
+import { CompanyCard } from 'api/interfaces/company';
+import { PublicPurchaseCard } from 'api/interfaces/publicPurchase';
+import { DetailsPublicPurchase } from 'components/customComponents/DetailsPublicPurchase';
+import Container from 'components/Core/Container';
+import { AidCard } from 'api/interfaces/aid';
+import { DetailsAid } from 'components/customComponents/DetailsAid';
 
 type DetailsProps = {
   cardType: CardType;
 };
 
-export const Details: React.FC<DetailsProps> = ({ cardType }) => {
+export const DetailsPage: React.FC<DetailsProps> = ({ cardType }) => {
   const location = useLocation();
 
-  const { url, method, headers } = generateCardByIDFetchParameters(
+  const { url, method, headers } = generateCardByIdFetchParams(
     location.pathname.split('/')[3],
     cardType.apiName
   );
-  const { data, error } = useFetch<SearchResultItem>(url, { method, headers });
 
-  if (!data) return <p>No data</p>;
-
+  const { data, error } = useFetch<UnknownCard>(url, { method, headers });
+  const isLoading = !data && !error;
+  if (isLoading) return <Container>Chargement en cours...</Container>;
+  if (error) return <Container>Erreur</Container>;
+  if (!data) return <Container>Aucune donnée</Container>;
+  console.log(cardType.apiName);
   return (
     <>
-      <DetailsHeader data={data} cardType={cardType} />
-      {isPublicBuyerResults(data) && <DetailsPublicBuyer card={data._source} />}
-      {(isCompanyV4(data) || isPublicPurchaseV4(data) || isAidV4(data) || isInvestorV4(data)) && (
-        <GenericDetails data={data} />
+      <DetailsHeader data={data} cardType={cardType} badge={data.labels || null} />
+      {cardType.apiName === 'company_cards' && <DetailsCompany data={data as CompanyCard} />}
+      {cardType.apiName === 'public_procurement_cards' && (
+        <DetailsPublicPurchase card={data as PublicPurchaseCard} />
       )}
-
-      <DetailsFooter cardType={cardType} />
+      {cardType.apiName === 'aid_cards' && (
+        <DetailsAid card={data as AidCard} />
+      )}
     </>
   );
 };

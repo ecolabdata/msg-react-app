@@ -17,14 +17,12 @@ const GenericPagination: React.FC<GenericPaginationProps> = ({
       title={title}
       role="navigation"
       className={`fr-pagination ${className}`}
-      aria-label={title}
-    >
+      aria-label={title}>
       <ul className="fr-pagination__list">
         <li>
           <button
             onClick={() => setPageNumber(0)}
-            className="fr-pagination__link fr-pagination__link--first"
-          >
+            className="fr-pagination__link fr-pagination__link--first">
             Première page
           </button>
         </li>
@@ -33,8 +31,7 @@ const GenericPagination: React.FC<GenericPaginationProps> = ({
             disabled={pageNumber === 0}
             onClick={() => setPageNumber(pageNumber - 1)}
             className="fr-pagination__link fr-pagination__link--prev fr-pagination__link--lg-label"
-            aria-disabled={pageNumber === 0}
-          >
+            aria-disabled={pageNumber === 0}>
             Page précédente
           </button>
         </li>
@@ -42,8 +39,7 @@ const GenericPagination: React.FC<GenericPaginationProps> = ({
           <p
             className="fr-pagination__link rounded-full"
             aria-current="page"
-            title={`Page ${pageNumber + 1}`}
-          >
+            title={`Page ${pageNumber + 1}`}>
             {pageNumber + 1}
           </p>
         </li>
@@ -53,16 +49,14 @@ const GenericPagination: React.FC<GenericPaginationProps> = ({
             onClick={() => setPageNumber(pageNumber + 1)}
             className="fr-pagination__link fr-pagination__link--next fr-pagination__link--lg-label"
             aria-disabled={pageNumber === numberOfPages - 1}
-            disabled={pageNumber === numberOfPages - 1}
-          >
+            disabled={pageNumber === numberOfPages - 1}>
             Page suivante
           </button>
         </li>
         <li>
           <button
             onClick={() => setPageNumber(numberOfPages - 1)}
-            className="fr-pagination__link fr-pagination__link--last"
-          >
+            className="fr-pagination__link fr-pagination__link--last">
             Dernière page
           </button>
         </li>

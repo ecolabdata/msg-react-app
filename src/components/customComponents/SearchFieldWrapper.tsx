@@ -13,10 +13,10 @@ const SearchFieldWrapper: React.FC<PropsWithChildren<SearchFieldWrapperProps>> =
 }) => {
   return (
     <div
-      className={`container ${className} p-4 my-2 mr-0 justify-start ${usedInListPage ? 'mt-8' : 'items-center w-full '
-        }
-          flex flex-col lg:mt-0`}
-    >
+      className={`container ${className} p-4 my-2 mr-0 justify-start ${
+        usedInListPage ? 'mt-8' : 'items-center w-full '
+      }
+          flex flex-col lg:mt-0`}>
       {children}
     </div>
   );

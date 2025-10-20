@@ -11,6 +11,7 @@ interface TextAreaInputProps {
   className?: string;
   color?: string;
   error?: boolean;
+  placeholder?: string;
 }
 
 const TextAreaInput: React.FC<TextAreaInputProps> = ({
@@ -21,7 +22,8 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
   onValueChange,
   className: classNameProp = '',
   color,
-  error
+  error,
+  placeholder
 }) => {
   const MIN_HEIGHT = 50;
   const inputId = `${formId}-${label}`;
@@ -64,10 +66,13 @@ const TextAreaInput: React.FC<TextAreaInputProps> = ({
         style={{
           height: textAreaHeight
         }}
+        placeholder={placeholder}
         value={value}
         form={formId}
         className={classNames(
-          ` cursor-text mt-2 w-full rounded-t-sm p-2 ${localStorage.getItem("scheme") === "dark" ? "bg-input-background" : "bg-slate-50"} ${borderColor}`,
+          ` cursor-text mt-2 w-full rounded-t-sm p-2 ${
+            localStorage.getItem('scheme') === 'dark' ? 'bg-input-background' : 'bg-slate-50'
+          } ${borderColor}`,
           { [`addBorder-b border-3`]: !error },
           { 'addBorder border-2 border-red-marianne-625-hover': error },
           classNameProp

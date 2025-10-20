@@ -6,6 +6,7 @@ interface CardTypeProps {
   cardTypeData: CardType | ExplorerTypeCard;
   explorerCard?: boolean;
   state?: SearchState;
+  params: string;
 }
 
 export interface ExplorerTypeCard {
@@ -19,11 +20,11 @@ export interface ExplorerTypeCard {
   homeDescription?: string;
 }
 
-const HomeCard: React.FC<CardTypeProps> = ({ explorerCard, cardTypeData, state }) => {
+const HomeCard: React.FC<CardTypeProps> = ({ explorerCard, cardTypeData, state, params }) => {
   const isExplorerCard = explorerCard ?? false;
   const { SVGLogo, title, description, color, searchLink, version, homeDescription } = cardTypeData;
   const isAlpha = version === 'alpha';
-  const location = useLocation()
+  const location = useLocation();
 
   const alphaCardStyle =
     "after:text-sm after:px-4 after:py-1 after:rounded-2xl after:absolute after:bottom-2 after:right-2 after:content-['Bientôt'] ";
@@ -41,7 +42,7 @@ const HomeCard: React.FC<CardTypeProps> = ({ explorerCard, cardTypeData, state }
           <h3 className="fr-card__title">
             {!isAlpha ? (
               <Link
-                to={`${location.pathname}${searchLink}`}
+                to={`${location.pathname}${searchLink}?${params}`}
                 state={state}
                 className={`${isExplorerCard && 'text-black '} text-lg`}>
                 {title}
@@ -50,9 +51,7 @@ const HomeCard: React.FC<CardTypeProps> = ({ explorerCard, cardTypeData, state }
               <p className="text-lg">{title}</p>
             )}
           </h3>
-          <p className="fr-card__desc text-base">
-            {homeDescription ?? description}
-          </p>
+          <p className="fr-card__desc text-base">{homeDescription ?? description}</p>
         </div>
       </div>
       <div className="fr-card__header">

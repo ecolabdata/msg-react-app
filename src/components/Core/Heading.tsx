@@ -3,6 +3,7 @@ export interface HeadingProps {
   align?: 'left' | 'center' | 'right';
   inSmallContainer?: boolean;
   customClasses?: string;
+  children?: React.ReactNode;
 }
 type HeadingTag = 'h1' | 'h2' | 'h3' | 'h4';
 
@@ -43,11 +44,9 @@ const Heading: React.FC<HeadingProps> = ({
   return (
     <>
       <HeadingTag
-        className={`${alignClass()} my-4 ${
-          inSmallContainer ? 'max-w-headerSize' : 'w-full'
-        } font-bold ${sizeClass()} ${customClasses}`}
-        {...props}
-      >
+        className={`${alignClass()} my-4 ${inSmallContainer ? 'max-w-headerSize' : 'w-full'
+          } font-bold ${sizeClass()} ${customClasses}`}
+        {...props}>
         {' '}
         {children}{' '}
       </HeadingTag>

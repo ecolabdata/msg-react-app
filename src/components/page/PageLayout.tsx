@@ -5,19 +5,16 @@ import Header from '../Header';
 import ModalThemeSelection from 'components/dsfrComponents/ModalThemeSelection';
 import { useState } from 'react';
 
-
-
 export const PageLayout = () => {
-  const [isOpenModale, setIsOpenModale] = useState(false)
+  const [isOpenModale, setIsOpenModale] = useState(false);
 
   return (
     <>
-
       <Header />
-      <div className="bg-gey-50 text-white"><BreadCumb /></div>
-      <main
-        role="main"
-      >
+      <div className="bg-gey-50 text-white">
+        <BreadCumb />
+      </div>
+      <main role="main">
         <div id="main-content">
           <Outlet />
         </div>
