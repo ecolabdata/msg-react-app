@@ -30,3 +30,20 @@ export const tailwindColorUtility: Record<string, Record<string, string>> = {
     lightBackground: 'bg-[#2D0405]'
   }
 };
+
+export const removeHtmlTags = (html: string) => {
+  return html.replace(/<[^>]*>/g, '')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&#039;/g, "'")
+    .replace(/&quot;/g, '"')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&apos;/g, "'")
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&copy;/g, '©')
+    .replace(/&reg;/g, '®')
+    .replace(/&trade;/g, '™')
+    .replace(/&euro;/g, '€')
+    .replace(/&pound;/g, '£')
+};

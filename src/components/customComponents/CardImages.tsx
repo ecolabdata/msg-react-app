@@ -1,4 +1,4 @@
-import type { ImageDetailed } from 'api/interfaces/common';
+import { API_URL, type ImageDetailed } from 'api/interfaces/common';
 
 const CardImages = ({ images }: { images: ImageDetailed[] }) => {
   return (
@@ -7,7 +7,7 @@ const CardImages = ({ images }: { images: ImageDetailed[] }) => {
       {images.map((image, index) => (
         <img
           key={(image.url || '') + index}
-          src={image.thumbnails.small?.url || image.url}
+          src={`${API_URL}${image.url}`}
           alt=""
         />
       ))}

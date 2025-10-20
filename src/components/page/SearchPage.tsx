@@ -113,7 +113,6 @@ export const SearchPage: React.FC<Props> = ({ cardType }) => {
                 error={error}
                 label={cardType?.searchText ?? ''}
                 formId="projectForm"
-                required
                 color={cardType?.color}
               />
             </SearchFieldWrapper>

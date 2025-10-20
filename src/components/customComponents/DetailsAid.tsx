@@ -36,7 +36,7 @@ export const DetailsAid: React.FC<DetailsAidProps> = ({ card }) => {
         <Container customClasses="grid grid-cols-1 sm:grid-cols-3 gap-8">
             <div className="sm:col-span-3">
                 <InformationItemsWrapper>
-                    {contact && <InformationItem label={'Contacts'} contents={contact} />}
+                    {contact && <InformationItem label={'Contacts'} contents={contact} isHtml />}
                     {websiteUrl && (
                         <InformationItem
                             label={'Site web'}
@@ -45,7 +45,7 @@ export const DetailsAid: React.FC<DetailsAidProps> = ({ card }) => {
                     )}
                 </InformationItemsWrapper>
                 <InformationItemsWrapper>
-                    <InformationItem label={'Description du projet'} contents={description} />
+                    <InformationItem label={'Description du projet'} contents={description} isHtml />
                     {eligibility && (
                         <InformationItem label={'Eligibilité'} contents={eligibility} isHtml />
                     )}
@@ -110,7 +110,7 @@ export const DetailsAid: React.FC<DetailsAidProps> = ({ card }) => {
                 </InformationItemsWrapper>
                 <InformationItemsWrapper>
                     {projectExamples && (
-                        <InformationItem label={'Exemples de projets'} contents={projectExamples} />
+                        <InformationItem label={'Exemples de projets'} contents={projectExamples} isHtml />
                     )}
                     {projectReferences && (
                         <InformationItem label={'Références de projets'} contents={projectReferences} />

@@ -5,6 +5,7 @@ import { useJwtPayload } from '../utils/jwt';
 import MsgLogo from './customComponents/MsgLogo';
 import SkipLinks from './dsfrComponents/SkipLinks';
 import NavigationMenu from './NavigationMenu';
+import { Banner } from './customComponents/Banner';
 
 const Header = () => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -84,6 +85,7 @@ territoires">
         </div>
       </header>
       <NavigationMenu isBurgerMenuOpen={isBurgerMenuOpen} />
+      <Banner />
     </>
   );
 };

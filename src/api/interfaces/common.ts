@@ -16,7 +16,7 @@ export type Card = {
   cardTitle: string;
   cardSubtitle: string;
   shortDescription: string | null;
-  logoUrl: string | null;
+  logo: { width: number | null, height: number | null, url: string | null };
   description: string | null;
   card_type: Card_type;
 };
@@ -53,3 +53,5 @@ export type ImageDetailed = Image & {
 };
 
 export type SelectFilterData = Record<string, string[]>;
+
+export const API_URL = 'https://api-v5.msg.greentechinnovation.fr';

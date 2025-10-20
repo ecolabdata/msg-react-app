@@ -24,7 +24,7 @@ export const InformationItem: React.FC<InformationItemProps> = ({
       {Array.isArray(contents) ? (
         <TagsList tags={contents} />
       ) : (
-        <>{isHtml ? <p dangerouslySetInnerHTML={{ __html: contents }} /> : <p>{contents}</p>}</>
+        <>{isHtml ? <div dangerouslySetInnerHTML={{ __html: contents }} className="html-content" /> : <p>{contents}</p>}</>
       )}
       {showDivider && <div className="h-0.5 w-20 bg-grey-625-active opacity-20 my-8" />}
     </div>

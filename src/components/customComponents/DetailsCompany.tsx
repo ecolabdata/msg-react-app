@@ -23,7 +23,10 @@ const DetailsCompany: React.FC<DetailsCompanyProps> = ({ data }) => {
     images,
     region,
     departement,
-    ville
+    ville,
+    thematic,
+    headquarter_address,
+    creation_date,
   } = data;
   return (
     <Container customClasses="grid grid-cols-1 sm:grid-cols-3 gap-8">
@@ -34,6 +37,7 @@ const DetailsCompany: React.FC<DetailsCompanyProps> = ({ data }) => {
           label={'Description de la solution'}
           contents={description}
           className="mt-8"
+          isHtml
         />
         <InformationItemsWrapper>
           <>
@@ -52,10 +56,11 @@ const DetailsCompany: React.FC<DetailsCompanyProps> = ({ data }) => {
         </InformationItemsWrapper>
         <InformationItemsWrapper>
           <>
-            {departement && <InformationItem label={'Département'} contents={departement} />}
+            {creation_date && <InformationItem label={'Date de création'} contents={creation_date} />}
           </>
           <>
             {ville && <InformationItem label={'Ville'} contents={ville} />}
+            {departement && <InformationItem label={'Département'} contents={departement} />}
           </>
         </InformationItemsWrapper>
         <InformationItemsWrapper>
@@ -79,6 +84,16 @@ const DetailsCompany: React.FC<DetailsCompanyProps> = ({ data }) => {
                 isHtml
               />
             )}
+          </>
+          <>
+            {headquarter_address && (
+              <InformationItem label={'Adresse du siège social'} contents={headquarter_address} />
+            )}
+          </>
+        </InformationItemsWrapper>
+        <InformationItemsWrapper>
+          <>
+            {thematic && <InformationItem label={'Thématique'} contents={thematic} />}
           </>
           <></>
         </InformationItemsWrapper>

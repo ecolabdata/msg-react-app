@@ -1,6 +1,6 @@
 import { SelectFilterData } from 'api/interfaces/common';
 import Select from 'components/dsfrComponents/Select';
-import { filtersTitles } from 'contents/filtersTitles';
+import { filtersTitles } from 'contents/contentMaps';
 import { CardType } from 'model/CardType';
 
 type AdvancedFiltersProps = {

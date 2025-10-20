@@ -2,7 +2,8 @@ import ScreenReaderOnlyText from 'components/Core/ScreenReaderOnlyText';
 import { PropsWithChildren } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { CardType } from '../../model/CardType';
-import { Label } from 'api/interfaces/common';
+import { API_URL, Label } from 'api/interfaces/common';
+import { removeHtmlTags } from 'utils/utilityFunctions';
 
 interface CardProps {
   name?: string | null;
@@ -72,7 +73,7 @@ const ResultCard: React.FC<PropsWithChildren<CardProps>> = ({
                   </Link>
                 )}
               </h3>
-              {logo && <img className="max-h-8" src={logo} />}
+              {logo && <img className="max-h-8" src={`${API_URL}${logo}`} />}
             </div>
             <div
               className="fr-card__desc"
@@ -85,7 +86,8 @@ const ResultCard: React.FC<PropsWithChildren<CardProps>> = ({
                 maxHeight: 'calc(1.4em * 7)'
               }}
             >
-              {content}
+              {/*FIXME We don't need html formating here and it breaks line clamp, but api should handle this instead if this function is not needed */}
+              {content ? removeHtmlTags(content) : ''}
             </div>
           </div>
         </div>
